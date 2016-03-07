@@ -13,7 +13,6 @@ url: "/paraunit"
 languageCode: "it-IT"
 
 ---
-Test
  *Questo articolo è la sintesi di un talk presentato al [SymfonyDay 2015](http://2015.symfonyday.it/); potete trovare le slide [qui](http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html).*
 
 #### I test e la loro durata
