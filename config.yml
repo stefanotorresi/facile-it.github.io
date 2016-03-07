@@ -1,4 +1,5 @@
-baseurl: "http://engineering.facile.it/"
+#baseurl: "http://engineering.facile.it/"
+baseurl: "/"
 languageCode: "en-us"
 title: "Facile.it Engineering"
 paginate: 5

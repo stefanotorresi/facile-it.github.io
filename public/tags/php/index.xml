@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Php on Facile.it Engineering</title>
-    <link>http://engineering.facile.it/tags/php/</link>
+    <link>/tags/php/</link>
     <description>Recent content in Php on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2016</copyright>
     <lastBuildDate>Mon, 18 Jan 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://engineering.facile.it/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GraphQL: an introduction</title>
-      <link>http://engineering.facile.it/graphql-an-introduction</link>
+      <link>/graphql-an-introduction</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://engineering.facile.it/graphql-an-introduction</guid>
+      <guid>/graphql-an-introduction</guid>
       <description>
 
 &lt;h2 id=&#34;the-lesson-we-learned-with-rest:0365de793d2feff4217533544ca4b947&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
@@ -409,10 +409,10 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
     
     <item>
       <title>Puli: Universal Packages for PHP</title>
-      <link>http://engineering.facile.it/puli-universal-packages-for-php</link>
+      <link>/puli-universal-packages-for-php</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://engineering.facile.it/puli-universal-packages-for-php</guid>
+      <guid>/puli-universal-packages-for-php</guid>
       <description>
 
 &lt;h2 id=&#34;composer-e-l-ecosistema-php:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
@@ -654,10 +654,10 @@ Per approfondire, la documentazione ufficiale è molto chiara e completa ed è d
     
     <item>
       <title>Paraunit: test paralleli, Doctrine e le fixture</title>
-      <link>http://engineering.facile.it/paraunit</link>
+      <link>/paraunit</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://engineering.facile.it/paraunit</guid>
+      <guid>/paraunit</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -767,7 +767,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/2015-10-paraunit/grafico.png&#34; alt=&#34;Grafico&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/2015-10-paraunit/grafico.png&#34; alt=&#34;Grafico&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Come potete vedere, Paraunit esegue l&amp;rsquo;intera test suite in soli &lt;strong&gt;6 minuti e 6 secondi&lt;/strong&gt;, mentre PHPUnit ci metterebbe &lt;strong&gt;oltre 40 minuti!&lt;/strong&gt;&lt;/p&gt;
 
