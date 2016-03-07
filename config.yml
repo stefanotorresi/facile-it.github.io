@@ -2,6 +2,7 @@ baseurl: "http://engineering.facile.it/"
 languageCode: "en-us"
 title: "Facile.it Engineering"
 paginate: 5
+theme: "casper"
 #DisqusShortname: "YOUR_SHORT_NAME_HERE"
 Copyright: "All rights reserved - 2016"
 canonifyurls: true

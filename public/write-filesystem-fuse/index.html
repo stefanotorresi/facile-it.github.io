@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Write a filesystem with FUSE &middot;  Facile.it Engineering" />
+  	<meta property="og:site_name" content="Facile.it Engineering" />
+  	<meta property="og:url" content="http://engineering.facile.it/write-filesystem-fuse" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-01-11T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="fuse" />
+    
+    <meta property="og:article:tag" content="filesystem" />
+    
+    <meta property="og:article:tag" content="c" />
+    
+    <meta property="og:article:tag" content="cmake" />
+    
+    
+
+  <title>
+     Write a filesystem with FUSE &middot;  Facile.it Engineering
+  </title>
+
+    <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://engineering.facile.it/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://engineering.facile.it/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://engineering.facile.it/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://engineering.facile.it/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="http://engineering.facile.it/index.xml" rel="alternate" type="application/rss+xml" title="Facile.it Engineering" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.15" />
+
+    <link rel="canonical" href="http://engineering.facile.it/write-filesystem-fuse" />
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="http://engineering.facile.it/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://engineering.facile.it/"><img src="http://engineering.facile.it/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="http://engineering.facile.it/index.xml">&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Write a filesystem with FUSE</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-01-11T00:00:00Z">
+            Jan 11, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://engineering.facile.it/tags/fuse/">#fuse</a></span>
+         
+          <span class="post-tag small"><a href="http://engineering.facile.it/tags/filesystem/">#filesystem</a></span>
+         
+          <span class="post-tag small"><a href="http://engineering.facile.it/tags/c/">#c</a></span>
+         
+          <span class="post-tag small"><a href="http://engineering.facile.it/tags/cmake/">#cmake</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.</p>
+
+<h2 id="introduction:9033f4ec77332ae8c4f2b8bb280b10a0">Introduction</h2>
+
+<p>A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
+If you are using a device to read this post you are probably using at least one filesystem at the moment.</p>
+
+<p>Implementing a filesystem is not an easy task to accomplish and requires that a few parts of it have to be written at kernel level, fortunately that&rsquo;s not our case since we are not writing a real on-disk filesystem, but rather we want to write something on top of it to solve a specific problem.</p>
+
+<p>The most common tool to do that in user space is precisely <strong>FUSE, Filesystem in USErspace</strong>.</p>
+
+<p>There are a lot of filesystem examples built on top of FUSE out there that cover the most different use cases like:</p>
+
+<ul>
+<li><a href="https://www.gluster.org/">GlusterFS</a>: scalable network filesystem</li>
+<li><a href="https://github.com/libfuse/sshfs">SSHFS</a>: allows mounting a remote filesystem over SSH</li>
+<li><a href="https://sr71.net/projects/gmailfs/">GMailFS</a>: allows to use GMail storage as a filesystem</li>
+<li><a href="http://loggedfs.sourceforge.net/">LoggedFS</a>: filesystem that logs operations that happens in it</li>
+</ul>
+
+<p>The main <strong>advantages</strong> of FUSE over writing a low level kernel filesystem are:</p>
+
+<ul>
+<li>Is usable by non-privileged users;</li>
+<li>Clean and easy interface to do FS operations;</li>
+<li>Has bindings in most available programming language;</li>
+<li>No need of advanced kernel development skills;</li>
+<li>Comes with user isolation, more secure;</li>
+<li>Since you are not hacking in kernel space there are a few chances that a crash in your program takes down the entire system;</li>
+</ul>
+
+<p>However there are also a few <strong>disadvantages</strong> of this approach:</p>
+
+<ul>
+<li>The target system need libfuse installed;</li>
+<li>Slower than low level implementations;</li>
+<li>Not the best option if you need multiple users to access your filesystem;</li>
+</ul>
+
+<p>Here&rsquo;s a flow-chart diagram showing how FUSE works, source: <a href="https://commons.wikimedia.org/wiki/File:FUSE_structure.svg">Wikimedia Commons</a>
+<img src="http://engineering.facile.it/content/images/2016/01/FUSE_structure.svg" alt="A flow-chart diagram showing how FUSE works" /></p>
+
+<h2 id="getting-started-with-fuse:9033f4ec77332ae8c4f2b8bb280b10a0">Getting started with FUSE</h2>
+
+<p>This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&rsquo;s going on whether you execute the code or not.</p>
+
+<h3 id="build-dependencies:9033f4ec77332ae8c4f2b8bb280b10a0">Build dependencies</h3>
+
+<p>From now you&rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.</p>
+
+<h4 id="linux:9033f4ec77332ae8c4f2b8bb280b10a0">Linux</h4>
+
+<ul>
+<li>GCC or Clang</li>
+<li>CMake &gt;= 3</li>
+<li>make</li>
+<li>FUSE 2.6 or later</li>
+<li>FUSE development files</li>
+</ul>
+
+<p>To obtain those dependencies you can issue the following commands (depending on your Linux distribution).</p>
+
+<p>Fedora/CentOS</p>
+
+<pre><code class="language-bash">yum install gcc fuse fuse-devel make cmake
+</code></pre>
+
+<p>Debian/Ubuntu</p>
+
+<pre><code class="language-bash">apt-get install gcc fuse libfuse-dev make cmake
+</code></pre>
+
+<h4 id="mac-osx:9033f4ec77332ae8c4f2b8bb280b10a0">Mac OSX</h4>
+
+<ul>
+<li>Command line tools for Xcode (contains Clang and make)</li>
+<li>CMake &gt;= 3</li>
+<li>FUSE &gt;= 2.6 or later</li>
+<li>FUSE development files</li>
+</ul>
+
+<p>You can obtain all the needed dependencies at the following sources:</p>
+
+<ul>
+<li><a href="https://developer.apple.com/xcode/features/">Xcode</a></li>
+<li><a href="https://cmake.org/download/">CMake</a></li>
+<li><a href="https://osxfuse.github.io/">OSXFuse</a></li>
+</ul>
+
+<h3 id="fuse-api:9033f4ec77332ae8c4f2b8bb280b10a0">FUSE API</h3>
+
+<p>The most important thing to be aware of when working with FUSE is its API.
+The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.</p>
+
+<p>The most complete source of documentation on what are the callbacks and their behavior is the <code>fuse.h</code> declaration file. You can find an online version <a href="https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577">here</a>.</p>
+
+<h3 id="example-project:9033f4ec77332ae8c4f2b8bb280b10a0">Example project</h3>
+
+<p>For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named <code>file</code> and its content.</p>
+
+<p>You can find the example project on <a href="https://github.com/fntlnz/fuse-example">GitHub</a>.</p>
+
+<p>I think that the best way to start your own implementation is to take an example and start adding your features.</p>
+
+<p>So, as first thing clone the example project:</p>
+
+<pre><code>git clone https://github.com/fntlnz/fuse-example.git
+</code></pre>
+
+<p>As you can see the project structure is quite simple:</p>
+
+<pre><code>.
+├── CMake
+│   └── FindFUSE.cmake
+├── CMakeLists.txt
+└── fuse-example.c
+</code></pre>
+
+<h4 id="cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:9033f4ec77332ae8c4f2b8bb280b10a0"><a href="https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt">CMakeLists.txt</a></h4>
+
+<p>As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The <code>CMake/FindFuse.cmake</code> is needed in order to tell CMake where to find the FUSE related things while compiling/linking.</p>
+
+<h4 id="fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:9033f4ec77332ae8c4f2b8bb280b10a0"><a href="https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c">fuse-example.c</a></h4>
+
+<p>Here&rsquo;s where the magic actually happen!</p>
+
+<p>In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.</p>
+
+<h5 id="getattr:9033f4ec77332ae8c4f2b8bb280b10a0">getattr</h5>
+
+<p>The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.</p>
+
+<script src="https://gist.github.com/fntlnz/f373ee1e423566642d71.js"></script>
+
+<p>What we are doing here is simple:</p>
+
+<ul>
+<li>if the value of path equals to root <code>/</code>, we declare it as a directory and return.</li>
+<li>if the value of path equals to filepath <code>/file</code>, we declare it as a file and explicit its size and then return.</li>
+<li>Otherwise nothing exists at the given path, and we return <code>-ENOENT</code>.</li>
+</ul>
+
+<p>As you can see, we are telling FUSE that the current entry is a file or a directory using the <code>stat</code> struct.</p>
+
+<p>In general, if the entry is a directory, <code>st_mode</code> have to be set to <code>S_IFDIR</code> and <code>st_nlink</code> to 2, while if it&rsquo;s a file, <code>st_mode</code> have to be set to <code>S_IFREG</code> (that stands for regular file) and <code>st_nlink</code> to 1. Files also require that the <code>st_size</code> (the full file size) is specified.</p>
+
+<p><a href="http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html">Here</a> you can find more information about <code>&lt;sys/stat.h&gt;</code></p>
+
+<h5 id="open:9033f4ec77332ae8c4f2b8bb280b10a0">open</h5>
+
+<p>The open callback is called when the system requests for a file to be opened. Since we don&rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.</p>
+
+<h5 id="read:9033f4ec77332ae8c4f2b8bb280b10a0">read</h5>
+
+<p>This callback is called when FUSE is reading data from an opened file.
+It should return exactly the number of bytes requested and fill the second argument <code>buf</code> with the content of those bytes.
+As done in the getattr callback, here I&rsquo;m checking if the given path equals to a known one, I copy the <code>filecontent</code> into the <code>buf</code> and then return the requested number of bytes.</p>
+
+<script src="https://gist.github.com/fntlnz/91ee912e4d58295ee18d.js"></script>
+
+<h5 id="readdir:9033f4ec77332ae8c4f2b8bb280b10a0">readdir</h5>
+
+<p>The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
+Since at the moment the only available directory is <code>/</code>, this function always return its representation, we are doing it by filling <code>buf</code> with the two links for the upper directory <code>..</code> and current directory <code>.</code> and with the only file we have: <code>file</code>.</p>
+
+<script src="https://gist.github.com/fntlnz/5e712738bdab28f1a1c0.js"></script>
+
+<h5 id="main:9033f4ec77332ae8c4f2b8bb280b10a0">main</h5>
+
+<p>Last but not least, the <code>main</code> function here is acting as a proxy to the <code>fuse_main</code> passing arguments through it and configuring it with the implemented FUSE operation callbacks via the <code>fuse_example_operations</code> variable.</p>
+
+<script src="https://gist.github.com/fntlnz/57922d3b64a9fa042aca.js"></script>
+
+<h4 id="build-and-run:9033f4ec77332ae8c4f2b8bb280b10a0">Build and run</h4>
+
+<p>Do you remember that you installed CMake, make, gcc and libfuse? It&rsquo;s time to use them!</p>
+
+<p>The first tool we are using is CMake to <strong>check dependencies, setup environment and generate Makefiles</strong>.</p>
+
+<pre><code>cmake -DCMAKE_BUILD_TYPE=Debug .
+</code></pre>
+
+<p>If you don&rsquo;t want Debug flags and other development related enabled features, just change <code>Debug</code> to <code>Release</code></p>
+
+<p>The second tool we are using is <code>make</code>, that using the CMake generated <strong>Makefiles</strong> is now able to build our project.</p>
+
+<pre><code>make -j
+</code></pre>
+
+<p>The <code>-j</code> parts tells make to parallelize the build to all your cores, remove it if you run out of CPU.</p>
+
+<p>Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!</p>
+
+<h4 id="run:9033f4ec77332ae8c4f2b8bb280b10a0">Run!</h4>
+
+<p>Before doing anything we need a mountpoint, so let&rsquo;s create the directory where the filesystem will be mounted:</p>
+
+<pre><code>mkdir /tmp/example
+</code></pre>
+
+<p>and then, mount the filesystem:</p>
+
+<pre><code>./bin/fuse-example -d -s -f /tmp/example
+</code></pre>
+
+<p>Now check that it has been mounted:</p>
+
+<pre><code>$ ls -la
+total 0
+drwxr-xr-x.  2 root root   0 Jan  1  1970 .
+drwxrwxrwt. 14 root root 320 Jan 10 16:03 ..
+-rwxrwxrwx.  1 root root  49 Jan  1  1970 file
+
+</code></pre>
+
+<pre><code>$ mount | grep fuse-example
+fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+</code></pre>
+
+<p>As you may notice, we mounted the filesystem with three arguments which are:</p>
+
+<ul>
+<li><strong>d</strong>: enable debugging</li>
+<li><strong>s</strong>: run single threaded</li>
+<li><strong>f</strong>: stay in foreground</li>
+</ul>
+
+<p>You can see the list of all mount options using <code>-h</code>.</p>
+
+<h3 id="thoughts-and-notes:9033f4ec77332ae8c4f2b8bb280b10a0">Thoughts and notes</h3>
+
+<ul>
+<li>An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.</li>
+<li>FUSE is more secure than low level kernel development, but security is not free so if you are going to write a network filesystem, for example you may want not to mount it as root.</li>
+<li>By default, accessing the mounted filesystem for other users is not allowed.</li>
+</ul>
+
+<h3 id="other-resources:9033f4ec77332ae8c4f2b8bb280b10a0">Other resources</h3>
+
+<ul>
+<li><a href="https://github.com/hanwen/go-fuse">Fuse bindings in Go</a></li>
+<li><a href="https://github.com/bcle/fuse4js">Fuse bindings in NodeJS</a></li>
+<li><a href="https://github.com/terencehonles/fusepy">Fuse bindings in Python</a></li>
+<li><a href="https://github.com/EtiennePerot/fuse-jna">Fuse bindings in Java</a></li>
+<li><a href="https://github.com/libfuse/libfuse/tree/master/example">Other examples in C</a></li>
+</ul>
+
+<p>These were my 2 cents, if you are interested in seeing something from me I started a little project on GitHub to create a filesystem that can use online services via FUSE to store data. You can find the project here: <a href="https://github.com/fntlnz/webfs">WebFS on GitHub</a>.</p>
+
+<p>Thanks for reading!</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+    
+    
+    
+    
+        <figure class="author-image">
+          <a class="img" href="http://github.com/fntlnz" style="background-image: url(http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250)"><span class="hidden">Lorenzo Fontana's Picture</span></a>
+        </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://engineering.facile.it/">Lorenzo Fontana</a></h4>
+  
+  <p>Read <a href="http://engineering.facile.it/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Milano, IT</span>
+    <span class="author-link icon-link"><a href="http://github.com/fntlnz">http://github.com/fntlnz</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Write%20a%20filesystem%20with%20FUSE&amp;url=http%3a%2f%2fengineering.facile.it%2fwrite-filesystem-fuse"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fwrite-filesystem-fuse"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fengineering.facile.it%2fwrite-filesystem-fuse&amp;description=Write%20a%20filesystem%20with%20FUSE"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fwrite-filesystem-fuse"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Facile.it Engineering</a> All rights reserved - 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://engineering.facile.it/js/jquery.js"></script>
+    <script type="text/javascript" src="http://engineering.facile.it/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://engineering.facile.it/js/index.js"></script>
+    
+</body>
+</html>
+
