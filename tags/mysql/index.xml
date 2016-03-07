@@ -415,8 +415,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
       <guid>http://engineering.facile.it/paraunit</guid>
       <description>
 
-&lt;p&gt;Test
- &lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;i-test-e-la-loro-durata:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
