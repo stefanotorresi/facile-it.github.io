@@ -1,0 +1,3 @@
+[submodule "themes/casper"]
+	path = themes/casper
+	url = git@github.com:Jean85/hugo-theme-casper.git

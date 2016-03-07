@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+os_type=`uname -s`;
+
+if [[ $os_type == 'Linux' ]]; then
+    ./bin/hugo_0.15_linux_amd64 "$@"
+elif [[ $os_type == 'Darwin' ]]; then
+    ./bin/hugo_0.15_darwin_amd64 "$@"
+else echo 'ARCHITETTURA NON RICONOSCIUTA';
+fi

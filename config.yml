@@ -1,0 +1,23 @@
+baseurl: "http://engineering.facile.it/"
+languageCode: "en-us"
+title: "Facile.it Engineering"
+paginate: 5
+#DisqusShortname: "YOUR_SHORT_NAME_HERE"
+Copyright: "All rights reserved - 2016"
+canonifyurls: true
+
+params:
+  description: "News, repos, tips & trends from the Facile.it Engineering team!"
+  cover: "images/cover.jpg"
+  logo: "images/logo.png"
+  author: "Facile.it Engineering"
+  authorlocation: "Milano, Italy"
+#  bio: "my bio"
+#  googleAnalyticsUserID: "UA-79101-12"
+  authorwebsite: "http://www.facile.it"
+  facebookName: "facile.it"
+  githubName: "facile-it"
+  twitterName: "FacileIt_Engr"
+  linkedinName: "facile-it"
+  # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
+  hideHUGOSupport: false

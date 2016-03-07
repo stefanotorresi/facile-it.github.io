@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Build the project.
+echo -e "\033[0;32mBuilding...\033[0m"
+./hugo
+
+echo -e "\033[0;32mDeploying updates to Github...\033[0m"
+git subtree push --prefix=public git@github.com:user/facile-it.github.io.git master
