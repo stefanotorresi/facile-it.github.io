@@ -14,3 +14,5 @@ git submodule init && git submodule update
 ### Usage
  * To serve the site locally: `./hugo server -t casper --buildDrafts`
  * To generate a new post: `./hugo new -t casper post/2016-03-title.md`
+ * To deploy the blog: 
+   * generate a new post: `./hugo new -t casper post/2016-03-title.md`
