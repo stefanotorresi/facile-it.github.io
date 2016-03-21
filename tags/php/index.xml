@@ -967,6 +967,238 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Il principio OPEN/CLOSE le sue origini e i casi d&#39;uso</title>
+      <link>/principio-open-close-le-sue-origini-e-i-casi-d-uso</link>
+      <pubDate>Wed, 15 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/principio-open-close-le-sue-origini-e-i-casi-d-uso</guid>
+      <description>
+
+&lt;h2 id=&#34;definizione:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Definizione:&lt;/h2&gt;
+
+&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design&#34;&gt;SOLID&lt;/a&gt;).  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;OPEN/CLOSE&lt;/em&gt; (la &lt;strong&gt;O&lt;/strong&gt; dell&amp;rsquo;acronimo), nella sua definizione più generale indica che:  un modulo (un oggetto, una classe o un gruppo di funzioni) debba essere &lt;strong&gt;aperto alle estensioni&lt;/strong&gt; ma &lt;strong&gt;chiuso alle modifiche&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Questo principio tuttavia non è altro che la formalizzazione e il raggruppamento di concetti e linee guida già presenti da tempo nella programmazione ad oggetti.&lt;/p&gt;
+
+&lt;h3 id=&#34;chiuso-alle-modifiche:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Chiuso alle modifiche che potrebbero aver effetto sul client&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Possiamo esprimere questa linea guida anche come  un evoluzione di Single responsibility: Un modulo prodotto con un buon design avrà una responsabilità precisa, definita e, quindi, non vi sarà la necessita di modificare il suo comportamento, &lt;strong&gt;anche alla luce di nuove specifiche&lt;/strong&gt;.
+Per chiarire ancora di più il concetto dobbiamo fare riferimento ad un altro famoso acronimo della programmazioni ad aggetti: GRASP e, in particolare, all&amp;rsquo;idea di &lt;a href=&#34;http://www.martinfowler.com/ieeeSoftware/protectedVariation.pdf&#34;&gt;Protected Variations&lt;/a&gt; (da ora in poi &lt;em&gt;PV&lt;/em&gt;) e di &lt;a href=&#34;http://en.wikipedia.org/wiki/Loose_coupling&#34;&gt;Low coupling&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In un articolo di &lt;a href=&#34;http://en.wikipedia.org/wiki/Craig_Larman&#34;&gt;Craig Larman&lt;/a&gt; si parla di &lt;em&gt;PV&lt;/em&gt; come la necessità di:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nascondere l&amp;rsquo;implementazione (&lt;a href=&#34;http://en.wikipedia.org/wiki/Information_hiding&#34;&gt;information hiding&lt;/a&gt;) e le informazioni legate al design (hidden implementation) agli altri moduli in particolar modo al presentarsi di scelte difficili o cambiamenti molto frequenti.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Questo garantisce, in generale, un livello di flessibilità superiore, si pensi a questo semplice esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** Questa classe è esposta al client **/
+class ClasseEsterna 
+{
+  private var $oggettoInterno;
+
+  public function incrementa()       {
+    [...]           
+    return $this-&amp;gt;oggettoInterno-&amp;gt;complessaFunzioneDiIncremento();
+  }     
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Si può notare come :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;L&amp;rsquo;implementazione della &lt;em&gt;complessa&lt;/em&gt; funzione interna è nascosta al client;&lt;/li&gt;
+&lt;li&gt;All&amp;rsquo;evolvere della &lt;strong&gt;complessaFunzioneDiIncremento&lt;/strong&gt; il nostro client sarà ==protetto== dalle modifiche;&lt;/li&gt;
+&lt;li&gt;Abbiamo realizzato un &lt;em&gt;low coupling&lt;/em&gt; fra la l&amp;rsquo;&lt;strong&gt;oggettoInterno&lt;/strong&gt; e il client che utilizza la &lt;strong&gt;ClasseEsterna&lt;/strong&gt;, promuovendo, di fatto, il ==riuso== di &lt;strong&gt;oggettoInterno&lt;/strong&gt; in altri contesti.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;aperto-alle-estensioni:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Aperto ad essere esteso ed adattato&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Le modalità tramite le quali è possibile modificare il comportamento di un modulo per accogliere le nuove esigenze ed evoluzioni è tramite le estensioni.&lt;/p&gt;
+
+&lt;p&gt;In questo caso il concetto di estensione può essere visto sia in senso stretto (Ereditarietà) sia in senso lato come aggiunta di nuove classi, attributi metodi etc..&lt;/p&gt;
+
+&lt;p&gt;Sembrerebbe che questi due attributi siano in contrapposizione; Il modo classico per estendere il comportamento di un modulo è effettuare modifiche al modulo stesso.
+Un modulo che non può cambiare è solitamente considerato qualcosa che ha un comportamento fisso e che non può evolvere.&lt;/p&gt;
+
+&lt;p&gt;Un esempio è il pattern chain of responsibility che vediamo di seguito.&lt;/p&gt;
+
+&lt;h3 id=&#34;chain-of-responsibility:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Chain of responsibility:&lt;/h3&gt;
+
+&lt;p&gt;Questo pattern risolve un’ampia classe di situazioni nelle quali vi sia la necessità di eseguire operazioni &lt;strong&gt;sequenziali&lt;/strong&gt; e &lt;strong&gt;condizionali&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;La chain of responsibility è composta da 2 soggetti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1&lt;/strong&gt; gestore.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;n&lt;/strong&gt; anelli.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;GESTORE:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Nella definizione teorica della catena questo soggetto non esiste!
+Tuttavia, per avvicinarci ad  un implementazione di questo pattern, è necessario utilizzare un vigile della catena che è a conoscenza dello stato globale dell’esecuzione.
+Il gestore ha la responsabilità di chiamare in causa i singoli anelli e di restituire il risultato dell’esecuzione globale.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-PHP&#34;&gt;
+class Gestore
+{
+
+    /**
+     * Il metodo execute chiama in causa tutti gli anelli della catena.
+     * @param Object $oggetto
+     * @return Object
+     **/
+    public function execute(Object $oggetto)
+    {
+
+        // [...]
+
+        foreach ($listaAnelli as $anello) {
+            $anello-&amp;gt;handle($oggetto);
+        }
+
+        // [...]
+
+        return $oggetto;
+
+    }
+
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;ANELLI:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I singoli anelli implementano un interfaccia comune che solitamente espone un solo metodo pubblico esempio &lt;em&gt;handle&lt;/em&gt; .&lt;strong&gt;Non possono&lt;/strong&gt; tener conto del risultato di precedenti anelli, non sono a conoscenza dello stato globale dell’esecuzione e possono, quindi, prendere solo decisioni locali.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-PHP&#34;&gt;interface AnelloInterface {
+
+ /**
+  * Il metodo handle effettua delle operazioni sull&#39;oggetto in esame.
+  * @param Object $oggetto
+  * @return void
+  **/
+ function handle(Object $oggetto);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Come rispettiamo PV ? Ovvero, come proteggiamo il client da future evoluzione del sistema?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Il client utilizzerà sempre &lt;strong&gt;la stessa API&lt;/strong&gt; esposta dal gestore della catena. Le modifiche non interesseranno, infatti, il contratto fra client e gestore.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Il sistema è aperto alle estensioni?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;All&amp;rsquo;evoluzione della catena verranno inseriti nuovi anelli che copriranno ulteriori casi d&amp;rsquo;uso o funzionalità. Sebbene i nuovi anelli dovranno implementare la stessa interfaccia potranno avere una logica interna completamente personalizzabile.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Esiste una forte separazione fra i moduli del sistema?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Il low coupling in questa caso è garantito da 2 aspetti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Il client non conosce gli elementi della catena perché ha una relazione diretta solamente con il gestore.&lt;/li&gt;
+&lt;li&gt;È presente coesione fra l&amp;rsquo;interfaccia dei singoli anelli e il gestore. Purché si rispetti questo contratto è possibile esprimere anche logiche complesse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;conclusione:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Conclusione:&lt;/h3&gt;
+
+&lt;p&gt;È necessario &lt;strong&gt;scegliere le proprie battaglie&lt;/strong&gt; quando si parla di design, sia che si tratti di scelte macro-architetturali che piccole scelte sulla singola istanza.&lt;/p&gt;
+
+&lt;p&gt;I principi che non stati esposti non sono applicabili in tutte le situazioni, un bravo sviluppatore cercherà di utilizzare PV e low coupling in &lt;strong&gt;aree strategiche del sistema&lt;/strong&gt;, &lt;strong&gt;spesso soggette a cambiamento&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se non si riesce ad identificare correttamente queste aree non si farà altro che introdurre una maggiore complessità generale che, in certe situazioni può essere deleteria.&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;obbiettivo finale dovrebbe essere sempre minimizzare l&amp;rsquo;impatto sul sistema dei (naturali) cambiamenti; Open/Close PV e low coupling sono alcune delle strategie più efficaci.&lt;/p&gt;
+
+&lt;h4 id=&#34;bibliografia:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Bibliografia&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.utdallas.edu/~chung/SP/applying-uml-and-patterns.pdf&#34;&gt;Applying UML and Patterns – An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd ed.)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Parnas, D.L. - &lt;a href=&#34;https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf&#34;&gt;&amp;ldquo;On the Criteria To Be Used in Decomposing Systems into Modules&amp;rdquo;.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.martinfowler.com/ieeeSoftware/protectedVariation.pdf&#34;&gt;&amp;ldquo;Protected Variation: The Importance of Being Closed&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SIGS Publications - &lt;a href=&#34;http://www.objectmentor.com/resources/articles/ocp.pdf&#34;&gt;The Open-Closed Principle: C++ Report&lt;/a&gt;
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Information_hiding&#34;&gt;Information Hiding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gestione di ACL su insiemi di records</title>
+      <link>/gestione-di-acl-su-insiemi-di-records</link>
+      <pubDate>Wed, 01 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/gestione-di-acl-su-insiemi-di-records</guid>
+      <description>&lt;p&gt;Le &lt;strong&gt;ACL&lt;/strong&gt; (&lt;em&gt;Access Control List&lt;/em&gt;) sono un strumento molto potente per poter definire l&amp;rsquo;accesso a risorse con una granularità molto fine. Nel quotidiano abbiamo già modo di utilizzarle per definire i permessi per accedere a file su Unix o quali pacchetti far passare attraverso un firewall o ancora l&amp;rsquo;accesso a database.&lt;/p&gt;
+
+&lt;p&gt;In &lt;strong&gt;Symfony&lt;/strong&gt; le &lt;em&gt;ACL&lt;/em&gt; sono disponibili &lt;em&gt;out-of-the-box&lt;/em&gt; nel caso di installazione completa e permettono la definizione delle regole di accesso a risorse tramite &lt;strong&gt;ruoli&lt;/strong&gt; e &lt;strong&gt;maschere&lt;/strong&gt;. Mentre i &lt;strong&gt;ruoli&lt;/strong&gt; rappresentano dei sottoinsiemi degli utenti di una data applicazione (&lt;em&gt;amministratori&lt;/em&gt;, &lt;em&gt;backoffice&lt;/em&gt;, &lt;em&gt;business analyst&lt;/em&gt;) e possono essere visti come delle etichette da assegnare ad un utente, le &lt;strong&gt;maschere&lt;/strong&gt; sono la rappresentazione numerica delle azioni che possono essere effettuate dagli utenti aventi determinati ruoli. Per tornare all&amp;rsquo;esempio del filesystem Unix, i ruoli possono essere &lt;em&gt;Owner&lt;/em&gt;, &lt;em&gt;Group&lt;/em&gt; o &lt;em&gt;Others&lt;/em&gt; mentre le maschere sono ad esempio 7 (lettura, scrittura e esecuzione) indicato per ciascun ruolo.&lt;/p&gt;
+
+&lt;p&gt;Avendo la possibilità di poter definire più di soli tre ruoli e più di sole tre azioni chiaramente le opportunità diventano molteplici dando quindi estrema flessibilità al sistema.&lt;/p&gt;
+
+&lt;p&gt;Di base &lt;strong&gt;Symfony&lt;/strong&gt; persiste le informazioni definite tramite le &lt;em&gt;ACL&lt;/em&gt; (chiamate &lt;strong&gt;ACE&lt;/strong&gt; ovvero &lt;em&gt;Access Control Entry&lt;/em&gt;) in tabelle specifiche tramite cui verificare se un utente può o meno effettuare una operazione: la verifica è immediata tramite le API esposte da &lt;strong&gt;Symfony&lt;/strong&gt; fintanto che si tratta di operare su una singola risorsa ma la soluzione non scala certamente nel caso si debbano filtrare le risorse accessibili da un utente. Per una più approfondita trattazione su come utilizzare le API rese disponibili da &lt;strong&gt;Symfony&lt;/strong&gt;, rimandiamo alla &lt;a href=&#34;http://symfony.com/it/doc/current/cookbook/security/acl.html&#34;&gt;relativa pagina della documentazione&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Per ovviare a questo problema all&amp;rsquo;interno di un progetto di &lt;strong&gt;Facile.it&lt;/strong&gt; si è pensato di adottare una soluzione che faccia uso di &lt;a href=&#34;https://www.elastic.co/products/elasticsearch&#34;&gt;&lt;strong&gt;ElasticSearch&lt;/strong&gt;&lt;/a&gt; per poter restituire ad un utente il sottoinsieme dei record a cui può accedere quando scorre una lista di record. &lt;strong&gt;ElasticSearch&lt;/strong&gt; era già stato scelto per poter migliorare la ricerca all&amp;rsquo;interno dei record delle differenti entità archiviate sul database relazionale, quindi si è trattato di operare due scelte che permettessero una gestione ottimale:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dividere ciascuna entità persitita come documento su &lt;strong&gt;ElasticSearch&lt;/strong&gt; in due parti, &lt;em&gt;metadata&lt;/em&gt; e &lt;em&gt;data&lt;/em&gt;;&lt;/li&gt;
+&lt;li&gt;realizzare delle &lt;strong&gt;annotation custom&lt;/strong&gt; per poter esprimere le &lt;strong&gt;ACE&lt;/strong&gt; per ciascuna entità e campo delle entità.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dividere il documento in due parti rappresenta il punto di partenza per ottenere il risultato cercato: ogni volta che &lt;strong&gt;FOSElasticaBundle&lt;/strong&gt; procede con la copia di una entità su &lt;strong&gt;ElasticSearch&lt;/strong&gt;, viene richiamata una callback (definibile con la configurazione del bundle) che si occupa di recuperare tutte le &lt;strong&gt;ACE&lt;/strong&gt; dell&amp;rsquo;entità in questione e includerle nel campo &lt;em&gt;metadata&lt;/em&gt; del documento.
+Successivamente, quando si vorrà effettuare una query sull&amp;rsquo;insieme dei record persistiti su &lt;strong&gt;ElasticSearch&lt;/strong&gt;, si dovrà solamente replicare le logiche (generiche) per l&amp;rsquo;applicazione delle &lt;strong&gt;ACL&lt;/strong&gt; per così ottenere i soli risultati che l&amp;rsquo;utente può accedere. In questo modo vengono evitate complesse query su un database relazionale (che prevedono l&amp;rsquo;utilizzo di diverse join su più tabelle) come invece sarebbe richiesto da un approccio basato sul solo utilizzo di &lt;strong&gt;MySQL&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tramite le &lt;strong&gt;annotation&lt;/strong&gt; è invece possibile definire le varie &lt;strong&gt;ACE&lt;/strong&gt; per ciascuna classe o attributo della classe così da poter configurare l&amp;rsquo;accesso alle entità direttamente dai file delle entità stesse, fornendo uno strumento familiare per chi normalmente non utilizza le &lt;strong&gt;ACL&lt;/strong&gt;. Per creare una annotation custom rimandiamo anche in questo caso all&amp;rsquo;articolo presente nella &lt;a href=&#34;http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html&#34;&gt;documentazione di &lt;strong&gt;Doctrine&lt;/strong&gt;&lt;/a&gt; ricordando, però, che è importante gestire una propria &lt;strong&gt;cache delle annotation&lt;/strong&gt; perchè questa non è fornita di base da &lt;strong&gt;Doctrine&lt;/strong&gt;. Un comando apposito può facilitare la gestione dell&amp;rsquo;aggiornamento delle &lt;strong&gt;ACE&lt;/strong&gt; di una entità ogni qualvolta venga effettuato un &lt;em&gt;deploy&lt;/em&gt; dell&amp;rsquo;applicazione, integrando così le &lt;em&gt;annotation&lt;/em&gt; create con le &lt;em&gt;API&lt;/em&gt; di &lt;strong&gt;Symfony&lt;/strong&gt; per le &lt;strong&gt;ACL&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Il file che definisce una entità di &lt;strong&gt;Doctrine&lt;/strong&gt; potrà dunque presentarsi in questo modo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+namespace Facile\Ws\Bundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Facile\Ws\BunnyBundle\Annotation\EntityAce as ACE;
+
+/**
+ * @ORM\Table(name=&amp;quot;user&amp;quot;)
+ * @ORM\Entity
+ * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_ADMIN&amp;quot;, mask=&amp;quot;MASK_MASTER&amp;quot;)
+ * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+ */
+class User
+{
+    /**
+     * @ORM\Column(name=&amp;quot;id&amp;quot;, type=&amp;quot;smallint&amp;quot;, nullable=false, options={&amp;quot;unsigned&amp;quot;=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy=&amp;quot;AUTO&amp;quot;)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name=&amp;quot;timestamp&amp;quot;, type=&amp;quot;datetime&amp;quot;, nullable=false)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $timestamp;
+
+    /**
+     * @ORM\Column(type=&amp;quot;string&amp;quot;, length=25, unique=true)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_ADMIN&amp;quot;, mask=&amp;quot;MASK_MASTER&amp;quot;)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $username;
+
+    ...
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>PHP coding standard: PSR-7  HTTP message interfaces</title>
       <link>/php-fig-standard-psr-7-http-message-interfaces</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
