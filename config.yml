@@ -4,7 +4,7 @@ languageCode: "en-us"
 title: "Facile.it Engineering"
 paginate: 5
 theme: "casper"
-#DisqusShortname: "YOUR_SHORT_NAME_HERE"
+DisqusShortname: "facile-it"
 Copyright: "All rights reserved - 2016"
 canonifyurls: true
 
