@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" PHP coding standard: PSR-7  HTTP message interfaces &middot;  Facile.it Engineering" />
+  	<meta property="og:site_name" content="Facile.it Engineering" />
+  	<meta property="og:url" content="/php-fig-standard-psr-7-http-message-interfaces" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2015-03-23T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="PHP" />
+    
+    <meta property="og:article:tag" content="PSR" />
+    
+    <meta property="og:article:tag" content="PHP Coding standards" />
+    
+    <meta property="og:article:tag" content="Open Source" />
+    
+    
+
+  <title>
+     PHP coding standard: PSR-7  HTTP message interfaces &middot;  Facile.it Engineering
+  </title>
+
+    <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Facile.it Engineering" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.15" />
+
+    <link rel="canonical" href="/php-fig-standard-psr-7-http-message-interfaces" />
+
+    
+    <script>
+        
+        if (window.location.hostname != "localhost") {
+            var _gaq = _gaq || [];
+            var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+
+            _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+            _gaq.push(['_setAccount', '{.}']);
+            _gaq.push(['_gat._anonymizeIp']);
+            _gaq.push(['_setDomainName','.facile.it']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        }
+    </script>
+    
+
+    
+
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="/"><img src="/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button icon-feed" href="/index.xml">&nbsp;&nbsp;Subscribe</a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">PHP coding standard: PSR-7  HTTP message interfaces</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2015-03-23T00:00:00Z">
+            Mar 23, 2015
+          </time>
+        
+         
+          <span class="post-tag small"><a href="/tags/php/">#PHP</a></span>
+         
+          <span class="post-tag small"><a href="/tags/psr/">#PSR</a></span>
+         
+          <span class="post-tag small"><a href="/tags/php-coding-standards/">#PHP Coding standards</a></span>
+         
+          <span class="post-tag small"><a href="/tags/open-source/">#Open Source</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>Le specifiche PSR-7 descrivono una <a href="https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md">proposta di standardizzazione</a> delle <strong>interfacce per i messaggi HTTP</strong>.</p>
+
+<p>Come sappiamo, il protocollo HTTP, attraverso le specifiche redatte dal W3C, definisce una serie di regole di comunicazione che vengono implementate dalle applicazioni client e server che lo adottano.</p>
+
+<p>A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.</p>
+
+<h4 id="una-questione-di-interoperabilità-tra-framework:671ee5723479e68f3c81ecaf36db946c">Una questione di interoperabilità tra framework</h4>
+
+<p>I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.</p>
+
+<p>Questo vuol dire che <strong>tutto il codice</strong> che implementa le logiche applicative, anche se ben definito e isolato, <strong>dovrà essere adattato per ciascun framework</strong>, a discapito di un&rsquo;evidente similarità operativa, come per esempio:</p>
+
+<ul>
+<li>il recupero delle informazioni dalle variabili del server per costruire la richiesta</li>
+<li>il parsing degli header e del body della richiesta</li>
+<li>l&rsquo;aggiunta di uno o più header alla risposta</li>
+<li>l&rsquo;impostazione dello status code</li>
+</ul>
+
+<p>Immaginiamo di voler scrivere un applicativo che abbia questi requisiti:</p>
+
+<ul>
+<li>aggiunge un header personalizzato alla risposta, <code>X-GREETINGS</code></li>
+<li>l&rsquo;header deve contenere un messaggio personalizzato in base all&rsquo;orario della richiesta</li>
+<li>l&rsquo;header deve essere aggiunto solo in base agli headers inviati ed il verbo HTTP (ad es. solo per le richieste GET)</li>
+</ul>
+
+<p>Decidiamo di scrivere le linee di codice necessarie con <strong>Symfony2</strong> e <strong>Zend Framework 2</strong>, per poi muoverci verso <strong>una sola soluzione ipoteticamente riutilizzabile</strong> in ciascuno dei due contesti.</p>
+
+<p>Diamo per scontato di avere a disposizione un servizio che dato un orario determini con che formula salutarci:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace Acme\Utils;
+
+class GreetingSentence
+{
+  public static function compose(\DateTime $time, $name)
+  {  		  
+            $msg = &quot;Ciao $name&quot;;  
+			$hour = (int)$time-&gt;format('h');				
+
+			if ($hour &gt;= 20 &amp;&amp; $hour &lt; 6) {
+				return $msg + ' buonanotte!';
+			} else if ($hour &gt;= 6 &amp;&amp; $hour &lt; 13) {
+				return $msg + ' buongiorno!';
+			} else if ($hour &gt;= 13 &amp;&amp; $hour &lt; 18) {
+				return $msg + ' buon pomeriggio!';	
+			} else if ($hour &gt;= 18 &amp;&amp; $hour &lt; 20) {
+				return $msg + ' buonasera!';
+			} else {
+            	return $msg + ' c\'è vita su Marte!';
+            }						
+  }
+}
+
+</code></pre>
+
+<h6 id="symfony-2:671ee5723479e68f3c81ecaf36db946c">Symfony 2</h6>
+
+<p>Ecco come implementeremmo la funzionalità richiesta in Symfony2:</p>
+
+<pre><code>&lt;?php 
+
+namespace Acme\HelloYouBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Acme\Utils\GreetingSentence;
+
+class MainController 
+{	
+	/**
+	 * @param string $name
+	 * @param Request $request
+     */
+	public function greetAction(Request $request)
+	{
+        $response = new Response();
+
+        if ($request-&gt;isMethod('GET')) {
+            $name = $request
+                -&gt;server
+                -&gt;get('HTTP_USER_AGENT'');
+
+            $requestTimeStamp = $request
+                -&gt;server
+                -&gt;get('REQUEST_TIME');
+
+            $requestTime = new \DateTime();
+            $requestTime-&gt;setTimestamp($requestTimeStamp);
+
+            $msg = GreetingSentence::compose($requestTime, $name);		
+			$response-&gt;headers-&gt;set('X-GREETINGS', $msg);
+        }
+
+        return $response;
+    }
+} 
+</code></pre>
+
+<h6 id="zend-framework-2:671ee5723479e68f3c81ecaf36db946c">Zend Framework 2</h6>
+
+<p>Questa è invece l&rsquo;implementazione in Zend Framework 2:</p>
+
+<pre><code>&lt;?php
+
+namespace Acme\HelloYouModule\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Acme\Utils\GreetingSentence;
+
+class MainController extends AbstractActionController
+{
+	$response = $this-&gt;getResponse();
+
+	public function greetAction()
+	{
+    	if ($this-&gt;getRequest()-&gt;getMethod() == 'GET') {
+          $name = $this
+              -&gt;getRequest()
+              -&gt;getServer('HTTP_USER_AGENT');
+
+          $requestTimestamp = $this
+              -&gt;getRequest()
+              -&gt;getServer('REQUEST_TIME');
+
+          $requestTime = new \DateTime();
+          $requestTime-&gt;setTimestamp($requestTimeStamp);
+
+          $msg = GreetingSentence::compose($requestTime, $name);			
+          $response-&gt;setHeader('X-GREETINGS', $msg);
+        }
+	}
+    
+    $response-&gt;send();
+}
+</code></pre>
+
+<p>Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora <strong>come uno standard come quello proposto dal PSR-7 possa aiutarci</strong>.</p>
+
+<h4 id="middleware-ovvero-componenti-web-riutilizzabili:671ee5723479e68f3c81ecaf36db946c">Middleware: ovvero componenti web riutilizzabili</h4>
+
+<p>Potremmo voler implemenare la nostra soluzione come un <strong>middleware</strong>, ovvero un componente che <strong>esiste durante il ciclo di vita di una comunicazione HTTP</strong>, cioè dall&rsquo;accettazione della richiesta fino all&rsquo;evasione della risposta.</p>
+
+<p>Negli esempi precedenti abbiamo aggiunto il codice di gestione all&rsquo;interno dei controller, e questa implementazione carica l&rsquo;Action della responsabilità di esaminare la richiesta e comporre la risposta; questa operazione dovrà essere <strong>ripetuta in ogni controller</strong> della nostra applicazione.</p>
+
+<p>Per fortuna i maggiori framework espongono astrazioni molto complete del ciclo di vita di una richiesta HTTP, che permettono di implementare il nostro middleware.</p>
+
+<ul>
+<li><p>in Symfony2 l&rsquo;interfaccia <a href="https://github.com/symfony/HttpKernel/blob/master/HttpKernelInterface.php">HttpKernelInterface</a> definisce un componenente capace di calcolare per una data una richiesta (Request) una determinata risposta (Response).</p></li>
+
+<li><p>in Zend Framework l&rsquo;interfaccia che definisce un componente capace di associare una richiesta ad una risposta si chiama <a href="https://github.com/zendframework/zf2/blob/master/library/Zend/Stdlib/DispatchableInterface.php">DispatchableInterface</a>.</p></li>
+</ul>
+
+<p>Tuttavia se volessimo utilizzare lo stesso codice in Zend Framework 2 e Symfony2, dovremmo wrappare il codice necessario attorno a entrambe le interfacce oppure importare i componenti dell&rsquo;uno nell&rsquo;altro.</p>
+
+<p>A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal <a href="http://www.php-fig.org/"><strong>FIG</strong></a>.</p>
+
+<h4 id="scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:671ee5723479e68f3c81ecaf36db946c">Scrivere middleware usando le interfacce proposte nello standard PSR-7</h4>
+
+<p>La proposta dello standard PSR-7 si riassume nella descrizione di una serie di <a href="https://github.com/php-fig/http-message/tree/master/src">interfacce</a>.</p>
+
+<p>Attualmente Matthew Weier O&rsquo;Phinney, membro attivo del FIG e main contributor di Zend Framework 2 sta realizzando un&rsquo;<a href="https://github.com/phly/http/tree/master/src">implementazione</a> completa di queste interfacce.</p>
+
+<p>A questo punto possiamo scrivere il codice di un middleware, aderendo alle specifiche PSR-7, come una semplice classe capace di interpretare una richiesta e costruire una risposta secondo le nostre necessità:</p>
+
+<pre><code>&lt;?php
+
+use phly\http\ServerRequestFactory;
+use phly\http\ServerRequest;
+use phly\http\Response;
+
+class AcmeLifeCycle
+{
+    /**
+    * @param ServerRequest|null $request
+    * @param Response|null $response
+    *
+    * @return Response
+    */
+    public function doSomething(ServerRequest $request = null, Response $response = null)
+    {
+        if (is_null($request)) {
+            /** @var ServerRequest $request */
+            $request = ServerRequestFactory::fromGlobals();
+        }
+
+        /** @var Response $response */
+        if (is_null($request)) {
+            /** @var Response $response */
+            $response = new Response();
+        }
+
+        if ($request-&gt;getMethod() === 'GET') {
+            $serverParams = $request-&gt;getServerParams();
+            $name = $serverParams['HTTP_USER_AGENT'];
+
+            $requestTimeStamp = $serverParams['REQUEST_TIME'];
+
+            $requestTime = new \DateTimeImmutable();
+            $requestTime
+                -&gt;setTimestamp($requestTimeStamp);
+
+            $msg = GreetingSentence::compose($requestTime, $name);
+
+            //Questo metodo è un costruttore di copia
+            $response = $response-&gt;withHeader('X-GREETINGS', $msg);
+        }
+
+        return $response;
+    }
+}
+</code></pre>
+
+<p>Da notare che sia la classe <code>Response</code> che <code>ServerRequest</code> implementano lo stesso trait <code>Message</code>.</p>
+
+<p>La classe <code>Message</code> è stata volutamente concepita affinchè sia <strong>immutabile</strong> ed i vari metodi <code>-&gt;withX()</code> restituiranno solo copie modificate dell&rsquo;oggetto inizialmente istanziato.</p>
+
+<p>Ovviamente questo middleware adesso come adesso è tutt&rsquo;altro che utilizzabile all&rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che <strong>in un futuro</strong> non troppo lontano le varie implementazioni <strong>convergeranno</strong> su qualcosa di simile a quella appena vista e proposta da O&rsquo;Phinney.</p>
+
+<h4 id="conclusioni:671ee5723479e68f3c81ecaf36db946c">Conclusioni</h4>
+
+<p>Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&rsquo;ambiente contenenti tutti i valori necessari (<code>$_SERVER</code>, <code>$_GET</code>, <code>$_POST</code>, <code>$_FILES</code>, &hellip;).</p>
+
+<p>Invece, grazie a PSR-7, potremmo <strong>standardizzare la rappresentazione degli oggetti coinvolti nel ciclo richiesta\riposta</strong> (cioè i messaggi HTTP), e poter finalmente sviluppare componenti <strong>middleware indipendenti</strong> dal framework utilizzato, il cui unico presupposto esistenziale è quello di <strong>gestire messaggi HTTP tramite il linguaggio PHP</strong>.</p>
+
+<p>Sicuramente tenere <a href="https://github.com/php-fig/fig-standards">a portata di github</a> gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui <strong>futuri sviluppi</strong> dei più blasonati framework e componenti PHP, tenendo conto, <strong>come già accaduto per le precedenti proposte</strong> <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a> e <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a> (autoloading) e <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.</p>
+
+<h4 id="altre-risorse-consultabili:671ee5723479e68f3c81ecaf36db946c">Altre risorse consultabili</h4>
+
+<ul>
+<li>Blog di Matthew Weier O&rsquo;Phinney: <a href="https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html">https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html</a></li>
+<li>Specifiche PSR-7: <a href="https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md">https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md</a></li>
+<li>Interfacce proposte dalla PSR-7: <a href="https://github.com/php-fig/http-message">https://github.com/php-fig/http-message</a></li>
+<li>Implementazione di Matthew Weier O&rsquo;Phinney: <a href="https://github.com/phly/http/tree/master/src">https://github.com/phly/http/tree/master/src</a></li>
+<li>Michael Dowling spiega la streaming interface: <a href="http://mtdowling.com/blog/2014/07/03/a-case-for-higher-level-php-streams/">http://mtdowling.com/blog/2014/07/03/a-case-for-higher-level-php-streams/</a></li>
+</ul>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+    
+    
+    
+    
+        <figure class="author-image">
+          <a class="img" href="http://michelecarino.com/" style="background-image: url(http://www.gravatar.com/avatar/7f5e6b105d80029b84f67b62d43b8445?d=404&amp;s=250)"><span class="hidden">Michele Carino's Picture</span></a>
+        </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="/">Michele Carino</a></h4>
+  
+  <p>Software developer, dreamer and human being.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Parma</span>
+    <span class="author-link icon-link"><a href="http://michelecarino.com/">http://michelecarino.com/</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=PHP%20coding%20standard%3a%20PSR-7%20%20HTTP%20message%20interfaces&amp;url=%2fphp-fig-standard-psr-7-http-message-interfaces"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=%2fphp-fig-standard-psr-7-http-message-interfaces"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=%2fphp-fig-standard-psr-7-http-message-interfaces&amp;description=PHP%20coding%20standard%3a%20PSR-7%20%20HTTP%20message%20interfaces"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=%2fphp-fig-standard-psr-7-http-message-interfaces"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'facile-it';
+  var disqus_url = '\/php-fig-standard-psr-7-http-message-interfaces';
+  (function() {
+    
+    if (window.location.hostname != "engineering.facile.it")
+      return;
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Facile.it Engineering</a> All rights reserved - 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    
+</body>
+</html>
+
