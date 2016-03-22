@@ -10,7 +10,7 @@
                 {{ else if $pic.imperfect }}
                     <a href="/" class="logo"><img src="{{ . }}" alt="{{ $pic.alt }}" /></a>
                 {{ else }}
-                    <img src="{{ . }}" width="{{ $pic.width }}" alt="{{ $pic.alt }}" />
+                    <a href="/" style="border-bottom: none"><img src="{{ . }}" width="{{ $pic.width }}" alt="{{ $pic.alt }}" /></a>
                 {{ end }}
             {{ end }}
             {{ with .Site.Params.intro }}
@@ -95,6 +95,7 @@
                 {{ end }}
 
                 {{ range $key, $value := $.Scratch.Get "categories" }}
+                    {{ if ge $value.Count 3 }}
                     <li>
                         <article>
                             <header>
@@ -103,6 +104,7 @@
                             </header>
                         </article>
                     </li>
+                    {{ end }}
                 {{ end }}
             </ul>
         </section>
