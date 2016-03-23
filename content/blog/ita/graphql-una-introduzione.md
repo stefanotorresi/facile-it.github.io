@@ -8,9 +8,8 @@ menu: ""
 share: true
 categories: ["Software Testing", "PHP", "database", "Open Source", "symfony", "Conferenze", "Doctrine", "MySQL"]
 title: "GraphQL: una introduzione"
-slug: "graphql-an-introduction"
 type: "post"
-translated: true
+eng: graphql-an-introduction
 
 ---
 

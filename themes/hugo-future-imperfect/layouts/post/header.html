@@ -9,20 +9,17 @@
         {{ with .Description }}
             <p>{{ . }}</p>
         {{ end }}
-        {{ if .Params.translated }}
-            {{ if eq (substr (.Permalink | relURL) 6 3) "eng" }}
-                <p>
-                    Questo articolo è disponibile anche
-                    <a href="{{ replace .Permalink "/eng/" "/ita/" }}">in italiano</a>
-                </p>
-            {{ else }}
-                <p>
-                    This article is also available
-                    <a href="{{ replace .Permalink "/ita/" "/eng/" }}">in english</a>
-                </p>
-            {{ end }}
-        {{ else }}
-            ELSE FALLITO
+        {{ with .Params.ita }}
+            <p>
+                Questo articolo è disponibile anche
+                <a href="/blog/ita/{{ . }}">in italiano</a>
+            </p>
+        {{ end }}
+        {{ with .Params.eng }}
+            <p>
+                This article is also available
+                <a href="/blog/eng/{{ . }}">in english</a>
+            </p>
         {{ end }}
     </div>
     <div class="meta">
