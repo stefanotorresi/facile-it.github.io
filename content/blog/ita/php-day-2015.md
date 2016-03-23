@@ -6,7 +6,6 @@ draft: false
 share: true
 categories: [PHP, PHPDay, Conferenze]
 title: "Facile.it devs @ PHP Day 2015"
-url: "/php-day-2015"
 
 languageCode: "it-IT"
 type: "post"

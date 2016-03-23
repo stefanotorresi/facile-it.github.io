@@ -6,7 +6,6 @@ draft: false
 share: true
 categories: [PHP, PSR, PHP Coding standards, Open Source]
 title: "PHP coding standard: PSR-7  HTTP message interfaces"
-url: "/php-fig-standard-psr-7-http-message-interfaces"
 type: "post"
 
 languageCode: "it-IT"

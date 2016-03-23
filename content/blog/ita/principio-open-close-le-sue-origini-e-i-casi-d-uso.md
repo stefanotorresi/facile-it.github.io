@@ -6,7 +6,6 @@ draft: false
 share: true
 categories: [SOLID, PHP, Design patterns]
 title: "Il principio OPEN/CLOSE le sue origini e i casi d'uso"
-url: "/principio-open-close-le-sue-origini-e-i-casi-d-uso"
 
 languageCode: "it-IT"
 type: "post"

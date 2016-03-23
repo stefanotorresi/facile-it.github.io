@@ -8,7 +8,6 @@ menu: ""
 share: true
 categories: ["PHP", "Open Source", "Composer", "Puli", "Package Manager"]
 title: "Puli: Universal Packages for PHP"
-url: "/puli-universal-packages-for-php"
 
 languageCode: "it-IT"
 type: "post"

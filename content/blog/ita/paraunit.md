@@ -8,7 +8,6 @@ menu: ""
 share: true
 categories: ["Software Testing", "PHP", "database", "Open Source", "symfony", "Conferenze", "Doctrine", "MySQL"]
 title: "Paraunit: test paralleli, Doctrine e le fixture"
-url: "/paraunit"
 
 languageCode: "it-IT"
 type: "post"

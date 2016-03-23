@@ -6,7 +6,6 @@ draft: false
 share: true
 categories: [PHP, Symfony, ACL, Database]
 title: "Gestione di ACL su insiemi di records"
-url: "/gestione-di-acl-su-insiemi-di-records"
 
 languageCode: "it-IT"
 type: "post"
