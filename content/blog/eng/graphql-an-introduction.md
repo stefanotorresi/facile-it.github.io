@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-categories: ["Software Testing", "PHP", "database", "Open Source", "symfony", "Conferenze", "Doctrine", "MySQL"]
+categories: [GraphQL, REST, HTTP, Node.js]
 title: "GraphQL: an introduction"
 type: "post"
 ita: graphql-una-introduzione

@@ -24,6 +24,7 @@ params:
 
 # Optional Params
   categoriesByCount   : true
+  authorsByCount      : true
   includeReadingTime  : true
   # The set of favicons used are based on the write-up from this link:
   # https://github.com/audreyr/favicon-cheat-sheet
@@ -69,10 +70,12 @@ menu:
     - categories:
       name: "Categories"
       url: "/categories"
+      identifier: "fa fa-folder-open-o"
       weight: 2
-    - about:
-      name: "About"
-      url: "/about"
+    - categories:
+      name: "Authors"
+      url: "/authors"
+      identifier: "fa fa-users"
       weight: 3
 
 # Insert your username and the icon will apear on the page as long as
