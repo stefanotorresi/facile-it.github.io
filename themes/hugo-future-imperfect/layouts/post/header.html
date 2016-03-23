@@ -29,13 +29,21 @@
             {{ $.Scratch.Set "dateType" .Date }}
         {{ end }}
 
-        <time class="published"
-            datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
-            {{ ($.Scratch.Get "dateType").Format "2 January 2006" }}</time>
-        <span class="author">{{ .Params.author }}</span>
+        <time class="published" datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
+            {{ ($.Scratch.Get "dateType").Format "2 January 2006" }}
+        </time>
+
+        {{ range .Params.authors }}
+            {{ with index $.Site.Data.authors . }}
+                <a href="{{ .website }}" class="author">
+                    <span class="name">{{ .name }}</span>
+                    <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" />
+                </a>
+            {{ end }}
+        {{ end }}
+
         {{ if .Site.Params.includeReadingTime }}
             <p>{{ .ReadingTime }} minute read</p>
         {{ end }}
-        <!--<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>-->
     </div>
 </header>

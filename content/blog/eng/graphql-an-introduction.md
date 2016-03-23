@@ -1,5 +1,5 @@
 ---
-author: "vito"
+authors: ["vito"]
 comments: true
 date: "2016-01-18"
 draft: false

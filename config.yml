@@ -7,6 +7,10 @@ paginate: 3
 # disqusShortname: "shortname"
 # googleAnalytics: ""
 
+taxonomies:
+  category: "categories"
+  author: "authors"
+
 params:
   # Sets the meta tag description, usually reserved for the main page
   description         : "News, repos, tips & trends from the Facile.it Engineering team!"

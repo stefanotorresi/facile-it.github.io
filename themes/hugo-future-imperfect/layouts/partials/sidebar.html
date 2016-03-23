@@ -48,15 +48,22 @@
                     <li>
                         <article>
                             <header>
-                                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                                {{ if .Site.Params.orderByPublishDate }}
-                                    {{ $.Scratch.Set "dateType" .PublishDate }}
-                                {{ else }}
-                                    {{ $.Scratch.Set "dateType" .Date }}
-                                {{ end }}
-                                <time class="published" datetime=
-                                    '{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
-                                    {{ ($.Scratch.Get "dateType").Format "January 2, 2006" }}</time>
+                                    {{ range .Params.authors }}
+                                        {{ with index $.Site.Data.authors . }}
+                                            <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        {{ end }}
+                                    {{ end }}
+
+                                    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+
+                                    {{ if .Site.Params.orderByPublishDate }}
+                                        {{ $.Scratch.Set "dateType" .PublishDate }}
+                                    {{ else }}
+                                        {{ $.Scratch.Set "dateType" .Date }}
+                                    {{ end }}
+                                    <time class="published" datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
+                                        {{ ($.Scratch.Get "dateType").Format "2 January 2006" }}
+                                    </time>
                             </header>
                         </article>
                     </li>

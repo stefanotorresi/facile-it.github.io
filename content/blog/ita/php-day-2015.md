@@ -1,5 +1,5 @@
 ---
-author: "jean"
+authors: ["jean"]
 comments: true
 date: "2015-05-19"
 draft: false
