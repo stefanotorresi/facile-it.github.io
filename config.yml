@@ -1,25 +1,89 @@
-#baseurl: "http://engineering.facile.it/"
-baseurl: "/"
+baseurl: "engineering.facile.it"
 languageCode: "en-us"
-title: "Facile.it Engineering"
-paginate: 5
-theme: "casper"
-DisqusShortname: "facile-it"
-Copyright: "All rights reserved - 2016"
-canonifyurls: true
+title: "Facile Engineering"
+theme: "hugo-future-imperfect"
+preserveTaxonomyNames: true
+paginate: 3
+disqusShortname: "shortname"
+googleAnalytics: "UA-22342495-1"
+
+taxonomies:
+  category: "categories"
+  author: "authors"
 
 params:
-  description: "News, repos, tips & trends from the Facile.it Engineering team!"
-  cover: "images/cover.jpg"
-  logo: "images/logo.png"
-  author: "Facile.it Engineering"
-  authorlocation: "Milano, Italy"
-#  bio: "my bio"
-  googleAnalyticsUserID: "UA-22342495-1"
-  authorwebsite: "http://www.facile.it"
-  facebookName: "facile.it"
-  githubName: "facile-it"
-  twitterName: "FacileIt_Engr"
-  linkedinName: "facile-it"
-  # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
-  hideHUGOSupport: false
+  # Sets the meta tag description, usually reserved for the main page
+  description         : "News, repos, tips & trends from the Facile.it Engineering team!"
+  # This will appear on the top left of the navigation bar
+  navbarTitle         : "Facile Engineering"
+  # Social media buttons that appear on the sidebar
+  socialAppearAtTop   : true
+  socialAppearAtBottom: true
+  # set this to the section name if section is not post
+  viewMorePostLink    : "/blog/"
+
+# Optional Params
+  categoriesByCount   : true
+  authorsByCount      : true
+  includeReadingTime  : true
+  # The set of favicons used are based on the write-up from this link:
+  # https://github.com/audreyr/favicon-cheat-sheet
+  # Please see the favicon partial template for more information
+  loadFavicon         : false
+  faviconVersion      : ""
+  # Load minified files instead of the non minified files. The variable
+  # is an array so that you can load multiple min files if necessary
+  # Note: There are other ways to approach minification
+  # This is just an additional option if you wish to use this
+  #minifiedFilesCSS    : ["/css/main.min.css"]
+  #minifiedFilesJS     : ["/js/main.min.js"]
+
+# parms.intro will appear on the sidebar
+# This is optional, but it's suggested to use
+  intro:
+    #header   : "Facile Engineering"
+    paragraph: "News, repos, tips & trends from the Facile.it Engineering team!"
+    #about    : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris."
+    pic:
+      src      : "/images/logo_engineering.png"
+      # modify your picture in the shape of a circle or
+      # future imperfect's hexagonal shape
+      circle   : false
+      imperfect: false
+      width    : "100%"
+      alt      : "Facile.it Engineering"
+
+# Adjust the amount of recent posts on the sidebar.
+# This is optional. The default value 5 will be used
+  postAmount:
+    sidebar: 3
+
+# Set up your menu items in the navigation bar
+# You can use identifier to prepend a font awesome icon to your text
+menu:
+  main:
+    - blog:
+      name: "Blog"
+      url: "/blog"
+      identifier: "fa fa-newspaper-o"
+      weight: 1
+    - categories:
+      name: "Categories"
+      url: "/categories"
+      identifier: "fa fa-folder-open-o"
+      weight: 2
+    - categories:
+      name: "Authors"
+      url: "/authors"
+      identifier: "fa fa-users"
+      weight: 3
+
+# Insert your username and the icon will apear on the page as long as
+# socialAppearAtTop or socialAppearAtBottom is set to true in the params area
+# The social media icons will appear on the sidebar
+social:
+  github:   "facile-it"
+  linkedin: "facile-it"
+  facebook: "facile.it"
+  twitter:  "FacileIt_Engr"
+  youtube:  "Facileit"
