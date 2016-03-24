@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-tags: ["Software Testing", "PHP", "database", "Open Source", "symfony", "Conferenze", "Doctrine", "MySQL"]
+tags: [GraphQL, REST, HTTP, Node.js]
 title: "GraphQL: an introduction"
 url: "/graphql-an-introduction"
 
