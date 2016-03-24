@@ -22,19 +22,14 @@ Usually creating a ***RESTful*** system is not difficult, and the simplicity of 
 Let's see some of the consequences and benefits of choosing REST:
 
 * Every HTTP verb has its own meaning, allowing the developer to understand immediately what kind of operation (typically among the CRUD ones) is going to be performed on the resource identified by the URI.
-
 * Often the same URI can be used with multiple verbs to accomplish different tasks (e.g. "example.com/tag/123" refers to a particular tag that you can retrieve, update or delete).
-
 * Controllers in many server-side frameworks can be created with a RESTful approach, each one of them representing one or more resources.
 
 However, unfortunately, it's often easy to come across some problems:
 
 * Complex URIs can be difficult to write or understand and sometimes they are subject to arbitrary interpretations.
-
 * In order to filter collections you may need to use one or more ids embedded in the URL, but also _query parameters_, e.g. when you want to sort the results of a GET by one particular field or retrieve resources by some field other than the id.
-
 * There is no standard or easy way for the client to specify the list of fields that it needs, and the server will usually return all the data related to the requested resource.
-
 * More importantly, there is no standard way for the client to decide which resources related to the one requested should be returned, resulting in a lot of noise in the response content (unless the server application offers multiple endpoints to access the same resource but with different subsets of data... but this could lead to API design problems).
 
 You can't really blame REST for these and other cons. Its power comes from simplicity and developers are thankful for this breath of fresh air. You have just one transport layer, i.e. HTTP, with its features and rules.
@@ -270,7 +265,6 @@ GET ...
 There's a couple of notable things here:
 
 * the expressivity of the query language becomes more evident when things start becoming more interesting; filtering subsets of data feels natural and easy as you can just specify the criteria for the filters directly on the subtree root (companies -> nation, gamesAsDeveloper -> platform, gamesAsPublisher -> platform);
-
 * on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering _games_ with the given _platform_ is performed only on companies with the selected _nation_).
 
 ### API Documentation
@@ -409,7 +403,6 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 Some questions arise when you think about GraphQL in a more vast spectrum:
 
 * how to **cache** resources on server-side, even if they were originally fetched using different queries? (Facebook is trying to give some answers with [Relay](https://facebook.github.io/relay/docs/thinking-in-relay.html));
-
 * how to **limit the access** to the resources (or the introspection on them) only to some users? GraphQL is authorization-agnostic, but as you can read in [this Github issue](https://github.com/graphql/graphql-js/issues/113) its a common problem that needs to be at least faced.
 
 The entire Facebook ecosystem of open source projects is worth of attention (don't forget about React, Flux and the other Flux-like architectures) and, even if it's very young, it has become very popular and used by many little and big companies around the world.

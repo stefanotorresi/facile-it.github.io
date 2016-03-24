@@ -34,12 +34,12 @@
         </time>
 
         {{ range .Params.authors }}
+            <a href="/authors/{{ . }}" class="author">
             {{ with index $.Site.Data.authors . }}
-                <a href="{{ .website }}" class="author">
-                    <span class="name">{{ .name }}</span>
-                    <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" />
-                </a>
+                <span class="name">{{ .name }}</span>
+                <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" />
             {{ end }}
+            </a>
         {{ end }}
 
         {{ if .Site.Params.includeReadingTime }}

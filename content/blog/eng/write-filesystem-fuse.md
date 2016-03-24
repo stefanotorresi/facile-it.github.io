@@ -8,7 +8,6 @@ menu: ""
 share: true
 categories: [fuse, filesystem, c, cmake]
 title: "Write a filesystem with FUSE"
-url: "/write-filesystem-fuse"
 type: "post"
 
 ---
