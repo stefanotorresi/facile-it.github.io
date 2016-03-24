@@ -1,4 +1,4 @@
-baseurl: "engineering.facile.it"
+baseurl: "/"
 languageCode: "en-us"
 title: "Facile Engineering"
 theme: "hugo-future-imperfect"

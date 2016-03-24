@@ -16,7 +16,9 @@
 {{ .Render "prev-next" }}
 
 {{ if ne .Site.DisqusShortname "" }}
-    <article class="post">
-        {{ partial "disqus.html" . }}
-    </article>
+    {{ if not (in (printf "%#v" .Site.BaseURL) "localhost") }}
+        <article class="post">
+            {{ partial "disqus.html" . }}
+        </article>
+    {{ end }}
 {{ end }}
