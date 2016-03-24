@@ -77,6 +77,11 @@ menu:
       url: "/authors"
       identifier: "fa fa-users"
       weight: 3
+    - categories:
+      name: "Careers"
+      url: "/careers"
+      identifier: "fa fa-briefcase"
+      weight: 4
 
 # Insert your username and the icon will apear on the page as long as
 # socialAppearAtTop or socialAppearAtBottom is set to true in the params area
