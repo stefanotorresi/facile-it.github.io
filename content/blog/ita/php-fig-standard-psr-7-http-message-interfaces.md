@@ -4,7 +4,7 @@ comments: true
 date: "2015-03-23"
 draft: false
 share: true
-categories: [PHP, PSR, PHP Coding standards, Open Source]
+categories: [Italiano, PHP, PSR, PHP Coding standards, Open Source]
 title: "PHP coding standard: PSR-7  HTTP message interfaces"
 type: "post"
 

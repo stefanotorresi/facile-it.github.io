@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-categories: [fuse, filesystem, c, cmake]
+categories: [English, fuse, filesystem, c, cmake]
 title: "Write a filesystem with FUSE"
 type: "post"
 

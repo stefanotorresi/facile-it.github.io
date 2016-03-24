@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-categories: [GraphQL, REST, HTTP, Node.js]
+categories: [English, GraphQL, REST, HTTP, Node.js]
 title: "GraphQL: an introduction"
 type: "post"
 

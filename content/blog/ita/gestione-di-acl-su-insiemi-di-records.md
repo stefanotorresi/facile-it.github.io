@@ -4,7 +4,7 @@ comments: true
 date: "2015-04-01"
 draft: false
 share: true
-categories: [PHP, Symfony, ACL, Database]
+categories: [Italiano, PHP, Symfony, ACL, Database]
 title: "Gestione di ACL su insiemi di records"
 
 languageCode: "it-IT"

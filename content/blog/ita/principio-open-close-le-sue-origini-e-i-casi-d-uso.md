@@ -4,7 +4,7 @@ comments: true
 date: "2015-04-15"
 draft: false
 share: true
-categories: [SOLID, PHP, Design patterns]
+categories: [Italiano, SOLID, PHP, Design patterns]
 title: "Il principio OPEN/CLOSE le sue origini e i casi d'uso"
 
 languageCode: "it-IT"

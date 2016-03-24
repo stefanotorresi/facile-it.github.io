@@ -4,7 +4,7 @@ comments: true
 date: "2015-04-21"
 draft: false
 share: true
-categories: []
+categories: [Italiano, NewRelic, REST]
 title: "Introduzione al tracciamento di eventi lato server"
 
 languageCode: "it-IT"
