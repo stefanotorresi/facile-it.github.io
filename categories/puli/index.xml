@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Puli on Facile Engineering</title>
+    <link>engineering.facile.it/categories/puli/</link>
+    <description>Recent content in Puli on Facile Engineering</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="engineering.facile.it/categories/puli/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Puli: Universal Packages for PHP</title>
+      <link>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</link>
+      <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
+      <description>
+
+&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+
+&lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
+Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
+In questi ultimi anni si è assistito ad un proliferare di numerose componenti software riusabili che hanno significativamente modificato le strategie di sviluppo.&lt;/p&gt;
+
+&lt;p&gt;Nonostante Composer si sia evoluto molto, in alcuni contesti le sue funzionalità risultano essere limitanti e incomplete.
+I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
+Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
+
+&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+
+&lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
+Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
+Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata ma è prevista per l&amp;rsquo;inizio del 2016.
+&lt;strong&gt;Puli è stato ideato per affiancare Composer&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Puli lavora ad un livello più alto per fornire le seguenti funzionalità:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#puli-path&#34;&gt;Gestione dei path virtuali per risorse non PHP&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#override-puli-path&#34;&gt;Overriding dei path virtuali&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#binding-type&#34;&gt;Interazione semplificata dei pacchetti con l&amp;rsquo;uso di Binding Type&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#url-generation&#34;&gt;Generazione automatica di URL per risorse pubbliche&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+
+&lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Resource repository&lt;/li&gt;
+&lt;li&gt;Discovery service&lt;/li&gt;
+&lt;li&gt;Public resources manager&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
+
+&lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tale configurazione può essere modificata manualmente oppure utilizzando l&amp;rsquo;&lt;strong&gt;interfaccia CLI di Puli&lt;/strong&gt;;
+Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
+Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
+
+&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
+
+&lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
+Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
+Quest&amp;rsquo;azione viene svolta da Composer con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ composer require puli/composer-plugin:^1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale plugin consente di generare atomaticamente la cosiddetta &lt;strong&gt;Puli Factory Class&lt;/strong&gt;: componente chiave da cui è possibile accedere a tutti i servizi offerti da Puli.&lt;/p&gt;
+
+&lt;p&gt;A questo punto è possibile usare Puli nel modo seguente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;require &#39;./vendor/autoload.php&#39;;
+
+// La costante PULI_FACTORY_CLASS viene 
+// definita al &amp;quot;composer install&amp;quot;
+$factoryClass = PULI_FACTORY_CLASS;
+$factory = new $factoryClass();
+
+$puliRepository = $factory-&amp;gt;createRepository();
+$puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
+$puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
+
+&lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
+Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
+
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+
+&lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$translationFileName = realpath(__DIR__ . &#39;/../vendor/acme/blog/resources/translation-it.xml&#39;);
+$translationContent = file_get_contents($translationFileName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale operazione fa uso di dettagli implementativi: il layout delle directory fornito da Composer. La soluzione non è riusabile nè configurabile.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+
+&lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
+Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
+Ad esempio, il maintainer di acme/blog può eseguire questo comando per definire un nuovo mapping:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale operazione crea un&amp;rsquo;associazione tra il prefisso del path virtuale &lt;code&gt;/acme/blog&lt;/code&gt; e la directory &lt;code&gt;resources&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Un ipotetico utilizzatore del pacchetto acme/blog potrà quindi accedere alle risorse nel seguente modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/translation-it.xml&#39;;
+$translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;È importante notare come i Path mapping siano definiti dal maintainer del pacchetto. Le altre componenti si limitano ad usarli per accedere alle risorse.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
+
+&lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
+Immaginiamo di dover lavorare con due pacchetti: A e B.
+Il pacchetto B è dipendente dal pacchetto A.
+B, tuttavia, vuole personalizzare alcune risorse fornite da A.
+Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali risorse aggiungengo nuovi Path Mapping.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
+
+&lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per il componente Discovery i pacchetti sono siddivisi in due categorie:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Resource providers&lt;/strong&gt;: pacchetti che offrono risorse;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource consumers&lt;/strong&gt;: pacchetti che richiedono risorse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I Binding Types sono definiti dai resource consumers. Ciascun Binding Type è idendificato da un nome (es. &lt;code&gt;acme/translator/messages&lt;/code&gt;).
+I resource providers possono quindi associare una o più risorse a tali Binding Type.
+&lt;strong&gt;L&amp;rsquo;associazione avviene legando un Puli Path ad un Binding Type&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
+
+&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
+
+&lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acme/md2html&lt;/code&gt; è un componente per tradurre contenuto Markdown verso pagine Html. Md2html è un sistema configurabile: la resa dell&amp;rsquo;output avviene attraverso template Twig modificabili.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acme/blog&lt;/code&gt; fornisce tools per la gestione di articoli da blog. Siccome questi ultimi possono essere scritti in Markdown, &lt;code&gt;acme/blog&lt;/code&gt; fa uso di &lt;code&gt;acme/md2html&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Il componente &lt;code&gt;acme/blog&lt;/code&gt; può personalizzare i template di Md2html in questo modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$md2html = new Md2Html();
+$md2html-&amp;gt;useHeaderTemplate(__DIR__ . &#39;/resources/templates/markdown-header.twig&#39;);
+
+$htmlContent = $md2html-&amp;gt;translate(&#39;## markdown content&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Questo approccio ha due svantaggi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;acme/blog&lt;/code&gt; ha la diretta responsabilità di configurare correttamente Md2html utilizzando l&amp;rsquo;API fornita;&lt;/li&gt;
+&lt;li&gt;Gli utenti di &lt;code&gt;acme/blog&lt;/code&gt; non possono modificare facilmente le personalizzazioni apportate a Md2html.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tali problemi possono essere risolti con Puli.&lt;/p&gt;
+
+&lt;p&gt;Il mantainer di Md2html decide di rendere il suo pacchetto compatibile con Puli.&lt;/p&gt;
+
+&lt;p&gt;Definisce quindi il Binding Type: &lt;code&gt;acme/md2html/header-template&lt;/code&gt; con il seguente comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli type --define acme/md2html/header-template
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il maintainer di &lt;code&gt;acme/blog&lt;/code&gt; può quindi usare tale Binding Type nel seguente modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
+$ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-template
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Così &lt;code&gt;acme/md2html&lt;/code&gt; può leggere il nuovo template &lt;code&gt;markdown-header.twig&lt;/code&gt; in modo trasparente.&lt;/p&gt;
+
+&lt;p&gt;Gli utilizzatori di acme/blog che desiderassero modificare tale template hanno due strategie:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Modificare l&amp;rsquo;associazione al Binding Type &lt;code&gt;acme/md2html/header-template&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sovrascrivere il Puli Path &lt;code&gt;/acme/blog/templates/markdown-header.twig&lt;/code&gt; con il meccanismo dell&amp;rsquo;overriding esaminato in precedenza.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
+
+&lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
+
+&lt;p&gt;Come primo passo, è necessario &lt;strong&gt;registrare i server web che servono tali risorse&lt;/strong&gt;.
+È possibile aggiungere un nuovo server con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli server --add localhost public_html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In questo esempio, &lt;code&gt;localhost&lt;/code&gt; è il nome del server, mentre &lt;code&gt;public_html&lt;/code&gt; è la sua &lt;em&gt;document root&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ora è possibile pubblicare delle risorse sul server &lt;code&gt;localhost&lt;/code&gt; con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli publish /acme/blog/public localhost /blog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ciò mappa il Puli Path &lt;code&gt;/acme/blog/public&lt;/code&gt; alla directory &lt;code&gt;blog&lt;/code&gt; della document root del server &lt;code&gt;localhost&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Puli ora ha tutte le informazioni per generare i persorsi delle risorse pubbliche:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/public/images/logo.png&#39;;
+$url = $puliGenerator-&amp;gt;generateUrl($puliPath);
+echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;L&amp;rsquo;ultima operazione può essere eseguita in un template Twig con l&amp;rsquo;utilizzo dell&amp;rsquo;estensione &lt;code&gt;puli/twig-extension&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-twig&#34;&gt;&amp;lt;img src=&amp;quot;{{ resource_url(&#39;/acme/blog/public/images/logo.png&#39;) }}&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+
+&lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
+
+&lt;p&gt;Il comando è il seguente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli publish --install
+Installing /acme/blog/public into public_html via symlink...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
+
+&lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
+Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
+Per approfondire, la documentazione ufficiale è molto chiara e completa ed è disponibile all&amp;rsquo;indirizzo: &lt;a href=&#34;http://docs.puli.io/&#34;&gt;http://docs.puli.io/&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

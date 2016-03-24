@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Facile.it Engineering</title>
-    <link>/</link>
-    <description>Recent content on Facile.it Engineering</description>
+    <title>Facile Engineering</title>
+    <link>engineering.facile.it/</link>
+    <description>Recent content on Facile Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>All rights reserved - 2016</copyright>
     <lastBuildDate>Mon, 18 Jan 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GraphQL: an introduction</title>
-      <link>/graphql-an-introduction</link>
+      <link>/engineering.facile.it/blog/eng/graphql-an-introduction/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/graphql-an-introduction</guid>
+      <guid>/engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
       <description>
 
-&lt;h2 id=&#34;the-lesson-we-learned-with-rest:0365de793d2feff4217533544ca4b947&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
+&lt;h2 id=&#34;the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
 
 &lt;p&gt;For many developers, nowadays, building an &lt;strong&gt;API&lt;/strong&gt; for their applications essentially means mapping the &lt;em&gt;resources&lt;/em&gt; of the domain to &lt;em&gt;URIs&lt;/em&gt;, with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Representational_state_transfer&#34;&gt;REST&lt;/a&gt; principles in mind.
 Usually creating a &lt;strong&gt;&lt;em&gt;RESTful&lt;/em&gt;&lt;/strong&gt; system is not difficult, and the simplicity of the idea makes the task easier.
 Let&amp;rsquo;s see some of the consequences and benefits of choosing REST:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Every HTTP verb has its own meaning, allowing the developer to understand immediately what kind of operation (typically among the CRUD ones) is going to be performed on the resource identified by the URI.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Often the same URI can be used with multiple verbs to accomplish different tasks (e.g. &amp;ldquo;example.com/tag/123&amp;rdquo; refers to a particular tag that you can retrieve, update or delete).&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Controllers in many server-side frameworks can be created with a RESTful approach, each one of them representing one or more resources.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Every HTTP verb has its own meaning, allowing the developer to understand immediately what kind of operation (typically among the CRUD ones) is going to be performed on the resource identified by the URI.&lt;/li&gt;
+&lt;li&gt;Often the same URI can be used with multiple verbs to accomplish different tasks (e.g. &amp;ldquo;example.com/tag/123&amp;rdquo; refers to a particular tag that you can retrieve, update or delete).&lt;/li&gt;
+&lt;li&gt;Controllers in many server-side frameworks can be created with a RESTful approach, each one of them representing one or more resources.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;However, unfortunately, it&amp;rsquo;s often easy to come across some problems:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Complex URIs can be difficult to write or understand and sometimes they are subject to arbitrary interpretations.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;In order to filter collections you may need to use one or more ids embedded in the URL, but also &lt;em&gt;query parameters&lt;/em&gt;, e.g. when you want to sort the results of a GET by one particular field or retrieve resources by some field other than the id.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;There is no standard or easy way for the client to specify the list of fields that it needs, and the server will usually return all the data related to the requested resource.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;More importantly, there is no standard way for the client to decide which resources related to the one requested should be returned, resulting in a lot of noise in the response content (unless the server application offers multiple endpoints to access the same resource but with different subsets of data&amp;hellip; but this could lead to API design problems).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Complex URIs can be difficult to write or understand and sometimes they are subject to arbitrary interpretations.&lt;/li&gt;
+&lt;li&gt;In order to filter collections you may need to use one or more ids embedded in the URL, but also &lt;em&gt;query parameters&lt;/em&gt;, e.g. when you want to sort the results of a GET by one particular field or retrieve resources by some field other than the id.&lt;/li&gt;
+&lt;li&gt;There is no standard or easy way for the client to specify the list of fields that it needs, and the server will usually return all the data related to the requested resource.&lt;/li&gt;
+&lt;li&gt;More importantly, there is no standard way for the client to decide which resources related to the one requested should be returned, resulting in a lot of noise in the response content (unless the server application offers multiple endpoints to access the same resource but with different subsets of data&amp;hellip; but this could lead to API design problems).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;You can&amp;rsquo;t really blame REST for these and other cons. Its power comes from simplicity and developers are thankful for this breath of fresh air. You have just one transport layer, i.e. HTTP, with its features and rules.&lt;/p&gt;
 
 &lt;p&gt;Now let&amp;rsquo;s see how we can take a step forward and add some salt to our APIs, to make them even more powerful and expressive.&lt;/p&gt;
 
-&lt;h2 id=&#34;a-new-way-to-design-api-graphql:0365de793d2feff4217533544ca4b947&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;a-new-way-to-design-api-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;GraphQL&lt;/strong&gt; maintains all the advantages of REST (relies on HTTP, very small overhead on requests, stateless and cacheable) and adds some very useful enhancements.
 One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it back in 2012 was the need to find a way to access data on their server that allowed any type of client and device (especially mobile site and app) to decide exactly what fields they need, reducing the payload and then minimizing the traffic.&lt;/p&gt;
@@ -56,7 +50,7 @@ One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it bac
 &lt;p&gt;Instead of explaining all the features, which can be read in the &lt;a href=&#34;http://graphql.org/docs/getting-started/&#34;&gt;official guide&lt;/a&gt;, in this post we&amp;rsquo;ll focus on what makes GraphQL interesting.
 In the next section we&amp;rsquo;ll use types and queries presented in our example project, that you can clone from &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;this repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;types-and-fields-driven-queries:0365de793d2feff4217533544ca4b947&#34;&gt;Types and fields driven queries&lt;/h3&gt;
+&lt;h3 id=&#34;types-and-fields-driven-queries:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Types and fields driven queries&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #1&lt;/strong&gt;&lt;/p&gt;
 
@@ -135,7 +129,7 @@ As you can see, the id has no semantic meaning like in REST, so you can describe
 &lt;pre&gt;&lt;code&gt;GET /game?title=Frogger
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;relations-between-entities-graph-representation:0365de793d2feff4217533544ca4b947&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
+&lt;h3 id=&#34;relations-between-entities-graph-representation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #4&lt;/strong&gt;&lt;/p&gt;
 
@@ -188,7 +182,7 @@ In Example #4, you can notice the complex field &lt;em&gt;developer&lt;/em&gt;; 
 &lt;p&gt;The field &lt;em&gt;developer&lt;/em&gt; is defined as type &lt;em&gt;Company&lt;/em&gt;, while the field &lt;em&gt;gamesAsDeveloper&lt;/em&gt; is a list of &lt;em&gt;Game&lt;/em&gt;.
 Please refer to the &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;demo project&lt;/a&gt; for the full implementation of this example.&lt;/p&gt;
 
-&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server:0365de793d2feff4217533544ca4b947&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
+&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
 
 &lt;p&gt;This time we need the list of the &lt;em&gt;Japanese companies&lt;/em&gt; and some information about the games they worked on, but only for the &lt;em&gt;NES&lt;/em&gt; (Nintendo Entertainment System) platform.&lt;/p&gt;
 
@@ -266,12 +260,11 @@ GET ...
 &lt;p&gt;There&amp;rsquo;s a couple of notable things here:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the expressivity of the query language becomes more evident when things start becoming more interesting; filtering subsets of data feels natural and easy as you can just specify the criteria for the filters directly on the subtree root (companies -&amp;gt; nation, gamesAsDeveloper -&amp;gt; platform, gamesAsPublisher -&amp;gt; platform);&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering &lt;em&gt;games&lt;/em&gt; with the given &lt;em&gt;platform&lt;/em&gt; is performed only on companies with the selected &lt;em&gt;nation&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;the expressivity of the query language becomes more evident when things start becoming more interesting; filtering subsets of data feels natural and easy as you can just specify the criteria for the filters directly on the subtree root (companies -&amp;gt; nation, gamesAsDeveloper -&amp;gt; platform, gamesAsPublisher -&amp;gt; platform);&lt;/li&gt;
+&lt;li&gt;on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering &lt;em&gt;games&lt;/em&gt; with the given &lt;em&gt;platform&lt;/em&gt; is performed only on companies with the selected &lt;em&gt;nation&lt;/em&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;api-documentation:0365de793d2feff4217533544ca4b947&#34;&gt;API Documentation&lt;/h3&gt;
+&lt;h3 id=&#34;api-documentation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;API Documentation&lt;/h3&gt;
 
 &lt;p&gt;When you design a REST WebService, for every endpoint you&amp;rsquo;re mostly going to take care of its URI and the structure of the request and the response body.
 Unfortunately, there is no standard way to document this information and make it available to the client developers.&lt;/p&gt;
@@ -352,7 +345,7 @@ Unfortunately, there is no standard way to document this information and make it
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;mutations:0365de793d2feff4217533544ca4b947&#34;&gt;Mutations&lt;/h2&gt;
+&lt;h2 id=&#34;mutations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Mutations&lt;/h2&gt;
 
 &lt;p&gt;We&amp;rsquo;ve already talked about queries, but a few words need to be spent about the other important operation that you can perform on a GraphQL server: &lt;strong&gt;mutations&lt;/strong&gt;.&lt;/p&gt;
 
@@ -382,11 +375,11 @@ In this example we are assigning a value (7) to the &lt;em&gt;rating&lt;/em&gt; 
 
 &lt;p&gt;As you can see, the specified type for the mutation is &lt;em&gt;Game&lt;/em&gt;; this means not only that the update should be performed on games, but also that the &lt;em&gt;Game&lt;/em&gt; field included in the request (id, title and rating) should be returned, just like a normal query.&lt;/p&gt;
 
-&lt;h2 id=&#34;implementations:0365de793d2feff4217533544ca4b947&#34;&gt;Implementations&lt;/h2&gt;
+&lt;h2 id=&#34;implementations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Implementations&lt;/h2&gt;
 
 &lt;p&gt;In the present article we sometimes referred to the official &lt;strong&gt;Javascript&lt;/strong&gt; library for GraphQL, but as you can see in &lt;a href=&#34;https://github.com/chentsulin/awesome-graphql&#34;&gt;this project&lt;/a&gt; there are many different implementations for the most popular languages.&lt;/p&gt;
 
-&lt;h2 id=&#34;the-future-of-graphql:0365de793d2feff4217533544ca4b947&#34;&gt;The future of GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;the-future-of-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The future of GraphQL&lt;/h2&gt;
 
 &lt;p&gt;It&amp;rsquo;s difficult to say what will become of GraphQL in the next year.
 Sure there&amp;rsquo;s a lot of hype around it, and for some very solid reasons.
@@ -396,9 +389,8 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 &lt;p&gt;Some questions arise when you think about GraphQL in a more vast spectrum:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;how to &lt;strong&gt;cache&lt;/strong&gt; resources on server-side, even if they were originally fetched using different queries? (Facebook is trying to give some answers with &lt;a href=&#34;https://facebook.github.io/relay/docs/thinking-in-relay.html&#34;&gt;Relay&lt;/a&gt;);&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;how to &lt;strong&gt;limit the access&lt;/strong&gt; to the resources (or the introspection on them) only to some users? GraphQL is authorization-agnostic, but as you can read in &lt;a href=&#34;https://github.com/graphql/graphql-js/issues/113&#34;&gt;this Github issue&lt;/a&gt; its a common problem that needs to be at least faced.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;how to &lt;strong&gt;cache&lt;/strong&gt; resources on server-side, even if they were originally fetched using different queries? (Facebook is trying to give some answers with &lt;a href=&#34;https://facebook.github.io/relay/docs/thinking-in-relay.html&#34;&gt;Relay&lt;/a&gt;);&lt;/li&gt;
+&lt;li&gt;how to &lt;strong&gt;limit the access&lt;/strong&gt; to the resources (or the introspection on them) only to some users? GraphQL is authorization-agnostic, but as you can read in &lt;a href=&#34;https://github.com/graphql/graphql-js/issues/113&#34;&gt;this Github issue&lt;/a&gt; its a common problem that needs to be at least faced.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The entire Facebook ecosystem of open source projects is worth of attention (don&amp;rsquo;t forget about React, Flux and the other Flux-like architectures) and, even if it&amp;rsquo;s very young, it has become very popular and used by many little and big companies around the world.&lt;/p&gt;
@@ -408,16 +400,30 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
     </item>
     
     <item>
+      <title>GraphQL: una introduzione</title>
+      <link>/engineering.facile.it/blog/ita/graphql-una-introduzione/</link>
+      <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/engineering.facile.it/blog/ita/graphql-una-introduzione/</guid>
+      <description>
+
+&lt;h2 id=&#34;the-lesson-we-learned-with-rest:44c8a66936e2da2f949e21119621a617&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
+
+&lt;p&gt;Articolo di test fintamente tradotto in italiano&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Write a filesystem with FUSE</title>
-      <link>/write-filesystem-fuse</link>
+      <link>/engineering.facile.it/blog/eng/write-filesystem-fuse/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/write-filesystem-fuse</guid>
+      <guid>/engineering.facile.it/blog/eng/write-filesystem-fuse/</guid>
       <description>
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
 
-&lt;h2 id=&#34;introduction:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h2 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
@@ -455,17 +461,17 @@ If you are using a device to read this post you are probably using at least one 
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
-&lt;img src=&#34;/content/images/2016/01/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;engineering.facile.it/content/images/2016/01/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;getting-started-with-fuse:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Getting started with FUSE&lt;/h2&gt;
+&lt;h2 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h2&gt;
 
 &lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
 
-&lt;h3 id=&#34;build-dependencies:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Build dependencies&lt;/h3&gt;
+&lt;h3 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h3&gt;
 
 &lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
 
-&lt;h4 id=&#34;linux:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Linux&lt;/h4&gt;
+&lt;h4 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;GCC or Clang&lt;/li&gt;
@@ -487,7 +493,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;mac-osx:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Mac OSX&lt;/h4&gt;
+&lt;h4 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
@@ -504,14 +510,14 @@ If you are using a device to read this post you are probably using at least one 
 &lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;fuse-api:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;FUSE API&lt;/h3&gt;
+&lt;h3 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h3&gt;
 
 &lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
 
 &lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;example-project:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Example project&lt;/h3&gt;
+&lt;h3 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h3&gt;
 
 &lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
 
@@ -533,17 +539,17 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
 
-&lt;h4 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
 
 &lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
 
-&lt;h5 id=&#34;getattr:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;getattr&lt;/h5&gt;
+&lt;h5 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h5&gt;
 
 &lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
 
@@ -563,11 +569,11 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 &lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;h5 id=&#34;open:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;open&lt;/h5&gt;
+&lt;h5 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h5&gt;
 
 &lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
 
-&lt;h5 id=&#34;read:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;read&lt;/h5&gt;
+&lt;h5 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h5&gt;
 
 &lt;p&gt;This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
@@ -575,20 +581,20 @@ As done in the getattr callback, here I&amp;rsquo;m checking if the given path e
 
 &lt;script src=&#34;https://gist.github.com/fntlnz/91ee912e4d58295ee18d.js&#34;&gt;&lt;/script&gt;
 
-&lt;h5 id=&#34;readdir:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;readdir&lt;/h5&gt;
+&lt;h5 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h5&gt;
 
 &lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
 
 &lt;script src=&#34;https://gist.github.com/fntlnz/5e712738bdab28f1a1c0.js&#34;&gt;&lt;/script&gt;
 
-&lt;h5 id=&#34;main:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;main&lt;/h5&gt;
+&lt;h5 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h5&gt;
 
 &lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
 
 &lt;script src=&#34;https://gist.github.com/fntlnz/57922d3b64a9fa042aca.js&#34;&gt;&lt;/script&gt;
 
-&lt;h4 id=&#34;build-and-run:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Build and run&lt;/h4&gt;
+&lt;h4 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h4&gt;
 
 &lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
 
@@ -608,7 +614,7 @@ Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, 
 
 &lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
 
-&lt;h4 id=&#34;run:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Run!&lt;/h4&gt;
+&lt;h4 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h4&gt;
 
 &lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
 
@@ -644,7 +650,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;thoughts-and-notes:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Thoughts and notes&lt;/h3&gt;
+&lt;h3 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
@@ -652,7 +658,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;other-resources:9033f4ec77332ae8c4f2b8bb280b10a0&#34;&gt;Other resources&lt;/h3&gt;
+&lt;h3 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
@@ -670,13 +676,13 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
     
     <item>
       <title>Puli: Universal Packages for PHP</title>
-      <link>/puli-universal-packages-for-php</link>
+      <link>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>/puli-universal-packages-for-php</guid>
+      <guid>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
       <description>
 
-&lt;h2 id=&#34;composer-e-l-ecosistema-php:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
 
 &lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
 Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
@@ -686,7 +692,7 @@ In questi ultimi anni si è assistito ad un proliferare di numerose componenti s
 I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
 Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
 
-&lt;h2 id=&#34;la-soluzione-puli:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
 
 &lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
 Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
@@ -703,7 +709,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;le-componenti-di-puli:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
 
 &lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
 
@@ -713,7 +719,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;Public resources manager&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;configurazione:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Configurazione&lt;/h3&gt;
+&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
 
 &lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
 
@@ -721,7 +727,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
 Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
 
-&lt;h3 id=&#34;installazione:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Installazione&lt;/h3&gt;
+&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
 
 &lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
 Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
@@ -746,12 +752,12 @@ $puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
 $puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;resource-repository:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Resource repository&lt;/h3&gt;
+&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
 
 &lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
 Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-composer:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
 
 &lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
 
@@ -763,7 +769,7 @@ $translationContent = file_get_contents($translationFileName);
 
 &lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-puli:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
 
 &lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
 Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
@@ -784,7 +790,7 @@ $translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
 
 &lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;resource-overriding:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Resource overriding&lt;/h4&gt;
+&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
 
 &lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
 Immaginiamo di dover lavorare con due pacchetti: A e B.
@@ -794,7 +800,7 @@ Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali 
 
 &lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;discovery-service:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Discovery service&lt;/h3&gt;
+&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
 
 &lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
 
@@ -811,7 +817,7 @@ I resource providers possono quindi associare una o più risorse a tali Binding 
 
 &lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
 
-&lt;h4 id=&#34;esempio:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Esempio&lt;/h4&gt;
+&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
 
 &lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
 
@@ -860,7 +866,7 @@ $ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-templa
 
 &lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;public-resources-manager:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Public resources manager&lt;/h3&gt;
+&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
 
 &lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
 
@@ -893,7 +899,7 @@ echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
 
 &lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;installazione-delle-risorse:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
 
 &lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
 
@@ -905,7 +911,7 @@ Installing /acme/blog/public into public_html via symlink...
 
 &lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:7ccd1c230bb39690eee30e08d2071e01&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
 Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
@@ -915,15 +921,15 @@ Per approfondire, la documentazione ufficiale è molto chiara e completa ed è d
     
     <item>
       <title>Paraunit: test paralleli, Doctrine e le fixture</title>
-      <link>/paraunit</link>
+      <link>/engineering.facile.it/blog/ita/paraunit/</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>/paraunit</guid>
+      <guid>/engineering.facile.it/blog/ita/paraunit/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -945,7 +951,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -960,7 +966,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -981,7 +987,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -1003,7 +1009,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1024,23 +1030,23 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/2015-10-paraunit/grafico.png&#34; alt=&#34;Grafico&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/2015-10-paraunit/grafico.png&#34; alt=&#34;Grafico&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Come potete vedere, Paraunit esegue l&amp;rsquo;intera test suite in soli &lt;strong&gt;6 minuti e 6 secondi&lt;/strong&gt;, mentre PHPUnit ci metterebbe &lt;strong&gt;oltre 40 minuti!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:75cd8275cf2dca6ea2d5a93c6e626991&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -1060,10 +1066,10 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     
     <item>
       <title>Facile.it devs @ PHP Day 2015</title>
-      <link>/php-day-2015</link>
+      <link>/engineering.facile.it/blog/ita/php-day-2015/</link>
       <pubDate>Tue, 19 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>/php-day-2015</guid>
+      <guid>/engineering.facile.it/blog/ita/php-day-2015/</guid>
       <description>
 
 &lt;p&gt;Anche quest&amp;rsquo;anno si è svolto il &lt;strong&gt;&lt;a href=&#34;http://2015.phpday.it/&#34;&gt;PHP Day&lt;/a&gt; a Verona, il 15 e 16 maggio&lt;/strong&gt;. Noi sviluppatori di Facile.it abbiamo partecipato con un folto gruppo e seguito i vari talks.&lt;/p&gt;
@@ -1074,7 +1080,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;I talk sono in ordine cronologico. Buona lettura!&lt;/p&gt;
 
-&lt;h4 id=&#34;indice:42e50a9633470c193dca7be630bb7825&#34;&gt;Indice&lt;/h4&gt;
+&lt;h4 id=&#34;indice:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Indice&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#prophecy&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/a&gt;&lt;/li&gt;
@@ -1085,7 +1091,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#doctrine&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h6 id=&#34;keynotes:42e50a9633470c193dca7be630bb7825&#34;&gt;Keynotes&lt;/h6&gt;
+&lt;h6 id=&#34;keynotes:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h6&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#coderabbi&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/a&gt;&lt;/li&gt;
@@ -1093,11 +1099,11 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#seldaek&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;talk-tecnici:42e50a9633470c193dca7be630bb7825&#34;&gt;Talk tecnici&lt;/h1&gt;
+&lt;h1 id=&#34;talk-tecnici:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talk tecnici&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;prophecy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:42e50a9633470c193dca7be630bb7825&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
+&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Khalil (&lt;a href=&#34;http://twitter.com/saro0h&#34;&gt;@saro0h&lt;/a&gt;)&lt;/li&gt;
@@ -1112,7 +1118,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;containerize&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;containerize-your-php:42e50a9633470c193dca7be630bb7825&#34;&gt;Containerize your PHP&lt;/h4&gt;
+&lt;h4 id=&#34;containerize-your-php:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Containerize your PHP&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marek Jelen (&lt;a href=&#34;http://twitter.com/marek_jelen&#34;&gt;@marek_jelen&lt;/a&gt;)&lt;/li&gt;
@@ -1125,7 +1131,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;varnish&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:42e50a9633470c193dca7be630bb7825&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
+&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David De Boer&lt;/li&gt;
@@ -1140,7 +1146,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;psr-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;hello-psr-7:42e50a9633470c193dca7be630bb7825&#34;&gt;Hello, PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;hello-psr-7:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Hello, PSR-7&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Beau Simensen (&lt;a href=&#34;http://www.twitter.com/beausimensen&#34;&gt;@beausimensen&lt;/a&gt;)&lt;/li&gt;
@@ -1155,7 +1161,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;php7-data-structures&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:42e50a9633470c193dca7be630bb7825&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
+&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Patrick Allaert (&lt;a href=&#34;http://www.twitter.com/patrick_allaert&#34;&gt;@patrick_allaert&lt;/a&gt;)&lt;/li&gt;
@@ -1168,7 +1174,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;doctrine&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:42e50a9633470c193dca7be630bb7825&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
+&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Pivetta (&lt;a href=&#34;http://www.twitter.com/Ocramius&#34;&gt;@Ocramius&lt;/a&gt;)&lt;/li&gt;
@@ -1179,13 +1185,13 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;Usiamo &lt;strong&gt;Doctrine&lt;/strong&gt; tutti i giorni, ma questo talk, sebbene marcato come di livello &lt;strong&gt;beginner&lt;/strong&gt;, si è rivelato molto interessante e fonte di numerose discussioni e &lt;strong&gt;riflessioni&lt;/strong&gt; tra colleghi. Lo speaker è uno dei principali contributors al progetto &lt;a href=&#34;https://github.com/doctrine/doctrine2&#34;&gt;doctrine-orm&lt;/a&gt;, e ci ha elencato una serie di &lt;strong&gt;best practices&lt;/strong&gt;, partendo dal chiedersi se e quando è il caso di usare un ORM, passando poi a problemi quali l&amp;rsquo;uso e l&amp;rsquo;implementazione di entità, la loro consistenza, l&amp;rsquo;evitare di usare setter brutali o di esporre le ArrayCollection che rappresentano le nostre relazioni.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes-1:42e50a9633470c193dca7be630bb7825&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes-1:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h1&gt;
 
 &lt;p&gt;Abbiamo voluto citare in questo articolo anche i &lt;strong&gt;3 keynote&lt;/strong&gt; della conferenza: sono stati tutti piuttosto interessanti, profondamente motivazionali e coinvolgenti.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;coderabbi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:42e50a9633470c193dca7be630bb7825&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
+&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Yitzchok Willroth (&lt;a href=&#34;http://www.twitter.com/coderabbi&#34;&gt;@coderabbi&lt;/a&gt;)&lt;/li&gt;
@@ -1203,7 +1209,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;calevans&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:42e50a9633470c193dca7be630bb7825&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
+&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Cal Evans (&lt;a href=&#34;http://www.twitter.com/calevans&#34;&gt;@CalEvans&lt;/a&gt;)&lt;/li&gt;
@@ -1216,7 +1222,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;seldaek&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:42e50a9633470c193dca7be630bb7825&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
+&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -1229,10 +1235,10 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     
     <item>
       <title>Introduzione al tracciamento di eventi lato server</title>
-      <link>/tracciamento-di-eventi-lato-server</link>
+      <link>/engineering.facile.it/blog/ita/tracciamento-di-eventi-lato-server/</link>
       <pubDate>Tue, 21 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>/tracciamento-di-eventi-lato-server</guid>
+      <guid>/engineering.facile.it/blog/ita/tracciamento-di-eventi-lato-server/</guid>
       <description>
 
 &lt;p&gt;L’adozione di strategie &lt;em&gt;DevOps&lt;/em&gt; ha portato negli ultimi anni ad incrementare le aree coperte da &lt;strong&gt;tool di monitoring&lt;/strong&gt; in maniera tale da avere un feedback in tempo reale dello stato dell’infrastruttura su cui si basa la propria applicazione, così da poter rispondere pro-attivamente a situazioni critiche. Su tale fronte infatti si sono visti comparire i tool più disparati che permettono la raccolta di informazioni, sia dei &lt;strong&gt;server&lt;/strong&gt; o delle istanze su cui vengono eseguite le applicazioni (ad esempio CPU, memoria o disco), che le &lt;strong&gt;applicazioni&lt;/strong&gt; stesse (ad esempio tempi medi di risposta, numero di query eseguite, tempo di esecuzione delle query, ecc. ecc.).&lt;/p&gt;
@@ -1250,13 +1256,13 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;li&gt;tramite &lt;strong&gt;&lt;em&gt;eventi personalizzati&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;custom-attributes:f7972e07cd5aea708ca7b39e12f6945a&#34;&gt;Custom Attributes&lt;/h4&gt;
+&lt;h4 id=&#34;custom-attributes:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Custom Attributes&lt;/h4&gt;
 
 &lt;p&gt;I &lt;em&gt;custom attributes&lt;/em&gt; sono delle coppie di chiave-valore da aggiungere alla transazione corrente (Web e Non-Web) già tracciata dagli strumenti di &lt;em&gt;NewRelic&lt;/em&gt; per i principali linguaggi di programmazione (&lt;strong&gt;PHP&lt;/strong&gt;, &lt;strong&gt;NodeJs&lt;/strong&gt;, &lt;strong&gt;Ruby&lt;/strong&gt;, &lt;strong&gt;Python&lt;/strong&gt;, &lt;em&gt;Java&lt;/em&gt;, &lt;em&gt;.NET&lt;/em&gt;). Possiamo aggiungere ad esempio l’utente attualmente collegato che sta effettuando tale transazione, il numero di oggetti presenti nel carrello o ancora il loro valore.&lt;/p&gt;
 
 &lt;p&gt;Ad esempio, tramite l&amp;rsquo;estensione di &lt;em&gt;NewRelic&lt;/em&gt; disponibile per &lt;strong&gt;PHP&lt;/strong&gt;, è possibile aggiungere i dettagli dell&amp;rsquo;utente attualmente collegato chiamando la funzione &lt;code&gt;newrelic_add_custom_parameter (&#39;userID&#39;, $userId)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;eventi-personalizzati:f7972e07cd5aea708ca7b39e12f6945a&#34;&gt;Eventi personalizzati&lt;/h4&gt;
+&lt;h4 id=&#34;eventi-personalizzati:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Eventi personalizzati&lt;/h4&gt;
 
 &lt;p&gt;Gli &lt;em&gt;eventi personalizzati&lt;/em&gt; vanno inviati ad un &lt;strong&gt;webservice REST&lt;/strong&gt; in formato &lt;strong&gt;JSON&lt;/strong&gt;. Ci mettono in grado di tracciare un qualsiasi evento all’interno di una normale transazione già tracciata da NewRelic, come ad esempio i tempi di risposta di un servizio esterno utilizzato dall’applicazione.&lt;/p&gt;
 
@@ -1270,13 +1276,13 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     
     <item>
       <title>Il principio OPEN/CLOSE le sue origini e i casi d&#39;uso</title>
-      <link>/principio-open-close-le-sue-origini-e-i-casi-d-uso</link>
+      <link>/engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</link>
       <pubDate>Wed, 15 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>/principio-open-close-le-sue-origini-e-i-casi-d-uso</guid>
+      <guid>/engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</guid>
       <description>
 
-&lt;h2 id=&#34;definizione:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Definizione:&lt;/h2&gt;
+&lt;h2 id=&#34;definizione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Definizione:&lt;/h2&gt;
 
 &lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design&#34;&gt;SOLID&lt;/a&gt;).  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
 
@@ -1284,7 +1290,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;Questo principio tuttavia non è altro che la formalizzazione e il raggruppamento di concetti e linee guida già presenti da tempo nella programmazione ad oggetti.&lt;/p&gt;
 
-&lt;h3 id=&#34;chiuso-alle-modifiche:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
+&lt;h3 id=&#34;chiuso-alle-modifiche:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Chiuso alle modifiche che potrebbero aver effetto sul client&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1317,7 +1323,7 @@ class ClasseEsterna
 &lt;li&gt;Abbiamo realizzato un &lt;em&gt;low coupling&lt;/em&gt; fra la l&amp;rsquo;&lt;strong&gt;oggettoInterno&lt;/strong&gt; e il client che utilizza la &lt;strong&gt;ClasseEsterna&lt;/strong&gt;, promuovendo, di fatto, il ==riuso== di &lt;strong&gt;oggettoInterno&lt;/strong&gt; in altri contesti.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;aperto-alle-estensioni:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
+&lt;h3 id=&#34;aperto-alle-estensioni:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Aperto ad essere esteso ed adattato&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1330,7 +1336,7 @@ Un modulo che non può cambiare è solitamente considerato qualcosa che ha un co
 
 &lt;p&gt;Un esempio è il pattern chain of responsibility che vediamo di seguito.&lt;/p&gt;
 
-&lt;h3 id=&#34;chain-of-responsibility:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Chain of responsibility:&lt;/h3&gt;
+&lt;h3 id=&#34;chain-of-responsibility:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chain of responsibility:&lt;/h3&gt;
 
 &lt;p&gt;Questo pattern risolve un’ampia classe di situazioni nelle quali vi sia la necessità di eseguire operazioni &lt;strong&gt;sequenziali&lt;/strong&gt; e &lt;strong&gt;condizionali&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1409,7 +1415,7 @@ class Gestore
 &lt;li&gt;È presente coesione fra l&amp;rsquo;interfaccia dei singoli anelli e il gestore. Purché si rispetti questo contratto è possibile esprimere anche logiche complesse.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;conclusione:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Conclusione:&lt;/h3&gt;
+&lt;h3 id=&#34;conclusione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Conclusione:&lt;/h3&gt;
 
 &lt;p&gt;È necessario &lt;strong&gt;scegliere le proprie battaglie&lt;/strong&gt; quando si parla di design, sia che si tratti di scelte macro-architetturali che piccole scelte sulla singola istanza.&lt;/p&gt;
 
@@ -1419,7 +1425,7 @@ class Gestore
 
 &lt;p&gt;L&amp;rsquo;obbiettivo finale dovrebbe essere sempre minimizzare l&amp;rsquo;impatto sul sistema dei (naturali) cambiamenti; Open/Close PV e low coupling sono alcune delle strategie più efficaci.&lt;/p&gt;
 
-&lt;h4 id=&#34;bibliografia:2158d2691e7b8c89e6b543a68eaa5087&#34;&gt;Bibliografia&lt;/h4&gt;
+&lt;h4 id=&#34;bibliografia:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Bibliografia&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.utdallas.edu/~chung/SP/applying-uml-and-patterns.pdf&#34;&gt;Applying UML and Patterns – An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd ed.)&lt;/a&gt;&lt;/li&gt;
@@ -1433,10 +1439,10 @@ class Gestore
     
     <item>
       <title>Gestione di ACL su insiemi di records</title>
-      <link>/gestione-di-acl-su-insiemi-di-records</link>
+      <link>/engineering.facile.it/blog/ita/gestione-di-acl-su-insiemi-di-records/</link>
       <pubDate>Wed, 01 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>/gestione-di-acl-su-insiemi-di-records</guid>
+      <guid>/engineering.facile.it/blog/ita/gestione-di-acl-su-insiemi-di-records/</guid>
       <description>&lt;p&gt;Le &lt;strong&gt;ACL&lt;/strong&gt; (&lt;em&gt;Access Control List&lt;/em&gt;) sono un strumento molto potente per poter definire l&amp;rsquo;accesso a risorse con una granularità molto fine. Nel quotidiano abbiamo già modo di utilizzarle per definire i permessi per accedere a file su Unix o quali pacchetti far passare attraverso un firewall o ancora l&amp;rsquo;accesso a database.&lt;/p&gt;
 
 &lt;p&gt;In &lt;strong&gt;Symfony&lt;/strong&gt; le &lt;em&gt;ACL&lt;/em&gt; sono disponibili &lt;em&gt;out-of-the-box&lt;/em&gt; nel caso di installazione completa e permettono la definizione delle regole di accesso a risorse tramite &lt;strong&gt;ruoli&lt;/strong&gt; e &lt;strong&gt;maschere&lt;/strong&gt;. Mentre i &lt;strong&gt;ruoli&lt;/strong&gt; rappresentano dei sottoinsiemi degli utenti di una data applicazione (&lt;em&gt;amministratori&lt;/em&gt;, &lt;em&gt;backoffice&lt;/em&gt;, &lt;em&gt;business analyst&lt;/em&gt;) e possono essere visti come delle etichette da assegnare ad un utente, le &lt;strong&gt;maschere&lt;/strong&gt; sono la rappresentazione numerica delle azioni che possono essere effettuate dagli utenti aventi determinati ruoli. Per tornare all&amp;rsquo;esempio del filesystem Unix, i ruoli possono essere &lt;em&gt;Owner&lt;/em&gt;, &lt;em&gt;Group&lt;/em&gt; o &lt;em&gt;Others&lt;/em&gt; mentre le maschere sono ad esempio 7 (lettura, scrittura e esecuzione) indicato per ciascun ruolo.&lt;/p&gt;
@@ -1502,10 +1508,10 @@ class User
     
     <item>
       <title>PHP coding standard: PSR-7  HTTP message interfaces</title>
-      <link>/php-fig-standard-psr-7-http-message-interfaces</link>
+      <link>/engineering.facile.it/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>/php-fig-standard-psr-7-http-message-interfaces</guid>
+      <guid>/engineering.facile.it/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</guid>
       <description>
 
 &lt;p&gt;Le specifiche PSR-7 descrivono una &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md&#34;&gt;proposta di standardizzazione&lt;/a&gt; delle &lt;strong&gt;interfacce per i messaggi HTTP&lt;/strong&gt;.&lt;/p&gt;
@@ -1514,7 +1520,7 @@ class User
 
 &lt;p&gt;A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&amp;rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.&lt;/p&gt;
 
-&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
+&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
 
 &lt;p&gt;I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.&lt;/p&gt;
 
@@ -1566,7 +1572,7 @@ class GreetingSentence
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;symfony-2:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Symfony 2&lt;/h6&gt;
+&lt;h6 id=&#34;symfony-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Symfony 2&lt;/h6&gt;
 
 &lt;p&gt;Ecco come implementeremmo la funzionalità richiesta in Symfony2:&lt;/p&gt;
 
@@ -1609,7 +1615,7 @@ class MainController
 } 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;zend-framework-2:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Zend Framework 2&lt;/h6&gt;
+&lt;h6 id=&#34;zend-framework-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Zend Framework 2&lt;/h6&gt;
 
 &lt;p&gt;Questa è invece l&amp;rsquo;implementazione in Zend Framework 2:&lt;/p&gt;
 
@@ -1650,7 +1656,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora &lt;strong&gt;come uno standard come quello proposto dal PSR-7 possa aiutarci&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
+&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
 
 &lt;p&gt;Potremmo voler implemenare la nostra soluzione come un &lt;strong&gt;middleware&lt;/strong&gt;, ovvero un componente che &lt;strong&gt;esiste durante il ciclo di vita di una comunicazione HTTP&lt;/strong&gt;, cioè dall&amp;rsquo;accettazione della richiesta fino all&amp;rsquo;evasione della risposta.&lt;/p&gt;
 
@@ -1668,7 +1674,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal &lt;a href=&#34;http://www.php-fig.org/&#34;&gt;&lt;strong&gt;FIG&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
 
 &lt;p&gt;La proposta dello standard PSR-7 si riassume nella descrizione di una serie di &lt;a href=&#34;https://github.com/php-fig/http-message/tree/master/src&#34;&gt;interfacce&lt;/a&gt;.&lt;/p&gt;
 
@@ -1730,7 +1736,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Ovviamente questo middleware adesso come adesso è tutt&amp;rsquo;altro che utilizzabile all&amp;rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che &lt;strong&gt;in un futuro&lt;/strong&gt; non troppo lontano le varie implementazioni &lt;strong&gt;convergeranno&lt;/strong&gt; su qualcosa di simile a quella appena vista e proposta da O&amp;rsquo;Phinney.&lt;/p&gt;
 
-&lt;h4 id=&#34;conclusioni:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Conclusioni&lt;/h4&gt;
+&lt;h4 id=&#34;conclusioni:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Conclusioni&lt;/h4&gt;
 
 &lt;p&gt;Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&amp;rsquo;ambiente contenenti tutti i valori necessari (&lt;code&gt;$_SERVER&lt;/code&gt;, &lt;code&gt;$_GET&lt;/code&gt;, &lt;code&gt;$_POST&lt;/code&gt;, &lt;code&gt;$_FILES&lt;/code&gt;, &amp;hellip;).&lt;/p&gt;
 
@@ -1738,7 +1744,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Sicuramente tenere &lt;a href=&#34;https://github.com/php-fig/fig-standards&#34;&gt;a portata di github&lt;/a&gt; gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui &lt;strong&gt;futuri sviluppi&lt;/strong&gt; dei più blasonati framework e componenti PHP, tenendo conto, &lt;strong&gt;come già accaduto per le precedenti proposte&lt;/strong&gt; &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&#34;&gt;PSR-0&lt;/a&gt; e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&#34;&gt;PSR-4&lt;/a&gt; (autoloading) e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&#34;&gt;PSR-3&lt;/a&gt; (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.&lt;/p&gt;
 
-&lt;h4 id=&#34;altre-risorse-consultabili:671ee5723479e68f3c81ecaf36db946c&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
+&lt;h4 id=&#34;altre-risorse-consultabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Blog di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&#34;&gt;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&lt;/a&gt;&lt;/li&gt;
