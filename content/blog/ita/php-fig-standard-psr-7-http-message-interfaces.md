@@ -9,7 +9,8 @@ title: "PHP coding standard: PSR-7  HTTP message interfaces"
 type: "post"
 
 languageCode: "it-IT"
-
+aliases:
+  - "/php-fig-standard-psr-7-http-message-interfaces"
 ---
 Le specifiche PSR-7 descrivono una [proposta di standardizzazione](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md) delle **interfacce per i messaggi HTTP**.
 

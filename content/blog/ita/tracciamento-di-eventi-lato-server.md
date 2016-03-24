@@ -9,7 +9,8 @@ title: "Introduzione al tracciamento di eventi lato server"
 
 languageCode: "it-IT"
 type: "post"
-
+aliases:
+  - "/tracciamento-di-eventi-lato-server"
 ---
 L’adozione di strategie *DevOps* ha portato negli ultimi anni ad incrementare le aree coperte da **tool di monitoring** in maniera tale da avere un feedback in tempo reale dello stato dell’infrastruttura su cui si basa la propria applicazione, così da poter rispondere pro-attivamente a situazioni critiche. Su tale fronte infatti si sono visti comparire i tool più disparati che permettono la raccolta di informazioni, sia dei **server** o delle istanze su cui vengono eseguite le applicazioni (ad esempio CPU, memoria o disco), che le **applicazioni** stesse (ad esempio tempi medi di risposta, numero di query eseguite, tempo di esecuzione delle query, ecc. ecc.). 
 

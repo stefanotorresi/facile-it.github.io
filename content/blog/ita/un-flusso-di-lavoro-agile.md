@@ -9,6 +9,8 @@ title: "Un flusso di lavoro agile"
 
 languageCode: "it-IT"
 type: "post"
+aliases: 
+  - "/un-flusso-di-lavoro-agile"
 ---
 Parlare di **metodologie di lavoro** in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire "con [SCRUM](http://it.wikipedia.org/wiki/Scrum_%28informatica%29) avrai risultati assicurati". Lo trovo piuttosto riduttivo.
 

@@ -9,7 +9,8 @@ share: true
 categories: [English, GraphQL, REST, HTTP, Node.js]
 title: "GraphQL: an introduction"
 type: "post"
-
+aliases: 
+  - "/graphql-an-introduction"
 ---
 
 

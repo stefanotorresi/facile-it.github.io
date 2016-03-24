@@ -11,7 +11,8 @@ title: "Puli: Universal Packages for PHP"
 
 languageCode: "it-IT"
 type: "post"
-
+aliases:
+  - "/puli-universal-packages-for-php"
 ---
 
 ## Composer e l'ecosistema PHP
