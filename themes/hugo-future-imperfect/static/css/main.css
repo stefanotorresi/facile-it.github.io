@@ -2677,6 +2677,7 @@
 			}
 
 			.post > footer .stats {
+				margin-left: 24px;
 				cursor: default;
 				list-style: none;
 				padding: 0;
