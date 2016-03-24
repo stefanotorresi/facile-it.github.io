@@ -72,4 +72,19 @@
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
   </url>
   
+  <url>
+    <loc>/blog/ita/operatore-ternario-e-associativo-a-sinistra/</loc>
+    <lastmod>2015-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/zvals-refcount/</loc>
+    <lastmod>2015-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/</loc>
+    <lastmod>2015-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
 </urlset>

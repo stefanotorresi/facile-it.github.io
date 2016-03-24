@@ -2056,5 +2056,91 @@ class AcmeLifeCycle
 </description>
     </item>
     
+    <item>
+      <title>L&#39;operatore ternario è associativo a sinistra!</title>
+      <link>/blog/ita/operatore-ternario-e-associativo-a-sinistra/</link>
+      <pubDate>Mon, 02 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/operatore-ternario-e-associativo-a-sinistra/</guid>
+      <description>&lt;p&gt;Gli &lt;a href=&#34;http://it.wikipedia.org/wiki/Operatore_ternario&#34;&gt;&lt;em&gt;operatori ternari&lt;/em&gt;&lt;/a&gt; sono diffusi in molti linguaggi di programmazione e permettono di esprimire con una &lt;strong&gt;sintassi breve&lt;/strong&gt; logiche condizionali. Per utilizzarli propriamente in PHP è però necessario conoscerne il comportamento.&lt;/p&gt;
+
+&lt;p&gt;Vediamo un esempio&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;var_dump(true ? &#39;a&#39; : &#39;b&#39; ? &#39;c&#39; : &#39;d&#39;); // OUTPUT: string(1) &amp;quot;c&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se state pensando che il risultato di questa espressione sia ovvio, vediamo cosa succede ad esempio in javascript&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;console.log(true ? &#39;a&#39; : &#39;b&#39; ? &#39;c&#39; : &#39;d&#39;); // OUTPUT: a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bene, mentre in PHP il risultato è dato da:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;true è vero, ritorna a&lt;/li&gt;
+&lt;li&gt;a castato a bool è vero, &lt;strong&gt;stampa c&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In javascript invece il ragionamento è diverso:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;true è vero, &lt;strong&gt;stampa a&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Perchè questa differenza? Semplicemente perchè in PHP, &lt;strong&gt;diversamente dalla maggioranza dei linguaggi&lt;/strong&gt;, l&amp;rsquo;operatore ternario è associativo a sinistra anzichè a destra.&lt;/p&gt;
+
+&lt;p&gt;Tenendone conto potremo evitare comportamenti inconsistenti nel nostro codice.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ZVALs refcount AKA come vengono memorizzate le nostre variabili</title>
+      <link>/blog/ita/zvals-refcount/</link>
+      <pubDate>Mon, 02 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/zvals-refcount/</guid>
+      <description>&lt;p&gt;Assegnare valori alle variabili è sicuramente l&amp;rsquo;operazione più comune all&amp;rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&amp;rsquo;interprete? Vediamolo assieme!&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla &lt;a href=&#34;https://github.com/php/php-src/blob/ae15e636e2b213bf748fa0b94ca95ac96d6eae3a/Zend/zend.h#L334-L340&#34;&gt;linea 334 di &lt;code&gt;zend.h&lt;/code&gt;&lt;/a&gt;, la riporto qui di seguito per commentarne le proprietà.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct _zval_struct {
+	zvalue_value value;	 /* Il valore assegnato alla variabile */
+	zend_uint refcount__gc; /* Il conto delle referenze legato alla variabile */
+	zend_uchar type;	/* L&#39;identificativo del tipo di dato */
+	zend_uchar is_ref__gc; /* Flag che indica se la variabile è o meno una referenza */
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il tipo di dato &lt;code&gt;zvalue_value&lt;/code&gt; non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo &lt;strong&gt;ogni variabile&lt;/strong&gt; che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo &lt;strong&gt;stesso spazio in memoria&lt;/strong&gt; richiesto per il tipo di dato più grande.&lt;/p&gt;
+
+&lt;p&gt;Per mostrare come php gestisce l&amp;rsquo;allocazione delle variabili vediamo un semplice esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$a = 1; // value=1, refcount=1
+$b = $a; // value=1, refcount=2
+$a++;    // value=2, refcount = 1
+$c = $b; // value=1, refcount=2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cosa succede qui?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$a&lt;/code&gt; viene allocata con valore &lt;code&gt;1&lt;/code&gt;, e quindi per la variabile &lt;code&gt;$a&lt;/code&gt; il refcount viene
+impostato a 1.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Il valore di &lt;code&gt;$a&lt;/code&gt; viene assegnato anche a &lt;code&gt;$b&lt;/code&gt;, quindi PHP per evitare di sprecare memoria assegna la stessa zval anche a &lt;code&gt;$b&lt;/code&gt;, aumentando di 1 il refcount.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$a&lt;/code&gt; viene incrementato di &lt;code&gt;1&lt;/code&gt;,&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Essendo il valore della zval di &lt;code&gt;$a&lt;/code&gt; è cambiato, php crea una nuova zval per &lt;code&gt;$b&lt;/code&gt; e &lt;code&gt;$c&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Ora la zval di &lt;code&gt;$a&lt;/code&gt; appartiene solo ad &lt;code&gt;$a&lt;/code&gt; con valore &lt;code&gt;2&lt;/code&gt; e refcount &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$b&lt;/code&gt; ha una nuova zval con valore &lt;code&gt;1&lt;/code&gt; e refcount &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Essendo la zval di &lt;code&gt;$c&lt;/code&gt; è la stessa di &lt;code&gt;$b&lt;/code&gt; la zval di &lt;code&gt;$c&lt;/code&gt; ha valore &lt;code&gt;1&lt;/code&gt; e refcount &lt;code&gt;2&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
