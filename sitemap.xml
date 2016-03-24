@@ -3,8 +3,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
+    <lastmod>2016-03-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/careers/</loc>
+    <lastmod>2016-03-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,8 +33,23 @@
   </url>
   
   <url>
+    <loc>/blog/ita/miniiad-vimercate-2015-reportage/</loc>
+    <lastmod>2015-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/git-flow-semantic-versioning/</loc>
+    <lastmod>2015-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/ita/php-day-2015/</loc>
     <lastmod>2015-05-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/un-flusso-di-lavoro-agile/</loc>
+    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>

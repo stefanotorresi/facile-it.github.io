@@ -1,0 +1,1028 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>GIT flow e versionamento semantico</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="GIT flow e versionamento semantico"/>
+<meta name="twitter:description" content="GIT flow è un flusso di sviluppo, ideato da Vincent Driessen, che descrive un modello di diramazione, (branching), ben preciso costruito intorno al concetto di release software. Questo flusso è concepito per sfruttare al meglio le potenzialità del software di versionamento GIT, ma affinità concettuali possono essere utili anche per la gestione del lavoro con altri software dediti alla medesima funzionalità. Il flusso descritto in GIT flow è finalizzato a mantenere una storia implementativa pulita, dove un rilascio comunica a tutti gli utilizzatori la presenza di una nuova versione del prodotto, definita da un determinato changelog composto da nuove caratteristiche e correzioni."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="GIT flow e versionamento semantico" />
+<meta property="og:description" content="GIT flow è un flusso di sviluppo, ideato da Vincent Driessen, che descrive un modello di diramazione, (branching), ben preciso costruito intorno al concetto di release software. Questo flusso è concepito per sfruttare al meglio le potenzialità del software di versionamento GIT, ma affinità concettuali possono essere utili anche per la gestione del lavoro con altri software dediti alla medesima funzionalità. Il flusso descritto in GIT flow è finalizzato a mantenere una storia implementativa pulita, dove un rilascio comunica a tutti gli utilizzatori la presenza di una nuova versione del prodotto, definita da un determinato changelog composto da nuove caratteristiche e correzioni." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/git-flow-semantic-versioning/" />
+
+
+<meta property="og:updated_time" content="2015-06-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="GIT flow e versionamento semantico">
+<meta itemprop="description" content="GIT flow è un flusso di sviluppo, ideato da Vincent Driessen, che descrive un modello di diramazione, (branching), ben preciso costruito intorno al concetto di release software. Questo flusso è concepito per sfruttare al meglio le potenzialità del software di versionamento GIT, ma affinità concettuali possono essere utili anche per la gestione del lavoro con altri software dediti alla medesima funzionalità. Il flusso descritto in GIT flow è finalizzato a mantenere una storia implementativa pulita, dove un rilascio comunica a tutti gli utilizzatori la presenza di una nuova versione del prodotto, definita da un determinato changelog composto da nuove caratteristiche e correzioni.">
+
+
+<meta itemprop="dateModified" content="2015-06-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1521">
+
+
+
+<meta itemprop="keywords" content="francesco,jean,lorenzo,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,Composer,Confereces,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,MySQL,NewRelic,Node.js,Open Source,PHP,PHP Coding standards,PHPDay,PSR,Package Manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Software Testing,Symfony,c,cmake,database,filesystem,fuse,symfony," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/ita/puli-universal-packages-for-php/"><p>Puli: Universal Packages for PHP</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&text=GIT%20flow%20e%20versionamento%20semantico&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/git-flow-semantic-versioning/">GIT flow e versionamento semantico</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-06-16'>
+            16 June 2015
+        </time>
+
+        
+            <a href="/authors/michele" class="author">
+            
+                <span class="name">Michele Carino</span>
+                <img src="http://www.gravatar.com/avatar/7f5e6b105d80029b84f67b62d43b8445?d=404&amp;s=250" alt="Michele Carino avatar" />
+            
+            </a>
+        
+
+        
+            <p>8 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>GIT flow è un <strong>flusso di sviluppo</strong>, ideato da <a href="http://nvie.com/about/">Vincent Driessen</a>, che descrive un modello di diramazione, (<a href="http://git-scm.com/docs/git-branch">branching</a>), ben preciso costruito intorno al concetto di release software.</p>
+
+<p>Questo flusso è concepito per sfruttare al meglio le potenzialità del software di versionamento <a href="https://git-scm.com/">GIT</a>, ma affinità concettuali possono essere utili anche per la gestione del lavoro con altri software dediti alla medesima funzionalità.</p>
+
+<p>Il flusso descritto in GIT flow è finalizzato a mantenere una storia implementativa pulita, dove un rilascio comunica a tutti gli utilizzatori la presenza di una <strong>nuova versione</strong> del prodotto, definita da un determinato <em>changelog</em> composto da nuove caratteristiche e correzioni.</p>
+
+<p>I <strong>vantaggi</strong> derivanti da questo approccio al versionamento (<a href="https://en.wikipedia.org/wiki/Software_versioning">software versioning</a>), sono anzitutto quello di <strong>tenere una storia pulita</strong> e leggibile, il che faciliterà la vita a chi decide di usare il nostro software, ma anche quello di poter <strong>concentrare e diversificare gli sforzi</strong> del team di sviluppo sulle particolari fasi: implementazione, correzione, pulizia, rilascio, concedendo a ciascuna di esse determinati spazi all&rsquo;interno del repository e determinate tempistiche all&rsquo;interno del flusso.</p>
+
+<p>In questo articolo descriveremo git flow e uniremo l&rsquo;adozione di questo flusso a quello di una strategia di versionamento semantico (semantic versioning) così come proposto e descritta da <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a>.</p>
+
+<p>Come vedremo in seguito il punto di incontro fra git e il versionamento semantico ha la sua chiave di volta nella creazione di tag appropriate sulle commit dei nostri rami o <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">tagging</a>.</p>
+
+<p>Inoltre è bene tenere a mente che diversi software di gestione delle dipendenze basano il proprio flusso operativo sul presupposto una strategia di versionamento semantico simile a quella che andremo a descrivere, come ad esempio <a href="https://getcomposer.org">composer</a>.</p>
+
+<h3 id="branch-storici:1dd853596dfead5a0fffb4551b5f2efb">Branch storici</h3>
+
+<p>Anzitutto questo modello di workflow prevede la presenza di ben due master branch, <strong>&ldquo;dev&rdquo;</strong> (o &ldquo;develop&rdquo;) utilizzato per lo sviluppo, ed il buon vecchio <strong>&ldquo;master&rdquo;</strong> per i rilasci ufficiali.</p>
+
+<p>Questi due branch assolvono il compito di &ldquo;historical branch&rdquo;, cioè essi devono detenere la storia pulita del progetto, a prescindere dagli sviluppi di nuove feature e hotfix, che altrimenti confluirebbero senza filtri sul ramo principale, rendendo meno comprensibile la storia del progetto e quindi più difficoltose operazioni di reversione (<a href="https://en.wikipedia.org/wiki/Reversion_%28software_development%29">revert</a>) a stati precedenti.</p>
+
+<h3 id="branch-di-funzionalità:1dd853596dfead5a0fffb4551b5f2efb">Branch di funzionalità</h3>
+
+<p>Un branch di funzionalità, ovvero un <strong>&ldquo;feature branch&rdquo;</strong>, aggiunge una nuova funzionalità (<a href="https://en.wikipedia.org/wiki/Software_feature">feature</a>) al software.
+Nel modello proposto dal GIT flow, questi branch <strong>devono sempre essere derivati dal branch &ldquo;develop&rdquo;</strong> e rappresentano una <strong>feature</strong>, ovvero una nuova funzionalità che si intende aggiungere al software.</p>
+
+<p><img src="/images/git-flow-semantic-versioning/feature.png" alt="Git Flow - Feature branch" /></p>
+
+<p>Questo branch conterrà tutti i pezzi di storia, le commit, relative alla funzionalità implementata.</p>
+
+<p>Durante lo sviluppo di questi rami non è strettamente necessario mantenere una storia delle versioni pulite o usare particolari nomenclature per le varie commit (pratica che comunque potrebbe avere i suoi vantaggi come vedremo nell&rsquo;ultimo paragrafo), in quanto prima di riportare il branch su develop, &ldquo;appiattiremo&rdquo; la storia del branch attraverso un&rsquo;operazione di <strong><a href="http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html">squash</a> delle commit</strong>.</p>
+
+<p>In questo modo la storia del branch di sviluppo risulterà pulita, con <strong>una sola commit</strong>, che conterrà solo l&rsquo;informazione relativa all&rsquo;aggiunta della nuova funzionalità.</p>
+
+<p>Dopo averlo riportato su develop, è possibile rimuovere il feature branch dal repository:</p>
+
+<p><code>$&gt; git branch -D feat-nomedelfeaturebranch</code></p>
+
+<p>In base alle dimensioni del team è possibile mantenere <strong>più feature branch contemporaneamente</strong>, a patto di riportarli correttamente e in tempi auspicabilmente brevi sul branch di sviluppo.
+Di norma un singolo sviluppatore si concentra sul rilascio di una feature per volta.</p>
+
+<h3 id="branch-di-rilascio:1dd853596dfead5a0fffb4551b5f2efb">Branch di rilascio</h3>
+
+<p>Quando il ramo di sviluppo (develop) contiene abbastanza feature per un <strong>rilascio</strong> (o in base a qualsiasi altro tipo di scadenza prefissata), da questi viene derivato un nuovo branch detto di rilascio, o <strong><a href="http://producingoss.com/en/release-branches.html">release branch</a></strong>.</p>
+
+<p>È buona norma distinguere questi rami con un nome significativo e consistente, ad esempio possono tutti iniziare con il prefisso &ldquo;release-&rdquo;.</p>
+
+<p>A questo punto dello sviluppo non possono essere più aggiunte feature e le uniche aggiunte possibili possono essere quelle di bug fixing e documentazione.</p>
+
+<p><img src="/images/git-flow-semantic-versioning/release-1.png" alt="" /></p>
+
+<p>Il team si concentrerà sull&rsquo;obiettivo di riportare su master la prossima release
+quindi non verranno creati altri branch di funzionalità in quanto in questa fase l&rsquo;obiettivo principale è quello di rilasciare.</p>
+
+<p>Quando il ramo di rilascio sarà maturo e testato, a questo punto verrà eseguita  l’operazione di merge sul branch “master”, contrassegnandola con un’opportuna <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">tag</a>, che ne indichi il versionamento.</p>
+
+<p>Come per il feature branch, la storia completa dalla nascita alla maturazione di questo ramo dovrebbe essere trasparente per i branch storici, quindi anche qui andremo ad operare un&rsquo;operazione di squash.</p>
+
+<p>Anche durante il ciclo di vita di questi rami, è buona pratica usare nomenclature particolari per i tag delle commit, ma non indispensabile: vedremo questo concetto più avanti nell&rsquo;ultimo paragrafo.</p>
+
+<p>Allo stesso modo il branch di rilascio verrà eseguita indietro anche sul branch “develop”, tralasciando l&rsquo;aggiunta dei tag di versione.</p>
+
+<p>Una volta mergiato con i branch storici, il branch di release non ha più motivo di esistere e sarebbe opportuno cancellarlo.</p>
+
+<h3 id="branch-di-manutenzione:1dd853596dfead5a0fffb4551b5f2efb">Branch di manutenzione</h3>
+
+<p>Una migliore organizzazione dei rilasci non scongiura sicuramente l’occorrenza di problemi da risolvere con estrema urgenza.
+In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) direttamente da master un branch di manutenzione, contenente la fix necessaria a risolvere il problema insorto.</p>
+
+<p><img src="/images/git-flow-semantic-versioning/hotfix-2.png" alt="Mantainance branch" /></p>
+
+<p>È buona norma inoltre distinguere questi branch con un nome significativo e consistente, ad esempio possono tutti iniziare con il prefisso “hotfix-”.</p>
+
+<p>Tale branch sarà ovviamente riportato su “master” il più presto possibile, ed in seguito anche su “develop” per mantenere la situazione dei due branch storici allineata.</p>
+
+<p>Come nel caso dei branch di rilascio, qundo un branch di manutenzione viene riportato su master, il tag di master verrà contrassegnato appropriatamente.</p>
+
+<h3 id="versionamento-semantico:1dd853596dfead5a0fffb4551b5f2efb">Versionamento semantico</h3>
+
+<p>Il versionamento semantico (semantic versioning) è un semplice schema di denominazione dei rilasci che ruota attorno a tre numeri: major, minor e patch.</p>
+
+<p><img src="/images/git-flow-semantic-versioning/alltogheter.png" alt="" /></p>
+
+<p>Il formato prevede la concatenazione di questi tre numeri attraverso la notazione punto.
+Ad es: 1.1.2, indica major version: 1, minor version: 1 e patch: 2.</p>
+
+<p>Riportato sullo schema prima descritto nel GIT flow, i tre numeri di versionamento  saranno le tag dei branch.</p>
+
+<p>In pratica:</p>
+
+<ul>
+<li>Se abbiamo rilasciato una hotfix, che sostanzialmente non va ad intaccare le modalità di utilizzo del codice, dovremmo andare a incrementare il numero di <strong>patch</strong>.</li>
+<li>Se abbiamo implementato una modifica minore, spesso l&rsquo;aggiunta di una feature che non pregiudica la retrocompatibilità del codice, andremo a incrementare il numero di <strong>minor</strong> versioning.</li>
+<li>Rilasci più consistenti che cambiano in maniera apprezzabile il funzionamento del codice andranno a incrementare il numero di <strong>major</strong> versioning</li>
+</ul>
+
+<p>Può essere inoltre indicato un <strong>suffisso di build</strong>, ad esempio una sequenza alfabetica in linguaggio naturale, seguita da un numero incrementale.</p>
+
+<p>Ad es:</p>
+
+<ul>
+<li>1.1.2-snapshot20150602, indica una snapshot di un feature branch di 1.1.2, ovvero una &ldquo;fotografia&rdquo; specifica dello sviluppo di una feature</li>
+<li>1.1.2-rc1, indica una release candidate, ovvero una versione del software &ldquo;papabile&rdquo; per il rilascio</li>
+</ul>
+
+<p>Un suffisso di build come quello indicato nel primo esempio potrebbe essere relativo ad un feature branch, derivato dal tag 1.1.2 del branch di sviluppo e in parole povere indica che quella messa a disposizione è semplicemente un&rsquo;anteprima del codice, in cui è ammissibile una certa instabilità.</p>
+
+<p>Questo tipo di tag dovrebbero essere provati e installati <strong>solo su ambienti di test</strong>.</p>
+
+<p>Quello nel secondo esempio invece potrebbe essere il suffisso di un tag su un branch di release che indica una versione del codice, matura al punto da poter essere inclusa in una prossima release, detta <a href="https://it.wikipedia.org/wiki/Release_candidate">release candidate</a>, a patto di minime correzioni.
+Tali modifiche modifiche e correzioni dovrebbero susseguirsi andando a incrementare il suffisso numerico dopo rc delle prossime tag sul ramo di rilascio.</p>
+
+<p>Questo tipo di tag indicano le versioni del software che generalmente verranno installate sugli ambienti di <a href="https://en.wikipedia.org/wiki/Deployment_environment#Staging">staging</a>, per poterle testare prima di essere riportate su master e andare quindi in <a href="https://en.wikipedia.org/wiki/Deployment_environment#Production">produzione</a>.</p>
+
+<h3 id="conclusioni:1dd853596dfead5a0fffb4551b5f2efb">Conclusioni</h3>
+
+<p>Alla fine di questa analisi non possiamo affermare che git flow e il versionamento semantico possano essere gli strumenti definitivi per ogni team o progetto, e sicuramente la loro adozione porta vantaggi e svantaggi.
+Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso personale, ci limiteremo perciò ad elencare una serie di pro e contro che potrebbero aiutare nella decisione.</p>
+
+<h4 id="a-cosa-non-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb">A cosa non serve git flow?</h4>
+
+<ul>
+<li>Git flow non pone rimedio ad errori tecnici nella gestione del repository e nemmeno prescinde da una conoscenza approfondita di git.</li>
+<li>Git flow de facto <strong>non semplifica il flusso di lavoro</strong> con git, imponendo una strategia di diramazione complessa.</li>
+</ul>
+
+<h4 id="a-cosa-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb">A cosa serve git flow?</h4>
+
+<ul>
+<li>Git flow aiuta i vari elementi del team ad avere a colpo d&rsquo;occhio <strong>una visione precisa dello stato degli sviluppi applicativi</strong> a fronte di una convenzione essenziale e immediata di tagging.</li>
+<li>Il versionamento semantico aiuta gli utilizzatori del software a capire esattamente lo stato di sviluppo del software e cosa aspettarsi, riportandosi a diverse versioni di rilascio.</li>
+<li>Git flow coaudiva la <a href="https://en.wikipedia.org/wiki/Velocity_(software_development">velocity</a>) del team di sviluppo permettendo l&rsquo;attuazione di un piano di <a href="http://guide.agilealliance.org/guide/cd.html">continuous deploy</a> e quindi di poter rilasciare nuove feature e fix in sicurezza.</li>
+<li>Git flow è ottimo per la <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>, permettendo de facto di poter differenziare i rami dedicati ai vari ambienti: sviluppo, staging e produzione</li>
+</ul>
+
+<h3 id="risorse-consultabili-online:1dd853596dfead5a0fffb4551b5f2efb">Risorse consultabili online</h3>
+
+<ul>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a> Vincent Driessen espone GIT Flow</li>
+<li><a href="http://semver.org/">http://semver.org/</a> Semantic Versioning 2.0.0 proposto da Tom Preston-Werner</li>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow</a> - Tutorial messo a disposizione da Atlassian</li>
+<li><a href="https://datasift.github.io/gitflow/Versioning.html">https://datasift.github.io/gitflow/Versioning.html</a></li>
+</ul>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&text=GIT%20flow%20e%20versionamento%20semantico&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fgit-flow-semantic-versioning%2f&title=GIT%20flow%20e%20versionamento%20semantico" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fgit-flow-semantic-versioning%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/git">Git</a></li>
+    
+        <li><a href="/categories/semantic-versioning">Semantic versioning</a></li>
+    
+        <li><a href="/categories/git-flow">Git flow</a></li>
+    
+        <li><a href="/categories/continuous-integration">Continuous integration</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/php-day-2015/"
+                class="button big previous">Facile.it devs @ PHP Day 2015</a></li>
+    
+
+    
+        <li><a href="/blog/ita/miniiad-vimercate-2015-reportage/"
+                class="button big next">MiniIAD Vimercate 2015: reportage</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/git-flow-semantic-versioning\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2015-12-15'>
+                                        15 December 2015
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>
+                and modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

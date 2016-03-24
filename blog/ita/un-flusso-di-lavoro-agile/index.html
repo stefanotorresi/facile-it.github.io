@@ -1,0 +1,949 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Un flusso di lavoro agile</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Un flusso di lavoro agile"/>
+<meta name="twitter:description" content="Parlare di metodologie di lavoro in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire &ldquo;con SCRUM avrai risultati assicurati&rdquo;. Lo trovo piuttosto riduttivo. In sostanza, sempre più persone hanno tradotto i valori ed i princìpi promossi dal manifesto agile in una serie di &ldquo;ricette&rdquo; pronte da seguire fedelmente per ottenere buoni risultati. Cosa c’è di &ldquo;agile&rdquo; in tutto ciò?"/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Un flusso di lavoro agile" />
+<meta property="og:description" content="Parlare di metodologie di lavoro in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire &ldquo;con SCRUM avrai risultati assicurati&rdquo;. Lo trovo piuttosto riduttivo. In sostanza, sempre più persone hanno tradotto i valori ed i princìpi promossi dal manifesto agile in una serie di &ldquo;ricette&rdquo; pronte da seguire fedelmente per ottenere buoni risultati. Cosa c’è di &ldquo;agile&rdquo; in tutto ciò?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/un-flusso-di-lavoro-agile/" />
+
+
+<meta property="og:updated_time" content="2015-04-30T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Un flusso di lavoro agile">
+<meta itemprop="description" content="Parlare di metodologie di lavoro in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire &ldquo;con SCRUM avrai risultati assicurati&rdquo;. Lo trovo piuttosto riduttivo. In sostanza, sempre più persone hanno tradotto i valori ed i princìpi promossi dal manifesto agile in una serie di &ldquo;ricette&rdquo; pronte da seguire fedelmente per ottenere buoni risultati. Cosa c’è di &ldquo;agile&rdquo; in tutto ciò?">
+
+
+<meta itemprop="dateModified" content="2015-04-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1384">
+
+
+
+<meta itemprop="keywords" content="francesco,jean,lorenzo,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,Composer,Confereces,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,MySQL,NewRelic,Node.js,Open Source,PHP,PHP Coding standards,PHPDay,PSR,Package Manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Software Testing,Symfony,c,cmake,database,filesystem,fuse,symfony," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/ita/puli-universal-packages-for-php/"><p>Puli: Universal Packages for PHP</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&text=Un%20flusso%20di%20lavoro%20agile&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/un-flusso-di-lavoro-agile/">Un flusso di lavoro agile</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-04-30'>
+            30 April 2015
+        </time>
+
+        
+            <a href="/authors/nicola" class="author">
+            
+                <span class="name">Nicola Trincas</span>
+                <img src="http://www.gravatar.com/avatar/716bfe91d4ac6c1bf670b03c926f1e7d?d=404&amp;s=250" alt="Nicola Trincas avatar" />
+            
+            </a>
+        
+
+        
+            <p>7 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>Parlare di <strong>metodologie di lavoro</strong> in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire &ldquo;con <a href="http://it.wikipedia.org/wiki/Scrum_%28informatica%29">SCRUM</a> avrai risultati assicurati&rdquo;. Lo trovo piuttosto riduttivo.</p>
+
+<p>In sostanza, sempre più persone hanno tradotto i <a href="http://agilemanifesto.org/iso/it/">valori</a> ed i <a href="http://agilemanifesto.org/iso/it/principles.html">princìpi</a> promossi dal manifesto agile in una serie di &ldquo;ricette&rdquo; pronte da seguire fedelmente per ottenere buoni risultati. Cosa c’è di &ldquo;<a href="http://it.wikipedia.org/wiki/Metodologia_agile">agile</a>&rdquo; in tutto ciò? E’ come cucinare con un robot da cucina&hellip;
+Ecco perché sono sempre più convinto che la vera ricetta del successo nei progetti sia qualcosa che si scopre &ldquo;assaggiando&rdquo; gli ingredienti che mettiamo nella ricetta (andrò avanti con la metafora della cucina, siete avvisati!).</p>
+
+<p>Ad alcuni possono piacere le ricette semplici, come una bella grigliata. Come quei gruppi che apprezzano un manager molto presente, che dica a tutti cosa debbano fare, passo dopo passo. Qualcosa di &ldquo;semplice&rdquo; ma efficace.
+Altri amano qualcosa di creativo, come una ricetta raffinata di un ristorante stellato. Un complesso artifizio di procedure di comunicazione per la gestione del lavoro. Penso ai gruppi che si coordinano da remoto con svariati tool. Li ammiro molto, io avrei difficoltà.
+Infine, i gruppi che adorano il fast food. Quello sempre uguale ovunque tu sia, e che piace a quasi tutti i palati. Si perché, diciamocelo, piace a tutti. Come <a href="http://it.wikipedia.org/wiki/Scrum_%28informatica%29">SCRUM</a>!
+Quindi, uscendo dalla metafora, potremmo dire che <a href="http://it.wikipedia.org/wiki/Scrum_%28informatica%29">SCRUM</a> è la ricetta perfetta perché piace a tutti (o quasi). Ma siamo sicuri che il famoso panino della nota catena americana sia anche il miglior modo di mangiare?</p>
+
+<h3 id="imparare-dai-propri-errori:214cf69b6178c9bc5e93f15a08785e9d">Imparare dai propri errori</h3>
+
+<p>Il nostro gruppo di lavoro, ad esempio, ha passato mesi cercando di applicare la ricetta di <a href="http://it.wikipedia.org/wiki/Scrum_%28informatica%29">SCRUM</a>. Un mezzo disastro. Ci siamo chiesti dove stessimo sbagliando, finché non abbiamo definitivamente fatto indigestione. Piccoli o grandi conflitti interni al team ed una dose di stress altissima. Le nostre <a href="http://en.wikipedia.org/wiki/Retrospective#Software_development">retrospettive</a> (retaggio dell’agile, non certo perché avessimo capito di cosa si trattasse veramente!) sembravano più sedute di terapia di gruppo, che momenti di condivisione e confronto. Col senno di poi siamo in grado di fare la lista delle cose che non andavano:</p>
+
+<ul>
+<li>il nostro cliente interno aveva <strong>bisogni che cambiavano</strong> ad una velocità tale da vanificare qualsiasi iterazione pianificata. Questo generava grande frustrazione nel gruppo che sentiva di disattendere il valore dell’abbracciare il cambiamento;</li>
+<li>il gruppo aveva appena perso delle pedine storiche che avevano lasciato in eredità un software costruito su un <strong>dominio complesso</strong>. Non c’era la seniority necessaria per fare delle stime attendibili. Ogni iterazione era un bagno di sangue <strong>contro il tempo</strong>, a danno della qualità del codice o della vita dei programmatori che lavoravano troppo;</li>
+<li>non avevamo capito <strong>l’importanza dello SCRUM Master</strong>, qualcuno che sappia proteggere i valori e le cerimonie di questa pratica. Passavamo da un’iterazione all’altra senza prenderci nemmeno il tempo di celebrare i successi. Fare i panini della nota catena, in casa, senza il particolare controllo qualità che la catena impone ai propri franchise è un esperimento fallito in partenza.</li>
+</ul>
+
+<h3 id="cambiare-ricetta:214cf69b6178c9bc5e93f15a08785e9d">Cambiare ricetta</h3>
+
+<p>Penso che essere agili sia, in primo luogo, non lasciarsi intrappolare da preconcetti. Ecco perché un giorno ho riunito il team ed ho detto che non mi riconoscevo in quel modo di lavorare!
+Abbiamo iniziato a pensare ad <strong>una ricetta diversa</strong>, qualcosa che fosse più adatto al nostro palato. Guardando le caratteristiche del nostro gruppo e del contesto in cui lavoriamo abbiamo osservato che:</p>
+
+<ul>
+<li>ogni giorno le <strong>priorità</strong> sono potenzialmente rimesse in discussione;
+vogliamo fare qualità e vogliamo che il progetto sia al passo con la tecnologia;</li>
+<li>abbiamo un team con una buona esperienza ma deve entrare nelle dinamiche di un <strong>dominio complesso</strong>;</li>
+<li>dobbiamo ancora scoprire <strong>la nostra velocity, che comunque cambierà</strong> man mano che prendiamo confidenza col dominio. Insomma, la velocity non sarebbe un parametro utile per le stime;</li>
+<li><strong>non possiamo rallentare</strong> perché il cliente ha bisogno di noi;
+abbiamo un elevato numero di bug;</li>
+</ul>
+
+<p>Il nostro gruppo è composto da <strong>5 programmatori ed un product specialist</strong>, una persona che si occupa di tracciare i bisogni degli utenti, i bug e ci aiuta a far in modo che il prodotto sia bello e curato.
+Ricevendo continue richieste, la prima cosa da fare è non perderne traccia. Abbiamo aperto un foglio di calcolo condiviso su Google Drive in cui scriviamo le storie che arrivano al product specialist, assegnamo un’etichetta che mostri al volo di cosa si tratti (frontend, fatture, bug, etc.) e facciamo una stima estremamente generica (è una storia piccola, epica, etc); di fatto si tratta del nostro <strong>backlog</strong>.</p>
+
+<p>Ogni inizio del mese facciamo una <strong>revisione del backlog</strong> insieme al manager per capire se ci sono delle cose più prioritarie di altre e facciamo pulizia.
+Uno dei capisaldi della nostra ricetta è la <strong>prioritizzazione continua</strong>. Ingrediente di base, dunque, il <a href="http://it.wikipedia.org/wiki/Kanban">Kanban</a>.</p>
+
+<p>Abbiamo aperto una board su <a href="http://www.trello.com">Trello</a> dove far evolvere <strong>le storie (i task)</strong> da una colonna all’altra. Si parte dalla colonna &ldquo;<em>prossime cose da fare</em>&rdquo;, che carichiamo man mano che si svuota, dal backlog o, molto più spesso, con le cose che scopriamo giorno dopo giorno parlando con il cliente (ecco la <em>prioritizzazione continua</em>!). Esempio tipico: &ldquo;se metteste anche quella statistica nella pagina dei report delle vendite avremmo più controllo su quel target di clienti&rdquo;&hellip; fatto!</p>
+
+<p>Ogni storia riporta l’etichetta già indicata nel backlog, così un programmatore ha il polso di quale sia il dominio legato alla storia. Un nuovo arrivato avrebbe più difficoltà a lavorare sul dominio della contabilità. E’ meglio che si concentri su altre storie, col tempo prenderà confidenza anche con quel mondo.</p>
+
+<p>Quando un programmatore è libero <strong>&ldquo;adotta&rdquo; una storia</strong>, la porta nella colonna con le cose che stiamo facendo e ci appiccica il proprio avatar. Durante lo sviluppo si occupa di tutto: la raccolta delle informazioni, verifica i mockup, prepara la demo con il cliente, etc.
+Quando ha finito ed è pronto a metterla in produzione la sposta nella colonna &ldquo;<em>da provare in produzione</em>&rdquo;. Il task resta là finché un caso reale non ci permette di dire &ldquo;funziona!&rdquo;. A quel punto va nelle cose &ldquo;<em>fatte</em>&rdquo;.</p>
+
+<p>In tutte le storie cerchiamo di metterci quanta <strong>più qualità possibile</strong>, facciamo i <strong>test funzionali ed unitari</strong> e teniamo sotto controllo il nostro tool di <strong>continuous integration</strong>.</p>
+
+<p>Le storie su <strong>nuovi domini</strong> sono quelle più critiche, perché portano a fare molte nuove scelte di architettura. Io sono convinto che il <strong><a href="http://it.wikipedia.org/wiki/Pair_programming">pair programming</a></strong> non sia una tecnica per raddoppiare la velocità, piuttosto un modo per <strong>dimezzare la stupidità</strong>! Si può sempre sbagliare, ma prendere una cantonata in due è raro. E’ più probabile che si faccia challenge a vicenda per le scelte importanti. Quindi in questi casi mettiamo insieme due programmatori e facciamo in modo che si confrontino.</p>
+
+<p>Se una storia stenta ad andare in &ldquo;<em>fatto</em>&rdquo; siamo pronti a metterci anche in 2 o 3 pur di portare la storia a risultato, come ci insegna il <a href="http://it.wikipedia.org/wiki/Kanban">Kanban</a>.</p>
+
+<p>A rotazione (ruotiamo ogni 2 settimane), uno o più programmatori nel team ci aiutano a gestire uno dei problemi che rischiano di compromettere i nostri piani. Li chiamiamo i <strong>wallman</strong>! Ci proteggono dalle <strong>continue interruzioni</strong> che altrimenti il team subirebbe, per gestire i bug o le varie richieste che vengono dal cliente.
+Nel tempo &ldquo;libero&rdquo; (per fortuna oggi è tanto!) fanno una cosa estremamente importante per la salute del progetto: il <strong>refactoring</strong>! Il team, in pieno spirito <a href="http://en.wikipedia.org/wiki/Lean_software_development">Lean</a>, rilascia tante feature sperimentali a grande velocità. Alcune di queste sono dei piccoli accrocchi su pezzi di codice preesistenti. Quando la prova del mercato ci da un feedback positivo, un wallman ci aiuta a ripulire il codice. In questo modo, il team può concentrarsi sul rilasciare tanto valore per il business, consapevole che qualcuno copre le spalle.</p>
+
+<p>Questa ricetta, come ogni grande ricetta, è una lenta e ragionata combinazione di ingredienti per soddisfare il nostro gusto. <strong>A noi piace!</strong> Non è detto che vada bene con tutti, ma sicuramente rispetta i valori fondamentali di collaborazione, creazione del valore e rispetto che sono propri del manifesto agile.</p>
+
+<h3 id="la-ricetta-ideale:214cf69b6178c9bc5e93f15a08785e9d">La ricetta ideale</h3>
+
+<p>Un po&rsquo; come nella cucina, dove ogni buona ricetta ha una parte dolce ed una nota acida, ogni combinazione di pratiche agili deve rispettare i princìpi fondamentali. Calateli nella vostra realtà! Tutto si migliora confrantandosi, facendo <a href="http://en.wikipedia.org/wiki/Retrospective#Software_development">retrospettive</a>. Alla fine arriva la giusta combinazione che vi farà dimenticare il fast food. E’ decisamente più gustoso un bel panino artigianale!</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&text=Un%20flusso%20di%20lavoro%20agile&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f&title=Un%20flusso%20di%20lavoro%20agile" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fun-flusso-di-lavoro-agile%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/agile">Agile</a></li>
+    
+        <li><a href="/categories/scrum">Scrum</a></li>
+    
+        <li><a href="/categories/backlog">Backlog</a></li>
+    
+        <li><a href="/categories/pair-programming">Pair programming</a></li>
+    
+        <li><a href="/categories/kanban">Kanban</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/tracciamento-di-eventi-lato-server/"
+                class="button big previous">Introduzione al tracciamento di eventi lato server</a></li>
+    
+
+    
+        <li><a href="/blog/ita/php-day-2015/"
+                class="button big next">Facile.it devs @ PHP Day 2015</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/un-flusso-di-lavoro-agile\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2015-12-15'>
+                                        15 December 2015
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>
+                and modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

@@ -1,0 +1,1370 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Italiano on Facile Engineering</title>
+    <link>/categories/italiano/</link>
+    <description>Recent content in Italiano on Facile Engineering</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/italiano/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Puli: Universal Packages for PHP</title>
+      <link>/blog/ita/puli-universal-packages-for-php/</link>
+      <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/puli-universal-packages-for-php/</guid>
+      <description>
+
+&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+
+&lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
+Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
+In questi ultimi anni si è assistito ad un proliferare di numerose componenti software riusabili che hanno significativamente modificato le strategie di sviluppo.&lt;/p&gt;
+
+&lt;p&gt;Nonostante Composer si sia evoluto molto, in alcuni contesti le sue funzionalità risultano essere limitanti e incomplete.
+I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
+Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
+
+&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+
+&lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
+Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
+Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata ma è prevista per l&amp;rsquo;inizio del 2016.
+&lt;strong&gt;Puli è stato ideato per affiancare Composer&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Puli lavora ad un livello più alto per fornire le seguenti funzionalità:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#puli-path&#34;&gt;Gestione dei path virtuali per risorse non PHP&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#override-puli-path&#34;&gt;Overriding dei path virtuali&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#binding-type&#34;&gt;Interazione semplificata dei pacchetti con l&amp;rsquo;uso di Binding Type&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#url-generation&#34;&gt;Generazione automatica di URL per risorse pubbliche&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+
+&lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Resource repository&lt;/li&gt;
+&lt;li&gt;Discovery service&lt;/li&gt;
+&lt;li&gt;Public resources manager&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
+
+&lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tale configurazione può essere modificata manualmente oppure utilizzando l&amp;rsquo;&lt;strong&gt;interfaccia CLI di Puli&lt;/strong&gt;;
+Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
+Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
+
+&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
+
+&lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
+Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
+Quest&amp;rsquo;azione viene svolta da Composer con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ composer require puli/composer-plugin:^1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale plugin consente di generare atomaticamente la cosiddetta &lt;strong&gt;Puli Factory Class&lt;/strong&gt;: componente chiave da cui è possibile accedere a tutti i servizi offerti da Puli.&lt;/p&gt;
+
+&lt;p&gt;A questo punto è possibile usare Puli nel modo seguente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;require &#39;./vendor/autoload.php&#39;;
+
+// La costante PULI_FACTORY_CLASS viene 
+// definita al &amp;quot;composer install&amp;quot;
+$factoryClass = PULI_FACTORY_CLASS;
+$factory = new $factoryClass();
+
+$puliRepository = $factory-&amp;gt;createRepository();
+$puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
+$puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
+
+&lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
+Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
+
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+
+&lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$translationFileName = realpath(__DIR__ . &#39;/../vendor/acme/blog/resources/translation-it.xml&#39;);
+$translationContent = file_get_contents($translationFileName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale operazione fa uso di dettagli implementativi: il layout delle directory fornito da Composer. La soluzione non è riusabile nè configurabile.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+
+&lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
+Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
+Ad esempio, il maintainer di acme/blog può eseguire questo comando per definire un nuovo mapping:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tale operazione crea un&amp;rsquo;associazione tra il prefisso del path virtuale &lt;code&gt;/acme/blog&lt;/code&gt; e la directory &lt;code&gt;resources&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Un ipotetico utilizzatore del pacchetto acme/blog potrà quindi accedere alle risorse nel seguente modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/translation-it.xml&#39;;
+$translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;È importante notare come i Path mapping siano definiti dal maintainer del pacchetto. Le altre componenti si limitano ad usarli per accedere alle risorse.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
+
+&lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
+Immaginiamo di dover lavorare con due pacchetti: A e B.
+Il pacchetto B è dipendente dal pacchetto A.
+B, tuttavia, vuole personalizzare alcune risorse fornite da A.
+Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali risorse aggiungengo nuovi Path Mapping.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
+
+&lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per il componente Discovery i pacchetti sono siddivisi in due categorie:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Resource providers&lt;/strong&gt;: pacchetti che offrono risorse;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource consumers&lt;/strong&gt;: pacchetti che richiedono risorse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I Binding Types sono definiti dai resource consumers. Ciascun Binding Type è idendificato da un nome (es. &lt;code&gt;acme/translator/messages&lt;/code&gt;).
+I resource providers possono quindi associare una o più risorse a tali Binding Type.
+&lt;strong&gt;L&amp;rsquo;associazione avviene legando un Puli Path ad un Binding Type&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
+
+&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
+
+&lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acme/md2html&lt;/code&gt; è un componente per tradurre contenuto Markdown verso pagine Html. Md2html è un sistema configurabile: la resa dell&amp;rsquo;output avviene attraverso template Twig modificabili.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acme/blog&lt;/code&gt; fornisce tools per la gestione di articoli da blog. Siccome questi ultimi possono essere scritti in Markdown, &lt;code&gt;acme/blog&lt;/code&gt; fa uso di &lt;code&gt;acme/md2html&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Il componente &lt;code&gt;acme/blog&lt;/code&gt; può personalizzare i template di Md2html in questo modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$md2html = new Md2Html();
+$md2html-&amp;gt;useHeaderTemplate(__DIR__ . &#39;/resources/templates/markdown-header.twig&#39;);
+
+$htmlContent = $md2html-&amp;gt;translate(&#39;## markdown content&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Questo approccio ha due svantaggi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;acme/blog&lt;/code&gt; ha la diretta responsabilità di configurare correttamente Md2html utilizzando l&amp;rsquo;API fornita;&lt;/li&gt;
+&lt;li&gt;Gli utenti di &lt;code&gt;acme/blog&lt;/code&gt; non possono modificare facilmente le personalizzazioni apportate a Md2html.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tali problemi possono essere risolti con Puli.&lt;/p&gt;
+
+&lt;p&gt;Il mantainer di Md2html decide di rendere il suo pacchetto compatibile con Puli.&lt;/p&gt;
+
+&lt;p&gt;Definisce quindi il Binding Type: &lt;code&gt;acme/md2html/header-template&lt;/code&gt; con il seguente comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli type --define acme/md2html/header-template
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il maintainer di &lt;code&gt;acme/blog&lt;/code&gt; può quindi usare tale Binding Type nel seguente modo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
+$ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-template
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Così &lt;code&gt;acme/md2html&lt;/code&gt; può leggere il nuovo template &lt;code&gt;markdown-header.twig&lt;/code&gt; in modo trasparente.&lt;/p&gt;
+
+&lt;p&gt;Gli utilizzatori di acme/blog che desiderassero modificare tale template hanno due strategie:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Modificare l&amp;rsquo;associazione al Binding Type &lt;code&gt;acme/md2html/header-template&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sovrascrivere il Puli Path &lt;code&gt;/acme/blog/templates/markdown-header.twig&lt;/code&gt; con il meccanismo dell&amp;rsquo;overriding esaminato in precedenza.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
+
+&lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
+
+&lt;p&gt;Come primo passo, è necessario &lt;strong&gt;registrare i server web che servono tali risorse&lt;/strong&gt;.
+È possibile aggiungere un nuovo server con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli server --add localhost public_html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In questo esempio, &lt;code&gt;localhost&lt;/code&gt; è il nome del server, mentre &lt;code&gt;public_html&lt;/code&gt; è la sua &lt;em&gt;document root&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ora è possibile pubblicare delle risorse sul server &lt;code&gt;localhost&lt;/code&gt; con il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli publish /acme/blog/public localhost /blog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ciò mappa il Puli Path &lt;code&gt;/acme/blog/public&lt;/code&gt; alla directory &lt;code&gt;blog&lt;/code&gt; della document root del server &lt;code&gt;localhost&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Puli ora ha tutte le informazioni per generare i persorsi delle risorse pubbliche:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/public/images/logo.png&#39;;
+$url = $puliGenerator-&amp;gt;generateUrl($puliPath);
+echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;L&amp;rsquo;ultima operazione può essere eseguita in un template Twig con l&amp;rsquo;utilizzo dell&amp;rsquo;estensione &lt;code&gt;puli/twig-extension&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-twig&#34;&gt;&amp;lt;img src=&amp;quot;{{ resource_url(&#39;/acme/blog/public/images/logo.png&#39;) }}&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+
+&lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
+
+&lt;p&gt;Il comando è il seguente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ puli publish --install
+Installing /acme/blog/public into public_html via symlink...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
+
+&lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
+Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
+Per approfondire, la documentazione ufficiale è molto chiara e completa ed è disponibile all&amp;rsquo;indirizzo: &lt;a href=&#34;http://docs.puli.io/&#34;&gt;http://docs.puli.io/&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Paraunit: test paralleli, Doctrine e le fixture</title>
+      <link>/blog/ita/paraunit/</link>
+      <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/paraunit/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+
+&lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;aumento della quantità di test però porta alla crescita (direttamente proporzionale) del &lt;strong&gt;tempo necessario&lt;/strong&gt; ad eseguire i test stessi.
+Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso trascurabile, poiché &lt;strong&gt;si limitano a caricare una singola classe&lt;/strong&gt; e ad analizzarne il comportamento in completo isolamento, terminando la loro esecuzione nel giro di &lt;strong&gt;pochi millisecondi&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Quando invece parliamo di &lt;strong&gt;test funzionali&lt;/strong&gt;, il tempo di esecuzione non è più così limitato: vengono caricate &lt;strong&gt;molte più classi&lt;/strong&gt;, spesso viene coinvolto anche il &lt;strong&gt;database&lt;/strong&gt;, deve essere messa alla prova l&amp;rsquo;interazione tra molti elementi; il tutto porta a test la cui durata è talvolta di &lt;strong&gt;quasi un secondo&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Leggendo libri e blog sull&amp;rsquo;argomento, e con l&amp;rsquo;esperienza personale, ho imparato che c&amp;rsquo;è una &lt;strong&gt;soglia critica&lt;/strong&gt; che rappresenta il limite ideale oltre il quale una test suite diventa troppo lenta, e questa soglia è di &lt;strong&gt;circa dieci minuti&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ma perché proprio dieci minuti? Il motivo è molto semplice, e pratico: in dieci minuti, il programmatore può fare una pausa, prendersi un caffè o decidere di discutere brevemente una questione tecnica con un collega, e al suo ritorno troverà la suite completata e potrà procedere col lavoro. In caso contrario, possono succedere due cose:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;il programmatore &lt;strong&gt;rimane a fissare lo schermo&lt;/strong&gt; mentre i test si eseguono, dando ragione ai detrattori dei test che affermano che fare TDD è una perdita di tempo;&lt;/li&gt;
+&lt;li&gt;si &lt;strong&gt;smette di eseguire la test suite&lt;/strong&gt;, o per lo meno di farla eseguire per intero.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;La seconda opzione può sembrare fattibile: si fanno girare solo i &lt;strong&gt;test strettamente necessari&lt;/strong&gt; mentre si sviluppa, quelli che vengono scritti in quel momento o che coprono la parte di codice che si sta modificando, per poi eseguire il commit del proprio codice senza far girare l&amp;rsquo;intera suite.&lt;/p&gt;
+
+&lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
+
+&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+
+&lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
+
+&lt;p&gt;Dopo aver ottimizzato le prestazioni del nostro ambiente di sviluppo (passando da Vagrant a Docker, ma questa è un&amp;rsquo;altra storia), ci siamo resi conto di aver bisogno di una soluzione più drastica al nostro problema, e abbiamo pensato di &lt;strong&gt;eseguire in parallelo i nostri test&lt;/strong&gt; per sfruttare al meglio le risorse hardware e ridurre così i tempi di esecuzione.&lt;/p&gt;
+
+&lt;p&gt;Dopo un po&amp;rsquo; di ricerche, abbiamo individuato alcuni tool esistenti che permettevano questo approccio:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/brianium/paratest&#34;&gt;brianium/paratest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/liuggio/fastest&#34;&gt;liuggio/fastest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
+
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+
+&lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
+
+&lt;p&gt;Ma perché il nostro codice, che è lo stesso che viene eseguito in produzione (dove elabora centinaia, migliaia di richieste al minuto) ha così tanti &lt;strong&gt;problemi di accesso concorrente&lt;/strong&gt; nell&amp;rsquo;ambiente di test? I motivi sono semplici:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;i dati di test sono pochi&lt;/strong&gt;, mentre in produzione abbiamo tabelle da milioni di righe;&lt;/li&gt;
+&lt;li&gt;per questo motivo &lt;strong&gt;i test tentano di accedere sempre alle stesse righe&lt;/strong&gt; del database;&lt;/li&gt;
+&lt;li&gt;la &lt;strong&gt;sequenza&lt;/strong&gt; di operazioni di ogni test in genere è &lt;strong&gt;lettura - elaborazione - scrittura&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;i test hanno una &lt;strong&gt;rapidità di esecuzione&lt;/strong&gt; superiore a quella di un utilizzatore umano.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tutti questi motivi contribuiscono a creare situazioni in cui &lt;strong&gt;si verificano dei &lt;a href=&#34;https://it.wikipedia.org/wiki/Deadlock&#34;&gt;deadlock&lt;/a&gt;&lt;/strong&gt; e che il nostro database può risolvere solo bloccando uno dei due tentativi di accesso ai dati, facendo così fallire il test corrispondente.&lt;/p&gt;
+
+&lt;p&gt;Un altro problema che può verificarsi è l&amp;rsquo;&lt;strong&gt;alterazione dei dati&lt;/strong&gt;: quando due test vengono eseguiti in contemporanea, uno dei due può modificare il database e, così facendo, può far mancare i giusti dati di partenza ad un altro test che si sta avviando nello stesso istante.&lt;/p&gt;
+
+&lt;p&gt;Purtroppo &lt;strong&gt;Paratest non offre una soluzione&lt;/strong&gt; a questo genere di problemi, mentre Fastest propone come approccio la creazione di un database di test differente per ogni core del proprio processore, per poi eseguire tanti test in parallelo quanti sono i database a disposizione.&lt;/p&gt;
+
+&lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;https://codeclimate.com/github/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://codeclimate.com/github/facile-it/paraunit/badges/gpa.svg&#34; alt=&#34;Codeclimate&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;https://coveralls.io/github/facile-it/paraunit?branch=master&#34;&gt;&lt;img src=&#34;https://coveralls.io/repos/facile-it/paraunit/badge.svg?branch=master&amp;amp;service=github&#34; alt=&#34;Coverage&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Abbiamo così deciso di sviluppare la nostra soluzione: &lt;strong&gt;&lt;a href=&#34;https://github.com/facile-it/paraunit&#34;&gt;facile-it/paraunit&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;è sviluppato con i &lt;strong&gt;componenti Symfony&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sa leggere la configurazione XML di PHPUnit&lt;/strong&gt; per individuare le test suite;&lt;/li&gt;
+&lt;li&gt;esegue il &lt;strong&gt;parsing e l&amp;rsquo;aggregazione dei risultati&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;grazie ai processi separati, &lt;strong&gt;sa gestire i fatal error&lt;/strong&gt; senza far bloccare completamente l&amp;rsquo;esecuzione;&lt;/li&gt;
+&lt;li&gt;sempre grazie ai processi, riesce ad &lt;strong&gt;ottimizzare l&amp;rsquo;uso della memoria&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;risulta &lt;strong&gt;affidabile&lt;/strong&gt; grazie al fatto che basa il suo responso sugli exit code dei singoli processi PHPUnit.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;La maggior parte di questi vantaggi sono ovviamente comuni a tutti gli approcci di parallelizzazione dei test, inoltre, grazie al parsing dei risultati, &lt;strong&gt;Paraunit sa riconoscere i casi di fallimento dovuti a deadlock&lt;/strong&gt; e riesegue i test che falliscono per questo motivo.&lt;/p&gt;
+
+&lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La soluzione che abbiamo trovato è molto semplice: &lt;strong&gt;le transazioni&lt;/strong&gt;.
+Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit, rilasciato col pacchetto &lt;strong&gt;&lt;a href=&#34;https://github.com/facile-it/paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/a&gt;&lt;/strong&gt;; ovviamente il test-case è stato sviluppato in partenza per il nostro caso d&amp;rsquo;uso, ovvero per il &lt;strong&gt;test di un&amp;rsquo;applicazione basata su Symfony2 e Doctrine&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Grazie a questo test-case, ogni test può accedere al database solo dentro una transazione e questa transazione non riceve mai il &lt;em&gt;commit&lt;/em&gt;, ma sempre il &lt;strong&gt;rollback&lt;/strong&gt; al termine. Questo significa che &lt;strong&gt;nulla verrà mai realmente scritto&lt;/strong&gt; sul nostro database.&lt;/p&gt;
+
+&lt;p&gt;I vantaggi di questo approccio sono molteplici:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;nessun test può interferire&lt;/strong&gt; con gli altri, visto che non possono alterare i dati;&lt;/li&gt;
+&lt;li&gt;ogni test può permettersi di &lt;strong&gt;creare al volo un dato o di alterarne uno esistente&lt;/strong&gt;, senza doversi preoccupare di ripulire il database al termine, con grande risparmio di tempo nella scrittura dei test;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;il database di test rimane sempre pulito&lt;/strong&gt; e non dobbiamo più preoccuparci di prepararlo ogni volta che la suite deve essere eseguita, o che eseguiamo un test che può sporcare i dati;&lt;/li&gt;
+&lt;li&gt;anche se non viene mai realmente scritto nulla, &lt;strong&gt;il database esegue comunque le verifiche di integrità&lt;/strong&gt;, quali vincoli di unicità o di chiavi esterne;&lt;/li&gt;
+&lt;li&gt;diventa &lt;strong&gt;impossibile avere test interdipendenti&lt;/strong&gt;, ovvero test che possono funzionare solo se prima ne vengono eseguiti altri, che modificano in modo ideale i dati di fixture.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+
+&lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/paraunit/grafico.png&#34; alt=&#34;Grafico&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Come potete vedere, Paraunit esegue l&amp;rsquo;intera test suite in soli &lt;strong&gt;6 minuti e 6 secondi&lt;/strong&gt;, mentre PHPUnit ci metterebbe &lt;strong&gt;oltre 40 minuti!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
+
+&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+
+&lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
+
+&lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
+
+&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+
+&lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
+Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;la &lt;strong&gt;prioritizzazione dei test lenti&lt;/strong&gt;, ovvero poter eseguire per primi i test noti per la loro lentezza, così da non rallentare l&amp;rsquo;esecuzione complessiva della test suite;&lt;/li&gt;
+&lt;li&gt;l&amp;rsquo;aggiunta di &lt;strong&gt;altre opzioni&lt;/strong&gt; di selezione test, come p.e. l&amp;rsquo;opzione &lt;code&gt;--group&lt;/code&gt; di PHPUnit;&lt;/li&gt;
+&lt;li&gt;il miglioramento delle &lt;strong&gt;prestazioni&lt;/strong&gt; all&amp;rsquo;avvio dei processi, cosa che pesa molto per i test unitari;&lt;/li&gt;
+&lt;li&gt;il &lt;strong&gt;supporto per altri framework e ORM&lt;/strong&gt; oltre a Symfony e Doctrine, creando altri test-case appositi;&lt;/li&gt;
+&lt;li&gt;il miglioramento della funzionalità di test coverage parallela;&lt;/li&gt;
+&lt;li&gt;una soluzione per i database non transazionali, come MongoDB.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vi invito quindi a partecipare allo sviluppo di Paraunit su &lt;a href=&#34;https://github.com/facile-it/paraunit&#34;&gt;GitHub&lt;/a&gt;, proponendo pull request, aprendo issue per proporre nuove feature o anche semplicemente utilizzandolo per le vostre test suite, così da verificarne l&amp;rsquo;efficacia e la compatibilità!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MiniIAD Vimercate 2015: reportage</title>
+      <link>/blog/ita/miniiad-vimercate-2015-reportage/</link>
+      <pubDate>Wed, 15 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/miniiad-vimercate-2015-reportage/</guid>
+      <description>
+
+&lt;p&gt;Lo scorso 23 Maggio 2015, si è tenuto a Vimercate, presso la sede di Alcatel-Lucent all&amp;rsquo;Energy Park, il &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/&#34;&gt;Mini Italian Agile Day&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anche in occasione di questo evento Facile.it si è presentata con una piccola delegazione. Sono andato all&amp;rsquo;incontro cercando di polarizzare bene le mie aspettative della giornata. Da un evento della &lt;strong&gt;comunità Agile&lt;/strong&gt; mi aspetto un &lt;strong&gt;confronto&lt;/strong&gt;, una &lt;strong&gt;crescita&lt;/strong&gt;, nonché l&amp;rsquo;occasione di incontrare qualche volto amico, qualche ex collega o qualche guru a cui chiedere consiglio!&lt;/p&gt;
+
+&lt;p&gt;Parlare di recensione della giornata mi sembra inappropriato. Preferisco soffermarmi su cosa mi ha colpito e cosa mi sono portato a casa da questa esperienza.&lt;/p&gt;
+
+&lt;h2 id=&#34;welcome-coffee:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Welcome coffee&lt;/h2&gt;
+
+&lt;p&gt;Partiamo dal primo impatto: la location. Beh, complimenti ad Alcatel perché ha una sede molto bella! raggiungerla in auto non è stato tanto difficile e tutto quel verde dentro e fuori dagli uffici trasmette una bella sensazione. Come al solito sono in ritardo, giusto il tempo di un caffè, offerto dal nostro host, e qualche stretta di mano e subito si comincia.&lt;/p&gt;
+
+&lt;h2 id=&#34;keynote:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Keynote&lt;/h2&gt;
+
+&lt;p&gt;Il keynote è di &lt;a href=&#34;https://twitter.com/ixhd&#34;&gt;Cliff Hazell&lt;/a&gt;, un ragazzo che fa l&amp;rsquo;agile coach in Spotify. Ha illustrato una &lt;strong&gt;tecnica di visualizzazione&lt;/strong&gt; della conoscenza e dei processi su una grande parete con dei post-it. Un qualcosa che mi ha ricordato l&amp;rsquo;&lt;a href=&#34;http://ziobrando.blogspot.it/2013/11/introducing-event-storming.html&#34;&gt;event storming&lt;/a&gt; che ho visto raccontare da &lt;a href=&#34;http://www.avanscoperta.it/it/author/a-brandolini/&#34;&gt;Alberto Brandolini&lt;/a&gt; a BetterSoftware, tuttavia mi è parso ci siano alcune differenze. In entrambi i metodi il risultato finale è &lt;strong&gt;una parete piena di post-it che spiegano il modello&lt;/strong&gt; da sviluppare. Nell&amp;rsquo;event storming, la creazione partecipata della parete è l&amp;rsquo;evoluzione degli stati del modello sono il punto focale. Non ho mai avuto il piacere di usare event storming, ma tutte le presentazioni che ho visto delineano il modo in cui la parete &amp;ldquo;si riempie&amp;rdquo;, mentre ho poche informazioni su come questa poi si traduca in software. Piuttosto, mi pare di aver colto che Cliff ponga molta enfasi su come man mano la conoscenza che stiamo visualizzando si evolva e man mano si traduca in componenti software. Mi intriga l&amp;rsquo;ipotesi di combinare le due cose!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/miniiad-vimercate-2015-reportage/visualization.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;agile-e-il-business-delle-aziende:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
+
+&lt;p&gt;La mia giornata prosegue parlando di &lt;strong&gt;&lt;a href=&#34;http://www.ideastartup.it/startupzionario/&#34;&gt;Startup&lt;/a&gt;&lt;/strong&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Produzione_snella&#34;&gt;Lean&lt;/a&gt;&lt;/strong&gt; con &lt;a href=&#34;https://twitter.com/felicepescatore&#34;&gt;Felice Pescatore&lt;/a&gt;. Una sessione sul percorso &amp;ldquo;&lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#leanstartup&#34;&gt;dal garage al grattacielo&lt;/a&gt;&amp;rdquo;. Bello stile, coinvolgente! Ho già letto tanto su Lean, purtroppo non ho portato via nulla di nuovo.
+Anche il talk successivo &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Kanban_experiment&#34;&gt;Kanban experiment&lt;/a&gt;, su &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;&lt;/strong&gt;, non mi ha detto nulla di nuovo. Mi piace però constatare che molti gruppi di lavoro che si stanno avvicinando alle metodologie Agili, scelgono Kanban.&lt;/p&gt;
+
+&lt;h2 id=&#34;large-scaling-scrum:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
+
+&lt;p&gt;Dopo un buon pranzo, ho assistito ad una &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#LeSS_Adoption&#34;&gt;sessione&lt;/a&gt; su &lt;strong&gt;&lt;a href=&#34;http://less.works/&#34;&gt;Less&lt;/a&gt;&lt;/strong&gt;. E quì rimango veramente sorpreso in positivo. Non conoscevo Less e penso se ne dovrebbe parlare di più, soprattutto in aziende con tanti gruppi di lavoro diversi. &lt;a href=&#34;https://www.youtube.com/watch?v=PTjnw9EXsD4&#34;&gt;Francesco Sferlazza&lt;/a&gt; ha raccontato come in Alcatel hanno introdotto Less (Large Scaling SCRUM). In sostanza, si tratta di un framework per &lt;strong&gt;attuare SCRUM in aziende composte da svariati sottogruppi che fanno SCRUM che però hanno delle dipendenze vicendevoli&lt;/strong&gt;. Con SCRUM si dovrebbero costituire dei gruppi completamente indipendenti, composti da tutte le risorse necessarie per realizzare l&amp;rsquo;obiettivo. In realtà estremamente complesse, come appunto una grandissima azienda di telefonia, non è possibile considerare nello stesso aggregato i manutentori delle centraline telefoniche con gli esperti di design dei dispositivi da installare. In sostanza, si deve armonizzare il lavoro di gruppi diversi in cui in ciascuno si applica SCRUM.
+Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non certo così grande e complessa) alcuni elementi della filiera non riusciamo a portarli dentro tutti i team. Ad esempio i web designer o il team di marketing. Tutti i team condividono il tempo e le competenze di questi gruppi, che a loro volta fanno iterazioni settimanali (non SCRUM). Il talk mi ha illustrato alcuni dei vantaggi di Less ed ha stuzzicato la mia curiosità. Ora dovrò capire come applicarlo concretamente!&lt;/p&gt;
+
+&lt;h2 id=&#34;retrospettive-creative:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Retrospettive creative&lt;/h2&gt;
+
+&lt;p&gt;Si è andato avanti parlando di &lt;strong&gt;&lt;a href=&#34;http://retrospectivewiki.org/index.php?title=Main_Page&#34;&gt;retrospettive&lt;/a&gt;&lt;/strong&gt; con Marco Di Biase, uno SCRUM Master di Bravofly. Su questo tema, devo dare il merito a Marco di aver &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Miglioramento_continuo&#34;&gt;condiviso&lt;/a&gt; un sacco di idee e scoperte fatte nel corso della sua esperienza. Io, ad esempio, ho iniziato a fare retrospettive con un certo format e da allora son riuscito a coinvolgere gli interlocutori più disparati del team (facciamo retrospettive tra team di addetti alla vendita e vengono fuori continue azioni di miglioramento come dalle retrospettive tra programmatori). Ma non ho mai provato a fare e farmi delle &lt;strong&gt;domande diverse durante gli incontri&lt;/strong&gt;. Marco accennava che &lt;a href=&#34;https://twitter.com/p_pugliese&#34;&gt;Pierluigi Pugliese&lt;/a&gt; gli abbia mostrato decine di approcci diversi.&lt;/p&gt;
+
+&lt;p&gt;Mi ha colpito in particolare il format della retrospettiva con i cerchi concentrici che Marco suggerisce di usare per le iterazioni o per i periodi in cui le cose non vanno particolarmente bene, per ragionare sui problemi: ogni cerchio è un attore; il cerchio di cosa posso controllare io per fare meglio, di cosa può controllare il team per fare meglio e cosa invece è fuori dal nostro controllo ma sta facendo andare male le cose.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/miniiad-vimercate-2015-reportage/retrospettiva-cerchi.jpg&#34; alt=&#34;Retrospettiva con cerchi&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusioni:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Conclusioni&lt;/h2&gt;
+
+&lt;p&gt;La serata si è poi conclusa con una carrellata di &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Agile_Coaches&#34;&gt;esperienze&lt;/a&gt; vissute da tre coach. Dalla tastiera al coaching (senza lasciare la tastiera!). Le storie delle persone sono una delle cose di maggiore ispirazione. Per me penso sia bello ripartire da qui, con qualche pillola in più, inseguendo quel miglioramento continuo che ogni giorno sa riempirci di soddisfazioni.&lt;/p&gt;
+
+&lt;p&gt;A presto con i prossimi grandi eventi dell&amp;rsquo;autunno!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GIT flow e versionamento semantico</title>
+      <link>/blog/ita/git-flow-semantic-versioning/</link>
+      <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/git-flow-semantic-versioning/</guid>
+      <description>
+
+&lt;p&gt;GIT flow è un &lt;strong&gt;flusso di sviluppo&lt;/strong&gt;, ideato da &lt;a href=&#34;http://nvie.com/about/&#34;&gt;Vincent Driessen&lt;/a&gt;, che descrive un modello di diramazione, (&lt;a href=&#34;http://git-scm.com/docs/git-branch&#34;&gt;branching&lt;/a&gt;), ben preciso costruito intorno al concetto di release software.&lt;/p&gt;
+
+&lt;p&gt;Questo flusso è concepito per sfruttare al meglio le potenzialità del software di versionamento &lt;a href=&#34;https://git-scm.com/&#34;&gt;GIT&lt;/a&gt;, ma affinità concettuali possono essere utili anche per la gestione del lavoro con altri software dediti alla medesima funzionalità.&lt;/p&gt;
+
+&lt;p&gt;Il flusso descritto in GIT flow è finalizzato a mantenere una storia implementativa pulita, dove un rilascio comunica a tutti gli utilizzatori la presenza di una &lt;strong&gt;nuova versione&lt;/strong&gt; del prodotto, definita da un determinato &lt;em&gt;changelog&lt;/em&gt; composto da nuove caratteristiche e correzioni.&lt;/p&gt;
+
+&lt;p&gt;I &lt;strong&gt;vantaggi&lt;/strong&gt; derivanti da questo approccio al versionamento (&lt;a href=&#34;https://en.wikipedia.org/wiki/Software_versioning&#34;&gt;software versioning&lt;/a&gt;), sono anzitutto quello di &lt;strong&gt;tenere una storia pulita&lt;/strong&gt; e leggibile, il che faciliterà la vita a chi decide di usare il nostro software, ma anche quello di poter &lt;strong&gt;concentrare e diversificare gli sforzi&lt;/strong&gt; del team di sviluppo sulle particolari fasi: implementazione, correzione, pulizia, rilascio, concedendo a ciascuna di esse determinati spazi all&amp;rsquo;interno del repository e determinate tempistiche all&amp;rsquo;interno del flusso.&lt;/p&gt;
+
+&lt;p&gt;In questo articolo descriveremo git flow e uniremo l&amp;rsquo;adozione di questo flusso a quello di una strategia di versionamento semantico (semantic versioning) così come proposto e descritta da &lt;a href=&#34;http://tom.preston-werner.com/&#34;&gt;Tom Preston-Werner&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Come vedremo in seguito il punto di incontro fra git e il versionamento semantico ha la sua chiave di volta nella creazione di tag appropriate sulle commit dei nostri rami o &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Basics-Tagging&#34;&gt;tagging&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Inoltre è bene tenere a mente che diversi software di gestione delle dipendenze basano il proprio flusso operativo sul presupposto una strategia di versionamento semantico simile a quella che andremo a descrivere, come ad esempio &lt;a href=&#34;https://getcomposer.org&#34;&gt;composer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;branch-storici:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch storici&lt;/h3&gt;
+
+&lt;p&gt;Anzitutto questo modello di workflow prevede la presenza di ben due master branch, &lt;strong&gt;&amp;ldquo;dev&amp;rdquo;&lt;/strong&gt; (o &amp;ldquo;develop&amp;rdquo;) utilizzato per lo sviluppo, ed il buon vecchio &lt;strong&gt;&amp;ldquo;master&amp;rdquo;&lt;/strong&gt; per i rilasci ufficiali.&lt;/p&gt;
+
+&lt;p&gt;Questi due branch assolvono il compito di &amp;ldquo;historical branch&amp;rdquo;, cioè essi devono detenere la storia pulita del progetto, a prescindere dagli sviluppi di nuove feature e hotfix, che altrimenti confluirebbero senza filtri sul ramo principale, rendendo meno comprensibile la storia del progetto e quindi più difficoltose operazioni di reversione (&lt;a href=&#34;https://en.wikipedia.org/wiki/Reversion_%28software_development%29&#34;&gt;revert&lt;/a&gt;) a stati precedenti.&lt;/p&gt;
+
+&lt;h3 id=&#34;branch-di-funzionalità:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di funzionalità&lt;/h3&gt;
+
+&lt;p&gt;Un branch di funzionalità, ovvero un &lt;strong&gt;&amp;ldquo;feature branch&amp;rdquo;&lt;/strong&gt;, aggiunge una nuova funzionalità (&lt;a href=&#34;https://en.wikipedia.org/wiki/Software_feature&#34;&gt;feature&lt;/a&gt;) al software.
+Nel modello proposto dal GIT flow, questi branch &lt;strong&gt;devono sempre essere derivati dal branch &amp;ldquo;develop&amp;rdquo;&lt;/strong&gt; e rappresentano una &lt;strong&gt;feature&lt;/strong&gt;, ovvero una nuova funzionalità che si intende aggiungere al software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/git-flow-semantic-versioning/feature.png&#34; alt=&#34;Git Flow - Feature branch&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Questo branch conterrà tutti i pezzi di storia, le commit, relative alla funzionalità implementata.&lt;/p&gt;
+
+&lt;p&gt;Durante lo sviluppo di questi rami non è strettamente necessario mantenere una storia delle versioni pulite o usare particolari nomenclature per le varie commit (pratica che comunque potrebbe avere i suoi vantaggi come vedremo nell&amp;rsquo;ultimo paragrafo), in quanto prima di riportare il branch su develop, &amp;ldquo;appiattiremo&amp;rdquo; la storia del branch attraverso un&amp;rsquo;operazione di &lt;strong&gt;&lt;a href=&#34;http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html&#34;&gt;squash&lt;/a&gt; delle commit&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In questo modo la storia del branch di sviluppo risulterà pulita, con &lt;strong&gt;una sola commit&lt;/strong&gt;, che conterrà solo l&amp;rsquo;informazione relativa all&amp;rsquo;aggiunta della nuova funzionalità.&lt;/p&gt;
+
+&lt;p&gt;Dopo averlo riportato su develop, è possibile rimuovere il feature branch dal repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$&amp;gt; git branch -D feat-nomedelfeaturebranch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In base alle dimensioni del team è possibile mantenere &lt;strong&gt;più feature branch contemporaneamente&lt;/strong&gt;, a patto di riportarli correttamente e in tempi auspicabilmente brevi sul branch di sviluppo.
+Di norma un singolo sviluppatore si concentra sul rilascio di una feature per volta.&lt;/p&gt;
+
+&lt;h3 id=&#34;branch-di-rilascio:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di rilascio&lt;/h3&gt;
+
+&lt;p&gt;Quando il ramo di sviluppo (develop) contiene abbastanza feature per un &lt;strong&gt;rilascio&lt;/strong&gt; (o in base a qualsiasi altro tipo di scadenza prefissata), da questi viene derivato un nuovo branch detto di rilascio, o &lt;strong&gt;&lt;a href=&#34;http://producingoss.com/en/release-branches.html&#34;&gt;release branch&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;È buona norma distinguere questi rami con un nome significativo e consistente, ad esempio possono tutti iniziare con il prefisso &amp;ldquo;release-&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;A questo punto dello sviluppo non possono essere più aggiunte feature e le uniche aggiunte possibili possono essere quelle di bug fixing e documentazione.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/git-flow-semantic-versioning/release-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Il team si concentrerà sull&amp;rsquo;obiettivo di riportare su master la prossima release
+quindi non verranno creati altri branch di funzionalità in quanto in questa fase l&amp;rsquo;obiettivo principale è quello di rilasciare.&lt;/p&gt;
+
+&lt;p&gt;Quando il ramo di rilascio sarà maturo e testato, a questo punto verrà eseguita  l’operazione di merge sul branch “master”, contrassegnandola con un’opportuna &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Basics-Tagging&#34;&gt;tag&lt;/a&gt;, che ne indichi il versionamento.&lt;/p&gt;
+
+&lt;p&gt;Come per il feature branch, la storia completa dalla nascita alla maturazione di questo ramo dovrebbe essere trasparente per i branch storici, quindi anche qui andremo ad operare un&amp;rsquo;operazione di squash.&lt;/p&gt;
+
+&lt;p&gt;Anche durante il ciclo di vita di questi rami, è buona pratica usare nomenclature particolari per i tag delle commit, ma non indispensabile: vedremo questo concetto più avanti nell&amp;rsquo;ultimo paragrafo.&lt;/p&gt;
+
+&lt;p&gt;Allo stesso modo il branch di rilascio verrà eseguita indietro anche sul branch “develop”, tralasciando l&amp;rsquo;aggiunta dei tag di versione.&lt;/p&gt;
+
+&lt;p&gt;Una volta mergiato con i branch storici, il branch di release non ha più motivo di esistere e sarebbe opportuno cancellarlo.&lt;/p&gt;
+
+&lt;h3 id=&#34;branch-di-manutenzione:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di manutenzione&lt;/h3&gt;
+
+&lt;p&gt;Una migliore organizzazione dei rilasci non scongiura sicuramente l’occorrenza di problemi da risolvere con estrema urgenza.
+In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) direttamente da master un branch di manutenzione, contenente la fix necessaria a risolvere il problema insorto.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/git-flow-semantic-versioning/hotfix-2.png&#34; alt=&#34;Mantainance branch&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;È buona norma inoltre distinguere questi branch con un nome significativo e consistente, ad esempio possono tutti iniziare con il prefisso “hotfix-”.&lt;/p&gt;
+
+&lt;p&gt;Tale branch sarà ovviamente riportato su “master” il più presto possibile, ed in seguito anche su “develop” per mantenere la situazione dei due branch storici allineata.&lt;/p&gt;
+
+&lt;p&gt;Come nel caso dei branch di rilascio, qundo un branch di manutenzione viene riportato su master, il tag di master verrà contrassegnato appropriatamente.&lt;/p&gt;
+
+&lt;h3 id=&#34;versionamento-semantico:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Versionamento semantico&lt;/h3&gt;
+
+&lt;p&gt;Il versionamento semantico (semantic versioning) è un semplice schema di denominazione dei rilasci che ruota attorno a tre numeri: major, minor e patch.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/git-flow-semantic-versioning/alltogheter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Il formato prevede la concatenazione di questi tre numeri attraverso la notazione punto.
+Ad es: 1.1.2, indica major version: 1, minor version: 1 e patch: 2.&lt;/p&gt;
+
+&lt;p&gt;Riportato sullo schema prima descritto nel GIT flow, i tre numeri di versionamento  saranno le tag dei branch.&lt;/p&gt;
+
+&lt;p&gt;In pratica:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Se abbiamo rilasciato una hotfix, che sostanzialmente non va ad intaccare le modalità di utilizzo del codice, dovremmo andare a incrementare il numero di &lt;strong&gt;patch&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Se abbiamo implementato una modifica minore, spesso l&amp;rsquo;aggiunta di una feature che non pregiudica la retrocompatibilità del codice, andremo a incrementare il numero di &lt;strong&gt;minor&lt;/strong&gt; versioning.&lt;/li&gt;
+&lt;li&gt;Rilasci più consistenti che cambiano in maniera apprezzabile il funzionamento del codice andranno a incrementare il numero di &lt;strong&gt;major&lt;/strong&gt; versioning&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Può essere inoltre indicato un &lt;strong&gt;suffisso di build&lt;/strong&gt;, ad esempio una sequenza alfabetica in linguaggio naturale, seguita da un numero incrementale.&lt;/p&gt;
+
+&lt;p&gt;Ad es:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.1.2-snapshot20150602, indica una snapshot di un feature branch di 1.1.2, ovvero una &amp;ldquo;fotografia&amp;rdquo; specifica dello sviluppo di una feature&lt;/li&gt;
+&lt;li&gt;1.1.2-rc1, indica una release candidate, ovvero una versione del software &amp;ldquo;papabile&amp;rdquo; per il rilascio&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Un suffisso di build come quello indicato nel primo esempio potrebbe essere relativo ad un feature branch, derivato dal tag 1.1.2 del branch di sviluppo e in parole povere indica che quella messa a disposizione è semplicemente un&amp;rsquo;anteprima del codice, in cui è ammissibile una certa instabilità.&lt;/p&gt;
+
+&lt;p&gt;Questo tipo di tag dovrebbero essere provati e installati &lt;strong&gt;solo su ambienti di test&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Quello nel secondo esempio invece potrebbe essere il suffisso di un tag su un branch di release che indica una versione del codice, matura al punto da poter essere inclusa in una prossima release, detta &lt;a href=&#34;https://it.wikipedia.org/wiki/Release_candidate&#34;&gt;release candidate&lt;/a&gt;, a patto di minime correzioni.
+Tali modifiche modifiche e correzioni dovrebbero susseguirsi andando a incrementare il suffisso numerico dopo rc delle prossime tag sul ramo di rilascio.&lt;/p&gt;
+
+&lt;p&gt;Questo tipo di tag indicano le versioni del software che generalmente verranno installate sugli ambienti di &lt;a href=&#34;https://en.wikipedia.org/wiki/Deployment_environment#Staging&#34;&gt;staging&lt;/a&gt;, per poterle testare prima di essere riportate su master e andare quindi in &lt;a href=&#34;https://en.wikipedia.org/wiki/Deployment_environment#Production&#34;&gt;produzione&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusioni:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Conclusioni&lt;/h3&gt;
+
+&lt;p&gt;Alla fine di questa analisi non possiamo affermare che git flow e il versionamento semantico possano essere gli strumenti definitivi per ogni team o progetto, e sicuramente la loro adozione porta vantaggi e svantaggi.
+Valutare un trade-off relativo all&amp;rsquo;impiego di git flow sta al buonsenso personale, ci limiteremo perciò ad elencare una serie di pro e contro che potrebbero aiutare nella decisione.&lt;/p&gt;
+
+&lt;h4 id=&#34;a-cosa-non-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;A cosa non serve git flow?&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Git flow non pone rimedio ad errori tecnici nella gestione del repository e nemmeno prescinde da una conoscenza approfondita di git.&lt;/li&gt;
+&lt;li&gt;Git flow de facto &lt;strong&gt;non semplifica il flusso di lavoro&lt;/strong&gt; con git, imponendo una strategia di diramazione complessa.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;a-cosa-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;A cosa serve git flow?&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Git flow aiuta i vari elementi del team ad avere a colpo d&amp;rsquo;occhio &lt;strong&gt;una visione precisa dello stato degli sviluppi applicativi&lt;/strong&gt; a fronte di una convenzione essenziale e immediata di tagging.&lt;/li&gt;
+&lt;li&gt;Il versionamento semantico aiuta gli utilizzatori del software a capire esattamente lo stato di sviluppo del software e cosa aspettarsi, riportandosi a diverse versioni di rilascio.&lt;/li&gt;
+&lt;li&gt;Git flow coaudiva la &lt;a href=&#34;https://en.wikipedia.org/wiki/Velocity_(software_development&#34;&gt;velocity&lt;/a&gt;) del team di sviluppo permettendo l&amp;rsquo;attuazione di un piano di &lt;a href=&#34;http://guide.agilealliance.org/guide/cd.html&#34;&gt;continuous deploy&lt;/a&gt; e quindi di poter rilasciare nuove feature e fix in sicurezza.&lt;/li&gt;
+&lt;li&gt;Git flow è ottimo per la &lt;a href=&#34;https://en.wikipedia.org/wiki/Continuous_integration&#34;&gt;continuous integration&lt;/a&gt;, permettendo de facto di poter differenziare i rami dedicati ai vari ambienti: sviluppo, staging e produzione&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;risorse-consultabili-online:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Risorse consultabili online&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://nvie.com/posts/a-successful-git-branching-model/&#34;&gt;http://nvie.com/posts/a-successful-git-branching-model/&lt;/a&gt; Vincent Driessen espone GIT Flow&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://semver.org/&#34;&gt;http://semver.org/&lt;/a&gt; Semantic Versioning 2.0.0 proposto da Tom Preston-Werner&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow&#34;&gt;https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow&lt;/a&gt; - Tutorial messo a disposizione da Atlassian&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datasift.github.io/gitflow/Versioning.html&#34;&gt;https://datasift.github.io/gitflow/Versioning.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Facile.it devs @ PHP Day 2015</title>
+      <link>/blog/ita/php-day-2015/</link>
+      <pubDate>Tue, 19 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/php-day-2015/</guid>
+      <description>
+
+&lt;p&gt;Anche quest&amp;rsquo;anno si è svolto il &lt;strong&gt;&lt;a href=&#34;http://2015.phpday.it/&#34;&gt;PHP Day&lt;/a&gt; a Verona, il 15 e 16 maggio&lt;/strong&gt;. Noi sviluppatori di Facile.it abbiamo partecipato con un folto gruppo e seguito i vari talks.&lt;/p&gt;
+
+&lt;p&gt;In questo breve articolo vorremmo citare quelli che in qualche maniera &lt;strong&gt;ci hanno colpito&lt;/strong&gt;, per motivi tecnici e non, per dare l&amp;rsquo;opportunità a chi non ha potuto partecipare di sapere qualcosa di più, o per dare &lt;strong&gt;un assaggio della conferenza&lt;/strong&gt; a chi non ha mai partecipato a qualcosa del genere e, speriamo, invogliarlo a far parte della community!&lt;/p&gt;
+
+&lt;p&gt;Ovviamente non pretendiamo di fare una recensione, né quanto meno una classifica&amp;hellip; I talk che abbiamo scelto di citare sono stati scelti per puro &lt;strong&gt;gusto personale&lt;/strong&gt;, o ci hanno semplicemente colpito perché si avvicinavano di più alla nostra esperienza di sviluppatori, o perché toccavano più da vicino lo &lt;strong&gt;stack tecnologico&lt;/strong&gt; da noi utilizzato.&lt;/p&gt;
+
+&lt;p&gt;I talk sono in ordine cronologico. Buona lettura!&lt;/p&gt;
+
+&lt;h4 id=&#34;indice:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Indice&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#prophecy&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#containerize&#34;&gt;Containerize your PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#varnish&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#psr-7&#34;&gt;Hello, PSR-7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#php7-data-structures&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#doctrine&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;keynotes:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h6&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#coderabbi&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#calevans&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#seldaek&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;talk-tecnici:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talk tecnici&lt;/h1&gt;
+
+&lt;p&gt;&lt;a name=&#34;prophecy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sarah Khalil (&lt;a href=&#34;http://twitter.com/saro0h&#34;&gt;@saro0h&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 14:30 – 15:30 - track 1 (&lt;a href=&#34;https://speakerdeck.com/saro0h/php-day-verona-2015-php-object-mocking-framework-world&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134728681&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Una buona esposizione su &lt;a href=&#34;https://github.com/phpspec/prophecy-phpunit&#34;&gt;prophecy&lt;/a&gt; la nuova tecnologia per effetuare mocking e stubbing. In questo talk sono state illustrate le API di prophecy e si è parlato di come questo strumento sarà sempre più integrato con phpunit (è già presente nella nuova versione 4.6) sino ad arrivare ad un completo rimpiazzo dei metodi nativi del famoso testing framework.&lt;/p&gt;
+
+&lt;p&gt;Ricordatevi di aggiungere qualche altra parola (oltre a prophecy) chiave nelle vostre ricerche su google per evitare riferimenti biblici.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;containerize&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;containerize-your-php:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Containerize your PHP&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Marek Jelen (&lt;a href=&#34;http://twitter.com/marek_jelen&#34;&gt;@marek_jelen&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 15:30 – 16:30 - track 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134728683&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Si è parlato tanto nelle Conferences dell&amp;rsquo;ultimo anno di &lt;strong&gt;Docker e i container&lt;/strong&gt; come strumento di sviluppo, ma questo talk si è rivelato interessante, spiegando come fosse possibile utilizzare i container &lt;strong&gt;come strumento di deploy&lt;/strong&gt; e di creazione di immagini, in modo tale da contenere anche il sorgente del proprio progetto; abbiamo scoperto il tool &lt;a href=&#34;http://github.com/openshift/source-to-image&#34;&gt;Source to Image&lt;/a&gt;, che permette di creare queste immagini in maniera personalizzata e automatizzata partendo dal proprio codice (e dal &lt;code&gt;composer.json&lt;/code&gt;), e il progetto &lt;a href=&#34;http://www.openshift.com/&#34;&gt;Openshift&lt;/a&gt;, portato avanti da RedHat.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;varnish&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;David De Boer&lt;/li&gt;
+&lt;li&gt;Day 1 - 17:30 – 18:00 - track 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134814726&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Prima di ascoltare questo talk, pensavamo che la &lt;strong&gt;cache HTTP&lt;/strong&gt; (e Varnish) fossero praticamente inutilizzabili in un &lt;strong&gt;ambito di sito non-pubblico&lt;/strong&gt;, dove i contenuti vanno serviti (e variano in base) ad utenti sempre autenticati.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo scoperto il &lt;a href=&#34;http://github.com/FriendsOfSymfony/FOSHttpCacheBundle&#34;&gt;FOSHttpCacheBundle&lt;/a&gt;, e il trucco che permette di fare caching anche di questo tipo di contenuti: Varnish prende il cookie e controlla la cache non in base a quello, ma in base ad un hash che viene fornito dall&amp;rsquo;applicazione stessa tramite un altra chiamata; questo permette di &lt;strong&gt;mappare i contenuti cachati&lt;/strong&gt; non sui singoli utenti, ma &lt;strong&gt;con logiche più ottimizzate&lt;/strong&gt; (gruppi di utenti? set di permessi?) ed eventualmente più legate alla business logic dell&amp;rsquo;applicazione stessa.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;psr-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;hello-psr-7:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Hello, PSR-7&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Beau Simensen (&lt;a href=&#34;http://www.twitter.com/beausimensen&#34;&gt;@beausimensen&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 11:00 – 12:00 - track 2 (&lt;a href=&#34;https://beau.io/talks/2015/05/16/hello-psr-7-phpday-2015/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134281520&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In questo talk abbiamo potuto conoscere da vicino la genesi dello &lt;strong&gt;standard PSR-7&lt;/strong&gt; (di cui abbiamo già scritto in un &lt;a href=&#34;http://engineering.facile.it/php-fig-standard-psr-7-http-message-interfaces/&#34;&gt;altro articolo&lt;/a&gt;), raccontata da una delle persone che hanno seguito da vicino e contribuito alla scrittura della proposta stessa.&lt;/p&gt;
+
+&lt;p&gt;Lo standard sarà approvato a brevissimo (solo 3 giorni dopo il talk!) e molti aspettano di vedere cosa comporterà a livello di framework PHP.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;php7-data-structures&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Patrick Allaert (&lt;a href=&#34;http://www.twitter.com/patrick_allaert&#34;&gt;@patrick_allaert&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 12:00 – 13:00 - track 1 (&lt;a href=&#34;http://www.slideshare.net/patrick.allaert/php-data-structures-and-the-impact-of-php-7-on-them-php-days-2015&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134070469&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Questo talk, dal sapore molto tecnico, ci ha fatto addentrare negli internals degli &lt;strong&gt;array PHP&lt;/strong&gt;, e in quanto siano talmente specializzati a far tutto, da essere &lt;strong&gt;inefficienti&lt;/strong&gt; in moltissimi casi; abbiamo visto numerose &lt;strong&gt;alternative più specialistiche&lt;/strong&gt; per i vari casi d&amp;rsquo;uso (&lt;a href=&#34;http://php.net/manual/en/class.splfixedarray.php&#34;&gt;SplFixedArray&lt;/a&gt;, &lt;a href=&#34;http://php.net/manual/en/class.splqueue.php&#34;&gt;SplQueue&lt;/a&gt;, &lt;a href=&#34;http://php.net/manual/en/class.splstack.php&#34;&gt;SplStack&lt;/a&gt;&amp;hellip;); sfruttare gli uni piuttosto che gli altri impatta fortemente sulle &lt;strong&gt;prestazioni&lt;/strong&gt; nei tempi e nell&amp;rsquo;uso della memoria, e abbiamo visto nel dettaglio alcuni benchmark che mostrano come questi costi diminuiscono (spesso di gran lunga) &lt;strong&gt;tra PHP 5.6 e PHP 7&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;doctrine&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Marco Pivetta (&lt;a href=&#34;http://www.twitter.com/Ocramius&#34;&gt;@Ocramius&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 15:30 – 16:30 - track 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe src=&#34;https://player.vimeo.com/video/134178140&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Usiamo &lt;strong&gt;Doctrine&lt;/strong&gt; tutti i giorni, ma questo talk, sebbene marcato come di livello &lt;strong&gt;beginner&lt;/strong&gt;, si è rivelato molto interessante e fonte di numerose discussioni e &lt;strong&gt;riflessioni&lt;/strong&gt; tra colleghi. Lo speaker è uno dei principali contributors al progetto &lt;a href=&#34;https://github.com/doctrine/doctrine2&#34;&gt;doctrine-orm&lt;/a&gt;, e ci ha elencato una serie di &lt;strong&gt;best practices&lt;/strong&gt;, partendo dal chiedersi se e quando è il caso di usare un ORM, passando poi a problemi quali l&amp;rsquo;uso e l&amp;rsquo;implementazione di entità, la loro consistenza, l&amp;rsquo;evitare di usare setter brutali o di esporre le ArrayCollection che rappresentano le nostre relazioni.&lt;/p&gt;
+
+&lt;h1 id=&#34;keynotes-1:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h1&gt;
+
+&lt;p&gt;Abbiamo voluto citare in questo articolo anche i &lt;strong&gt;3 keynote&lt;/strong&gt; della conferenza: sono stati tutti piuttosto interessanti, profondamente motivazionali e coinvolgenti.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;coderabbi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Yitzchok Willroth (&lt;a href=&#34;http://www.twitter.com/coderabbi&#34;&gt;@coderabbi&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - keynote di apertura&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Yitz, studente rabbinico poi passato alla programmazione, molto famoso nella community PHP, ci ha spinto a considerare alcuni suoi consigli su come poterci &lt;strong&gt;migliorare come sviluppatori&lt;/strong&gt; e come membri della community stessa: cercare e coltivare un mentore, essere pazienti ed accettare i consigli, aiutare gli altri per ripagare tutto questo, partecipare nell&amp;rsquo;open source&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Personalmente, mi ha anche fatto scoprire tre siti piuttosto interessanti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://phpmentoring.org/&#34;&gt;PHP Mentoring&lt;/a&gt; e &lt;a href=&#34;http://hackpledge.org&#34;&gt;Hackpledge&lt;/a&gt;, per chi è in cerca di un &lt;strong&gt;mentore&lt;/strong&gt; o vuole diventarlo per aiutare altri a diventare programmatori migliori&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://up-for-grabs.net/&#34;&gt;Up for grabs&lt;/a&gt;, un sito raccoglitore di &lt;strong&gt;issue su GitHub *semplici&lt;/strong&gt;*, un ottimo punto di inizio per chi vorrebbe partecipare a progetti open source, ma non sa da dove cominciare&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;calevans&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cal Evans (&lt;a href=&#34;http://www.twitter.com/calevans&#34;&gt;@CalEvans&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - keynote di apertura&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cal è il community manager (ma non chiamatelo così!) per Zend, e ci ha raccontato con estrema passione, qualche lacrima e in maniera molto divertente la sua storia, come è nata la sua carriera di programmatore e come il suo percorso si è intrecciato con la community PHP e il mondo dell&amp;rsquo;open source.&lt;/p&gt;
+
+&lt;p&gt;Tutto questo per spiegarci come &lt;strong&gt;far parte della community è un valore&lt;/strong&gt; importante per tutti ma soprattutto per noi stessi, e come la nostra sia così grande, forte e basata su uno &lt;strong&gt;spirito positivo&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;seldaek&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - keynote di chiusura&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Jordi è il creatore e mantainer di &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt;, uno dei principali tool per un programmatore PHP. Nel suo keynote ci ha raccontato con franchezza la sua esperienza in prima persona nel &lt;strong&gt;gestire un progetto open source&lt;/strong&gt; così vasto e popolare, come spesso sia difficile accontentare tutti, e alcuni retroscena e dettagli di qualche curiosa pull request.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Un flusso di lavoro agile</title>
+      <link>/blog/ita/un-flusso-di-lavoro-agile/</link>
+      <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/un-flusso-di-lavoro-agile/</guid>
+      <description>
+
+&lt;p&gt;Parlare di &lt;strong&gt;metodologie di lavoro&lt;/strong&gt; in azienda è una cosa piuttosto complessa, soprattutto perché non è possibile generalizzare un modo di lavoro che sia universalmente valido. Sento sempre più persone dire &amp;ldquo;con &lt;a href=&#34;http://it.wikipedia.org/wiki/Scrum_%28informatica%29&#34;&gt;SCRUM&lt;/a&gt; avrai risultati assicurati&amp;rdquo;. Lo trovo piuttosto riduttivo.&lt;/p&gt;
+
+&lt;p&gt;In sostanza, sempre più persone hanno tradotto i &lt;a href=&#34;http://agilemanifesto.org/iso/it/&#34;&gt;valori&lt;/a&gt; ed i &lt;a href=&#34;http://agilemanifesto.org/iso/it/principles.html&#34;&gt;princìpi&lt;/a&gt; promossi dal manifesto agile in una serie di &amp;ldquo;ricette&amp;rdquo; pronte da seguire fedelmente per ottenere buoni risultati. Cosa c’è di &amp;ldquo;&lt;a href=&#34;http://it.wikipedia.org/wiki/Metodologia_agile&#34;&gt;agile&lt;/a&gt;&amp;rdquo; in tutto ciò? E’ come cucinare con un robot da cucina&amp;hellip;
+Ecco perché sono sempre più convinto che la vera ricetta del successo nei progetti sia qualcosa che si scopre &amp;ldquo;assaggiando&amp;rdquo; gli ingredienti che mettiamo nella ricetta (andrò avanti con la metafora della cucina, siete avvisati!).&lt;/p&gt;
+
+&lt;p&gt;Ad alcuni possono piacere le ricette semplici, come una bella grigliata. Come quei gruppi che apprezzano un manager molto presente, che dica a tutti cosa debbano fare, passo dopo passo. Qualcosa di &amp;ldquo;semplice&amp;rdquo; ma efficace.
+Altri amano qualcosa di creativo, come una ricetta raffinata di un ristorante stellato. Un complesso artifizio di procedure di comunicazione per la gestione del lavoro. Penso ai gruppi che si coordinano da remoto con svariati tool. Li ammiro molto, io avrei difficoltà.
+Infine, i gruppi che adorano il fast food. Quello sempre uguale ovunque tu sia, e che piace a quasi tutti i palati. Si perché, diciamocelo, piace a tutti. Come &lt;a href=&#34;http://it.wikipedia.org/wiki/Scrum_%28informatica%29&#34;&gt;SCRUM&lt;/a&gt;!
+Quindi, uscendo dalla metafora, potremmo dire che &lt;a href=&#34;http://it.wikipedia.org/wiki/Scrum_%28informatica%29&#34;&gt;SCRUM&lt;/a&gt; è la ricetta perfetta perché piace a tutti (o quasi). Ma siamo sicuri che il famoso panino della nota catena americana sia anche il miglior modo di mangiare?&lt;/p&gt;
+
+&lt;h3 id=&#34;imparare-dai-propri-errori:214cf69b6178c9bc5e93f15a08785e9d&#34;&gt;Imparare dai propri errori&lt;/h3&gt;
+
+&lt;p&gt;Il nostro gruppo di lavoro, ad esempio, ha passato mesi cercando di applicare la ricetta di &lt;a href=&#34;http://it.wikipedia.org/wiki/Scrum_%28informatica%29&#34;&gt;SCRUM&lt;/a&gt;. Un mezzo disastro. Ci siamo chiesti dove stessimo sbagliando, finché non abbiamo definitivamente fatto indigestione. Piccoli o grandi conflitti interni al team ed una dose di stress altissima. Le nostre &lt;a href=&#34;http://en.wikipedia.org/wiki/Retrospective#Software_development&#34;&gt;retrospettive&lt;/a&gt; (retaggio dell’agile, non certo perché avessimo capito di cosa si trattasse veramente!) sembravano più sedute di terapia di gruppo, che momenti di condivisione e confronto. Col senno di poi siamo in grado di fare la lista delle cose che non andavano:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;il nostro cliente interno aveva &lt;strong&gt;bisogni che cambiavano&lt;/strong&gt; ad una velocità tale da vanificare qualsiasi iterazione pianificata. Questo generava grande frustrazione nel gruppo che sentiva di disattendere il valore dell’abbracciare il cambiamento;&lt;/li&gt;
+&lt;li&gt;il gruppo aveva appena perso delle pedine storiche che avevano lasciato in eredità un software costruito su un &lt;strong&gt;dominio complesso&lt;/strong&gt;. Non c’era la seniority necessaria per fare delle stime attendibili. Ogni iterazione era un bagno di sangue &lt;strong&gt;contro il tempo&lt;/strong&gt;, a danno della qualità del codice o della vita dei programmatori che lavoravano troppo;&lt;/li&gt;
+&lt;li&gt;non avevamo capito &lt;strong&gt;l’importanza dello SCRUM Master&lt;/strong&gt;, qualcuno che sappia proteggere i valori e le cerimonie di questa pratica. Passavamo da un’iterazione all’altra senza prenderci nemmeno il tempo di celebrare i successi. Fare i panini della nota catena, in casa, senza il particolare controllo qualità che la catena impone ai propri franchise è un esperimento fallito in partenza.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;cambiare-ricetta:214cf69b6178c9bc5e93f15a08785e9d&#34;&gt;Cambiare ricetta&lt;/h3&gt;
+
+&lt;p&gt;Penso che essere agili sia, in primo luogo, non lasciarsi intrappolare da preconcetti. Ecco perché un giorno ho riunito il team ed ho detto che non mi riconoscevo in quel modo di lavorare!
+Abbiamo iniziato a pensare ad &lt;strong&gt;una ricetta diversa&lt;/strong&gt;, qualcosa che fosse più adatto al nostro palato. Guardando le caratteristiche del nostro gruppo e del contesto in cui lavoriamo abbiamo osservato che:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ogni giorno le &lt;strong&gt;priorità&lt;/strong&gt; sono potenzialmente rimesse in discussione;
+vogliamo fare qualità e vogliamo che il progetto sia al passo con la tecnologia;&lt;/li&gt;
+&lt;li&gt;abbiamo un team con una buona esperienza ma deve entrare nelle dinamiche di un &lt;strong&gt;dominio complesso&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;dobbiamo ancora scoprire &lt;strong&gt;la nostra velocity, che comunque cambierà&lt;/strong&gt; man mano che prendiamo confidenza col dominio. Insomma, la velocity non sarebbe un parametro utile per le stime;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;non possiamo rallentare&lt;/strong&gt; perché il cliente ha bisogno di noi;
+abbiamo un elevato numero di bug;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Il nostro gruppo è composto da &lt;strong&gt;5 programmatori ed un product specialist&lt;/strong&gt;, una persona che si occupa di tracciare i bisogni degli utenti, i bug e ci aiuta a far in modo che il prodotto sia bello e curato.
+Ricevendo continue richieste, la prima cosa da fare è non perderne traccia. Abbiamo aperto un foglio di calcolo condiviso su Google Drive in cui scriviamo le storie che arrivano al product specialist, assegnamo un’etichetta che mostri al volo di cosa si tratti (frontend, fatture, bug, etc.) e facciamo una stima estremamente generica (è una storia piccola, epica, etc); di fatto si tratta del nostro &lt;strong&gt;backlog&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ogni inizio del mese facciamo una &lt;strong&gt;revisione del backlog&lt;/strong&gt; insieme al manager per capire se ci sono delle cose più prioritarie di altre e facciamo pulizia.
+Uno dei capisaldi della nostra ricetta è la &lt;strong&gt;prioritizzazione continua&lt;/strong&gt;. Ingrediente di base, dunque, il &lt;a href=&#34;http://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo aperto una board su &lt;a href=&#34;http://www.trello.com&#34;&gt;Trello&lt;/a&gt; dove far evolvere &lt;strong&gt;le storie (i task)&lt;/strong&gt; da una colonna all’altra. Si parte dalla colonna &amp;ldquo;&lt;em&gt;prossime cose da fare&lt;/em&gt;&amp;rdquo;, che carichiamo man mano che si svuota, dal backlog o, molto più spesso, con le cose che scopriamo giorno dopo giorno parlando con il cliente (ecco la &lt;em&gt;prioritizzazione continua&lt;/em&gt;!). Esempio tipico: &amp;ldquo;se metteste anche quella statistica nella pagina dei report delle vendite avremmo più controllo su quel target di clienti&amp;rdquo;&amp;hellip; fatto!&lt;/p&gt;
+
+&lt;p&gt;Ogni storia riporta l’etichetta già indicata nel backlog, così un programmatore ha il polso di quale sia il dominio legato alla storia. Un nuovo arrivato avrebbe più difficoltà a lavorare sul dominio della contabilità. E’ meglio che si concentri su altre storie, col tempo prenderà confidenza anche con quel mondo.&lt;/p&gt;
+
+&lt;p&gt;Quando un programmatore è libero &lt;strong&gt;&amp;ldquo;adotta&amp;rdquo; una storia&lt;/strong&gt;, la porta nella colonna con le cose che stiamo facendo e ci appiccica il proprio avatar. Durante lo sviluppo si occupa di tutto: la raccolta delle informazioni, verifica i mockup, prepara la demo con il cliente, etc.
+Quando ha finito ed è pronto a metterla in produzione la sposta nella colonna &amp;ldquo;&lt;em&gt;da provare in produzione&lt;/em&gt;&amp;rdquo;. Il task resta là finché un caso reale non ci permette di dire &amp;ldquo;funziona!&amp;rdquo;. A quel punto va nelle cose &amp;ldquo;&lt;em&gt;fatte&lt;/em&gt;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;In tutte le storie cerchiamo di metterci quanta &lt;strong&gt;più qualità possibile&lt;/strong&gt;, facciamo i &lt;strong&gt;test funzionali ed unitari&lt;/strong&gt; e teniamo sotto controllo il nostro tool di &lt;strong&gt;continuous integration&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Le storie su &lt;strong&gt;nuovi domini&lt;/strong&gt; sono quelle più critiche, perché portano a fare molte nuove scelte di architettura. Io sono convinto che il &lt;strong&gt;&lt;a href=&#34;http://it.wikipedia.org/wiki/Pair_programming&#34;&gt;pair programming&lt;/a&gt;&lt;/strong&gt; non sia una tecnica per raddoppiare la velocità, piuttosto un modo per &lt;strong&gt;dimezzare la stupidità&lt;/strong&gt;! Si può sempre sbagliare, ma prendere una cantonata in due è raro. E’ più probabile che si faccia challenge a vicenda per le scelte importanti. Quindi in questi casi mettiamo insieme due programmatori e facciamo in modo che si confrontino.&lt;/p&gt;
+
+&lt;p&gt;Se una storia stenta ad andare in &amp;ldquo;&lt;em&gt;fatto&lt;/em&gt;&amp;rdquo; siamo pronti a metterci anche in 2 o 3 pur di portare la storia a risultato, come ci insegna il &lt;a href=&#34;http://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A rotazione (ruotiamo ogni 2 settimane), uno o più programmatori nel team ci aiutano a gestire uno dei problemi che rischiano di compromettere i nostri piani. Li chiamiamo i &lt;strong&gt;wallman&lt;/strong&gt;! Ci proteggono dalle &lt;strong&gt;continue interruzioni&lt;/strong&gt; che altrimenti il team subirebbe, per gestire i bug o le varie richieste che vengono dal cliente.
+Nel tempo &amp;ldquo;libero&amp;rdquo; (per fortuna oggi è tanto!) fanno una cosa estremamente importante per la salute del progetto: il &lt;strong&gt;refactoring&lt;/strong&gt;! Il team, in pieno spirito &lt;a href=&#34;http://en.wikipedia.org/wiki/Lean_software_development&#34;&gt;Lean&lt;/a&gt;, rilascia tante feature sperimentali a grande velocità. Alcune di queste sono dei piccoli accrocchi su pezzi di codice preesistenti. Quando la prova del mercato ci da un feedback positivo, un wallman ci aiuta a ripulire il codice. In questo modo, il team può concentrarsi sul rilasciare tanto valore per il business, consapevole che qualcuno copre le spalle.&lt;/p&gt;
+
+&lt;p&gt;Questa ricetta, come ogni grande ricetta, è una lenta e ragionata combinazione di ingredienti per soddisfare il nostro gusto. &lt;strong&gt;A noi piace!&lt;/strong&gt; Non è detto che vada bene con tutti, ma sicuramente rispetta i valori fondamentali di collaborazione, creazione del valore e rispetto che sono propri del manifesto agile.&lt;/p&gt;
+
+&lt;h3 id=&#34;la-ricetta-ideale:214cf69b6178c9bc5e93f15a08785e9d&#34;&gt;La ricetta ideale&lt;/h3&gt;
+
+&lt;p&gt;Un po&amp;rsquo; come nella cucina, dove ogni buona ricetta ha una parte dolce ed una nota acida, ogni combinazione di pratiche agili deve rispettare i princìpi fondamentali. Calateli nella vostra realtà! Tutto si migliora confrantandosi, facendo &lt;a href=&#34;http://en.wikipedia.org/wiki/Retrospective#Software_development&#34;&gt;retrospettive&lt;/a&gt;. Alla fine arriva la giusta combinazione che vi farà dimenticare il fast food. E’ decisamente più gustoso un bel panino artigianale!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduzione al tracciamento di eventi lato server</title>
+      <link>/blog/ita/tracciamento-di-eventi-lato-server/</link>
+      <pubDate>Tue, 21 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/tracciamento-di-eventi-lato-server/</guid>
+      <description>
+
+&lt;p&gt;L’adozione di strategie &lt;em&gt;DevOps&lt;/em&gt; ha portato negli ultimi anni ad incrementare le aree coperte da &lt;strong&gt;tool di monitoring&lt;/strong&gt; in maniera tale da avere un feedback in tempo reale dello stato dell’infrastruttura su cui si basa la propria applicazione, così da poter rispondere pro-attivamente a situazioni critiche. Su tale fronte infatti si sono visti comparire i tool più disparati che permettono la raccolta di informazioni, sia dei &lt;strong&gt;server&lt;/strong&gt; o delle istanze su cui vengono eseguite le applicazioni (ad esempio CPU, memoria o disco), che le &lt;strong&gt;applicazioni&lt;/strong&gt; stesse (ad esempio tempi medi di risposta, numero di query eseguite, tempo di esecuzione delle query, ecc. ecc.).&lt;/p&gt;
+
+&lt;p&gt;Per entrambi i casi lo sviluppatore ha a disposizione sia soluzioni &lt;strong&gt;open source&lt;/strong&gt; che soluzioni &lt;strong&gt;SaaS&lt;/strong&gt;: la differenza sostanziale, a parità di feature principali, rimane la gestione dell’infrastruttura aggiuntiva, necessaria a supportare le operazioni per la raccolta dei dati inviati dai sensori predisposti a monitorare le metriche che interessano. Nonostante gli strumenti si facciano sempre più abbondanti (basti pensare a tutte le soluzioni recenti per il salvataggio di time series) e user-friendly, volersi affidare a provider terzi può essere un modo per concentrarsi maggiormente sul valore aggiunto che si vuole dare all’utente finale con la propria applicazione, senza doversi preoccupare di questioni di contorno.&lt;/p&gt;
+
+&lt;p&gt;Tra i principali prodotti SaaS presenti sul mercato troviamo &lt;em&gt;&lt;a href=&#34;http://newrelic.com/&#34;&gt;NewRelic&lt;/a&gt;&lt;/em&gt;, &lt;em&gt;&lt;a href=&#34;http://www.appdynamics.com/&#34;&gt;AppDynamics&lt;/a&gt;&lt;/em&gt;, &lt;em&gt;&lt;a href=&#34;https://www.serverdensity.com&#34;&gt;ServerDensity&lt;/a&gt;&lt;/em&gt; e &lt;em&gt;&lt;a href=&#34;https://www.ruxit.com&#34;&gt;Ruxit&lt;/a&gt;&lt;/em&gt;, ciascuno con i propri prezzi e le proprie peculiarità, ma tutti che permettono di avere un costante monitoraggio della propria applicazione, dal browser dell’utente fino alla query per salvare i dati, gratis o con costi mensili contenuti e proporzionali alla dimensione della propria infrastruttura.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;Facile.it&lt;/strong&gt; viene utilizzato &lt;strong&gt;NewRelic&lt;/strong&gt; non solo per il monitoraggio base dei servizi che compongono il sito ma, grazie a &lt;strong&gt;NewRelic Insights&lt;/strong&gt;, perché viene data la possibilità di salvare eventi personalizzati che possono dare maggiori informazioni sia agli sviluppatori che ai business analysts. Per poter accedere a &lt;strong&gt;NewRelic Insights&lt;/strong&gt; bisogna avere un account a pagamento, ma è comunque possibile sperimentare l’eventuale utilità per le proprie esigenze grazie al periodo di prova di 14 giorni.&lt;/p&gt;
+
+&lt;p&gt;La raccolta dei dati può avvenire in due modi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;tramite &lt;strong&gt;&lt;em&gt;custom attributes&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;tramite &lt;strong&gt;&lt;em&gt;eventi personalizzati&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;custom-attributes:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Custom Attributes&lt;/h4&gt;
+
+&lt;p&gt;I &lt;em&gt;custom attributes&lt;/em&gt; sono delle coppie di chiave-valore da aggiungere alla transazione corrente (Web e Non-Web) già tracciata dagli strumenti di &lt;em&gt;NewRelic&lt;/em&gt; per i principali linguaggi di programmazione (&lt;strong&gt;PHP&lt;/strong&gt;, &lt;strong&gt;NodeJs&lt;/strong&gt;, &lt;strong&gt;Ruby&lt;/strong&gt;, &lt;strong&gt;Python&lt;/strong&gt;, &lt;em&gt;Java&lt;/em&gt;, &lt;em&gt;.NET&lt;/em&gt;). Possiamo aggiungere ad esempio l’utente attualmente collegato che sta effettuando tale transazione, il numero di oggetti presenti nel carrello o ancora il loro valore.&lt;/p&gt;
+
+&lt;p&gt;Ad esempio, tramite l&amp;rsquo;estensione di &lt;em&gt;NewRelic&lt;/em&gt; disponibile per &lt;strong&gt;PHP&lt;/strong&gt;, è possibile aggiungere i dettagli dell&amp;rsquo;utente attualmente collegato chiamando la funzione &lt;code&gt;newrelic_add_custom_parameter (&#39;userID&#39;, $userId)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;eventi-personalizzati:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Eventi personalizzati&lt;/h4&gt;
+
+&lt;p&gt;Gli &lt;em&gt;eventi personalizzati&lt;/em&gt; vanno inviati ad un &lt;strong&gt;webservice REST&lt;/strong&gt; in formato &lt;strong&gt;JSON&lt;/strong&gt;. Ci mettono in grado di tracciare un qualsiasi evento all’interno di una normale transazione già tracciata da NewRelic, come ad esempio i tempi di risposta di un servizio esterno utilizzato dall’applicazione.&lt;/p&gt;
+
+&lt;p&gt;Gli eventi personalizzati possono essere registrati richiamando la relativa funzione &lt;code&gt;newrelic_record_custom_event(&#39;DNDServiceCall&#39;,[&#39;business&#39; =&amp;gt; &#39;telefonia&#39;, &#39;responseTime&#39; =&amp;gt; 1500])&lt;/code&gt; disponibile nelle ultime versioni dell&amp;rsquo;estensione &lt;strong&gt;PHP&lt;/strong&gt; oppure tramite una semplice chiamata cURL come indicato dalla &lt;a href=&#34;https://docs.newrelic.com/docs/insights/new-relic-insights/adding-querying-data/inserting-custom-events-insights-api&#34;&gt;documentazione&lt;/a&gt; sui &lt;em&gt;custom events&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Una volta che i dati vengono raccolti da &lt;em&gt;NewRelic&lt;/em&gt; è possibile analizzarli tramite delle semplici query in un linguaggio simil-&lt;em&gt;SQL&lt;/em&gt;, in questo caso chiamato &lt;strong&gt;NRQL&lt;/strong&gt; (&lt;em&gt;NewRelic Query Language&lt;/em&gt;). La sintassi base di una SELECT in SQL viene mantenuta, ma vengono forniti strumenti per meglio gestire le serie temporali, tramite &lt;strong&gt;TIMESERIES&lt;/strong&gt;, &lt;strong&gt;SINCE&lt;/strong&gt;, &lt;strong&gt;UNTIL&lt;/strong&gt;: una trattazione più approfondita è disponibile alla relativa pagina della &lt;a href=&#34;https://docs.newrelic.com/docs/insights/new-relic-insights/using-new-relic-query-language/nrql-reference&#34;&gt;documentazione&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I risultati delle &lt;em&gt;query&lt;/em&gt; vengono resi disponibili in formato &lt;strong&gt;JSON&lt;/strong&gt;, oppure come widget da poter integrare poi in una dashboard, in maniera da tenere sempre sotto controllo le metriche più importanti per la conduzione del proprio business. Inoltre tramite &lt;a href=&#34;https://docs.newrelic.com/docs/insights/new-relic-insights/using-insights-interface/exploring-your-data&#34;&gt;Data Explorer&lt;/a&gt; è possibile consultare un campione degli eventi recentemente inviati dalla nostra applicazione a &lt;em&gt;NewRelic&lt;/em&gt;, così da poter eventualmente raffinare le strutture dati con cui vengono raccolti.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Il principio OPEN/CLOSE le sue origini e i casi d&#39;uso</title>
+      <link>/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</link>
+      <pubDate>Wed, 15 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</guid>
+      <description>
+
+&lt;h2 id=&#34;definizione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Definizione:&lt;/h2&gt;
+
+&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design&#34;&gt;SOLID&lt;/a&gt;).  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;OPEN/CLOSE&lt;/em&gt; (la &lt;strong&gt;O&lt;/strong&gt; dell&amp;rsquo;acronimo), nella sua definizione più generale indica che:  un modulo (un oggetto, una classe o un gruppo di funzioni) debba essere &lt;strong&gt;aperto alle estensioni&lt;/strong&gt; ma &lt;strong&gt;chiuso alle modifiche&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Questo principio tuttavia non è altro che la formalizzazione e il raggruppamento di concetti e linee guida già presenti da tempo nella programmazione ad oggetti.&lt;/p&gt;
+
+&lt;h3 id=&#34;chiuso-alle-modifiche:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Chiuso alle modifiche che potrebbero aver effetto sul client&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Possiamo esprimere questa linea guida anche come  un evoluzione di Single responsibility: Un modulo prodotto con un buon design avrà una responsabilità precisa, definita e, quindi, non vi sarà la necessita di modificare il suo comportamento, &lt;strong&gt;anche alla luce di nuove specifiche&lt;/strong&gt;.
+Per chiarire ancora di più il concetto dobbiamo fare riferimento ad un altro famoso acronimo della programmazioni ad aggetti: GRASP e, in particolare, all&amp;rsquo;idea di &lt;a href=&#34;http://www.martinfowler.com/ieeeSoftware/protectedVariation.pdf&#34;&gt;Protected Variations&lt;/a&gt; (da ora in poi &lt;em&gt;PV&lt;/em&gt;) e di &lt;a href=&#34;http://en.wikipedia.org/wiki/Loose_coupling&#34;&gt;Low coupling&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In un articolo di &lt;a href=&#34;http://en.wikipedia.org/wiki/Craig_Larman&#34;&gt;Craig Larman&lt;/a&gt; si parla di &lt;em&gt;PV&lt;/em&gt; come la necessità di:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nascondere l&amp;rsquo;implementazione (&lt;a href=&#34;http://en.wikipedia.org/wiki/Information_hiding&#34;&gt;information hiding&lt;/a&gt;) e le informazioni legate al design (hidden implementation) agli altri moduli in particolar modo al presentarsi di scelte difficili o cambiamenti molto frequenti.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Questo garantisce, in generale, un livello di flessibilità superiore, si pensi a questo semplice esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** Questa classe è esposta al client **/
+class ClasseEsterna 
+{
+  private var $oggettoInterno;
+
+  public function incrementa()       {
+    [...]           
+    return $this-&amp;gt;oggettoInterno-&amp;gt;complessaFunzioneDiIncremento();
+  }     
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Si può notare come :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;L&amp;rsquo;implementazione della &lt;em&gt;complessa&lt;/em&gt; funzione interna è nascosta al client;&lt;/li&gt;
+&lt;li&gt;All&amp;rsquo;evolvere della &lt;strong&gt;complessaFunzioneDiIncremento&lt;/strong&gt; il nostro client sarà ==protetto== dalle modifiche;&lt;/li&gt;
+&lt;li&gt;Abbiamo realizzato un &lt;em&gt;low coupling&lt;/em&gt; fra la l&amp;rsquo;&lt;strong&gt;oggettoInterno&lt;/strong&gt; e il client che utilizza la &lt;strong&gt;ClasseEsterna&lt;/strong&gt;, promuovendo, di fatto, il ==riuso== di &lt;strong&gt;oggettoInterno&lt;/strong&gt; in altri contesti.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;aperto-alle-estensioni:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Aperto ad essere esteso ed adattato&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Le modalità tramite le quali è possibile modificare il comportamento di un modulo per accogliere le nuove esigenze ed evoluzioni è tramite le estensioni.&lt;/p&gt;
+
+&lt;p&gt;In questo caso il concetto di estensione può essere visto sia in senso stretto (Ereditarietà) sia in senso lato come aggiunta di nuove classi, attributi metodi etc..&lt;/p&gt;
+
+&lt;p&gt;Sembrerebbe che questi due attributi siano in contrapposizione; Il modo classico per estendere il comportamento di un modulo è effettuare modifiche al modulo stesso.
+Un modulo che non può cambiare è solitamente considerato qualcosa che ha un comportamento fisso e che non può evolvere.&lt;/p&gt;
+
+&lt;p&gt;Un esempio è il pattern chain of responsibility che vediamo di seguito.&lt;/p&gt;
+
+&lt;h3 id=&#34;chain-of-responsibility:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chain of responsibility:&lt;/h3&gt;
+
+&lt;p&gt;Questo pattern risolve un’ampia classe di situazioni nelle quali vi sia la necessità di eseguire operazioni &lt;strong&gt;sequenziali&lt;/strong&gt; e &lt;strong&gt;condizionali&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;La chain of responsibility è composta da 2 soggetti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1&lt;/strong&gt; gestore.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;n&lt;/strong&gt; anelli.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;GESTORE:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Nella definizione teorica della catena questo soggetto non esiste!
+Tuttavia, per avvicinarci ad  un implementazione di questo pattern, è necessario utilizzare un vigile della catena che è a conoscenza dello stato globale dell’esecuzione.
+Il gestore ha la responsabilità di chiamare in causa i singoli anelli e di restituire il risultato dell’esecuzione globale.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-PHP&#34;&gt;
+class Gestore
+{
+
+    /**
+     * Il metodo execute chiama in causa tutti gli anelli della catena.
+     * @param Object $oggetto
+     * @return Object
+     **/
+    public function execute(Object $oggetto)
+    {
+
+        // [...]
+
+        foreach ($listaAnelli as $anello) {
+            $anello-&amp;gt;handle($oggetto);
+        }
+
+        // [...]
+
+        return $oggetto;
+
+    }
+
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;ANELLI:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I singoli anelli implementano un interfaccia comune che solitamente espone un solo metodo pubblico esempio &lt;em&gt;handle&lt;/em&gt; .&lt;strong&gt;Non possono&lt;/strong&gt; tener conto del risultato di precedenti anelli, non sono a conoscenza dello stato globale dell’esecuzione e possono, quindi, prendere solo decisioni locali.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-PHP&#34;&gt;interface AnelloInterface {
+
+ /**
+  * Il metodo handle effettua delle operazioni sull&#39;oggetto in esame.
+  * @param Object $oggetto
+  * @return void
+  **/
+ function handle(Object $oggetto);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Come rispettiamo PV ? Ovvero, come proteggiamo il client da future evoluzione del sistema?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Il client utilizzerà sempre &lt;strong&gt;la stessa API&lt;/strong&gt; esposta dal gestore della catena. Le modifiche non interesseranno, infatti, il contratto fra client e gestore.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Il sistema è aperto alle estensioni?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;All&amp;rsquo;evoluzione della catena verranno inseriti nuovi anelli che copriranno ulteriori casi d&amp;rsquo;uso o funzionalità. Sebbene i nuovi anelli dovranno implementare la stessa interfaccia potranno avere una logica interna completamente personalizzabile.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Esiste una forte separazione fra i moduli del sistema?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Il low coupling in questa caso è garantito da 2 aspetti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Il client non conosce gli elementi della catena perché ha una relazione diretta solamente con il gestore.&lt;/li&gt;
+&lt;li&gt;È presente coesione fra l&amp;rsquo;interfaccia dei singoli anelli e il gestore. Purché si rispetti questo contratto è possibile esprimere anche logiche complesse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;conclusione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Conclusione:&lt;/h3&gt;
+
+&lt;p&gt;È necessario &lt;strong&gt;scegliere le proprie battaglie&lt;/strong&gt; quando si parla di design, sia che si tratti di scelte macro-architetturali che piccole scelte sulla singola istanza.&lt;/p&gt;
+
+&lt;p&gt;I principi che non stati esposti non sono applicabili in tutte le situazioni, un bravo sviluppatore cercherà di utilizzare PV e low coupling in &lt;strong&gt;aree strategiche del sistema&lt;/strong&gt;, &lt;strong&gt;spesso soggette a cambiamento&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se non si riesce ad identificare correttamente queste aree non si farà altro che introdurre una maggiore complessità generale che, in certe situazioni può essere deleteria.&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;obbiettivo finale dovrebbe essere sempre minimizzare l&amp;rsquo;impatto sul sistema dei (naturali) cambiamenti; Open/Close PV e low coupling sono alcune delle strategie più efficaci.&lt;/p&gt;
+
+&lt;h4 id=&#34;bibliografia:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Bibliografia&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.utdallas.edu/~chung/SP/applying-uml-and-patterns.pdf&#34;&gt;Applying UML and Patterns – An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd ed.)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Parnas, D.L. - &lt;a href=&#34;https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf&#34;&gt;&amp;ldquo;On the Criteria To Be Used in Decomposing Systems into Modules&amp;rdquo;.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.martinfowler.com/ieeeSoftware/protectedVariation.pdf&#34;&gt;&amp;ldquo;Protected Variation: The Importance of Being Closed&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SIGS Publications - &lt;a href=&#34;http://www.objectmentor.com/resources/articles/ocp.pdf&#34;&gt;The Open-Closed Principle: C++ Report&lt;/a&gt;
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Information_hiding&#34;&gt;Information Hiding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gestione di ACL su insiemi di records</title>
+      <link>/blog/ita/gestione-di-acl-su-insiemi-di-records/</link>
+      <pubDate>Wed, 01 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/gestione-di-acl-su-insiemi-di-records/</guid>
+      <description>&lt;p&gt;Le &lt;strong&gt;ACL&lt;/strong&gt; (&lt;em&gt;Access Control List&lt;/em&gt;) sono un strumento molto potente per poter definire l&amp;rsquo;accesso a risorse con una granularità molto fine. Nel quotidiano abbiamo già modo di utilizzarle per definire i permessi per accedere a file su Unix o quali pacchetti far passare attraverso un firewall o ancora l&amp;rsquo;accesso a database.&lt;/p&gt;
+
+&lt;p&gt;In &lt;strong&gt;Symfony&lt;/strong&gt; le &lt;em&gt;ACL&lt;/em&gt; sono disponibili &lt;em&gt;out-of-the-box&lt;/em&gt; nel caso di installazione completa e permettono la definizione delle regole di accesso a risorse tramite &lt;strong&gt;ruoli&lt;/strong&gt; e &lt;strong&gt;maschere&lt;/strong&gt;. Mentre i &lt;strong&gt;ruoli&lt;/strong&gt; rappresentano dei sottoinsiemi degli utenti di una data applicazione (&lt;em&gt;amministratori&lt;/em&gt;, &lt;em&gt;backoffice&lt;/em&gt;, &lt;em&gt;business analyst&lt;/em&gt;) e possono essere visti come delle etichette da assegnare ad un utente, le &lt;strong&gt;maschere&lt;/strong&gt; sono la rappresentazione numerica delle azioni che possono essere effettuate dagli utenti aventi determinati ruoli. Per tornare all&amp;rsquo;esempio del filesystem Unix, i ruoli possono essere &lt;em&gt;Owner&lt;/em&gt;, &lt;em&gt;Group&lt;/em&gt; o &lt;em&gt;Others&lt;/em&gt; mentre le maschere sono ad esempio 7 (lettura, scrittura e esecuzione) indicato per ciascun ruolo.&lt;/p&gt;
+
+&lt;p&gt;Avendo la possibilità di poter definire più di soli tre ruoli e più di sole tre azioni chiaramente le opportunità diventano molteplici dando quindi estrema flessibilità al sistema.&lt;/p&gt;
+
+&lt;p&gt;Di base &lt;strong&gt;Symfony&lt;/strong&gt; persiste le informazioni definite tramite le &lt;em&gt;ACL&lt;/em&gt; (chiamate &lt;strong&gt;ACE&lt;/strong&gt; ovvero &lt;em&gt;Access Control Entry&lt;/em&gt;) in tabelle specifiche tramite cui verificare se un utente può o meno effettuare una operazione: la verifica è immediata tramite le API esposte da &lt;strong&gt;Symfony&lt;/strong&gt; fintanto che si tratta di operare su una singola risorsa ma la soluzione non scala certamente nel caso si debbano filtrare le risorse accessibili da un utente. Per una più approfondita trattazione su come utilizzare le API rese disponibili da &lt;strong&gt;Symfony&lt;/strong&gt;, rimandiamo alla &lt;a href=&#34;http://symfony.com/it/doc/current/cookbook/security/acl.html&#34;&gt;relativa pagina della documentazione&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Per ovviare a questo problema all&amp;rsquo;interno di un progetto di &lt;strong&gt;Facile.it&lt;/strong&gt; si è pensato di adottare una soluzione che faccia uso di &lt;a href=&#34;https://www.elastic.co/products/elasticsearch&#34;&gt;&lt;strong&gt;ElasticSearch&lt;/strong&gt;&lt;/a&gt; per poter restituire ad un utente il sottoinsieme dei record a cui può accedere quando scorre una lista di record. &lt;strong&gt;ElasticSearch&lt;/strong&gt; era già stato scelto per poter migliorare la ricerca all&amp;rsquo;interno dei record delle differenti entità archiviate sul database relazionale, quindi si è trattato di operare due scelte che permettessero una gestione ottimale:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dividere ciascuna entità persitita come documento su &lt;strong&gt;ElasticSearch&lt;/strong&gt; in due parti, &lt;em&gt;metadata&lt;/em&gt; e &lt;em&gt;data&lt;/em&gt;;&lt;/li&gt;
+&lt;li&gt;realizzare delle &lt;strong&gt;annotation custom&lt;/strong&gt; per poter esprimere le &lt;strong&gt;ACE&lt;/strong&gt; per ciascuna entità e campo delle entità.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dividere il documento in due parti rappresenta il punto di partenza per ottenere il risultato cercato: ogni volta che &lt;strong&gt;FOSElasticaBundle&lt;/strong&gt; procede con la copia di una entità su &lt;strong&gt;ElasticSearch&lt;/strong&gt;, viene richiamata una callback (definibile con la configurazione del bundle) che si occupa di recuperare tutte le &lt;strong&gt;ACE&lt;/strong&gt; dell&amp;rsquo;entità in questione e includerle nel campo &lt;em&gt;metadata&lt;/em&gt; del documento.
+Successivamente, quando si vorrà effettuare una query sull&amp;rsquo;insieme dei record persistiti su &lt;strong&gt;ElasticSearch&lt;/strong&gt;, si dovrà solamente replicare le logiche (generiche) per l&amp;rsquo;applicazione delle &lt;strong&gt;ACL&lt;/strong&gt; per così ottenere i soli risultati che l&amp;rsquo;utente può accedere. In questo modo vengono evitate complesse query su un database relazionale (che prevedono l&amp;rsquo;utilizzo di diverse join su più tabelle) come invece sarebbe richiesto da un approccio basato sul solo utilizzo di &lt;strong&gt;MySQL&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tramite le &lt;strong&gt;annotation&lt;/strong&gt; è invece possibile definire le varie &lt;strong&gt;ACE&lt;/strong&gt; per ciascuna classe o attributo della classe così da poter configurare l&amp;rsquo;accesso alle entità direttamente dai file delle entità stesse, fornendo uno strumento familiare per chi normalmente non utilizza le &lt;strong&gt;ACL&lt;/strong&gt;. Per creare una annotation custom rimandiamo anche in questo caso all&amp;rsquo;articolo presente nella &lt;a href=&#34;http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html&#34;&gt;documentazione di &lt;strong&gt;Doctrine&lt;/strong&gt;&lt;/a&gt; ricordando, però, che è importante gestire una propria &lt;strong&gt;cache delle annotation&lt;/strong&gt; perchè questa non è fornita di base da &lt;strong&gt;Doctrine&lt;/strong&gt;. Un comando apposito può facilitare la gestione dell&amp;rsquo;aggiornamento delle &lt;strong&gt;ACE&lt;/strong&gt; di una entità ogni qualvolta venga effettuato un &lt;em&gt;deploy&lt;/em&gt; dell&amp;rsquo;applicazione, integrando così le &lt;em&gt;annotation&lt;/em&gt; create con le &lt;em&gt;API&lt;/em&gt; di &lt;strong&gt;Symfony&lt;/strong&gt; per le &lt;strong&gt;ACL&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Il file che definisce una entità di &lt;strong&gt;Doctrine&lt;/strong&gt; potrà dunque presentarsi in questo modo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+namespace Facile\Ws\Bundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Facile\Ws\BunnyBundle\Annotation\EntityAce as ACE;
+
+/**
+ * @ORM\Table(name=&amp;quot;user&amp;quot;)
+ * @ORM\Entity
+ * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_ADMIN&amp;quot;, mask=&amp;quot;MASK_MASTER&amp;quot;)
+ * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+ */
+class User
+{
+    /**
+     * @ORM\Column(name=&amp;quot;id&amp;quot;, type=&amp;quot;smallint&amp;quot;, nullable=false, options={&amp;quot;unsigned&amp;quot;=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy=&amp;quot;AUTO&amp;quot;)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name=&amp;quot;timestamp&amp;quot;, type=&amp;quot;datetime&amp;quot;, nullable=false)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $timestamp;
+
+    /**
+     * @ORM\Column(type=&amp;quot;string&amp;quot;, length=25, unique=true)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_ADMIN&amp;quot;, mask=&amp;quot;MASK_MASTER&amp;quot;)
+     * @ACE(&amp;quot;ROLE&amp;quot;, name=&amp;quot;ROLE_USER&amp;quot;, mask=&amp;quot;MASK_VIEW&amp;quot;)
+     */
+    protected $username;
+
+    ...
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PHP coding standard: PSR-7  HTTP message interfaces</title>
+      <link>/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</link>
+      <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</guid>
+      <description>
+
+&lt;p&gt;Le specifiche PSR-7 descrivono una &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md&#34;&gt;proposta di standardizzazione&lt;/a&gt; delle &lt;strong&gt;interfacce per i messaggi HTTP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Come sappiamo, il protocollo HTTP, attraverso le specifiche redatte dal W3C, definisce una serie di regole di comunicazione che vengono implementate dalle applicazioni client e server che lo adottano.&lt;/p&gt;
+
+&lt;p&gt;A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&amp;rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.&lt;/p&gt;
+
+&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
+
+&lt;p&gt;I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.&lt;/p&gt;
+
+&lt;p&gt;Questo vuol dire che &lt;strong&gt;tutto il codice&lt;/strong&gt; che implementa le logiche applicative, anche se ben definito e isolato, &lt;strong&gt;dovrà essere adattato per ciascun framework&lt;/strong&gt;, a discapito di un&amp;rsquo;evidente similarità operativa, come per esempio:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;il recupero delle informazioni dalle variabili del server per costruire la richiesta&lt;/li&gt;
+&lt;li&gt;il parsing degli header e del body della richiesta&lt;/li&gt;
+&lt;li&gt;l&amp;rsquo;aggiunta di uno o più header alla risposta&lt;/li&gt;
+&lt;li&gt;l&amp;rsquo;impostazione dello status code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Immaginiamo di voler scrivere un applicativo che abbia questi requisiti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;aggiunge un header personalizzato alla risposta, &lt;code&gt;X-GREETINGS&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;l&amp;rsquo;header deve contenere un messaggio personalizzato in base all&amp;rsquo;orario della richiesta&lt;/li&gt;
+&lt;li&gt;l&amp;rsquo;header deve essere aggiunto solo in base agli headers inviati ed il verbo HTTP (ad es. solo per le richieste GET)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Decidiamo di scrivere le linee di codice necessarie con &lt;strong&gt;Symfony2&lt;/strong&gt; e &lt;strong&gt;Zend Framework 2&lt;/strong&gt;, per poi muoverci verso &lt;strong&gt;una sola soluzione ipoteticamente riutilizzabile&lt;/strong&gt; in ciascuno dei due contesti.&lt;/p&gt;
+
+&lt;p&gt;Diamo per scontato di avere a disposizione un servizio che dato un orario determini con che formula salutarci:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+namespace Acme\Utils;
+
+class GreetingSentence
+{
+  public static function compose(\DateTime $time, $name)
+  {  		  
+            $msg = &amp;quot;Ciao $name&amp;quot;;  
+			$hour = (int)$time-&amp;gt;format(&#39;h&#39;);				
+
+			if ($hour &amp;gt;= 20 &amp;amp;&amp;amp; $hour &amp;lt; 6) {
+				return $msg + &#39; buonanotte!&#39;;
+			} else if ($hour &amp;gt;= 6 &amp;amp;&amp;amp; $hour &amp;lt; 13) {
+				return $msg + &#39; buongiorno!&#39;;
+			} else if ($hour &amp;gt;= 13 &amp;amp;&amp;amp; $hour &amp;lt; 18) {
+				return $msg + &#39; buon pomeriggio!&#39;;	
+			} else if ($hour &amp;gt;= 18 &amp;amp;&amp;amp; $hour &amp;lt; 20) {
+				return $msg + &#39; buonasera!&#39;;
+			} else {
+            	return $msg + &#39; c\&#39;è vita su Marte!&#39;;
+            }						
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;symfony-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Symfony 2&lt;/h6&gt;
+
+&lt;p&gt;Ecco come implementeremmo la funzionalità richiesta in Symfony2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php 
+
+namespace Acme\HelloYouBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Acme\Utils\GreetingSentence;
+
+class MainController 
+{	
+	/**
+	 * @param string $name
+	 * @param Request $request
+     */
+	public function greetAction(Request $request)
+	{
+        $response = new Response();
+
+        if ($request-&amp;gt;isMethod(&#39;GET&#39;)) {
+            $name = $request
+                -&amp;gt;server
+                -&amp;gt;get(&#39;HTTP_USER_AGENT&#39;&#39;);
+
+            $requestTimeStamp = $request
+                -&amp;gt;server
+                -&amp;gt;get(&#39;REQUEST_TIME&#39;);
+
+            $requestTime = new \DateTime();
+            $requestTime-&amp;gt;setTimestamp($requestTimeStamp);
+
+            $msg = GreetingSentence::compose($requestTime, $name);		
+			$response-&amp;gt;headers-&amp;gt;set(&#39;X-GREETINGS&#39;, $msg);
+        }
+
+        return $response;
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;zend-framework-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Zend Framework 2&lt;/h6&gt;
+
+&lt;p&gt;Questa è invece l&amp;rsquo;implementazione in Zend Framework 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+namespace Acme\HelloYouModule\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Acme\Utils\GreetingSentence;
+
+class MainController extends AbstractActionController
+{
+	$response = $this-&amp;gt;getResponse();
+
+	public function greetAction()
+	{
+    	if ($this-&amp;gt;getRequest()-&amp;gt;getMethod() == &#39;GET&#39;) {
+          $name = $this
+              -&amp;gt;getRequest()
+              -&amp;gt;getServer(&#39;HTTP_USER_AGENT&#39;);
+
+          $requestTimestamp = $this
+              -&amp;gt;getRequest()
+              -&amp;gt;getServer(&#39;REQUEST_TIME&#39;);
+
+          $requestTime = new \DateTime();
+          $requestTime-&amp;gt;setTimestamp($requestTimeStamp);
+
+          $msg = GreetingSentence::compose($requestTime, $name);			
+          $response-&amp;gt;setHeader(&#39;X-GREETINGS&#39;, $msg);
+        }
+	}
+    
+    $response-&amp;gt;send();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora &lt;strong&gt;come uno standard come quello proposto dal PSR-7 possa aiutarci&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
+
+&lt;p&gt;Potremmo voler implemenare la nostra soluzione come un &lt;strong&gt;middleware&lt;/strong&gt;, ovvero un componente che &lt;strong&gt;esiste durante il ciclo di vita di una comunicazione HTTP&lt;/strong&gt;, cioè dall&amp;rsquo;accettazione della richiesta fino all&amp;rsquo;evasione della risposta.&lt;/p&gt;
+
+&lt;p&gt;Negli esempi precedenti abbiamo aggiunto il codice di gestione all&amp;rsquo;interno dei controller, e questa implementazione carica l&amp;rsquo;Action della responsabilità di esaminare la richiesta e comporre la risposta; questa operazione dovrà essere &lt;strong&gt;ripetuta in ogni controller&lt;/strong&gt; della nostra applicazione.&lt;/p&gt;
+
+&lt;p&gt;Per fortuna i maggiori framework espongono astrazioni molto complete del ciclo di vita di una richiesta HTTP, che permettono di implementare il nostro middleware.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;in Symfony2 l&amp;rsquo;interfaccia &lt;a href=&#34;https://github.com/symfony/HttpKernel/blob/master/HttpKernelInterface.php&#34;&gt;HttpKernelInterface&lt;/a&gt; definisce un componenente capace di calcolare per una data una richiesta (Request) una determinata risposta (Response).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;in Zend Framework l&amp;rsquo;interfaccia che definisce un componente capace di associare una richiesta ad una risposta si chiama &lt;a href=&#34;https://github.com/zendframework/zf2/blob/master/library/Zend/Stdlib/DispatchableInterface.php&#34;&gt;DispatchableInterface&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tuttavia se volessimo utilizzare lo stesso codice in Zend Framework 2 e Symfony2, dovremmo wrappare il codice necessario attorno a entrambe le interfacce oppure importare i componenti dell&amp;rsquo;uno nell&amp;rsquo;altro.&lt;/p&gt;
+
+&lt;p&gt;A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal &lt;a href=&#34;http://www.php-fig.org/&#34;&gt;&lt;strong&gt;FIG&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
+
+&lt;p&gt;La proposta dello standard PSR-7 si riassume nella descrizione di una serie di &lt;a href=&#34;https://github.com/php-fig/http-message/tree/master/src&#34;&gt;interfacce&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Attualmente Matthew Weier O&amp;rsquo;Phinney, membro attivo del FIG e main contributor di Zend Framework 2 sta realizzando un&amp;rsquo;&lt;a href=&#34;https://github.com/phly/http/tree/master/src&#34;&gt;implementazione&lt;/a&gt; completa di queste interfacce.&lt;/p&gt;
+
+&lt;p&gt;A questo punto possiamo scrivere il codice di un middleware, aderendo alle specifiche PSR-7, come una semplice classe capace di interpretare una richiesta e costruire una risposta secondo le nostre necessità:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+use phly\http\ServerRequestFactory;
+use phly\http\ServerRequest;
+use phly\http\Response;
+
+class AcmeLifeCycle
+{
+    /**
+    * @param ServerRequest|null $request
+    * @param Response|null $response
+    *
+    * @return Response
+    */
+    public function doSomething(ServerRequest $request = null, Response $response = null)
+    {
+        if (is_null($request)) {
+            /** @var ServerRequest $request */
+            $request = ServerRequestFactory::fromGlobals();
+        }
+
+        /** @var Response $response */
+        if (is_null($request)) {
+            /** @var Response $response */
+            $response = new Response();
+        }
+
+        if ($request-&amp;gt;getMethod() === &#39;GET&#39;) {
+            $serverParams = $request-&amp;gt;getServerParams();
+            $name = $serverParams[&#39;HTTP_USER_AGENT&#39;];
+
+            $requestTimeStamp = $serverParams[&#39;REQUEST_TIME&#39;];
+
+            $requestTime = new \DateTimeImmutable();
+            $requestTime
+                -&amp;gt;setTimestamp($requestTimeStamp);
+
+            $msg = GreetingSentence::compose($requestTime, $name);
+
+            //Questo metodo è un costruttore di copia
+            $response = $response-&amp;gt;withHeader(&#39;X-GREETINGS&#39;, $msg);
+        }
+
+        return $response;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Da notare che sia la classe &lt;code&gt;Response&lt;/code&gt; che &lt;code&gt;ServerRequest&lt;/code&gt; implementano lo stesso trait &lt;code&gt;Message&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;La classe &lt;code&gt;Message&lt;/code&gt; è stata volutamente concepita affinchè sia &lt;strong&gt;immutabile&lt;/strong&gt; ed i vari metodi &lt;code&gt;-&amp;gt;withX()&lt;/code&gt; restituiranno solo copie modificate dell&amp;rsquo;oggetto inizialmente istanziato.&lt;/p&gt;
+
+&lt;p&gt;Ovviamente questo middleware adesso come adesso è tutt&amp;rsquo;altro che utilizzabile all&amp;rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che &lt;strong&gt;in un futuro&lt;/strong&gt; non troppo lontano le varie implementazioni &lt;strong&gt;convergeranno&lt;/strong&gt; su qualcosa di simile a quella appena vista e proposta da O&amp;rsquo;Phinney.&lt;/p&gt;
+
+&lt;h4 id=&#34;conclusioni:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Conclusioni&lt;/h4&gt;
+
+&lt;p&gt;Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&amp;rsquo;ambiente contenenti tutti i valori necessari (&lt;code&gt;$_SERVER&lt;/code&gt;, &lt;code&gt;$_GET&lt;/code&gt;, &lt;code&gt;$_POST&lt;/code&gt;, &lt;code&gt;$_FILES&lt;/code&gt;, &amp;hellip;).&lt;/p&gt;
+
+&lt;p&gt;Invece, grazie a PSR-7, potremmo &lt;strong&gt;standardizzare la rappresentazione degli oggetti coinvolti nel ciclo richiesta\riposta&lt;/strong&gt; (cioè i messaggi HTTP), e poter finalmente sviluppare componenti &lt;strong&gt;middleware indipendenti&lt;/strong&gt; dal framework utilizzato, il cui unico presupposto esistenziale è quello di &lt;strong&gt;gestire messaggi HTTP tramite il linguaggio PHP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sicuramente tenere &lt;a href=&#34;https://github.com/php-fig/fig-standards&#34;&gt;a portata di github&lt;/a&gt; gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui &lt;strong&gt;futuri sviluppi&lt;/strong&gt; dei più blasonati framework e componenti PHP, tenendo conto, &lt;strong&gt;come già accaduto per le precedenti proposte&lt;/strong&gt; &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&#34;&gt;PSR-0&lt;/a&gt; e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&#34;&gt;PSR-4&lt;/a&gt; (autoloading) e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&#34;&gt;PSR-3&lt;/a&gt; (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.&lt;/p&gt;
+
+&lt;h4 id=&#34;altre-risorse-consultabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Blog di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&#34;&gt;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Specifiche PSR-7: &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md&#34;&gt;https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Interfacce proposte dalla PSR-7: &lt;a href=&#34;https://github.com/php-fig/http-message&#34;&gt;https://github.com/php-fig/http-message&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Implementazione di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://github.com/phly/http/tree/master/src&#34;&gt;https://github.com/phly/http/tree/master/src&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Michael Dowling spiega la streaming interface: &lt;a href=&#34;http://mtdowling.com/blog/2014/07/03/a-case-for-higher-level-php-streams/&#34;&gt;http://mtdowling.com/blog/2014/07/03/a-case-for-higher-level-php-streams/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
