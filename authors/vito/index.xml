@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vito on Facile Engineering</title>
-    <link>engineering.facile.it/authors/vito/</link>
+    <link>/authors/vito/</link>
     <description>Recent content in Vito on Facile Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 18 Jan 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="engineering.facile.it/authors/vito/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/authors/vito/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>GraphQL: an introduction</title>
-      <link>/engineering.facile.it/blog/eng/graphql-an-introduction/</link>
+      <link>/blog/eng/graphql-an-introduction/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
+      <guid>/blog/eng/graphql-an-introduction/</guid>
       <description>
 
 &lt;h2 id=&#34;the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
@@ -401,10 +401,10 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
     
     <item>
       <title>GraphQL: una introduzione</title>
-      <link>/engineering.facile.it/blog/ita/graphql-una-introduzione/</link>
+      <link>/blog/ita/graphql-una-introduzione/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/engineering.facile.it/blog/ita/graphql-una-introduzione/</guid>
+      <guid>/blog/ita/graphql-una-introduzione/</guid>
       <description>
 
 &lt;h2 id=&#34;the-lesson-we-learned-with-rest:44c8a66936e2da2f949e21119621a617&#34;&gt;The lesson we learned with REST&lt;/h2&gt;

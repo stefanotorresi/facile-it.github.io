@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/engineering.facile.it/</loc>
+    <loc>/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/graphql-an-introduction/</loc>
+    <loc>/blog/eng/graphql-an-introduction/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/graphql-una-introduzione/</loc>
+    <loc>/blog/ita/graphql-una-introduzione/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/write-filesystem-fuse/</loc>
+    <loc>/blog/eng/write-filesystem-fuse/</loc>
     <lastmod>2016-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</loc>
+    <loc>/blog/ita/puli-universal-packages-for-php/</loc>
     <lastmod>2015-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/paraunit/</loc>
+    <loc>/blog/ita/paraunit/</loc>
     <lastmod>2015-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-day-2015/</loc>
+    <loc>/blog/ita/php-day-2015/</loc>
     <lastmod>2015-05-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/tracciamento-di-eventi-lato-server/</loc>
+    <loc>/blog/ita/tracciamento-di-eventi-lato-server/</loc>
     <lastmod>2015-04-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</loc>
+    <loc>/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</loc>
     <lastmod>2015-04-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/gestione-di-acl-su-insiemi-di-records/</loc>
+    <loc>/blog/ita/gestione-di-acl-su-insiemi-di-records/</loc>
     <lastmod>2015-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</loc>
+    <loc>/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</loc>
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
   </url>
   
