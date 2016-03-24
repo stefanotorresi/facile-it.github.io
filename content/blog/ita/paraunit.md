@@ -6,7 +6,7 @@ draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
-categories: [Italiano, "Software Testing", "PHP", "database", "Open Source", "symfony", "Conferenze", "Doctrine", "MySQL"]
+categories: [Italiano, "Software Testing", "PHP", "database", "Open Source", "symfony", "Conferences", "Doctrine", "MySQL"]
 title: "Paraunit: test paralleli, Doctrine e le fixture"
 
 languageCode: "it-IT"

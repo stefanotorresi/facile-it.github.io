@@ -4,7 +4,7 @@ comments: true
 date: "2015-05-19"
 draft: false
 share: true
-categories: [Italiano, PHP, PHPDay, Conferenze]
+categories: [Italiano, PHP, PHPDay, Conferences]
 title: "Facile.it devs @ PHP Day 2015"
 
 languageCode: "it-IT"
@@ -54,7 +54,7 @@ Ricordatevi di aggiungere qualche altra parola (oltre a prophecy) chiave nelle v
 
 <iframe src="https://player.vimeo.com/video/134728683" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-Si è parlato tanto nelle conferenze dell'ultimo anno di **Docker e i container** come strumento di sviluppo, ma questo talk si è rivelato interessante, spiegando come fosse possibile utilizzare i container **come strumento di deploy** e di creazione di immagini, in modo tale da contenere anche il sorgente del proprio progetto; abbiamo scoperto il tool [Source to Image](http://github.com/openshift/source-to-image), che permette di creare queste immagini in maniera personalizzata e automatizzata partendo dal proprio codice (e dal `composer.json`), e il progetto [Openshift](http://www.openshift.com/), portato avanti da RedHat.
+Si è parlato tanto nelle Conferences dell'ultimo anno di **Docker e i container** come strumento di sviluppo, ma questo talk si è rivelato interessante, spiegando come fosse possibile utilizzare i container **come strumento di deploy** e di creazione di immagini, in modo tale da contenere anche il sorgente del proprio progetto; abbiamo scoperto il tool [Source to Image](http://github.com/openshift/source-to-image), che permette di creare queste immagini in maniera personalizzata e automatizzata partendo dal proprio codice (e dal `composer.json`), e il progetto [Openshift](http://www.openshift.com/), portato avanti da RedHat.
  
 <a name="varnish"></a>
 #### Going crazy with Symfony2 and Varnish
