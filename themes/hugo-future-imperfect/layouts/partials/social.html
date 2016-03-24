@@ -2,6 +2,24 @@
 <li><a href="//github.com/{{.}}" target="_blank" title="GitHub" class="fa fa-github"></a></li>
 {{ end }}
 
+{{ with .Site.Social.twitter }}
+<li><a href="//twitter.com/{{.}}" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+{{ end }}
+
+{{ with .Site.Social.linkedin }}
+<li><a href="//linkedin.com/in/{{.}}" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+{{ end }}
+
+{{ with .Site.Social.facebook }}
+<li><a href="//facebook.com/{{.}}" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+{{ end }}
+
+{{ with .Site.Social.youtube }}
+<li><a href="//youtube.com/{{.}}" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+{{ end }}
+
+<!--UNUSED-->
+
 {{ with .Site.Social.bitbucket }}
 <li><a href="//bitbucket.com/{{.}}" target="_blank" title="Bitbucket" class="fa fa-bitbucket"></a></li>
 {{ end }}
@@ -38,10 +56,6 @@
 <li><a href="//instagram.com/{{.}}" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
 {{ end }}
 
-{{ with .Site.Social.youtube }}
-<li><a href="//youtube.com/{{.}}" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
-{{ end }}
-
 {{ with .Site.Social.vimeo }}
 <li><a href="//vimeo.com/{{.}}" target="_blank" title="Vimeo" class="fa fa-vimeo"></a></li>
 {{ end }}
@@ -66,10 +80,6 @@
 <li><a href="//xing.com/profile/{{.}}" target="_blank" title="Xing" class="fa fa-xing"></a></li>
 {{ end }}
 
-{{ with .Site.Social.linkedin }}
-<li><a href="//linkedin.com/in/{{.}}" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
-{{ end }}
-
 {{ with .Site.Social.slideshare }}
 <li><a href="//slideshare.com/{{.}}" target="_blank" title="SlideShare" class="fa fa-slideshare"></a></li>
 {{ end }}
@@ -88,14 +98,6 @@
 
 {{ with .Site.Social.googleplus }}
 <li><a href="//plus.google.com/+{{.}}" target="_blank" title="Google+" class="fa fa-google-plus"></a></li>
-{{ end }}
-
-{{ with .Site.Social.facebook }}
-<li><a href="//facebook.com/{{.}}" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
-{{ end }}
-
-{{ with .Site.Social.twitter }}
-<li><a href="//twitter.com/{{.}}" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
 {{ end }}
 
 {{ with .Site.Social.email }}

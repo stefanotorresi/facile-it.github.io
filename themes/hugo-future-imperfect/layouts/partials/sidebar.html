@@ -92,7 +92,7 @@
         <section id="categories">
             <ul class="posts">
                 <header>
-                    <h3><a href="/categories/">Categories</a></h3>
+                    <h3><a href="/categories/">Top categories</a></h3>
                 </header>
 
                 {{ if .Site.Params.categoriesByCount }}
@@ -113,6 +113,12 @@
                     </li>
                     {{ end }}
                 {{ end }}
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
             </ul>
         </section>
     {{ end }}
@@ -137,7 +143,12 @@
                 </ul>
             {{ end }}
 
-            <p class="copyright">&copy; {{ .Site.Title }}. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+            <p class="copyright">
+                &copy; {{ .Site.Title }}.
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>
+                and modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
         </section>
 
 </section>

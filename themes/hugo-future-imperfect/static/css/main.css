@@ -2207,6 +2207,10 @@
 					border: 0;
 				}
 
+				#sidebar ul.icons li > a {
+					font-size: 1.8em;
+				}
+
 					ul.icons li > *:before {
 						-moz-osx-font-smoothing: grayscale;
 						-webkit-font-smoothing: antialiased;
