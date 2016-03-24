@@ -10,6 +10,10 @@
 <li><a href="//linkedin.com/in/{{.}}" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
 {{ end }}
 
+{{ with .Site.Social.linkedincompany }}
+<li><a href="//linkedin.com/company/{{.}}" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+{{ end }}
+
 {{ with .Site.Social.facebook }}
 <li><a href="//facebook.com/{{.}}" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
 {{ end }}
