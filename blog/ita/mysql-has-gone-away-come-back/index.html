@@ -1,0 +1,956 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>MySQL has gone away? Come back!</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="MySQL has gone away? Come back!"/>
+<meta name="twitter:description" content="A ben più di uno sviluppatore sarà capitato di incappare nel comune errore MySQL server has gone away!, magari seguito da un eccezione lanciata da una delle classi PDO, come ad esempio PDOStatement::execute(): Error reading result set&rsquo;s header. Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera persistente (per fortuna!) ed a causa di una esecuzione troppo lunga, la connessione col server MySQL va in timeout."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="MySQL has gone away? Come back!" />
+<meta property="og:description" content="A ben più di uno sviluppatore sarà capitato di incappare nel comune errore MySQL server has gone away!, magari seguito da un eccezione lanciata da una delle classi PDO, come ad esempio PDOStatement::execute(): Error reading result set&rsquo;s header. Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera persistente (per fortuna!) ed a causa di una esecuzione troppo lunga, la connessione col server MySQL va in timeout." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/mysql-has-gone-away-come-back/" />
+
+
+<meta property="og:updated_time" content="2015-03-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="MySQL has gone away? Come back!">
+<meta itemprop="description" content="A ben più di uno sviluppatore sarà capitato di incappare nel comune errore MySQL server has gone away!, magari seguito da un eccezione lanciata da una delle classi PDO, come ad esempio PDOStatement::execute(): Error reading result set&rsquo;s header. Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera persistente (per fortuna!) ed a causa di una esecuzione troppo lunga, la connessione col server MySQL va in timeout.">
+
+
+<meta itemprop="dateModified" content="2015-03-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="518">
+
+
+
+<meta itemprop="keywords" content="francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,Composer,Confereces,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,MySQL,NewRelic,Node.js,Open Source,Open source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package Manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Software Testing,Symfony,c,cmake,database,filesystem,fuse,symfony," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/ita/puli-universal-packages-for-php/"><p>Puli: Universal Packages for PHP</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&text=MySQL%20has%20gone%20away%3f%20Come%20back%21&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/mysql-has-gone-away-come-back/">MySQL has gone away? Come back!</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-09'>
+            9 March 2015
+        </time>
+
+        
+            <a href="/authors/luca" class="author">
+            
+                <span class="name">Luca Boeri</span>
+                <img src="/images/avatar-luca.jpg" alt="Luca Boeri avatar" />
+            
+            </a>
+        
+
+        
+            <p>3 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>A ben più di uno sviluppatore sarà capitato di incappare nel comune errore <a href="http://dev.mysql.com/doc/refman/5.5/en/gone-away.html"><em>MySQL server has gone away!</em></a>, magari seguito da un eccezione lanciata da una delle <a href="http://php.net/manual/en/book.pdo.php"><strong>classi PDO</strong></a>, come ad esempio <em>PDOStatement::execute(): Error reading result set&rsquo;s header</em>.</p>
+
+<p>Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera <strong>persistente</strong> (per fortuna!) ed a causa di una esecuzione <strong>troppo lunga</strong>, la connessione col server MySQL va in <strong>timeout</strong>. Lunghi tasks in batch, chiamate a ws non particolarmente rapidi, carichi elevati del server, sono alcuni degli scenari possibili.</p>
+
+<p>Qualora l&rsquo;errore sia noto e prevedibile (ad esempio avvenga alla stessa linea di codice ad ogni esecuzione) è possibile chiudere la connessione in maniera esplicita ed evitarlo, ma questa logica oltre che risultare <strong>scomoda</strong> e <strong>ripetitiva</strong> non è sempre applicabile e richiede una esplicita precauzione dello sviluppatore.</p>
+
+<h3 id="ma-quanto-è-grave-il-problema:0b2586f94b018b2b7cc561b28a014b73">Ma quanto è grave il problema?</h3>
+
+<p>Come illustrato, un errore di tipo <em>MySQL server has gone away</em> <strong>non</strong> ha alterato le informazioni presenti nel database, <strong>non</strong> implica un errore logico o di integrità e <strong>non</strong> ci impedisce di tentare nuovamente la query da cui è scaturito. Perciò si potrebbe dire che, da un punto di vista applicativo l&rsquo;errore, se correttamente <strong>intercettato e gestito</strong>, non sia per nulla grave.</p>
+
+<h3 id="allora-potrei-ignorarlo:0b2586f94b018b2b7cc561b28a014b73">Allora potrei ignorarlo?</h3>
+
+<p>Ignorare deliberatamente degli errori non può essere considerata una strategia vincente, perciò per prima cosa bisogna assicurarsi di aver fatto tutto quanto suggerito nella <a href="http://dev.mysql.com/doc/refman/5.5/en/gone-away.html">documentazione</a> per <strong>rimuovere le cause del problema</strong>.</p>
+
+<h3 id="e-se-non-dovesse-bastare:0b2586f94b018b2b7cc561b28a014b73">E se non dovesse bastare?</h3>
+
+<p>Ritentare la query dovrebbe essere sempre possibile nonchè piuttosto semplice, a patto di saper riconoscere con precisione le eccezioni del <strong>tipo corretto</strong>.</p>
+
+<p>A tal proposito è importante ricordare come la classe <a href="http://php.net/manual/en/class.pdoexception.php"><em>PDOException</em></a> non fornisca attraverso il metodo pubblico <em>getCode()</em> il <strong>codice di errore del DB vendor</strong> (es. <a href="http://dev.mysql.com/doc/refman/5.5/en/error-messages-client.html#error_cr_server_gone_error">2006</a> per MySQL), ma lo inserisca piuttosto nel <em>message</em>.</p>
+
+<pre><code>/** @var $e PDOException */
+echo $e-&gt;getMessage(); // 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away'`
+</code></pre>
+
+<h3 id="come-funziona:0b2586f94b018b2b7cc561b28a014b73">Come funziona?</h3>
+
+<p>Chiariamoci le idee con del codice:</p>
+
+<pre><code>$sql = 'SELECT count(*) FROM `TABLE`';
+$retry = true;
+
+while ($retry) {
+
+    try {
+
+        $nb = $pdo-&gt;query($sql)-&gt;fetchColumn();
+
+    } catch (PDOException $e) {
+		
+        $retry = false;
+        
+        if($this-&gt;isMySQLHasGoneAwayException($e)) {
+        
+        	$this-&gt;reconectDB();
+            $retry = true;
+        }
+    }        
+}
+# CODICE DEMO, NON FUNZIONANTE!
+</code></pre>
+
+<p>Nell&rsquo;esempio  sopra riportato, una volta accertata la natura dell&rsquo;eccezione si procede <strong>riconnettendosi</strong> al database (una <strong>nuova</strong> connessione!) e <strong>ripetendo</strong> la query, magari con un limite di tentativi per evitare ricursioni infinite!</p>
+
+<p>Trattandosi di una <strong>nuova connessione</strong>, non è possibile utilizzare questa procedura nel caso l&rsquo;errore avvenga durante una <a href="http://en.wikipedia.org/wiki/Database_transaction"><strong>transazione</strong></a> MySQL. Tutte le query inviate all&rsquo;interno della connessione sarebbero ovviamente <strong>perdute</strong> e non sarebbe possibile recuperarle!</p>
+
+<h3 id="ma-devo-farlo-ogni-volta-a-mano:0b2586f94b018b2b7cc561b28a014b73">Ma devo farlo ogni volta a mano?</h3>
+
+<p><strong>NO!</strong></p>
+
+<p>In <a href="http://www.facile.it/"><strong>Facile.it</strong></a>, utilizzando largamente l&rsquo;ORM <em>Doctrine</em>, abbiamo pensato allo sviluppo di una piccola estensione, <a href="https://github.com/facile-it/doctrine-mysql-come-back"><strong>DoctrineMySQLComeBack</strong></a> che riteniamo utile distribuire in maniera <strong>libera</strong>.</p>
+
+<p>Compatibile dalla versione 2.3 fino alla stabile 2.5, si occupa di <strong>ritentare automaticamente</strong> le SELECT in ambiente MySQL. Cosi non ci si dovrà più preoccupare del successo di ogni singola query per portare a termine le esecuzioni.</p>
+
+<p>Le <strong>istruzioni</strong> per l&rsquo;installazione e l&rsquo;uso sono disponibili su <a href="https://github.com/facile-it/doctrine-mysql-come-back"><strong><em>GitHub</em></strong></a>, e chiunque è libero di <strong>contribuire</strong> per migliorarne le funzionalità :)</p>
+
+<p><a href="https://packagist.org/packages/facile-it/doctrine-mysql-come-back"><img src="https://poser.pugx.org/facile-it/doctrine-mysql-come-back/v/stable.svg" alt="Latest Stable Version" /></a> <a href="https://packagist.org/packages/facile-it/doctrine-mysql-come-back"><img src="https://poser.pugx.org/facile-it/doctrine-mysql-come-back/downloads.svg" alt="Total Downloads" /></a> <a href="https://packagist.org/packages/facile-it/doctrine-mysql-come-back"><img src="https://poser.pugx.org/facile-it/doctrine-mysql-come-back/license.svg" alt="License" /></a></p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&text=MySQL%20has%20gone%20away%3f%20Come%20back%21&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f&title=MySQL%20has%20gone%20away%3f%20Come%20back%21" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fmysql-has-gone-away-come-back%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/open-source">Open source</a></li>
+    
+        <li><a href="/categories/doctrine">Doctrine</a></li>
+    
+        <li><a href="/categories/mysql">MySQL</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/"
+                class="button big previous">L&#39;operatore ternario è associativo a sinistra!</a></li>
+    
+
+    
+        <li><a href="/blog/ita/php-fig-standard-psr-7-http-message-interfaces/"
+                class="button big next">PHP coding standard: PSR-7  HTTP message interfaces</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/mysql-has-gone-away-come-back\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2015-12-15'>
+                                        15 December 2015
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">14</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

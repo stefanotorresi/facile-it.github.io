@@ -317,6 +317,82 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
+            <h2><a href="/blog/ita/mysql-has-gone-away-come-back/">MySQL has gone away? Come back!</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-09'>
+            9 March 2015
+        </time>
+
+        
+            <a href="/authors/luca" class="author">
+            
+                <span class="name">Luca Boeri</span>
+                <img src="/images/avatar-luca.jpg" alt="Luca Boeri avatar" />
+            
+            </a>
+        
+
+        
+            <p>3 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>A ben più di uno sviluppatore sarà capitato di incappare nel comune errore MySQL server has gone away!, magari seguito da un eccezione lanciata da una delle classi PDO, come ad esempio PDOStatement::execute(): Error reading result set&rsquo;s header. Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera persistente (per fortuna!) ed a causa di una esecuzione troppo lunga, la connessione col server MySQL va in timeout.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="/blog/ita/mysql-has-gone-away-come-back/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/open-source">Open source</a></li>
+    
+        <li><a href="/categories/doctrine">Doctrine</a></li>
+    
+        <li><a href="/categories/mysql">MySQL</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
             <h2><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/">L&#39;operatore ternario è associativo a sinistra!</a></h2>
         
         
@@ -376,78 +452,6 @@ ga('send', 'pageview');
         <li><a href="/categories/italiano">Italiano</a></li>
     
         <li><a href="/categories/php">PHP</a></li>
-    
-</ul>
-
-    </footer>
-</article>
-
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
-        
-        
-        
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published" datetime='2015-03-02'>
-            2 March 2015
-        </time>
-
-        
-            <a href="/authors/lorenzo" class="author">
-            
-                <span class="name">Lorenzo Fontana</span>
-                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
-            
-            </a>
-        
-
-        
-            <p>2 minute read</p>
-        
-    </div>
-</header>
-
-    
-
-    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-
-    
-        
-            <li>
-                
-                    <i class="fa fa-folder-open-o">&nbsp;</i>
-                
-        
-
-                
-                    Categories
-                
-            </li>
-    
-
-    
-        <li><a href="/categories/italiano">Italiano</a></li>
-    
-        <li><a href="/categories/php">PHP</a></li>
-    
-        <li><a href="/categories/php-internals">PHP internals</a></li>
     
 </ul>
 
@@ -672,7 +676,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">13</span>
+                                <span style="float:right;">14</span>
                             </header>
                         </article>
                     </li>
@@ -683,7 +687,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/php/">PHP</a>
-                                <span style="float:right;">9</span>
+                                <span style="float:right;">10</span>
                             </header>
                         </article>
                     </li>
@@ -698,6 +702,8 @@ ga('send', 'pageview');
                             </header>
                         </article>
                     </li>
+                    
+                
                     
                 
                     

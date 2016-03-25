@@ -154,5 +154,82 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 </description>
     </item>
     
+    <item>
+      <title>MySQL has gone away? Come back!</title>
+      <link>/blog/ita/mysql-has-gone-away-come-back/</link>
+      <pubDate>Mon, 09 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/mysql-has-gone-away-come-back/</guid>
+      <description>
+
+&lt;p&gt;A ben più di uno sviluppatore sarà capitato di incappare nel comune errore &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.5/en/gone-away.html&#34;&gt;&lt;em&gt;MySQL server has gone away!&lt;/em&gt;&lt;/a&gt;, magari seguito da un eccezione lanciata da una delle &lt;a href=&#34;http://php.net/manual/en/book.pdo.php&#34;&gt;&lt;strong&gt;classi PDO&lt;/strong&gt;&lt;/a&gt;, come ad esempio &lt;em&gt;PDOStatement::execute(): Error reading result set&amp;rsquo;s header&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera &lt;strong&gt;persistente&lt;/strong&gt; (per fortuna!) ed a causa di una esecuzione &lt;strong&gt;troppo lunga&lt;/strong&gt;, la connessione col server MySQL va in &lt;strong&gt;timeout&lt;/strong&gt;. Lunghi tasks in batch, chiamate a ws non particolarmente rapidi, carichi elevati del server, sono alcuni degli scenari possibili.&lt;/p&gt;
+
+&lt;p&gt;Qualora l&amp;rsquo;errore sia noto e prevedibile (ad esempio avvenga alla stessa linea di codice ad ogni esecuzione) è possibile chiudere la connessione in maniera esplicita ed evitarlo, ma questa logica oltre che risultare &lt;strong&gt;scomoda&lt;/strong&gt; e &lt;strong&gt;ripetitiva&lt;/strong&gt; non è sempre applicabile e richiede una esplicita precauzione dello sviluppatore.&lt;/p&gt;
+
+&lt;h3 id=&#34;ma-quanto-è-grave-il-problema:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Ma quanto è grave il problema?&lt;/h3&gt;
+
+&lt;p&gt;Come illustrato, un errore di tipo &lt;em&gt;MySQL server has gone away&lt;/em&gt; &lt;strong&gt;non&lt;/strong&gt; ha alterato le informazioni presenti nel database, &lt;strong&gt;non&lt;/strong&gt; implica un errore logico o di integrità e &lt;strong&gt;non&lt;/strong&gt; ci impedisce di tentare nuovamente la query da cui è scaturito. Perciò si potrebbe dire che, da un punto di vista applicativo l&amp;rsquo;errore, se correttamente &lt;strong&gt;intercettato e gestito&lt;/strong&gt;, non sia per nulla grave.&lt;/p&gt;
+
+&lt;h3 id=&#34;allora-potrei-ignorarlo:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Allora potrei ignorarlo?&lt;/h3&gt;
+
+&lt;p&gt;Ignorare deliberatamente degli errori non può essere considerata una strategia vincente, perciò per prima cosa bisogna assicurarsi di aver fatto tutto quanto suggerito nella &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.5/en/gone-away.html&#34;&gt;documentazione&lt;/a&gt; per &lt;strong&gt;rimuovere le cause del problema&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;e-se-non-dovesse-bastare:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;E se non dovesse bastare?&lt;/h3&gt;
+
+&lt;p&gt;Ritentare la query dovrebbe essere sempre possibile nonchè piuttosto semplice, a patto di saper riconoscere con precisione le eccezioni del &lt;strong&gt;tipo corretto&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;A tal proposito è importante ricordare come la classe &lt;a href=&#34;http://php.net/manual/en/class.pdoexception.php&#34;&gt;&lt;em&gt;PDOException&lt;/em&gt;&lt;/a&gt; non fornisca attraverso il metodo pubblico &lt;em&gt;getCode()&lt;/em&gt; il &lt;strong&gt;codice di errore del DB vendor&lt;/strong&gt; (es. &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.5/en/error-messages-client.html#error_cr_server_gone_error&#34;&gt;2006&lt;/a&gt; per MySQL), ma lo inserisca piuttosto nel &lt;em&gt;message&lt;/em&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** @var $e PDOException */
+echo $e-&amp;gt;getMessage(); // &#39;SQLSTATE[HY000]: General error: 2006 MySQL server has gone away&#39;`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;come-funziona:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Come funziona?&lt;/h3&gt;
+
+&lt;p&gt;Chiariamoci le idee con del codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$sql = &#39;SELECT count(*) FROM `TABLE`&#39;;
+$retry = true;
+
+while ($retry) {
+
+    try {
+
+        $nb = $pdo-&amp;gt;query($sql)-&amp;gt;fetchColumn();
+
+    } catch (PDOException $e) {
+		
+        $retry = false;
+        
+        if($this-&amp;gt;isMySQLHasGoneAwayException($e)) {
+        
+        	$this-&amp;gt;reconectDB();
+            $retry = true;
+        }
+    }        
+}
+# CODICE DEMO, NON FUNZIONANTE!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio  sopra riportato, una volta accertata la natura dell&amp;rsquo;eccezione si procede &lt;strong&gt;riconnettendosi&lt;/strong&gt; al database (una &lt;strong&gt;nuova&lt;/strong&gt; connessione!) e &lt;strong&gt;ripetendo&lt;/strong&gt; la query, magari con un limite di tentativi per evitare ricursioni infinite!&lt;/p&gt;
+
+&lt;p&gt;Trattandosi di una &lt;strong&gt;nuova connessione&lt;/strong&gt;, non è possibile utilizzare questa procedura nel caso l&amp;rsquo;errore avvenga durante una &lt;a href=&#34;http://en.wikipedia.org/wiki/Database_transaction&#34;&gt;&lt;strong&gt;transazione&lt;/strong&gt;&lt;/a&gt; MySQL. Tutte le query inviate all&amp;rsquo;interno della connessione sarebbero ovviamente &lt;strong&gt;perdute&lt;/strong&gt; e non sarebbe possibile recuperarle!&lt;/p&gt;
+
+&lt;h3 id=&#34;ma-devo-farlo-ogni-volta-a-mano:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Ma devo farlo ogni volta a mano?&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;NO!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&#34;http://www.facile.it/&#34;&gt;&lt;strong&gt;Facile.it&lt;/strong&gt;&lt;/a&gt;, utilizzando largamente l&amp;rsquo;ORM &lt;em&gt;Doctrine&lt;/em&gt;, abbiamo pensato allo sviluppo di una piccola estensione, &lt;a href=&#34;https://github.com/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;strong&gt;DoctrineMySQLComeBack&lt;/strong&gt;&lt;/a&gt; che riteniamo utile distribuire in maniera &lt;strong&gt;libera&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Compatibile dalla versione 2.3 fino alla stabile 2.5, si occupa di &lt;strong&gt;ritentare automaticamente&lt;/strong&gt; le SELECT in ambiente MySQL. Cosi non ci si dovrà più preoccupare del successo di ogni singola query per portare a termine le esecuzioni.&lt;/p&gt;
+
+&lt;p&gt;Le &lt;strong&gt;istruzioni&lt;/strong&gt; per l&amp;rsquo;installazione e l&amp;rsquo;uso sono disponibili su &lt;a href=&#34;https://github.com/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;strong&gt;&lt;em&gt;GitHub&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;, e chiunque è libero di &lt;strong&gt;contribuire&lt;/strong&gt; per migliorarne le funzionalità :)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/v/stable.svg&#34; alt=&#34;Latest Stable Version&#34; /&gt;&lt;/a&gt; &lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/downloads.svg&#34; alt=&#34;Total Downloads&#34; /&gt;&lt;/a&gt; &lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/license.svg&#34; alt=&#34;License&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
