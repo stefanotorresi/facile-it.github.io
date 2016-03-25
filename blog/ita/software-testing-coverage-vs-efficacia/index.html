@@ -1,0 +1,1021 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Software testing: Coverage vs Efficacia</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Software testing: Coverage vs Efficacia"/>
+<meta name="twitter:description" content="Controllare il tasso di coverage dei test è un&rsquo;attività frequente tra gli sviluppatori. Numerosi sono i fattori che hanno reso il code coverage popolare: è una metrica facile da comprendere; si misura senza difficoltà; è oggettiva e imparziale; è universale (applicabile a tutti i paradigmi di programmazione). Ma al di là di questi vantaggi, possiamo affermare che una test suite con un&rsquo;alta percentuale di coverage sia realmente efficace? Quando un test è efficace?"/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Software testing: Coverage vs Efficacia" />
+<meta property="og:description" content="Controllare il tasso di coverage dei test è un&rsquo;attività frequente tra gli sviluppatori. Numerosi sono i fattori che hanno reso il code coverage popolare: è una metrica facile da comprendere; si misura senza difficoltà; è oggettiva e imparziale; è universale (applicabile a tutti i paradigmi di programmazione). Ma al di là di questi vantaggi, possiamo affermare che una test suite con un&rsquo;alta percentuale di coverage sia realmente efficace? Quando un test è efficace?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/software-testing-coverage-vs-efficacia/" />
+
+
+<meta property="og:updated_time" content="2015-03-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Software testing: Coverage vs Efficacia">
+<meta itemprop="description" content="Controllare il tasso di coverage dei test è un&rsquo;attività frequente tra gli sviluppatori. Numerosi sono i fattori che hanno reso il code coverage popolare: è una metrica facile da comprendere; si misura senza difficoltà; è oggettiva e imparziale; è universale (applicabile a tutti i paradigmi di programmazione). Ma al di là di questi vantaggi, possiamo affermare che una test suite con un&rsquo;alta percentuale di coverage sia realmente efficace? Quando un test è efficace?">
+
+
+<meta itemprop="dateModified" content="2015-03-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="620">
+
+
+
+<meta itemprop="keywords" content="francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,Composer,Confereces,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,MySQL,NewRelic,Node.js,Open Source,Open source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package Manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Software Testing,Software testing,Symfony,TDD,Test coverage,c,cmake,database,filesystem,fuse,symfony," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/ita/puli-universal-packages-for-php/"><p>Puli: Universal Packages for PHP</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&text=Software%20testing%3a%20Coverage%20vs%20Efficacia&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/software-testing-coverage-vs-efficacia/">Software testing: Coverage vs Efficacia</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-16'>
+            16 March 2015
+        </time>
+
+        
+            <a href="/authors/sergio" class="author">
+            
+                <span class="name">Sergio Santoro</span>
+                <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" />
+            
+            </a>
+        
+
+        
+            <p>3 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>Controllare il tasso di coverage dei test è un&rsquo;attività frequente tra gli sviluppatori.</p>
+
+<p>Numerosi sono i fattori che hanno reso il code coverage popolare:</p>
+
+<ul>
+<li>è una metrica facile da comprendere;</li>
+<li>si misura senza difficoltà;</li>
+<li>è oggettiva e imparziale;</li>
+<li>è universale (applicabile a tutti i paradigmi di programmazione).</li>
+</ul>
+
+<p>Ma al di là di questi vantaggi, <strong><em>possiamo affermare che una test suite con un&rsquo;alta percentuale di coverage sia realmente efficace?</em></strong></p>
+
+<h3 id="quando-un-test-è-efficace:6b94364a6a89c89e4ce75bd725ef68eb">Quando un test è efficace?</h3>
+
+<p>Una test suite è considerata efficace se consente di rilevare una grande quantità di failure; d&rsquo;altronde, ciò è proprio la finalità ultima del software testing.
+La massima efficacia è realizzabile solo applicando testing esaustivo ma, siccome ciò è spesso impraticabile, ci si accontenta di test più semplici con un&rsquo;efficacia inferiore.
+È importante notare che, a differenza del coverage, il livello d&rsquo;efficacia viene stabilito soggettivamente dallo sviluppatore.</p>
+
+<h3 id="quanti-tipi-di-coverage:6b94364a6a89c89e4ce75bd725ef68eb">Quanti tipi di coverage?</h3>
+
+<p>La copertura può essere misurata in molti modi differenti. Essa è sempre un rapporto tipicamente espresso in forma percentuale.</p>
+
+<p>La formula per il calcolo del coverage è la seguente:</p>
+
+<p><img src="/images/software-testing-coverage-vs-efficacia/CodeCogsEqn.gif" alt="" /></p>
+
+<p>Notare il termine generico <em>obiettivo</em>: diverse tipologie di coverage hanno obiettivi differenti.
+Qui di seguito è presente un elenco esemplificativo e non esaustivo delle diverse tipologie di coverage:</p>
+
+<ul>
+<li>Statement coverage</li>
+<li>Branch coverage (o decision coverage)</li>
+<li>Condition coverage</li>
+<li>Function/Method coverage</li>
+</ul>
+
+<p>Nel corso di quest&rsquo;articolo si fa riferimento sempre allo Statement coverage, talvolta chiamato semplicemente &ldquo;coverage&rdquo;.</p>
+
+<hr />
+
+<h3 id="un-esempio-pratico:6b94364a6a89c89e4ce75bd725ef68eb">Un esempio pratico</h3>
+
+<h4 id="funzione-under-test:6b94364a6a89c89e4ce75bd725ef68eb">Funzione under-test</h4>
+
+<pre><code class="language-python">def weightedAverage(array):
+	sum = weightSum = 0     # Bug, dovrebbe essere: sum = weightSum = 0.0
+	for (value, weight) in array:
+		sum += value        # Bug, dovrebbe essere: sum += value * weight
+		weightSum += weight
+	return sum / weightSum
+</code></pre>
+
+<p>Le specifiche della funzione <em>weightedAverage</em> sono le seguenti:</p>
+
+<ul>
+<li>Calcolare la media ponderata di un array contenente coppie di valori.<br />
+Ad esempio: <code>[(10, 2), (11, 4), (5, 1)]</code></li>
+<li>Restituire sempre un risultato di tipo float.</li>
+<li>Non effettuare divisione tra interi per non ridurre la precisione del risultato.</li>
+</ul>
+
+<p>I commenti già presenti nel codice evidenziano due errori importanti:</p>
+
+<ul>
+<li>La media non è calcolata correttamente: l&rsquo;istruzione <code>sum += value</code> dovrebbe essere <code>sum += value * weight</code></li>
+<li>L&rsquo;output della funzione non è di tipo float se i dati di input sono interi.<br />
+L&rsquo;errore è risolvibile modificando <code>sum = weightSum = 0</code> in <code>sum = weightSum = 0.0</code></li>
+</ul>
+
+<h4 id="test-suite-1:6b94364a6a89c89e4ce75bd725ef68eb">Test suite #1</h4>
+
+<pre><code class="language-python">def testWeightedAverage():
+	expected = 25.0
+	inputArray = [(24, 1), (26, 1)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print 'Okay'
+	else:
+		print 'Failure!'
+</code></pre>
+
+<p>La test suite #1 ha statement coverage 100%, tuttavia non consente di rilevare i due errori menzionati in precedenza. Sebbene la coverage sia alta, l&rsquo;efficacia è molto bassa.</p>
+
+<h4 id="test-suite-2:6b94364a6a89c89e4ce75bd725ef68eb">Test suite #2</h4>
+
+<pre><code class="language-python">def testWeightedAverageDifferentWeight():
+	expected = 26.0
+	inputArray = [(24, 1), (27, 2)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print 'Okay'
+	else:
+		print 'Failure!'
+</code></pre>
+
+<p>La test suite #2 ha statement coverage 100%, ma non consente di verificare correttamente che l&rsquo;output della funzione sia di tipo float.
+Il primo errore viene rilevato, il secondo no.
+È importante notare che questo problema viene risolto aggiungendo l&rsquo;asserzione <code>type(actual) is float</code>.<br />
+Le asserzioni sono parte fondamentale del testing; date loro la giusta importanza! Ogni buona asserzione in più consente di migliorare sensibilmente l&rsquo;efficacia dei vostri test case.</p>
+
+<h4 id="test-suite-3:6b94364a6a89c89e4ce75bd725ef68eb">Test suite #3</h4>
+
+<pre><code class="language-python">def testWeightedAverageFloatResult():
+	expected = 27.2
+	inputArray = [(24, 1), (28, 4)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print 'Okay'
+	else:
+		print 'Failure!'
+</code></pre>
+
+<p>La test suite #3 ha statement coverage 100% ed è efficace perché ci consente di rilevare tutti gli errori.</p>
+
+<h3 id="conclusioni:6b94364a6a89c89e4ce75bd725ef68eb">Conclusioni</h3>
+
+<p>Abbiamo visto che percentuali di coverage alte non sempre implicano test efficaci.
+Tuttavia test suite efficaci hanno necessariamente bisogno di coverage rate alti.
+In temini logici possiamo quindi affermare che:</p>
+
+<p><img src="/images/software-testing-coverage-vs-efficacia/CodeCogsEqn--1-.gif" alt="" /></p>
+
+<p>Coverage rate bassi sono un campanello d&rsquo;allarme che ci consente di stabilire la scarca efficacia dei test.
+Possiamo infatti affermare che:</p>
+
+<p><img src="/images/software-testing-coverage-vs-efficacia/CodeCogsEqn--2-.gif" alt="" /></p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&text=Software%20testing%3a%20Coverage%20vs%20Efficacia&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f&title=Software%20testing%3a%20Coverage%20vs%20Efficacia" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fsoftware-testing-coverage-vs-efficacia%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/software-testing">Software testing</a></li>
+    
+        <li><a href="/categories/test-coverage">Test coverage</a></li>
+    
+        <li><a href="/categories/tdd">TDD</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/mysql-has-gone-away-come-back/"
+                class="button big previous">MySQL has gone away? Come back!</a></li>
+    
+
+    
+        <li><a href="/blog/ita/php-fig-standard-psr-7-http-message-interfaces/"
+                class="button big next">PHP coding standard: PSR-7  HTTP message interfaces</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/software-testing-coverage-vs-efficacia\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2015-12-15'>
+                                        15 December 2015
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

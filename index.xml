@@ -2057,6 +2057,144 @@ class AcmeLifeCycle
     </item>
     
     <item>
+      <title>Software testing: Coverage vs Efficacia</title>
+      <link>/blog/ita/software-testing-coverage-vs-efficacia/</link>
+      <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/software-testing-coverage-vs-efficacia/</guid>
+      <description>
+
+&lt;p&gt;Controllare il tasso di coverage dei test è un&amp;rsquo;attività frequente tra gli sviluppatori.&lt;/p&gt;
+
+&lt;p&gt;Numerosi sono i fattori che hanno reso il code coverage popolare:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;è una metrica facile da comprendere;&lt;/li&gt;
+&lt;li&gt;si misura senza difficoltà;&lt;/li&gt;
+&lt;li&gt;è oggettiva e imparziale;&lt;/li&gt;
+&lt;li&gt;è universale (applicabile a tutti i paradigmi di programmazione).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ma al di là di questi vantaggi, &lt;strong&gt;&lt;em&gt;possiamo affermare che una test suite con un&amp;rsquo;alta percentuale di coverage sia realmente efficace?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;quando-un-test-è-efficace:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quando un test è efficace?&lt;/h3&gt;
+
+&lt;p&gt;Una test suite è considerata efficace se consente di rilevare una grande quantità di failure; d&amp;rsquo;altronde, ciò è proprio la finalità ultima del software testing.
+La massima efficacia è realizzabile solo applicando testing esaustivo ma, siccome ciò è spesso impraticabile, ci si accontenta di test più semplici con un&amp;rsquo;efficacia inferiore.
+È importante notare che, a differenza del coverage, il livello d&amp;rsquo;efficacia viene stabilito soggettivamente dallo sviluppatore.&lt;/p&gt;
+
+&lt;h3 id=&#34;quanti-tipi-di-coverage:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quanti tipi di coverage?&lt;/h3&gt;
+
+&lt;p&gt;La copertura può essere misurata in molti modi differenti. Essa è sempre un rapporto tipicamente espresso in forma percentuale.&lt;/p&gt;
+
+&lt;p&gt;La formula per il calcolo del coverage è la seguente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/software-testing-coverage-vs-efficacia/CodeCogsEqn.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notare il termine generico &lt;em&gt;obiettivo&lt;/em&gt;: diverse tipologie di coverage hanno obiettivi differenti.
+Qui di seguito è presente un elenco esemplificativo e non esaustivo delle diverse tipologie di coverage:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Statement coverage&lt;/li&gt;
+&lt;li&gt;Branch coverage (o decision coverage)&lt;/li&gt;
+&lt;li&gt;Condition coverage&lt;/li&gt;
+&lt;li&gt;Function/Method coverage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nel corso di quest&amp;rsquo;articolo si fa riferimento sempre allo Statement coverage, talvolta chiamato semplicemente &amp;ldquo;coverage&amp;rdquo;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;un-esempio-pratico:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Un esempio pratico&lt;/h3&gt;
+
+&lt;h4 id=&#34;funzione-under-test:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Funzione under-test&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def weightedAverage(array):
+	sum = weightSum = 0     # Bug, dovrebbe essere: sum = weightSum = 0.0
+	for (value, weight) in array:
+		sum += value        # Bug, dovrebbe essere: sum += value * weight
+		weightSum += weight
+	return sum / weightSum
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Le specifiche della funzione &lt;em&gt;weightedAverage&lt;/em&gt; sono le seguenti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Calcolare la media ponderata di un array contenente coppie di valori.&lt;br /&gt;
+Ad esempio: &lt;code&gt;[(10, 2), (11, 4), (5, 1)]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Restituire sempre un risultato di tipo float.&lt;/li&gt;
+&lt;li&gt;Non effettuare divisione tra interi per non ridurre la precisione del risultato.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I commenti già presenti nel codice evidenziano due errori importanti:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;La media non è calcolata correttamente: l&amp;rsquo;istruzione &lt;code&gt;sum += value&lt;/code&gt; dovrebbe essere &lt;code&gt;sum += value * weight&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;L&amp;rsquo;output della funzione non è di tipo float se i dati di input sono interi.&lt;br /&gt;
+L&amp;rsquo;errore è risolvibile modificando &lt;code&gt;sum = weightSum = 0&lt;/code&gt; in &lt;code&gt;sum = weightSum = 0.0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;test-suite-1:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #1&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverage():
+	expected = 25.0
+	inputArray = [(24, 1), (26, 1)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print &#39;Okay&#39;
+	else:
+		print &#39;Failure!&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;La test suite #1 ha statement coverage 100%, tuttavia non consente di rilevare i due errori menzionati in precedenza. Sebbene la coverage sia alta, l&amp;rsquo;efficacia è molto bassa.&lt;/p&gt;
+
+&lt;h4 id=&#34;test-suite-2:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #2&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageDifferentWeight():
+	expected = 26.0
+	inputArray = [(24, 1), (27, 2)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print &#39;Okay&#39;
+	else:
+		print &#39;Failure!&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;La test suite #2 ha statement coverage 100%, ma non consente di verificare correttamente che l&amp;rsquo;output della funzione sia di tipo float.
+Il primo errore viene rilevato, il secondo no.
+È importante notare che questo problema viene risolto aggiungendo l&amp;rsquo;asserzione &lt;code&gt;type(actual) is float&lt;/code&gt;.&lt;br /&gt;
+Le asserzioni sono parte fondamentale del testing; date loro la giusta importanza! Ogni buona asserzione in più consente di migliorare sensibilmente l&amp;rsquo;efficacia dei vostri test case.&lt;/p&gt;
+
+&lt;h4 id=&#34;test-suite-3:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #3&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageFloatResult():
+	expected = 27.2
+	inputArray = [(24, 1), (28, 4)]
+	actual = weightedAverage(inputArray)
+	if expected == actual:
+		print &#39;Okay&#39;
+	else:
+		print &#39;Failure!&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;La test suite #3 ha statement coverage 100% ed è efficace perché ci consente di rilevare tutti gli errori.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusioni:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Conclusioni&lt;/h3&gt;
+
+&lt;p&gt;Abbiamo visto che percentuali di coverage alte non sempre implicano test efficaci.
+Tuttavia test suite efficaci hanno necessariamente bisogno di coverage rate alti.
+In temini logici possiamo quindi affermare che:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/software-testing-coverage-vs-efficacia/CodeCogsEqn--1-.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Coverage rate bassi sono un campanello d&amp;rsquo;allarme che ci consente di stabilire la scarca efficacia dei test.
+Possiamo infatti affermare che:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/software-testing-coverage-vs-efficacia/CodeCogsEqn--2-.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>MySQL has gone away? Come back!</title>
       <link>/blog/ita/mysql-has-gone-away-come-back/</link>
       <pubDate>Mon, 09 Mar 2015 00:00:00 +0000</pubDate>
@@ -2130,43 +2268,6 @@ while ($retry) {
 &lt;p&gt;Le &lt;strong&gt;istruzioni&lt;/strong&gt; per l&amp;rsquo;installazione e l&amp;rsquo;uso sono disponibili su &lt;a href=&#34;https://github.com/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;strong&gt;&lt;em&gt;GitHub&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;, e chiunque è libero di &lt;strong&gt;contribuire&lt;/strong&gt; per migliorarne le funzionalità :)&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/v/stable.svg&#34; alt=&#34;Latest Stable Version&#34; /&gt;&lt;/a&gt; &lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/downloads.svg&#34; alt=&#34;Total Downloads&#34; /&gt;&lt;/a&gt; &lt;a href=&#34;https://packagist.org/packages/facile-it/doctrine-mysql-come-back&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/doctrine-mysql-come-back/license.svg&#34; alt=&#34;License&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>L&#39;operatore ternario è associativo a sinistra!</title>
-      <link>/blog/ita/operatore-ternario-e-associativo-a-sinistra/</link>
-      <pubDate>Mon, 02 Mar 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/operatore-ternario-e-associativo-a-sinistra/</guid>
-      <description>&lt;p&gt;Gli &lt;a href=&#34;http://it.wikipedia.org/wiki/Operatore_ternario&#34;&gt;&lt;em&gt;operatori ternari&lt;/em&gt;&lt;/a&gt; sono diffusi in molti linguaggi di programmazione e permettono di esprimire con una &lt;strong&gt;sintassi breve&lt;/strong&gt; logiche condizionali. Per utilizzarli propriamente in PHP è però necessario conoscerne il comportamento.&lt;/p&gt;
-
-&lt;p&gt;Vediamo un esempio&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;var_dump(true ? &#39;a&#39; : &#39;b&#39; ? &#39;c&#39; : &#39;d&#39;); // OUTPUT: string(1) &amp;quot;c&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Se state pensando che il risultato di questa espressione sia ovvio, vediamo cosa succede ad esempio in javascript&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;console.log(true ? &#39;a&#39; : &#39;b&#39; ? &#39;c&#39; : &#39;d&#39;); // OUTPUT: a
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Bene, mentre in PHP il risultato è dato da:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;true è vero, ritorna a&lt;/li&gt;
-&lt;li&gt;a castato a bool è vero, &lt;strong&gt;stampa c&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In javascript invece il ragionamento è diverso:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;true è vero, &lt;strong&gt;stampa a&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Perchè questa differenza? Semplicemente perchè in PHP, &lt;strong&gt;diversamente dalla maggioranza dei linguaggi&lt;/strong&gt;, l&amp;rsquo;operatore ternario è associativo a sinistra anzichè a destra.&lt;/p&gt;
-
-&lt;p&gt;Tenendone conto potremo evitare comportamenti inconsistenti nel nostro codice.&lt;/p&gt;
 </description>
     </item>
     
