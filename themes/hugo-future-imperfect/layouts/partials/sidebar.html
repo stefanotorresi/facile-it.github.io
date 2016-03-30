@@ -50,7 +50,7 @@
                             <header>
                                     {{ range .Params.authors }}
                                         {{ with index $.Site.Data.authors . }}
-                                            <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                            <img src="{{ .thumbnail }}" alt="{{ .name }} avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         {{ end }}
                                     {{ end }}
 
