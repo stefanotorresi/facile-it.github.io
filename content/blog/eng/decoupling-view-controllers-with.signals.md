@@ -17,9 +17,100 @@ aliases:
 
 The example project for this article is available in [GitHub](https://github.com/broomburgo/SignalViewControllers/): I'm going to paste some code examples, but it's recommended to check and test the entire project while reading the article. What follows is the full implementation of `Signal`, and its public interface for sending new values, called `Emitter`:
 
-<script src="https://gist.github.com/broomburgo/851945c4b36aff83b4b9.js"></script>
+```Swift
+import Foundation
 
-#### The megacontroller
+public enum Persistence {
+  case Stop
+  case Continue
+}
+
+public final class Signal<Subtype> {
+  typealias Observation = Subtype -> Persistence
+
+  private var observations: [Observation] = []
+
+  public init() {}
+
+  public func onReception (observeFunction: Subtype -> Persistence) -> Signal {
+    observations.append(observeFunction)
+    return self
+  }
+
+  public func map<OtherSubtype>(transform: Subtype -> OtherSubtype) -> Signal<OtherSubtype> {
+    let mappedSignal = Signal<OtherSubtype>()
+    onReception {
+      mappedSignal.send(transform($0))
+      return .Continue
+    }
+    return mappedSignal
+  }
+
+  public func flatMap<OtherSubtype>(transform: Subtype -> Signal<OtherSubtype>) -> Signal<OtherSubtype> {
+    let mappedSignal = Signal<OtherSubtype>()
+    onReception {
+      transform($0).onReception {
+        mappedSignal.send($0)
+        return .Continue
+      }
+      return .Continue
+    }
+    return mappedSignal
+  }
+
+  public func filter(predicate: Subtype -> Bool) -> Signal {
+    let filteredSignal = Signal<Subtype>()
+    onReception {
+      if predicate($0) {
+        filteredSignal.send($0)
+      }
+      return .Continue
+    }
+    return filteredSignal
+  }
+
+  public func unionWith (otherSignal: Signal<Subtype>) -> Signal {
+    let unifiedSignal = Signal<Subtype>()
+    let observeFunction = { (value: Subtype) -> Persistence in
+      unifiedSignal.send(value)
+      return .Continue
+    }
+    onReception(observeFunction)
+    otherSignal.onReception(observeFunction)
+    return unifiedSignal
+  }
+}
+
+public func + <Subtype> (left: Signal<Subtype>, right: Signal<Subtype>) -> Signal<Subtype> {
+  return left.unionWith(right)
+}
+
+extension Signal {
+  private func send (value: Subtype) {
+    var newObservations: [Observation] = []
+    while observations.count > 0 {
+      let observe = observations.removeFirst()
+      let persistence = observe(value)
+      switch persistence {
+      case .Continue:
+        newObservations.append(observe)
+      case .Stop: break
+      }
+    }
+    observations = newObservations
+  }
+}
+
+public final class Emitter<Subtype> {
+  public let signal = Signal<Subtype>()
+
+  public func emit(value: Subtype) {
+    signal.send(value)
+  }
+}
+```
+
+## The megacontroller
 
 Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:
 
@@ -40,17 +131,24 @@ Armed with our **imperative mind** we would probably start by adding a sequence 
 
 We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we're going to try and think with signals.
 
-#### The model
+## The model
 
 For example, if the model changes we need to update the text shown on the `MainPage`: a possible way to manage this could be to create a `ModelController` class, which holds the model, and *emits a signal* each time the model changes. Then, the `MainPage` could *react* to this signal, and change the UI accordingly. A nice to way to do this is injecting the `ModelController` in the `MainPage` constructor, so that `MainPage` can establish the appropriate bindings:
 
-<script src="https://gist.github.com/broomburgo/1740115e9ad99e79f6b5.js"></script>
+```Swift
+/// MainPage initializer
+init(feedbackModelController: ModelController<FeedbackModel>) {
+  super.init(nibName: nil, bundle: nil)
+  feedbackModelController.updateSignal.onReception § eachTime § updateViewsWithFeedbackModel
+  viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify
+}
+```
 
 The `§` operator and the `eachTime` function are just helpers to make the **functional composition** easier: as it often happens with functional programming, or declarative programming in general, we can infer the meaning of an expression just by reading it; in fact, `onReception § eachTime § updateViewsWithFeedbackModel` means that when the signal is received, the `MainPage` will update the view every time according to the new `FeedbackModel`: `eachTime` means that every time the signal triggers, so will the update; this is in contrast with the `once` function, that makes the object listen only to the first signal trigger. This is  related to the `Persistence` of a `Signal` observation, that is, if the object should continue listen to a signal or not: `Persistence` is a single `enum` with two values, `Continue` and `Stop`.
 
 An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the `viewDidLoad` method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the `ModelController` is available: the line `viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify` means that when the `viewReadyEmitter`, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to *notify* its current value to all the observers; this way we don't need to manually update the views in the `viewDidLoad` method: everything is connected, and the signals will **propagate** according to the declarative bindings.
 
-#### Handling page creation and presentation
+## Handling page creation and presentation
 
 Transitioning between pages is one the key points in iOS programming: page presentation has to be **predictable and smooth**, to avoid a confusing user experience. One of the main premises of the `UIViewController` class was and still is the creation of a modular hierarchy of views, that's independent from the way it's presented to the user: that way we can easily reuse **the same** view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic *inside* the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.
 
@@ -58,11 +156,19 @@ A possible solution would be to use a `NavigationHandler`, that will handle the 
 
 But we incur in a problem: `makeSelectionPage` will just return a `SelectionPage` object, but we don't know if it's *always* the same instance, or a new instance each time. In fact, `PageFactory` doesn't *promise* always the same page. This is important because the `NavigationHandler` will only take care of page presentation, but the very same page instance has to be considered, for example, for collecting the feedback. A possible strategy would be to *cache* the `SelectionPage`, but one of the main points of functional programming is **avoiding state**: we don't want to burden ourselves with the responsibility of managing mutable state, which is one of the [main causes of complexity](http://shaffner.us/cs/papers/tarpit.pdf) in software development. Instead, we will once again leverage signals to handle the situation. `PageFactory` exposes two signals that are triggered at page creation; `NavigationHandler`  uses those signal to bind its actions to the initialized pages:
 
-<script src="https://gist.github.com/broomburgo/20882b3bbf8ce7f56a51.js"></script>
+```Swift
+pageFactory.signalMakeMainPage
+  .flatMap { $0.signalLeaveFeedback }
+  .onReception § eachTime § inAnyCase § presentSelectionPage
+  
+pageFactory.signalMakeSelectionPage
+  .flatMap { $0.signalSelection }
+  .onReception § eachTime § inAnyCase § popTopPage
+```
 
 In the code just shown, the signals that are triggered when the pages are initialized are *flatMapped* to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the *second* signal will be available only when the *first* signal is triggered: the `flatMap` method will let us reference a signal that is not yet available. The `inAnyCase` function is used because `NavigationHandler` is not interested in the *content* of the signals, but just the fact that they are triggered; the content is going to be handled by another class: `FeedbackCollector`.
 
-#### Composing signals
+## Composing signals
 
 `FeedbackCollector` has the responsibility of *collecting the whole feedback*: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it's the result of **many different interactions** from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:
 
@@ -71,17 +177,31 @@ In the code just shown, the signals that are triggered when the pages are initia
 
 Usually these consideration would lead to **stateful** computations, where state would be expressed in various points, and mutated. But the class `FeedbackCollector` can generate a signal triggered each time a new feedback is collected with a single expression:
 
-<script src="https://gist.github.com/broomburgo/e2609d60b0d3e245d0ca.js"></script>
+```Swift
+func collectFeedbackModelChange() -> Signal<FeedbackModelChange> {
+  return pageFactory.signalMakeMainPage
+    .flatMap { $0.signalPolarizedChanged }
+    .map(FeedbackModel.transformWithPolarized)
+    + pageFactory.signalMakeSelectionPage
+      .flatMap { $0.signalSelection }
+      .map(FeedbackModel.transformWithFeedback)
+}
+```
 
 The `+` operator will literally *add* 2 signals together, producing a signal that is triggered each time either of the signals is triggered. The app uses the `Signal<FeedbackModelChange>` produced by the `collectFeedbackModelChange()` to update the model in the `ModelController`.
 
 Another example of asynchronous reaction to signals is shown in the `AppDelegate`'s method `handleGoodFeedbacksWithAlert()`; here's the logic: if the user leaves a positive feedback, that is better than the previously left feedback, the app will show an alert, thanking the user. The entire logic for this is handled in the following expression:
 
-<script src="https://gist.github.com/broomburgo/b6438d9b65e7570147c9.js"></script>
+```Swift
+feedbackModelController.deltaSignal
+  .filter { $0.feedback.rawValue < $1.feedback.rawValue}
+  .filter { $1.feedback == .Good || $1.feedback == .ReallyGood }
+  .onReception § eachTime § inAnyCase § showThankYouAlert
+```
 
 `ModelController`'s `deltaSignal` is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by *filtering* the `deltaSignal`, because we need a signal that is triggered only when the new feedback is different from the previous and positive.
 
-#### Conclusion
+## Conclusion
 
 A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:
 
