@@ -42,7 +42,7 @@ Con *algoritmi crittografici* si intendono tutti quei **processi e procedure fin
 Questa tipologia di algoritmi si basa sull'uso di chiavi di cifratura dette **simmetriche** che permettono di cifrare e decifrare dati **utilizzando la medesima chiave crittografica**.
 Un esempio è [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (Advanced Encryption Standard), evoluzione dell'algoritmo [Rijndael](https://en.wikipedia.org/wiki/Rijndael_key_schedule) le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un'ottima velocità, sia che venga implementato via hardware che software.
 
-![](http://i.imgur.com/W7dDYJC.png)
+![AES](/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png)
 
 ### Algoritmi Asimmetrici
 Gli algoritmi asimmetrici si distinguono dai precedenti per l'utilizzo di **due chiavi crittografiche distinte**, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
@@ -50,7 +50,7 @@ Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. L
 La particolarità che caratterizza queste chiavi è l'impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell'algoritmo, l'unico metodo per ottenere tale chiave è il **brute force** sui dati stessi.
 In questo caso l'esempio per eccellenza è [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.
 
-![](http://i.imgur.com/Fgwg0ED.png)
+![RSA](/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png)
 
 ## La soluzione combinando RSA e AES
 Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione. 
@@ -78,7 +78,7 @@ Come ultimo passo dovremo associare i dati cifrati all'utente che li sta memoriz
 
 Abbiamo ottenuto un sistema simile a quello visualizzato di seguito:
 
-![](/content/images/2015/10/Sistema-1.png)
+![](/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png)
 
 ### Condividere!
 Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:
