@@ -1,0 +1,1108 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Swift testing avanzato: stubbing e test asincroni</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Swift testing avanzato: stubbing e test asincroni"/>
+<meta name="twitter:description" content="In un precedente articolo abbiamo visto le impostazioni di base in Xcode per la scrittura dei test unitari: abbiamo evidenziato inoltre l&rsquo;importanza e l&rsquo;utilità intrinseca dei test, attraverso un semplice esempio riguardante un caso d&rsquo;uso tipico. Nel presente articolo vedremo alcune tecniche un po&rsquo; più avanzate: implementeremo uno Stub Object in Swift; analizzeremo un altro caso di test asincrono; Lo Stub Object Uno Stub Object (per il resto dell&rsquo;articolo, stub) rappresenta un&rsquo;istanza di una certa classe, la quale mima una vera classe presente nella nostra code base: l&rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio alcuni metodi possono essere sovrascritti per poter fornire un determinato output utile per i test."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Swift testing avanzato: stubbing e test asincroni" />
+<meta property="og:description" content="In un precedente articolo abbiamo visto le impostazioni di base in Xcode per la scrittura dei test unitari: abbiamo evidenziato inoltre l&rsquo;importanza e l&rsquo;utilità intrinseca dei test, attraverso un semplice esempio riguardante un caso d&rsquo;uso tipico. Nel presente articolo vedremo alcune tecniche un po&rsquo; più avanzate: implementeremo uno Stub Object in Swift; analizzeremo un altro caso di test asincrono; Lo Stub Object Uno Stub Object (per il resto dell&rsquo;articolo, stub) rappresenta un&rsquo;istanza di una certa classe, la quale mima una vera classe presente nella nostra code base: l&rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio alcuni metodi possono essere sovrascritti per poter fornire un determinato output utile per i test." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/swift-testing-avanzato-stubbing-e-test-asincroni/" />
+
+
+<meta property="og:updated_time" content="2015-06-05T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Swift testing avanzato: stubbing e test asincroni">
+<meta itemprop="description" content="In un precedente articolo abbiamo visto le impostazioni di base in Xcode per la scrittura dei test unitari: abbiamo evidenziato inoltre l&rsquo;importanza e l&rsquo;utilità intrinseca dei test, attraverso un semplice esempio riguardante un caso d&rsquo;uso tipico. Nel presente articolo vedremo alcune tecniche un po&rsquo; più avanzate: implementeremo uno Stub Object in Swift; analizzeremo un altro caso di test asincrono; Lo Stub Object Uno Stub Object (per il resto dell&rsquo;articolo, stub) rappresenta un&rsquo;istanza di una certa classe, la quale mima una vera classe presente nella nostra code base: l&rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio alcuni metodi possono essere sovrascritti per poter fornire un determinato output utile per i test.">
+
+
+<meta itemprop="dateModified" content="2015-06-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1894">
+
+
+
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&text=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/swift-testing-avanzato-stubbing-e-test-asincroni/">Swift testing avanzato: stubbing e test asincroni</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-06-05'>
+            5 June 2015
+        </time>
+
+        
+            <a href="/authors/elviro" class="author">
+            
+                <span class="name">Elviro Rocca</span>
+                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
+            
+            </a>
+        
+
+        
+            <p>9 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p><a href="http://engineering.facile.it/xcode-testing-in-pratica/">In un precedente articolo</a> abbiamo visto le impostazioni di base in Xcode per la scrittura dei <strong>test unitari</strong>: abbiamo evidenziato inoltre <strong>l&rsquo;importanza e l&rsquo;utilità intrinseca dei test</strong>, attraverso un semplice esempio riguardante un caso d&rsquo;uso tipico. Nel presente articolo vedremo alcune tecniche un po&rsquo; più avanzate:</p>
+
+<ul>
+<li>implementeremo uno <strong>Stub Object</strong> in Swift;</li>
+<li>analizzeremo un altro caso di test <em>asincrono</em>;</li>
+</ul>
+
+<h2 id="lo-stub-object:4b7c206247a0a425bb1064c53b31df66">Lo <em>Stub Object</em></h2>
+
+<p>Uno <em>Stub Object</em> (per il resto dell&rsquo;articolo, <em>stub</em>) rappresenta un&rsquo;istanza di una certa classe, la quale <em>mima</em> una vera classe presente nella nostra <em>code base</em>:  l&rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio <strong>alcuni metodi possono essere sovrascritti</strong> per poter fornire <strong>un determinato output</strong> utile per i test. Nell&rsquo;implementare uno <em>stub</em> non è generalmente consentito modificare dettagli di logica interni relativi alla classe che stiamo mimando, ma <strong>è possibile sovrascrivere metodi pubblici</strong>, in modo che essi ritornino i valori che vogliamo, oppure che svolgano una particolare procedura necessaria per i test. Tanto per fare un esempio pratico potremmo <em>stubbare</em> una classe che ci fornisce la data precisa in un certo istante, in modo da ottenere una data diversa da usare nei test, oppure un client che chiede a un server delle informazioni su un utente, in modo da far ritonare al client <em>stub</em> delle informazioni arbitrarie.</p>
+
+<p>Gli <em>stub</em> fanno parte di una classe di strumenti che sono usati nell&rsquo;ambito dello <em>Unit Testing</em> per verificare che determinati oggetti rispettino precisi <strong>contratti</strong> stipulati tra essi: il classico articolo di Martin Fowler <a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks Aren&rsquo;t Stubs</a> è solitamente considerato un buon punto di riferimento per comprendere i possibili strumenti usati a tal scopo. L&rsquo;idea è che, dal punto di vista dei nostri test unitari, un oggetto risulterà essere <em>correttamente implementato</em> se avrà rispettato la sua parte del <em>contratto</em> stipulato con altri oggetti, con la seguente conseguenza:</p>
+
+<blockquote>
+<p>se l&rsquo;oggetto A è correttamente implementato e l&rsquo;oggetto B rispetta il contratto stipulato con l&rsquo;oggetto A, allora anche l&rsquo;oggetto B è correttamente implementato</p>
+</blockquote>
+
+<p>Gli <em>stub</em> permettono di <strong>disaccoppiare le logiche di funzionamento degli oggetti</strong> perché, se abbiamo verificato il corretto funzionamento dell&rsquo;oggetto A (attraverso appropriati test unitari), possiamo usare uno <em>stub</em> di tale oggetto per verificare il corretto funzionamento dell&rsquo;oggetto B nei suoi confronti, eliminando qualsiasi dipendenza di B nei confronti della logica interna dell&rsquo;oggetto A. L&rsquo;obiettivo è scrivere quindi dei <strong>test veramente unitari</strong> per l&rsquo;oggetto B, anche se questo dipende dall&rsquo;oggetto A. Il classico talk <a href="https://vimeo.com/80533536">Integration Tests are a scam</a> di J.B. Rainsberger fornisce un punto di vista particolarmente &ldquo;radicale&rdquo; sull&rsquo;argomento.</p>
+
+<p>Il classico caso in cui uno <em>stub</em> risulta utile è quello del client che fa una richiesta al server: se la logica di implementazione del server è sotto il nostro controllo possiamo <strong>testare che il server rispetti il contratto con i suoi client</strong> generando degli <em>stub</em> di questi per ogni possibile richiesta; d&rsquo;altra parte, per verificare che i client siano in grado di <strong>gestire correttamente ogni possibile risposta del server</strong>, possiamo generare uno <em>stub</em> del server che fornisca ogni possibile risposta: in questo modo possiamo testare in maniera disaccoppiata client e server.</p>
+
+<h2 id="un-caso-d-uso-location-services:4b7c206247a0a425bb1064c53b31df66">Un caso d&rsquo;uso: <em>Location Services</em></h2>
+
+<p>Il caso d&rsquo;uso che tratteremo è relativo ai <strong>servizi di localizzazione</strong>, uno strumento frequentemente utilizzato dagli sviluppatori iOS e in generale da chi sviluppa su <strong>smartphone</strong>: per tali sviluppatori, quello dei servizi di localizzazione è un tema molto importante, <strong>fonte di complessità e sfide</strong> che caratterizzano tipicamente il mondo <em>mobile</em>. Non è infatti possibile ottenere l&rsquo;attuale posizione GPS in un preciso momento: l&rsquo;ultima posizione GPS disponibile si basa su una regressione, effettuata dal sistema, dei dati ricevuti da diversi sensori - antenne wifi, cellulare e ovviamente GPS, e spesso anche i sensori di movimento - in diversi momenti; <strong>il sistema può inviare notifiche alla nostra app in qualsiasi momento</strong>, ed essa deve essere in grado di &ldquo;digerire&rdquo; correttamente i dati ricevuti, interpretando anche eventuali errori. Scrivere dei test unitari per verificare che la nostra app geolocalizzata funzioni correttamente può presentare non poche difficoltà: non possiamo infatti affidarci ai &ldquo;veri&rdquo; sensori del dispositivo, perché probabilmente i test verranno eseguiti sul simulatore, oppure magari su un vero iPhone la cui ricezione GPS in un certo istante potrà essere più o meno buona, ma essa rappresenterà un solo caso possibile rispetto a tanti. Vogliamo essere in grado di <strong>testare ogni possibile risposta</strong> del sistema GPS del dispositivo, dall&rsquo;assenza totale di segnale al cambiamento frequente di posizione, alla <strong>mancata autorizzazione</strong> da parte dell&rsquo;utente per l&rsquo;accesso ai servizi di localizzazione.</p>
+
+<p>Supponiamo ad esempio che una certa classe, diciamo un <code>UIViewController</code>, esegua delle <strong>azioni che dipendono dalla posizione ricevuta</strong>. L&rsquo;idea è quella di testare che il nostro <code>UIViewController</code> si comporti &ldquo;bene&rdquo; rispetto alle notifiche del sistema di localizzazione. Il progetto Xcode contenente il codice mostrato in questo articolo è disponibile su <a href="https://github.com/broomburgo/AsyncTestingStubbing">GitHub</a>: si consiglia di scaricare il progetto e tenerlo a riferimento per il resto dell&rsquo;articolo.</p>
+
+<p>Invece di usare direttamente <code>CLLocationManager</code> per ottenere la posizione GPS del dispositivo, implementeremo una semplice classe che fungerà da <em>wrapper</em>, chiamata <code>LocationCoordinator</code>: un&rsquo;istanza di tale classe potrà essere configurata con due semplici funzioni <code>onUpdate</code> e <code>onFailure</code>, in modo da evitare l&rsquo;implementazione dei vari metodi di callback del <code>protocol</code> <code>CLLocationManagerDelegate</code>. L&rsquo;idea è quella di passare un&rsquo;istanza di <code>LocationCoordinator</code> al nostro <code>UIViewController</code>: quest&rsquo;ultimo quindi imposterà le due funzioni di callback indicate sopra, in modo da modificare il suo stato e i dati mostrati all&rsquo;utente.</p>
+
+<p>Di seguito è riportato il codice della classe <code>LocationCoordinator</code>:</p>
+
+<pre><code>import Foundation
+import CoreLocation
+
+public class LocationCoordinator: NSObject {
+    
+    public let locationManager: CLLocationManager
+    
+    public override init() {
+        locationManager = CLLocationManager()
+        super.init()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    private var updated: (CLLocation -&gt; ())?
+    public func onUpdate(value: CLLocation -&gt; ()) {
+        updated = value
+    }
+    
+    private var failed: (NSError -&gt; ())?
+    public func onFailure(value: NSError -&gt; ()) {
+        failed = value
+    }
+}
+
+extension LocationCoordinator: CLLocationManagerDelegate {
+    
+    public func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        let location = locations.last as! CLLocation
+        if let updated = self.updated {
+            updated(location)
+        }
+    }
+    
+    public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        if let failed = self.failed {
+            failed(error)
+        }
+    }
+    
+    public func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status {
+        case .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+}
+</code></pre>
+
+<p>Come si può vedere, la classe è configurata per richiedere l&rsquo;autorizzazione a leggere la posizione GPS del dispositivo quando l&rsquo;app è in uso, ma non sarà necessario fornire questa autorizzazione per i test: creeremo infatti uno <em>stub</em> che genererà posizioni arbitrarie, senza usare i sensori di sistema. Si ricorda inoltre che usando iOS SDK &gt;= 8.0, per usare i servizi di localizzazione sarà necessario inserire nel file Info.plist una chiave che descrive il motivo per il quale l&rsquo;app chiede l&rsquo;autorizzazione ad accedere a tali servizi:</p>
+
+<p><img src="/content/images/2015/06/Schermata-2015-06-03-alle-08-44-25-1.png" alt="" /></p>
+
+<p>Sebbene l&rsquo;aggiunta della chiave <code>NSLocationWhenIsUseUsageDescription</code> non sia necessaria per eseguire i test, senza questa chiave l&rsquo;app non potrà funzionare in iOS8 nel caso in cui provassimo ad avviarla normalmente.</p>
+
+<p>La classe di cui vogliamo testare il corretto funzionamento è indicata nel progetto con il nome di <code>LocationViewController</code>, e il suo scopo è mostrare le attuali coordinate GPS dell&rsquo;utente o mostrare un messaggio in caso di errore: un sua istanza è, in ogni instante, caratterizzata da un <code>LocationState</code> che rappresenta in quale stato essa si trova rispetto alla ricerca della posizione GPS:</p>
+
+<pre><code>public enum LocationState {
+    case Searching
+    case Found
+    case Error(CLError)
+}
+</code></pre>
+
+<h2 id="implementiamo-i-test:4b7c206247a0a425bb1064c53b31df66">Implementiamo i test</h2>
+
+<p>Per testare la classe verificheremo che, a seconda dei diversi possibili risultati ottenibili dalla ricerca della posizione GPS, un&rsquo;istanza di essa <strong>aggiorni correttamente il suo stato attuale</strong>. È quindi necessario fare in modo che un&rsquo;istanza del <code>LocationCoordinator</code> ignori le notifiche ricevute da <code>CLLocationManager</code>, in modo da forzare posizioni ed errori comodi per i nostri test; per farlo dichiariamo una sottoclasse di <code>LocationCoordinator</code> chiamata <code>STUB_LocationCoordinator</code> che modifichi la <em>parent class</em> nel seguente modo:</p>
+
+<ul>
+<li><p>ignora le notifiche del <code>locationManager</code>:</p>
+
+<pre><code>locationManager.stopUpdatingLocation()
+locationManager.delegate = nil
+</code></pre></li>
+
+<li><p>dichiara 4 funzioni per forzare posizione GPS e/o errori:</p>
+
+<pre><code>forceLocation
+forceError
+forceRandomDelayedLocations
+forceDelayedErrorLocationUnknown
+</code></pre></li>
+</ul>
+
+<p>Ciascuna di queste funzioni genera le stesse notifiche che normalmente genererebbe <code>CLLocationManager</code>. Le prime due funzioni, <code>forceLocation</code> e <code>forceError</code> forzano immediatamente una certa posizione GPS o un certo errore, mentre la funzione <code>forceRandomDelayedLocations</code> genera una serie di posizioni casuali dopo un certo ritardo e a intervalli regolari, e la funzione <code>forceDelayedErrorLocationUnknown</code> forza un errore del tipo <code>.LocationUnknown</code> dopo un certo ritardo.</p>
+
+<p>Prima di procedere con i test osserviamo che nel file <code>AsyncTestingStubbingTests.swift</code> c&rsquo;è una sezione <em>utility</em> nella quale sono implementate alcune funzioni comode per <strong>rendere  il codice dei test più espressivo</strong>. Ad esempio la funzione <code>mainViewController</code> ritorna l&rsquo;istanza del LocationViewController utilizzata nell&rsquo;interfaccia grafica nell&rsquo;app. Il <em>testing framework</em> integrato in Xcode è chiamato <code>XCTest</code>, e per quanto adeguatamente completo nelle sue funzionalità, esso è principalmente basato su funzioni del tipo <code>XCTAssert</code> che verificano che una qualche condizione sia vera, e se non lo è stampano in console un messaggio di errore passato alla stessa funzione <code>XCTAssert</code> nel momento in cui essa è chiamata: questo può portare alla scrittura di <strong>test verbosi e poco espressivi</strong>. Ci sono diverse librerie facilmente integrabili nei progetti Xcode che semplificano la scrittura dei nostri <em>assert</em>, come ad esempio <a href="https://github.com/Quick/Nimble">Nimble</a>, ma come si può vedere dalle poche funzioni di utility implementate nel progetto associato a questo articolo, basta poco per migliorare consistentemente la leggibilità dei nostri test.</p>
+
+<p>A questo punto possiamo procedere all&rsquo;implementazione dei test. Le funzioni <code>testLocation</code> e <code>testError</code> testano semplicemente che lo stato del <code>mainViewController</code> sia corretto prima e dopo la generazione di una posizione GPS e di un errore arbitrari. Tuttavia questi test non permettono di rappresentare correttamente un caso d&rsquo;uso tipico, perché <strong>le notifiche sulla posizione GPS posso arrivare in qualsiasi momento</strong>, e il <code>LocationViewController</code> deve essere in grado di <em>reagire</em> alle notifiche nel momento in cui queste si presentano. Per simulare la cosa useremo due test <em>asincroni</em>, cioè test il cui risultato non è ottenuto immediatamente, ma dopo un certo tempo: l&rsquo;idea è quella di &ldquo;mettere in pausa&rdquo; i test per un certo numero di secondi, finché non si verifica una certa condizione oppure non scade il tempo: in quest&rsquo;ultimo caso il test verrà considerato <strong>fallito</strong> da <code>XCTest</code> perché la condizione attesa non si è verificata entro il tempo richiesto.</p>
+
+<p>Riportiamo ad esempio il codice della funzione <code>testDelayedLocation</code>:</p>
+
+<pre><code>func testDelayedLocation() {
+        if let vc = mainViewController() {
+            let locationExpectation = expectationWithDescription(&quot;locationExpectation&quot;)
+            let coordinator = STUB_LocationCoordinator()
+            vc.showLocationWithCoordinator(coordinator)
+            vc.locationState.assertState(.Searching)
+            coordinator.forceRandomDelayedLocations(0.25, times:3)
+            after(0.5) {
+                vc.locationState.assertState(.Found)
+                after(0.25) {
+                    vc.locationState.assertState(.Found)
+                    locationExpectation.fulfill()
+                }
+            }
+            vc.locationState.assertState(.Searching)
+            waitForExpectationsWithTimeout(1, handler: nil)
+        }
+        else {
+            fail(&quot;this will never happen&quot;)
+        }
+    }
+</code></pre>
+
+<p>La funzione di utility <code>after</code> semplicemente esegue del codice dopo un certo numero di secondi: in base all&rsquo;implementazione di <code>forceRandomDelayedLocations</code> presente in <code>STUB_LocationCoordinator</code>, il <code>LocationViewController</code> dovrebbe  ricevere alcune posizioni GPS a intervalli regolari dopo un certo ritardo, e per verificarlo inseriamo due <em>assert</em>, dopo mezzo secondo e poi ancora un quarto di secondo. Per realizzare il test asincrono  definiamo una <code>XCTestExpectation</code>, quindi una &ldquo;aspettativa&rdquo;, chiamata <code>locationExpectation</code>: in coda al codice di test chiamiamo la funzione <code>waitForExpectationsWithTimeout</code> che fa continuare la funzione di test - senza che essa <em>ritorni</em> - fino alla &ldquo;realizzazione&rdquo; delle aspettative, tenendo conto di un certo tempo di timeout. Quindi, per &ldquo;realizzare&rdquo; un&rsquo;aspettativa, chiamiamo la funzione <code>fulfill</code> su <code>locationExpectation</code>, ma solo dopo aver verificato che lo stato del <code>LocationViewController</code> sia quello corretto.</p>
+
+<p>Possiamo estendere ulteriormente la <em>test suite</em> implementando altri test che simulano ogni tipo di errore possibile, oppure che simulano una situazione in cui posizioni GPS e errori si alternano: una volta compresa la struttura di base per realizzare <em>stub</em> e test asincroni sarà facile migliorare la <a href="http://engineering.facile.it/software-testing-coverage-vs-efficacia/">coverage</a> dei nostri test.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&text=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f&title=Swift%20testing%20avanzato%3a%20stubbing%20e%20test%20asincroni" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fswift-testing-avanzato-stubbing-e-test-asincroni%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/swift">Swift</a></li>
+    
+        <li><a href="/categories/software-testing">Software testing</a></li>
+    
+        <li><a href="/categories/xcode">Xcode</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/php-day-2015/"
+                class="button big previous">Facile.it devs @ PHP Day 2015</a></li>
+    
+
+    
+        <li><a href="/blog/ita/git-flow-semantic-versioning/"
+                class="button big next">GIT flow e versionamento semantico</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/swift-testing-avanzato-stubbing-e-test-asincroni\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">22</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

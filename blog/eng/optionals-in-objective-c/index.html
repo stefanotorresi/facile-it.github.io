@@ -1,0 +1,1467 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Optionals in Objective-C</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Optionals in Objective-C"/>
+<meta name="twitter:description" content="Objective-C is not going anywhere. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while: Objective-C based projects still need maintenance and new features to be added, and mixing Swift and Objective-C, while possible, can be tricky and possibly unconvenient, due to the dynamic nature of the latter; Swift is changing rapidly, has still some bugs and performance problems, and still lacks some features that professionals need, while Objective-C is mature and has a strong community; some may prefer a more dynamic language, and Objective-C support from Apple is still strong; Personally, while I naturally lean towards a more static, type-first approach to programming, from time to time I like to work in a more dynamic environment, so both for preference and for business needs, I still didn&rsquo;t put Objective-C completely away."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Optionals in Objective-C" />
+<meta property="og:description" content="Objective-C is not going anywhere. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while: Objective-C based projects still need maintenance and new features to be added, and mixing Swift and Objective-C, while possible, can be tricky and possibly unconvenient, due to the dynamic nature of the latter; Swift is changing rapidly, has still some bugs and performance problems, and still lacks some features that professionals need, while Objective-C is mature and has a strong community; some may prefer a more dynamic language, and Objective-C support from Apple is still strong; Personally, while I naturally lean towards a more static, type-first approach to programming, from time to time I like to work in a more dynamic environment, so both for preference and for business needs, I still didn&rsquo;t put Objective-C completely away." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/eng/optionals-in-objective-c/" />
+
+
+<meta property="og:updated_time" content="2015-11-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Optionals in Objective-C">
+<meta itemprop="description" content="Objective-C is not going anywhere. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while: Objective-C based projects still need maintenance and new features to be added, and mixing Swift and Objective-C, while possible, can be tricky and possibly unconvenient, due to the dynamic nature of the latter; Swift is changing rapidly, has still some bugs and performance problems, and still lacks some features that professionals need, while Objective-C is mature and has a strong community; some may prefer a more dynamic language, and Objective-C support from Apple is still strong; Personally, while I naturally lean towards a more static, type-first approach to programming, from time to time I like to work in a more dynamic environment, so both for preference and for business needs, I still didn&rsquo;t put Objective-C completely away.">
+
+
+<meta itemprop="dateModified" content="2015-11-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2927">
+
+
+
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2foptionals-in-objective-c%2f&text=Optionals%20in%20Objective-C&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/eng/optionals-in-objective-c/">Optionals in Objective-C</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-11-09'>
+            9 November 2015
+        </time>
+
+        
+            <a href="/authors/elviro" class="author">
+            
+                <span class="name">Elviro Rocca</span>
+                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
+            
+            </a>
+        
+
+        
+            <p>14 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p><strong>Objective-C is not going anywhere</strong>. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while:</p>
+
+<ul>
+<li>Objective-C based projects still need maintenance and new features to be added, and mixing Swift and Objective-C, while possible, <strong>can be tricky</strong> and possibly unconvenient, due to the dynamic nature of the latter;</li>
+<li>Swift is changing rapidly, has still some bugs and <strong>performance problems</strong>, and still lacks some features that professionals need, while Objective-C is mature and has a strong community;</li>
+<li>some may <strong>prefer a more dynamic language</strong>, and Objective-C support from Apple <a href="https://netguru.co/blog/objective-c-generics">is still strong</a>;</li>
+</ul>
+
+<p>Personally, while I naturally lean towards a more static, <a href="http://engineering.facile.it/type-first-development-in-swift/">type-first</a> approach to programming, from time to time I like to work in a more dynamic environment, so both for preference and for business needs, I still didn&rsquo;t put Objective-C completely away. But just after a few weeks of Swift I found myself missing one of the most powerful features of the language: <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330">Optionals</a>.</p>
+
+<h2 id="table-of-contents:356e4f51f7182f15c3c3e75bc317d5ff">Table of contents</h2>
+
+<ul>
+<li><a href="#the-optional-type">The <code>Optional</code> type</a></li>
+<li><a href="#optionals-in-swift">Optionals in Swift</a></li>
+<li><a href="#back-to-objective-c">Back to Objective-C</a></li>
+<li><a href="#example-a-json-parser">Example: a JSON parser</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<p><a name="the-optional-type"></a></p>
+
+<h2 id="the-optional-type:356e4f51f7182f15c3c3e75bc317d5ff">The <code>Optional</code> type</h2>
+
+<p>A Optional is a <em>generic</em> type, that is, a type that&rsquo;s dependent  (actually, <em>parametric</em>) on another <strong>subtype</strong>, so whe can have, for example, a <code>Optional&lt;String&gt;</code> or a <code>Optional&lt;Int&gt;</code>: thanks to some syntactic sugar, those types are written in Swift as <code>String?</code> and <code>Int?</code>. So, what is an <code>Optional</code>? It&rsquo;s a representation   of a value that could be there, and be of a particular subtype, or could not, therefore being <strong>nil</strong>: by <em>wrapping</em> the subtype into an <code>Optional</code>, the Swift compiler knows that the value could be nil, and complain in the cases where we are using an <code>Optional</code> where a value that&rsquo;s <strong>never</strong> nil is expected. By itself, this simple feature grants us a lot of type-safety for free: for example, in Swift we can&rsquo;t initialize a non-optional value with nil, and considering that, for the Swift&rsquo;s compiler, a value cannot be used before being initialized, by saying that a value&rsquo;s type is <code>String</code> the compiler will assure us that the value will <strong>always</strong> be a string, no matter what.</p>
+
+<p>In contrast, Objective-C objects can always be nil, and if we expect something not to be nil, we are forced to check for the actual existence of everything at any time. But actually, that&rsquo;s not necessarily a big deal: it&rsquo;s a classic <strong>tradeoff</strong> of dynamic languages, and it can be even considered a <em>feature</em> by some people: in using a dynamically typed language, we are always expected to design our APIs with <a href="https://en.wikipedia.org/wiki/Late_binding">late binding</a> in mind. Also, the new <a href="https://developer.apple.com/swift/blog/?id=25">Objective-C nullability specifiers</a> will help the compiler trigger warnings when nil is passed to a property or method parameter when <code>nonnull</code> is expected. But the problem is still there: we need a lot of boilerplate to always check for <em>nullness</em>, and that can produce error-prone, less readable code. The need for this boilerplate is missing in Swift, and that&rsquo;s thanks to the nature of the <code>Optional</code> type: in fact, it works in the same way as the <code>Maybe</code> type in Haskell, or the <code>Option</code> type in Scala, that is, <code>Optional</code> is actually a <strong>monad</strong>.</p>
+
+<p>The concept of <em>monad</em> is inherited by functional programming from <a href="https://en.wikipedia.org/wiki/Category_theory">category theory</a> and there are plenty of <a href="https://wiki.haskell.org/Monad">introductions</a> <a href="https://www.haskell.org/tutorial/monads.html">about it</a> <a href="http://learnyouahaskell.com/a-fistful-of-monads">on the web</a>, so I&rsquo;m not going into the specifics here: let me just say that a monad is a <em>computational context</em>, that is, a specification for the way some <em>computations</em> need to be resolved. Applying a certain transformation to a monad will result in another instance of the same monad, different from the first, based on the specific kind of monad. For example, applying some transformation to an <code>Optional</code> monad will result in applying the same transformation to the contained value if it&rsquo;s there, or absolutely nothing if the <code>Optional</code> contains nil: in both cases, the transformation&rsquo;s output will be another <code>Optional</code>, possibly of different subtype.</p>
+
+<p><a name="optionals-in-swift"></a></p>
+
+<h2 id="optionals-in-swift:356e4f51f7182f15c3c3e75bc317d5ff">Optionals in Swift</h2>
+
+<p>Consider the following Swift code:</p>
+
+<pre><code class="language-Swift">func makeOptionalIntFrom(value: Int, ifTrue: Bool) -&gt; Int?
+{
+  return ifTrue ? value : nil
+}
+
+let optionalInt = makeOptionalIntFrom(3, ifTrue: true)
+print(optionalInt.dynamicType) /// prints 'Optional&lt;Int&gt;'
+
+let toString: Int -&gt; String = { &quot;\($0)&quot; }
+
+let optionalString = optionalInt.map(toString)
+print(optionalString.dynamicType) /// prints 'Optional&lt;String&gt;'
+</code></pre>
+
+<p>In the example, <code>optionalInt</code> is a <code>Int</code> wrapped into an <code>Optional</code>, thus having type <code>Optional&lt;Int&gt;</code> (Swift&rsquo;s syntactic sugar allows us to write <code>Int?</code>), and by applying the <code>toString</code> function to that <code>Optional</code> we get an instance of <code>Optional&lt;String&gt;</code>. We can see that, to actually apply the <code>toString</code> function to the <code>Optional</code>, we passed the function to the <code>map</code> method: this operation is usually called <a href="https://wiki.haskell.org/Lifting"><em>lifting</em> a function</a>, because the function <code>toString</code>, of type <code>Int -&gt; String</code>, is <em>lifted</em> into the type <code>Optional&lt;Int&gt; -&gt; Optional&lt;String&gt;</code>.</p>
+
+<p>As we can see, no conditional statements were used in manipulating the optional integer: by <em>lifting</em> our transformations with the <code>map</code> method, we can apply them directly to the <code>Optional</code> instances, and we can also chain them pretty easily, for example:</p>
+
+<pre><code class="language-Swift">func makeOptionalIntFrom(value: Int, ifTrue: Bool) -&gt; Int?
+{
+  return ifTrue ? value : nil
+}
+
+let optionalInt = makeOptionalIntFrom(3, ifTrue: true)
+print(optionalInt.dynamicType) /// prints 'Optional&lt;Int&gt;'
+
+let doubled: Int -&gt; Int = { $0*2 }
+
+let toString: Int -&gt; String = { &quot;\($0)&quot; }
+
+let optionalDoubledString = optionalInt.map(doubled).map(toString)
+print(optionalDoubledString.dynamicType) /// prints 'Optional&lt;String&gt;'
+</code></pre>
+
+<p>If we want to express the opposite operation, we run into a problem: transforming a <code>String</code> into a <code>Int</code> is not always considered possible by Swift (for example, no numbers in the string), therefore the operation is optional. In fact:</p>
+
+<pre><code class="language-Swift">func makeOptionalStringFrom(value: String, ifTrue: Bool) -&gt; String?
+{
+  return ifTrue ? value : nil
+}
+
+let toInt: String -&gt; Int? = { Int($0) }
+
+let anotherOptionalString = makeOptionalStringFrom(&quot;3&quot;, ifTrue: true)
+
+let anotherOptionalInt = anotherOptionalString.map(toInt).map(doubled)
+/// this won't compile!
+</code></pre>
+
+<p>The problem here is that <code>toInt</code> is a function of type <code>String -&gt; Optional&lt;Int&gt;</code>, and lifting the function to the <code>Optional</code> &ldquo;world&rdquo; will turn its type into something like <code>Optional&lt;String&gt; -&gt; Optional&lt;Optional&lt;Int&gt;&gt;</code>, that is, an optional integer wrapped into another optional: in <em>monadic</em> terminology, to lift functions that transforms the wrapped type into another instance of the same monad, we need a <code>flatMap</code> operation:</p>
+
+<pre><code class="language-Swift">let anotherOptionalInt = anotherOptionalString.flatMap(toInt).map(doubled)
+/// this is fine
+</code></pre>
+
+<p>So, for the <code>Optional</code> type, <code>flatMap</code> works like <code>map</code> but for functions that transform the wrapped type into another <code>Optional</code>. In reading the code, <code>map</code> and <code>flatMap</code> can be basically treated as the same: they both indicate a transformation, and the fact that computations passed to <code>flatMap</code> are of slightly different type can be considered an implementation detail.</p>
+
+<p>Actually, Swift treats these types <strong>a little differently</strong> than in other languages: for example, <code>map</code> and <code>flatMap</code> are usually <em>free functions</em> in most <em>functional</em> languages, while in Swift they are <strong>methods</strong>. In general, Swift encourages the use of methods and <strong>method chaining</strong> instead of free functions composed with special operators: it&rsquo;s mostly a matter of philosophy, but in bringing these features back to Objective-C, the method-based approach is going to be really useful because there&rsquo;s no easy syntax for free functions in the language, while methods have the signature clean and readable syntax that we&rsquo;re used to.</p>
+
+<p><a name="back-to-objective-c"></a></p>
+
+<h2 id="back-to-objective-c:356e4f51f7182f15c3c3e75bc317d5ff">Back to Objective-C</h2>
+
+<p>Let&rsquo;s implement the <code>Optional</code> class in Objective-C:</p>
+
+<pre><code class="language-ObjectiveC">///Optional.h
+
+#import &lt;Foundation/Foundation.h&gt;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Optional : NSObject
+
++ (Optional*)with:(id _Nullable)value;
+
+- (Optional*)map:(id(^)(id))mapBlock;
+- (Optional*)flatMap:(Optional*(^)(id))flatMapBlock;
+
+@end
+
+NS_ASSUME_NONNULL_END
+</code></pre>
+
+<pre><code class="language-ObjectiveC">///Optional.m
+
+#import &quot;Optional.h&quot;
+
+@interface Optional ()
+
+@property (strong, nonatomic, nullable) id value;
+
+@end
+
+@implementation Optional
+
++ (Optional*)with:(id _Nullable)value
+{
+  Optional* optional = [Optional new];
+  optional.value = value;
+  return optional;
+}
+
+- (Optional *)map:(id  _Nonnull (^)(id _Nonnull))mapBlock
+{
+  if (self.value != nil)
+  {
+    return [Optional with:mapBlock(self.value)];
+  }
+  return self;
+}
+
+- (Optional *)flatMap:(Optional* _Nonnull (^)(id _Nonnull))flatMapBlock
+{
+  if (self.value != nil)
+  {
+    return flatMapBlock(self.value);
+  }
+  return self;
+}
+
+@end
+</code></pre>
+
+<p>As we can see, the <code>with:</code> class method will create an <code>Optional</code> object by wrapping some other object, of unspecified class: because there&rsquo;s no true <em>generics</em> in Objective-C, we won&rsquo;t be able to make our Optional type as type-safe as in Swift, but as we&rsquo;ll see, it won&rsquo;t be a big deal and we&rsquo;ll still be able to get some really <strong>powerful features</strong>. The <code>map:</code> method will check if the wrapped object is not nil, and apply the transformation expressed by the <code>mapBlock</code> block only if the object is actually there: in this case, Objective-C nullability specifiers really help us in designing our APIs, because we clearly specified that <code>mapBlock</code> will accept and will return non-nil objects only. The <code>flatMapBlock</code> block will return instead another <code>Optional</code>.</p>
+
+<p>We can test this by essentially recreating the same Swift example:</p>
+
+<pre><code class="language-ObjectiveC">///Test.h
+
+#import &lt;Foundation/Foundation.h&gt;
+
+@interface Test : NSObject
+
++ (void)testOptional;
+
+@end
+</code></pre>
+
+<pre><code class="language-ObjectiveC">///Test.m
+
+#import &quot;Test.h&quot;
+#import &quot;Optional.h&quot;
+
+@implementation Test
+
++ (void)testOptional
+{
+  Optional* optionalInt = [self makeOptionalIntFrom:@3 ifTrue:YES];
+  Optional* optionalDoubledString = [[optionalInt
+                                      map:[self doubled]]
+                                     map:[self toString]];
+  NSLog(@&quot;%@&quot;, optionalDoubledString);
+}
+
++ (Optional*)makeOptionalIntFrom:(NSNumber*)fromInt ifTrue:(BOOL)ifTrue
+{
+  return [Optional with:ifTrue ? fromInt : nil];
+}
+
+
++ (NSNumber*(^)(NSNumber*))doubled
+{
+  return ^NSNumber*(NSNumber* value)  {
+    return @(value.integerValue*2);
+  };
+}
+
++ (NSString*(^)(NSNumber*))toString
+{
+  return ^NSString*(NSNumber* value)  {
+    return [NSString stringWithFormat:@&quot;%@&quot;, value];
+  };
+}
+
+@end
+</code></pre>
+
+<p>Once we applied our transformations, we need a way to <em>unwrap</em> the object inside our <code>Optional</code>: in Swift this is done at language level, with some syntactic sugar, while in Objective-C we can follow the standard conventions of the functional programming community, that is, we can <em>get</em> the wrapped object via a <code>get</code> method.</p>
+
+<pre><code class="language-ObjectiveC">///Optional.h
+
+- (id _Nullable)get;
+</code></pre>
+
+<pre><code class="language-ObjectiveC">///Optional.m
+
+- (id)get
+{
+  return self.value;
+}
+</code></pre>
+
+<p>Of course the <code>get</code> method will return an <code>id _Nullable</code>, which means that the returned object can (obviously) be nil. A frequent pattern when dealing with <code>nil</code> objects is replacing them with &ldquo;default&rdquo; versions: that can be useful when we don&rsquo;t really care about the data contained in an object, but we don&rsquo;t want to be exposed to the risk of possibly null references. Once again, with the <code>Optional</code> class we can avoid conditional statements and express the &ldquo;defaulting&rdquo; mechanism in a more declarative way: we just need to add a <code>getOrElse:</code> method, that will return the wrapped object if it&rsquo;s there, or will return a default object, that we&rsquo;ll pass to the method:</p>
+
+<pre><code class="language-ObjectiveC">///Optional.h
+
+- (id)getOrElse:(id(^)())elseBlock;
+</code></pre>
+
+<pre><code class="language-ObjectiveC">///Optional.m
+
+- (id)getOrElse:(id  _Nonnull (^)())elseBlock
+{
+  if (self.value != nil)
+  {
+    return self.value;
+  }
+  return elseBlock();
+}
+</code></pre>
+
+<p>As we can see, <code>getOrElse:</code> will <strong>not</strong> return a <code>_Nullable</code> object, and that&rsquo;s thanks to <code>elseBlock</code>: we&rsquo;re not passing the actual default object here, but a block that will produce one; this way, we can get the default object <strong>lazily</strong>, because if the wrapped object is not nil, the default object doesn&rsquo;t need to be allocated.</p>
+
+<p>For the rest of the article we&rsquo;ll work on a more real-world example, and in doing so we&rsquo;ll add more features to the <code>Optional</code> class, making it more and more powerful.</p>
+
+<p><a name="example-a-json-parser"></a></p>
+
+<h2 id="example-a-json-parser:356e4f51f7182f15c3c3e75bc317d5ff">Example: a JSON parser</h2>
+
+<p>Suppose we want to create an app that shows movie informations: we are retrieving those informations in JSON format from a website like <a href="http://api.myapifilms.com">myapifilms</a>. Each movie has a JSON representation like the following:</p>
+
+<pre><code class="language-JSON">{
+    &quot;countries&quot;: [
+        &quot;USA&quot;
+    ],
+    &quot;directors&quot;: [
+        {
+            &quot;name&quot;: &quot;Frank Darabont&quot;,
+            &quot;nameId&quot;: &quot;nm0001104&quot;
+        }
+    ],
+    &quot;filmingLocations&quot;: [
+        &quot;St. Croix&quot;,
+        &quot;U.S. Virgin Islands&quot;
+    ],
+    &quot;genres&quot;: [
+        &quot;Crime&quot;,
+        &quot;Drama&quot;
+    ],
+    &quot;idIMDB&quot;: &quot;tt0111161&quot;,
+    &quot;languages&quot;: [
+        &quot;English&quot;
+    ],
+    &quot;metascore&quot;: &quot;80/100&quot;,
+    &quot;originalTitle&quot;: &quot;&quot;,
+    &quot;plot&quot;: &quot;Andy Dufresne is a young and successful banker whose life changes drastically when he is convicted and sentenced to life imprisonment for the murder of his wife and her lover. Set in the 1940s, the film shows how Andy, with the help of his friend Red, the prison entrepreneur, turns out to be a most unconventional prisoner.&quot;,
+    &quot;ranking&quot;: 1,
+    &quot;rated&quot;: &quot;R&quot;,
+    &quot;rating&quot;: &quot;9.3&quot;,
+    &quot;releaseDate&quot;: &quot;19941014&quot;,
+    &quot;runtime&quot;: [
+        &quot;142 min&quot;
+    ],
+    &quot;simplePlot&quot;: &quot;Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.&quot;,
+    &quot;title&quot;: &quot;The Shawshank Redemption&quot;,
+    &quot;type&quot;: &quot;Movie&quot;,
+    &quot;urlIMDB&quot;: &quot;http://www.imdb.com/title/tt0111161&quot;,
+    &quot;urlPoster&quot;: &quot;http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg&quot;,
+    &quot;votes&quot;: &quot;1,533,914&quot;,
+    &quot;writers&quot;: [
+        {
+            &quot;name&quot;: &quot;Stephen King&quot;,
+            &quot;nameId&quot;: &quot;nm0000175&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Frank Darabont&quot;,
+            &quot;nameId&quot;: &quot;nm0001104&quot;
+        }
+    ],
+    &quot;year&quot;: &quot;1994&quot;
+}
+</code></pre>
+
+<p>Of course we want to define our own internal representation with a value object, change some structure and ignore the parts that we consider not relevant. Here&rsquo;s a possible interface for the <code>Movie</code> class:</p>
+
+<pre><code class="language-ObjectiveC">NS_ASSUME_NONNULL_BEGIN
+
+@interface Movie : NSObject
+
+@property (copy, nonatomic, readonly) NSString* title;
+@property (copy, nonatomic, readonly) NSNumber* rating;
+@property (copy, nonatomic, readonly) NSNumber* year;
+@property (copy, nonatomic, readonly) NSNumber* lengthInMinutes;
+
++ (Movie*)withJSONDict:(NSDictionary*)dict;
+
+@end
+
+NS_ASSUME_NONNULL_END
+</code></pre>
+
+<p>The class method <code>withJSONDict:</code> will create an instance of <code>Movie</code> from a JSON dictionary like the one showed before: as we can see from the interface declaration, we decided to not allow nil values for any of the properties; but when dealing with JSON, we must consider <strong>every possibility</strong>, including missing keys, null values or wrong types. We&rsquo;re going to use the <code>Optional</code> type to parse the JSON dict in a clean, declarative and error-proof way.</p>
+
+<p>Let&rsquo;s start with the title. From the JSON, the title should be given by the &ldquo;title&rdquo; key, and should be a string (<code>NSString</code> in Objective-C), so we can get the title via the following:</p>
+
+<pre><code class="language-ObjectiveC"> NSString* title = [[[[Optional
+                        with:[dict objectForKey:@&quot;title&quot;]]
+                       
+                       flatMap:^Optional*(id title) {
+                         return [Optional with:[title isKindOfClass:[NSString class]] ? title : nil];
+                       }]
+                      
+                      flatMap:^Optional*(NSString* title) {
+                        return [Optional with:title.length &gt; 0 ? title : nil];
+                      }]
+                     
+                     getOrElse:^NSString*{
+                       return @&quot;NO TITLE&quot;;
+                     }];
+</code></pre>
+
+<p>The first <code>flatMap:</code> step means that we want the title to be of <code>NSString</code> class. It&rsquo;s convenient to abstract this operation directly into the <code>Optional</code> constructor, because we&rsquo;re going to do it all the time:</p>
+
+<pre><code class="language-ObjectiveC">+ (Optional *)with:(id)value as:(Class)valueClass
+{
+  if ([value isKindOfClass:valueClass])
+  {
+    return [Optional with:value];
+  }
+  return [Optional with:nil];
+}
+</code></pre>
+
+<p>The second <code>flatMap:</code> step means that if the found string is of length 0 (that is, empty), we are going to treat it as unknown. Actually, this step will act as a <strong>filter</strong>, because it will only <em>let pass</em> the strings that are not empty; with that in mind, let&rsquo;s add a <code>filter:</code> method to the <code>Optional</code> class:</p>
+
+<pre><code class="language-ObjectiveC">///Optional.h
+
+- (Optional*)filter:(BOOL(^)(id))filterBlock;
+</code></pre>
+
+<pre><code class="language-ObjectiveC">///Optional.m
+
+- (Optional*)filter:(BOOL (^)(id _Nonnull))filterBlock
+{
+  return [self flatMap:^Optional*(id value) {
+    if (filterBlock(value))
+    {
+      return self;
+    }
+    else
+    {
+      return [Optional with:nil];
+    }
+  }];
+}
+</code></pre>
+
+<p>The <code>filter:</code> method takes as parameter a block that returns a <code>BOOL</code> based on the wrapped value: internally, <code>filter:</code> will actually call <code>flatMap:</code>, with a conditional expression to check if the <code>filterBlock</code> succeeds or fails.</p>
+
+<p>Finally:</p>
+
+<pre><code class="language-ObjectiveC">NSString* title = [[[Optional
+                       with:[dict objectForKey:@&quot;title&quot;]
+                       as:[NSString class]]
+                      
+                      filter:^BOOL(NSString* string) {
+                        return string.length &gt; 0;
+                      }]
+                     
+                     getOrElse:^NSString*{ return @&quot;NO TITLE&quot;; }];
+</code></pre>
+
+<p>So, no conditional statements, and very few lines of code, completely declarative.</p>
+
+<p>For the <code>rating</code> and <code>year</code> parameters we need to add a <code>map</code> to convert the <code>NSString</code> into an <code>NSNumber</code>:</p>
+
+<pre><code class="language-ObjectiveC">NSNumber* rating = [[[[Optional
+                         with:[dict objectForKey:@&quot;rating&quot;]
+                         as:[NSString class]]
+                        
+                        filter:^BOOL(NSString* string) {
+                          return string.length &gt; 0;
+                        }]
+                       
+                       map:^NSNumber*(NSString* stringValue) {
+                         return [NSDecimalNumber decimalNumberWithString:stringValue];
+                       }]
+                      
+                      getOrElse:^NSNumber*{ return @0; }];
+  movie.rating = rating;
+  
+  NSNumber* year = [[[[Optional
+                       with:[dict objectForKey:@&quot;year&quot;]
+                       as:[NSString class]]
+                      
+                      filter:^BOOL(NSString* string) {
+                        return string.length &gt; 0;
+                      }]
+                     
+                     map:^NSNumber*(NSString* stringValue) {
+                       return [NSDecimalNumber decimalNumberWithString:stringValue];
+                     }]
+                    
+                    getOrElse:^NSNumber*{ return @0; }];
+</code></pre>
+
+<p>The <code>lenghtInMinutes</code> parameter is a little tricky; from the JSON we can see that the value is represented like this:</p>
+
+<pre><code class="language-JSON">&quot;runtime&quot;: [ 
+	&quot;142 min&quot; 
+]
+</code></pre>
+
+<p>So we expect an array, of which we&rsquo;re only interested in the first element (thus, the array must not be empty), that has to be a string; of this string we only need the first part, removing the <code>min</code> portion. Luckily, we already have all the tools for the job:</p>
+
+<pre><code class="language-ObjectiveC">  NSNumber* lengthInMinutes =
+  [[[[[[Optional
+        with:[dict objectForKey:@&quot;runtime&quot;]
+        as:[NSArray class]]
+       
+       flatMap:^Optional*(NSArray* array) {
+         return [Optional with:[array firstObject]];
+       }]
+      
+      map:^NSString*(NSString* string) {
+        return [string
+                stringByReplacingOccurrencesOfString:@&quot; min&quot;
+                withString:@&quot;&quot;];
+      }]
+     
+     filter:^BOOL(NSString* string) {
+       return string.length &gt; 0;
+     }]
+    
+    map:^NSNumber*(NSString* stringValue) {
+      return @([stringValue integerValue]);
+    }]
+   
+   getOrElse:^NSNumber*{ return @0; }];
+</code></pre>
+
+<p>Actually, something is missing: the method <code>[array firstObject]</code> returns the first object of the array if the array has at least one element, or nil if the array is empty: there&rsquo;s no indication that the first object is actually a <code>NSString</code>, so we need to add a <code>filter</code> step to insure that the object is an instance of the correct class. Let&rsquo;s do it:</p>
+
+<pre><code class="language-ObjectiveC"> NSNumber* lengthInMinutes =
+  [[[[[[[Optional
+         with:[dict objectForKey:@&quot;runtime&quot;]
+         as:[NSArray class]]
+        
+        flatMap:^id(NSArray* array) {
+          return [Optional with:[array firstObject]];
+        }]
+       
+       filter:^BOOL(id value) {
+         return [value isKindOfClass:[NSString class]];
+       }]
+      
+      map:^NSString*(NSString* string) {
+        return [string
+                stringByReplacingOccurrencesOfString:@&quot; min&quot;
+                withString:@&quot;&quot;];
+      }]
+     
+     filter:^BOOL(NSString* string) {
+       return string.length &gt; 0;
+     }]
+    
+    map:^NSNumber*(NSString* stringValue) {
+      return @([stringValue integerValue]);
+    }]
+   
+   getOrElse:^NSNumber*{ return @0; }];
+</code></pre>
+
+<p>As we can see, when we work with the <code>Optional</code> class, adding a condition simply means <strong>adding a step</strong> in the linear <strong>flow of expressions</strong>.</p>
+
+<p><a name="conclusion"></a></p>
+
+<h2 id="conclusion:356e4f51f7182f15c3c3e75bc317d5ff">Conclusion</h2>
+
+<p>Bringing back the <code>Optional</code> type from Swift to Objective-C allowed us to build a JSON parsing routine, often something hard to maintain and error-prone, in a simple, linear and readable way. Of course there&rsquo;s <strong>plenty of cases</strong> where working with optionals can give us the same advantages: by composing <code>map</code>, <code>flatMap</code> and <code>filter</code> operations we can express our intent in a clean and readable way. But this is not just about the <code>Optional</code> type: some readers may have probably noticed that many languages (including Swift) allow operations with the same names on lists and arrays, and the meanings are also the same: <code>map</code> and <code>flatMap</code>, in particular, are <strong>generic concepts</strong> related to monads (in fact, the array type is also a monad) and allow declarative compositions of transformations. This concept is at the core of <strong>functional programming</strong>, and I think there&rsquo;s plenty of reasons to apply similar concepts to a more object-oriented environment: they will help the programmer in reasoning about the code and express the intent in a more declarative way.</p>
+
+<p>The code for the <code>Optional</code> class used throughout the article can be found on <a href="https://gist.github.com/broomburgo/e318228a5f7d6a605e82">GitHub Gist</a>.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2foptionals-in-objective-c%2f&text=Optionals%20in%20Objective-C&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2foptionals-in-objective-c%2f&title=Optionals%20in%20Objective-C" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2foptionals-in-objective-c%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/swift">Swift</a></li>
+    
+        <li><a href="/categories/objective-c">Objective-C</a></li>
+    
+        <li><a href="/categories/functional-programming">Functional programming</a></li>
+    
+        <li><a href="/categories/monad">Monad</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ita/optionals-in-objective-c/"
+                class="button big previous">Optionals in Objective-C</a></li>
+    
+
+    
+        <li><a href="/blog/ita/facile-it-devs-codemotion-milan-2015/"
+                class="button big next">Facile.it devs @ Codemotion Milan 2015</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/eng\/optionals-in-objective-c\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">22</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

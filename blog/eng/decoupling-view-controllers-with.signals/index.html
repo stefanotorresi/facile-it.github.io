@@ -1,0 +1,1040 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Decoupling view controllers with Signals</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Decoupling view controllers with Signals"/>
+<meta name="twitter:description" content="Last time we looked at the Signal class, that is, a simple, reusable way of encapsulating the observer pattern. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is hard: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Decoupling view controllers with Signals" />
+<meta property="og:description" content="Last time we looked at the Signal class, that is, a simple, reusable way of encapsulating the observer pattern. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is hard: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/eng/decoupling-view-controllers-with.signals/" />
+
+
+<meta property="og:updated_time" content="2016-03-15T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Decoupling view controllers with Signals">
+<meta itemprop="description" content="Last time we looked at the Signal class, that is, a simple, reusable way of encapsulating the observer pattern. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is hard: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow.">
+
+
+<meta itemprop="dateModified" content="2016-03-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2130">
+
+
+
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,Agile,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,REST,SOLID,Scrum,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2016-03-15'>
+            15 March 2016
+        </time>
+
+        
+            <a href="/authors/elviro" class="author">
+            
+                <span class="name">Elviro Rocca</span>
+                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
+            
+            </a>
+        
+
+        
+            <p>10 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p><a href="http://engineering.facile.it/code-reuse-a-primer/">Last time</a> we looked at the <strong>Signal</strong> class, that is, a simple, reusable way of encapsulating the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is <strong>hard</strong>: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow. We often find ourselves in a situation in which several different responsibilities are all expressed in a single view controller, with the effect of creating a gigantic class, full of entangled imperative statements, hard-to-understand sequencing and general complexity. We&rsquo;ll use the <code>Signal</code> class to assign the various responsibilities to different classes, and write cleaner, more declarative code. The core of this architectural pattern lies in inverting the way in which objects communicate, view controller or other: instead of asking objects to do things, we&rsquo;re going to <strong>observe</strong> what objects are doing, and <strong>react</strong> accordingly. <em>Observe</em> and <em>React</em> are the cornerstones of the programming paradigm known as <a href="https://en.wikipedia.org/wiki/Functional_reactive_programming">functional reactive programming(FRP)</a>; the present article is not going to talk about FRP as a whole, nor to present shared FRP techniques; the point is to discuss an architectural pattern for decoupling view controllers from responsibilities not strictly related to user interaction, by leveraging some basic FRP tools.</p>
+
+<p>The example project for this article is available in <a href="https://github.com/broomburgo/SignalViewControllers/">GitHub</a>: I&rsquo;m going to paste some code examples, but it&rsquo;s recommended to check and test the entire project while reading the article. What follows is the full implementation of <code>Signal</code>, and its public interface for sending new values, called <code>Emitter</code>:</p>
+
+<script src="https://gist.github.com/broomburgo/851945c4b36aff83b4b9.js"></script>
+
+<h4 id="the-megacontroller:98c10da2faa40144e7de0ba94dc701c4">The megacontroller</h4>
+
+<p>Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:</p>
+
+<ul>
+<li><em>average</em>: the movie was <em>good</em>, <em>bad</em> or <em>so and so</em>;</li>
+<li><em>polarized</em>: the movie was <em>very bad</em> or <em>really good</em>;</li>
+</ul>
+
+<p>The app is going to present a page in which the user can select an <em>average</em> or a <em>polarized</em> feedback, and can tap a button that will present the user the available choices, i.e., respectively <em>good</em>, <em>son and so</em>, <em>bad</em>, or <em>really</em> and <em>very bad</em>. The app is also going to thank the user if they&rsquo;ve just left a positive feedback, but only if the previously left feedback was of lower value. The example is a little contrived but instructive, as we&rsquo;re going to see. An <strong>easy, familiar approach</strong> to the problem would be to start with the design of the two view controllers involved:</p>
+
+<ul>
+<li>the <code>MainPage</code> will let the user select if the feedback is average or polarized, and will present a button to show the page where the actual feedback value will be selected; the <code>MainPage</code> will also show the currently selected feedback (or none) in a label;</li>
+<li>the <code>SelectionPage</code> is going to present several buttons with the various feedback values (different based on the feedback category), and at the tap of a button the page should actually pop from the navigation stack, going back to the now-updated <code>MainPage</code>.</li>
+</ul>
+
+<p>Armed with our <strong>imperative mind</strong> we would probably start by adding a sequence of instructions to the <code>MainPage</code>, that we&rsquo;ll probably perceive as the &ldquo;main&rdquo; controller of our app. But soon, we would probably notice that a lot of <strong>clearly separated</strong> responsibilities are being collected in the <code>MainPage</code> class:</p>
+
+<ul>
+<li>the <code>SelectionPage</code> has to be constructed and initialized, and by doing this in <code>MainPage</code> we are imposing a strict <strong>dependency</strong> between the two classes;</li>
+<li>after its initialization, the <code>SelectionPage</code> must be presented to the user: we would probably embed <code>MainPage</code> in a <code>UINavigationController</code>, then push the <code>SelectionPage</code> from the <code>MainPage</code>, resulting in a strict coupling of the two classes with a particular navigation and presentation strategy (i.e., using a <code>UINavigationController</code>) that is going to cause headaches if the use cases change (for example, in developing the <strong>iPad version</strong> of the app);</li>
+<li>there&rsquo;s a feedback value <strong>stored somewhere</strong>, because we need to know if the user selected <code>average</code> or <code>polarized</code>, and actually which was the selected feedback, because its value will be shown on the main page; the simplest solution seems to be just storing the selected feedback value in the <code>MainPage</code> class;</li>
+<li>the act of &ldquo;collecting the feedback&rdquo; is a responsibility in itself, because the collected value is probably going to be used somewhere (for example, posting it to a web service);</li>
+</ul>
+
+<p>We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we&rsquo;re going to try and think with signals.</p>
+
+<h4 id="the-model:98c10da2faa40144e7de0ba94dc701c4">The model</h4>
+
+<p>For example, if the model changes we need to update the text shown on the <code>MainPage</code>: a possible way to manage this could be to create a <code>ModelController</code> class, which holds the model, and <em>emits a signal</em> each time the model changes. Then, the <code>MainPage</code> could <em>react</em> to this signal, and change the UI accordingly. A nice to way to do this is injecting the <code>ModelController</code> in the <code>MainPage</code> constructor, so that <code>MainPage</code> can establish the appropriate bindings:</p>
+
+<script src="https://gist.github.com/broomburgo/1740115e9ad99e79f6b5.js"></script>
+
+<p>The <code>§</code> operator and the <code>eachTime</code> function are just helpers to make the <strong>functional composition</strong> easier: as it often happens with functional programming, or declarative programming in general, we can infer the meaning of an expression just by reading it; in fact, <code>onReception § eachTime § updateViewsWithFeedbackModel</code> means that when the signal is received, the <code>MainPage</code> will update the view every time according to the new <code>FeedbackModel</code>: <code>eachTime</code> means that every time the signal triggers, so will the update; this is in contrast with the <code>once</code> function, that makes the object listen only to the first signal trigger. This is  related to the <code>Persistence</code> of a <code>Signal</code> observation, that is, if the object should continue listen to a signal or not: <code>Persistence</code> is a single <code>enum</code> with two values, <code>Continue</code> and <code>Stop</code>.</p>
+
+<p>An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the <code>viewDidLoad</code> method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the <code>ModelController</code> is available: the line <code>viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify</code> means that when the <code>viewReadyEmitter</code>, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to <em>notify</em> its current value to all the observers; this way we don&rsquo;t need to manually update the views in the <code>viewDidLoad</code> method: everything is connected, and the signals will <strong>propagate</strong> according to the declarative bindings.</p>
+
+<h4 id="handling-page-creation-and-presentation:98c10da2faa40144e7de0ba94dc701c4">Handling page creation and presentation</h4>
+
+<p>Transitioning between pages is one the key points in iOS programming: page presentation has to be <strong>predictable and smooth</strong>, to avoid a confusing user experience. One of the main premises of the <code>UIViewController</code> class was and still is the creation of a modular hierarchy of views, that&rsquo;s independent from the way it&rsquo;s presented to the user: that way we can easily reuse <strong>the same</strong> view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic <em>inside</em> the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.</p>
+
+<p>A possible solution would be to use a <code>NavigationHandler</code>, that will handle the transition between pages, along with the initial presentation during the application startup. The strategy here is to use a class that knows <strong>when and how</strong> to present pages, oblivious of what pages actually do. For example, on receiving the appropriate signal from <code>MainPage</code>, the <code>NavigationHandler</code> will present the <code>SelectionPage</code>. Where the <code>SelectionPage</code> comes from? We should certainly avoid to burden the <code>NavigationHandler</code> with pages&rsquo; initialization responsibilities,  in fact we identified the class creation as a responsibility in itself. A frequent pattern used to handle the initialization of objects is the <a href="http://www.oodesign.com/factory-pattern.html">Factory Pattern</a>: a <code>PageFactory</code> will construct our pages with the options passed to the factory constructor. Thus, <code>NavigationHandler</code> will ask the <code>PageFactory</code> for pages, through the methods <code>makeMainPage</code> and <code>makeSelectionPage</code>.</p>
+
+<p>But we incur in a problem: <code>makeSelectionPage</code> will just return a <code>SelectionPage</code> object, but we don&rsquo;t know if it&rsquo;s <em>always</em> the same instance, or a new instance each time. In fact, <code>PageFactory</code> doesn&rsquo;t <em>promise</em> always the same page. This is important because the <code>NavigationHandler</code> will only take care of page presentation, but the very same page instance has to be considered, for example, for collecting the feedback. A possible strategy would be to <em>cache</em> the <code>SelectionPage</code>, but one of the main points of functional programming is <strong>avoiding state</strong>: we don&rsquo;t want to burden ourselves with the responsibility of managing mutable state, which is one of the <a href="http://shaffner.us/cs/papers/tarpit.pdf">main causes of complexity</a> in software development. Instead, we will once again leverage signals to handle the situation. <code>PageFactory</code> exposes two signals that are triggered at page creation; <code>NavigationHandler</code>  uses those signal to bind its actions to the initialized pages:</p>
+
+<script src="https://gist.github.com/broomburgo/20882b3bbf8ce7f56a51.js"></script>
+
+<p>In the code just shown, the signals that are triggered when the pages are initialized are <em>flatMapped</em> to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the <em>second</em> signal will be available only when the <em>first</em> signal is triggered: the <code>flatMap</code> method will let us reference a signal that is not yet available. The <code>inAnyCase</code> function is used because <code>NavigationHandler</code> is not interested in the <em>content</em> of the signals, but just the fact that they are triggered; the content is going to be handled by another class: <code>FeedbackCollector</code>.</p>
+
+<h4 id="composing-signals:98c10da2faa40144e7de0ba94dc701c4">Composing signals</h4>
+
+<p><code>FeedbackCollector</code> has the responsibility of <em>collecting the whole feedback</em>: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it&rsquo;s the result of <strong>many different interactions</strong> from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:</p>
+
+<ul>
+<li>at the app startup the pages are not yet initialized;</li>
+<li>to actually collect the feedback various interactions in multiple pages will be needed;</li>
+</ul>
+
+<p>Usually these consideration would lead to <strong>stateful</strong> computations, where state would be expressed in various points, and mutated. But the class <code>FeedbackCollector</code> can generate a signal triggered each time a new feedback is collected with a single expression:</p>
+
+<script src="https://gist.github.com/broomburgo/e2609d60b0d3e245d0ca.js"></script>
+
+<p>The <code>+</code> operator will literally <em>add</em> 2 signals together, producing a signal that is triggered each time either of the signals is triggered. The app uses the <code>Signal&lt;FeedbackModelChange&gt;</code> produced by the <code>collectFeedbackModelChange()</code> to update the model in the <code>ModelController</code>.</p>
+
+<p>Another example of asynchronous reaction to signals is shown in the <code>AppDelegate</code>&rsquo;s method <code>handleGoodFeedbacksWithAlert()</code>; here&rsquo;s the logic: if the user leaves a positive feedback, that is better than the previously left feedback, the app will show an alert, thanking the user. The entire logic for this is handled in the following expression:</p>
+
+<script src="https://gist.github.com/broomburgo/b6438d9b65e7570147c9.js"></script>
+
+<p><code>ModelController</code>&rsquo;s <code>deltaSignal</code> is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by <em>filtering</em> the <code>deltaSignal</code>, because we need a signal that is triggered only when the new feedback is different from the previous and positive.</p>
+
+<h4 id="conclusion:98c10da2faa40144e7de0ba94dc701c4">Conclusion</h4>
+
+<p>A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:</p>
+
+<ul>
+<li>we can work on <strong>a single piece at a time</strong>, thinking about what <em>values</em> are exchanged between classes, instead of interfaces and abstractions;</li>
+<li>we&rsquo;ll be able to focus on what a view controller, or any class, really has to <em>produce</em>, that is, what value is going to yield in the economy of the app;</li>
+</ul>
+
+<p>Signals are not application-wide events: we don&rsquo;t need a router or a dispatcher (like   <code>NSNotificationCenter</code>) to properly handle them, because each object will declare its observation of specific signals. Also, because signals are easily transformed and composed, we can declaratively express our bindings without worrying about <em>when</em> and <em>how</em> things are going to happen, but just <em>what</em> we need. Of course our architecture has to take into account the fact that getting a <em>precise sequence of events</em> is basically impossible when working with signals: actually, <em>sequencing</em> is not even considered in declarative programming, because, along with <em>state</em>, is a great cause of complexity. In the end, a declarative architecture, like everything, has its tradeoffs, but I still think it&rsquo;s worth trying.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/swift">Swift</a></li>
+    
+        <li><a href="/categories/functional-programming">Functional programming</a></li>
+    
+        <li><a href="/categories/signal">Signal</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/eng/graphql-an-introduction/"
+                class="button big previous">GraphQL: an introduction</a></li>
+    
+
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/eng\/decoupling-view-controllers-with.signals\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">22</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">10</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

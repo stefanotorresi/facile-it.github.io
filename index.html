@@ -211,15 +211,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
                         <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
                     </li>
                 
                     <li>
                         <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="/blog/ita/puli-universal-packages-for-php/"><p>Puli: Universal Packages for PHP</p></a>
                     </li>
                 
             </ul>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h2>
+            <h2><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h2>
         
         
         
@@ -247,21 +247,21 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-01-18'>
-            18 January 2016
+        <time class="published" datetime='2016-03-15'>
+            15 March 2016
         </time>
 
         
-            <a href="/authors/vito" class="author">
+            <a href="/authors/elviro" class="author">
             
-                <span class="name">Vito Latrofa</span>
-                <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" />
+                <span class="name">Elviro Rocca</span>
+                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
             
             </a>
         
 
         
-            <p>9 minute read</p>
+            <p>10 minute read</p>
         
     </div>
 </header>
@@ -271,385 +271,92 @@ ga('send', 'pageview');
 
     
 
-<h2 id="the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb">The lesson we learned with REST</h2>
+<p><a href="http://engineering.facile.it/code-reuse-a-primer/">Last time</a> we looked at the <strong>Signal</strong> class, that is, a simple, reusable way of encapsulating the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is <strong>hard</strong>: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow. We often find ourselves in a situation in which several different responsibilities are all expressed in a single view controller, with the effect of creating a gigantic class, full of entangled imperative statements, hard-to-understand sequencing and general complexity. We&rsquo;ll use the <code>Signal</code> class to assign the various responsibilities to different classes, and write cleaner, more declarative code. The core of this architectural pattern lies in inverting the way in which objects communicate, view controller or other: instead of asking objects to do things, we&rsquo;re going to <strong>observe</strong> what objects are doing, and <strong>react</strong> accordingly. <em>Observe</em> and <em>React</em> are the cornerstones of the programming paradigm known as <a href="https://en.wikipedia.org/wiki/Functional_reactive_programming">functional reactive programming(FRP)</a>; the present article is not going to talk about FRP as a whole, nor to present shared FRP techniques; the point is to discuss an architectural pattern for decoupling view controllers from responsibilities not strictly related to user interaction, by leveraging some basic FRP tools.</p>
 
-<p>For many developers, nowadays, building an <strong>API</strong> for their applications essentially means mapping the <em>resources</em> of the domain to <em>URIs</em>, with the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles in mind.
-Usually creating a <strong><em>RESTful</em></strong> system is not difficult, and the simplicity of the idea makes the task easier.
-Let&rsquo;s see some of the consequences and benefits of choosing REST:</p>
+<p>The example project for this article is available in <a href="https://github.com/broomburgo/SignalViewControllers/">GitHub</a>: I&rsquo;m going to paste some code examples, but it&rsquo;s recommended to check and test the entire project while reading the article. What follows is the full implementation of <code>Signal</code>, and its public interface for sending new values, called <code>Emitter</code>:</p>
 
-<ul>
-<li>Every HTTP verb has its own meaning, allowing the developer to understand immediately what kind of operation (typically among the CRUD ones) is going to be performed on the resource identified by the URI.</li>
-<li>Often the same URI can be used with multiple verbs to accomplish different tasks (e.g. &ldquo;example.com/tag/123&rdquo; refers to a particular tag that you can retrieve, update or delete).</li>
-<li>Controllers in many server-side frameworks can be created with a RESTful approach, each one of them representing one or more resources.</li>
-</ul>
+<script src="https://gist.github.com/broomburgo/851945c4b36aff83b4b9.js"></script>
 
-<p>However, unfortunately, it&rsquo;s often easy to come across some problems:</p>
+<h4 id="the-megacontroller:98c10da2faa40144e7de0ba94dc701c4">The megacontroller</h4>
+
+<p>Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:</p>
 
 <ul>
-<li>Complex URIs can be difficult to write or understand and sometimes they are subject to arbitrary interpretations.</li>
-<li>In order to filter collections you may need to use one or more ids embedded in the URL, but also <em>query parameters</em>, e.g. when you want to sort the results of a GET by one particular field or retrieve resources by some field other than the id.</li>
-<li>There is no standard or easy way for the client to specify the list of fields that it needs, and the server will usually return all the data related to the requested resource.</li>
-<li>More importantly, there is no standard way for the client to decide which resources related to the one requested should be returned, resulting in a lot of noise in the response content (unless the server application offers multiple endpoints to access the same resource but with different subsets of data&hellip; but this could lead to API design problems).</li>
+<li><em>average</em>: the movie was <em>good</em>, <em>bad</em> or <em>so and so</em>;</li>
+<li><em>polarized</em>: the movie was <em>very bad</em> or <em>really good</em>;</li>
 </ul>
 
-<p>You can&rsquo;t really blame REST for these and other cons. Its power comes from simplicity and developers are thankful for this breath of fresh air. You have just one transport layer, i.e. HTTP, with its features and rules.</p>
-
-<p>Now let&rsquo;s see how we can take a step forward and add some salt to our APIs, to make them even more powerful and expressive.</p>
-
-<h2 id="a-new-way-to-design-api-graphql:5fc659d52e5815e37925e5b00b41abfb">A new way to design API: GraphQL</h2>
-
-<p><strong>GraphQL</strong> maintains all the advantages of REST (relies on HTTP, very small overhead on requests, stateless and cacheable) and adds some very useful enhancements.
-One of the main reasons why <strong>Facebook</strong> created it back in 2012 was the need to find a way to access data on their server that allowed any type of client and device (especially mobile site and app) to decide exactly what fields they need, reducing the payload and then minimizing the traffic.</p>
-
-<p>Instead of explaining all the features, which can be read in the <a href="http://graphql.org/docs/getting-started/">official guide</a>, in this post we&rsquo;ll focus on what makes GraphQL interesting.
-In the next section we&rsquo;ll use types and queries presented in our example project, that you can clone from <a href="https://github.com/poetcyborg/graphql-node-starter-kit">this repository</a>.</p>
-
-<h3 id="types-and-fields-driven-queries:5fc659d52e5815e37925e5b00b41abfb">Types and fields driven queries</h3>
-
-<p><strong>Example #1</strong></p>
-
-<pre><code>query {
-	games {
-        id
-	    title
-	}
-}
-
-</code></pre>
-
-<p>The previous snippet describes a query issued by the client when it just needs to retrieve <em>id</em> and <em>title</em> of a <strong><em>game</em></strong>.
-Since no argument has been passed to filter the data of the specified type (<em>game</em>), all the games will be retrieved.
-The output for this query is:</p>
-
-<pre><code>{
-  &quot;data&quot;: {
-    &quot;games&quot;: [{
-        &quot;id&quot;: 1,
-        &quot;title&quot;: &quot;Frogger&quot;
-      }, {
-        &quot;id&quot;: 2,
-        &quot;title&quot;: &quot;Galaxian&quot;
-      }, {
-        &quot;id&quot;: 3,
-        &quot;title&quot;: &quot;Tiger Road&quot;
-      }, {
-        &quot;id&quot;: 4,
-        &quot;title&quot;: &quot;Mendel Palace&quot;
-      }
-    ]
-  }
-}
-</code></pre>
-
-<p>With REST, the same task could be accomplished with the following url:</p>
-
-<pre><code>GET /game?fields=id,title
-</code></pre>
-
-<p>Unless the server applications is taking care of field filtering based on query params, all the information about every game will be returned.</p>
-
-<p><strong>Example #2</strong></p>
-
-<pre><code>query {
-	games(id:2) {
-        id
-        title
-        year
-	}
-}
-</code></pre>
-
-<p><strong>Example #3</strong></p>
-
-<pre><code>query {
-	games(title:&quot;Frogger&quot;) {
-		id
-        title
-        year
-	}
-}
-</code></pre>
-
-<p>Examples #2 and #3 show a way to filter games by their <em>id</em> and <em>title</em> respectively.
-As you can see, the id has no semantic meaning like in REST, so you can describe the filter criterion in the same manner (<em>fieldname: &ldquo;value&rdquo;</em>).</p>
-
-<p>The REST equivalent (selected fields are omitted) for Example #2:</p>
-
-<pre><code>GET /game/2
-</code></pre>
-
-<p>and #3:</p>
-
-<pre><code>GET /game?title=Frogger
-</code></pre>
-
-<h3 id="relations-between-entities-graph-representation:5fc659d52e5815e37925e5b00b41abfb">Relations between entities: graph representation</h3>
-
-<p><strong>Example #4</strong></p>
-
-<pre><code>query {
-    games(id:2) {
-        title
-        developer {
-            name
-            nation
-        }
-    }
-}
-</code></pre>
-
-<p>The <strong>types</strong> called <em>Game</em> and <em>Company</em> are related to each other; in our example, for the sake of simplicity, a game can only have one company as developer and one as publisher, while any company can have multiple developed or published games.
-In Example #4, you can notice the complex field <em>developer</em>; we want to know the name and the nation of the company that developed the game with id = 2.</p>
-
-<p>The same two types can be reused to express the opposite of the relation described in the previous example:</p>
-
-<p><strong>Example #5:</strong></p>
-
-<pre><code>query {
-    companies(name:&quot;Game Freak&quot;) {
-        name
-        gamesAsDeveloper {
-            title
-        }
-    }
-}
-</code></pre>
-
-<p>Let&rsquo;s see briefly how you can describe these relations in the <strong>Javascript</strong> implementation.</p>
-
-<p>In the &lsquo;<em>Game</em>&rsquo; type definition:</p>
-
-<pre><code>developer: {
-	type: Company,
-    description: 'The developer of the game',
-}
-</code></pre>
-
-<p>And in the &lsquo;<em>Company</em>&rsquo; type:</p>
-
-<pre><code>gamesAsDeveloper: {
-    type: new GraphQLList(Game),
-    description: 'The games created as a developer',
-}
-</code></pre>
-
-<p>The field <em>developer</em> is defined as type <em>Company</em>, while the field <em>gamesAsDeveloper</em> is a list of <em>Game</em>.
-Please refer to the <a href="https://github.com/poetcyborg/graphql-node-starter-kit">demo project</a> for the full implementation of this example.</p>
-
-<h3 id="minimizing-the-number-of-requests-to-the-server:5fc659d52e5815e37925e5b00b41abfb">Minimizing the number of requests to the server</h3>
-
-<p>This time we need the list of the <em>Japanese companies</em> and some information about the games they worked on, but only for the <em>NES</em> (Nintendo Entertainment System) platform.</p>
-
-<p><strong>Example #6:</strong></p>
-
-<pre><code>query {
-    companies(nation:&quot;Japan&quot;) {
-	    name
-        gamesAsDeveloper(platform:&quot;NES&quot;) {
-		    title
-	        year
-        }
-        gamesAsPublisher(platform:&quot;NES&quot;) {
-            title
-            year
-        }
-    }
-}
-</code></pre>
-
-<p>This query&rsquo;s output:</p>
-
-<pre><code>{
-  &quot;data&quot;: {
-    &quot;companies&quot;: [{
-        &quot;name&quot;: &quot;Konami&quot;,
-        &quot;gamesAsDeveloper&quot;: [],
-        &quot;gamesAsPublisher&quot;: []
-      }, {
-        &quot;name&quot;: &quot;Namco&quot;,
-        &quot;gamesAsDeveloper&quot;: [],
-        &quot;gamesAsPublisher&quot;: [{
-            &quot;title&quot;: &quot;Mendel Palace&quot;,
-            &quot;year&quot;: &quot;1989&quot;
-          }]
-      }, {
-        &quot;name&quot;: &quot;Game Freak&quot;,
-        &quot;gamesAsDeveloper&quot;: [{
-            &quot;title&quot;: &quot;Mendel Palace&quot;,
-            &quot;year&quot;: &quot;1989&quot;
-          }],
-        &quot;gamesAsPublisher&quot;: []
-      }, {
-        &quot;name&quot;: &quot;Capcom&quot;,
-        &quot;gamesAsDeveloper&quot;: [{
-            &quot;title&quot;: &quot;Tiger Road&quot;,
-            &quot;year&quot;: &quot;1987&quot;
-          }],
-        &quot;gamesAsPublisher&quot;: []
-      }
-    ]
-  }
-}
-</code></pre>
-
-<p>In the REST world, the same response could be obtained in several ways:</p>
+<p>The app is going to present a page in which the user can select an <em>average</em> or a <em>polarized</em> feedback, and can tap a button that will present the user the available choices, i.e., respectively <em>good</em>, <em>son and so</em>, <em>bad</em>, or <em>really</em> and <em>very bad</em>. The app is also going to thank the user if they&rsquo;ve just left a positive feedback, but only if the previously left feedback was of lower value. The example is a little contrived but instructive, as we&rsquo;re going to see. An <strong>easy, familiar approach</strong> to the problem would be to start with the design of the two view controllers involved:</p>
 
 <ul>
-<li>by sending a request to an endpoint that was built exactly for the purpose of filtering companies and games by some fields, e.g.:</li>
+<li>the <code>MainPage</code> will let the user select if the feedback is average or polarized, and will present a button to show the page where the actual feedback value will be selected; the <code>MainPage</code> will also show the currently selected feedback (or none) in a label;</li>
+<li>the <code>SelectionPage</code> is going to present several buttons with the various feedback values (different based on the feedback category), and at the tap of a button the page should actually pop from the navigation stack, going back to the now-updated <code>MainPage</code>.</li>
 </ul>
 
-<pre><code>GET /companyWithGames?companyNation=Japan&amp;gamePlatform=NES&amp;fields=...
-</code></pre>
+<p>Armed with our <strong>imperative mind</strong> we would probably start by adding a sequence of instructions to the <code>MainPage</code>, that we&rsquo;ll probably perceive as the &ldquo;main&rdquo; controller of our app. But soon, we would probably notice that a lot of <strong>clearly separated</strong> responsibilities are being collected in the <code>MainPage</code> class:</p>
 
 <ul>
-<li>by sending several requests to more generic endpoints, e.g.:</li>
+<li>the <code>SelectionPage</code> has to be constructed and initialized, and by doing this in <code>MainPage</code> we are imposing a strict <strong>dependency</strong> between the two classes;</li>
+<li>after its initialization, the <code>SelectionPage</code> must be presented to the user: we would probably embed <code>MainPage</code> in a <code>UINavigationController</code>, then push the <code>SelectionPage</code> from the <code>MainPage</code>, resulting in a strict coupling of the two classes with a particular navigation and presentation strategy (i.e., using a <code>UINavigationController</code>) that is going to cause headaches if the use cases change (for example, in developing the <strong>iPad version</strong> of the app);</li>
+<li>there&rsquo;s a feedback value <strong>stored somewhere</strong>, because we need to know if the user selected <code>average</code> or <code>polarized</code>, and actually which was the selected feedback, because its value will be shown on the main page; the simplest solution seems to be just storing the selected feedback value in the <code>MainPage</code> class;</li>
+<li>the act of &ldquo;collecting the feedback&rdquo; is a responsibility in itself, because the collected value is probably going to be used somewhere (for example, posting it to a web service);</li>
 </ul>
 
-<pre><code>GET /company?nation=Japan&amp;fields=...
-GET /game?developerName=[developer 1 name]&amp;gamePlatform=NES&amp;fields=...
-GET /game?developerName=[developer 2 name]&amp;gamePlatform=NES&amp;fields=...
-GET ...
-</code></pre>
+<p>We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we&rsquo;re going to try and think with signals.</p>
 
-<p>There&rsquo;s a couple of notable things here:</p>
+<h4 id="the-model:98c10da2faa40144e7de0ba94dc701c4">The model</h4>
+
+<p>For example, if the model changes we need to update the text shown on the <code>MainPage</code>: a possible way to manage this could be to create a <code>ModelController</code> class, which holds the model, and <em>emits a signal</em> each time the model changes. Then, the <code>MainPage</code> could <em>react</em> to this signal, and change the UI accordingly. A nice to way to do this is injecting the <code>ModelController</code> in the <code>MainPage</code> constructor, so that <code>MainPage</code> can establish the appropriate bindings:</p>
+
+<script src="https://gist.github.com/broomburgo/1740115e9ad99e79f6b5.js"></script>
+
+<p>The <code>§</code> operator and the <code>eachTime</code> function are just helpers to make the <strong>functional composition</strong> easier: as it often happens with functional programming, or declarative programming in general, we can infer the meaning of an expression just by reading it; in fact, <code>onReception § eachTime § updateViewsWithFeedbackModel</code> means that when the signal is received, the <code>MainPage</code> will update the view every time according to the new <code>FeedbackModel</code>: <code>eachTime</code> means that every time the signal triggers, so will the update; this is in contrast with the <code>once</code> function, that makes the object listen only to the first signal trigger. This is  related to the <code>Persistence</code> of a <code>Signal</code> observation, that is, if the object should continue listen to a signal or not: <code>Persistence</code> is a single <code>enum</code> with two values, <code>Continue</code> and <code>Stop</code>.</p>
+
+<p>An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the <code>viewDidLoad</code> method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the <code>ModelController</code> is available: the line <code>viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify</code> means that when the <code>viewReadyEmitter</code>, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to <em>notify</em> its current value to all the observers; this way we don&rsquo;t need to manually update the views in the <code>viewDidLoad</code> method: everything is connected, and the signals will <strong>propagate</strong> according to the declarative bindings.</p>
+
+<h4 id="handling-page-creation-and-presentation:98c10da2faa40144e7de0ba94dc701c4">Handling page creation and presentation</h4>
+
+<p>Transitioning between pages is one the key points in iOS programming: page presentation has to be <strong>predictable and smooth</strong>, to avoid a confusing user experience. One of the main premises of the <code>UIViewController</code> class was and still is the creation of a modular hierarchy of views, that&rsquo;s independent from the way it&rsquo;s presented to the user: that way we can easily reuse <strong>the same</strong> view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic <em>inside</em> the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.</p>
+
+<p>A possible solution would be to use a <code>NavigationHandler</code>, that will handle the transition between pages, along with the initial presentation during the application startup. The strategy here is to use a class that knows <strong>when and how</strong> to present pages, oblivious of what pages actually do. For example, on receiving the appropriate signal from <code>MainPage</code>, the <code>NavigationHandler</code> will present the <code>SelectionPage</code>. Where the <code>SelectionPage</code> comes from? We should certainly avoid to burden the <code>NavigationHandler</code> with pages&rsquo; initialization responsibilities,  in fact we identified the class creation as a responsibility in itself. A frequent pattern used to handle the initialization of objects is the <a href="http://www.oodesign.com/factory-pattern.html">Factory Pattern</a>: a <code>PageFactory</code> will construct our pages with the options passed to the factory constructor. Thus, <code>NavigationHandler</code> will ask the <code>PageFactory</code> for pages, through the methods <code>makeMainPage</code> and <code>makeSelectionPage</code>.</p>
+
+<p>But we incur in a problem: <code>makeSelectionPage</code> will just return a <code>SelectionPage</code> object, but we don&rsquo;t know if it&rsquo;s <em>always</em> the same instance, or a new instance each time. In fact, <code>PageFactory</code> doesn&rsquo;t <em>promise</em> always the same page. This is important because the <code>NavigationHandler</code> will only take care of page presentation, but the very same page instance has to be considered, for example, for collecting the feedback. A possible strategy would be to <em>cache</em> the <code>SelectionPage</code>, but one of the main points of functional programming is <strong>avoiding state</strong>: we don&rsquo;t want to burden ourselves with the responsibility of managing mutable state, which is one of the <a href="http://shaffner.us/cs/papers/tarpit.pdf">main causes of complexity</a> in software development. Instead, we will once again leverage signals to handle the situation. <code>PageFactory</code> exposes two signals that are triggered at page creation; <code>NavigationHandler</code>  uses those signal to bind its actions to the initialized pages:</p>
+
+<script src="https://gist.github.com/broomburgo/20882b3bbf8ce7f56a51.js"></script>
+
+<p>In the code just shown, the signals that are triggered when the pages are initialized are <em>flatMapped</em> to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the <em>second</em> signal will be available only when the <em>first</em> signal is triggered: the <code>flatMap</code> method will let us reference a signal that is not yet available. The <code>inAnyCase</code> function is used because <code>NavigationHandler</code> is not interested in the <em>content</em> of the signals, but just the fact that they are triggered; the content is going to be handled by another class: <code>FeedbackCollector</code>.</p>
+
+<h4 id="composing-signals:98c10da2faa40144e7de0ba94dc701c4">Composing signals</h4>
+
+<p><code>FeedbackCollector</code> has the responsibility of <em>collecting the whole feedback</em>: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it&rsquo;s the result of <strong>many different interactions</strong> from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:</p>
 
 <ul>
-<li>the expressivity of the query language becomes more evident when things start becoming more interesting; filtering subsets of data feels natural and easy as you can just specify the criteria for the filters directly on the subtree root (companies -&gt; nation, gamesAsDeveloper -&gt; platform, gamesAsPublisher -&gt; platform);</li>
-<li>on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering <em>games</em> with the given <em>platform</em> is performed only on companies with the selected <em>nation</em>).</li>
+<li>at the app startup the pages are not yet initialized;</li>
+<li>to actually collect the feedback various interactions in multiple pages will be needed;</li>
 </ul>
 
-<h3 id="api-documentation:5fc659d52e5815e37925e5b00b41abfb">API Documentation</h3>
+<p>Usually these consideration would lead to <strong>stateful</strong> computations, where state would be expressed in various points, and mutated. But the class <code>FeedbackCollector</code> can generate a signal triggered each time a new feedback is collected with a single expression:</p>
 
-<p>When you design a REST WebService, for every endpoint you&rsquo;re mostly going to take care of its URI and the structure of the request and the response body.
-Unfortunately, there is no standard way to document this information and make it available to the client developers.</p>
+<script src="https://gist.github.com/broomburgo/e2609d60b0d3e245d0ca.js"></script>
 
-<p>With GraphQL, using <strong><em>introspection</em></strong> you can ask the server information about the available types and their fields.</p>
+<p>The <code>+</code> operator will literally <em>add</em> 2 signals together, producing a signal that is triggered each time either of the signals is triggered. The app uses the <code>Signal&lt;FeedbackModelChange&gt;</code> produced by the <code>collectFeedbackModelChange()</code> to update the model in the <code>ModelController</code>.</p>
 
-<p><strong>Example #7</strong>:</p>
+<p>Another example of asynchronous reaction to signals is shown in the <code>AppDelegate</code>&rsquo;s method <code>handleGoodFeedbacksWithAlert()</code>; here&rsquo;s the logic: if the user leaves a positive feedback, that is better than the previously left feedback, the app will show an alert, thanking the user. The entire logic for this is handled in the following expression:</p>
 
-<pre><code>query {
-    __schema {
-        types {
-            kind
-            name
-            description
-        }
-    }
-}
-</code></pre>
+<script src="https://gist.github.com/broomburgo/b6438d9b65e7570147c9.js"></script>
 
-<p>A query with the query root <strong><em>__schema</em></strong> returns the list of types with their descriptions and fields:</p>
+<p><code>ModelController</code>&rsquo;s <code>deltaSignal</code> is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by <em>filtering</em> the <code>deltaSignal</code>, because we need a signal that is triggered only when the new feedback is different from the previous and positive.</p>
 
-<pre><code>{
-  &quot;data&quot;: {
-    &quot;__schema&quot;: {
-      &quot;types&quot;: [
-		...
-        {
-          &quot;kind&quot;: &quot;OBJECT&quot;,
-          &quot;name&quot;: &quot;Company&quot;,
-          &quot;description&quot;: &quot;A company object&quot;,
-          &quot;fields&quot;: [...]
-        }, {
-          &quot;kind&quot;: &quot;OBJECT&quot;,
-          &quot;name&quot;: &quot;Game&quot;,
-          &quot;description&quot;: &quot;A game object&quot;
-          &quot;fields&quot;: [...]
-        },
-        ...
-}
-</code></pre>
+<h4 id="conclusion:98c10da2faa40144e7de0ba94dc701c4">Conclusion</h4>
 
-<p>Another way to get the information about the types is using the query root <strong><em>__type</em></strong>, passing a specific type name:</p>
-
-<p><strong>Example #8</strong></p>
-
-<pre><code>query {
-    __type(name:&quot;Game&quot;) {
-        fields {
-            name
-            description
-            type {
-                name
-            }
-        }
-    }
-}
-</code></pre>
-
-<p>Output:</p>
-
-<pre><code>{
-    &quot;data&quot;: {
-        &quot;__type&quot;: {
-            &quot;fields&quot;: [{
-                &quot;name&quot;: &quot;id&quot;,
-                &quot;description&quot;: &quot;The id of a game&quot;,
-                &quot;type&quot;: {
-                    &quot;name&quot;: &quot;Int&quot;
-                }
-            }, {
-	            &quot;name&quot;: &quot;title&quot;,
-                &quot;description&quot;: &quot;The title of a game&quot;,
-                &quot;type&quot;: {
-                    &quot;name&quot;: &quot;String&quot;
-                }
-            },
-            ...
-}
-</code></pre>
-
-<h2 id="mutations:5fc659d52e5815e37925e5b00b41abfb">Mutations</h2>
-
-<p>We&rsquo;ve already talked about queries, but a few words need to be spent about the other important operation that you can perform on a GraphQL server: <strong>mutations</strong>.</p>
-
-<p><strong>Example #9</strong></p>
-
-<pre><code>mutation {
-	updateGameRating(id:2, rating:7) {
-		id
-		title
-		rating
-	}
-}
-</code></pre>
-
-<p>The syntax is no different from the previous ones, except for the <strong><em>mutation</em></strong> root.
-It is the equivalent of a POST or a PATCH in REST, and lets us change the value of some fields in a resource.
-In this example we are assigning a value (7) to the <em>rating</em> field of the <em>Game</em> types; this mutation could be defined in the following way:</p>
-
-<pre><code>{
-	name: 'UpdateGameRating',
-	type: Game,
-	args: {
-	    rating: { type: new GraphQLNonNull(GraphQLInt) },
-    }
-}
-</code></pre>
-
-<p>As you can see, the specified type for the mutation is <em>Game</em>; this means not only that the update should be performed on games, but also that the <em>Game</em> field included in the request (id, title and rating) should be returned, just like a normal query.</p>
-
-<h2 id="implementations:5fc659d52e5815e37925e5b00b41abfb">Implementations</h2>
-
-<p>In the present article we sometimes referred to the official <strong>Javascript</strong> library for GraphQL, but as you can see in <a href="https://github.com/chentsulin/awesome-graphql">this project</a> there are many different implementations for the most popular languages.</p>
-
-<h2 id="the-future-of-graphql:5fc659d52e5815e37925e5b00b41abfb">The future of GraphQL</h2>
-
-<p>It&rsquo;s difficult to say what will become of GraphQL in the next year.
-Sure there&rsquo;s a lot of hype around it, and for some very solid reasons.
-It&rsquo;s not going to replace REST in developers&rsquo; hearts anytime soon, but if they&rsquo;re brave enough, they can add a <strong>GraphQL layer</strong> over an existing REST API in their application.
-In fact, in my opinion, another good point of interest regarding GraphQL is the ability to aggregate multiple endpoints that reference various resources. Its nature is very domain-centric and it&rsquo;s more  focused on <strong><em>what</em></strong> data needs to be precisely retrieved, rather than on <strong><em>how to</em></strong> get it.</p>
-
-<p>Some questions arise when you think about GraphQL in a more vast spectrum:</p>
+<p>A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:</p>
 
 <ul>
-<li>how to <strong>cache</strong> resources on server-side, even if they were originally fetched using different queries? (Facebook is trying to give some answers with <a href="https://facebook.github.io/relay/docs/thinking-in-relay.html">Relay</a>);</li>
-<li>how to <strong>limit the access</strong> to the resources (or the introspection on them) only to some users? GraphQL is authorization-agnostic, but as you can read in <a href="https://github.com/graphql/graphql-js/issues/113">this Github issue</a> its a common problem that needs to be at least faced.</li>
+<li>we can work on <strong>a single piece at a time</strong>, thinking about what <em>values</em> are exchanged between classes, instead of interfaces and abstractions;</li>
+<li>we&rsquo;ll be able to focus on what a view controller, or any class, really has to <em>produce</em>, that is, what value is going to yield in the economy of the app;</li>
 </ul>
 
-<p>The entire Facebook ecosystem of open source projects is worth of attention (don&rsquo;t forget about React, Flux and the other Flux-like architectures) and, even if it&rsquo;s very young, it has become very popular and used by many little and big companies around the world.</p>
-
-<p>My personal hope is that every lesson that can be learned while working with these projects, especially GraphQL, might lead to a better World Wide Web and a better developing experience, maybe with more standard and free implementations than the Facebook (or Google, or Microsoft, or Apple) ones.</p>
+<p>Signals are not application-wide events: we don&rsquo;t need a router or a dispatcher (like   <code>NSNotificationCenter</code>) to properly handle them, because each object will declare its observation of specific signals. Also, because signals are easily transformed and composed, we can declaratively express our bindings without worrying about <em>when</em> and <em>how</em> things are going to happen, but just <em>what</em> we need. Of course our architecture has to take into account the fact that getting a <em>precise sequence of events</em> is basically impossible when working with signals: actually, <em>sequencing</em> is not even considered in declarative programming, because, along with <em>state</em>, is a great cause of complexity. In the end, a declarative architecture, like everything, has its tradeoffs, but I still think it&rsquo;s worth trying.</p>
 
 
     <section id="social-share">
@@ -657,43 +364,43 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
             
 
 
-<li><a href="//twitter.com/share?url=%2fblog%2feng%2fgraphql-an-introduction%2f&text=GraphQL%3a%20an%20introduction&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -721,13 +428,11 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
     
         <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/graphql">GraphQL</a></li>
+        <li><a href="/categories/swift">Swift</a></li>
     
-        <li><a href="/categories/rest">REST</a></li>
+        <li><a href="/categories/functional-programming">Functional programming</a></li>
     
-        <li><a href="/categories/http">HTTP</a></li>
-    
-        <li><a href="/categories/node.js">Node.js</a></li>
+        <li><a href="/categories/signal">Signal</a></li>
     
 </ul>
 
@@ -735,8 +440,8 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 </article>
 <ul class="actions pagination">
     
-        <li><a href="/blog/eng/write-filesystem-fuse/"
-                class="button big previous">Write a filesystem with FUSE</a></li>
+        <li><a href="/blog/eng/graphql-an-introduction/"
+                class="button big previous">GraphQL: an introduction</a></li>
     
 
     
@@ -751,7 +456,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'shortname';
-    var disqus_url = '\/blog\/eng\/graphql-an-introduction\/';
+    var disqus_url = '\/blog\/eng\/decoupling-view-controllers-with.signals\/';
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -776,43 +481,43 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
             
 
 
-<li><a href="//twitter.com/share?url=%2fblog%2feng%2fgraphql-an-introduction%2f&text=GraphQL%3a%20an%20introduction&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fgraphql-an-introduction%2f&title=GraphQL%3a%20an%20introduction" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fgraphql-an-introduction%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -932,7 +637,28 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
                             <header>
                                     
                                         
-                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
 
@@ -953,7 +679,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
                             <header>
                                     
                                         
-                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
 
@@ -964,27 +690,6 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
                                     
                                     <time class="published" datetime='2016-01-11'>
                                         11 January 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em;"/>
-                                        
-                                    
-
-                                    <h3><a href="/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2015-12-15'>
-                                        15 December 2015
                                     </time>
                             </header>
                         </article>
@@ -1025,7 +730,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">15</span>
+                                <span style="float:right;">22</span>
                             </header>
                         </article>
                     </li>
@@ -1046,11 +751,74 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
                     <li>
                         <article>
                             <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
                                 <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
                                 <span style="float:right;">3</span>
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     

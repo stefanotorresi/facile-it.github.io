@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/blog/eng/decoupling-view-controllers-with.signals/</loc>
+    <lastmod>2016-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/eng/graphql-an-introduction/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url>
@@ -28,8 +33,43 @@
   </url>
   
   <url>
+    <loc>/blog/eng/code-reuse-a-primer/</loc>
+    <lastmod>2015-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/codice-riusabile-un-primer/</loc>
+    <lastmod>2015-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/facile-it-devs-codemotion-milan-2015/</loc>
+    <lastmod>2015-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/eng/optionals-in-objective-c/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/optionals-in-objective-c/</loc>
+    <lastmod>2015-11-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/ita/paraunit/</loc>
     <lastmod>2015-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/eng/no-country-for-if-else/</loc>
+    <lastmod>2015-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/no-country-for-if-else/</loc>
+    <lastmod>2015-09-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -38,13 +78,28 @@
   </url>
   
   <url>
+    <loc>/blog/ita/programmazione-funzionale-perche-preoccuparsi/</loc>
+    <lastmod>2015-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/ita/git-flow-semantic-versioning/</loc>
     <lastmod>2015-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>/blog/ita/swift-testing-avanzato-stubbing-e-test-asincroni/</loc>
+    <lastmod>2015-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/ita/php-day-2015/</loc>
     <lastmod>2015-05-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/type-first-development-in-swift/</loc>
+    <lastmod>2015-05-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -60,6 +115,11 @@
   <url>
     <loc>/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</loc>
     <lastmod>2015-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/ita/xcode-testing-in-pratica/</loc>
+    <lastmod>2015-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
