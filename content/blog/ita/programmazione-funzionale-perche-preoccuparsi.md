@@ -4,7 +4,7 @@ comments: true
 date: "2015-07-13"
 draft: false
 share: true
-categories: [Italiano, Functional Programming, Software Crisis]
+categories: [Italiano, Functional programming, Software Crisis]
 title: "Programmazione Funzionale: perché preoccuparsi?"
 
 languageCode: "it-IT"

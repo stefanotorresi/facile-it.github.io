@@ -4,7 +4,7 @@ comments: true
 date: "2015-05-05"
 draft: false
 share: true
-categories: [Italiano, Swift, Functional Programming, Type First Development]
+categories: [Italiano, Swift, Functional programming, Type First Development]
 title: "Type First Development in Swift"
 
 languageCode: "it-IT"

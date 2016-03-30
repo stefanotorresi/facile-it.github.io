@@ -4,7 +4,7 @@ comments: true
 date: "2015-11-26"
 draft: false
 share: true
-categories: [Italiano, Conferenze, Codemotion]
+categories: [Italiano, Conferences, Codemotion]
 title: "Facile.it devs @ Codemotion Milan 2015"
 
 languageCode: "it-IT"

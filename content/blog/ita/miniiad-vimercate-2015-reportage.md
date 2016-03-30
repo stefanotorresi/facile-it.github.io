@@ -4,7 +4,7 @@ comments: true
 date: "2015-07-15"
 draft: false
 share: true
-categories: [Italiano, Confereces, Agile]
+categories: [Italiano, Conferences, Agile]
 title: "MiniIAD Vimercate 2015: reportage"
 
 languageCode: "it-IT"

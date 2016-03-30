@@ -4,7 +4,7 @@ comments: true
 date: "2015-03-09"
 draft: false
 share: true
-categories: [Italiano, PHP, Open source, Doctrine, MySQL]
+categories: [Italiano, PHP, Open Source, Doctrine, MySQL]
 title: "MySQL has gone away? Come back!"
 
 languageCode: "it-IT"

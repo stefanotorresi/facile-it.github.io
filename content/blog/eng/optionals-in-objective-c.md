@@ -4,7 +4,7 @@ comments: true
 date: "2015-11-09"
 draft: false
 share: true
-categories: [English, Swift, Objective-C, Functional Programming, Monad]
+categories: [English, Swift, Objective-C, Functional programming, Monad]
 title: "Optionals in Objective-C"
 
 languageCode: "en-US"

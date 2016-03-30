@@ -4,7 +4,7 @@ comments: true
 date: "2016-03-15"
 draft: false
 share: true
-categories: [English, Swift, Functional Programming, Signal]
+categories: [English, Swift, Functional programming, Signal]
 title: "Decoupling view controllers with Signals"
 
 languageCode: "en-US"
