@@ -6,6 +6,7 @@ draft: false
 share: true
 categories: [Italiano, Swift, Objective-C, Functional programming, Monad]
 title: "Optionals in Objective-C"
+eng: "optionals-in-objective-c"
 
 languageCode: "it-IT"
 type: "post"

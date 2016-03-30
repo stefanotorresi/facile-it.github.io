@@ -4,8 +4,9 @@ comments: true
 date: "2015-12-09"
 draft: false
 share: true
-categories: [English, Swift, Functional programming, Code reuse]
+categories: [Italiano, Swift, Functional programming, Code reuse]
 title: "Codice riusabile: un primer"
+eng: "code-reuse-a-primer"
 
 languageCode: "it-IT"
 type: "post"
