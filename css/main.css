@@ -3449,6 +3449,12 @@
 
 		}
 
+/** VARIOUS FIXES **/
+
 	.post img {
 		max-width: 100%;
+	}
+
+	div.gist tr {
+		border: none;
 	}
