@@ -2,7 +2,7 @@
 authors: ["sandro"]
 comments: true
 date: "2015-10-05"
-draft: true
+draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
