@@ -1,13 +1,13 @@
 ---
 authors: ["sandro"]
 comments: true
-date: "2016-04-2"
+date: "2016-04-02"
 draft: true
 image: "/images/cover.jpg"
 menu: ""
 share: true
 categories: [English, JWT, Security]
-title: "JWT - Json Web Tokens"
+title: "Json Web Token"
 
 languageCode: "en-En"
 type: "post"
@@ -15,16 +15,16 @@ type: "post"
 ---
 ![JWT](/images/json-web-tokens/logo.svg)
 
-JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact, self-contained and secure way for transmitting informations between two parties. 
+JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact, self-contained and secure way for transmitting information between two parties. 
 
 
 ### Compact ?
 
-Using javascript object notation to represent the data we want to transmit, results in saving lots of bytes when the token goes over the network.
+Using javascript object notation to represent the data, means saving lots of bytes when the token goes over the network.
  
 **Because of it's size** it can be sent over an URL or inside an HTTP Header and can be **easily parsed by a browser**.
 
-This is more clear when comparing json to other standard like [SAML](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language) that uses a very verbose XML structure.
+This is more clear when comparing json to other standards like [SAML](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language) that uses a very verbose XML structure.
 
 ### Secure ?
 
@@ -42,10 +42,10 @@ The payload of the token contains all the required data to verify itself and, fo
 >
 >.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 
-The toekn is representend as three base64 encoded string 
+The token is represented as three base64 encoded strings:
 
 ### Headers
-Represents the token type and the algorithm used to sign.
+The token type and the algorithm used to sign.
 
 ``` javascript
 {
@@ -55,7 +55,7 @@ Represents the token type and the algorithm used to sign.
 ```
 
 ### Payload
-It's the data sent with the token, can contain metadata and informations like expiration, audience, or subject and whatever you need.
+It's the data sent with the token. It contains metadata and information like expiration, audience, or subject and whatever you need.
 
 ``` javascript
 {
@@ -67,12 +67,12 @@ It's the data sent with the token, can contain metadata and informations like ex
 
 All data transported is organized in claims, statements about an entity (typically, the user). There are three types of claims: reserved, public, and private claims.
 
-- **Reserved claims**: a set of predefined claims, thought to provide a set of useful informations. Some of them are: iss (issuer), exp (expiration time), sub (subject), aud (audience), among others.
-- **Public claims**: defined at will, but, to avoid collisions, they should be defined in the [IANA JSON Web Token Registry](http://www.iana.org/assignments/jwt/jwt.xhtml) or be defined as a URI that contains a collision resistant namespace.
-- **Private claims**: custom claims created to share information between parties that agree on using them.
+- **Reserved claims**: a set of predefined claims, conceived to provide a set of useful information. Some of them are: iss (issuer), exp (expiration time), sub (subject), aud (audience), among others.
+- **Public claims**: defined at will, but, in order to avoid collisions, they should be defined in the [IANA JSON Web Token Registry](http://www.iana.org/assignments/jwt/jwt.xhtml) or be described as a URI that contains a collision resistant namespace.
+- **Private claims**: custom claims created to share information between parties that agree with using them.
 
 ### Sign
-Obtained from hashing headers and payload with a secret
+It is obtained from hashing headers and payload with a secret
 
 ``` javascript
 HMACSHA256(
@@ -83,6 +83,6 @@ HMACSHA256(
 ```
 
 ## Why use Json Web Token ?
-I Started my study about JWT to authenticate an API. I was searching for a smart method to authenticate a request, whitout the needing of querying the database each time, even if the token where not valid or expired.
-I found the solution in JWT, because of it's self verfication that helps me to discard every request where the token is not valid (a fake token not signed by my application) or expired.
-But this is only my use case, JWT can be usefull to simply securely transmit data for example on a messagging application. Remeber only that all the data sent and received is not encrypted but only base64 encoded
+I started my study about JWT because I needed to authenticate an API. I was searching for a smart method to authenticate a request, without querying the database each time, even if the token was invalid or expired.
+Thanks to JWT self verification, I could discard every request in which the token was invalid (a fake token not signed by my application) or expired.
+Beyond this specific use case, JWT can be useful also to securely transmit data to messagging applications.
