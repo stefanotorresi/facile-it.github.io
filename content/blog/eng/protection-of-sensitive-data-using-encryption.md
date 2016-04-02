@@ -1,7 +1,7 @@
 ---
 authors: ["sandro"]
 comments: true
-date: "2016-30-31"
+date: '2016-03-31'
 draft: true
 image: "/images/cover.jpg"
 menu: ""
@@ -42,16 +42,16 @@ With cryptographic algorithms ** refer to all processes and procedures aimed at 
 This type of algorithm is based on the use of encryption keys said symmetrical that allow  **to encrypt and decrypt data using the same cryptographic key**.
 An example is [AES] (https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (Advanced Encryption Standard) algorithm, evolution of [Rijndael] (https://en.wikipedia.org/wiki/Rijndael_key_schedule) the whose characteristics can be summarized in a good level of safety and excellent speed, whether it is implemented in hardware or software.
 
-! [AES] (/ images / protection-of-sensitive-data-using-the-encryption / aes.png)
+![AES](/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png)
 
 ### Asymmetric Algorithms 
 
 The asymmetric algorithms are distinguished from the previous to the use of two distinct ** cryptographic keys, said public and private, to perform the encryption and decryption operations.
 The name derives from the method by which the two keys are to be used. The public key is freely exchanged, **The private key is known only to those who have to be able to read** data or messages exchanged.
 The feature that characterizes these keys is the impossibility of obtaining, for example, the private key being in possession of the public key. Unless a particular algorithm exploits, the only method to obtain this key is the brute force **on that data.
-In this case the example for excellence is [RSA] (https://en.wikipedia.org/wiki/RSA_ (cryptosystem)), a de facto standard in the security on data transmission: it is in fact widely used to encrypt the communications that take place between the client and server.
+In this case the example for excellence is [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)), a de facto standard in the security on data transmission: it is in fact widely used to encrypt the communications that take place between the client and server.
 
-! [RSA] (/ images / protection-of-sensitive-data-using-the-encryption / rsa.png)
+![RSA](/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png)
 
 ## The solution combining RSA and AES
 Now that we have rehearsed the technological basis, we can think about how to implement a solution.
@@ -79,7 +79,7 @@ As a last step we have to associate the encrypted data to the user who is storin
 
 We got a similar system to the one shown below:
 
-! [] (/ Images / protection-of-sensitive-data-using-the-encryption / system.png)
+![System](images/protezione-di-dati-sensibili-usando-la-crittografia/system.png)
 
 ### Share!
 Each time a document (or who has obtained the right to read it) owner user wants to share it with a second user we will simply do the following:
