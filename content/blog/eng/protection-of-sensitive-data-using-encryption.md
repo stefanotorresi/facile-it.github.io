@@ -79,7 +79,7 @@ As a last step we have to associate the encrypted data to the user who is storin
 
 We got a similar system to the one shown below:
 
-![System](images/protezione-di-dati-sensibili-usando-la-crittografia/system.png)
+![System](/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png)
 
 ### Share!
 Each time a document (or who has obtained the right to read it) owner user wants to share it with a second user we will simply do the following:

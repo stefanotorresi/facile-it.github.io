@@ -4,7 +4,7 @@ comments: true
 date: "2015-09-15"
 draft: false
 share: true
-categories: [English, Software Complexity, Functional Programming, OOP, Structured Programming]
+categories: [English, Software Complexity, Functional programming, OOP, Structured Programming]
 title: "No Country For If Else"
 ita: "no-country-for-if-else"
 
