@@ -9,6 +9,8 @@ share: true
 categories: [Italiano, Docker, AWS]
 title: "Da sviluppo a produzione con Docker e AWS Elastic Beanstalk"
 type: "post"
+eng: "from-development-to-production-with-docker-and-amazon-ecs"
+languageCode: "it-IT"
 aliases:
   - "/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk"
 ---

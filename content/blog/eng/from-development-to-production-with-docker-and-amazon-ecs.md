@@ -8,6 +8,8 @@ menu: ""
 share: true
 categories: [English, Docker, AWS]
 title: "From development to production with Docker and AWS Elastic Beanstalk"
+ita: "da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk"
+languageCode: "en-US"
 type: "post"
 aliases:
   - "/from-development-to-production-with-docker-and-amazon-ecs"
