@@ -1,7 +1,7 @@
 ---
 authors: ["sandro"]
 comments: true
-date: '2016-03-31'
+date: '2015-10-05'
 draft: true
 image: "/images/cover.jpg"
 menu: ""
@@ -21,7 +21,7 @@ Before arriving at the solution of this problem, however, is right to split the 
 
 This article will explore the second case, and will be proposed a solution: how to protect the data that we have accumulated sparingly "in house" ?.
 
-## Putting the data in the safe
+## Putting data in the safe
 
 In case of stored data, for example, within a database; it is certainly more difficult to achieve our treasure, because they are "safe" in a protected environment, which we trust more than the volatility of the net.
 However it is better not to feel too sure: the more our data will be valuable, as any interested parties will be encouraged to seek every way to obtain them.

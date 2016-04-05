@@ -1,7 +1,7 @@
 ---
 authors: ["sandro"]
 comments: true
-date: "2016-04-02"
+date: "2016-04-05"
 draft: true
 image: "/images/cover.jpg"
 menu: ""
@@ -15,37 +15,34 @@ type: "post"
 ---
 ![JWT](/images/json-web-tokens/logo.svg)
 
-JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact, self-contained and secure way for transmitting information between two parties. 
+When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability.
+I needed a token or something similar with the ability of validate itself and flexible enough to customize the validation strategy.
+Immagine for example an App in wich a user can login and obtain a "pass" with his name and an expiration time, this pass will let him ask for resources until expire and only if the issuer is truted.
+Thanks to JWT self verification, I could discard every request in which the token was invalid (a fake token not signed by my application) or expired.
+Beyond this specific use case, JWT can be useful also to securely transmit data to other applications.
 
+Now let me introduce the standard, JSON Web Token (JWT) is an open standard [RFC 7519](https://tools.ietf.org/html/rfc7519) that defines a compact, self-contained and secure way for transmitting information between two parties. 
 
-### Compact ?
+Using javascript object notation to represent the data, means two things: 
 
-Using javascript object notation to represent the data, means saving lots of bytes when the token goes over the network.
- 
-**Because of it's size** it can be sent over an URL or inside an HTTP Header and can be **easily parsed by a browser**.
+- saving lots of bytes when the token goes over the network, **because of it's size** it can be sent over an URL or inside an HTTP Header
+- it can be **easily parsed by a browser** and consumed by a client application
 
 This is more clear when comparing json to other standards like [SAML](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language) that uses a very verbose XML structure.
 
-### Secure ?
-
-JWT can be verified and trusted because it is digitally signed using a secret (usually with [HMAC](https://en.wikipedia.org/wiki/Hash-based_message_authentication_code) algorithm) or a keypair with [RSA](https://en.wikipedia.org/wiki/RSA).
-
-### Self-contained ?
-
-The payload of the token contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.
+A JWT token can be trusted because it is digitally signed using a secret (usually with [HMAC](https://en.wikipedia.org/wiki/Hash-based_message_authentication_code) algorithm) or a keypair with [RSA](https://en.wikipedia.org/wiki/RSA).
+It's payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.
 
 ## How the token presents itself
+A token is represented as three base64 encoded strings joined by two points (here represented on new lined because of layout problems).
 
->eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
->
->.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9
->
->.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+``` javascript
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9
+.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+```
 
-The token is represented as three base64 encoded strings:
-
-### Headers
-The token type and the algorithm used to sign.
+The first part of the string contains the headers, "alg" is the algorithm used to secure the token and "typ" is the type, in this case as we can se, I used an HMAC SHA256 to sign a JWT token
 
 ``` javascript
 {
@@ -55,7 +52,7 @@ The token type and the algorithm used to sign.
 ```
 
 ### Payload
-It's the data sent with the token. It contains metadata and information like expiration, audience, or subject and whatever you need.
+It's the data sent with the token in the second string. It contains metadata and information like expiration, audience, or subject and whatever you need.
 
 ``` javascript
 {
@@ -72,7 +69,7 @@ All data transported is organized in claims, statements about an entity (typical
 - **Private claims**: custom claims created to share information between parties that agree with using them.
 
 ### Sign
-It is obtained from hashing headers and payload with a secret
+The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algo described in headers.
 
 ``` javascript
 HMACSHA256(
@@ -82,7 +79,22 @@ HMACSHA256(
 )
 ```
 
-## Why use Json Web Token ?
-I started my study about JWT because I needed to authenticate an API. I was searching for a smart method to authenticate a request, without querying the database each time, even if the token was invalid or expired.
-Thanks to JWT self verification, I could discard every request in which the token was invalid (a fake token not signed by my application) or expired.
-Beyond this specific use case, JWT can be useful also to securely transmit data to messagging applications.
+As said before the more interesting feature of JWT is in it's flexibility. It can be created with the claims you need, to carry your data and validated on other claims (standard or not).
+For example, if, on authentication I want to be sure that the token is issued by my application and that it is not older than 1 hour (or 5 minutes) I can generate a token with a payload like this;
+
+``` javascript
+{
+  "iss": "1234567890", // my application code
+  "exp": "1459868400", // 2016-04-04 15:00:00 Expiration time
+  "uid": 159, // the user id
+  "name": "Alessandro Galli"
+}
+```
+
+Once my application receives a request with this token, an authenticator component, will check the two claims (iss,exp) to be sure of the assertions made before than validate the sign. Furthermore, with the additional claims it can login the user without query the database and finish the request.
+
+As a solid standard, JWT has been adopted by a large number of users and has libraries for almost every programming languages: PHP, Java, Go, Python, Javascript, Ruby, Elixir, Scala, .Net.
+
+You can find a full list of available and trusted libraries on [JWT.io](https://jwt.io/#libraries-io)
+
+In the next weeks, I will write a post and release my personal authentication example, using PHP with the Symfony framework.

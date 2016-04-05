@@ -6,7 +6,7 @@ draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
-categories: [Italiano, Cifratura, RSA, AES, Rjindael]
+categories: [Italiano, Encryption, RSA, AES, Rjindael]
 title: "Protezione di dati sensibili usando la crittografia"
 
 languageCode: "it-IT"
