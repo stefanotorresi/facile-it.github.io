@@ -93,6 +93,8 @@ As an example, if on authentication I want to be sure that the token is issued b
 
 Once my application receives a request with this token, an authenticator component, will check the two claims (`iss`, `exp`) to be sure of the assertions made before, and then validate the sign. Furthermore, with the additional claims it can login the user without querying the database and complete the request.
 
+Furthermore this approach results in a stateless authentication removing all problems related to session storage, cors+cookies requests and csrf protection, among others.
+
 As a solid standard, JWT has been adopted by a large number of users and it has libraries for almost every programming language: PHP, Java, Go, Python, Javascript, Ruby, Elixir, Scala, .Net.
 
 You can find a full list of available and trusted libraries on [JWT.io](https://jwt.io/#libraries-io)
