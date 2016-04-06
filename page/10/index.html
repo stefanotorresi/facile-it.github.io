@@ -11,7 +11,7 @@
 <html>
     <head>
         
-            <title> - Facile Engineering</title>
+            <title> - Facile.it Engineering</title>
         
 
         <meta charset="utf-8" />
@@ -34,7 +34,7 @@
 <meta property="og:url" content="/" />
 
 
-<meta property="og:updated_time" content="2015-03-02T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2015-03-16T00:00:00&#43;00:00"/>
 
 
 
@@ -85,7 +85,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h2><a href="/">Facile Engineering</i></a></h2>
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
     
 
     <nav class="links">
@@ -241,7 +241,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
+            <h2><a href="/blog/ita/software-testing-coverage-vs-efficacia/">Software testing: Coverage vs Efficacia</a></h2>
         
         
         
@@ -252,32 +252,32 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-03-02'>
-            2 March 2015
+        <time class="published" datetime='2015-03-16'>
+            16 March 2015
         </time>
 
         
-            <a href="/authors/lorenzo" class="author">
+            <a href="/authors/sergio" class="author">
             
-                <span class="name">Lorenzo Fontana</span>
-                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+                <span class="name">Sergio Santoro</span>
+                <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" />
             
             </a>
         
 
         
-            <p>2 minute read</p>
+            <p>3 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
+    <p>Controllare il tasso di coverage dei test è un&rsquo;attività frequente tra gli sviluppatori. Numerosi sono i fattori che hanno reso il code coverage popolare: è una metrica facile da comprendere; si misura senza difficoltà; è oggettiva e imparziale; è universale (applicabile a tutti i paradigmi di programmazione). Ma al di là di questi vantaggi, possiamo affermare che una test suite con un&rsquo;alta percentuale di coverage sia realmente efficace? Quando un test è efficace?</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
+            <li><a href="/blog/ita/software-testing-coverage-vs-efficacia/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -299,9 +299,11 @@ ga('send', 'pageview');
     
         <li><a href="/categories/italiano">Italiano</a></li>
     
-        <li><a href="/categories/php">PHP</a></li>
+        <li><a href="/categories/software-testing">Software testing</a></li>
     
-        <li><a href="/categories/php-internals">PHP internals</a></li>
+        <li><a href="/categories/test-coverage">Test coverage</a></li>
+    
+        <li><a href="/categories/tdd">TDD</a></li>
     
 </ul>
 
@@ -313,7 +315,83 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/">var_dump() aggiunge proprietà pubbliche a DateTime</a></h2>
+            <h2><a href="/blog/ita/mysql-has-gone-away-come-back/">MySQL has gone away? Come back!</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-09'>
+            9 March 2015
+        </time>
+
+        
+            <a href="/authors/luca" class="author">
+            
+                <span class="name">Luca Boeri</span>
+                <img src="/images/avatar-luca.jpg" alt="Luca Boeri avatar" />
+            
+            </a>
+        
+
+        
+            <p>3 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>A ben più di uno sviluppatore sarà capitato di incappare nel comune errore MySQL server has gone away!, magari seguito da un eccezione lanciata da una delle classi PDO, come ad esempio PDOStatement::execute(): Error reading result set&rsquo;s header. Nella maggior parte dei casi, quando questo avviene in ambiente PHP, siamo connessi in maniera persistente (per fortuna!) ed a causa di una esecuzione troppo lunga, la connessione col server MySQL va in timeout.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="/blog/ita/mysql-has-gone-away-come-back/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/open-source">Open Source</a></li>
+    
+        <li><a href="/categories/doctrine">Doctrine</a></li>
+    
+        <li><a href="/categories/mysql">MySQL</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/">L&#39;operatore ternario è associativo a sinistra!</a></h2>
         
         
         
@@ -338,18 +416,18 @@ ga('send', 'pageview');
         
 
         
-            <p>2 minute read</p>
+            <p>1 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime.</p>
+    <p>Gli operatori ternari sono diffusi in molti linguaggi di programmazione e permettono di esprimire con una sintassi breve logiche condizionali. Per utilizzarli propriamente in PHP è però necessario conoscerne il comportamento. Vediamo un esempio var_dump(true ? &lsquo;a&rsquo; : &lsquo;b&rsquo; ? &lsquo;c&rsquo; : &rsquo;d&rsquo;); // OUTPUT: string(1) &quot;c&quot; Se state pensando che il risultato di questa espressione sia ovvio, vediamo cosa succede ad esempio in javascript console.log(true ? &lsquo;a&rsquo; : &lsquo;b&rsquo; ?</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/" class="button big">Continue Reading</a></li>
+            <li><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -372,8 +450,6 @@ ga('send', 'pageview');
         <li><a href="/categories/italiano">Italiano</a></li>
     
         <li><a href="/categories/php">PHP</a></li>
-    
-        <li><a href="/categories/php-internals">PHP internals</a></li>
     
 </ul>
 
@@ -390,7 +466,8 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="#" class="disabled button big next">Next Page</a></li>
+        <li><a href="/page/11/"
+                class="button big next">Next Page</a></li>
     
 </ul>
 
@@ -597,7 +674,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">23</span>
+                                <span style="float:right;">26</span>
                             </header>
                         </article>
                     </li>
@@ -608,7 +685,18 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/php/">PHP</a>
-                                <span style="float:right;">10</span>
+                                <span style="float:right;">11</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
                             </header>
                         </article>
                     </li>
@@ -629,7 +717,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">6</span>
                             </header>
                         </article>
@@ -640,8 +728,8 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">6</span>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">5</span>
                             </header>
                         </article>
                     </li>
@@ -662,33 +750,27 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/conferences/">Conferences</a>
-                                <span style="float:right;">4</span>
-                            </header>
-                        </article>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/functional-programming/">Functional Programming</a>
-                                <span style="float:right;">3</span>
-                            </header>
-                        </article>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        <article>
-                            <header>
                                 <a href="/categories/software-testing/">Software testing</a>
                                 <span style="float:right;">3</span>
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     
@@ -874,7 +956,7 @@ ga('send', 'pageview');
             
 
             <p class="copyright">
-                &copy; Facile Engineering.<br/>
+                &copy; Facile.it Engineering.<br/>
                 Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
                 Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
                 Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>

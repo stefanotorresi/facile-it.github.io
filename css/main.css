@@ -3458,3 +3458,15 @@
 	div.gist tr {
 		border: none;
 	}
+
+	.post pre {
+		max-width: 50em;
+	}
+
+	.post p a {
+		border-bottom: double 3px rgba(160, 160, 160, 0.85)
+	}
+
+	.post p a:hover {
+		border-bottom-color: rgba(46, 186, 174, 0.25)
+	}

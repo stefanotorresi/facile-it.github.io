@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Facile Engineering</title>
+    <title>Facile.it Engineering</title>
     <link>/</link>
-    <description>Recent content on Facile Engineering</description>
+    <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 24 Mar 2016 00:00:00 +0000</lastBuildDate>
@@ -2986,6 +2986,109 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Protezione di dati sensibili usando la crittografia</title>
+      <link>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</guid>
+      <description>
+
+&lt;p&gt;La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&amp;rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Come proteggere questi dati da eventuali malintenzionati che vorrebbero -  e potrebbero(!!) -  riuscire a entrarne in possesso ?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami. Nel mondo del web i dati possono essere &amp;ldquo;ottenuti&amp;rdquo; in due momenti differenti: 1) mentre transitano sulla rete sotto forma di pacchetti, oppure 2) successivamente al loro immagazzinamento (es. database o file) all&amp;rsquo;interno di uno o più server.&lt;/p&gt;
+
+&lt;p&gt;In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &amp;ldquo;in casa&amp;rdquo;?.&lt;/p&gt;
+
+&lt;h2 id=&#34;mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Mettere i dati in cassaforte&lt;/h2&gt;
+
+&lt;p&gt;In caso di dati immagazzinati, ad esempio, all&amp;rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &amp;ldquo;sicuro&amp;rdquo; all&amp;rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
+Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
+Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo potrebbe esporre le nostre ricchezze ad attacchi di vario genere, permettendo a chiunque (o quasi) di ottenerle.&lt;/p&gt;
+
+&lt;p&gt;Una possibile ed efficace tecnica di protezione in questi casi è &lt;strong&gt;rendere inutili o illeggibili i dati&lt;/strong&gt; per coloro che li hanno ottenuti in maniera illegittima, attraverso il loro immagazzinamento in forma cifrata.&lt;/p&gt;
+
+&lt;p&gt;Quella che proporrò di seguito è una possibile soluzione al problema di come immagazzinare e cifrare questi dati, in modo da ottenere un livello di sicurezza adeguato e mantenere una buona elasticità, tanto da permettere differenti implementazioni e da coprire quanti più possibili casi d&amp;rsquo;uso.&lt;/p&gt;
+
+&lt;p&gt;La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&amp;rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.&lt;/p&gt;
+
+&lt;h2 id=&#34;algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Crittografici Simmetrici e Asimmetrici&lt;/h2&gt;
+
+&lt;p&gt;Con &lt;em&gt;algoritmi crittografici&lt;/em&gt; si intendono tutti quei &lt;strong&gt;processi e procedure finalizzati ad ottenere un dato &amp;ldquo;offuscato&amp;rdquo; in modo da non essere comprensibile/intelligibile&lt;/strong&gt; da persone non autorizzate a leggerlo.&lt;/p&gt;
+
+&lt;h3 id=&#34;algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Simmetrici&lt;/h3&gt;
+
+&lt;p&gt;Questa tipologia di algoritmi si basa sull&amp;rsquo;uso di chiavi di cifratura dette &lt;strong&gt;simmetriche&lt;/strong&gt; che permettono di cifrare e decifrare dati &lt;strong&gt;utilizzando la medesima chiave crittografica&lt;/strong&gt;.
+Un esempio è &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard), evoluzione dell&amp;rsquo;algoritmo &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&amp;rsquo;ottima velocità, sia che venga implementato via hardware che software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Asimmetrici&lt;/h3&gt;
+
+&lt;p&gt;Gli algoritmi asimmetrici si distinguono dai precedenti per l&amp;rsquo;utilizzo di &lt;strong&gt;due chiavi crittografiche distinte&lt;/strong&gt;, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
+Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene &lt;strong&gt;liberamente scambiata&lt;/strong&gt;, mentre la chiave privata &lt;strong&gt;rimane a conoscenza solo di coloro che devono poter leggere i dati&lt;/strong&gt; o i messaggi scambiati.
+La particolarità che caratterizza queste chiavi è l&amp;rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&amp;rsquo;algoritmo, l&amp;rsquo;unico metodo per ottenere tale chiave è il &lt;strong&gt;brute force&lt;/strong&gt; sui dati stessi.
+In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;La soluzione combinando RSA e AES&lt;/h2&gt;
+
+&lt;p&gt;Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.&lt;/p&gt;
+
+&lt;p&gt;Immaginiamo di avere una piattaforma che permetta ai vari &lt;strong&gt;utenti&lt;/strong&gt; di collegarsi con le proprie credenziali e di effettuare svariate operazioni, tra cui immagazzinare i propri documenti privati (foto, documenti, password, contratti, etc.) che necessitano di un più alto livello di sicurezza, e magari di poter condividere tra loro questi dati in un futuro prossimo.&lt;/p&gt;
+
+&lt;p&gt;Partendo da queste semplici condizioni, e predisponendo il tutto alla futura &amp;ldquo;condivisibilità&amp;rdquo; dei documenti, una possibile soluzione è la seguente:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;utilizzeremo AES per cifrare i singoli documenti;&lt;/li&gt;
+&lt;li&gt;per permettere la condivisione, utilizzeremo una tabella (di scambio) del nostro database; al suo interno verranno tracciati il proprietario del documento e gli utenti che potranno accedervi;&lt;/li&gt;
+&lt;li&gt;ogni singolo utente avrà il suo portachiavi, contenente le chiavi RSA che fungeranno da &amp;ldquo;lucchetto&amp;rdquo; per la chiave del singolo documento;&lt;/li&gt;
+&lt;li&gt;sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&amp;rsquo;accesso solo al proprietario;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Gestire gli utenti&lt;/h3&gt;
+
+&lt;p&gt;Alla creazione di un nuovo utente sarà nostra premura &lt;strong&gt;generare una nuova coppia di chiavi&lt;/strong&gt; RSA, che andrà legata all&amp;rsquo;utente.
+Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&amp;rsquo;utente o in un&amp;rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una &lt;strong&gt;masterkey&lt;/strong&gt; all&amp;rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
+La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
+&lt;strong&gt;N.B.&lt;/strong&gt; È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&amp;rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.&lt;/p&gt;
+
+&lt;h3 id=&#34;cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Cifrare il documento&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Ogni volta&lt;/strong&gt; in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica &lt;strong&gt;univoca&lt;/strong&gt;. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&amp;rsquo;interno della nostra base dati.&lt;/p&gt;
+
+&lt;h3 id=&#34;associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Associare il file all&amp;rsquo;utente&lt;/h3&gt;
+
+&lt;p&gt;Come ultimo passo dovremo associare i dati cifrati all&amp;rsquo;utente che li sta memorizzando. È il momento di utilizzare la &amp;ldquo;tabella di scambio&amp;rdquo;. Inseriremo un record contenente i riferimenti all&amp;rsquo;utente e al file, insieme alla chiave univoca legata a quest&amp;rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&amp;rsquo;utente.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo ottenuto un sistema simile a quello visualizzato di seguito:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;condividere:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Condividere!&lt;/h3&gt;
+
+&lt;p&gt;Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;richiedere la masterkey dell&amp;rsquo;utente;&lt;/li&gt;
+&lt;li&gt;decifrare la chiave privata dello stesso utente utilizzando la chiave appena ottenuta;&lt;/li&gt;
+&lt;li&gt;decifrare la chiave legata al documento (recuperata dalla tabella di scambio);&lt;/li&gt;
+&lt;li&gt;effettuare una copia del record di scambio, sostituendo l&amp;rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;e-ora:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;E ora?&lt;/h3&gt;
+
+&lt;p&gt;Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati &lt;strong&gt;siamo definitivamente al sicuro?&lt;/strong&gt; &lt;strong&gt;Assolutamente no!&lt;/strong&gt; Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che &lt;strong&gt;abbiamo affidato buona parte della sicurezza del nostro sistema all&amp;rsquo;utente&lt;/strong&gt;.
+Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
+Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sarebbe facilmente aggirabile tramite brute force o altre tecniche.&lt;/p&gt;
+
+&lt;p&gt;In conclusione, tengo ad esortarvi a rispettare tutte le &lt;a href=&#34;https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system&#34;&gt;regole generali riguardanti la composizione delle password&lt;/a&gt;, impendendo agli utenti di sceglierne una troppo semplice.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>No Country For If Else</title>
       <link>/blog/eng/no-country-for-if-else/</link>
       <pubDate>Tue, 15 Sep 2015 00:00:00 +0000</pubDate>
@@ -3700,155 +3803,220 @@ func &amp;lt;*&amp;gt; &amp;lt;A,B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp
     </item>
     
     <item>
-      <title>MiniIAD Vimercate 2015: reportage</title>
-      <link>/blog/ita/miniiad-vimercate-2015-reportage/</link>
-      <pubDate>Wed, 15 Jul 2015 00:00:00 +0000</pubDate>
+      <title>Php Summer Camp 2015</title>
+      <link>/blog/ita/php-summer-camp-2015/</link>
+      <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/ita/miniiad-vimercate-2015-reportage/</guid>
+      <guid>/blog/ita/php-summer-camp-2015/</guid>
       <description>
 
-&lt;p&gt;Lo scorso 23 Maggio 2015, si è tenuto a Vimercate, presso la sede di Alcatel-Lucent all&amp;rsquo;Energy Park, il &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/&#34;&gt;Mini Italian Agile Day&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;introduzione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Introduzione&lt;/h1&gt;
 
-&lt;p&gt;Anche in occasione di questo evento Facile.it si è presentata con una piccola delegazione. Sono andato all&amp;rsquo;incontro cercando di polarizzare bene le mie aspettative della giornata. Da un evento della &lt;strong&gt;comunità Agile&lt;/strong&gt; mi aspetto un &lt;strong&gt;confronto&lt;/strong&gt;, una &lt;strong&gt;crescita&lt;/strong&gt;, nonché l&amp;rsquo;occasione di incontrare qualche volto amico, qualche ex collega o qualche guru a cui chiedere consiglio!&lt;/p&gt;
+&lt;p&gt;Dal 26 al 29 agosto 2015 ho avuto l&amp;rsquo;occasione di partecipare al &lt;a href=&#34;http://2015.phpsummercamp.com/&#34;&gt;&lt;strong&gt;PhpSummerCamp&lt;/strong&gt;&lt;/a&gt; in Rovigno (Croazia).
+Negli stessi giorni e nello stesso luogo si è svolto anche il &lt;a href=&#34;http://2015.ezsummercamp.com/&#34;&gt;&lt;strong&gt;SummerCamp EzPublish&lt;/strong&gt;&lt;/a&gt;.
+Ciò ha consentito di accrescere ulteriormente la platea di partecipanti con cui è stato possibile condividere idee e soluzioni.&lt;/p&gt;
 
-&lt;p&gt;Parlare di recensione della giornata mi sembra inappropriato. Preferisco soffermarmi su cosa mi ha colpito e cosa mi sono portato a casa da questa esperienza.&lt;/p&gt;
+&lt;p&gt;L&amp;rsquo;evento è costituito da numerosi &lt;strong&gt;workshop&lt;/strong&gt; orientati allo sviluppo di applicazioni con il &lt;a href=&#34;http://symfony.com&#34;&gt;framework PHP Symfony&lt;/a&gt;.
+Le mattine e le prime metà del pomeriggio erano interamente dedicati ai workshop.
+Nel tempo rimanente venivano condotte varie attività dedicate alla community e al confronto tra i partecipanti.&lt;/p&gt;
 
-&lt;h2 id=&#34;welcome-coffee:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Welcome coffee&lt;/h2&gt;
+&lt;p&gt;In questo articolo descriverò gli eventi a cui ho partecipato e gli argomenti trattati, con particolare riguardo a ciò che mi ha personalmente colpito di più.&lt;/p&gt;
 
-&lt;p&gt;Partiamo dal primo impatto: la location. Beh, complimenti ad Alcatel perché ha una sede molto bella! raggiungerla in auto non è stato tanto difficile e tutto quel verde dentro e fuori dagli uffici trasmette una bella sensazione. Come al solito sono in ritardo, giusto il tempo di un caffè, offerto dal nostro host, e qualche stretta di mano e subito si comincia.&lt;/p&gt;
-
-&lt;h2 id=&#34;keynote:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Keynote&lt;/h2&gt;
-
-&lt;p&gt;Il keynote è di &lt;a href=&#34;https://twitter.com/ixhd&#34;&gt;Cliff Hazell&lt;/a&gt;, un ragazzo che fa l&amp;rsquo;agile coach in Spotify. Ha illustrato una &lt;strong&gt;tecnica di visualizzazione&lt;/strong&gt; della conoscenza e dei processi su una grande parete con dei post-it. Un qualcosa che mi ha ricordato l&amp;rsquo;&lt;a href=&#34;http://ziobrando.blogspot.it/2013/11/introducing-event-storming.html&#34;&gt;event storming&lt;/a&gt; che ho visto raccontare da &lt;a href=&#34;http://www.avanscoperta.it/it/author/a-brandolini/&#34;&gt;Alberto Brandolini&lt;/a&gt; a BetterSoftware, tuttavia mi è parso ci siano alcune differenze. In entrambi i metodi il risultato finale è &lt;strong&gt;una parete piena di post-it che spiegano il modello&lt;/strong&gt; da sviluppare. Nell&amp;rsquo;event storming, la creazione partecipata della parete è l&amp;rsquo;evoluzione degli stati del modello sono il punto focale. Non ho mai avuto il piacere di usare event storming, ma tutte le presentazioni che ho visto delineano il modo in cui la parete &amp;ldquo;si riempie&amp;rdquo;, mentre ho poche informazioni su come questa poi si traduca in software. Piuttosto, mi pare di aver colto che Cliff ponga molta enfasi su come man mano la conoscenza che stiamo visualizzando si evolva e man mano si traduca in componenti software. Mi intriga l&amp;rsquo;ipotesi di combinare le due cose!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/miniiad-vimercate-2015-reportage/visualization.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;agile-e-il-business-delle-aziende:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
-
-&lt;p&gt;La mia giornata prosegue parlando di &lt;strong&gt;&lt;a href=&#34;http://www.ideastartup.it/startupzionario/&#34;&gt;Startup&lt;/a&gt;&lt;/strong&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Produzione_snella&#34;&gt;Lean&lt;/a&gt;&lt;/strong&gt; con &lt;a href=&#34;https://twitter.com/felicepescatore&#34;&gt;Felice Pescatore&lt;/a&gt;. Una sessione sul percorso &amp;ldquo;&lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#leanstartup&#34;&gt;dal garage al grattacielo&lt;/a&gt;&amp;rdquo;. Bello stile, coinvolgente! Ho già letto tanto su Lean, purtroppo non ho portato via nulla di nuovo.
-Anche il talk successivo &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Kanban_experiment&#34;&gt;Kanban experiment&lt;/a&gt;, su &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;&lt;/strong&gt;, non mi ha detto nulla di nuovo. Mi piace però constatare che molti gruppi di lavoro che si stanno avvicinando alle metodologie Agili, scelgono Kanban.&lt;/p&gt;
-
-&lt;h2 id=&#34;large-scaling-scrum:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
-
-&lt;p&gt;Dopo un buon pranzo, ho assistito ad una &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#LeSS_Adoption&#34;&gt;sessione&lt;/a&gt; su &lt;strong&gt;&lt;a href=&#34;http://less.works/&#34;&gt;Less&lt;/a&gt;&lt;/strong&gt;. E quì rimango veramente sorpreso in positivo. Non conoscevo Less e penso se ne dovrebbe parlare di più, soprattutto in aziende con tanti gruppi di lavoro diversi. &lt;a href=&#34;https://www.youtube.com/watch?v=PTjnw9EXsD4&#34;&gt;Francesco Sferlazza&lt;/a&gt; ha raccontato come in Alcatel hanno introdotto Less (Large Scaling SCRUM). In sostanza, si tratta di un framework per &lt;strong&gt;attuare SCRUM in aziende composte da svariati sottogruppi che fanno SCRUM che però hanno delle dipendenze vicendevoli&lt;/strong&gt;. Con SCRUM si dovrebbero costituire dei gruppi completamente indipendenti, composti da tutte le risorse necessarie per realizzare l&amp;rsquo;obiettivo. In realtà estremamente complesse, come appunto una grandissima azienda di telefonia, non è possibile considerare nello stesso aggregato i manutentori delle centraline telefoniche con gli esperti di design dei dispositivi da installare. In sostanza, si deve armonizzare il lavoro di gruppi diversi in cui in ciascuno si applica SCRUM.
-Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non certo così grande e complessa) alcuni elementi della filiera non riusciamo a portarli dentro tutti i team. Ad esempio i web designer o il team di marketing. Tutti i team condividono il tempo e le competenze di questi gruppi, che a loro volta fanno iterazioni settimanali (non SCRUM). Il talk mi ha illustrato alcuni dei vantaggi di Less ed ha stuzzicato la mia curiosità. Ora dovrò capire come applicarlo concretamente!&lt;/p&gt;
-
-&lt;h2 id=&#34;retrospettive-creative:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Retrospettive creative&lt;/h2&gt;
-
-&lt;p&gt;Si è andato avanti parlando di &lt;strong&gt;&lt;a href=&#34;http://retrospectivewiki.org/index.php?title=Main_Page&#34;&gt;retrospettive&lt;/a&gt;&lt;/strong&gt; con Marco Di Biase, uno SCRUM Master di Bravofly. Su questo tema, devo dare il merito a Marco di aver &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Miglioramento_continuo&#34;&gt;condiviso&lt;/a&gt; un sacco di idee e scoperte fatte nel corso della sua esperienza. Io, ad esempio, ho iniziato a fare retrospettive con un certo format e da allora son riuscito a coinvolgere gli interlocutori più disparati del team (facciamo retrospettive tra team di addetti alla vendita e vengono fuori continue azioni di miglioramento come dalle retrospettive tra programmatori). Ma non ho mai provato a fare e farmi delle &lt;strong&gt;domande diverse durante gli incontri&lt;/strong&gt;. Marco accennava che &lt;a href=&#34;https://twitter.com/p_pugliese&#34;&gt;Pierluigi Pugliese&lt;/a&gt; gli abbia mostrato decine di approcci diversi.&lt;/p&gt;
-
-&lt;p&gt;Mi ha colpito in particolare il format della retrospettiva con i cerchi concentrici che Marco suggerisce di usare per le iterazioni o per i periodi in cui le cose non vanno particolarmente bene, per ragionare sui problemi: ogni cerchio è un attore; il cerchio di cosa posso controllare io per fare meglio, di cosa può controllare il team per fare meglio e cosa invece è fuori dal nostro controllo ma sta facendo andare male le cose.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/miniiad-vimercate-2015-reportage/retrospettiva-cerchi.jpg&#34; alt=&#34;Retrospettiva con cerchi&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusioni:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Conclusioni&lt;/h2&gt;
-
-&lt;p&gt;La serata si è poi conclusa con una carrellata di &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Agile_Coaches&#34;&gt;esperienze&lt;/a&gt; vissute da tre coach. Dalla tastiera al coaching (senza lasciare la tastiera!). Le storie delle persone sono una delle cose di maggiore ispirazione. Per me penso sia bello ripartire da qui, con qualche pillola in più, inseguendo quel miglioramento continuo che ogni giorno sa riempirci di soddisfazioni.&lt;/p&gt;
-
-&lt;p&gt;A presto con i prossimi grandi eventi dell&amp;rsquo;autunno!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Programmazione Funzionale: perché preoccuparsi?</title>
-      <link>/blog/ita/programmazione-funzionale-perche-preoccuparsi/</link>
-      <pubDate>Mon, 13 Jul 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/programmazione-funzionale-perche-preoccuparsi/</guid>
-      <description>
-
-&lt;p&gt;Nel suo discorso di accettazione del &lt;a href=&#34;http://amturing.acm.org/award_winners/dijkstra_1053701.cfm&#34;&gt;Premio Turing 1972&lt;/a&gt;, dal titolo &amp;ldquo;&lt;a href=&#34;https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html&#34;&gt;The humble programmer&lt;/a&gt;&amp;rdquo;, &lt;strong&gt;Edsger Wybe Dijkstra&lt;/strong&gt;, uno dei più celebri &lt;em&gt;computing scientists&lt;/em&gt; del 20° secolo (morto nel 2002), affrontò le cause della nota &lt;a href=&#34;https://it.wikipedia.org/wiki/Software_crisis&#34;&gt;Software Crisis&lt;/a&gt;, cioè la crisi che colpì l&amp;rsquo;industria del software nella seconda metà degli anni sessanta: la potenza e la capacità di elaborazione dei computer stavano &lt;strong&gt;crescendo esponenzialmente&lt;/strong&gt;, molto più rapidamente dell&amp;rsquo;abilità dei programmatori di &lt;strong&gt;gestire la complessità&lt;/strong&gt; e scrivere software funzionante. Nello stesso discorso, Dijkstra propose anche delle possibili strade da intraprendere che a suo avviso avrebbero portato aziende e università a migliorare la qualità del loro software. Riporto qui una frase che a mio parere riassume abbastanza bene l&amp;rsquo;intero discorso:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;I now suggest that we confine ourselves to the design and implementation of intellectually manageable programs.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Il suggerimento è quindi il seguente: un programmatore dovrebbe limitarsi a lavorare su programmi &lt;strong&gt;intellettualmente gestibili&lt;/strong&gt;, cioè programmi dei quali è possibile stabilire la correttezza semplicemente &lt;strong&gt;attraverso il ragionamento&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;indice:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Indice&lt;/h2&gt;
+&lt;h1 id=&#34;indice:58029b8459d31227431cf79c0465e6bb&#34;&gt;Indice&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#la-software-crisis-nei-decenni&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#cause-di-complessita&#34;&gt;Cause di complessità&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#pensare-ad-oggetti&#34;&gt;Pensare ad oggetti&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#un-vecchio-paradigma-programmazione-funzionale&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;la-software-crisis-nei-decenni&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;la-software-crisis-nei-decenni:ba51084cbefae16f67c65bf54f6283db&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/h2&gt;
-
-&lt;p&gt;Molti anni sono passati da allora, e la pratica dello sviluppo software ha attraversato varie evoluzioni e trasformazioni. Rispetto ai tempi di &lt;a href=&#34;https://it.wikipedia.org/wiki/Fortran&#34;&gt;FORTRAN&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/ALGOL_60&#34;&gt;Algol 60&lt;/a&gt;, nuovi linguaggi di programmazione sono emersi e si sono affermati come standard; nuove tecniche e paradigmi, come la programmazione orientata agli oggetti, si sono diffuse nell&amp;rsquo;industria del software dopo un lungo periodo di gestazione in &lt;a href=&#34;https://en.wikipedia.org/wiki/Object-oriented_programming#History&#34;&gt;università e centri di ricerca privati&lt;/a&gt;; diversi modi di gestire il processo di realizzazione del software e il suo ciclo di vita sono stati elaborati nei decenni, dal classico modello &lt;a href=&#34;https://en.wikipedia.org/wiki/Waterfall_model&#34;&gt;Waterfall&lt;/a&gt; alle moderne metodologie &lt;a href=&#34;http://engineering.facile.it/un-flusso-di-lavoro-agile/&#34;&gt;Agile&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ma &lt;strong&gt;il problema di fondo&lt;/strong&gt; espresso in &lt;em&gt;The humble programmer&lt;/em&gt; è praticamente &lt;strong&gt;rimasto intatto&lt;/strong&gt; nel corso dei decenni: lo sviluppo di funzionalità elaborate e la progettazione di strutture complesse portano al rilascio di software caratterizzato da molti &lt;em&gt;bug&lt;/em&gt;, o per meglio dire, &lt;strong&gt;errori&lt;/strong&gt; dovuti a una difficile, &lt;strong&gt;a volte apparentemente impossibile&lt;/strong&gt;, gestione della complessità. La possibilità di rilasciare software rapidamente e in maniera iterativa ha portato a &lt;strong&gt;integrare&lt;/strong&gt; del tutto questi errori nel processo di sviluppo e rilascio: questa integrazione è realizzata attraverso diverse tecniche, dal &lt;em&gt;debugging&lt;/em&gt;, praticato già dai primissimi programmatori oltre mezzo secolo fa, al &lt;a href=&#34;http://engineering.facile.it/tag/software-testing/&#34;&gt;&lt;em&gt;software testing&lt;/em&gt;&lt;/a&gt;, che permette, in maniera decisamente più efficace rispetto al &lt;em&gt;debugging&lt;/em&gt;, di &lt;strong&gt;identificare gli errori commessi&lt;/strong&gt; e porvi rimedio. Sfortunatamente il &lt;em&gt;testing&lt;/em&gt;, pur essendo una pratica ottima per verificare se ci siano errori in un particolare software, non è sufficiente a &lt;strong&gt;garantire&lt;/strong&gt; che questi errori non ci siano.&lt;/p&gt;
-
-&lt;p&gt;Notiamo inoltre che l&amp;rsquo;idea di integrare gli errori nel processo di &lt;em&gt;design&lt;/em&gt; è una caratteristica praticamente esclusiva dell&amp;rsquo;ingegneria del software, che &lt;strong&gt;la distingue radicalmente&lt;/strong&gt; dalle altre discipline ingegneristiche: in esse, tipicamente, si progettano componenti usando &lt;strong&gt;metodi matematici rigorosi&lt;/strong&gt; o software di calcolo numerico che permettono comunque di ottenere dati molto precisi, e poi si applicano margini di sicurezza per tener conto della variabilità dei processi di sviluppo dei materiali, delle imperfezioni di assemblaggio e delle oscillazioni nelle condizioni di esercizio. Da una parte questa differenza rappresenta &lt;strong&gt;un grande vantaggio&lt;/strong&gt; per l&amp;rsquo;ingegneria del software: non si può &amp;ldquo;iterare&amp;rdquo; nella costruzione di un grattacielo! D&amp;rsquo;altra parte penso sia necessario evitare che lo sviluppo software si trasformi in un banale processo di &lt;em&gt;trial and error&lt;/em&gt; perché, per quanto esso possa dimostrarsi efficace in alcuni casi, spesso &lt;strong&gt;non ci permette di capire razionalmente cosa stiamo facendo&lt;/strong&gt;, e può portare alla produzione di codice instabile e difficilmente gestibile. La verifica &lt;em&gt;a posteriori&lt;/em&gt; attuata grazie al &lt;em&gt;testing&lt;/em&gt; non dovrebbe essere considerata sufficiente a giudicare un software corretto. A mio parere, inoltre, non dovremmo considerare i &lt;em&gt;bug&lt;/em&gt; come se fossero &lt;strong&gt;concetti filosofici&lt;/strong&gt;, necessari e impossibili da eliminare. Ovviamente gli esseri umani compiono errori, ma la differenza tra un comune errore dovuto alle non perfette abilità di una persona, e un bug causato dall&amp;rsquo;eccessiva complessità di un software, è simile alla differenza che c&amp;rsquo;è tra lo scivolare su un pavimento bagnato perché non si è notato il messaggio di avviso, e lo sfracellarsi al suolo dopo aver tentato una scalata difficilissima senza attrezzatura e senza aver alcuna esperienza di montagna: nel secondo caso, &lt;strong&gt;ce la siamo cercata&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In effetti, in un &lt;em&gt;essay&lt;/em&gt; scritto nel 1997 per il libro &lt;a href=&#34;https://books.google.it/books?id=9P5uwNpP1JAC&amp;amp;redir_esc=y&#34;&gt;Beyond Calculation: The Next Fifty Years of Computing&lt;/a&gt;, pubblicato a celebrazione dei primi 50 anni di vita del computer, lo stesso Dijkstra torna ad affrontare il tema della complessità non gestita, suggerendo che &lt;strong&gt;poco è cambiato&lt;/strong&gt; in merito al problema di fondo che già si era presentato più di 50 anni fa. Raccolgo qui poche parole prese dal &lt;em&gt;essay&lt;/em&gt; che, di nuovo, penso ne distillino il succo (grassetto mio):&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Computing&amp;rsquo;s core challenge is &lt;strong&gt;how not to make a mess of it&lt;/strong&gt;. [&amp;hellip;] Because we are dealing with artefacts, all unmastered complexity is of our own making; &lt;strong&gt;there is no one else to blame&lt;/strong&gt; and so we had better learn how &lt;strong&gt;not to introduce the complexity in the first place&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a name=&#34;cause-di-complessita&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;cause-di-complessità:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Cause di complessità&lt;/h2&gt;
-
-&lt;p&gt;Ma quali sono le cause di tutta questa complessità? La fonte che, a mio parere, affronta in maniera più completa il problema della complessità nel software, proponendo soluzioni concrete, è il bellissimo (e lungo) articolo di Ben Moseley e Peter Marks &amp;ldquo;Out of the Tar Pit&amp;rdquo;(2006), reperibile &lt;a href=&#34;https://www.dropbox.com/s/nov94b39ikijwqd/tarpit.pdf?dl=0&#34;&gt;QUI&lt;/a&gt;. Per poter identificare i punti principali dell&amp;rsquo;articolo dobbiamo intanto dare &lt;strong&gt;una possibile definizione di &amp;ldquo;complessità&lt;/strong&gt;&amp;rdquo;, almeno per quanto riguarda lo sviluppo software; un primo tentativo potrebbe essere il seguente:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;la complessità di un software rappresenta la difficoltà nel ragionare sul suo funzionamento&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In base a questa definizione, ad esempio, nel caso in cui un software presenti un qualche errore potremmo giudicare tale software più o meno complesso in base a quanto sia difficile trovare l&amp;rsquo;errore utilizzando il solo ragionamento. Basandoci su questa definizione, possiamo estrapolare da &lt;em&gt;Out of the Tar Pit&lt;/em&gt; due principali cause di complessità:&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;#mercoledi&#34;&gt;Mercoledì 26 agosto&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;lo &lt;strong&gt;stato&lt;/strong&gt; delle variabili nel sistema&lt;/li&gt;
-&lt;li&gt;l&amp;rsquo;&lt;strong&gt;ordine&lt;/strong&gt; di esecuzione delle procedure&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In sintesi: la mente umana ha relativa difficoltà a tener traccia del modo in cui &lt;strong&gt;evolve nel tempo lo stato di molti parametri&lt;/strong&gt; in base a vari processi di trasformazione, specialmente se tale stato dipende anche &lt;strong&gt;dall&amp;rsquo;ordine in cui questi processi sono eseguiti&lt;/strong&gt;. In realtà riusciamo tranquillamente a gestire processi relativamente semplici attraverso una serie di trasformazioni di stato, si pensi all&amp;rsquo;atto di &amp;ldquo;fare una torta&amp;rdquo;: gli ingredienti di base &amp;ldquo;diventano&amp;rdquo; torta dopo una serie di stadi di trasformazione, che possiamo tranquillamente a tenere a mente, e se il risultato finale non è quello che ci aspettavamo riusciamo rapidamente a identificare l&amp;rsquo;errore nella procedura (la torta è troppo cotta, o abbiamo usato il sale al posto dello zucchero). In effetti seguire l&amp;rsquo;evoluzione di un processo di trasformazione costituito da una serie di procedure è assolutamente &lt;strong&gt;intuitivo&lt;/strong&gt; per la mente umana ed è alla base del paradigma di programmazione noto come &lt;strong&gt;programmazione procedurale&lt;/strong&gt;: nella mia breve esperienza personale ho potuto notare infatti che il metodo più frequentemente adottato nei corsi base di programmazione è proprio quello basato su alberi di scelte binarie &lt;em&gt;if-else&lt;/em&gt;, iterazioni e cicli con una o più condizioni di uscita. Purtroppo è facile osservare che questo modo di ragionare, sebbene sia perfettamente adatto a risolvere molti problemi pratici nella vita di tutti i giorni, &lt;strong&gt;non costituisca una strategia particolarmente efficace&lt;/strong&gt; quando si parla di programmi corposi e complessi, e con &amp;ldquo;corposi&amp;rdquo; intendo &amp;ldquo;più lunghi di un centinaio di righe&amp;rdquo;. È stato necessario introdurre nuove astrazioni, a più alto livello, per riuscire a superare la sempre incombente &lt;em&gt;software crisis&lt;/em&gt;, abbandonando ciò che appare intuitivo in favore di qualcosa di maggiormente gestibile ed efficiente.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;pensare-ad-oggetti&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;pensare-ad-oggetti:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Pensare ad oggetti&lt;/h2&gt;
-
-&lt;p&gt;Vediamo in sintesi come il problema della complessità sia affrontato, a grandi linee, dal più diffuso e importante paradigma di sviluppo software adottato a sostituzione di quello procedurale: la programmazione orientata agli oggetti (&lt;em&gt;Object-Oriented Programming&lt;/em&gt;: &lt;strong&gt;OOP&lt;/strong&gt;). OOP adotta il principio &lt;strong&gt;dell&amp;rsquo;incapsulamento della complessità&lt;/strong&gt;: le varie strutture computazionali del nostro software, individualmente più o meno complesse, sono suddivise in porzioni sufficientemente indipendenti, rinchiuse in contenitori stagni collegati tra loro da interfacce chiare e dichiarative. Si noti intanto che questo &lt;strong&gt;non è&lt;/strong&gt; il modo in cui gli esseri umani agiscono; nel suo classico articolo &lt;a href=&#34;http://c2.com/doc/oopsla89/paper.html&#34;&gt;A Laboratory For Teaching Object-Oriented Thinking (1989)&lt;/a&gt;, il celebre &lt;a href=&#34;https://it.wikipedia.org/wiki/Kent_Beck&#34;&gt;Kent Beck&lt;/a&gt;, noto soprattutto per i fondamentali contributi alle metodologie &lt;a href=&#34;https://it.wikipedia.org/wiki/Extreme_programming&#34;&gt;Extreme Programming&lt;/a&gt; e &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt;, affronta il problema che si incontra quando si cerca di &lt;strong&gt;insegnare agli studenti a &amp;ldquo;pensare a oggetti&amp;rdquo;&lt;/strong&gt;: come essere umani siamo abituati a pensare allo stato globale di una situazione; a spostarci per comunicare direttamente con chiunque; ad affidarci al modo particolare in cui le persone che conosciamo svolgeranno un certo compito. OOP è invece basato su concetti opposti: ogni oggetto dovrebbe &amp;ldquo;vedere&amp;rdquo; solo i suoi vicini diretti, e di questi non dovrebbe comunque conoscere alcun dettaglio interno. Osserviamo quindi che &lt;strong&gt;il sistema di astrazioni&lt;/strong&gt; su cui OOP è basato non ha nulla a che fare con la vita &amp;ldquo;reale&amp;rdquo; o con il nostro abituale modo di pensare agli oggetti &amp;ldquo;fisici&amp;rdquo;, e a ragione: un software è svariati ordini di grandezza più complesso rispetto a una qualsiasi struttura fisica, e richiede strumenti diversi per poter essere compreso e gestito.&lt;/p&gt;
-
-&lt;p&gt;In effetti un presunto punto di forza di OOP, spesso citato per fornire una prova dell&amp;rsquo;accessibilità di questo paradigma di programmazione, è costituito dall&amp;rsquo;idea che sia possibile trattare gli oggetti nel software come se fossero oggetti reali. Ho potuto osservare, tuttavia, che impostando proprietà e metodi delle classi come se queste fossero &lt;em&gt;template&lt;/em&gt; di oggetti reali, si tende a generare entità eccessivamente interdipendenti e poco flessibili. Questo porta a cadere in &lt;strong&gt;labirinti di complessità&lt;/strong&gt; paragonabili a quelli ottenuti in programmazione procedurale, nei quali lo &lt;strong&gt;stato mutabile&lt;/strong&gt; rende molto difficile la gestione, manutenzione e in generale la comprensibilità del sistema. Quindi spesso i concetti di &amp;ldquo;classe&amp;rdquo; e &amp;ldquo;oggetto&amp;rdquo; sono, purtroppo, &lt;strong&gt;usati in contesti sostanzialmente procedurali&lt;/strong&gt;: non sono rari metodi lunghi centinaia di righe con molti &lt;em&gt;if-else&lt;/em&gt; annidati, o riferimenti a dettagli di implementazione di altri oggetti, che dovrebbero rimanere &amp;ldquo;nascosti&amp;rdquo; al mondo esterno.&lt;/p&gt;
-
-&lt;p&gt;Un tentativo di soluzione a questi problemi è rappresentato dai &lt;strong&gt;design patterns&lt;/strong&gt;, cioè strutture di classi e interfacce che hanno dimostrato &lt;strong&gt;eccellente applicabilità e robustezza&lt;/strong&gt; nell&amp;rsquo;affrontare molti problemi pratici; ma essi sono appunto &lt;em&gt;pattern&lt;/em&gt;, non sono teoremi, la loro capacità di risolvere problemi è verificata dal tempo e dall&amp;rsquo;esperienza, ma essi non permettono in alcun modo di provare in maniera deterministica che un software sia corretto. Il problema di fondo è che, a causa della continua variazione di stato degli oggetti, la struttura di un software scritto in OOP non &lt;strong&gt;può essere rappresentata con un modello matematico&lt;/strong&gt;: funzioni ed equazioni rappresentano relazioni statiche tra variabili dipendenti e indipendenti, con parametri costanti per ogni relazione; variando i parametri, cambia la relazione. Quindi il sistema di astrazioni su cui OOP si basa non può essere descritto dalla matematica. Ma la matematica è proprio l&amp;rsquo;antico e potente strumento utilizzato in qualsiasi disciplina scientifica proprio quando è necessario &lt;strong&gt;fornire prove formali&lt;/strong&gt; della correttezza di sistemi che non possono essere concepiti in maniera dettagliata dalla sola intuizione umana.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;un-vecchio-paradigma-programmazione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;un-vecchio-paradigma-programmazione-funzionale:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/h2&gt;
-
-&lt;p&gt;La &amp;ldquo;programmazione funzionale&amp;rdquo; (&lt;em&gt;Functional Programming&lt;/em&gt;: &lt;strong&gt;FP&lt;/strong&gt;) è un paradigma di sviluppo software in parte codificato già alla fine degli anni cinquanta, attraverso il noto linguaggio &lt;a href=&#34;https://en.wikipedia.org/wiki/Lisp_(programming_language&#34;&gt;LISP&lt;/a&gt;), e gode di solide basi matematiche nella &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatory_logic&#34;&gt;logica combinatoria&lt;/a&gt; e nel &lt;a href=&#34;https://en.wikipedia.org/wiki/Lambda_calculus&#34;&gt;lambda calcolo&lt;/a&gt;: malgrado ciò, ha trovato difficoltà nel diffondersi sia nei corsi universitari di base che nelle aziende, forse per &lt;strong&gt;un&amp;rsquo;alta barriera d&amp;rsquo;ingresso&lt;/strong&gt;, dovuta appunto alle forti basi matematiche e alla manipolazione di concetti molto astratti e poco intuitivi.&lt;/p&gt;
-
-&lt;p&gt;FP si basa sull&amp;rsquo;idea che un software possa essere descritto attraverso l&amp;rsquo;applicazione di tre tecniche principali:&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;#ci&#34;&gt;Continuous integration with PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#modernising&#34;&gt;Modernising the legacy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#frontend&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#debate&#34;&gt;Celebrity debate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#giovedi&#34;&gt;Giovedì 27 agosto&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;la definizione di un gran numero di &lt;strong&gt;funzioni pure&lt;/strong&gt;, cioè funzioni &lt;strong&gt;senza effetti collaterali&lt;/strong&gt;: una funzione pura ritorna &lt;strong&gt;sempre&lt;/strong&gt; un valore, e tale valore è sempre lo stesso &lt;strong&gt;a parità di condizioni di ingresso&lt;/strong&gt;, quindi non potrà mai succedere che una certa funzione ritorni due diversi valori in due diversi momenti nel corso dell&amp;rsquo;esecuzione di un software se non cambiano i dati in ingresso alla funzione;&lt;/li&gt;
-&lt;li&gt;l&amp;rsquo;applicazione di queste funzioni ai dati soggetti a manipolazione nel nostro software, e la loro combinazione attraverso particolari funzioni note come &lt;strong&gt;funzioni di più altro ordine&lt;/strong&gt;, anch&amp;rsquo;esse pure, che però presentano altre funzioni tra i dati di ingresso e/o di uscita;&lt;/li&gt;
-&lt;li&gt;l&amp;rsquo;uso di dati &lt;strong&gt;immutabili&lt;/strong&gt; e l&amp;rsquo;assenza di variazione di stato, che permettono di trattare estese porzioni di un software come se fossero &lt;strong&gt;equazioni matematiche&lt;/strong&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Funzioni pure, indipendenti dallo stato di esecuzione di un software, rappresentano quindi delle &lt;strong&gt;relazioni statiche tra entità&lt;/strong&gt;: il processo di &lt;em&gt;testing&lt;/em&gt; sarà quindi più semplice perché ogni funzione da testare sarà del tutto indipendente dalle altre. In realtà il &lt;em&gt;testing&lt;/em&gt; in sé non è particolarmente importante in FP, perché tale paradigma si basa sull&amp;rsquo;idea di verificare &lt;em&gt;a priori&lt;/em&gt; che un programma sia corretto. Un software scritto in FP nasce in primo luogo da una costruzione teorica la cui correttezza è verificabile tramite &lt;a href=&#34;http://www.haskellforall.com/2013/12/equational-reasoning.html&#34;&gt;ragionamento equazionale&lt;/a&gt;. Saremo quindi in grado di ottenere un software corretto se:&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;#coupling&#34;&gt;Loose coupling in practice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#puli&#34;&gt;Next-gen package development with Puli&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#unconference&#34;&gt;Unconference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#venerdi&#34;&gt;Venerdì 28 agosto&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;ciascuna funzione sarà stata implementata correttamente;&lt;/li&gt;
-&lt;li&gt;avremo impostato le relazioni corrette tra le entità coinvolte;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#profiling&#34;&gt;Profiling PHP Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#symfony3&#34;&gt;Migrating to Symfony 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#experts&#34;&gt;Meet the experts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusione&#34;&gt;Conclusione&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In FP le funzioni sono anche &lt;strong&gt;dati&lt;/strong&gt;, nel senso che hanno un &lt;strong&gt;tipo associato&lt;/strong&gt;. Ad esempio, usando la notazione di Swift, possiamo definire il tipo di una funzione &lt;code&gt;square&lt;/code&gt;, che permette di elevare al quadrato un numero intero, nel seguente modo:&lt;/p&gt;
+&lt;p&gt;&lt;a name=&#34;mercoledi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;let square: Int -&amp;gt; Int&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;mercoledì-26-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
 
-&lt;p&gt;Possiamo leggere la definizione di questo &lt;em&gt;type&lt;/em&gt; così: una funzione che prende in ingresso un numero intero e ritorna un numero intero. Se nel software che stiamo scrivendo dovessimo trasformare un &lt;em&gt;array&lt;/em&gt; di numeri interi in un altro array con gli stessi numeri elevati al quadrato, potremmo definire una funzione &lt;code&gt;map&lt;/code&gt; con la seguente notazione:&lt;/p&gt;
+&lt;p&gt;Un brevissimo keynote di apertura ha illustrato la storia del SummerCamp. Esso inizialmente ospitava soltanto la sezione EzPublish; solo negli ultimi anni è stata aggiunta la parte più generica relativa a Symfony e PHP.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;let map: ([Int], Int -&amp;gt; Int) -&amp;gt; [Int]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&#34;ci&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Questo &lt;em&gt;type&lt;/em&gt; definisce una funzione che prende in ingresso un &lt;em&gt;array&lt;/em&gt; di numeri interi e una funzione del tipo &lt;code&gt;Int -&amp;gt; Int&lt;/code&gt; (per esempio la funzione &lt;code&gt;square&lt;/code&gt;, definita prima). Abbiamo già visto in un &lt;a href=&#34;http://engineering.facile.it/type-first-development-in-swift/&#34;&gt;precedente articolo&lt;/a&gt; come &lt;strong&gt;ragionare sui tipi di dati e funzioni coinvolti&lt;/strong&gt; possa semplificare e irrobustire il design di un software: i prossimi articoli di questa serie serviranno da introduzione alla programmazione funzionale, trattando i principali strumenti utilizzati e mostrando un modo meno diffuso &lt;strong&gt;ma forse più efficace&lt;/strong&gt; di gestire la complessità del software.&lt;/p&gt;
+&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli:58029b8459d31227431cf79c0465e6bb&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
+
+&lt;p&gt;Il primo workshop ha illustrato come configurare e utilizzare &lt;a href=&#34;https://jenkins-ci.org/&#34;&gt;&lt;strong&gt;Jenkins&lt;/strong&gt;&lt;/a&gt;.
+L&amp;rsquo;obiettivo della sessione è stato abilitare un &lt;strong&gt;sistema di continuous integration&lt;/strong&gt; su un piccolo progetto Symfony che già aveva alcune test suite.
+È stato interessante notare la semplicità d&amp;rsquo;uso e di configurazione del sistema Jenkins.
+Si è visto come installare e configurare il &lt;a href=&#34;https://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin&#34;&gt;&lt;strong&gt;Clover PHP Plugin&lt;/strong&gt;&lt;/a&gt; per monitorare il cambiamento dello statement coverage dopo ciascuna build.
+È stato dedicato anche dello spazio per parlare di &lt;a href=&#34;https://www.phing.info/&#34;&gt;&lt;strong&gt;Phing&lt;/strong&gt;&lt;/a&gt;, tool molto utile per realizzare build automatiche.
+Sono state approfondite alcune configurazioni particolari di PhpUnit che consentono di dividere correttamente i test negli insiemi: test unitari, test d&amp;rsquo;integrazione e test funzionali.
+È stato interessante veder utilizzare &lt;a href=&#34;https://phpunit.de/manual/current/en/database.html&#34;&gt;&lt;strong&gt;l&amp;rsquo;estenzione di PHPUnit Database&lt;/strong&gt;&lt;/a&gt; per gestire automaticamente la connessione al database, la creazione dello schema e il caricamento/reset delle fixtures per ogni test case.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;modernising&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;modernising-the-legacy-marek-matulka:58029b8459d31227431cf79c0465e6bb&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
+
+&lt;p&gt;Il presentatore ha illustrato le feature implementate da un&amp;rsquo;applicazione PHP legacy. Il codice era molto disordinato e praticamente impossibile da testare.
+Logica di business, data retrieval e viste erano mescolate in un&amp;rsquo;applicazione che non era dotata nemmeno di un singolo &lt;a href=&#34;https://it.wikipedia.org/wiki/Front_Controller_pattern&#34;&gt;front-controller&lt;/a&gt;.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Modernising legacy w/ &lt;a href=&#34;https://twitter.com/super_marek&#34;&gt;@super_marek&lt;/a&gt; is kicking off at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; &lt;a href=&#34;http://t.co/aOIt1CWhNb&#34;&gt;pic.twitter.com/aOIt1CWhNb&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jakub Zalas (@jakub_zalas) &lt;a href=&#34;https://twitter.com/jakub_zalas/status/636506399288201216&#34;&gt;August 26, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+L&amp;rsquo;applicazione era un semplice sito di e-commerce per la vendita di articoli e comprendeva una sezione di checkout.
+Nel dover aggiungere un nuova funzionalità - il calcolo real-time delle spese di spedizione - si è voluto introdurre alcune componenti di Symfony per migliorare la qualità del sistema.
+È stato illustrato come introdurre e configurare le seguenti componenti: &lt;a href=&#34;http://symfony.com/it/doc/current/components/dependency_injection/introduction.html&#34;&gt;&lt;strong&gt;DependencyInjection&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;http://twig.sensiolabs.org/&#34;&gt;&lt;strong&gt;Twig&lt;/strong&gt;&lt;/a&gt; e &lt;a href=&#34;http://symfony.com/it/doc/current/components/http_foundation/index.html&#34;&gt;&lt;strong&gt;HttpFoundation&lt;/strong&gt;&lt;/a&gt;.
+È stato interessante notare come i componenti di Symfony fossero altamente disaccoppiati e, per questo, introducibili sequenzialmente e senza grandi difficoltà.
+Il miglioramento del design ha permesso di implementare alcuni test unitari per la nuova funzionalità. Si è visto quindi come configurare l&amp;rsquo;ambiente e i tool per il testing.
+La struttura del workshop era particolare: ciascun macro-task era diviso in molti sotto-task. Il repository Git del progetto già conteneva, in branch diversi, tutte le soluzioni. Ciò ha consentito di evitare ritardi causati dai partecipanti che non riuscivano, per vari problemi, a seguire l&amp;rsquo;avanzamento della sessione.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;frontend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo:58029b8459d31227431cf79c0465e6bb&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
+
+&lt;p&gt;Purtroppo, data la scarsa presenza di partecipanti con competenze avanzate di JavaScript, la presentazione ha trattato argomenti abbastanza basilari rispetto a quelli pianificati.
+Si è visto come applicare il &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;paradigma object oriented&lt;/a&gt; in JavaScript con numerosi confronti di funzionalità e sintassi tra JS e PHP che hanno consentito a tutti di comprendere l&amp;rsquo;argomento.
+La seconda parte del workshop ha analizzato e proposto soluzioni al problema dell&amp;rsquo;import di librerie di terze parti in applicazioni complesse.
+È stato analizzato un progetto che implementava una &lt;a href=&#34;https://en.wikipedia.org/wiki/Single-page_application&#34;&gt;single page application&lt;/a&gt; senza alcun uso di framework. Essa era soltanto una composizione di più componenti eterogenei tra di loro.
+Ciò ha permesso di apprendere che &lt;strong&gt;la scelta affrettata di framework complessi non è sempre la migliore&lt;/strong&gt;. Talvolta può essere più produttivo ricorrere a componenti specifici per il problema da risolvere.
+In generale il workshop è stato interessante ma, rispetto agli altri, conteneva molto meno lavoro pratico.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;debate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;celebrity-debate:58029b8459d31227431cf79c0465e6bb&#34;&gt;Celebrity debate&lt;/h3&gt;
+
+&lt;p&gt;È stata una gara scherzosa tra i due partecipanti Ryan Weaver e Bernhard Schussek nel sostenere le loro opinioni su molteplici domande, alcune delle quali anche stabilite dal pubblico.
+Alcuni esempi di domande: Mac vs Linux, &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;Functional programming&lt;/a&gt; vs &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;OOP&lt;/a&gt;, Tea vs Coffee, USA vs Europe
+Il vincitore Ryan Weaver è stato selezionato dal pubblico in base ad un conteggio di consensi.
+È stato un momento divertente con argomenti molto vari anche al di fuori dell&amp;rsquo;ambito informatico.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@symfony&lt;/a&gt; vs &lt;a href=&#34;https://twitter.com/laravelphp&#34;&gt;@laravelphp&lt;/a&gt; debate on &lt;a href=&#34;https://twitter.com/hashtag/ezsummer?src=hash&#34;&gt;#ezsummer&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; wanna bet on the winner? :-) &lt;a href=&#34;http://t.co/f7HXqkoLXU&#34;&gt;pic.twitter.com/f7HXqkoLXU&lt;/a&gt;&lt;/p&gt;&amp;mdash; Igor Vrdoljak (@ivrdoljak) &lt;a href=&#34;https://twitter.com/ivrdoljak/status/636571466104967168&#34;&gt;August 26, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;giovedi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;giovedì-27-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
+
+&lt;p&gt;&lt;a name=&#34;coupling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
+
+&lt;p&gt;L&amp;rsquo;obiettivo della sessione era disaccoppiare l&amp;rsquo;applicazione &lt;a href=&#34;http://symfony.com/blog/introducing-the-symfony-demo-application&#34;&gt;Symfony Demo&lt;/a&gt; da &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine ORM/DBAL&lt;/a&gt; e di consentire lo switch ad altre strategie di storage.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Quite a crowd at &lt;a href=&#34;https://twitter.com/jakub_zalas&#34;&gt;@jakub_zalas&lt;/a&gt; workshop on loose coupling with &lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@Symfony&lt;/a&gt;! &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/KnvqaafRfG&#34;&gt;pic.twitter.com/KnvqaafRfG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Marek ✈ (@super_marek) &lt;a href=&#34;https://twitter.com/super_marek/status/636805256987455488&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+Nonostante il sistema fosse un semplice gestionale per articoli di blog, il lavoro si è subito rilevato molto più lungo e complesso del previsto.
+È stato interessante notare come Symfony full-stack abbia numerosi legami &amp;ldquo;nascosti&amp;rdquo; con Doctrine. Esempi sono il componente &lt;a href=&#34;http://symfony.com/it/doc/current/book/security.html&#34;&gt;Security&lt;/a&gt; e il &lt;a href=&#34;http://symfony.com/it/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html&#34;&gt;ParamConverter&lt;/a&gt;.
+Si è iniziato nel creare i &lt;strong&gt;repository as services&lt;/strong&gt; in modo da consentire la rimozione di qualsiasi riferimento a Doctrine nei controller.
+Successivamente sono stati realizzate delle classi ad hoc per i componenti: Security (definizione esplicita dallo UserProvider) e ParamConverter.
+In seguito è stato richiesto di implementare una nuova strategia di storage utilizzando &lt;a href=&#34;http://php.net/manual/en/book.pdo.php&#34;&gt;PDO&lt;/a&gt; e &lt;a href=&#34;https://it.wikipedia.org/wiki/Structured_Query_Language&#34;&gt;SQL&lt;/a&gt;.
+Per questo task è stato interessante notare l&amp;rsquo;uso frequente del design pattern &lt;a href=&#34;https://it.wikipedia.org/wiki/Adapter_pattern&#34;&gt;Adapter&lt;/a&gt; nonché la definizione di &lt;strong&gt;alias di servizi&lt;/strong&gt; per consentire di spostarsi da una modalità di storage all&amp;rsquo;altra senza troppe modifiche.
+L&amp;rsquo;applicazione comprendeva già numerosi test che consentivano di verificare il corretto funzionamento dell&amp;rsquo;applicazione anche su differenti driver di persistenza.
+Successivamente è stato richiesto di utilizzare il &lt;a href=&#34;http://doctrine-orm.readthedocs.org/en/latest/reference/caching.html&#34;&gt;componente cache di Doctrine&lt;/a&gt; per introdurre un layer di ottimizzazione tra applicazione e persistenza PDO.
+A causa del poco tempo rimasto non è stato possibile affrontare l&amp;rsquo;ultimo task: implementare una nuova astrazione di storage su &lt;a href=&#34;https://www.elastic.co/&#34;&gt;elastic-search&lt;/a&gt;.
+Anche in questo workshop le soluzioni ai problemi erano già presenti nel repository Git. Ciò ha consentito di continuare e approfondire l&amp;rsquo;argomento anche dopo il termine della sessione.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;puli&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek:58029b8459d31227431cf79c0465e6bb&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
+
+&lt;p&gt;Questa sessione è stata divisa in due parti. La prima è una presentazione del &lt;strong&gt;progetto &lt;a href=&#34;http://docs.puli.io/en/latest/&#34;&gt;Puli&lt;/a&gt;&lt;/strong&gt;. Sono state illustrate le funzionalità dell&amp;rsquo;applicazione e i problemi che essa risolve.
+Puli è un gestore della configurazione di pacchetti che mira a rendere &lt;strong&gt;le librerie PHP più omogenee e più semplici da configurare&lt;/strong&gt;. Esso, per funzionare, usa &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt; che continua a gestire il package retrieval e l&amp;rsquo;autoloading.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Finally learning about &lt;a href=&#34;https://twitter.com/hashtag/Puli?src=hash&#34;&gt;#Puli&lt;/a&gt; from &lt;a href=&#34;https://twitter.com/webmozart&#34;&gt;@webmozart&lt;/a&gt;. Great stuff! &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; &lt;a href=&#34;http://t.co/l72oOuwtjY&#34;&gt;pic.twitter.com/l72oOuwtjY&lt;/a&gt;&lt;/p&gt;&amp;mdash; Paweł Jędrzejewski (@pjedrzejewski) &lt;a href=&#34;https://twitter.com/pjedrzejewski/status/636889138252357632&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+Puli consente l&amp;rsquo;accesso alle risorse di un pacchetto in modo semplice e veloce. Le risorse qualitativamente possono essere molto varie: immagini, template, file per la localizzazione, fogli di stile, basi di dati, ecc.
+Puli introduce il concetto di &lt;strong&gt;percorso virtuale&lt;/strong&gt;, un nuovo standard per l&amp;rsquo;accesso alle risorse condivise da uno o più pacchetti.
+Ciascun componente Puli definisce dei mappings che consentono di tradurre un percorso virtuale in percorso reale.
+Questo significa che è possibile richiedere a Puli una risorsa locata virtualmente in &lt;code&gt;/vendorName/projectName/config/file.xml&lt;/code&gt; senza conoscere esattamente dove tale risorsa sarà collocata nel file system.
+Puli offre inoltre la possibilità di modificare alcune risorse tramite il meccanismo dell&amp;rsquo;&lt;strong&gt;overriding&lt;/strong&gt;.
+Similmente al composer.json, la configurazione di Puli risiede nel file puli.json.
+Puli è integrabile con altre applicazioni per l&amp;rsquo;installazione e l&amp;rsquo;aggiornamento degli assets.
+La seconda parte della presentazione è stata dedicata alla pratica.
+L&amp;rsquo;obbiettivo era usare alcuni pacchetti Puli compatibili su un&amp;rsquo;applicazione &lt;a href=&#34;http://silex.sensiolabs.org/&#34;&gt;Silex&lt;/a&gt; per concludere lo sviluppo varie funzionalità.
+È stato possibile vedere come Puli sia integrabile con altri tool per la gestione degli assets (nell&amp;rsquo;esercitazione è stato usato &lt;a href=&#34;http://gulpjs.com/&#34;&gt;Gulp&lt;/a&gt;).
+Il format del workshop è stato diverso dal solito: ogni partecipante aveva a disposizione l&amp;rsquo;elenco dei problemi da risolvere con i relativi tutorial.
+Ciò a consentito ai partecipanti di proseguire in autonomia senza ritardi collettivi.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;unconference&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;unconference:58029b8459d31227431cf79c0465e6bb&#34;&gt;Unconference&lt;/h3&gt;
+
+&lt;p&gt;A fine giornata si è svolta la sessione &amp;ldquo;unconference&amp;rdquo;.
+Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/HTTP/2&#34;&gt;&lt;strong&gt;HTTP 2&lt;/strong&gt;&lt;/a&gt; e gestione migliorata della rete;&lt;/li&gt;
+&lt;li&gt;analisi delle strategie per consumer di &lt;a href=&#34;https://en.wikipedia.org/wiki/Message_queue&#34;&gt;&lt;strong&gt;code di messaggi&lt;/strong&gt;&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.docker.com/&#34;&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/a&gt; per eseguire applicazioni desktop dotate di GUI.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;venerdi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;venerdì-28-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
+
+&lt;p&gt;&lt;a name=&#34;profiling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
+
+&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;).
+Sono state esaminate le tecniche principali di collezione delle informazioni: &lt;a href=&#34;https://en.wikipedia.org/wiki/Hooking&#34;&gt;&lt;strong&gt;function hooks&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;sampling&lt;/strong&gt;, così come diversi tool per la profilazione: &lt;a href=&#34;http://xdebug.org/&#34;&gt;XDebug&lt;/a&gt;, &lt;a href=&#34;http://xhprof.io/&#34;&gt;Xhprof&lt;/a&gt; e &lt;a href=&#34;http://newrelic.com/&#34;&gt;New Relic&lt;/a&gt;.
+Prove pratiche con questi tool hanno consentito di evidenziare le loro peculiarità e differenze. È stato interessante notare, ad esempio, l&amp;rsquo;accuratezza e la semplicità delle informazioni fornite dalla libreria Xhprof rispetto ai concorrenti.
+Le prove pratiche hanno inoltre evidenziato che l&amp;rsquo;attività di profilazione non è semplice, soprattutto a causa del setup richiesto.
+Anche l&amp;rsquo;interpretazione dei dati restituiti dal profiler può essere problematico: una buona rappresentazione delle informazioni conduce a soluzioni migliori.
+Successivamente è stato introdotto il **profiler &lt;a href=&#34;https://blackfire.io/&#34;&gt;Blackfire**&lt;/a&gt;: una collezione di tecnologie che consentono di semplificare l&amp;rsquo;attività di profilazione.
+È stata analizzata la sua struttura interna. Esso è composto da 4 componenti: il server Blackfire, l&amp;rsquo;agente collettore, l&amp;rsquo;estensione Php e il companion lato browser per avviare la profilazione.
+In seguito si è discusso su come individuare i punti critici dell&amp;rsquo;applicazione e le strategie per risolvere i problemi.
+Ad esempio si è visto che un &lt;strong&gt;autoloader non correttamente ottimizzato&lt;/strong&gt; rallenta significamente l&amp;rsquo;applicazione (sia pensi alla generazione dell&amp;rsquo;autoload non ottimizzato di Composer).
+Le attività di Input/Output superflue causano rallentamenti, esempi sono le scritture sui &lt;strong&gt;log troppo verbosi&lt;/strong&gt;.
+È stato un workshop davvero completo facilmente comprensibile anche dai principianti della profilazione.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;symfony3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
+
+&lt;p&gt;Questo workshop ha consentito di apprendere la &lt;strong&gt;roadmap a lungo termine del framework Symfony&lt;/strong&gt;.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;on the way to symfony 3 at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; with &lt;a href=&#34;https://twitter.com/nicolasgrekas&#34;&gt;@nicolasgrekas&lt;/a&gt; &lt;a href=&#34;http://t.co/vijn5ttzPG&#34;&gt;pic.twitter.com/vijn5ttzPG&lt;/a&gt;&lt;/p&gt;&amp;mdash; dbu (@dbu) &lt;a href=&#34;https://twitter.com/dbu/status/637233201635835904&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+È stato annunciato che l&amp;rsquo;ultima versione LTS di Symfony 2 sarà &lt;strong&gt;la versione 2.8 completamente compatibile, quanto a funzionalità, con la versione 3.0&lt;/strong&gt;.
+È interessante notare che non ci saranno cambiamenti stravolgenti per Symfony vesione 3.0: essa infatti rimuove soltanto le funzionalità deprecate nelle versioni precedenti.
+Sono stati alresì spiegati i concetti di &lt;a href=&#34;http://engineering.facile.it/git-flow-semantic-versioning/&#34;&gt;versionamento semantico&lt;/a&gt; adottati dal framework a partire dalla versione 2.3.
+L&amp;rsquo;obiettivo della sessione pratica è stato migrare l&amp;rsquo;applicazione &lt;em&gt;Symfony Demo&lt;/em&gt; alla versione Symfony 3.
+Sono state esaminate diverse strategie per rilevare le deprecation: debug toolbar, file di log, fallimenti di test.
+È stato inoltre annunciato che sarà presto possibile &lt;strong&gt;definire un servizio come deprecato nel service container&lt;/strong&gt;.
+Ciò consente all&amp;rsquo;utente di rilevare subito eventuali utilizzi non corretti già durante la compilazione del container.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;experts&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;meet-the-experts:58029b8459d31227431cf79c0465e6bb&#34;&gt;Meet the experts&lt;/h3&gt;
+
+&lt;p&gt;Diversi gruppi di persone si sono riunite per parlare di molteplici argomenti.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Ecommerce on Symfony roundtable at &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/RD8ueJX7Nj&#34;&gt;pic.twitter.com/RD8ueJX7Nj&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ivo Lukač (@ilukac) &lt;a href=&#34;https://twitter.com/ilukac/status/637288188231450625&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+Ciascun gruppo comprendeva, tra gli altri partecipanti, un paio di persone esperte dell&amp;rsquo;argomento per moderare la discussione.
+Io ho partecipato alla discussione di: &lt;a href=&#34;https://it.wikipedia.org/wiki/Commercio_elettronico&#34;&gt;&lt;strong&gt;E-commerce&lt;/strong&gt;&lt;/a&gt; su Symfony (con particolare riguardo a &lt;a href=&#34;http://sylius.org/&#34;&gt;Sylius&lt;/a&gt;), &lt;a href=&#34;https://it.wikipedia.org/wiki/Collaudo_del_software&#34;&gt;&lt;strong&gt;software testing&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Application_programming_interface&#34;&gt;API&lt;/a&gt; design&lt;/strong&gt;.
+È stato interessante discutere su come progettare architetture orientate a microservizi cercando di definire API stabili e solide.
+È emerso anche che le &lt;strong&gt;applicazioni monolitiche&lt;/strong&gt; evolvono, a lungo termine, verso &lt;strong&gt;design complessi&lt;/strong&gt; che hanno frequenti &lt;strong&gt;problemi di manutenibilità&lt;/strong&gt;.
+A tal proposito si parlava di build CI lente, deploy lento e isolamento delle responsabilità alquanto complessa.
+Un confronto tra esperti, il miglior modo per chiudere la giornata.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Conclusione&lt;/h1&gt;
+
+&lt;p&gt;Il PhpSummerCamp è un evento particolare: presentazioni, discussioni, workshop e attività extra lo hanno reso interessante e divertente allo stesso tempo.
+Tesi rafforzata dalla continua affluenza di sviluppatori che ogni anno non vogliono perdersi tale evento.
+Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Php e EzPublish.&lt;/p&gt;
 </description>
     </item>
     

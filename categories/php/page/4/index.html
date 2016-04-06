@@ -13,7 +13,7 @@
 <html>
     <head>
         
-            <title>PHP Posts - Facile Engineering</title>
+            <title>PHP Posts - Facile.it Engineering</title>
         
 
         <meta charset="utf-8" />
@@ -87,7 +87,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h2><a href="/">Facile Engineering</i></a></h2>
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
     
 
     <nav class="links">
@@ -236,6 +236,78 @@ ga('send', 'pageview');
     <div id="main">
         <h1>Articles in category: PHP</h1>
         
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
+        </time>
+
+        
+            <a href="/authors/lorenzo" class="author">
+            
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+            
+            </a>
+        
+
+        
+            <p>2 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/php-internals">PHP internals</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
         
             <article class="post">
     <header>
@@ -525,7 +597,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">23</span>
+                                <span style="float:right;">26</span>
                             </header>
                         </article>
                     </li>
@@ -536,7 +608,18 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/php/">PHP</a>
-                                <span style="float:right;">10</span>
+                                <span style="float:right;">11</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
                             </header>
                         </article>
                     </li>
@@ -548,17 +631,6 @@ ga('send', 'pageview');
                             <header>
                                 <a href="/categories/swift/">Swift</a>
                                 <span style="float:right;">8</span>
-                            </header>
-                        </article>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/functional-programming/">Functional programming</a>
-                                <span style="float:right;">6</span>
                             </header>
                         </article>
                     </li>
@@ -580,7 +652,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/conferences/">Conferences</a>
-                                <span style="float:right;">4</span>
+                                <span style="float:right;">5</span>
                             </header>
                         </article>
                     </li>
@@ -609,14 +681,19 @@ ga('send', 'pageview');
                     
                 
                     
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/functional-programming/">Functional Programming</a>
-                                <span style="float:right;">3</span>
-                            </header>
-                        </article>
-                    </li>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     
@@ -802,7 +879,7 @@ ga('send', 'pageview');
             
 
             <p class="copyright">
-                &copy; Facile Engineering.<br/>
+                &copy; Facile.it Engineering.<br/>
                 Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
                 Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
                 Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>

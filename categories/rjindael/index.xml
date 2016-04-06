@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rjindael on Facile.it Engineering</title>
+    <link>/categories/rjindael/</link>
+    <description>Recent content in Rjindael on Facile.it Engineering</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/rjindael/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Protezione di dati sensibili usando la crittografia</title>
+      <link>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</guid>
+      <description>
+
+&lt;p&gt;La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&amp;rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Come proteggere questi dati da eventuali malintenzionati che vorrebbero -  e potrebbero(!!) -  riuscire a entrarne in possesso ?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami. Nel mondo del web i dati possono essere &amp;ldquo;ottenuti&amp;rdquo; in due momenti differenti: 1) mentre transitano sulla rete sotto forma di pacchetti, oppure 2) successivamente al loro immagazzinamento (es. database o file) all&amp;rsquo;interno di uno o più server.&lt;/p&gt;
+
+&lt;p&gt;In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &amp;ldquo;in casa&amp;rdquo;?.&lt;/p&gt;
+
+&lt;h2 id=&#34;mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Mettere i dati in cassaforte&lt;/h2&gt;
+
+&lt;p&gt;In caso di dati immagazzinati, ad esempio, all&amp;rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &amp;ldquo;sicuro&amp;rdquo; all&amp;rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
+Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
+Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo potrebbe esporre le nostre ricchezze ad attacchi di vario genere, permettendo a chiunque (o quasi) di ottenerle.&lt;/p&gt;
+
+&lt;p&gt;Una possibile ed efficace tecnica di protezione in questi casi è &lt;strong&gt;rendere inutili o illeggibili i dati&lt;/strong&gt; per coloro che li hanno ottenuti in maniera illegittima, attraverso il loro immagazzinamento in forma cifrata.&lt;/p&gt;
+
+&lt;p&gt;Quella che proporrò di seguito è una possibile soluzione al problema di come immagazzinare e cifrare questi dati, in modo da ottenere un livello di sicurezza adeguato e mantenere una buona elasticità, tanto da permettere differenti implementazioni e da coprire quanti più possibili casi d&amp;rsquo;uso.&lt;/p&gt;
+
+&lt;p&gt;La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&amp;rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.&lt;/p&gt;
+
+&lt;h2 id=&#34;algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Crittografici Simmetrici e Asimmetrici&lt;/h2&gt;
+
+&lt;p&gt;Con &lt;em&gt;algoritmi crittografici&lt;/em&gt; si intendono tutti quei &lt;strong&gt;processi e procedure finalizzati ad ottenere un dato &amp;ldquo;offuscato&amp;rdquo; in modo da non essere comprensibile/intelligibile&lt;/strong&gt; da persone non autorizzate a leggerlo.&lt;/p&gt;
+
+&lt;h3 id=&#34;algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Simmetrici&lt;/h3&gt;
+
+&lt;p&gt;Questa tipologia di algoritmi si basa sull&amp;rsquo;uso di chiavi di cifratura dette &lt;strong&gt;simmetriche&lt;/strong&gt; che permettono di cifrare e decifrare dati &lt;strong&gt;utilizzando la medesima chiave crittografica&lt;/strong&gt;.
+Un esempio è &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard), evoluzione dell&amp;rsquo;algoritmo &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&amp;rsquo;ottima velocità, sia che venga implementato via hardware che software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Asimmetrici&lt;/h3&gt;
+
+&lt;p&gt;Gli algoritmi asimmetrici si distinguono dai precedenti per l&amp;rsquo;utilizzo di &lt;strong&gt;due chiavi crittografiche distinte&lt;/strong&gt;, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
+Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene &lt;strong&gt;liberamente scambiata&lt;/strong&gt;, mentre la chiave privata &lt;strong&gt;rimane a conoscenza solo di coloro che devono poter leggere i dati&lt;/strong&gt; o i messaggi scambiati.
+La particolarità che caratterizza queste chiavi è l&amp;rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&amp;rsquo;algoritmo, l&amp;rsquo;unico metodo per ottenere tale chiave è il &lt;strong&gt;brute force&lt;/strong&gt; sui dati stessi.
+In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;La soluzione combinando RSA e AES&lt;/h2&gt;
+
+&lt;p&gt;Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.&lt;/p&gt;
+
+&lt;p&gt;Immaginiamo di avere una piattaforma che permetta ai vari &lt;strong&gt;utenti&lt;/strong&gt; di collegarsi con le proprie credenziali e di effettuare svariate operazioni, tra cui immagazzinare i propri documenti privati (foto, documenti, password, contratti, etc.) che necessitano di un più alto livello di sicurezza, e magari di poter condividere tra loro questi dati in un futuro prossimo.&lt;/p&gt;
+
+&lt;p&gt;Partendo da queste semplici condizioni, e predisponendo il tutto alla futura &amp;ldquo;condivisibilità&amp;rdquo; dei documenti, una possibile soluzione è la seguente:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;utilizzeremo AES per cifrare i singoli documenti;&lt;/li&gt;
+&lt;li&gt;per permettere la condivisione, utilizzeremo una tabella (di scambio) del nostro database; al suo interno verranno tracciati il proprietario del documento e gli utenti che potranno accedervi;&lt;/li&gt;
+&lt;li&gt;ogni singolo utente avrà il suo portachiavi, contenente le chiavi RSA che fungeranno da &amp;ldquo;lucchetto&amp;rdquo; per la chiave del singolo documento;&lt;/li&gt;
+&lt;li&gt;sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&amp;rsquo;accesso solo al proprietario;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Gestire gli utenti&lt;/h3&gt;
+
+&lt;p&gt;Alla creazione di un nuovo utente sarà nostra premura &lt;strong&gt;generare una nuova coppia di chiavi&lt;/strong&gt; RSA, che andrà legata all&amp;rsquo;utente.
+Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&amp;rsquo;utente o in un&amp;rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una &lt;strong&gt;masterkey&lt;/strong&gt; all&amp;rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
+La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
+&lt;strong&gt;N.B.&lt;/strong&gt; È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&amp;rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.&lt;/p&gt;
+
+&lt;h3 id=&#34;cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Cifrare il documento&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Ogni volta&lt;/strong&gt; in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica &lt;strong&gt;univoca&lt;/strong&gt;. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&amp;rsquo;interno della nostra base dati.&lt;/p&gt;
+
+&lt;h3 id=&#34;associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Associare il file all&amp;rsquo;utente&lt;/h3&gt;
+
+&lt;p&gt;Come ultimo passo dovremo associare i dati cifrati all&amp;rsquo;utente che li sta memorizzando. È il momento di utilizzare la &amp;ldquo;tabella di scambio&amp;rdquo;. Inseriremo un record contenente i riferimenti all&amp;rsquo;utente e al file, insieme alla chiave univoca legata a quest&amp;rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&amp;rsquo;utente.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo ottenuto un sistema simile a quello visualizzato di seguito:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;condividere:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Condividere!&lt;/h3&gt;
+
+&lt;p&gt;Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;richiedere la masterkey dell&amp;rsquo;utente;&lt;/li&gt;
+&lt;li&gt;decifrare la chiave privata dello stesso utente utilizzando la chiave appena ottenuta;&lt;/li&gt;
+&lt;li&gt;decifrare la chiave legata al documento (recuperata dalla tabella di scambio);&lt;/li&gt;
+&lt;li&gt;effettuare una copia del record di scambio, sostituendo l&amp;rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;e-ora:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;E ora?&lt;/h3&gt;
+
+&lt;p&gt;Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati &lt;strong&gt;siamo definitivamente al sicuro?&lt;/strong&gt; &lt;strong&gt;Assolutamente no!&lt;/strong&gt; Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che &lt;strong&gt;abbiamo affidato buona parte della sicurezza del nostro sistema all&amp;rsquo;utente&lt;/strong&gt;.
+Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
+Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sarebbe facilmente aggirabile tramite brute force o altre tecniche.&lt;/p&gt;
+
+&lt;p&gt;In conclusione, tengo ad esortarvi a rispettare tutte le &lt;a href=&#34;https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system&#34;&gt;regole generali riguardanti la composizione delle password&lt;/a&gt;, impendendo agli utenti di sceglierne una troppo semplice.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

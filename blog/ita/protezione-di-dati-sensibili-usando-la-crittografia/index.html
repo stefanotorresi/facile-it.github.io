@@ -1,0 +1,1071 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Protezione di dati sensibili usando la crittografia</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Protezione di dati sensibili usando la crittografia"/>
+<meta name="twitter:description" content="La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso. Come proteggere questi dati da eventuali malintenzionati che vorrebbero - e potrebbero(!!) - riuscire a entrarne in possesso ? Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Protezione di dati sensibili usando la crittografia" />
+<meta property="og:description" content="La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso. Come proteggere questi dati da eventuali malintenzionati che vorrebbero - e potrebbero(!!) - riuscire a entrarne in possesso ? Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/" />
+
+
+<meta property="og:updated_time" content="2015-10-05T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Protezione di dati sensibili usando la crittografia">
+<meta itemprop="description" content="La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso. Come proteggere questi dati da eventuali malintenzionati che vorrebbero - e potrebbero(!!) - riuscire a entrarne in possesso ? Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami.">
+
+
+<meta itemprop="dateModified" content="2015-10-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1175">
+
+
+
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sandro,sergio,vito,ACL,AES,Agile,Algorithms,Artificial intelligence,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,Python,REST,RSA,Rjindael,SOLID,Scrum,Semantic versioning,Signal,Software Complexity,Software Crisis,Software Testing,Software complexity,Software testing,Structured Programming,Structured programming,SummerCamp,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&text=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/">Protezione di dati sensibili usando la crittografia</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-10-05'>
+            5 October 2015
+        </time>
+
+        
+            <a href="/authors/sandro" class="author">
+            
+                <span class="name">Alessandro Galli</span>
+                <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" />
+            
+            </a>
+        
+
+        
+            <p>6 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso.</p>
+
+<p><strong>Come proteggere questi dati da eventuali malintenzionati che vorrebbero -  e potrebbero(!!) -  riuscire a entrarne in possesso ?</strong></p>
+
+<p>Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami. Nel mondo del web i dati possono essere &ldquo;ottenuti&rdquo; in due momenti differenti: 1) mentre transitano sulla rete sotto forma di pacchetti, oppure 2) successivamente al loro immagazzinamento (es. database o file) all&rsquo;interno di uno o più server.</p>
+
+<p>In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &ldquo;in casa&rdquo;?.</p>
+
+<h2 id="mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792">Mettere i dati in cassaforte</h2>
+
+<p>In caso di dati immagazzinati, ad esempio, all&rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &ldquo;sicuro&rdquo; all&rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
+Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
+Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo potrebbe esporre le nostre ricchezze ad attacchi di vario genere, permettendo a chiunque (o quasi) di ottenerle.</p>
+
+<p>Una possibile ed efficace tecnica di protezione in questi casi è <strong>rendere inutili o illeggibili i dati</strong> per coloro che li hanno ottenuti in maniera illegittima, attraverso il loro immagazzinamento in forma cifrata.</p>
+
+<p>Quella che proporrò di seguito è una possibile soluzione al problema di come immagazzinare e cifrare questi dati, in modo da ottenere un livello di sicurezza adeguato e mantenere una buona elasticità, tanto da permettere differenti implementazioni e da coprire quanti più possibili casi d&rsquo;uso.</p>
+
+<p>La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.</p>
+
+<h2 id="algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Crittografici Simmetrici e Asimmetrici</h2>
+
+<p>Con <em>algoritmi crittografici</em> si intendono tutti quei <strong>processi e procedure finalizzati ad ottenere un dato &ldquo;offuscato&rdquo; in modo da non essere comprensibile/intelligibile</strong> da persone non autorizzate a leggerlo.</p>
+
+<h3 id="algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Simmetrici</h3>
+
+<p>Questa tipologia di algoritmi si basa sull&rsquo;uso di chiavi di cifratura dette <strong>simmetriche</strong> che permettono di cifrare e decifrare dati <strong>utilizzando la medesima chiave crittografica</strong>.
+Un esempio è <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> (Advanced Encryption Standard), evoluzione dell&rsquo;algoritmo <a href="https://en.wikipedia.org/wiki/Rijndael_key_schedule">Rijndael</a> le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&rsquo;ottima velocità, sia che venga implementato via hardware che software.</p>
+
+<p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png" alt="AES" /></p>
+
+<h3 id="algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Asimmetrici</h3>
+
+<p>Gli algoritmi asimmetrici si distinguono dai precedenti per l&rsquo;utilizzo di <strong>due chiavi crittografiche distinte</strong>, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
+Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene <strong>liberamente scambiata</strong>, mentre la chiave privata <strong>rimane a conoscenza solo di coloro che devono poter leggere i dati</strong> o i messaggi scambiati.
+La particolarità che caratterizza queste chiavi è l&rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&rsquo;algoritmo, l&rsquo;unico metodo per ottenere tale chiave è il <strong>brute force</strong> sui dati stessi.
+In questo caso l&rsquo;esempio per eccellenza è <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">RSA</a>), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.</p>
+
+<p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png" alt="RSA" /></p>
+
+<h2 id="la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792">La soluzione combinando RSA e AES</h2>
+
+<p>Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.</p>
+
+<p>Immaginiamo di avere una piattaforma che permetta ai vari <strong>utenti</strong> di collegarsi con le proprie credenziali e di effettuare svariate operazioni, tra cui immagazzinare i propri documenti privati (foto, documenti, password, contratti, etc.) che necessitano di un più alto livello di sicurezza, e magari di poter condividere tra loro questi dati in un futuro prossimo.</p>
+
+<p>Partendo da queste semplici condizioni, e predisponendo il tutto alla futura &ldquo;condivisibilità&rdquo; dei documenti, una possibile soluzione è la seguente:</p>
+
+<ul>
+<li>utilizzeremo AES per cifrare i singoli documenti;</li>
+<li>per permettere la condivisione, utilizzeremo una tabella (di scambio) del nostro database; al suo interno verranno tracciati il proprietario del documento e gli utenti che potranno accedervi;</li>
+<li>ogni singolo utente avrà il suo portachiavi, contenente le chiavi RSA che fungeranno da &ldquo;lucchetto&rdquo; per la chiave del singolo documento;</li>
+<li>sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&rsquo;accesso solo al proprietario;</li>
+</ul>
+
+<h3 id="gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792">Gestire gli utenti</h3>
+
+<p>Alla creazione di un nuovo utente sarà nostra premura <strong>generare una nuova coppia di chiavi</strong> RSA, che andrà legata all&rsquo;utente.
+Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&rsquo;utente o in un&rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una <strong>masterkey</strong> all&rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
+La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
+<strong>N.B.</strong> È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.</p>
+
+<h3 id="cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792">Cifrare il documento</h3>
+
+<p><strong>Ogni volta</strong> in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica <strong>univoca</strong>. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&rsquo;interno della nostra base dati.</p>
+
+<h3 id="associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792">Associare il file all&rsquo;utente</h3>
+
+<p>Come ultimo passo dovremo associare i dati cifrati all&rsquo;utente che li sta memorizzando. È il momento di utilizzare la &ldquo;tabella di scambio&rdquo;. Inseriremo un record contenente i riferimenti all&rsquo;utente e al file, insieme alla chiave univoca legata a quest&rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&rsquo;utente.</p>
+
+<p>Abbiamo ottenuto un sistema simile a quello visualizzato di seguito:</p>
+
+<p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png" alt="" /></p>
+
+<h3 id="condividere:f7580f2fe0a81e31d01e286edcaea792">Condividere!</h3>
+
+<p>Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:</p>
+
+<ul>
+<li>richiedere la masterkey dell&rsquo;utente;</li>
+<li>decifrare la chiave privata dello stesso utente utilizzando la chiave appena ottenuta;</li>
+<li>decifrare la chiave legata al documento (recuperata dalla tabella di scambio);</li>
+<li>effettuare una copia del record di scambio, sostituendo l&rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;</li>
+</ul>
+
+<h3 id="e-ora:f7580f2fe0a81e31d01e286edcaea792">E ora?</h3>
+
+<p>Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati <strong>siamo definitivamente al sicuro?</strong> <strong>Assolutamente no!</strong> Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che <strong>abbiamo affidato buona parte della sicurezza del nostro sistema all&rsquo;utente</strong>.
+Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
+Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe facilmente aggirabile tramite brute force o altre tecniche.</p>
+
+<p>In conclusione, tengo ad esortarvi a rispettare tutte le <a href="https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system">regole generali riguardanti la composizione delle password</a>, impendendo agli utenti di sceglierne una troppo semplice.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&text=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f&title=Protezione%20di%20dati%20sensibili%20usando%20la%20crittografia" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fprotezione-di-dati-sensibili-usando-la-crittografia%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/encryption">Encryption</a></li>
+    
+        <li><a href="/categories/rsa">RSA</a></li>
+    
+        <li><a href="/categories/aes">AES</a></li>
+    
+        <li><a href="/categories/rjindael">Rjindael</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/eng/no-country-for-if-else/"
+                class="button big previous">No Country For If Else</a></li>
+    
+
+    
+        <li><a href="/blog/ita/paraunit/"
+                class="button big next">Paraunit: test paralleli, Doctrine e le fixture</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/protezione-di-dati-sensibili-usando-la-crittografia\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">26</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">11</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile.it Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+
