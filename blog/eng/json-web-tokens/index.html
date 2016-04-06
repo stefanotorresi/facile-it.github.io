@@ -1,0 +1,1061 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Json Web Token</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Json Web Token"/>
+<meta name="twitter:description" content="When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability. I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy. Immagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Json Web Token" />
+<meta property="og:description" content="When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability. I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy. Immagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/eng/json-web-tokens/" />
+
+
+<meta property="og:updated_time" content="2016-04-05T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Json Web Token">
+<meta itemprop="description" content="When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability. I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy. Immagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted.">
+
+
+<meta itemprop="dateModified" content="2016-04-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="741">
+
+
+
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sandro,sergio,vito,ACL,AES,Agile,Algorithms,Artificial intelligence,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,JWT,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Complexity,Software Crisis,Software Testing,Software complexity,Software testing,Structured Programming,Structured programming,SummerCamp,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f&text=Json%20Web%20Token&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2016-04-05'>
+            5 April 2016
+        </time>
+
+        
+            <a href="/authors/sandro" class="author">
+            
+                <span class="name">Alessandro Galli</span>
+                <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" />
+            
+            </a>
+        
+
+        
+            <p>4 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p><img src="/images/json-web-tokens/logo.svg" alt="JWT" /></p>
+
+<p>When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability.
+I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy.
+Immagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted.
+Thanks to JWT self verification, I could discard every request where the token is invalid (a fake token not signed by my application) or expired.
+Beyond this specific use case, JWT can be also useful to securely transmit data to other applications.</p>
+
+<p>Now let me introduce the standard: JSON Web Token (JWT) is an open standard <a href="https://tools.ietf.org/html/rfc7519">RFC 7519</a> that defines a compact, self-contained and secure way for transmitting information between two parties.</p>
+
+<p>Using javascript object notation to represent the data means two things:</p>
+
+<ul>
+<li>saving lots of bytes when the token goes over the network, <strong>because of it&rsquo;s size</strong> it can be sent over an URL or inside an HTTP Header</li>
+<li>it can be <strong>easily parsed by a browser</strong> and consumed by a client application</li>
+</ul>
+
+<p>This is more clear when comparing json to other standards like <a href="https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">SAML</a> that uses a very verbose XML structure.</p>
+
+<p>A JWT token can be trusted because it is digitally signed using a secret (usually with <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> algorithm) or a keypair with <a href="https://en.wikipedia.org/wiki/RSA">RSA</a>.
+Its payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.</p>
+
+<h2 id="how-the-token-presents-itself:be256830241f7dc27936f7751ed2a96e">How the token presents itself</h2>
+
+<p>A token is represented as three base64 encoded strings joined by two points (here represented on three lines because of layout problems).</p>
+
+<pre><code class="language-javascript">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+</code></pre>
+
+<p>The first part of the string contains the headers, &ldquo;alg&rdquo; is the algorithm used to secure the token and &ldquo;typ&rdquo; is the type; in this case as we can see that I used an HMAC SHA256 to sign the JWT token</p>
+
+<pre><code class="language-javascript">{
+  &quot;alg&quot;: &quot;HS256&quot;,
+  &quot;typ&quot;: &quot;JWT&quot;
+}
+</code></pre>
+
+<h3 id="payload:be256830241f7dc27936f7751ed2a96e">Payload</h3>
+
+<p>It&rsquo;s the data sent with the token in the second string. It contains metadata and information like expiration, audience, or subject and whatever you need.</p>
+
+<pre><code class="language-javascript">{
+  &quot;sub&quot;: &quot;1234567890&quot;,
+  &quot;name&quot;: &quot;John Doe&quot;,
+  &quot;admin&quot;: true
+}
+</code></pre>
+
+<p>All data transported is organized in <strong>claims</strong>, statements about an entity (typically, the user). There are three types of claims: reserved, public, and private claims.</p>
+
+<ul>
+<li><strong>Reserved claims</strong>: a set of predefined claims, conceived to provide a set of useful information. Some of them are: <code>iss</code> (issuer), <code>exp</code> (expiration time), <code>sub</code> (subject), <code>aud</code> (audience), among others.</li>
+<li><strong>Public claims</strong>: defined at will but, in order to avoid collisions, they should be defined in the <a href="http://www.iana.org/assignments/jwt/jwt.xhtml">IANA JSON Web Token Registry</a> or be described as a URI that contains a collision resistant namespace.</li>
+<li><strong>Private claims</strong>: custom claims created to share information between parties that agree with using them.</li>
+</ul>
+
+<h3 id="sign:be256830241f7dc27936f7751ed2a96e">Sign</h3>
+
+<p>The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algorithm described in headers.</p>
+
+<pre><code class="language-javascript">HMACSHA256(
+  base64UrlEncode(header) + &quot;.&quot; +
+  base64UrlEncode(payload),
+  secret
+)
+</code></pre>
+
+<p>As said before the more interesting feature of JWT is in it&rsquo;s flexibility. It can be created with the claims you need, carry your data and validated on other claims (standard or not).
+As an example, if on authentication I want to be sure that the token is issued by my application and that it is not older than 1 hour I can generate a token with a payload like this:</p>
+
+<pre><code class="language-javascript">{
+  &quot;iss&quot;: &quot;1234567890&quot;, // my application code
+  &quot;exp&quot;: &quot;1459868400&quot;, // 2016-04-04 15:00:00 Expiration time
+  &quot;uid&quot;: 159, // the user id
+  &quot;name&quot;: &quot;Alessandro Galli&quot;
+}
+</code></pre>
+
+<p>Once my application receives a request with this token, an authenticator component, will check the two claims (<code>iss</code>, <code>exp</code>) to be sure of the assertions made before, and then validate the sign. Furthermore, with the additional claims it can login the user without querying the database and complete the request.</p>
+
+<p>As a solid standard, JWT has been adopted by a large number of users and it has libraries for almost every programming language: PHP, Java, Go, Python, Javascript, Ruby, Elixir, Scala, .Net.</p>
+
+<p>You can find a full list of available and trusted libraries on <a href="https://jwt.io/#libraries-io">JWT.io</a></p>
+
+<p>In the next weeks, I will write a post and release my personal authentication example, using PHP with the Symfony framework.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f&text=Json%20Web%20Token&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/jwt">JWT</a></li>
+    
+        <li><a href="/categories/security">Security</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/eng/decoupling-view-controllers-with.signals/"
+                class="button big previous">Decoupling view controllers with Signals</a></li>
+    
+
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/eng\/json-web-tokens\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-05'>
+                                        5 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">26</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">11</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">4</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/software-testing/">Software testing</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

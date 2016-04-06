@@ -55,11 +55,11 @@
 
 
 <meta itemprop="dateModified" content="2015-09-28T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1053">
+<meta itemprop="wordCount" content="1052">
 
 
 
-<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sandro,sergio,vito,ACL,AES,Agile,Algorithms,Artificial intelligence,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,Python,REST,RSA,Rjindael,SOLID,Scrum,Semantic versioning,Signal,Software Complexity,Software Crisis,Software Testing,Software complexity,Software testing,Structured Programming,Structured programming,SummerCamp,Swift,Symfony,TDD,Test coverage,Type First Development,Xcode,networking,symfony,wamp,websocket," />
+<meta itemprop="keywords" content="elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sandro,sergio,vito,ACL,AES,Agile,Algorithms,Artificial intelligence,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Italiano,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,Python,REST,RSA,Rjindael,SOLID,Scrum,Semantic versioning,Signal,Software Complexity,Software Crisis,Software Testing,Software complexity,Software testing,Structured Programming,Structured programming,SummerCamp,Swift,Symfony,TDD,Test coverage,Type First Development,WAMP,Websocket,Xcode," />
 
         
 
@@ -349,7 +349,7 @@ ga('send', 'pageview');
 
 <p>Internet delle cose e web 2.0 trovano oramai sempre <strong>meno spazio</strong> all’interno del protocollo <strong>HTTP/1</strong>. Le tecniche di <strong>polling e long polling</strong>, in voga fino a pochi anni fa, non permettevano di trasmettere in <a href="https://it.wikipedia.org/wiki/Duplex" target="_blank">full duplex</a> (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano <strong>diversi sforzi</strong> per simulare notifiche push server side.</p>
 
-<h4 id="il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e">Il protocollo WAMP</h4>
+<h2 id="il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e">Il protocollo WAMP</h2>
 
 <p><a href="http://wamp.ws/" target="_blank"><strong>WAMP</strong></a> (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno <strong>pattern di messaggistica</strong> <a href="https://en.wikipedia.org/wiki/Remote_procedure_call" target="_blank">RPC</a> e <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern" target="_blank">Pub/Sub</a> in maniera unificata. Registrato presso lo <a href="https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority" target="_blank">IANA</a> come sottoprotocollo WebSocket, definisce uno <strong>standard aperto</strong> per lo scambio di <strong>messaggi in tempo reale</strong> tra applicazioni e componenti, e permette la creazione di architetture <strong>debolmente accoppiate</strong> basate su <strong>microservizi</strong>. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.</p>
 
@@ -458,7 +458,7 @@ ga('send', 'pageview');
 <p>Per funzionare WAMP necessità di uno o più server di <strong>routing centralizzati</strong>, allo stesso modo di <strong>RabbitMQ per AMQP</strong>.
 Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard <em>de facto</em> è rappresentato da <a href="http://crossbar.io/" target="_blank"><strong>Crossbar</strong></a>, sviluppato da <a href="http://tavendo.com/" target="_blank">Tavendo</a>, alla quale si deve anche la <strong>definizione del protocollo</strong> stesso.</p>
 
-<h4 id="crossbar:403f2d6c5e9e2691ac7a267aa4a7309e">Crossbar</h4>
+<h2 id="crossbar:403f2d6c5e9e2691ac7a267aa4a7309e">Crossbar</h2>
 
 <p>Crossbar, scritto in python (<a href="https://github.com/crossbario/crossbar" target="_blank">open source</a>, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare <strong>configurazioni avanzate</strong> come ad esempio le subscriptions <a href="http://crossbar.io/docs/Pattern-Based-Subscriptions/" target="_blank">basate su pattern</a>, le <a href="http://crossbar.io/docs/Progressive-Call-Results/" target="_blank">progressive result</a> su RPC e profili di autenticazione ed <a href="http://crossbar.io/docs/Authorization/" target="_blank">autorizzazione</a> dinamici.</p>
 
@@ -518,7 +518,7 @@ Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo 
 </table>
 <em>fonte: WAMP.ws</em></p>
 
-<h4 id="e-php:403f2d6c5e9e2691ac7a267aa4a7309e">..e PHP?</h4>
+<h2 id="e-php:403f2d6c5e9e2691ac7a267aa4a7309e">..e PHP?</h2>
 
 <p>Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in <strong>tempo reale</strong>.
 Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente <strong>dashboard collaborative</strong> e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e <strong>non precedentemente disegnate per l&rsquo;uso con WebSocket</strong>?</p>
@@ -571,7 +571,7 @@ $firstPublisher-&gt;publish($topic, ['foo',1]);
 
 <p>Anche in questo caso, la <a href="http://crossbar.io/docs/Processes/" target="_blank">configurazione</a> può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare <a href="https://github.com/crossbario/crossbarexamples" target="_blank">diversi esempi</a> di <strong>possibili configurazioni</strong>.</p>
 
-<h4 id="ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e">..ma i miei utenti lo supporteranno?</h4>
+<h2 id="ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e">..ma i miei utenti lo supporteranno?</h2>
 
 <p>Lato browser, passare a WAMP è davvero <strong>semplice</strong>:
 la libreria <a href="http://autobahn.ws/js/" target="_blank"><strong>Autobahn|JS</strong></a> garantisce piena <strong>compatibilità</strong> anche per <a href="https://nodejs.org/en/" target="_blank">node.js</a>, supporta l&rsquo;autenticazione, ed è in grado di gestire in maniera <strong>asincronia</strong> sia RPC che Pub/Sub.</p>
@@ -588,15 +588,17 @@ la libreria <a href="http://autobahn.ws/js/" target="_blank"><strong>Autobahn|JS
 
 <p>Per un ulteriore <strong>approfondimento su WAMP</strong>, saranno inoltre utili le slide che seguono:</p>
 
-<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND" width="700" height="550" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"></p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND" width="700" height="550" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
 
-<p>Riferimenti:</p>
+<h2 id="riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e">Riferimenti</h2>
 
-<p>WAMP - <a href="http://wamp.ws/" target="_blank">Protocol</a><br/>
-Crossbar - <a href="http://crossbar.io/docs/TOC/" target="_blank">Documentazione</a><br/>
-Crossbar - <a href="http://crossbar.io/docs/HTTP-Bridge-Services/" target="_blank">HTTP Bridge</a><br/>
-Autobahn|JS - <a href="http://autobahn.ws/js/" target="_blank">Documentazione</a><br/>
-Facile.it CrossbarHTTPPublisherBundle - <a href="https://github.com/facile-it/crossbar-http-publisher-bundle" target="_blank">GitHub</a><br/></p>
+<ul>
+<li><a href="http://wamp.ws/">WAMP Protocol</a></li>
+<li><a href="http://crossbar.io/docs/TOC/">Crossbar - Documentazione</a></li>
+<li><a href="http://crossbar.io/docs/HTTP-Bridge-Services/">Crossbar - HTTP Bridge</a></li>
+<li><a href="http://autobahn.ws/js/">Autobahn|JS - Documentazione</a></li>
+<li><a href="https://github.com/facile-it/crossbar-http-publisher-bundle">Facile.it CrossbarHTTPPublisherBundle - GitHub</a></li>
+</ul>
 
 
     <section id="social-share">
@@ -666,7 +668,9 @@ Facile.it CrossbarHTTPPublisherBundle - <a href="https://github.com/facile-it/cr
     
 
     
-        <li><a href="/categories/wamp">wamp</a></li>
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/wamp">WAMP</a></li>
     
         <li><a href="/categories/php">PHP</a></li>
     
@@ -674,11 +678,11 @@ Facile.it CrossbarHTTPPublisherBundle - <a href="https://github.com/facile-it/cr
     
         <li><a href="/categories/python">Python</a></li>
     
-        <li><a href="/categories/networking">networking</a></li>
+        <li><a href="/categories/networking">Networking</a></li>
     
-        <li><a href="/categories/websocket">websocket</a></li>
+        <li><a href="/categories/websocket">Websocket</a></li>
     
-        <li><a href="/categories/symfony">symfony</a></li>
+        <li><a href="/categories/symfony">Symfony</a></li>
     
 </ul>
 
@@ -923,7 +927,7 @@ Facile.it CrossbarHTTPPublisherBundle - <a href="https://github.com/facile-it/cr
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">26</span>
+                                <span style="float:right;">27</span>
                             </header>
                         </article>
                     </li>
@@ -1007,7 +1011,14 @@ Facile.it CrossbarHTTPPublisherBundle - <a href="https://github.com/facile-it/cr
                     
                 
                     
-                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/symfony/">Symfony</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
                     
                 
                     

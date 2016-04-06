@@ -1480,6 +1480,271 @@ Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sareb
     </item>
     
     <item>
+      <title>WAMP, Web Application Messaging Protocol.. e PHP!</title>
+      <link>/blog/ita/wamp-web-application-messaging-protocol-e-php/</link>
+      <pubDate>Mon, 28 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/wamp-web-application-messaging-protocol-e-php/</guid>
+      <description>
+
+&lt;p&gt;Dalle notifiche di Facebook ad un tweet stream, da Google Docs ai giochi multiplayer in HTML5, la necessità di uno &lt;strong&gt;scambio dati&lt;/strong&gt; in &lt;strong&gt;due direzioni&lt;/strong&gt;, &lt;strong&gt;efficiente&lt;/strong&gt; e a &lt;strong&gt;bassa latenza&lt;/strong&gt;, ha determinato l’ascesa negli ultimi anni di &lt;strong&gt;soluzioni basate su &lt;a href=&#34;https://www.websocket.org/&#34; target=&#34;_blank&#34;&gt;WebSocket&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
+
+&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
+
+&lt;p&gt;Il protocollo risulta piuttosto &lt;strong&gt;completo ed adeguato&lt;/strong&gt; a diversi scenari di utilizzo se comparato ad altri sistemi di messaggistica ed RPC.&lt;/p&gt;
+
+&lt;p&gt;&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;Technology&lt;/th&gt;
+&lt;th&gt;PubSub&lt;/th&gt;
+&lt;th&gt;RPC&lt;/th&gt;
+&lt;th&gt;Routed RPC&lt;/th&gt;
+&lt;th&gt;Web native&lt;/th&gt;
+&lt;th&gt;Cross Language&lt;/th&gt;
+&lt;th&gt;Open Standard&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WAMP&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AJAX&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AMQP&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;REST&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SOAP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Socket.io&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SockJS&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;XMPP&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ZeroMQ&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;em&gt;fonte: Wikipedia&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Può essere utilizzato con profitto per sviluppare una piattaforma di gioco &lt;strong&gt;online multiplayer&lt;/strong&gt;, strumenti di &lt;strong&gt;business intelligence&lt;/strong&gt; real time e &lt;strong&gt;piattaforme collaborative&lt;/strong&gt; per numerosi utenti.&lt;/p&gt;
+
+&lt;p&gt;Una piattaforma web di help desk ad esempio, può beneficiare di notifiche, chat, strumenti di scrittura multi-utente ed analisi dell’andamento in tempo reale  &lt;strong&gt;sullo stesso protocollo WAMP&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
+Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
+
+&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
+
+&lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
+
+&lt;p&gt;Nessuna delle altre implementazioni è poi al momento in grado di vantare le stesse &lt;strong&gt;prestazioni&lt;/strong&gt; e la &lt;strong&gt;stabilità&lt;/strong&gt; di Crossbar: una istanza del router è in grado di servire 1000 messaggi/secondo su Pub/Sub, a 1000 client, con una &lt;strong&gt;latenza di 25ms&lt;/strong&gt; su una &lt;strong&gt;RaspberryPi&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;table&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;th&gt;Router&lt;/th&gt;
+&lt;th&gt;Broker&lt;/th&gt;
+&lt;th&gt;Dealer&lt;/th&gt;
+&lt;th&gt;Advanced Profile&lt;/th&gt;
+&lt;th&gt;Language&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Crossbar&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;Pyhton&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Thruway&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;PHP&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;wamp.rt&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;NodeJS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;jawampa&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WampSharp&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;C#&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Erwa&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;✔&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Erlang&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
+
+&lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
+Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;p&gt;Esistono diverse librerie (come &lt;a href=&#34;https://github.com/voryx/Thruway&#34; target=&#34;_blank&#34;&gt;Thruway&lt;/a&gt;) che permettono di operare come &lt;strong&gt;client PHP&lt;/strong&gt; in ambiente WAMP, ma per &lt;strong&gt;semplificare&lt;/strong&gt; l&amp;rsquo;integrazione del protocollo con altri servizi, Crossbar supporta il &lt;a href=&#34;http://crossbar.io/docs/HTTP-Bridge-Services/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;bridge HTTP&lt;/strong&gt;&lt;/a&gt; delle funzionalità Pub/Sub e RPC.&lt;/p&gt;
+
+&lt;p&gt;In pratica, parlando ad esempio di Pub/Sub, è possibile &lt;strong&gt;pubblicare via HTTP&lt;/strong&gt; (o HTTPS) su Crossbar messaggi che saranno inoltrati su topic ai &lt;strong&gt;client connessi via WebSocket&lt;/strong&gt; in maniera trasparente. Altresì è possibile &lt;strong&gt;iscriversi ai topic&lt;/strong&gt; fornendo un &lt;strong&gt;endpoint HTTP&lt;/strong&gt; da chiamare per ricevere i messaggi pubblicati da client WebSocket.&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;esempio sottostante configura un router Crossbar in grado di accettare connessioni websocket, pubblicazioni via HTTP e che si occupa di forwardare alcuni messaggi ad un endpoint HTTPS:&lt;/p&gt;
+
+&lt;p&gt;&lt;style type=&#34;text/css&#34;&gt;
+  .gist-file
+  .gist-data {max-height: 500px;}
+&lt;/style&gt;
+&lt;script src=&#34;https://gist.github.com/peelandsee/51417b3c7c1dc400e85f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Il gist precedente può essere lanciato al volo con &lt;a href=&#34;https://docs.docker.com/&#34; target=&#34;_blank&#34;&gt;docker&lt;/a&gt;:
+&lt;code&gt;docker run -p 80:80 -p 8080:8080 -v $PWD/crossbar-config.json:/.crossbar/config.json vinelab/crossbar&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ovviamente l&amp;rsquo;esempio non tiene conto di profili di configurazione più avanzati, come &lt;strong&gt;cifratura TLS&lt;/strong&gt;, autenticazione, ruoli separati di pubblicazione e/o iscrizione, disponibili nella documentazione di Crossbar.&lt;/p&gt;
+
+&lt;p&gt;Features come la firma delle richieste HTTP, richiedono più di qualche minuto di sviluppo, ma sono indispensabili in un &lt;strong&gt;ambiente di produzione&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per semplificare l&amp;rsquo;adozione del bridge HTTP in &lt;strong&gt;ambito PHP&lt;/strong&gt;, in Facile.it abbiamo sviluppato e rilasciato un &lt;strong&gt;bundle&lt;/strong&gt; che permette la configurazione automatica di &lt;strong&gt;servizi di Publisher WAMP nel service container&lt;/strong&gt; di Symfony 2.&lt;/p&gt;
+
+&lt;p&gt;Il bundle, disponibile su &lt;a href=&#34;https://packagist.org/packages/facile-it/crossbar-http-publisher-bundle&#34; target=&#34;_blank&#34;&gt;Packagist (composer)&lt;/a&gt; può essere installato con
+&lt;code&gt;$ composer require facile-it/crossbar-http-publisher-bundle dev-master&lt;/code&gt;
+e richiede una &lt;strong&gt;configurazione rapida&lt;/strong&gt; ed intuitiva:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;facile_crossbar_http_publisher:
+  connections:
+    foo_publisher_1:
+        protocol: http
+        host: 127.0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;L&amp;rsquo;uso è molto semplice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// recupero del servizio
+$fooPublisher = $container
+                -&amp;gt;get(&#39;facile.crossbar.publisher.foo_publisher_1&#39;);
+
+$topic = &#39;com.myapp.hello&#39;;
+
+// pubblicazione
+$firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Con le poche righe sopra riportate, attraverso il metodo &lt;code&gt;publish()&lt;/code&gt; viene effettuata una &lt;strong&gt;chiamata HTTP POST&lt;/strong&gt; verso il router WAMP, ed il messaggio &lt;code&gt;[&#39;foo&#39;,1]&lt;/code&gt; raggiunge in tempo (quasi) reale tutti i client (ad esempio &lt;strong&gt;tutti i browser degli utenti&lt;/strong&gt;) iscritti al topic &lt;code&gt;com.myapp.hello&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
+
+&lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
+la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
+
+&lt;p&gt;Qualora il browser di un vostro utente non supportasse WebSocket (e &lt;a href=&#34;http://caniuse.com/#feat=websockets&#34; target=&#34;_blank&#34;&gt;dovrebbe&lt;/a&gt; oramai!), Autobahn|JS è in grado di fornire un &lt;strong&gt;fallback automatico&lt;/strong&gt; a long polling.&lt;/p&gt;
+
+&lt;p&gt;Iscriversi ad un topic o pubblicare un messaggio richiede poche linee:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/peelandsee/c853bc3fd3971e78527c.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio sopra riportato, il client JS &lt;strong&gt;si iscrive&lt;/strong&gt; al topic &lt;code&gt;com.myapp.hello&lt;/code&gt; e passa i messaggi ricevuti ad una semplice funzione &lt;code&gt;console.log()&lt;/code&gt;; inoltre &lt;strong&gt;pubblica un messaggio&lt;/strong&gt; sul topic &lt;code&gt;com.myapp.topic1&lt;/code&gt;. Quest&amp;rsquo;ultimo, sarà anche &lt;strong&gt;forwardato da Crossbar sul nostro endpoint HTTPS&lt;/strong&gt; &lt;code&gt;https://hostname/subscriptions&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Grazie alle &lt;strong&gt;funzionalità HTTP bridge&lt;/strong&gt; di Crossabar l&amp;rsquo;utilizzo di WAMP in ambito PHP, senza connessioni persistenti o consumer sempre accesi, è &lt;strong&gt;semplice ed immediato&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;Per un ulteriore &lt;strong&gt;approfondimento su WAMP&lt;/strong&gt;, saranno inoltre utili le slide che seguono:&lt;/p&gt;
+
+&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://crossbar.io/docs/TOC/&#34;&gt;Crossbar - Documentazione&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://crossbar.io/docs/HTTP-Bridge-Services/&#34;&gt;Crossbar - HTTP Bridge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://autobahn.ws/js/&#34;&gt;Autobahn|JS - Documentazione&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/facile-it/crossbar-http-publisher-bundle&#34;&gt;Facile.it CrossbarHTTPPublisherBundle - GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>No Country For If Else</title>
       <link>/blog/ita/no-country-for-if-else/</link>
       <pubDate>Tue, 15 Sep 2015 00:00:00 +0000</pubDate>
@@ -2839,509 +3104,6 @@ Essa calcola, per ogni casella, la quantità minima di spostamenti necessari per
 &lt;p&gt;A* è un algoritmo semplice ma dalle grandi potenzialità. Esso getta le basi per ulteriori metodologie di ricerca più complesse come &lt;a href=&#34;https://en.wikipedia.org/wiki/Iterative_deepening_A*&#34;&gt;IDA*&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/D*&#34;&gt;D*&lt;/a&gt;.
 La sua principale limitazione è nell&amp;rsquo;assenza di &lt;em&gt;vincoli sulla profondità di ricerca&lt;/em&gt;.
 Ciò non consente l&amp;rsquo;analisi di problemi troppo complessi come i giochi di dama e scacchi.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Type First Development in Swift</title>
-      <link>/blog/ita/type-first-development-in-swift/</link>
-      <pubDate>Tue, 05 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/type-first-development-in-swift/</guid>
-      <description>
-
-&lt;p&gt;Con &lt;em&gt;Type First Development&lt;/em&gt; può intendersi un approccio allo sviluppo di nuove funzionalità o moduli di un software partendo dai &lt;strong&gt;tipi&lt;/strong&gt; di dati coinvolti: non si tratta quindi di un pattern o una pratica codificata, ma solo di &lt;strong&gt;un possibile punto di partenza&lt;/strong&gt; per iniziare il ragionamento. Ragionando esclusivamente sui tipi, prima ancora di pensare alle singole specifiche implementazioni dei vari blocchi di codice, è possibile costruire più facilmente una mappa dei vari di flussi di dati che attraversano il nostro software, e verificare immediatamente se stiamo scrivendo qualcosa di sensato, solido ed adeguatamente estendibile.&lt;/p&gt;
-
-&lt;p&gt;Ragionare sui tipi di dato è un classico approccio usato nel paradigma di programmazione noto come &lt;a href=&#34;http://en.wikipedia.org/wiki/Functional_programming&#34;&gt;&lt;em&gt;programmazione funzionale&lt;/em&gt;&lt;/a&gt;, e il presente articolo adotta tale paradigma in maniera piuttosto pura.&lt;/p&gt;
-
-&lt;h2 id=&#34;indice:9546cc279181b22e90a8ccdde798a866&#34;&gt;Indice&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#il-type-system-di-swift&#34;&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#costruiamo-un-form-il-tipo-field&#34;&gt;Costruiamo un form: il tipo &lt;em&gt;Field&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#modificare-un-campo-tipi-di-funzione-come-tipi-di-dato&#34;&gt;Modificare un campo: tipi di funzione come tipi di dato&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#funzioni-generiche-e-composizione-funzionale&#34;&gt;Funzioni generiche e composizione funzionale&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#il-tipo-form&#34;&gt;Il tipo &lt;em&gt;Form&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#modifica-di-un-form-e-ricerca-di-un-campo&#34;&gt;Modifica di un form e ricerca di un campo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusione&#34;&gt;Conclusione&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;il-type-system-di-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;il-type-system-di-swift:9546cc279181b22e90a8ccdde798a866&#34;&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift&lt;/h2&gt;
-
-&lt;p&gt;Il linguaggio &lt;strong&gt;Swift&lt;/strong&gt;, usato nello sviluppo di software per Mac OSX e iOS, si presta molto bene all&amp;rsquo;approccio basato sui tipi illustrato in questo articolo, a causa di due particolari caratteristiche del linguaggio:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Swift è &lt;a href=&#34;http://en.wikipedia.org/wiki/Type_system#Static_type-checking&#34;&gt;staticamente tipizzato&lt;/a&gt;, cioè ogni parametro, costante o variabile che sia, è caratterizzato da uno specifico tipo, e se una funzione vuole in ingresso un valore di un certo tipo, chiamare la funzione con un valore di un altro tipo risulterà in un errore di compilazione;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Swift è &lt;a href=&#34;http://en.wikipedia.org/wiki/Strong_and_weak_typing&#34;&gt;fortemente tipizzato&lt;/a&gt;, cioè non esiste alcuna conversione implicita tra i tipi: ad esempio, in Swift &lt;code&gt;1&lt;/code&gt; è diverso da &lt;code&gt;true&lt;/code&gt; e i due valori non posso essere usati indifferentemente nello stesso contesto;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift è molto rigido, ma è in tale rigore che risiede la sua potenza: usare tipi errati provoca un errore di compilazione, e manipolando adeguatamente i tipi di dato nella costruzione di funzioni è possibile verificare gran parte della correttezza del proprio codice già nella fase di compilazione, evitando potenziali problemi in fase di esecuzione.&lt;/p&gt;
-
-&lt;p&gt;Swift usa molti termini ereditati da C, come &lt;code&gt;struct&lt;/code&gt; e &lt;code&gt;enum&lt;/code&gt;, ma il loro significato è completamente diverso, ad esempio:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;una &lt;code&gt;struct&lt;/code&gt; in Swift può dichiarare metodi ed essere estesa con interfacce;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;enum&lt;/code&gt; in Swift è ciò che in altri linguaggi è spesso chiamato &amp;ldquo;sum type&amp;rdquo; o &amp;ldquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Tagged_union&#34;&gt;tagged union&lt;/a&gt;&amp;rdquo;, e a ogni &lt;code&gt;case&lt;/code&gt; possono essere assegnati dei valori associati, ad esempio &lt;code&gt;case Text(String)&lt;/code&gt; rappresenta il caso &lt;code&gt;Text&lt;/code&gt; e ha un valore &lt;code&gt;String&lt;/code&gt; associato.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Per illustrare un modo per applicare l&amp;rsquo;approccio &lt;em&gt;Type First&lt;/em&gt; nello sviluppo in Swift inizieremo a scrivere una libreria per gestire &lt;strong&gt;form&lt;/strong&gt;, quindi liste strutturate di campi valorizzati, utili per raccogliere dati degli utenti tramite moduli da compilare, per effettuare sondaggi o inserire i parametri di query a un server.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;costruiamo-un-form-il-tipo-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;costruiamo-un-form-il-tipo-field:9546cc279181b22e90a8ccdde798a866&#34;&gt;Costruiamo un form: il tipo &lt;em&gt;Field&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Un possibile tipo di dato da cui partire è &lt;strong&gt;Field&lt;/strong&gt;, il campo, cioè il mattone costruttivo di base di un form.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Field {
-    let id: String
-    let name: String
-    let value: String
-    let visible: Bool
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Questa definizione di Field è molto basilare, il ché non è un problema nelle prime fasi dello sviluppo, ma &lt;strong&gt;sembra poco estendibile&lt;/strong&gt;, per i seguenti motivi:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;value&lt;/code&gt; è definito come &lt;code&gt;String&lt;/code&gt; - ad esempio testo inserito dall&amp;rsquo;utente - ma un campo potrebbe contenere altri tipi di valori, ad esempio un checkbox si/no, oppure un preciso valore selezionato da una lista;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;visibile&lt;/code&gt; è definito come &lt;code&gt;Bool&lt;/code&gt;, e vuole indicare se il campo è visibile oppure nascosto, ma se volessimo assegnare altri valori di visibilità, ad esempio &amp;ldquo;evidenziato&amp;rdquo; o &amp;ldquo;oscurato&amp;rdquo; dovremmo aggiungere altri parametri &lt;code&gt;Bool&lt;/code&gt;, che alla fine potrebbero andare in contrasto l&amp;rsquo;uno con l&amp;rsquo;altro;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Possiamo risolvere immediatamente il problema, &lt;strong&gt;senza cadere nell&amp;rsquo;eccessiva ottimizzazione preventiva&lt;/strong&gt;, semplicemente modificando il tipo di &lt;code&gt;value&lt;/code&gt; e &lt;code&gt;visible&lt;/code&gt; con degli &lt;code&gt;enum&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;enum FieldValue: Equatable {
-    case Text(String)
-    case Empty
-}
-
-func == (lhs: FieldValue, rhs: FieldValue) -&amp;gt; Bool {
-    switch (lhs, rhs) {
-    case (.Empty, .Empty):
-        return true
-    case (.Text(let lhsText), .Text(let rhsText)):
-        return lhsText == rhsText
-    default:
-        return false
-    }
-}
-
-enum FieldVisibility: Equatable {
-    case Visible
-    case Hidden
-}
-
-func == (lhs: FieldVisibility, rhs: FieldVisibility) -&amp;gt; Bool {
-    switch (lhs, rhs) {
-    case (.Visible, .Visible), (.Hidden, .Hidden):
-        return true
-    default:
-        return false
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Abbiamo fatto adottare il protocollo &lt;code&gt;Equatable&lt;/code&gt; a entrambi i tipi, in modo da poter confrontare &lt;code&gt;value&lt;/code&gt; e &lt;code&gt;visibility&lt;/code&gt; di due campi per verificare se sono uguali: il vantaggio degli &lt;code&gt;enum&lt;/code&gt; è che &lt;strong&gt;possiamo facilmente aggiungere nuovi casi&lt;/strong&gt; senza rompere il codice esistente, ci basterà gestire i nuovi &lt;code&gt;case&lt;/code&gt; via via che vengono aggiunti.&lt;/p&gt;
-
-&lt;p&gt;Un&amp;rsquo;altra piccola modifica utile corrisponde a ridefinire il tipo del parametro &lt;code&gt;id&lt;/code&gt;: a tale parametro deve essere assegnata &lt;strong&gt;una chiave univoca&lt;/strong&gt;, diversa per ogni campo, quindi può convenire definire un tipo &lt;code&gt;UniqueKey&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias UniqueKey = String
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In Swift, la keyword &lt;code&gt;typealias&lt;/code&gt; ci permette di definire un &lt;em&gt;alias&lt;/em&gt; di un tipo, cioè un termine che corrisponde esattamente a quel tipo, e permette di:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;migliorare la leggibilità&lt;/strong&gt;, la chiarezza e la compattezza del codice;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;facilitare la manipolazione dei tipi&lt;/strong&gt;, come vedremo a breve;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ogni volta in cui una funzione richiederà &lt;code&gt;UniqueKey&lt;/code&gt; sapremo che in quel campo sarà necessario inserire una stringa univoca, che identifica un particolare campo.&lt;/p&gt;
-
-&lt;p&gt;Definiamo nuovamente &lt;code&gt;Field&lt;/code&gt; incorporando i nuovi tipi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Field {
-    let id: UniqueKey    
-    let name: String
-    let value: FieldValue
-    let visibility: FieldVisibility
-    init (_ id: Key, _ name: String, _ value: FieldValue, _ visibility: FieldVisibility) {
-        self.id = id
-        self.name = name
-        self.value = value
-        self.visibility = visibility
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Abbiamo aggiunto anche un costruttore di convenienza che ci permetterà di creare un &lt;code&gt;Field&lt;/code&gt; semplicemente passando i 4 dati richiesti.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;modificare-un-campo-tipi-di-funzione-come-tipi-di-dato&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;modificare-un-campo-tipi-di-funzione-come-tipi-di-dato:9546cc279181b22e90a8ccdde798a866&#34;&gt;Modificare un campo: tipi di funzione come tipi di dato&lt;/h2&gt;
-
-&lt;p&gt;La prima e più semplice operazione che vogliamo poter effettuare su &lt;code&gt;Field&lt;/code&gt; è quella di modificarlo in qualche modo: ogni operazione di questo tipo, in Swift, può essere indicata con &lt;code&gt;Field -&amp;gt; Field&lt;/code&gt;, cioè una trasformazione che prende un &lt;code&gt;Field&lt;/code&gt; in ingresso e produce un &lt;code&gt;Field&lt;/code&gt; in uscita:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldChange = Field -&amp;gt; Field
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;L&amp;rsquo;operatore &lt;code&gt;-&amp;gt;&lt;/code&gt; ha lo stesso significato che ha già in &lt;a href=&#34;http://en.wikipedia.org/wiki/Haskell_(programming_language&#34;&gt;Haskell&lt;/a&gt;): definisce il tipo di una funzione che prende in ingresso un dato del tipo indicato a sinistra dell&amp;rsquo;operatore, e ritorna un dato del tipo indicato a destra dell&amp;rsquo;operatore (in questo caso entrambi i dati sono di tipo &lt;code&gt;Field&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;È da evidenziare che &lt;code&gt;FieldChange&lt;/code&gt; non rappresenta un tipo di &amp;ldquo;dato&amp;rdquo; in senso stretto, ma &lt;strong&gt;un tipo di &amp;ldquo;funzione&lt;/strong&gt;&amp;ldquo;: in effetti, definendo &lt;code&gt;FieldChange&lt;/code&gt;, possiamo trattare le funzioni di quel tipo come se fossero dati.&lt;/p&gt;
-
-&lt;p&gt;Per fare un esempio potremmo definire la funzione &lt;code&gt;setVisibility&lt;/code&gt;, che prende in ingresso un valore di &lt;code&gt;FieldVisibility&lt;/code&gt; e ritorna, appunto, un &lt;code&gt;FieldChange&lt;/code&gt;, cioè un&amp;rsquo;altra funzione.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func setVisibility (visibility: FieldVisibility) -&amp;gt; FieldChange {
-    return { field in
-        return Field (
-            field.id,
-            field.name,
-            field.value,
-            visibility
-        )
-    }
-}
-
-/// alcuni esempi
-let setHidden = setVisibility(.Hidden)
-let visibleField1 = Field (&amp;quot;&amp;quot;,&amp;quot;&amp;quot;, .Empty, .Visible)
-let isTrue1 = visibleField1.visibility == .Visible
-let hiddenField1 = setHidden(visibleField1)
-let isTrue2 = hiddenField1.visibility == .Hidden
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Negli esempi mostrati, &lt;code&gt;setHidden&lt;/code&gt; è una funzione ma dal punto di vista sintattico è indistinguibile da un qualsiasi altro valore, e il suo tipo (cioè &lt;code&gt;FieldChange&lt;/code&gt;) è dedotto dal compilatore di Swift in base alla definizione della funzione.&lt;/p&gt;
-
-&lt;p&gt;Una funzionalità che vogliamo certamente introdurre nella libreria corrisponde al poter operare una trasformazione su un campo in base a un qualche parametro definito in un altro campo: ad esempio, un particolare campo mostra un check che permette di mostrare/nascondere altri campi. Definiamo quindi un nuovo tipo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldChangeGenerator = Field -&amp;gt; FieldChange
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;FieldChangeGenerator&lt;/code&gt; è il tipo di una funzione dalla quale otteniamo, in base allo stato un certo campo origine, una certa trasformazione di tipo &lt;code&gt;FieldChange&lt;/code&gt;, cioè qualcosa che prende un &lt;code&gt;Field&lt;/code&gt; in ingresso e ritorna un &lt;code&gt;Field&lt;/code&gt; in uscita: si tratta quindi di una funzione che ritorna un&amp;rsquo;altra funzione, di tipo diverso. Vorremmo ad esempio poter scrivere una funzione del tipo &lt;code&gt;setVisibilityIfOrigin&lt;/code&gt;, che imposta un valore di visibilità in base allo stato di un campo origine: ok, ma quale valore di visibilità? Dipende dal campo origine, e possiamo risolvere il problema definendo un nuovo tipo di funzione, che prende in ingresso un campo, e ritorna un valore di visibilità:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldCondition = Field -&amp;gt; FieldVisibility
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;La nostra funzione &lt;code&gt;setVisibilityIfOrigin&lt;/code&gt; semplicemente prenderà ingresso un dato di tipo &lt;code&gt;FieldCondition&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func setVisibilityIfOrigin (condition: FieldCondition) -&amp;gt; FieldChangeGenerator {
-    return { origin in
-        let newVisibility = condition(origin)
-        return setVisibility(newVisibility)
-    }
-}
-
-/// alcuni esempi
-
-let setVisibleIfNotEmpty = setVisibilityIfOrigin { field in
-    switch field.value {
-    case .Empty:
-        return .Hidden
-    default:
-        return .Visible
-    }
-}
-
-let nonEmptyField = Field (&amp;quot;&amp;quot;, &amp;quot;&amp;quot;, .Text(&amp;quot;something&amp;quot;), .Visible)
-
-let anotherVisibleField = setVisibleIfNotEmpty(nonEmptyField)(invisibleField)
-
-let isTrue3 = anotherVisibleField.visibility == .Visible
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name=&#34;funzioni-generiche-e-composizione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;funzioni-generiche-e-composizione-funzionale:9546cc279181b22e90a8ccdde798a866&#34;&gt;Funzioni generiche e composizione funzionale&lt;/h2&gt;
-
-&lt;p&gt;In realtà la nostra &lt;code&gt;FieldCondition&lt;/code&gt; sembra essere un po&amp;rsquo; limitata: ritorna un valore di &lt;code&gt;FieldVisibility&lt;/code&gt;, mentre una vera &lt;em&gt;condition&lt;/em&gt; &lt;strong&gt;dovrebbe ritornare un valore generico&lt;/strong&gt;, a seconda dei casi: ad esempio, potrebbe cambiare il &lt;strong&gt;valore&lt;/strong&gt; di un campo bersaglio in base allo stato di un campo origine. L&amp;rsquo;ideale sarebbe scrivere qualcosa del genere:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldCondition&amp;lt;T&amp;gt; = Field -&amp;gt; T
-/// errore di compilazione!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Sfortunatamente in Swift non è possibile scrivere dei &lt;code&gt;typealias&lt;/code&gt; generici, ma possiamo facilmente aggirare l&amp;rsquo;ostacolo costruendo una &lt;code&gt;struct&lt;/code&gt; generica che contiene un solo parametro, al quale è assegnata una funzione di tipo &lt;code&gt;Field -&amp;gt; T&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct FieldCondition&amp;lt;T&amp;gt; {
-    let apply: Field -&amp;gt; T
-    init(_ apply: Field -&amp;gt; T) {
-        self.apply = apply
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Se prima abbiamo scritto semplicemente una funzione &lt;code&gt;setVisibilityIfOrigin&lt;/code&gt;, l&amp;rsquo;idea è riuscire ora a scrivere &lt;strong&gt;una funzione generica&lt;/strong&gt; &lt;code&gt;setTargetIfOrigin&amp;lt;T&amp;gt;&lt;/code&gt; che ritorna un &lt;code&gt;FieldChangeGenerator&lt;/code&gt; che trasforma un campo bersaglio rispetto a un certo parametro, definito in base allo stato di un campo origine: come scrivere questa funzione? &lt;strong&gt;Ragioniamo sui tipi&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;FieldCondition&amp;lt;T&amp;gt;&lt;/code&gt; è un contenitore per una funzione di tipo &lt;code&gt;Field -&amp;gt; T&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FieldChangeGenerator&lt;/code&gt; è un alias per &lt;code&gt;Field -&amp;gt; FieldChange&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;per completare la catena abbiamo bisogno di una trasformazione del tipo &lt;code&gt;T -&amp;gt; FieldChange&lt;/code&gt; perché unendo &lt;code&gt;Field -&amp;gt; T&lt;/code&gt; e &lt;code&gt;T -&amp;gt; FieldChange&lt;/code&gt; otteniamo appunto &lt;code&gt;Field -&amp;gt; FieldChange&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Possiamo scrivere quindi la funzione generica di cui sopra:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func setTargetIfOrigin&amp;lt;T&amp;gt; (condition: FieldCondition&amp;lt;T&amp;gt;, generate: T -&amp;gt; FieldChange) -&amp;gt; FieldChangeGenerator {
-    return { field in
-        return generate(condition.apply(field))
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Se tutto sembra molto astratto è perché &lt;strong&gt;lo è&lt;/strong&gt;: stiamo gradualmente costruendo degli strumenti di manipolazione dei dati (e delle funzioni, che sono anch&amp;rsquo;esse dati) operando su astrazioni successive.&lt;/p&gt;
-
-&lt;p&gt;Nella funzione &lt;code&gt;setTargetIfOrigin&amp;lt;T&amp;gt;&lt;/code&gt; c&amp;rsquo;è un parametro &lt;code&gt;generate&lt;/code&gt; che è definito come &lt;code&gt;T -&amp;gt; FieldChange&lt;/code&gt;: cosa è &lt;code&gt;T&lt;/code&gt;? È semplicemente lo stesso tipo di dato con il quale viene passata la condizione in &lt;code&gt;condition&lt;/code&gt;; se passiamo una condizione sulla visibilità, ad esempio, &lt;code&gt;T&lt;/code&gt; sarà &lt;code&gt;FieldVisibility&lt;/code&gt;: &lt;strong&gt;una funzione generica si specializza nel momento in cui è definito il tipo concreto da assegnare ai tipi generici&lt;/strong&gt;. Volendo fare un esempio concreto, possiamo ridefinire la funzione &lt;code&gt;setVisibilityIfOrigin&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func setVisibilityIfOrigin (condition: FieldCondition&amp;lt;FieldVisibility&amp;gt;) -&amp;gt; FieldChangeGenerator {
-    return setTargetIfOrigin (condition) { visibility in setVisibility(visibility) }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come si può vedere, la funzione chiama &lt;code&gt;setTargetIfOrigin&lt;/code&gt;, passando una condizione del tipo &lt;code&gt;FieldCondition&amp;lt;FieldVisibility&amp;gt;&lt;/code&gt;: il secondo parametro dovrà essere quindi una funzione del tipo &lt;code&gt;FieldVisibility -&amp;gt; FieldChange&lt;/code&gt;, e possiamo usare la funzione &lt;code&gt;setVisibility&lt;/code&gt; definita prima. Vediamo qualche altro esempio:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let setVisibleIfNotEmpty = setVisibilityIfOrigin (FieldCondition { origin in
-    switch origin.value {
-    case .Empty:
-        return .Hidden
-    default:
-        return .Visible
-    }
-})
-
-let copyValue = setTargetIfOrigin (FieldCondition { $0.value}) { value in
-    return { target in
-        return Field(target.id,target.name,value,target.visibility)
-    }
-}
-
-let field1 = Field(&amp;quot;field1&amp;quot;,&amp;quot;&amp;quot;,.Text(&amp;quot;1&amp;quot;),.Visible)
-let field2 = Field(&amp;quot;field2&amp;quot;,&amp;quot;&amp;quot;,.Text(&amp;quot;2&amp;quot;),.Visible)
-
-let newField1 = copyValue(field2)(field1)
-
-let isTrue4 = newField1.value == .Text(&amp;quot;2&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Può essere interessante spendere qualche parola per la funzione &lt;code&gt;copyValue&lt;/code&gt; definita nell&amp;rsquo;esempio:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;la condizione è chiaramente del tipo &lt;code&gt;FieldCondition&amp;lt;FieldValue&amp;gt;&lt;/code&gt; perché la &lt;em&gt;closure&lt;/em&gt; passata ritorna il &lt;code&gt;value&lt;/code&gt; del campo;&lt;/li&gt;
-&lt;li&gt;nella seconda &lt;em&gt;closure&lt;/em&gt; passata, il valore è usato per costruire un nuovo campo, uguale al bersaglio tranne proprio per quel valore;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Quindi &lt;code&gt;copyValue&lt;/code&gt;, che ricordiamo è di tipo &lt;code&gt;FieldChangeGenerator&lt;/code&gt;, è una trasformazione che prende il valore di un campo origine e lo assegna a un campo bersaglio.&lt;/p&gt;
-
-&lt;p&gt;Nel caso in cui avessimo una serie di campi e volessimo applicare una certa trasformazione a un solo campo particolare, avremmo bisogno di un check sul campo bersaglio. Come al solito, pensiamo prima al &lt;strong&gt;tipo&lt;/strong&gt; di questo check: sarà qualcosa che prende un &lt;code&gt;FieldChange&lt;/code&gt; e ritorna un altro &lt;code&gt;FieldChange&lt;/code&gt;, che potrebbe essere uguale a quello in ingresso, oppure diverso in base a una certa condizione applicata al campo bersaglio.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldCheck = FieldChange -&amp;gt; FieldChange
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Per quanto riguarda la condizione, possiamo usare lo stesso FieldCondition&lt;T&gt; di prima, ma in questo caso lo specializzeremo direttamente in &lt;code&gt;FieldCondition&amp;lt;Bool&amp;gt;&lt;/code&gt; perché quello che ci interessa sapere è se un certo campo bersaglio è interessato oppure no da una certa trasformazione.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldConditionBool = FieldCondition&amp;lt;Bool&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Definiamo quindi una funzione &lt;code&gt;checkTarget&lt;/code&gt; che prende in ingresso una condizione, e ritorna un &lt;code&gt;FieldCheck&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func checkTarget (condition: FieldConditionBool) -&amp;gt; FieldCheck {
-    return { change in
-        return { field in
-            if condition.apply(field) {
-                return change(field)
-            }
-            else {
-                return field
-            }
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nel definire &lt;code&gt;checkTarget&lt;/code&gt; possiamo vedere un altro caso in cui ragionare solo sui tipi ci aiuta a capire cosa poi dobbiamo effettivamente fare nel codice:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;la funzione deve ritornare un dato di tipo &lt;code&gt;FieldCheck&lt;/code&gt;, che è una funzione che prende in ingresso un dato di tipo &lt;code&gt;FieldChange&lt;/code&gt;, quindi la prima riga della funzione è appunto &lt;code&gt;return { change in&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FieldCheck&lt;/code&gt; è una funzione che ritorna un dato di tipo &lt;code&gt;FieldChange&lt;/code&gt;, che come definito prima corrisponde a una funzione che prende in ingresso un &lt;code&gt;Field&lt;/code&gt;, quindi la seconda riga è &lt;code&gt;return { field in&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FieldChange&lt;/code&gt; deve ritornare un &lt;code&gt;Field&lt;/code&gt;, ma a questo punto possiamo applicare la nostra condizione sul campo in ingresso: se la condizione è verificata allora ritorniamo il campo trasformato, mentre se non lo è &amp;ldquo;facciamo uscire&amp;rdquo; il campo esattamente come è &amp;ldquo;entrato&amp;rdquo;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Come si può vedere, abbiamo iniziato a implementare funzioni ragionando quasi esclusivamente sui tipi coinvolti. Vediamo alcuni esempi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func ifTargetId (id: UniqueKey) -&amp;gt; FieldCheck {
-    return checkTarget (FieldCondition { $0.id == id })
-}
-
-let visibleField = ifTargetId(&amp;quot;field2&amp;quot;)(setHidden)(field1)
-let hiddenField = ifTargetId(&amp;quot;field2&amp;quot;)(setHidden)(field2)
-
-let isTrue5 = visibleField.visibility == .Visible
-let isTrue6 = hiddenField.visibility == .Hidden
-
-let fields = [field1,field2]
-let newFields = fields.map(ifTargetId(&amp;quot;field2&amp;quot;)(setHidden))
-
-let isTrue7 = newFields[0].visibility == .Visible
-let isTrue8 = newFields[1].visibility == .Hidden
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name=&#34;il-tipo-form&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;il-tipo-form:9546cc279181b22e90a8ccdde798a866&#34;&gt;Il tipo &lt;em&gt;Form&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Abbiamo implementato quindi alcuni strumenti per manipolare i singoli campi: a questo punto proviamo a unire il tutto definendo un &lt;code&gt;Form&lt;/code&gt; come contenitore strutturato di campi, insieme ad alcune funzioni di manipolazione. Intanto &lt;strong&gt;pensiamo al tipo da assegnare al nostro form&lt;/strong&gt;: una possibilità è quella di definire alcuni blocchi costruttivi che ne descrivono la struttura:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/// sezione: è una semplice lista di campi
-struct Section {
-    let fields: [Field]
-}
-
-/// step: un gruppo di sezioni, ad esempio una pagina
-struct Step {
-    let sections: [Section]
-}
-
-/// form: un insieme di pagine
-struct Form {
-    let steps: [Step]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ci sono però due problemi con questo approccio:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;stiamo prematuramente fornendo al nostro form &lt;strong&gt;una struttura rigida&lt;/strong&gt;: se in futuro decidessimo di voler creare una sottostruttura rispetto a &lt;code&gt;Section&lt;/code&gt; sarebbe probabilmente molto complesso modificare il tutto;&lt;/li&gt;
-&lt;li&gt;nello scrivere le logiche di ricerca e manipolazione dei campi ci ritroveremmo a dover gestire le &lt;code&gt;struct&lt;/code&gt; appena definite: stiamo quindi automaticamente &lt;strong&gt;accoppiando&lt;/strong&gt; un particolare modello di dati con la logica di manipolazione dei form, che &lt;strong&gt;dovrebbero essere adattabili a più modelli, senza cambiare la logica&lt;/strong&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Per evitare questi problemi gli approcci possibili sono molti: un&amp;rsquo;opzione, ad esempio, è quella definire un tipo di dato corrispondente a un contenitore &lt;em&gt;ricorsivo&lt;/em&gt; per un valore generico, che chiameremo &lt;code&gt;Node&amp;lt;T&amp;gt;&lt;/code&gt;. Un valore di tipo &lt;code&gt;Node&amp;lt;T&amp;gt;&lt;/code&gt; definisce due casi:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;branch&lt;/em&gt;, cioè una lista di valori di tipo T;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;root&lt;/em&gt;, cioè una lista di altri &lt;code&gt;Node&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;enum Node&amp;lt;T&amp;gt; {
-    case Branch([T])
-    case Root([Node&amp;lt;T&amp;gt;])
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Possiamo quindi definire un &lt;code&gt;Form&lt;/code&gt; come una versione specializzata di &lt;code&gt;Node&amp;lt;T&amp;gt;&lt;/code&gt; dove &lt;code&gt;T&lt;/code&gt; è &lt;code&gt;Field&lt;/code&gt;, e definiremo un paio di funzioni di convenienza per generare un &lt;em&gt;branch&lt;/em&gt; di &lt;code&gt;Field&lt;/code&gt; o una &lt;em&gt;root&lt;/em&gt; di &lt;code&gt;Form&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias Form = Node&amp;lt;Field&amp;gt;
-
-func branch (fields: [Field]) -&amp;gt; Form {
-    return Node.Branch(fields)
-}
-
-func root (nodes: [Form]) -&amp;gt; Form {
-    return Node.Root(nodes)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name=&#34;modifica-di-un-form-e-ricerca-di-un-campo&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;modifica-di-un-form-e-ricerca-di-un-campo:9546cc279181b22e90a8ccdde798a866&#34;&gt;Modifica di un form e ricerca di un campo&lt;/h2&gt;
-
-&lt;p&gt;Come accadeva per &lt;code&gt;Field&lt;/code&gt;, la prima operazione che vogliamo poter effettuare su &lt;code&gt;Form&lt;/code&gt; è quella modificarlo; definiamo quindi il tipo &lt;code&gt;FormChange&lt;/code&gt; in maniera a simile a come avevamo definito &lt;code&gt;FieldChange&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FormChange = Form -&amp;gt; Form
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Supponiamo ad esempio di avere un form, e voler applicare una modifica a un campo presente nel form, ottenendo un nuovo form con il campo modificato: abbiamo bisogno di una funzione che potremmo chiamare &lt;code&gt;changeFromFieldChange&lt;/code&gt; che prende in ingresso un &lt;code&gt;FieldChange&lt;/code&gt; e ritorna un &lt;code&gt;FormChange&lt;/code&gt;; grazie alla struttura ricorsiva del tipo &lt;code&gt;Form&lt;/code&gt; definito, possiamo scrivere in poche righe una funzione che attraversa un form nei suoi vari livelli e lo ricostruisce applicando la modifica passata in ingresso a ogni campo, tenendo eventualmente conto di una certa condizione per verificare se un certo campo è interessato dalla modifica o meno.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func changeFromFieldChange (fieldChange: FieldChange) -&amp;gt; FormChange {
-    return { form in
-        switch form {
-        case .Branch (let fields):
-            return branch(fields.map(fieldChange))
-        case .Root (let subforms):
-            return root(subforms.map(changeFromFieldChange(fieldChange)))
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come si può vedere, la funzione verifica se un form è del tipo &lt;code&gt;.Branch&lt;/code&gt; o &lt;code&gt;.Root&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;nel primo caso, ricostruisce il &lt;em&gt;branch&lt;/em&gt; applicando la funzione &lt;code&gt;FieldChange&lt;/code&gt; in ingresso a ogni campo nel &lt;em&gt;branch&lt;/em&gt;;&lt;/li&gt;
-&lt;li&gt;nel secondo caso, ricostruisce il &lt;em&gt;root&lt;/em&gt; applicando ricorsivamente la stessa funzione &lt;code&gt;changeFromFieldChange&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Per migliorare la leggibilità possiamo definire una nuova funzione &lt;code&gt;updateField&lt;/code&gt; identica a &lt;code&gt;changeFromFieldChange&lt;/code&gt; che dichiara &lt;strong&gt;in maniera più espressiva&lt;/strong&gt; il tipo di operazione che vogliamo poter effettuare su un form, e cioè aggiornare un certo campo in base a una certa trasformazione:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let updateField = changeFromFieldChange
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Vediamo quindi un esempio:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let form = branch([field1,field2])
-
-let newForm = updateField(ifTargetId(&amp;quot;field1&amp;quot;)(setHidden))(form)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come si può vedere dall&amp;rsquo;esempio, otteniamo &lt;code&gt;newForm&lt;/code&gt; componendo alcune funzioni definite in precedenza con &lt;code&gt;updateField&lt;/code&gt;: se l&amp;rsquo;id del campo bersaglio è &amp;ldquo;field1&amp;rdquo;, nascondiamo il campo.&lt;/p&gt;
-
-&lt;p&gt;Come verificare se il campo con id &amp;ldquo;field1&amp;rdquo; è effettivamente nascosto? Come ultima operazione vogliamo definire una funzione &lt;code&gt;fieldsWithCondition&lt;/code&gt; che ci permetta di cercare uno o più campi in un form in base a una certa condizione: la condizione sarà ancora di tipo &lt;code&gt;FieldConditionBool&lt;/code&gt;, cioè da un campo otteniamo un valore &lt;code&gt;true&lt;/code&gt; o &lt;code&gt;false&lt;/code&gt;. Per scrivere la funzione ragioniamo sul tipo di dato ritornato: esso deve corrispondere a una funzione che prende un form e ritorna un array di campi; chiameremo questo tipo &lt;code&gt;FieldGet&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;typealias FieldGet = Form -&amp;gt; [Field]
-
-func fieldsWithCondition (condition: FieldConditionBool) -&amp;gt; FieldGet {
-    return { form in
-        switch form {
-        case .Branch(let fields):
-            return fields.filter(condition.apply)
-        case .Root(let subforms):
-            return subforms.map(fieldsWithCondition(condition)).reduce([], combine: +)
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;La funzione &lt;code&gt;fieldsWithCondition&lt;/code&gt; opera ricorsivamente, come è ovvio che sia considerando la natura ricorsiva del tipo di dato &lt;code&gt;Node&amp;lt;T&amp;gt;&lt;/code&gt;. Vediamo qualche applicazione:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func fieldsWithId (id: UniqueKey) -&amp;gt; FieldGet {
-    return fieldsWithCondition (FieldConditionBool { $0.id == id })
-}
-
-let allFields: FieldGet = fieldsWithCondition (FieldConditionBool { _ in true })
-
-let twoFields = allFields(form)
-
-let isTrue9 = count(twoFields) == 2
-
-let isTrue10 = fieldsWithId(&amp;quot;field1&amp;quot;)(form)[0].visibility == .Visible
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;La funzione &lt;code&gt;fieldsWithId&lt;/code&gt; prende una &lt;code&gt;UniqueKey&lt;/code&gt; e permette di ottenere tutti i campi con quell&amp;rsquo;id (presumibilmente l&amp;rsquo;array risultante conterrà un solo elemento); &lt;code&gt;allFields&lt;/code&gt; genera semplicemente un array con tutti i campi: da notare che la &lt;em&gt;closure&lt;/em&gt; &lt;code&gt;{ _ in true }&lt;/code&gt; ignora il valore in ingresso e ritorna sempre &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Usando &lt;code&gt;fieldsWithId&lt;/code&gt; possiamo infine verificare che il campo con id &amp;ldquo;field1&amp;rdquo; sia effettivamente nascosto, in base alle manipolazioni precedenti:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let isTrue11 = fieldsWithId(&amp;quot;field1&amp;quot;)(newForm)[0].visibility == .Hidden
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusione:9546cc279181b22e90a8ccdde798a866&#34;&gt;Conclusione&lt;/h2&gt;
-
-&lt;p&gt;Per concludere, abbiamo visto come partendo da &lt;strong&gt;tipi&lt;/strong&gt;, che siano essi relativi a singoli valori o a funzioni, è stato possibile iniziare a scrivere una libreria composta da semplici tipi di base e funzioni elementari che vengono composte via via a livelli di astrazione più alti. Definendo tipi specifici per molte astrazioni siamo riusciti a &lt;strong&gt;gestire meglio la complessità&lt;/strong&gt; inerente nel manipolare e comporre funzioni, al punto da poter &lt;strong&gt;trattare funzioni complesse come semplici dati&lt;/strong&gt; da passare ad altre funzioni. In un articolo successivo vedremo come estendere la libreria qui iniziata, abbracciando completamente la composizione funzionale e usando operatori specificamente definiti per migliorare la chiarezza del codice e rendere più semplice la manipolazione e combinazione delle funzioni.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; &lt;em&gt;Nello scrivere questo articolo si è scelto specificamente di non definire operatori su misura per comporre le funzioni, per evitare un ulteriore appesantimento legato alla presenza di codice dalla sintassi poco familiare. La chiamata di una funzione in Swift è c-like: si scrive il nome della funzione e poi si inseriscono i dati di ingresso tra due parentesi tonde; questo purtroppo può portare a diverse chiamate in parentesi annidate; inoltre, può non risultar chiara una chiamata del tipo &lt;code&gt;updateField(ifTargetId(&amp;quot;field1&amp;quot;)(setHidden))(form)&lt;/code&gt;: come accennato, in un articolo futuro vedremo come usare operatori personalizzati per rendere il tutto più semplice e leggibile.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; &lt;em&gt;La chiamata &lt;code&gt;subforms.map(fieldsWithCondition(condition)).reduce([], combine: +)&lt;/code&gt;, nella funzione &lt;code&gt;fieldsWithCondition&lt;/code&gt;, è piuttosto inefficiente dal punto di vista della performance: l&amp;rsquo;inefficienza è dovuta al fatto che a ogni chiamata vengono generati array intermedi dovuti alle varie mappature dei dati; non è in realtà necessario creare questi array intermedi: basta utilizzare procedure &amp;ldquo;lazy&amp;rdquo;, che vedremo in un articolo futuro.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;riferimenti:9546cc279181b22e90a8ccdde798a866&#34;&gt;Riferimenti&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tomas Petricek - &lt;a href=&#34;http://tomasp.net/blog/type-first-development.aspx&#34;&gt;Why type-first development matters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Michael Feathers - &lt;a href=&#34;http://www.infoq.com/presentations/Type-Functional-Design&#34;&gt;A Type Driven Approach to Functional Design&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Johannes Weiß - &lt;a href=&#34;https://speakerdeck.com/johannesweiss/type-driven-development-in-swift&#34;&gt;Type Driven Development in Swift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Luca Cardelli - &lt;a href=&#34;http://www.lucacardelli.name/Papers/TypefulProg.pdf&#34;&gt;Typeful Programming&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Il codice mostrato nell&amp;rsquo;articolo è disponibile su &lt;a href=&#34;https://gist.github.com/broomburgo/ba8e5dd6cd509fdfd781&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
