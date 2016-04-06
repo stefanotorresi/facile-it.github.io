@@ -1,6 +1,6 @@
 baseurl: "/"
 languageCode: "en-us"
-title: "Facile Engineering"
+title: "Facile.it Engineering"
 theme: "hugo-future-imperfect"
 preserveTaxonomyNames: true
 paginate: 3
@@ -15,7 +15,7 @@ params:
   # Sets the meta tag description, usually reserved for the main page
   description         : "News, repos, tips & trends from the Facile.it Engineering team!"
   # This will appear on the top left of the navigation bar
-  navbarTitle         : "Facile Engineering"
+  navbarTitle         : "Facile.it Engineering"
   # Social media buttons that appear on the sidebar
   socialAppearAtTop   : true
   socialAppearAtBottom: true
