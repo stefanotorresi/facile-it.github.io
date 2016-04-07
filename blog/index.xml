@@ -2947,6 +2947,109 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Protection of sensitive data using encryption</title>
+      <link>/blog/eng/protection-of-sensitive-data-using-encryption/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/eng/protection-of-sensitive-data-using-encryption/</guid>
+      <description>
+
+&lt;p&gt;Data protection is one of the major and recurrent problems in recent years: whether it is private information of users, or the company for which we work, the problem is always the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to protect such data from any attackers who would - and could (!!) - be able to gain possession?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before arriving at the solution of this problem, however, is right to split the series in at least two branches. In the wwww data can be &amp;ldquo;obtained&amp;rdquo; in two different moments: 1) as they pass over the network in packets, or 2) after their storing (eg. database or file) in one or more servers.&lt;/p&gt;
+
+&lt;p&gt;This article will explore the second case, and will be proposed a solution: how to protect the data that we have accumulated sparingly &amp;ldquo;in house&amp;rdquo; ?.&lt;/p&gt;
+
+&lt;h2 id=&#34;putting-data-in-the-safe:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Putting data in the safe&lt;/h2&gt;
+
+&lt;p&gt;In case of stored data, for example, within a database; it is certainly more difficult to achieve our treasure, because they are &amp;ldquo;safe&amp;rdquo; in a protected environment, which we trust more than the volatility of the net.
+However it is better not to feel too sure: the more our data will be valuable, as any interested parties will be encouraged to seek every way to obtain them.
+Any flaw, both hardware and software, however limited in time could expose our wealth to various attacks, allowing anyone (or almost) to get them.&lt;/p&gt;
+
+&lt;p&gt;A possible and effective protection technique in these cases is &lt;strong&gt;making useless or unreadable data&lt;/strong&gt; for those who have obtained them in an illegitimate manner, through their storage in encrypted form.&lt;/p&gt;
+
+&lt;p&gt;What we propose below is a possible solution to the problem of how to store and encrypt this data, in order to obtain an adequate level of safety and maintain good elasticity, so as to allow different implementations and to cover as many possible use cases.&lt;/p&gt;
+
+&lt;p&gt;The same solution provides that the first part of the exposed problematic (data protection during transit) is resolved, and will be based on the combined use of two different types of encryption algorithms.&lt;/p&gt;
+
+&lt;h2 id=&#34;cryptographic-algorithms-symmetric-and-asymmetric:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Cryptographic Algorithms Symmetric and asymmetric&lt;/h2&gt;
+
+&lt;p&gt;With cryptographic algorithms ** refer to all processes and procedures aimed at obtaining a given &amp;ldquo;clouded&amp;rdquo; so as not to be understandable / intelligible ** by persons not authorized to read it.&lt;/p&gt;
+
+&lt;h3 id=&#34;symmetric-algorithms:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Symmetric Algorithms&lt;/h3&gt;
+
+&lt;p&gt;This type of algorithm is based on the use of encryption keys said symmetrical that allow  &lt;strong&gt;to encrypt and decrypt data using the same cryptographic key&lt;/strong&gt;.
+An example is &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard) algorithm, evolution of &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; the whose characteristics can be summarized in a good level of safety and excellent speed, whether it is implemented in hardware or software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;asymmetric-algorithms:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Asymmetric Algorithms&lt;/h3&gt;
+
+&lt;p&gt;The asymmetric algorithms are distinguished from the previous to the use of two distinct ** cryptographic keys, said public and private, to perform the encryption and decryption operations.
+The name derives from the method by which the two keys are to be used. The public key is freely exchanged, &lt;strong&gt;The private key is known only to those who have to be able to read&lt;/strong&gt; data or messages exchanged.
+The feature that characterizes these keys is the impossibility of obtaining, for example, the private key being in possession of the public key. Unless a particular algorithm exploits, the only method to obtain this key is the brute force **on that data.
+In this case the example for excellence is &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), a de facto standard in the security on data transmission: it is in fact widely used to encrypt the communications that take place between the client and server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-solution-combining-rsa-and-aes:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;The solution combining RSA and AES&lt;/h2&gt;
+
+&lt;p&gt;Now that we have rehearsed the technological basis, we can think about how to implement a solution.&lt;/p&gt;
+
+&lt;p&gt;Imagine we have a platform that allows various users to connect with their credentials and perform various operations, including storing their own private documents (photos, documents, passwords, contracts, etc.) that need a more high level of security, and maybe we can share this information with each other in the near future.&lt;/p&gt;
+
+&lt;p&gt;From these simple conditions, and preparing all the future &amp;ldquo;sharable&amp;rdquo; document, a possible solution is the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We will use AES to encrypt individual documents;&lt;/li&gt;
+&lt;li&gt;For the sharing, we will use a table (exchange) of our database; inside the owner of the document will be tracked and users can access it;&lt;/li&gt;
+&lt;li&gt;Each user will have his key ring containing the RSA keys that serve as &amp;ldquo;lock&amp;rdquo; for the individual document key;&lt;/li&gt;
+&lt;li&gt;You will need to also obfuscate the private key of each user, so as to allow access only to the owner;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;managing-users:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Managing Users&lt;/h3&gt;
+
+&lt;p&gt;At the creation of a new user, we must &lt;strong&gt;generate a new RSA key pair&lt;/strong&gt; , which will go tied to the user.
+Before storing these keys in the database (along with the user&amp;rsquo;s credentials on another table), the private key will need to be obfuscated. It is good practice, in these cases, to let the user to choose a &lt;strong&gt;masterkey&lt;/strong&gt;**, to be used in turn to encrypt the private key with a symmetric algorithm.
+Masterkey chosen will be very important as it will be required each time we have to decipher our data (unfortunately, the user experience is sacrificed in favor of a much higher level of security).
+&lt;strong&gt;N.B.&lt;/strong&gt; It is strongly recommended not to store the masterkey (in any form) on the server: the attacker could easily access it and groped to force unlocking consequently all the other keys.&lt;/p&gt;
+
+&lt;h3 id=&#34;encrypt-document:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Encrypt Document&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Each time&lt;/strong&gt; a user will upload a file or insert a text to be protected, you will need to generate a new &lt;strong&gt;unique&lt;/strong&gt; symmetric key. We will use the key to encrypt the document using AES and store it in our database.&lt;/p&gt;
+
+&lt;h3 id=&#34;associate-the-file-to-the-user:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Associate the file to the user&lt;/h3&gt;
+
+&lt;p&gt;As a last step we have to associate the encrypted data to the user who is storing them. It&amp;rsquo;s time to use the &amp;ldquo;exchange table&amp;rdquo;. We will insert a record containing references to the user and the file, together with the unique key tied to it. But the key will be encrypted before using the user&amp;rsquo;s public key.&lt;/p&gt;
+
+&lt;p&gt;We got a similar system to the one shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;System&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;share:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Share!&lt;/h3&gt;
+
+&lt;p&gt;Each time a document (or who has obtained the right to read it) owner user wants to share it with a second user we will simply do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Require user masterkey;&lt;/li&gt;
+&lt;li&gt;Decrypt the private key of the same user using the key you just obtained;&lt;/li&gt;
+&lt;li&gt;Decipher the key document related to (recovered from the exchange table);&lt;/li&gt;
+&lt;li&gt;Make a copy of the exchange record, replacing the user with the target and re-encrypting the key exchange with the public of the recipient;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;and-now:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;And now?&lt;/h3&gt;
+
+&lt;p&gt;Now that we have completed (at least theoretically) our data protection system &lt;strong&gt;we are definitely safe?&lt;/strong&gt; &lt;strong&gt;Absolutely not&lt;/strong&gt; Leaving aside the smooth technical operation carried out so far, we must remember that we have entrusted much of &lt;strong&gt;our system security to the user&lt;/strong&gt; .
+The weakness lies in the fact masterkey is left in the hands of our users: if they were to share it, or lose it, it would be impossible to guarantee the security or the recovery of stored data.
+Also a key - which is user&amp;rsquo;s choice - too simple would be easy to circumvent through brute force or other techniques.&lt;/p&gt;
+
+&lt;p&gt;Finally, I want to urge you to comply with all &lt;a href=&#34;https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system&#34;&gt;general rules concerning the composition of the password&lt;/a&gt;, avoid users to choose a too simple one.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Protezione di dati sensibili usando la crittografia</title>
       <link>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</link>
       <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
@@ -4025,224 +4128,6 @@ func &amp;lt;*&amp;gt; &amp;lt;A,B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp
 &lt;p&gt;Adottando uno stile più &lt;strong&gt;dichiarativo&lt;/strong&gt;, in cui il codice proprio della &lt;em&gt;business logic&lt;/em&gt; &amp;ldquo;dichiara l&amp;rsquo;intento&amp;rdquo;, descrivendo il &amp;ldquo;cosa&amp;rdquo; e non il &amp;ldquo;come&amp;rdquo;, è possibile scrivere software più chiaro e leggibile. Tale software sarà probabilmente anche più &lt;em&gt;testabile&lt;/em&gt;, perché basato su &lt;strong&gt;componenti atomici&lt;/strong&gt; a più basso livello, individualmente facili da testare, che sono combinati attraverso strutture di composizione, anch&amp;rsquo;esse agilmente testabili e provabili. L&amp;rsquo;obiettivo finale è quello di realizzare architetture software che siano in grado di &lt;strong&gt;risolvere automaticamente i problemi&lt;/strong&gt;, descritti nel codice sfruttando gli &lt;strong&gt;elementi costruttivi di base&lt;/strong&gt;. Abbiamo infine visto come un approccio misto tra &amp;ldquo;ragionato&amp;rdquo; e &amp;ldquo;empirico&amp;rdquo; possa garantire ottimi risultati; il ragionamento &lt;em&gt;a priori&lt;/em&gt; e la verifica &lt;em&gt;a posteriori&lt;/em&gt; sono entrambi strumenti utili, ma la loro unione risulta essere particolarmente potente: d&amp;rsquo;altronde, ogni disciplina scientifica richiede sia il ragionamento logico-matematico per la definizione delle teorie, sia la verifica sperimentale per poterne testare la validità.&lt;/p&gt;
 
 &lt;p&gt;Gli strumenti sono a disposizione, basta &lt;strong&gt;iniziare ad usarli&lt;/strong&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Php Summer Camp 2015</title>
-      <link>/blog/ita/php-summer-camp-2015/</link>
-      <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/php-summer-camp-2015/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduzione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Introduzione&lt;/h1&gt;
-
-&lt;p&gt;Dal 26 al 29 agosto 2015 ho avuto l&amp;rsquo;occasione di partecipare al &lt;a href=&#34;http://2015.phpsummercamp.com/&#34;&gt;&lt;strong&gt;PhpSummerCamp&lt;/strong&gt;&lt;/a&gt; in Rovigno (Croazia).
-Negli stessi giorni e nello stesso luogo si è svolto anche il &lt;a href=&#34;http://2015.ezsummercamp.com/&#34;&gt;&lt;strong&gt;SummerCamp EzPublish&lt;/strong&gt;&lt;/a&gt;.
-Ciò ha consentito di accrescere ulteriormente la platea di partecipanti con cui è stato possibile condividere idee e soluzioni.&lt;/p&gt;
-
-&lt;p&gt;L&amp;rsquo;evento è costituito da numerosi &lt;strong&gt;workshop&lt;/strong&gt; orientati allo sviluppo di applicazioni con il &lt;a href=&#34;http://symfony.com&#34;&gt;framework PHP Symfony&lt;/a&gt;.
-Le mattine e le prime metà del pomeriggio erano interamente dedicati ai workshop.
-Nel tempo rimanente venivano condotte varie attività dedicate alla community e al confronto tra i partecipanti.&lt;/p&gt;
-
-&lt;p&gt;In questo articolo descriverò gli eventi a cui ho partecipato e gli argomenti trattati, con particolare riguardo a ciò che mi ha personalmente colpito di più.&lt;/p&gt;
-
-&lt;h1 id=&#34;indice:58029b8459d31227431cf79c0465e6bb&#34;&gt;Indice&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#mercoledi&#34;&gt;Mercoledì 26 agosto&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#ci&#34;&gt;Continuous integration with PHP&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#modernising&#34;&gt;Modernising the legacy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#frontend&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#debate&#34;&gt;Celebrity debate&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#giovedi&#34;&gt;Giovedì 27 agosto&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#coupling&#34;&gt;Loose coupling in practice&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#puli&#34;&gt;Next-gen package development with Puli&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#unconference&#34;&gt;Unconference&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#venerdi&#34;&gt;Venerdì 28 agosto&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#profiling&#34;&gt;Profiling PHP Apps&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#symfony3&#34;&gt;Migrating to Symfony 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#experts&#34;&gt;Meet the experts&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusione&#34;&gt;Conclusione&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;mercoledi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;mercoledì-26-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
-
-&lt;p&gt;Un brevissimo keynote di apertura ha illustrato la storia del SummerCamp. Esso inizialmente ospitava soltanto la sezione EzPublish; solo negli ultimi anni è stata aggiunta la parte più generica relativa a Symfony e PHP.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;ci&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli:58029b8459d31227431cf79c0465e6bb&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
-
-&lt;p&gt;Il primo workshop ha illustrato come configurare e utilizzare &lt;a href=&#34;https://jenkins-ci.org/&#34;&gt;&lt;strong&gt;Jenkins&lt;/strong&gt;&lt;/a&gt;.
-L&amp;rsquo;obiettivo della sessione è stato abilitare un &lt;strong&gt;sistema di continuous integration&lt;/strong&gt; su un piccolo progetto Symfony che già aveva alcune test suite.
-È stato interessante notare la semplicità d&amp;rsquo;uso e di configurazione del sistema Jenkins.
-Si è visto come installare e configurare il &lt;a href=&#34;https://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin&#34;&gt;&lt;strong&gt;Clover PHP Plugin&lt;/strong&gt;&lt;/a&gt; per monitorare il cambiamento dello statement coverage dopo ciascuna build.
-È stato dedicato anche dello spazio per parlare di &lt;a href=&#34;https://www.phing.info/&#34;&gt;&lt;strong&gt;Phing&lt;/strong&gt;&lt;/a&gt;, tool molto utile per realizzare build automatiche.
-Sono state approfondite alcune configurazioni particolari di PhpUnit che consentono di dividere correttamente i test negli insiemi: test unitari, test d&amp;rsquo;integrazione e test funzionali.
-È stato interessante veder utilizzare &lt;a href=&#34;https://phpunit.de/manual/current/en/database.html&#34;&gt;&lt;strong&gt;l&amp;rsquo;estenzione di PHPUnit Database&lt;/strong&gt;&lt;/a&gt; per gestire automaticamente la connessione al database, la creazione dello schema e il caricamento/reset delle fixtures per ogni test case.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;modernising&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;modernising-the-legacy-marek-matulka:58029b8459d31227431cf79c0465e6bb&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
-
-&lt;p&gt;Il presentatore ha illustrato le feature implementate da un&amp;rsquo;applicazione PHP legacy. Il codice era molto disordinato e praticamente impossibile da testare.
-Logica di business, data retrieval e viste erano mescolate in un&amp;rsquo;applicazione che non era dotata nemmeno di un singolo &lt;a href=&#34;https://it.wikipedia.org/wiki/Front_Controller_pattern&#34;&gt;front-controller&lt;/a&gt;.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Modernising legacy w/ &lt;a href=&#34;https://twitter.com/super_marek&#34;&gt;@super_marek&lt;/a&gt; is kicking off at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; &lt;a href=&#34;http://t.co/aOIt1CWhNb&#34;&gt;pic.twitter.com/aOIt1CWhNb&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jakub Zalas (@jakub_zalas) &lt;a href=&#34;https://twitter.com/jakub_zalas/status/636506399288201216&#34;&gt;August 26, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-L&amp;rsquo;applicazione era un semplice sito di e-commerce per la vendita di articoli e comprendeva una sezione di checkout.
-Nel dover aggiungere un nuova funzionalità - il calcolo real-time delle spese di spedizione - si è voluto introdurre alcune componenti di Symfony per migliorare la qualità del sistema.
-È stato illustrato come introdurre e configurare le seguenti componenti: &lt;a href=&#34;http://symfony.com/it/doc/current/components/dependency_injection/introduction.html&#34;&gt;&lt;strong&gt;DependencyInjection&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;http://twig.sensiolabs.org/&#34;&gt;&lt;strong&gt;Twig&lt;/strong&gt;&lt;/a&gt; e &lt;a href=&#34;http://symfony.com/it/doc/current/components/http_foundation/index.html&#34;&gt;&lt;strong&gt;HttpFoundation&lt;/strong&gt;&lt;/a&gt;.
-È stato interessante notare come i componenti di Symfony fossero altamente disaccoppiati e, per questo, introducibili sequenzialmente e senza grandi difficoltà.
-Il miglioramento del design ha permesso di implementare alcuni test unitari per la nuova funzionalità. Si è visto quindi come configurare l&amp;rsquo;ambiente e i tool per il testing.
-La struttura del workshop era particolare: ciascun macro-task era diviso in molti sotto-task. Il repository Git del progetto già conteneva, in branch diversi, tutte le soluzioni. Ciò ha consentito di evitare ritardi causati dai partecipanti che non riuscivano, per vari problemi, a seguire l&amp;rsquo;avanzamento della sessione.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;frontend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo:58029b8459d31227431cf79c0465e6bb&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
-
-&lt;p&gt;Purtroppo, data la scarsa presenza di partecipanti con competenze avanzate di JavaScript, la presentazione ha trattato argomenti abbastanza basilari rispetto a quelli pianificati.
-Si è visto come applicare il &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;paradigma object oriented&lt;/a&gt; in JavaScript con numerosi confronti di funzionalità e sintassi tra JS e PHP che hanno consentito a tutti di comprendere l&amp;rsquo;argomento.
-La seconda parte del workshop ha analizzato e proposto soluzioni al problema dell&amp;rsquo;import di librerie di terze parti in applicazioni complesse.
-È stato analizzato un progetto che implementava una &lt;a href=&#34;https://en.wikipedia.org/wiki/Single-page_application&#34;&gt;single page application&lt;/a&gt; senza alcun uso di framework. Essa era soltanto una composizione di più componenti eterogenei tra di loro.
-Ciò ha permesso di apprendere che &lt;strong&gt;la scelta affrettata di framework complessi non è sempre la migliore&lt;/strong&gt;. Talvolta può essere più produttivo ricorrere a componenti specifici per il problema da risolvere.
-In generale il workshop è stato interessante ma, rispetto agli altri, conteneva molto meno lavoro pratico.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;debate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;celebrity-debate:58029b8459d31227431cf79c0465e6bb&#34;&gt;Celebrity debate&lt;/h3&gt;
-
-&lt;p&gt;È stata una gara scherzosa tra i due partecipanti Ryan Weaver e Bernhard Schussek nel sostenere le loro opinioni su molteplici domande, alcune delle quali anche stabilite dal pubblico.
-Alcuni esempi di domande: Mac vs Linux, &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;Functional programming&lt;/a&gt; vs &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;OOP&lt;/a&gt;, Tea vs Coffee, USA vs Europe
-Il vincitore Ryan Weaver è stato selezionato dal pubblico in base ad un conteggio di consensi.
-È stato un momento divertente con argomenti molto vari anche al di fuori dell&amp;rsquo;ambito informatico.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@symfony&lt;/a&gt; vs &lt;a href=&#34;https://twitter.com/laravelphp&#34;&gt;@laravelphp&lt;/a&gt; debate on &lt;a href=&#34;https://twitter.com/hashtag/ezsummer?src=hash&#34;&gt;#ezsummer&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; wanna bet on the winner? :-) &lt;a href=&#34;http://t.co/f7HXqkoLXU&#34;&gt;pic.twitter.com/f7HXqkoLXU&lt;/a&gt;&lt;/p&gt;&amp;mdash; Igor Vrdoljak (@ivrdoljak) &lt;a href=&#34;https://twitter.com/ivrdoljak/status/636571466104967168&#34;&gt;August 26, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;giovedi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;giovedì-27-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
-
-&lt;p&gt;&lt;a name=&#34;coupling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
-
-&lt;p&gt;L&amp;rsquo;obiettivo della sessione era disaccoppiare l&amp;rsquo;applicazione &lt;a href=&#34;http://symfony.com/blog/introducing-the-symfony-demo-application&#34;&gt;Symfony Demo&lt;/a&gt; da &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine ORM/DBAL&lt;/a&gt; e di consentire lo switch ad altre strategie di storage.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Quite a crowd at &lt;a href=&#34;https://twitter.com/jakub_zalas&#34;&gt;@jakub_zalas&lt;/a&gt; workshop on loose coupling with &lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@Symfony&lt;/a&gt;! &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/KnvqaafRfG&#34;&gt;pic.twitter.com/KnvqaafRfG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Marek ✈ (@super_marek) &lt;a href=&#34;https://twitter.com/super_marek/status/636805256987455488&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-Nonostante il sistema fosse un semplice gestionale per articoli di blog, il lavoro si è subito rilevato molto più lungo e complesso del previsto.
-È stato interessante notare come Symfony full-stack abbia numerosi legami &amp;ldquo;nascosti&amp;rdquo; con Doctrine. Esempi sono il componente &lt;a href=&#34;http://symfony.com/it/doc/current/book/security.html&#34;&gt;Security&lt;/a&gt; e il &lt;a href=&#34;http://symfony.com/it/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html&#34;&gt;ParamConverter&lt;/a&gt;.
-Si è iniziato nel creare i &lt;strong&gt;repository as services&lt;/strong&gt; in modo da consentire la rimozione di qualsiasi riferimento a Doctrine nei controller.
-Successivamente sono stati realizzate delle classi ad hoc per i componenti: Security (definizione esplicita dallo UserProvider) e ParamConverter.
-In seguito è stato richiesto di implementare una nuova strategia di storage utilizzando &lt;a href=&#34;http://php.net/manual/en/book.pdo.php&#34;&gt;PDO&lt;/a&gt; e &lt;a href=&#34;https://it.wikipedia.org/wiki/Structured_Query_Language&#34;&gt;SQL&lt;/a&gt;.
-Per questo task è stato interessante notare l&amp;rsquo;uso frequente del design pattern &lt;a href=&#34;https://it.wikipedia.org/wiki/Adapter_pattern&#34;&gt;Adapter&lt;/a&gt; nonché la definizione di &lt;strong&gt;alias di servizi&lt;/strong&gt; per consentire di spostarsi da una modalità di storage all&amp;rsquo;altra senza troppe modifiche.
-L&amp;rsquo;applicazione comprendeva già numerosi test che consentivano di verificare il corretto funzionamento dell&amp;rsquo;applicazione anche su differenti driver di persistenza.
-Successivamente è stato richiesto di utilizzare il &lt;a href=&#34;http://doctrine-orm.readthedocs.org/en/latest/reference/caching.html&#34;&gt;componente cache di Doctrine&lt;/a&gt; per introdurre un layer di ottimizzazione tra applicazione e persistenza PDO.
-A causa del poco tempo rimasto non è stato possibile affrontare l&amp;rsquo;ultimo task: implementare una nuova astrazione di storage su &lt;a href=&#34;https://www.elastic.co/&#34;&gt;elastic-search&lt;/a&gt;.
-Anche in questo workshop le soluzioni ai problemi erano già presenti nel repository Git. Ciò ha consentito di continuare e approfondire l&amp;rsquo;argomento anche dopo il termine della sessione.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;puli&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek:58029b8459d31227431cf79c0465e6bb&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
-
-&lt;p&gt;Questa sessione è stata divisa in due parti. La prima è una presentazione del &lt;strong&gt;progetto &lt;a href=&#34;http://docs.puli.io/en/latest/&#34;&gt;Puli&lt;/a&gt;&lt;/strong&gt;. Sono state illustrate le funzionalità dell&amp;rsquo;applicazione e i problemi che essa risolve.
-Puli è un gestore della configurazione di pacchetti che mira a rendere &lt;strong&gt;le librerie PHP più omogenee e più semplici da configurare&lt;/strong&gt;. Esso, per funzionare, usa &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt; che continua a gestire il package retrieval e l&amp;rsquo;autoloading.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Finally learning about &lt;a href=&#34;https://twitter.com/hashtag/Puli?src=hash&#34;&gt;#Puli&lt;/a&gt; from &lt;a href=&#34;https://twitter.com/webmozart&#34;&gt;@webmozart&lt;/a&gt;. Great stuff! &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; &lt;a href=&#34;http://t.co/l72oOuwtjY&#34;&gt;pic.twitter.com/l72oOuwtjY&lt;/a&gt;&lt;/p&gt;&amp;mdash; Paweł Jędrzejewski (@pjedrzejewski) &lt;a href=&#34;https://twitter.com/pjedrzejewski/status/636889138252357632&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-Puli consente l&amp;rsquo;accesso alle risorse di un pacchetto in modo semplice e veloce. Le risorse qualitativamente possono essere molto varie: immagini, template, file per la localizzazione, fogli di stile, basi di dati, ecc.
-Puli introduce il concetto di &lt;strong&gt;percorso virtuale&lt;/strong&gt;, un nuovo standard per l&amp;rsquo;accesso alle risorse condivise da uno o più pacchetti.
-Ciascun componente Puli definisce dei mappings che consentono di tradurre un percorso virtuale in percorso reale.
-Questo significa che è possibile richiedere a Puli una risorsa locata virtualmente in &lt;code&gt;/vendorName/projectName/config/file.xml&lt;/code&gt; senza conoscere esattamente dove tale risorsa sarà collocata nel file system.
-Puli offre inoltre la possibilità di modificare alcune risorse tramite il meccanismo dell&amp;rsquo;&lt;strong&gt;overriding&lt;/strong&gt;.
-Similmente al composer.json, la configurazione di Puli risiede nel file puli.json.
-Puli è integrabile con altre applicazioni per l&amp;rsquo;installazione e l&amp;rsquo;aggiornamento degli assets.
-La seconda parte della presentazione è stata dedicata alla pratica.
-L&amp;rsquo;obbiettivo era usare alcuni pacchetti Puli compatibili su un&amp;rsquo;applicazione &lt;a href=&#34;http://silex.sensiolabs.org/&#34;&gt;Silex&lt;/a&gt; per concludere lo sviluppo varie funzionalità.
-È stato possibile vedere come Puli sia integrabile con altri tool per la gestione degli assets (nell&amp;rsquo;esercitazione è stato usato &lt;a href=&#34;http://gulpjs.com/&#34;&gt;Gulp&lt;/a&gt;).
-Il format del workshop è stato diverso dal solito: ogni partecipante aveva a disposizione l&amp;rsquo;elenco dei problemi da risolvere con i relativi tutorial.
-Ciò a consentito ai partecipanti di proseguire in autonomia senza ritardi collettivi.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;unconference&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;unconference:58029b8459d31227431cf79c0465e6bb&#34;&gt;Unconference&lt;/h3&gt;
-
-&lt;p&gt;A fine giornata si è svolta la sessione &amp;ldquo;unconference&amp;rdquo;.
-Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/HTTP/2&#34;&gt;&lt;strong&gt;HTTP 2&lt;/strong&gt;&lt;/a&gt; e gestione migliorata della rete;&lt;/li&gt;
-&lt;li&gt;analisi delle strategie per consumer di &lt;a href=&#34;https://en.wikipedia.org/wiki/Message_queue&#34;&gt;&lt;strong&gt;code di messaggi&lt;/strong&gt;&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.docker.com/&#34;&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/a&gt; per eseguire applicazioni desktop dotate di GUI.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;venerdi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;venerdì-28-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
-
-&lt;p&gt;&lt;a name=&#34;profiling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
-
-&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;).
-Sono state esaminate le tecniche principali di collezione delle informazioni: &lt;a href=&#34;https://en.wikipedia.org/wiki/Hooking&#34;&gt;&lt;strong&gt;function hooks&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;sampling&lt;/strong&gt;, così come diversi tool per la profilazione: &lt;a href=&#34;http://xdebug.org/&#34;&gt;XDebug&lt;/a&gt;, &lt;a href=&#34;http://xhprof.io/&#34;&gt;Xhprof&lt;/a&gt; e &lt;a href=&#34;http://newrelic.com/&#34;&gt;New Relic&lt;/a&gt;.
-Prove pratiche con questi tool hanno consentito di evidenziare le loro peculiarità e differenze. È stato interessante notare, ad esempio, l&amp;rsquo;accuratezza e la semplicità delle informazioni fornite dalla libreria Xhprof rispetto ai concorrenti.
-Le prove pratiche hanno inoltre evidenziato che l&amp;rsquo;attività di profilazione non è semplice, soprattutto a causa del setup richiesto.
-Anche l&amp;rsquo;interpretazione dei dati restituiti dal profiler può essere problematico: una buona rappresentazione delle informazioni conduce a soluzioni migliori.
-Successivamente è stato introdotto il **profiler &lt;a href=&#34;https://blackfire.io/&#34;&gt;Blackfire**&lt;/a&gt;: una collezione di tecnologie che consentono di semplificare l&amp;rsquo;attività di profilazione.
-È stata analizzata la sua struttura interna. Esso è composto da 4 componenti: il server Blackfire, l&amp;rsquo;agente collettore, l&amp;rsquo;estensione Php e il companion lato browser per avviare la profilazione.
-In seguito si è discusso su come individuare i punti critici dell&amp;rsquo;applicazione e le strategie per risolvere i problemi.
-Ad esempio si è visto che un &lt;strong&gt;autoloader non correttamente ottimizzato&lt;/strong&gt; rallenta significamente l&amp;rsquo;applicazione (sia pensi alla generazione dell&amp;rsquo;autoload non ottimizzato di Composer).
-Le attività di Input/Output superflue causano rallentamenti, esempi sono le scritture sui &lt;strong&gt;log troppo verbosi&lt;/strong&gt;.
-È stato un workshop davvero completo facilmente comprensibile anche dai principianti della profilazione.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;symfony3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
-
-&lt;p&gt;Questo workshop ha consentito di apprendere la &lt;strong&gt;roadmap a lungo termine del framework Symfony&lt;/strong&gt;.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;on the way to symfony 3 at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; with &lt;a href=&#34;https://twitter.com/nicolasgrekas&#34;&gt;@nicolasgrekas&lt;/a&gt; &lt;a href=&#34;http://t.co/vijn5ttzPG&#34;&gt;pic.twitter.com/vijn5ttzPG&lt;/a&gt;&lt;/p&gt;&amp;mdash; dbu (@dbu) &lt;a href=&#34;https://twitter.com/dbu/status/637233201635835904&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-È stato annunciato che l&amp;rsquo;ultima versione LTS di Symfony 2 sarà &lt;strong&gt;la versione 2.8 completamente compatibile, quanto a funzionalità, con la versione 3.0&lt;/strong&gt;.
-È interessante notare che non ci saranno cambiamenti stravolgenti per Symfony vesione 3.0: essa infatti rimuove soltanto le funzionalità deprecate nelle versioni precedenti.
-Sono stati alresì spiegati i concetti di &lt;a href=&#34;http://engineering.facile.it/git-flow-semantic-versioning/&#34;&gt;versionamento semantico&lt;/a&gt; adottati dal framework a partire dalla versione 2.3.
-L&amp;rsquo;obiettivo della sessione pratica è stato migrare l&amp;rsquo;applicazione &lt;em&gt;Symfony Demo&lt;/em&gt; alla versione Symfony 3.
-Sono state esaminate diverse strategie per rilevare le deprecation: debug toolbar, file di log, fallimenti di test.
-È stato inoltre annunciato che sarà presto possibile &lt;strong&gt;definire un servizio come deprecato nel service container&lt;/strong&gt;.
-Ciò consente all&amp;rsquo;utente di rilevare subito eventuali utilizzi non corretti già durante la compilazione del container.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;experts&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;meet-the-experts:58029b8459d31227431cf79c0465e6bb&#34;&gt;Meet the experts&lt;/h3&gt;
-
-&lt;p&gt;Diversi gruppi di persone si sono riunite per parlare di molteplici argomenti.
-&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Ecommerce on Symfony roundtable at &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/RD8ueJX7Nj&#34;&gt;pic.twitter.com/RD8ueJX7Nj&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ivo Lukač (@ilukac) &lt;a href=&#34;https://twitter.com/ilukac/status/637288188231450625&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-Ciascun gruppo comprendeva, tra gli altri partecipanti, un paio di persone esperte dell&amp;rsquo;argomento per moderare la discussione.
-Io ho partecipato alla discussione di: &lt;a href=&#34;https://it.wikipedia.org/wiki/Commercio_elettronico&#34;&gt;&lt;strong&gt;E-commerce&lt;/strong&gt;&lt;/a&gt; su Symfony (con particolare riguardo a &lt;a href=&#34;http://sylius.org/&#34;&gt;Sylius&lt;/a&gt;), &lt;a href=&#34;https://it.wikipedia.org/wiki/Collaudo_del_software&#34;&gt;&lt;strong&gt;software testing&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Application_programming_interface&#34;&gt;API&lt;/a&gt; design&lt;/strong&gt;.
-È stato interessante discutere su come progettare architetture orientate a microservizi cercando di definire API stabili e solide.
-È emerso anche che le &lt;strong&gt;applicazioni monolitiche&lt;/strong&gt; evolvono, a lungo termine, verso &lt;strong&gt;design complessi&lt;/strong&gt; che hanno frequenti &lt;strong&gt;problemi di manutenibilità&lt;/strong&gt;.
-A tal proposito si parlava di build CI lente, deploy lento e isolamento delle responsabilità alquanto complessa.
-Un confronto tra esperti, il miglior modo per chiudere la giornata.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Conclusione&lt;/h1&gt;
-
-&lt;p&gt;Il PhpSummerCamp è un evento particolare: presentazioni, discussioni, workshop e attività extra lo hanno reso interessante e divertente allo stesso tempo.
-Tesi rafforzata dalla continua affluenza di sviluppatori che ogni anno non vogliono perdersi tale evento.
-Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Php e EzPublish.&lt;/p&gt;
 </description>
     </item>
     

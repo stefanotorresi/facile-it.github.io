@@ -13,7 +13,7 @@
 <html>
     <head>
         
-            <title>Security Posts - Facile Engineering</title>
+            <title>Security Posts - Facile.it Engineering</title>
         
 
         <meta charset="utf-8" />
@@ -36,7 +36,7 @@
 <meta property="og:url" content="/categories/security/" />
 
 
-<meta property="og:updated_time" content="2016-04-05T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2015-10-05T00:00:00&#43;00:00"/>
 
 
 
@@ -87,7 +87,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h2><a href="/">Facile Engineering</i></a></h2>
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
     
 
     <nav class="links">
@@ -214,15 +214,15 @@ ga('send', 'pageview');
 
                 
                     <li>
-                        <a href="/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
-                    </li>
-                
-                    <li>
                         <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
                     </li>
                 
                     <li>
                         <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
                     </li>
                 
             </ul>
@@ -241,7 +241,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h2>
+            <h2><a href="/blog/eng/protection-of-sensitive-data-using-encryption/">Protection of sensitive data using encryption</a></h2>
         
         
         
@@ -252,12 +252,12 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-04-05'>
-            5 April 2016
+        <time class="published" datetime='2015-10-05'>
+            5 October 2015
         </time>
 
         
-            <a href="/authors/sandro" class="author">
+            <a href="/authors/algatux" class="author">
             
                 <span class="name">Alessandro Galli</span>
                 <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" />
@@ -266,18 +266,18 @@ ga('send', 'pageview');
         
 
         
-            <p>4 minute read</p>
+            <p>6 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability. I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy. Immagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted.</p>
+    <p>Data protection is one of the major and recurrent problems in recent years: whether it is private information of users, or the company for which we work, the problem is always the same. How to protect such data from any attackers who would - and could (!!) - be able to gain possession? Before arriving at the solution of this problem, however, is right to split the series in at least two branches.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="/blog/eng/json-web-tokens/" class="button big">Continue Reading</a></li>
+            <li><a href="/blog/eng/protection-of-sensitive-data-using-encryption/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -299,9 +299,93 @@ ga('send', 'pageview');
     
         <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/jwt">JWT</a></li>
+        <li><a href="/categories/security">Security</a></li>
+    
+        <li><a href="/categories/encryption">Encryption</a></li>
+    
+        <li><a href="/categories/rsa">RSA</a></li>
+    
+        <li><a href="/categories/aes">AES</a></li>
+    
+        <li><a href="/categories/rjindael">Rjindael</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/">Protezione di dati sensibili usando la crittografia</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-10-05'>
+            5 October 2015
+        </time>
+
+        
+            <a href="/authors/algatux" class="author">
+            
+                <span class="name">Alessandro Galli</span>
+                <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" />
+            
+            </a>
+        
+
+        
+            <p>6 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso. Come proteggere questi dati da eventuali malintenzionati che vorrebbero - e potrebbero(!!) - riuscire a entrarne in possesso ? Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
     
         <li><a href="/categories/security">Security</a></li>
+    
+        <li><a href="/categories/encryption">Encryption</a></li>
+    
+        <li><a href="/categories/rsa">RSA</a></li>
+    
+        <li><a href="/categories/aes">AES</a></li>
+    
+        <li><a href="/categories/rjindael">Rjindael</a></li>
     
 </ul>
 
@@ -431,27 +515,6 @@ ga('send', 'pageview');
                             <header>
                                     
                                         
-                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-04-05'>
-                                        5 April 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
                                             <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -484,6 +547,27 @@ ga('send', 'pageview');
                                     
                                     <time class="published" datetime='2016-01-18'>
                                         18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-11'>
+                                        11 January 2016
                                     </time>
                             </header>
                         </article>
@@ -524,7 +608,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">26</span>
+                                <span style="float:right;">27</span>
                             </header>
                         </article>
                     </li>
@@ -535,7 +619,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/php/">PHP</a>
-                                <span style="float:right;">11</span>
+                                <span style="float:right;">12</span>
                             </header>
                         </article>
                     </li>
@@ -556,7 +640,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
+                                <a href="/categories/swift/">Swift</a>
                                 <span style="float:right;">8</span>
                             </header>
                         </article>
@@ -567,8 +651,19 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/swift/">Swift</a>
-                                <span style="float:right;">8</span>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
                             </header>
                         </article>
                     </li>
@@ -589,8 +684,8 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/open-source/">Open Source</a>
-                                <span style="float:right;">4</span>
+                                <a href="/categories/symfony/">Symfony</a>
+                                <span style="float:right;">3</span>
                             </header>
                         </article>
                     </li>
@@ -605,6 +700,8 @@ ga('send', 'pageview');
                             </header>
                         </article>
                     </li>
+                    
+                
                     
                 
                     
@@ -810,7 +907,7 @@ ga('send', 'pageview');
             
 
             <p class="copyright">
-                &copy; Facile Engineering.<br/>
+                &copy; Facile.it Engineering.<br/>
                 Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
                 Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
                 Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
