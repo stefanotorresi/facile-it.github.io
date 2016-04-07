@@ -6,7 +6,7 @@ draft: true
 image: "/images/cover.jpg"
 menu: ""
 share: true
-categories: [English, Encryption, RSA, AES, Rjindael]
+categories: [English, Security, Encryption, RSA, AES, Rjindael]
 title: "Protection of sensitive data using encryption"
 
 languageCode: "en-En"
