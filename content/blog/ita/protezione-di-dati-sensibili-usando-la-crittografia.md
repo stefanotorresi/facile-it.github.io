@@ -1,17 +1,18 @@
 ---
-authors: ["sandro"]
+authors: ["algatux"]
 comments: true
 date: "2015-10-05"
 draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
-categories: [Italiano, Encryption, RSA, AES, Rjindael]
+categories: [Italiano, Security, Encryption, RSA, AES, Rjindael]
 title: "Protezione di dati sensibili usando la crittografia"
 
 languageCode: "it-IT"
 type: "post"
-
+aliases:
+  - "/protezione-di-dati-sensibili-usando-la-crittografia"
 ---
 La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell'azienda per cui lavoriamo, il problema è sempre lo stesso. 
 
