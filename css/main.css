@@ -3470,3 +3470,8 @@
 	.post p a:hover {
 		border-bottom-color: rgba(46, 186, 174, 0.25)
 	}
+
+	.post > header .meta {
+		padding: 1.75em 3em 1.75em 3em;
+		top: 0;
+	}
