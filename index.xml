@@ -6,8 +6,106 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Mar 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Apr 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Json Web Token</title>
+      <link>/blog/eng/json-web-tokens/</link>
+      <pubDate>Fri, 08 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/eng/json-web-tokens/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;/images/json-web-tokens/logo.svg&#34; alt=&#34;JWT&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability.
+I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy.
+Imagine for example a web application where a user can login and obtain a &amp;ldquo;pass&amp;rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted.
+Thanks to JWT&amp;rsquo;s self verification capabilities, I could discard every request where the token is invalid (a fake token not signed by my application) or expired.
+Beyond this specific use case, JWT can be also useful to securely transmit data to other applications.&lt;/p&gt;
+
+&lt;p&gt;Now let me introduce the standard: JSON Web Token (JWT) is an open standard &lt;a href=&#34;https://tools.ietf.org/html/rfc7519&#34;&gt;RFC 7519&lt;/a&gt; that defines a compact, self-contained and secure way for transmitting information between two parties.&lt;/p&gt;
+
+&lt;p&gt;Using javascript object notation to represent the data means two things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;saving lots of bytes when the token goes over the network, &lt;strong&gt;because of it&amp;rsquo;s size&lt;/strong&gt; it can be sent over an URL or inside an HTTP Header&lt;/li&gt;
+&lt;li&gt;it can be &lt;strong&gt;easily parsed by a browser&lt;/strong&gt; and consumed by a client application&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is more clear when comparing JSON to other standards like &lt;a href=&#34;https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language&#34;&gt;SAML&lt;/a&gt; that uses a very verbose XML structure.&lt;/p&gt;
+
+&lt;p&gt;A JWT token can be trusted because it is digitally signed using a secret (usually with &lt;a href=&#34;https://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34;&gt;HMAC&lt;/a&gt; algorithm) or a keypair with &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA&#34;&gt;RSA&lt;/a&gt;.
+Its payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-the-token-presents-itself:be256830241f7dc27936f7751ed2a96e&#34;&gt;How the token presents itself&lt;/h2&gt;
+
+&lt;p&gt;A token is represented as three base64 encoded strings joined by two points:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;headers:be256830241f7dc27936f7751ed2a96e&#34;&gt;Headers&lt;/h3&gt;
+
+&lt;p&gt;The first part of the string contains the headers, &lt;code&gt;&amp;quot;alg&amp;quot;&lt;/code&gt; is the algorithm used to secure the token and &lt;code&gt;&amp;quot;typ&amp;quot;&lt;/code&gt; is the type; in this case as we can see that I used an HMAC SHA256 to sign the JWT token:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;alg&amp;quot;: &amp;quot;HS256&amp;quot;,
+  &amp;quot;typ&amp;quot;: &amp;quot;JWT&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;payload:be256830241f7dc27936f7751ed2a96e&#34;&gt;Payload&lt;/h3&gt;
+
+&lt;p&gt;The second part is the payload: it&amp;rsquo;s the data sent with the token. It contains metadata and information like expiration, audience or subject, and whatever you need.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;sub&amp;quot;: &amp;quot;1234567890&amp;quot;,
+  &amp;quot;name&amp;quot;: &amp;quot;John Doe&amp;quot;,
+  &amp;quot;admin&amp;quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All data is organized in &lt;strong&gt;claims&lt;/strong&gt;, statements about an entity (typically, the user). There are three types of claims: reserved, public, and private claims.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reserved claims&lt;/strong&gt;: a set of predefined claims, conceived to provide a set of useful information. Some of them are: &lt;code&gt;iss&lt;/code&gt; (issuer), &lt;code&gt;exp&lt;/code&gt; (expiration time), &lt;code&gt;sub&lt;/code&gt; (subject), &lt;code&gt;aud&lt;/code&gt; (audience), among others.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Public claims&lt;/strong&gt;: defined at will but, in order to avoid collisions, they should be defined in the &lt;a href=&#34;http://www.iana.org/assignments/jwt/jwt.xhtml&#34;&gt;IANA JSON Web Token Registry&lt;/a&gt; or be described as a URI that contains a collision resistant namespace.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Private claims&lt;/strong&gt;: custom claims created to share information between parties that agree with using them.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;sign:be256830241f7dc27936f7751ed2a96e&#34;&gt;Sign&lt;/h3&gt;
+
+&lt;p&gt;The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algorithm described in headers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;HMACSHA256(
+  base64UrlEncode(header) + &amp;quot;.&amp;quot; +
+  base64UrlEncode(payload),
+  secret
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As said before the more interesting feature of JWT is in it&amp;rsquo;s flexibility. It can be created with the claims you need, carry your data and validated on other claims (standard or not).
+As an example, if on authentication I want to be sure that the token is issued by my application and that it is not older than 1 hour I can generate a token with a payload like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;iss&amp;quot;: &amp;quot;1234567890&amp;quot;, // my application code
+  &amp;quot;exp&amp;quot;: &amp;quot;1459868400&amp;quot;, // 2016-04-04 15:00:00 Expiration time
+  &amp;quot;uid&amp;quot;: 159, // the user id
+  &amp;quot;name&amp;quot;: &amp;quot;Alessandro Galli&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once my application receives a request with this token, an authenticator component will check the two claims (&lt;code&gt;iss&lt;/code&gt;, &lt;code&gt;exp&lt;/code&gt;) to be sure of the assertions made before, and then validate the sign. Furthermore, with the additional claims it can login the user without querying the database and complete the request.&lt;/p&gt;
+
+&lt;p&gt;This approach results in a stateless authentication removing all problems related to session storage, CORS+cookies requests and CSRF protection, among others.&lt;/p&gt;
+
+&lt;p&gt;As a solid standard, JWT has been adopted by a large number of users and it has libraries for almost every programming language: PHP, Java, Go, Python, Javascript, Ruby, Elixir, Scala, .NET. You can find a full list of available and trusted libraries on &lt;a href=&#34;https://jwt.io/#libraries-io&#34;&gt;JWT.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the next weeks, I will write a post and release my personal authentication example, using PHP with the Symfony framework.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Careers</title>
@@ -3453,363 +3551,6 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 &lt;li&gt;&lt;a href=&#34;http://autobahn.ws/js/&#34;&gt;Autobahn|JS - Documentazione&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/facile-it/crossbar-http-publisher-bundle&#34;&gt;Facile.it CrossbarHTTPPublisherBundle - GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>No Country For If Else</title>
-      <link>/blog/eng/no-country-for-if-else/</link>
-      <pubDate>Tue, 15 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/eng/no-country-for-if-else/</guid>
-      <description>
-
-&lt;p&gt;There is an &lt;strong&gt;unwanted guest&lt;/strong&gt; with us as we write code and build software projects: it&amp;rsquo;s the code that&amp;rsquo;s &lt;strong&gt;already written&lt;/strong&gt;, and we must take into account its complexity as the code base increases in size. High complexity of the existing code can make the following activities particularly difficult:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;understanding the meaning of old code, written by others or ourselves;&lt;/li&gt;
-&lt;li&gt;tracing the causes of bugs, i.e. errors, in code;&lt;/li&gt;
-&lt;li&gt;making changes to a certain procedure;&lt;/li&gt;
-&lt;li&gt;adding features to existing structures;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Even if we approach the development of new software with &lt;a href=&#34;https://en.wikipedia.org/wiki/Agile_software_development&#34;&gt;agile methodologies&lt;/a&gt;, we always have to deal with the existing code, and to do that we must at least be able to &lt;strong&gt;understand it without overexertion&lt;/strong&gt;. So when I talk about &lt;em&gt;complexity&lt;/em&gt; I am referring in particular to the difficulty with which a programmer can &lt;em&gt;reason about&lt;/em&gt; the existing code: the preface of the well-known academic textbook &lt;a href=&#34;http://deptinfo.unice.fr/~roy/sicp.pdf&#34;&gt;Structure and Interpretation of Computer Programs&lt;/a&gt; contains the following sentence:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;programs must be written for people to read, and only incidentally for machines to execute&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I couldn&amp;rsquo;t agree more: the time spent by a programmer in writing new code is &lt;strong&gt;only a fraction&lt;/strong&gt; of his/her total working time; much of it is spent reading the existing code, to correct, extend, modify or simply understand it. Generating more understandable code, about which it&amp;rsquo;s easier to reason, we can more easily evaluate the &lt;strong&gt;correctness&lt;/strong&gt; of what we wrote so far or, if the obtained behavior is not the one expected, find the error. Of course this shouldn&amp;rsquo;t undo the techniques that we routinely use to test the correctness of software &lt;em&gt;a posteriori&lt;/em&gt;: indeed, no technical or scientific discipline is exempt from empirical tests, and in fact the empirical approach to software engineering is accepted in the academic community, as evidenced by the &lt;a href=&#34;http://static.springer.com/sgw/documents/1525357/application/pdf/10664_JournalMetrics_Flyer.pdf&#34;&gt;existence&lt;/a&gt; of the &lt;a href=&#34;http://link.springer.com/journal/10664&#34;&gt;Empirical Software Engineering&lt;/a&gt; journal. My personal position is in the middle: software testing is important, but it&amp;rsquo;s also important to think in advance about its correctness, to avoid causes of &lt;strong&gt;accidental complexity&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;index:c252b88516f644ca0545d16795aa645d&#34;&gt;Index&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#the-importance-of-abstraction&#34;&gt;The importance of abstraction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#measuring-complexity&#34;&gt;Measuring complexity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-structured-solution&#34;&gt;Example: structured solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-oo-solution&#34;&gt;Example: OO solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-functional-solution&#34;&gt;Example: functional solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#an-empirical-validation&#34;&gt;An empirical validation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusions&#34;&gt;Conclusions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;the-importance-of-abstraction&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;the-importance-of-abstraction:c252b88516f644ca0545d16795aa645d&#34;&gt;The importance of abstraction&lt;/h2&gt;
-
-&lt;p&gt;As we&amp;rsquo;ve seen in a &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;previous article&lt;/a&gt;, rather than the inherent complexity related to the logic of our software, we must worry about the &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;accidental complexity&lt;/a&gt; we introduce in the code by adopting &lt;strong&gt;non-optimal, pointlessly complicated solutions&lt;/strong&gt;: the excessive use of &lt;em&gt;if-else-for-switch&lt;/em&gt; control structures tends to make the code hard to understand, maintain and test; see for example the well-known &lt;a href=&#34;http://c2.com/cgi/wiki?ArrowAntiPattern&#34;&gt;Arrow Anti-Pattern&lt;/a&gt;. It should be noted that the introduction of &lt;a href=&#34;https://en.wikipedia.org/wiki/Structured_programming&#34;&gt;structured programming&lt;/a&gt;, i.e. programming based on the aforementioned control structures, was a &lt;strong&gt;major step forward&lt;/strong&gt; in software development between the &amp;lsquo;60s and the &amp;lsquo;70s: it allowed to program at a higher level of abstraction than the previous style, removing the need to manually manage code execution order with the &lt;a href=&#34;https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF&#34;&gt;infamous&lt;/a&gt; &lt;code&gt;goto&lt;/code&gt; statement.&lt;/p&gt;
-
-&lt;p&gt;Software development paradigms change when programmers find themselves managing larger and more complex projects: to avoid being entangled by the excessive complexity of our own code, or code written by others that we still maintain, we have to work at &lt;strong&gt;higher levels of abstraction&lt;/strong&gt;. How much high? A good answer could be the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;at a high level of abstraction we can tell the system to do what we want, without specifying how to do it&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At an appropriate level of abstraction we can focus on the &lt;em&gt;what&lt;/em&gt; and let the system decide the &lt;em&gt;how&lt;/em&gt;. Obviously there&amp;rsquo;s no &amp;ldquo;maximum&amp;rdquo; level of abstraction, and as programmers we always find ourselves working &lt;strong&gt;halfway&lt;/strong&gt; between the moving electrical charges in a microprocessor, and the needs of our company&amp;rsquo;s business: however, working at a low abstraction level will greatly increase the risk of introducing accidental complexity, and we must be able to identify those cases. For example, when we use a control structure such as &lt;em&gt;if-else&lt;/em&gt; within a relatively large procedure, we are &lt;em&gt;manually&lt;/em&gt; making a decision based on the current state of our system: it would be much better to develop a software component, for example an object, which is able to &lt;strong&gt;make that kind of decision for us&lt;/strong&gt;; our role, at that point, will be to &lt;em&gt;declare&lt;/em&gt; the required functionality. Mixing the &lt;em&gt;what&lt;/em&gt; with the &lt;em&gt;how&lt;/em&gt; will make it particularly hard to understand what a block of code is going to do, because it can lead to the obfuscation of a procedure&amp;rsquo;s &lt;strong&gt;intent&lt;/strong&gt; - connected to the business logic - with the &lt;strong&gt;implementation details&lt;/strong&gt;, which are separate concepts, often completely independent (the same intention can be expressed with different lower level implementations).&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a simple example. Suppose we have the following function:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func &amp;lt;A&amp;gt; optionalValue1 (value: A, cond1: Bool, cond2: Bool) -&amp;gt; A? {
-	var x: A?
-	if cond1 == true {
-		if cond2 == true {
-			x = nil
-		}
-		else {
-			x = value
-		}
-	}
-	else {
-		if cond2 == true {
-			x = value
-		}
-		else {
-			x = nil
-		}
-	}
-	return x
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Although the expressed intent is rather simple, what&amp;rsquo;s really going on is not immediately obvious; let&amp;rsquo;s analyze the function step-by-step:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a variable &lt;code&gt;x&lt;/code&gt; of type &lt;code&gt;A?&lt;/code&gt; is declared;&lt;/li&gt;
-&lt;li&gt;the first condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the first condition is true, then the second condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the second condition is true, then the variable is set to &lt;code&gt;nil&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;if the second condition is false, then the variable is set to &lt;code&gt;value&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if the first condition is false, the second condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the second condition is true, then the variable is set to &lt;code&gt;value&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;if the second condition is false, then the variable is set to &lt;code&gt;nil&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;the variable &lt;code&gt;x&lt;/code&gt; is returned;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To think about it, the intent is the following: return &lt;code&gt;value&lt;/code&gt; if the conditions are different from each other, otherwise return &lt;code&gt;nil&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func &amp;lt;A&amp;gt; optionalValue2 (value: A, cond1: Bool, cond2: Bool) -&amp;gt; A? {
-	return cond1 != cond2 ? value : nil
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We have greatly simplified the function, making it easier to understand &lt;strong&gt;just by looking at it&lt;/strong&gt; once. But in a more complex case, with many different conditions and possible code routes, it may not suffice to just try and simplify the conditions.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;measuring-complexity&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;measuring-complexity:c252b88516f644ca0545d16795aa645d&#34;&gt;Measuring complexity&lt;/h2&gt;
-
-&lt;p&gt;A unit of measure often taken into account in assessing the complexity of a method or function is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Cyclomatic_complexity&#34;&gt;cyclomatic complexity&lt;/a&gt; (CC): it&amp;rsquo;s defined as the degree of complexity generated by the use of multiple control structures in a procedure. You can calculate the number of CC for a structured procedure by representing it with a &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_graph&#34;&gt;directed graph&lt;/a&gt; and counting the number of nodes and arcs. For example, we can represent the &lt;code&gt;optionalValue1&lt;/code&gt; function with the following graph:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[(value,cond1,cond2)]
-|
-|-&amp;gt; [var x] -&amp;gt; [cond1 == true ?]
-               |
-               |-y-&amp;gt; [cond2 == true ?]
-               |     |
-               |     |-y-&amp;gt; [x = nil] --------|
-               |     |-n-&amp;gt; [x = value] ------|
-               |                             |
-               |-n-&amp;gt; [cond2 == true ?]       |
-                     |                       |
-                     |-y-&amp;gt; [x = value] ------|
-                     |-n-&amp;gt; [x = nil] --------|
-                                             |-&amp;gt; [return x]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For a single connected graph, the number of CC is calculated according to the following formula:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CC = [number of arcs] - [number of nodes] + 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For the &lt;code&gt;defaultValue1&lt;/code&gt; you can see that CC = 4. Apparently the simplified version&lt;code&gt;defaulValue2&lt;/code&gt; has a lower cyclomatic complexity, but in reality, as indicated in T.J.McCabe&amp;rsquo;s &lt;a href=&#34;http://www.literateprogramming.com/mccabe.pdf&#34;&gt;original article&lt;/a&gt;, CC can only be calculated for a &lt;em&gt;completely structured&lt;/em&gt; procedure, that is a procedure with a single entry point and a single exit point; CC should also take into account &lt;strong&gt;all the possible cases&lt;/strong&gt; for a condition, and &lt;code&gt;if cond1 != cond2&lt;/code&gt; has precisely four possible cases. A dissertation of possible evolutions of CC, considering multiple entry/exit points for a module, is a available &lt;a href=&#34;http://www.acis.pamplin.vt.edu/faculty/tegarden/wrk-pap/SQJ.PDF&#34;&gt;here&lt;/a&gt;. Thus, we won&amp;rsquo;t keep account of CC in the rest of the article for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;the complexity that interests us is the one related to the &amp;ldquo;understandability&amp;rdquo; of a function, and unstructured patterns (such as &lt;code&gt;guard clause&lt;/code&gt;, early &lt;code&gt;return&lt;/code&gt; or conditional expressions like the one generated by the ternary operator &lt;code&gt;?:&lt;/code&gt;) can often make a function or method easier to understand;&lt;/li&gt;
-&lt;li&gt;the goal is to write a program by composing many small functions whose complexity is the &lt;strong&gt;minimum possible&lt;/strong&gt;, e.g. no control structures, so it will have little value to measure the number of CC for each function;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;However, it seemed important to mention cyclomatic complexity in this article, but rather than &lt;em&gt;measuring&lt;/em&gt; accidental complexity, we are interested in &lt;strong&gt;removing it completely&lt;/strong&gt; by replacing conditional statements, often used of structured programming, with something else. Notice that a conditional &lt;em&gt;expression&lt;/em&gt; is a &lt;strong&gt;simpler&lt;/strong&gt; concept than a conditional &lt;em&gt;statement&lt;/em&gt;: in the former, the entire expression simply returns something based on one or more conditions; in the latter, based on some state, the code could contain various statements, i.e., commands that could be executed or not.&lt;/p&gt;
-
-&lt;p&gt;Say you have a function like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func getCorrectValueConsideringConditions &amp;lt;A&amp;gt; (cond1: Condition&amp;lt;A&amp;gt;, cond2: Condition&amp;lt;A&amp;gt;, cond3: Condition&amp;lt;A&amp;gt; ...) -&amp;gt; A? {
-	/// do stuff
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this case we have a large number of conditions attached to a value of type &lt;code&gt;A&lt;/code&gt;, and we might need to evaluate each of these conditions with several &lt;em&gt;if-else&lt;/em&gt; and/or nested &lt;em&gt;switch&lt;/em&gt; statements. One way to simplify this problem could consist in &lt;em&gt;abstracting&lt;/em&gt; the concept of &lt;em&gt;condition&lt;/em&gt;, turning it into a &lt;em&gt;static relationship&lt;/em&gt; between a few parameters and a value of type &lt;code&gt;A&lt;/code&gt;: we should therefore create a system that is able to &lt;em&gt;solve&lt;/em&gt; any number of relations, possibly in &lt;strong&gt;any order&lt;/strong&gt;, and according to them deduce the resulting value.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s see a practical example.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-structured-solution&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-structured-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: structured solution&lt;/h2&gt;
-
-&lt;p&gt;A person goes to the employment office to find a job: according to certain attributes (job preferences, young/old, number of children younger than 18) the person could be sent to a certain desk to choose a job, or outside in case no job is available for a person with those attributes. Here is the complete procedure (the realism is not important, it&amp;rsquo;s just an example):&lt;/p&gt;
-
-&lt;p&gt;A person &lt;strong&gt;p1&lt;/strong&gt; comes to the desk &lt;strong&gt;d1&lt;/strong&gt; to seek employment; &lt;strong&gt;p1&lt;/strong&gt; has a list of job preferences, but could also accept other jobs outside the list; &lt;strong&gt;p1&lt;/strong&gt; also has a list of jobs that would certainly never accept;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; is young you get from &lt;strong&gt;p1&lt;/strong&gt; a list &lt;strong&gt;l1&lt;/strong&gt; of preferences;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;l1&lt;/strong&gt; is too small, you ask &lt;strong&gt;p1&lt;/strong&gt; to enlarge the list with secondary preferences;&lt;/li&gt;
-&lt;li&gt;you match the preferences with the available jobs and get list &lt;strong&gt;l2&lt;/strong&gt; of jobs to choose;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;l2&lt;/strong&gt; is empty, you ask &lt;strong&gt;p1&lt;/strong&gt; if they want the full list of the positions;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, they&amp;rsquo;re sent to desk &lt;strong&gt;d2&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; is elderly, you ask &lt;strong&gt;p1&lt;/strong&gt; to choose from the list &lt;strong&gt;l3&lt;/strong&gt; of suitable jobs for older people;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, they&amp;rsquo;re sent to desk &lt;strong&gt;d3&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has children, in any case the list of available jobs will be affected by the number of children:
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has one child younger than 18, they will choose a job from the list &lt;strong&gt;l4&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has two children younger than 18, they will choose a job from the list &lt;strong&gt;l5&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;in the two previous cases, if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, &lt;strong&gt;p1&lt;/strong&gt; is sent to desk &lt;strong&gt;d4&lt;/strong&gt; to continue with the procedure;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has three or more children younger than 18, &lt;strong&gt;p1&lt;/strong&gt; is sent to desk &lt;strong&gt;d5&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A &amp;ldquo;structured&amp;rdquo; approach to the problem could consist in writing a function in which the entire procedure is expressed with a series of &lt;em&gt;if-else&lt;/em&gt; statements, or &lt;em&gt;switch&lt;/em&gt; in the case of the number of children.&lt;/p&gt;
-
-&lt;p&gt;The project related to this article is available on &lt;a href=&#34;https://github.com/broomburgo/NoCountryForIfElse&#34;&gt;github&lt;/a&gt;: I strongly recommend to check the code as the article goes on; &lt;code&gt;.swift&lt;/code&gt; files are just text files, and can be opened with any text editor. In the file &lt;code&gt;common.swift&lt;/code&gt; you&amp;rsquo;ll find common structures and functions to all the proposed solutions. In particular, we will represent a &amp;ldquo;person&amp;rdquo; with &lt;code&gt;struct Person&lt;/code&gt;, basically a immutable &lt;em&gt;value object&lt;/em&gt; that collects the various attributes considered in the problem:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;struct Person {
-    
-    let name: String
-    let isYoung: Bool
-    let childrenCount: Int
-    let likedJobsMain: [String]
-    let likedJobsSecondary: [String]
-    let dislikedJobs: [String]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The idea is to write a function called &lt;code&gt;placeNameForPerson&lt;/code&gt;, returning the next destination&amp;rsquo;s name for the input person: the destination could be another desk &lt;code&gt;d2, d3, d4, d5&lt;/code&gt;, or &lt;code&gt;outside&lt;/code&gt; in case the person leaves the employment agency without a job. &lt;code&gt;placeNameForPerson_structured&lt;/code&gt; returns the name of the destination considering the input &lt;code&gt;Person&lt;/code&gt; and also requires a second input, a &lt;code&gt;DeskWithJobs&lt;/code&gt;, i.e. a desk with several lists of available jobs, considering the various cases. In the structured solution, the entire execution logic is written in the function &lt;code&gt;placeNameForPerson_structured&lt;/code&gt;, and is in fact based upon nested conditional tests.&lt;/p&gt;
-
-&lt;p&gt;We can immediately see that it is rather hard to understand what happens in the function just by reading it once: probably, in a &amp;ldquo;real&amp;rdquo; software, a function like this would probably be annotated with &lt;strong&gt;several comments&lt;/strong&gt;. In addition, it can be easily seen that to trace a bug in a function like this would require a step-by-step debugging procedure, because the large number of conditions makes the function basically not testable in an efficient way. Finally, changing conditions or introducing more of them would probably be really hard.&lt;/p&gt;
-
-&lt;p&gt;The underlying problem is actually due to the fact that, with a structured approach, we&amp;rsquo;re &lt;strong&gt;mixing the intent with the implementation&lt;/strong&gt;: in this case the intent is to associate groups of conditions to specific results, but these relations are &amp;ldquo;hidden&amp;rdquo; within the code and must be deduced from it; for example, if we are asked what is the door for an elderly person with two children, we&amp;rsquo;d be forced to follow the flow of code:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;because the first condition is related to the number of children, we immediately enter the branch &lt;code&gt;childrenCount != 0&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;at this point we enter the &lt;code&gt;case 2&lt;/code&gt; for the number of children;&lt;/li&gt;
-&lt;li&gt;there&amp;rsquo;s a condition for checking that there&amp;rsquo;s a job available;&lt;/li&gt;
-&lt;li&gt;a positive choice would lead to the &amp;ldquo;d4&amp;rdquo; desk;&lt;/li&gt;
-&lt;li&gt;where&amp;rsquo;s the &amp;ldquo;young/old&amp;rdquo; condition? Is there a bug? By analyzing the branch &lt;code&gt;childrenCount == 0&lt;/code&gt; we can verify that this condition is actually checked, but it&amp;rsquo;s simply irrelevant for the other branch;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It is a relatively long way to understand one simple thing, and it is noteworthy that if we wanted to make changes to the procedure, we should always run the entirety of it to make sure we covered all possible cases and there are no conflicts or ambiguities.&lt;/p&gt;
-
-&lt;p&gt;We can do better.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-oo-solution&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-oo-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: OO solution&lt;/h2&gt;
-
-&lt;p&gt;OO design is a often a work of &lt;strong&gt;both reason and creativity&lt;/strong&gt;: frequently, a same problem can be solved with multiple OO approaches. As said before, our intent is to &lt;em&gt;abstract&lt;/em&gt; the concept of &lt;em&gt;condition&lt;/em&gt;; considering this approach, let&amp;rsquo;s try and establish some foundation, in order to identify the responsibilities and behaviors to be assigned to each class:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;we want to represent each condition as if it were a single &lt;em&gt;check&lt;/em&gt; separated from the others, e.g. with a &lt;code&gt;Check&lt;/code&gt; type characterized by methods that verify whether a given person passes a step or not;&lt;/li&gt;
-&lt;li&gt;we want to represent separately the checks related to a person&amp;rsquo;s attribute, like the number of children, to those related to the list of jobs to choose from;&lt;/li&gt;
-&lt;li&gt;we want to build objects that are able to combine multiple checks into a single check;&lt;/li&gt;
-&lt;li&gt;we want to create an object that represents a list of checks, and is able to assess whether the person is going to pass one and only one of those checks, or no check;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The file &lt;code&gt;oo.swift&lt;/code&gt; contains the complete implementation of the OO solution. We define a &lt;code&gt;protocol PersonCheckType&lt;/code&gt;, i.e., an interface that declares a &lt;code&gt;personIsValid&lt;/code&gt; method that returns &lt;code&gt;true&lt;/code&gt; if a certain &lt;code&gt;Person&lt;/code&gt; passes the check:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;protocol PersonCheckType {
-    func personIsValid(person: Person) -&amp;gt; Bool
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then some classes implementing the &lt;code&gt;PersonCheckType&lt;/code&gt; protocol are declared, which individually test the various inherent attributes of a &lt;code&gt;Person&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The type &lt;code&gt;JobsType&lt;/code&gt; simply declares a &lt;code&gt;availableJobs&lt;/code&gt; property to collect the available jobs: from it more &lt;em&gt;checks&lt;/em&gt; are derived, also of type &lt;code&gt;PersonCheckType&lt;/code&gt;, that verify whether a person is valid from the point of view of preferred jobs.&lt;/p&gt;
-
-&lt;p&gt;Finally, the type &lt;code&gt;NextDeskType&lt;/code&gt; declares a &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; method by which you can define what the name of the next desk for a person will be; the method returns &lt;code&gt;String?&lt;/code&gt; because maybe there&amp;rsquo;s no desk for a certain person:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;protocol NextDeskType {
-    func nextDeskNameForPerson(person: Person) -&amp;gt; String?
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;From &lt;code&gt;NextDeskType&lt;/code&gt; we derive the following classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;CheckNode&lt;/code&gt;, which represents a node in the decision-making structure of the software;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;CheckStructure&lt;/code&gt;, which represents the entire tree of nodes;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In fact, the implementation of &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; in &lt;code&gt;CheckStructure&lt;/code&gt; corresponds exactly to the solution of the problem: find the name of destination desk.&lt;/p&gt;
-
-&lt;p&gt;The idea is to create some simple &lt;strong&gt;unit checks&lt;/strong&gt;, using various classes of type &lt;code&gt;PersonCheckType&lt;/code&gt;, and combine those into concrete objects of the class &lt;code&gt;CheckNode&lt;/code&gt;, thus defining our &lt;code&gt;CheckStructure&lt;/code&gt;. In &amp;ldquo;pure&amp;rdquo; OO style, we defined classes called &lt;code&gt;ComposedCheck&lt;/code&gt; and &lt;code&gt;MultipleCheck&lt;/code&gt; to compose more checks into one, and &lt;code&gt;FailingCheck&lt;/code&gt; to encapsulate a check that is required to fail. None of the implemented methods has conditional structures related to the &lt;em&gt;business logic&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;As an example, here&amp;rsquo;s the implementation for the class &lt;code&gt;ChildrenCountCheck&lt;/code&gt;, which validates a person considering the number of children:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class ChildrenCountCheck: PersonCheckType {
-    
-    let childrenCount: Int
-    init(_ childrenCount: Int) {
-        self.childrenCount = childrenCount
-    }
-    
-    func personIsValid(person: Person) -&amp;gt; Bool {
-        return person.childrenCount == childrenCount
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;structure&lt;/code&gt; object defined in &lt;code&gt;main.swift&lt;/code&gt; contains the list of conditions, in the form of properly configured objects; as you can see, the list is easily readable and the conditions are clear: thus, we can &lt;em&gt;declare&lt;/em&gt; the intent, separated from the implementation details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-functional-solution&#34;&gt; &lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-functional-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: functional solution&lt;/h2&gt;
-
-&lt;p&gt;In structuring the OO solution we have adopted a &lt;strong&gt;composition principle&lt;/strong&gt;: atomic objects with simple behavior, properly prepared, composed with each other in order to obtain more complex structures. In particular, each of our objects represents a specific &lt;em&gt;atomic behavior&lt;/em&gt;, that&amp;rsquo;s combined with others to obtain a &lt;em&gt;compound behavior&lt;/em&gt;. &lt;strong&gt;The abstraction holds&lt;/strong&gt;, and we can accept the fact that the objects we&amp;rsquo;re using are black boxes that encapsulate a single decision on a person: by creating a larger box with smaller boxes inside, we can define a more complex condition. However there are two problems specific to the OO approach:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;each class requires a lot of code just to build the &amp;ldquo;decision-in-the-box&amp;rdquo; abstraction;&lt;/li&gt;
-&lt;li&gt;objects&amp;rsquo; composition is based on the methods of the objects themselves, that results, again, in writing a lot of code, which could obfuscate the intent;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can get the same result, namely to create a complex decision-making structure from simple components, more clearly by using &lt;strong&gt;functional programming&lt;/strong&gt;. The functional code is described in &lt;code&gt;functional.swift&lt;/code&gt;. We always start by the immutable &lt;code&gt;struct Person&lt;/code&gt; and create, for convenience, another simple data container, &lt;code&gt;struct DeskNode&lt;/code&gt;, which simply pairs the name of a node to the name of a optional destination desk. For the rest, we will exclusively define functions, by modeling the entire problem as a series of data transformations.&lt;/p&gt;
-
-&lt;p&gt;In this case &lt;code&gt;PersonCheck&lt;/code&gt; is a &lt;strong&gt;type of function&lt;/strong&gt;, which associates a &lt;code&gt;Person&lt;/code&gt; to a &lt;code&gt;Bool&lt;/code&gt;. We also define the type of function &lt;code&gt;PersonNode&lt;/code&gt;, which associates a certain &lt;code&gt;DeskNode&lt;/code&gt; to a &lt;code&gt;Person&lt;/code&gt;, and that has basically the purpose that the &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; method had in the OO solution.&lt;/p&gt;
-
-&lt;p&gt;Finally, we represent the various &amp;ldquo;nodes&amp;rdquo; with a function of type &lt;code&gt;JobsNode&lt;/code&gt;, which constructs a &lt;code&gt;PersonNode&lt;/code&gt; based on a certain &lt;code&gt;PersonCheck&lt;/code&gt;: in this way, to build a list of &lt;code&gt;PersonNode&lt;/code&gt; we&amp;rsquo;ll just need to apply the various checks (&lt;code&gt;PersonCheck&lt;/code&gt;) to the respective nodes (&lt;code&gt;JobsNode&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;The method most frequently adopted in functional programming to compose functions is to use custom operators. We want, for example, compose the various &lt;code&gt;PersonCheck&lt;/code&gt; as if we were composing simple &lt;code&gt;Bool&lt;/code&gt; values, by defining &lt;strong&gt;AND&lt;/strong&gt; and &lt;strong&gt;OR&lt;/strong&gt; operators. By association with the classic &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; we define respectively the operators &lt;code&gt;&amp;lt;&amp;amp;&amp;gt;&lt;/code&gt; is &lt;code&gt;&amp;lt;|&amp;gt;&lt;/code&gt;, also copying &lt;a href=&#34;https://en.wikipedia.org/wiki/Operator_associativity&#34;&gt;precedence and associativity&lt;/a&gt; rules from the standard library. To improve readability and clarity of functions&amp;rsquo; composition, we also declare a &lt;em&gt;function application&lt;/em&gt; operator, defined as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;infix operator &amp;lt;*&amp;gt; {
-    associativity left
-    precedence 100
-}
-func &amp;lt;*&amp;gt; &amp;lt;A, B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp;gt; B {
-    return left(right)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can see from the definition that the operator &lt;code&gt;&amp;lt;*&amp;gt;&lt;/code&gt; basically applies an argument (positioned to the right of the operator) to a certain function (positioned to the left of the operator): thus, it represents an alternative way to apply a function other than writing its arguments in &lt;strong&gt;parentheses&lt;/strong&gt;, and is particularly suitable for improving the readability of the code when we use &lt;a href=&#34;https://en.wikipedia.org/wiki/Higher-order_function&#34;&gt;higher-order functions&lt;/a&gt;. We can see these operators at work in &lt;code&gt;main.swift&lt;/code&gt;, when we define our nodes, for example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;node(&amp;quot;old&amp;quot;, nextDeskName: &amp;quot;d3&amp;quot;)
-    &amp;lt;*&amp;gt; oldCheck
-    &amp;lt;&amp;amp;&amp;gt; mustFail(childrenChecks)
-    &amp;lt;&amp;amp;&amp;gt; checkExtendedJobs(availableJobsElderly)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above-mentioned function builds a &lt;code&gt;PersonNode&lt;/code&gt; named &amp;ldquo;old&amp;rdquo; that returns the desk &amp;ldquo;d3&amp;rdquo; if the input &lt;code&gt;Person&lt;/code&gt; complies with following conditions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;oldCheck&lt;/code&gt;: the person is elderly;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mustFail(childrenChecks)&lt;/code&gt;: the person must not have children;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;checkExtendedJobs(availableJobsElderly)&lt;/code&gt;: the senior citizens jobs set and the person&amp;rsquo;s favorite jobs set must have some intersection;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;At first glance it may seem difficult to understand, but you just need to get the basic abstractions on which functional composition is based in order to appreciate its &lt;strong&gt;power and expressiveness&lt;/strong&gt;. The array &lt;code&gt;nodes&lt;/code&gt;, in &lt;code&gt;main.swift&lt;/code&gt;, contains all the nodes of the problem, represented as functions: compared to the OO solution contained in &lt;code&gt;structure&lt;/code&gt;, the functional one is more clear and readable.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;an-empirical-validation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;an-empirical-validation:c252b88516f644ca0545d16795aa645d&#34;&gt;An empirical validation&lt;/h2&gt;
-
-&lt;p&gt;In designing the &amp;ldquo;OO&amp;rdquo; and &amp;ldquo;functional&amp;rdquo; solutions it was made the specific choice that the order in which the checks occur should be irrelevant: in this way we can remove a known cause of accidental complexity, the one of &amp;ldquo;control&amp;rdquo;, i.e, the &lt;strong&gt;order&lt;/strong&gt; in which the operations are carried out (we talked about it &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/#cause-di-complessita&#34;&gt;here&lt;/a&gt;). To do this, you must have &lt;strong&gt;non-ambiguous&lt;/strong&gt; checks: at most one check must pass for a certain person. It&amp;rsquo;d be probably possible to write a formal method to prove that a given set of conditions is non-ambiguous, and then write a unit test based on such proof, but in this case an &lt;em&gt;empirical approach&lt;/em&gt; seems more suitable and &lt;strong&gt;easier&lt;/strong&gt; to implement.&lt;/p&gt;
-
-&lt;p&gt;It was therefore choosen to use a &lt;a href=&#34;https://hackage.haskell.org/package/QuickCheck&#34;&gt;QuickCheck&lt;/a&gt; approach: QuickCheck is a library for the &lt;a href=&#34;https://www.haskell.org&#34;&gt;Haskell&lt;/a&gt; language, that allows you to automatically test that certain functions satisfy certain properties. The idea is to verify that a particular function always behaves in the same way, testing it with &lt;strong&gt;a large number of random inputs&lt;/strong&gt;: in our case, the function is just the list of checks, and the input is a value of type &lt;code&gt;Person&lt;/code&gt;. To verify that the checks are not ambiguous we can just try them with a large number of randomly generated persons: if for a certain value of &lt;code&gt;Person&lt;/code&gt; two or more checks are positive, the test stops and the ambiguous checks&amp;rsquo; names are logged. In the case of two ambiguous checks, to solve the problem it will suffice to make one of them more specific, for example by requiring that the other fails. We will use here the term &lt;em&gt;QuickCheck&lt;/em&gt; to indicate the empirical test implemented, but in fact the original library does much more: please refer to the &lt;a href=&#34;https://hackage.haskell.org/package/QuickCheck&#34;&gt;linked&lt;/a&gt; page for all the information.&lt;/p&gt;
-
-&lt;p&gt;The functions &lt;code&gt;quickCheck_functional&lt;/code&gt; and &lt;code&gt;quickCheck_oo&lt;/code&gt;  implement the required feature: they generate a large number of random &lt;code&gt;Person&lt;/code&gt;, and verify that the number of passed checks for each person is either 0 or 1. We can try this test by adding a new node. For example, suppose that at some point, after some time that the code was successfully used to solve the problem, you choose to add a new condition: there&amp;rsquo;s a special desk for older people with only one child. Notice that modifying the code of the function &lt;code&gt;placeNameForPerson_structured&lt;/code&gt; would be rather complicated: we should probably &lt;strong&gt;change more than one decision branch&lt;/strong&gt;, adding the same condition at different points, and the likelyhood of error would be high. On the other side, with the other two solutions we just need to add a new node. However, after adding the node, by executing the program we will see that QuickCheck fails, printing the following message:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ambiguous nodes: [1 child, 1 child old]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;QuickCheck is informing us that the nodes called &amp;ldquo;one child&amp;rdquo; and &amp;ldquo;one child old&amp;rdquo; are &lt;strong&gt;ambiguous&lt;/strong&gt;: in fact, if the &lt;code&gt;Person&lt;/code&gt; has one child and is old, the check for both nodes will pass. To solve the problem it will suffice to introduce another condition in the &amp;ldquo;one child&amp;rdquo; node: the seniority check must fail.&lt;/p&gt;
-
-&lt;p&gt;In the project you&amp;rsquo;ll also find a &lt;code&gt;quickCheck_consistency&lt;/code&gt; function, which performs a &lt;em&gt;sanity check&lt;/em&gt;: it verifies that the target desk for a large number of randomly generated &lt;code&gt;Person&lt;/code&gt; remains the same in the 3 cases: structured, oo and functional.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;conclusions&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusions:c252b88516f644ca0545d16795aa645d&#34;&gt;Conclusions&lt;/h2&gt;
-
-&lt;p&gt;We have seen three ways to solve the same relatively complex problem, and in two of them we were able to get a &lt;strong&gt;more manageable&lt;/strong&gt;, extensible and modifiable code by working at a &lt;strong&gt;higher level of abstraction&lt;/strong&gt;. In particular, the &amp;ldquo;functional&amp;rdquo; way allowed us to write more compact code, characterized by a more evident intent, at the (low) cost of an initial step of abstraction, represented by custom operators. But the key to the whole process is once again to be found in the aforementioned phrase in &lt;em&gt;Structure and Interpretation of Computer Programs&lt;/em&gt;, which I quote again:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;programs must be written for people to read, and only incidentally for machines to execute&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Adopting a more &lt;strong&gt;declarative&lt;/strong&gt; style, where the &lt;em&gt;business logic&lt;/em&gt; code &amp;ldquo;declares the intent&amp;rdquo;, describing the &amp;ldquo;what&amp;rdquo; and not the &amp;ldquo;how&amp;rdquo;, you can write more clear and readable software. This software will probably also be more &lt;em&gt;testable&lt;/em&gt; because it is based on lower level &lt;strong&gt;atomic components&lt;/strong&gt;, easy to test individually, which are combined through patterns of composition, also easily testable and provable. The ultimate goal is to build software architectures that are able to &lt;strong&gt;automatically solve problems&lt;/strong&gt;, which are described in code by using &lt;strong&gt;basic building blocks&lt;/strong&gt;. Finally, we have seen how a mixed &amp;ldquo;reasoned&amp;rdquo; and &amp;ldquo;empirical&amp;rdquo; approach can give excellent results; &lt;em&gt;a priori&lt;/em&gt; reasoning and &lt;em&gt;a posteriori&lt;/em&gt; verification are both useful tools, but their union is particularly powerful: indeed, every scientific discipline requires both the logical-mathematical reasoning for the definition of the theories, and the experimental verification to test their validity.&lt;/p&gt;
-
-&lt;p&gt;The tools are there, we just need to &lt;strong&gt;start using them&lt;/strong&gt;.&lt;/p&gt;
 </description>
     </item>
     

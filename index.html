@@ -211,15 +211,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
+                    </li>
+                
+                    <li>
                         <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
                     </li>
                 
                     <li>
                         <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
                     </li>
                 
             </ul>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h2>
+            <h2><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h2>
         
         
         
@@ -247,21 +247,21 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-03-15'>
-            15 March 2016
+        <time class="published" datetime='2016-04-08'>
+            8 April 2016
         </time>
 
         
-            <a href="/authors/elviro" class="author">
+            <a href="/authors/algatux" class="author">
             
-                <span class="name">Elviro Rocca</span>
-                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
+                <span class="name">Alessandro Galli</span>
+                <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" />
             
             </a>
         
 
         
-            <p>12 minute read</p>
+            <p>4 minute read</p>
         
     </div>
 </header>
@@ -271,207 +271,93 @@ ga('send', 'pageview');
 
     
 
-<p><a href="http://engineering.facile.it/code-reuse-a-primer/">Last time</a> we looked at the <strong>Signal</strong> class, that is, a simple, reusable way of encapsulating the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>. There are many use cases for a signal, and I&rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&rsquo; composition and decoupling is <strong>hard</strong>: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow. We often find ourselves in a situation in which several different responsibilities are all expressed in a single view controller, with the effect of creating a gigantic class, full of entangled imperative statements, hard-to-understand sequencing and general complexity. We&rsquo;ll use the <code>Signal</code> class to assign the various responsibilities to different classes, and write cleaner, more declarative code. The core of this architectural pattern lies in inverting the way in which objects communicate, view controller or other: instead of asking objects to do things, we&rsquo;re going to <strong>observe</strong> what objects are doing, and <strong>react</strong> accordingly. <em>Observe</em> and <em>React</em> are the cornerstones of the programming paradigm known as <a href="https://en.wikipedia.org/wiki/Functional_reactive_programming">functional reactive programming(FRP)</a>; the present article is not going to talk about FRP as a whole, nor to present shared FRP techniques; the point is to discuss an architectural pattern for decoupling view controllers from responsibilities not strictly related to user interaction, by leveraging some basic FRP tools.</p>
+<p><img src="/images/json-web-tokens/logo.svg" alt="JWT" /></p>
 
-<p>The example project for this article is available in <a href="https://github.com/broomburgo/SignalViewControllers/">GitHub</a>: I&rsquo;m going to paste some code examples, but it&rsquo;s recommended to check and test the entire project while reading the article. What follows is the full implementation of <code>Signal</code>, and its public interface for sending new values, called <code>Emitter</code>:</p>
+<p>When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability.
+I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy.
+Imagine for example a web application where a user can login and obtain a &ldquo;pass&rdquo; with his name and an expiration time, and this pass will let him ask for resources until the pass expires, and only if the issuer is trusted.
+Thanks to JWT&rsquo;s self verification capabilities, I could discard every request where the token is invalid (a fake token not signed by my application) or expired.
+Beyond this specific use case, JWT can be also useful to securely transmit data to other applications.</p>
 
-<pre><code class="language-Swift">import Foundation
+<p>Now let me introduce the standard: JSON Web Token (JWT) is an open standard <a href="https://tools.ietf.org/html/rfc7519">RFC 7519</a> that defines a compact, self-contained and secure way for transmitting information between two parties.</p>
 
-public enum Persistence {
-  case Stop
-  case Continue
-}
+<p>Using javascript object notation to represent the data means two things:</p>
 
-public final class Signal&lt;Subtype&gt; {
-  typealias Observation = Subtype -&gt; Persistence
+<ul>
+<li>saving lots of bytes when the token goes over the network, <strong>because of it&rsquo;s size</strong> it can be sent over an URL or inside an HTTP Header</li>
+<li>it can be <strong>easily parsed by a browser</strong> and consumed by a client application</li>
+</ul>
 
-  private var observations: [Observation] = []
+<p>This is more clear when comparing JSON to other standards like <a href="https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">SAML</a> that uses a very verbose XML structure.</p>
 
-  public init() {}
+<p>A JWT token can be trusted because it is digitally signed using a secret (usually with <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> algorithm) or a keypair with <a href="https://en.wikipedia.org/wiki/RSA">RSA</a>.
+Its payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.</p>
 
-  public func onReception (observeFunction: Subtype -&gt; Persistence) -&gt; Signal {
-    observations.append(observeFunction)
-    return self
-  }
+<h2 id="how-the-token-presents-itself:be256830241f7dc27936f7751ed2a96e">How the token presents itself</h2>
 
-  public func map&lt;OtherSubtype&gt;(transform: Subtype -&gt; OtherSubtype) -&gt; Signal&lt;OtherSubtype&gt; {
-    let mappedSignal = Signal&lt;OtherSubtype&gt;()
-    onReception {
-      mappedSignal.send(transform($0))
-      return .Continue
-    }
-    return mappedSignal
-  }
+<p>A token is represented as three base64 encoded strings joined by two points:</p>
 
-  public func flatMap&lt;OtherSubtype&gt;(transform: Subtype -&gt; Signal&lt;OtherSubtype&gt;) -&gt; Signal&lt;OtherSubtype&gt; {
-    let mappedSignal = Signal&lt;OtherSubtype&gt;()
-    onReception {
-      transform($0).onReception {
-        mappedSignal.send($0)
-        return .Continue
-      }
-      return .Continue
-    }
-    return mappedSignal
-  }
+<pre><code class="language-javascript">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+</code></pre>
 
-  public func filter(predicate: Subtype -&gt; Bool) -&gt; Signal {
-    let filteredSignal = Signal&lt;Subtype&gt;()
-    onReception {
-      if predicate($0) {
-        filteredSignal.send($0)
-      }
-      return .Continue
-    }
-    return filteredSignal
-  }
+<h3 id="headers:be256830241f7dc27936f7751ed2a96e">Headers</h3>
 
-  public func unionWith (otherSignal: Signal&lt;Subtype&gt;) -&gt; Signal {
-    let unifiedSignal = Signal&lt;Subtype&gt;()
-    let observeFunction = { (value: Subtype) -&gt; Persistence in
-      unifiedSignal.send(value)
-      return .Continue
-    }
-    onReception(observeFunction)
-    otherSignal.onReception(observeFunction)
-    return unifiedSignal
-  }
-}
+<p>The first part of the string contains the headers, <code>&quot;alg&quot;</code> is the algorithm used to secure the token and <code>&quot;typ&quot;</code> is the type; in this case as we can see that I used an HMAC SHA256 to sign the JWT token:</p>
 
-public func + &lt;Subtype&gt; (left: Signal&lt;Subtype&gt;, right: Signal&lt;Subtype&gt;) -&gt; Signal&lt;Subtype&gt; {
-  return left.unionWith(right)
-}
-
-extension Signal {
-  private func send (value: Subtype) {
-    var newObservations: [Observation] = []
-    while observations.count &gt; 0 {
-      let observe = observations.removeFirst()
-      let persistence = observe(value)
-      switch persistence {
-      case .Continue:
-        newObservations.append(observe)
-      case .Stop: break
-      }
-    }
-    observations = newObservations
-  }
-}
-
-public final class Emitter&lt;Subtype&gt; {
-  public let signal = Signal&lt;Subtype&gt;()
-
-  public func emit(value: Subtype) {
-    signal.send(value)
-  }
+<pre><code class="language-javascript">{
+  &quot;alg&quot;: &quot;HS256&quot;,
+  &quot;typ&quot;: &quot;JWT&quot;
 }
 </code></pre>
 
-<h2 id="the-megacontroller:98c10da2faa40144e7de0ba94dc701c4">The megacontroller</h2>
+<h3 id="payload:be256830241f7dc27936f7751ed2a96e">Payload</h3>
 
-<p>Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:</p>
+<p>The second part is the payload: it&rsquo;s the data sent with the token. It contains metadata and information like expiration, audience or subject, and whatever you need.</p>
 
-<ul>
-<li><em>average</em>: the movie was <em>good</em>, <em>bad</em> or <em>so and so</em>;</li>
-<li><em>polarized</em>: the movie was <em>very bad</em> or <em>really good</em>;</li>
-</ul>
-
-<p>The app is going to present a page in which the user can select an <em>average</em> or a <em>polarized</em> feedback, and can tap a button that will present the user the available choices, i.e., respectively <em>good</em>, <em>son and so</em>, <em>bad</em>, or <em>really</em> and <em>very bad</em>. The app is also going to thank the user if they&rsquo;ve just left a positive feedback, but only if the previously left feedback was of lower value. The example is a little contrived but instructive, as we&rsquo;re going to see. An <strong>easy, familiar approach</strong> to the problem would be to start with the design of the two view controllers involved:</p>
-
-<ul>
-<li>the <code>MainPage</code> will let the user select if the feedback is average or polarized, and will present a button to show the page where the actual feedback value will be selected; the <code>MainPage</code> will also show the currently selected feedback (or none) in a label;</li>
-<li>the <code>SelectionPage</code> is going to present several buttons with the various feedback values (different based on the feedback category), and at the tap of a button the page should actually pop from the navigation stack, going back to the now-updated <code>MainPage</code>.</li>
-</ul>
-
-<p>Armed with our <strong>imperative mind</strong> we would probably start by adding a sequence of instructions to the <code>MainPage</code>, that we&rsquo;ll probably perceive as the &ldquo;main&rdquo; controller of our app. But soon, we would probably notice that a lot of <strong>clearly separated</strong> responsibilities are being collected in the <code>MainPage</code> class:</p>
-
-<ul>
-<li>the <code>SelectionPage</code> has to be constructed and initialized, and by doing this in <code>MainPage</code> we are imposing a strict <strong>dependency</strong> between the two classes;</li>
-<li>after its initialization, the <code>SelectionPage</code> must be presented to the user: we would probably embed <code>MainPage</code> in a <code>UINavigationController</code>, then push the <code>SelectionPage</code> from the <code>MainPage</code>, resulting in a strict coupling of the two classes with a particular navigation and presentation strategy (i.e., using a <code>UINavigationController</code>) that is going to cause headaches if the use cases change (for example, in developing the <strong>iPad version</strong> of the app);</li>
-<li>there&rsquo;s a feedback value <strong>stored somewhere</strong>, because we need to know if the user selected <code>average</code> or <code>polarized</code>, and actually which was the selected feedback, because its value will be shown on the main page; the simplest solution seems to be just storing the selected feedback value in the <code>MainPage</code> class;</li>
-<li>the act of &ldquo;collecting the feedback&rdquo; is a responsibility in itself, because the collected value is probably going to be used somewhere (for example, posting it to a web service);</li>
-</ul>
-
-<p>We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we&rsquo;re going to try and think with signals.</p>
-
-<h2 id="the-model:98c10da2faa40144e7de0ba94dc701c4">The model</h2>
-
-<p>For example, if the model changes we need to update the text shown on the <code>MainPage</code>: a possible way to manage this could be to create a <code>ModelController</code> class, which holds the model, and <em>emits a signal</em> each time the model changes. Then, the <code>MainPage</code> could <em>react</em> to this signal, and change the UI accordingly. A nice to way to do this is injecting the <code>ModelController</code> in the <code>MainPage</code> constructor, so that <code>MainPage</code> can establish the appropriate bindings:</p>
-
-<pre><code class="language-Swift">/// MainPage initializer
-init(feedbackModelController: ModelController&lt;FeedbackModel&gt;) {
-  super.init(nibName: nil, bundle: nil)
-  feedbackModelController.updateSignal.onReception § eachTime § updateViewsWithFeedbackModel
-  viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify
+<pre><code class="language-javascript">{
+  &quot;sub&quot;: &quot;1234567890&quot;,
+  &quot;name&quot;: &quot;John Doe&quot;,
+  &quot;admin&quot;: true
 }
 </code></pre>
 
-<p>The <code>§</code> operator and the <code>eachTime</code> function are just helpers to make the <strong>functional composition</strong> easier: as it often happens with functional programming, or declarative programming in general, we can infer the meaning of an expression just by reading it; in fact, <code>onReception § eachTime § updateViewsWithFeedbackModel</code> means that when the signal is received, the <code>MainPage</code> will update the view every time according to the new <code>FeedbackModel</code>: <code>eachTime</code> means that every time the signal triggers, so will the update; this is in contrast with the <code>once</code> function, that makes the object listen only to the first signal trigger. This is  related to the <code>Persistence</code> of a <code>Signal</code> observation, that is, if the object should continue listen to a signal or not: <code>Persistence</code> is a single <code>enum</code> with two values, <code>Continue</code> and <code>Stop</code>.</p>
-
-<p>An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the <code>viewDidLoad</code> method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the <code>ModelController</code> is available: the line <code>viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify</code> means that when the <code>viewReadyEmitter</code>, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to <em>notify</em> its current value to all the observers; this way we don&rsquo;t need to manually update the views in the <code>viewDidLoad</code> method: everything is connected, and the signals will <strong>propagate</strong> according to the declarative bindings.</p>
-
-<h2 id="handling-page-creation-and-presentation:98c10da2faa40144e7de0ba94dc701c4">Handling page creation and presentation</h2>
-
-<p>Transitioning between pages is one the key points in iOS programming: page presentation has to be <strong>predictable and smooth</strong>, to avoid a confusing user experience. One of the main premises of the <code>UIViewController</code> class was and still is the creation of a modular hierarchy of views, that&rsquo;s independent from the way it&rsquo;s presented to the user: that way we can easily reuse <strong>the same</strong> view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic <em>inside</em> the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.</p>
-
-<p>A possible solution would be to use a <code>NavigationHandler</code>, that will handle the transition between pages, along with the initial presentation during the application startup. The strategy here is to use a class that knows <strong>when and how</strong> to present pages, oblivious of what pages actually do. For example, on receiving the appropriate signal from <code>MainPage</code>, the <code>NavigationHandler</code> will present the <code>SelectionPage</code>. Where the <code>SelectionPage</code> comes from? We should certainly avoid to burden the <code>NavigationHandler</code> with pages&rsquo; initialization responsibilities,  in fact we identified the class creation as a responsibility in itself. A frequent pattern used to handle the initialization of objects is the <a href="http://www.oodesign.com/factory-pattern.html">Factory Pattern</a>: a <code>PageFactory</code> will construct our pages with the options passed to the factory constructor. Thus, <code>NavigationHandler</code> will ask the <code>PageFactory</code> for pages, through the methods <code>makeMainPage</code> and <code>makeSelectionPage</code>.</p>
-
-<p>But we incur in a problem: <code>makeSelectionPage</code> will just return a <code>SelectionPage</code> object, but we don&rsquo;t know if it&rsquo;s <em>always</em> the same instance, or a new instance each time. In fact, <code>PageFactory</code> doesn&rsquo;t <em>promise</em> always the same page. This is important because the <code>NavigationHandler</code> will only take care of page presentation, but the very same page instance has to be considered, for example, for collecting the feedback. A possible strategy would be to <em>cache</em> the <code>SelectionPage</code>, but one of the main points of functional programming is <strong>avoiding state</strong>: we don&rsquo;t want to burden ourselves with the responsibility of managing mutable state, which is one of the <a href="http://shaffner.us/cs/papers/tarpit.pdf">main causes of complexity</a> in software development. Instead, we will once again leverage signals to handle the situation. <code>PageFactory</code> exposes two signals that are triggered at page creation; <code>NavigationHandler</code>  uses those signal to bind its actions to the initialized pages:</p>
-
-<pre><code class="language-Swift">pageFactory.signalMakeMainPage
-  .flatMap { $0.signalLeaveFeedback }
-  .onReception § eachTime § inAnyCase § presentSelectionPage
-  
-pageFactory.signalMakeSelectionPage
-  .flatMap { $0.signalSelection }
-  .onReception § eachTime § inAnyCase § popTopPage
-</code></pre>
-
-<p>In the code just shown, the signals that are triggered when the pages are initialized are <em>flatMapped</em> to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the <em>second</em> signal will be available only when the <em>first</em> signal is triggered: the <code>flatMap</code> method will let us reference a signal that is not yet available. The <code>inAnyCase</code> function is used because <code>NavigationHandler</code> is not interested in the <em>content</em> of the signals, but just the fact that they are triggered; the content is going to be handled by another class: <code>FeedbackCollector</code>.</p>
-
-<h2 id="composing-signals:98c10da2faa40144e7de0ba94dc701c4">Composing signals</h2>
-
-<p><code>FeedbackCollector</code> has the responsibility of <em>collecting the whole feedback</em>: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it&rsquo;s the result of <strong>many different interactions</strong> from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:</p>
+<p>All data is organized in <strong>claims</strong>, statements about an entity (typically, the user). There are three types of claims: reserved, public, and private claims.</p>
 
 <ul>
-<li>at the app startup the pages are not yet initialized;</li>
-<li>to actually collect the feedback various interactions in multiple pages will be needed;</li>
+<li><strong>Reserved claims</strong>: a set of predefined claims, conceived to provide a set of useful information. Some of them are: <code>iss</code> (issuer), <code>exp</code> (expiration time), <code>sub</code> (subject), <code>aud</code> (audience), among others.</li>
+<li><strong>Public claims</strong>: defined at will but, in order to avoid collisions, they should be defined in the <a href="http://www.iana.org/assignments/jwt/jwt.xhtml">IANA JSON Web Token Registry</a> or be described as a URI that contains a collision resistant namespace.</li>
+<li><strong>Private claims</strong>: custom claims created to share information between parties that agree with using them.</li>
 </ul>
 
-<p>Usually these consideration would lead to <strong>stateful</strong> computations, where state would be expressed in various points, and mutated. But the class <code>FeedbackCollector</code> can generate a signal triggered each time a new feedback is collected with a single expression:</p>
+<h3 id="sign:be256830241f7dc27936f7751ed2a96e">Sign</h3>
 
-<pre><code class="language-Swift">func collectFeedbackModelChange() -&gt; Signal&lt;FeedbackModelChange&gt; {
-  return pageFactory.signalMakeMainPage
-    .flatMap { $0.signalPolarizedChanged }
-    .map(FeedbackModel.transformWithPolarized)
-    + pageFactory.signalMakeSelectionPage
-      .flatMap { $0.signalSelection }
-      .map(FeedbackModel.transformWithFeedback)
+<p>The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algorithm described in headers.</p>
+
+<pre><code class="language-javascript">HMACSHA256(
+  base64UrlEncode(header) + &quot;.&quot; +
+  base64UrlEncode(payload),
+  secret
+)
+</code></pre>
+
+<p>As said before the more interesting feature of JWT is in it&rsquo;s flexibility. It can be created with the claims you need, carry your data and validated on other claims (standard or not).
+As an example, if on authentication I want to be sure that the token is issued by my application and that it is not older than 1 hour I can generate a token with a payload like this:</p>
+
+<pre><code class="language-javascript">{
+  &quot;iss&quot;: &quot;1234567890&quot;, // my application code
+  &quot;exp&quot;: &quot;1459868400&quot;, // 2016-04-04 15:00:00 Expiration time
+  &quot;uid&quot;: 159, // the user id
+  &quot;name&quot;: &quot;Alessandro Galli&quot;
 }
 </code></pre>
 
-<p>The <code>+</code> operator will literally <em>add</em> 2 signals together, producing a signal that is triggered each time either of the signals is triggered. The app uses the <code>Signal&lt;FeedbackModelChange&gt;</code> produced by the <code>collectFeedbackModelChange()</code> to update the model in the <code>ModelController</code>.</p>
+<p>Once my application receives a request with this token, an authenticator component will check the two claims (<code>iss</code>, <code>exp</code>) to be sure of the assertions made before, and then validate the sign. Furthermore, with the additional claims it can login the user without querying the database and complete the request.</p>
 
-<p>Another example of asynchronous reaction to signals is shown in the <code>AppDelegate</code>&rsquo;s method <code>handleGoodFeedbacksWithAlert()</code>; here&rsquo;s the logic: if the user leaves a positive feedback, that is better than the previously left feedback, the app will show an alert, thanking the user. The entire logic for this is handled in the following expression:</p>
+<p>This approach results in a stateless authentication removing all problems related to session storage, CORS+cookies requests and CSRF protection, among others.</p>
 
-<pre><code class="language-Swift">feedbackModelController.deltaSignal
-  .filter { $0.feedback.rawValue &lt; $1.feedback.rawValue}
-  .filter { $1.feedback == .Good || $1.feedback == .ReallyGood }
-  .onReception § eachTime § inAnyCase § showThankYouAlert
-</code></pre>
+<p>As a solid standard, JWT has been adopted by a large number of users and it has libraries for almost every programming language: PHP, Java, Go, Python, Javascript, Ruby, Elixir, Scala, .NET. You can find a full list of available and trusted libraries on <a href="https://jwt.io/#libraries-io">JWT.io</a></p>
 
-<p><code>ModelController</code>&rsquo;s <code>deltaSignal</code> is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by <em>filtering</em> the <code>deltaSignal</code>, because we need a signal that is triggered only when the new feedback is different from the previous and positive.</p>
-
-<h2 id="conclusion:98c10da2faa40144e7de0ba94dc701c4">Conclusion</h2>
-
-<p>A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:</p>
-
-<ul>
-<li>we can work on <strong>a single piece at a time</strong>, thinking about what <em>values</em> are exchanged between classes, instead of interfaces and abstractions;</li>
-<li>we&rsquo;ll be able to focus on what a view controller, or any class, really has to <em>produce</em>, that is, what value is going to yield in the economy of the app;</li>
-</ul>
-
-<p>Signals are not application-wide events: we don&rsquo;t need a router or a dispatcher (like   <code>NSNotificationCenter</code>) to properly handle them, because each object will declare its observation of specific signals. Also, because signals are easily transformed and composed, we can declaratively express our bindings without worrying about <em>when</em> and <em>how</em> things are going to happen, but just <em>what</em> we need. Of course our architecture has to take into account the fact that getting a <em>precise sequence of events</em> is basically impossible when working with signals: actually, <em>sequencing</em> is not even considered in declarative programming, because, along with <em>state</em>, is a great cause of complexity. In the end, a declarative architecture, like everything, has its tradeoffs, but I still think it&rsquo;s worth trying.</p>
+<p>In the next weeks, I will write a post and release my personal authentication example, using PHP with the Symfony framework.</p>
 
 
     <section id="social-share">
@@ -479,43 +365,43 @@ pageFactory.signalMakeSelectionPage
             
 
 
-<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f&text=Json%20Web%20Token&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -543,11 +429,11 @@ pageFactory.signalMakeSelectionPage
     
         <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/swift">Swift</a></li>
+        <li><a href="/categories/jwt">JWT</a></li>
     
-        <li><a href="/categories/functional-programming">Functional programming</a></li>
+        <li><a href="/categories/security">Security</a></li>
     
-        <li><a href="/categories/signal">Signal</a></li>
+        <li><a href="/categories/encryption">Encryption</a></li>
     
 </ul>
 
@@ -555,8 +441,8 @@ pageFactory.signalMakeSelectionPage
 </article>
 <ul class="actions pagination">
     
-        <li><a href="/blog/eng/graphql-an-introduction/"
-                class="button big previous">GraphQL: an introduction</a></li>
+        <li><a href="/blog/eng/decoupling-view-controllers-with.signals/"
+                class="button big previous">Decoupling view controllers with Signals</a></li>
     
 
     
@@ -571,7 +457,7 @@ pageFactory.signalMakeSelectionPage
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'shortname';
-    var disqus_url = '\/blog\/eng\/decoupling-view-controllers-with.signals\/';
+    var disqus_url = '\/blog\/eng\/json-web-tokens\/';
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -596,43 +482,43 @@ pageFactory.signalMakeSelectionPage
             
 
 
-<li><a href="//twitter.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&text=Decoupling%20view%20controllers%20with%20Signals&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f&text=Json%20Web%20Token&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f&title=Decoupling%20view%20controllers%20with%20Signals" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2feng%2fjson-web-tokens%2f&title=Json%20Web%20Token" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fdecoupling-view-controllers-with.signals%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2feng%2fjson-web-tokens%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -752,6 +638,27 @@ pageFactory.signalMakeSelectionPage
                             <header>
                                     
                                         
+                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-08'>
+                                        8 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -784,27 +691,6 @@ pageFactory.signalMakeSelectionPage
                                     
                                     <time class="published" datetime='2016-01-18'>
                                         18 January 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-01-11'>
-                                        11 January 2016
                                     </time>
                             </header>
                         </article>
@@ -877,7 +763,7 @@ pageFactory.signalMakeSelectionPage
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/swift/">Swift</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">8</span>
                             </header>
                         </article>
@@ -888,8 +774,8 @@ pageFactory.signalMakeSelectionPage
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">7</span>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
                             </header>
                         </article>
                     </li>
@@ -921,7 +807,7 @@ pageFactory.signalMakeSelectionPage
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/symfony/">Symfony</a>
+                                <a href="/categories/security/">Security</a>
                                 <span style="float:right;">3</span>
                             </header>
                         </article>
@@ -939,6 +825,26 @@ pageFactory.signalMakeSelectionPage
                     </li>
                     
                 
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/encryption/">Encryption</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/symfony/">Symfony</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
                     
                 
                     

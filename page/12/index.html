@@ -212,15 +212,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
+                    </li>
+                
+                    <li>
                         <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
                     </li>
                 
                     <li>
                         <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="/blog/eng/write-filesystem-fuse/"><p>Write a filesystem with FUSE</p></a>
                     </li>
                 
             </ul>
@@ -235,6 +235,78 @@ ga('send', 'pageview');
         
             
         
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
+        </time>
+
+        
+            <a href="/authors/lorenzo" class="author">
+            
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+            
+            </a>
+        
+
+        
+            <p>2 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/php-internals">PHP internals</a></li>
+    
+</ul>
+
+    </footer>
+</article>
 
         
             <article class="post">
@@ -432,6 +504,27 @@ ga('send', 'pageview');
                             <header>
                                     
                                         
+                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-08'>
+                                        8 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -464,27 +557,6 @@ ga('send', 'pageview');
                                     
                                     <time class="published" datetime='2016-01-18'>
                                         18 January 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="/blog/eng/write-filesystem-fuse/">Write a filesystem with FUSE</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-01-11'>
-                                        11 January 2016
                                     </time>
                             </header>
                         </article>
@@ -569,18 +641,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">7</span>
-                            </header>
-                        </article>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/open-source/">Open Source</a>
-                                <span style="float:right;">5</span>
+                                <span style="float:right;">8</span>
                             </header>
                         </article>
                     </li>
@@ -601,7 +662,40 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/encryption/">Encryption</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
                                 <a href="/categories/symfony/">Symfony</a>
+                                <span style="float:right;">3</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/security/">Security</a>
                                 <span style="float:right;">3</span>
                             </header>
                         </article>
@@ -617,8 +711,6 @@ ga('send', 'pageview');
                             </header>
                         </article>
                     </li>
-                    
-                
                     
                 
                     
