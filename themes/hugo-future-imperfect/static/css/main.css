@@ -3451,6 +3451,11 @@
 
 /** VARIOUS FIXES **/
 
+	p + ol,
+	p + ul {
+		margin-top: -1.2em;
+	}
+
 	.post img {
 		max-width: 100%;
 	}
@@ -3459,7 +3464,7 @@
 		border: none;
 	}
 
-	.post pre {
+	.post pre, .gist {
 		max-width: 50em;
 	}
 
