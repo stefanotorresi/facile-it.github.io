@@ -2,7 +2,7 @@
 authors: ["algatux"]
 comments: true
 date: "2016-04-08"
-draft: true
+draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
