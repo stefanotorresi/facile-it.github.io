@@ -3463,7 +3463,9 @@
 		max-width: 50em;
 	}
 
-	.post p a {
+	.post p a,
+	.post ul a,
+	.post ol a {
 		border-bottom: double 3px rgba(160, 160, 160, 0.85)
 	}
 
@@ -3474,4 +3476,28 @@
 	.post > header .meta {
 		padding: 1.75em 3em 1.75em 3em;
 		top: 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		text-transform: none;
+		letter-spacing: 0;
+	}
+
+	ul.posts h1,
+	ul.posts h2,
+	ul.posts h3,
+	ul.posts h4 {
+		text-transform: capitalize;
+	}
+
+	#sidebar ul > header h3 {
+		text-transform: uppercase;
+	}
+
+	#sidebar article h3 a {
+		font-size: larger;
+	}
+
+	body {
+		font-size: 20px;
 	}
