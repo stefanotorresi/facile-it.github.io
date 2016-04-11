@@ -3494,6 +3494,10 @@
 		text-transform: uppercase;
 	}
 
+	#sidebar article h3 a {
+		font-size: larger;
+	}
+
 	body {
 		font-size: 20px;
 	}
