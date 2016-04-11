@@ -16,7 +16,7 @@ We are very happy with those changes, but the reason behind this transition is n
 ## What we were searching for
 Before, we were using an hosted CMS to run the blog, [Ghost](https://ghost.org/). We were happy with the results, it wasn't our concern to administrate the server or bother about other hosting stuff.
 
-But, as many other developers, we were **hitching for something** more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having **problems during the revision phase** of the articles, since multiple persons couldn't review and edit an article at the same time, fearing the risk of overwriting each other work. 
+But, as many other developers, we were **hitching for something** more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having **problems during the revision phase** of the articles, since multiple persons couldn't review and edit an article at the same time, fearing the risk of overwriting each other's work. 
 
 We then came down with a list of requirements for our blog; we wanted:
 
@@ -56,6 +56,6 @@ git checkout -b source --orphan
  
 We started our Hugo site inside it, and we put the `./public` in the `.gitIgnore`, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of `publish: <last commit message from source>`.
 
-## And voilà, here we are!
+## Et voilà, here we are!
 
 So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!
