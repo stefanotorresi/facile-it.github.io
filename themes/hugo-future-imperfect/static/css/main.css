@@ -3459,8 +3459,10 @@
 		border: none;
 	}
 
-	.post pre {
-		max-width: 50em;
+	pre {
+		display: table;
+		table-layout: fixed;
+		width: 100%
 	}
 
 	.post p a,
