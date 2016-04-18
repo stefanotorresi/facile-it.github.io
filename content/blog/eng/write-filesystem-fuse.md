@@ -14,7 +14,7 @@ aliases:
 ---
 During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.
 
-## Introduction
+# Introduction
 
 A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.
@@ -48,16 +48,16 @@ However there are also a few **disadvantages** of this approach:
 
 
 Here's a flow-chart diagram showing how FUSE works, source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:FUSE_structure.svg)
-![A flow-chart diagram showing how FUSE works](/content/images/2016/01/FUSE_structure.svg)
+![A flow-chart diagram showing how FUSE works](/images/write-filesystem-fuse/FUSE_structure.svg)
 
-## Getting started with FUSE
+# Getting started with FUSE
 
 This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what's going on whether you execute the code or not.
 
-### Build dependencies
+## Build dependencies
 From now you'll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.
 
-#### Linux
+### Linux
 
 - GCC or Clang
 - CMake >= 3
@@ -79,7 +79,7 @@ Debian/Ubuntu
 apt-get install gcc fuse libfuse-dev make cmake
 ```
 
-#### Mac OSX
+### Mac OSX
 
 - Command line tools for Xcode (contains Clang and make)
 - CMake >= 3
@@ -93,7 +93,7 @@ You can obtain all the needed dependencies at the following sources:
 - [OSXFuse](https://osxfuse.github.io/)
 
 
-### FUSE API
+## FUSE API
 
 The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.
@@ -101,7 +101,7 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 The most complete source of documentation on what are the callbacks and their behavior is the `fuse.h` declaration file. You can find an online version [here](https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577).
 
 
-### Example project
+## Example project
 
 For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named `file` and its content.
 
@@ -125,21 +125,41 @@ As you can see the project structure is quite simple:
 └── fuse-example.c
 ```
 
-#### [CMakeLists.txt](https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt)
+### [CMakeLists.txt](https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt)
 
 As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The `CMake/FindFuse.cmake` is needed in order to tell CMake where to find the FUSE related things while compiling/linking.
 
-#### [fuse-example.c](https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c)
+### [fuse-example.c](https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c)
 
 Here's where the magic actually happen!
 
 In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.
 
-##### getattr
+#### getattr
 
 The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.
 
-<script src="https://gist.github.com/fntlnz/f373ee1e423566642d71.js"></script>
+
+```c
+static int getattr_callback(const char *path, struct stat *stbuf) {
+  memset(stbuf, 0, sizeof(struct stat));
+
+  if (strcmp(path, "/") == 0) {
+    stbuf->st_mode = S_IFDIR | 0755;
+    stbuf->st_nlink = 2;
+    return 0;
+  }
+
+  if (strcmp(path, filepath) == 0) {
+    stbuf->st_mode = S_IFREG | 0777;
+    stbuf->st_nlink = 1;
+    stbuf->st_size = strlen(filecontent);
+    return 0;
+  }
+
+  return -ENOENT;
+}
+```
 
 What we are doing here is simple: 
 
@@ -153,31 +173,76 @@ In general, if the entry is a directory, `st_mode` have to be set to `S_IFDIR` a
 
 [Here](http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html) you can find more information about `<sys/stat.h>` 
 
-##### open
+#### open
 The open callback is called when the system requests for a file to be opened. Since we don't have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.
 
-##### read
+#### read
 This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument `buf` with the content of those bytes.
 As done in the getattr callback, here I'm checking if the given path equals to a known one, I copy the `filecontent` into the `buf` and then return the requested number of bytes.
 
 
-<script src="https://gist.github.com/fntlnz/91ee912e4d58295ee18d.js"></script>
+```c
+static int read_callback(const char *path, char *buf, size_t size, off_t offset,
+    struct fuse_file_info *fi) {
 
-##### readdir
+  if (strcmp(path, filepath) == 0) {
+    size_t len = strlen(filecontent);
+    if (offset >= len) {
+      return 0;
+    }
+
+    if (offset + size > len) {
+      memcpy(buf, filecontent + offset, len - offset);
+      return len - offset;
+    }
+
+    memcpy(buf, filecontent + offset, size);
+    return size;
+  }
+
+  return -ENOENT;
+}
+```
+
+#### readdir
 The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is `/`, this function always return its representation, we are doing it by filling `buf` with the two links for the upper directory `..` and current directory `.` and with the only file we have: `file`.
 
-<script src="https://gist.github.com/fntlnz/5e712738bdab28f1a1c0.js"></script>
+```c
+static int readdir_callback(const char *path, void *buf, fuse_fill_dir_t filler,
+    off_t offset, struct fuse_file_info *fi) {
+  (void) offset;
+  (void) fi;
 
-##### main
+  filler(buf, ".", NULL, 0);
+  filler(buf, "..", NULL, 0);
+
+  filler(buf, filename, NULL, 0);
+
+  return 0;
+}
+```
+
+#### main
 
 Last but not least, the `main` function here is acting as a proxy to the `fuse_main` passing arguments through it and configuring it with the implemented FUSE operation callbacks via the `fuse_example_operations` variable.
 
-<script src="https://gist.github.com/fntlnz/57922d3b64a9fa042aca.js"></script>
+```c
+static struct fuse_operations fuse_example_operations = {
+  .getattr = getattr_callback,
+  .open = open_callback,
+  .read = read_callback,
+  .readdir = readdir_callback,
+};
 
+int main(int argc, char *argv[])
+{
+  return fuse_main(argc, argv, &fuse_example_operations, NULL);
+}
+```
 
-#### Build and run
+### Build and run
 
 Do you remember that you installed CMake, make, gcc and libfuse? It's time to use them!
 
@@ -199,7 +264,7 @@ The `-j` parts tells make to parallelize the build to all your cores, remove it 
 
 Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!
 
-#### Run!
+### Run!
 
 Before doing anything we need a mountpoint, so let's create the directory where the filesystem will be mounted:
 
@@ -237,13 +302,13 @@ As you may notice, we mounted the filesystem with three arguments which are:
 
 You can see the list of all mount options using `-h`.
 
-### Thoughts and notes
+## Thoughts and notes
 - An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let's say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.
 - FUSE is more secure than low level kernel development, but security is not free so if you are going to write a network filesystem, for example you may want not to mount it as root.
 - By default, accessing the mounted filesystem for other users is not allowed.
 
 
-### Other resources
+## Other resources
 - [Fuse bindings in Go](https://github.com/hanwen/go-fuse)
 - [Fuse bindings in NodeJS](https://github.com/bcle/fuse4js)
 - [Fuse bindings in Python](https://github.com/terencehonles/fusepy)

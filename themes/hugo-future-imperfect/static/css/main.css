@@ -3451,6 +3451,11 @@
 
 /** VARIOUS FIXES **/
 
+	p + ol,
+	p + ul {
+		margin-top: -1.2em;
+	}
+
 	.post img {
 		max-width: 100%;
 	}
