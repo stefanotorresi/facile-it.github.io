@@ -23,7 +23,7 @@ params:
   viewMorePostLink    : "/blog/"
 
 # Optional Params
-  categoriesByCount   : true
+  categoriesByCount   : false
   authorsByCount      : true
   includeReadingTime  : true
   # The set of favicons used are based on the write-up from this link:

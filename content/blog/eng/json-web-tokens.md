@@ -1,8 +1,8 @@
 ---
-authors: ["sandro"]
+authors: ["algatux"]
 comments: true
-date: "2016-04-05"
-draft: true
+date: "2016-04-08"
+draft: false
 image: "/images/cover.jpg"
 menu: ""
 share: true
