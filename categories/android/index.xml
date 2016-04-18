@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Facile.it Engineering</title>
+    <link>/categories/android/</link>
+    <description>Recent content in Android on Facile.it Engineering</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Droidcon It 2016</title>
+      <link>/blog/eng/droidconit_recap/</link>
+      <pubDate>Mon, 18 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/eng/droidconit_recap/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;/images/droidconit-recap/logo_droidcon_it.png&#34; alt=&#34;Droidcon It&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The third edition of &lt;a href=&#34;http://it.droidcon.com/2016/&#34;&gt;Droidcon IT&lt;/a&gt; was, as expected, a great conference, full of interesting talks and people coming from all over the world. We saw a lot of GDEs (&lt;a href=&#34;https://developers.google.com/experts/all/technology/android&#34;&gt;Google Developer Expert&lt;/a&gt;) and also some Developer Advocates from Google, although it was not organized directly by the company. Back in March the Android team surprisingly released the brand new &lt;strong&gt;N Developer Preview&lt;/strong&gt; earlier than expected, so this year we were already able to talk about the new features in Android N and analyze them. Furthermore, there was talk of &lt;strong&gt;Kotlin&lt;/strong&gt;, &lt;strong&gt;RxJava&lt;/strong&gt; and a lot of other useful and interesting topics.&lt;/p&gt;
+
+&lt;p&gt;In this post I&amp;rsquo;m going to recap the event and make some considerations about the most interesting (and funny) talks.&lt;/p&gt;
+
+&lt;h1 id=&#34;day-1:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Day 1&lt;/h1&gt;
+
+&lt;h2 id=&#34;keynote-wojtek-kalicinski-https-twitter-com-wkalic:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Keynote - &lt;em&gt;&lt;a href=&#34;https://twitter.com/wkalic&#34;&gt;Wojtek Kalicinski&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;The day 1 keynote was all about the N Developer Preview and was given by Wojtek Kalicinski, a developer advocate directly from Google.
+Wojtek went through all the new improvements of the platform, both from user&amp;rsquo;s and developer&amp;rsquo;s point of view. Here’s a short summary of the most relevant ones:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-window support&lt;/strong&gt;: probably the most requested user feature. I’ve always thought that its implementation would have been relatively straightforward, given the already responsive UI of Android, and in fact the code changes that are needed to support this feature are minimal. Just make sure you don’t lock screen orientation using &lt;code&gt;android:screenOrientation&lt;/code&gt; in your manifest.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better notifications&lt;/strong&gt;: in addition to a visual change of the notification panel, apps will now be able to let the user interact with bundled notifications individually or to reply from the notification itself directly. Moreover, if the app already supports Android Wear notifications, most of this will come for free, since the APIs are the same.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Doze improvements&lt;/strong&gt;: the battery saving mode called Doze, now works — in a less aggressive mode — when the phone is in the user pocket or hands, and not only when the phone is stationary. Wojtek said that most of the apps should continue to work without any change — or eventually &lt;a href=&#34;http://developer.android.com/intl/ko/training/monitoring-device-state/doze-standby.html#assessing_your_app&#34;&gt;minimal&lt;/a&gt; —, but he strongly encouraged to test apps against this new feature.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JAVA 8 features!&lt;/strong&gt;: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including &lt;em&gt;lambdas&lt;/em&gt; (🎉) and &lt;em&gt;default and static interface methods&lt;/em&gt; (TODO: add DP2 apis). All of this is possibile thanks to the Jack&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:cff18b79afe3f01c3e654e6856c73831:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:cff18b79afe3f01c3e654e6856c73831:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Other changes include improvements to &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#background_optimizations&#34;&gt;Project Svelte&lt;/a&gt;, a new &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#data_saver&#34;&gt;Data Saver&lt;/a&gt; feature, the addition of the &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#tile_api&#34;&gt;Quick Settings Tile API&lt;/a&gt; and &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html&#34;&gt;many more&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The most interesting and encouraging aspect coming out from the keynote and the N Preview release itself, is the fact that Google is, finally, trying to fix the Android updates issue.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/droidconit-recap/n-preview-updates.png&#34; alt=&#34;N Preview Updates&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.&lt;/p&gt;
+
+&lt;h2 id=&#34;perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev:cff18b79afe3f01c3e654e6856c73831&#34;&gt;#PERFMATTERS for Android - &lt;em&gt;&lt;a href=&#34;https://twitter.com/alosdev&#34;&gt;Hasan Hosgel&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The talk was all about performance in Android. The speaker analyzed why #&lt;strong&gt;PERFMATTERS&lt;/strong&gt; on Android: the typical mobile user is generally &lt;em&gt;impatient&lt;/em&gt; and &lt;em&gt;intolerant&lt;/em&gt; and even just a couple of extra seconds during the start-up could make the difference in the user&amp;rsquo;s choice to use or not your app. Hasan went through a lot of interesting tips and tricks to improve performance, such as avoiding multi-pass nested layout — a topic discussed in more detail by Huyen Tue Dao during her &lt;a href=&#34;#lean-layouts&#34;&gt;talk&lt;/a&gt; —, avoiding memory leaks or having a cache on disk for data.&lt;/p&gt;
+
+&lt;p&gt;Performance is crucial to &lt;strong&gt;engage the user&lt;/strong&gt; and I think the speaker did a great job in summarizing useful tips to improve it. Moreover most of them doesn’t alter the readability or the maintainability of the code, as is often the case for performance driven code changes.&lt;/p&gt;
+
+&lt;h2 id=&#34;let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Let it flow! Unidirectional data flow architecture in Android - &lt;a href=&#34;https://twitter.com/dorvaryn&#34;&gt;&lt;em&gt;Benjamin Augustin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/dorvaryn/let-it-flow&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The use of patterns to structure the presentation layer (UI) in Android is still infrequent. During the last couple of years we have seen a lot of discussions about &lt;strong&gt;MVC&lt;/strong&gt;/&lt;strong&gt;MVP&lt;/strong&gt;/&lt;strong&gt;MVVM&lt;/strong&gt; patterns within the Android developers community, and some implementations of them.
+During the talk the speaker presented a new approach that takes some concepts from the web development world like &lt;a href=&#34;https://facebook.github.io/flux/&#34;&gt;&lt;em&gt;Flux&lt;/em&gt;&lt;/a&gt; and &lt;a href=&#34;http://redux.js.org&#34;&gt;&lt;em&gt;Redux&lt;/em&gt;&lt;/a&gt;. The concept in a nutshell is that the UI, in addition to being as dumb as possible, should also be &lt;strong&gt;stateless&lt;/strong&gt;. In other words, the UI listens to state changes pushed by the business logic and updates itself accordingly.
+Benjamin chose to focus more on the practical aspects and so he made the concept clear by directly building an &lt;a href=&#34;https://github.com/Dorvaryn/unidirectionalDataFlow&#34;&gt;app&lt;/a&gt; using Kotlin and RxJava.&lt;/p&gt;
+
+&lt;p&gt;I personally likey approach that Benjamin showed us, since it has a lot of advantages. It makes the UI state completely &lt;strong&gt;predictable&lt;/strong&gt; and &lt;strong&gt;reproducible&lt;/strong&gt;: it allows us to represent an app state without the need to go through all the steps needed to reach it, thus it can be very useful in reproducing a bug or testing a particular situation. The problem is that, as you can see from the demo app, it adds a lot of boilerplate code and it&amp;rsquo;s also much more verbose and difficult to implement without tools like RxJava or Kotlin, that might be problematic to some.&lt;/p&gt;
+
+&lt;h2 id=&#34;play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Play everywhere: providing a consistent experience across very different devices - &lt;a href=&#34;http://it.droidcon.com/2016/speakers/alessandro-bizzarri/&#34;&gt;&lt;em&gt;Alessandro Bizzarri&lt;/em&gt;&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://it.droidcon.com/2016/speakers/dima-kunin/&#34;&gt;&lt;em&gt;Dima Kunin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;The two speakers showed a high-level tour of how at &lt;strong&gt;Spotify&lt;/strong&gt; they  are able to provide a consistent experience across different devices — defined as the combination of its physical form and its OS.
+They created their own &lt;strong&gt;design language&lt;/strong&gt; to support the majority of platforms used to define almost everything, from color palette and buttons style to animations and sounds.
+They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; common to all platforms to reuse code; in particular on Android they use it through the NDK, a toolset to include C or C++ code in your app and call it from Java code.&lt;/p&gt;
+
+&lt;p&gt;It was a light talk but still it was interesting to see how a big company like Spotify finds solutions to scale and maintain a &lt;strong&gt;consistent and engaging UX&lt;/strong&gt; across all of its user-base.&lt;/p&gt;
+
+&lt;h2 id=&#34;loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Loving lean layouts - &lt;a href=&#34;https://twitter.com/queencodemonkey&#34;&gt;&lt;em&gt;Huyen Tue Dao&lt;/em&gt;&lt;/a&gt; &lt;a name=&#34;lean-layouts&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/queencodemonkey/droidcon-italy-2016-loving-lean-layouts&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The speaker gave a really great talk about one of the best ways to keep an app smooth and responsive: &lt;strong&gt;optimize layouts&lt;/strong&gt; to be as flat as possible. The Android UI layer will call &lt;code&gt;measure()&lt;/code&gt; and    &lt;code&gt;layout()&lt;/code&gt; methods — two times in the case of &lt;code&gt;RelativeLayout&lt;/code&gt; — through all the hierarchy of views to be able to draw the layout; so, for example, having a useless root level  or useless views will result in more measure/layout passes, thus poor performance. Huyen explained how sometimes the solution to this problem may be to choose the right view or layout, but it could be useful to know that there is always the possibility to implement a custom &lt;code&gt;ViewGroup&lt;/code&gt; to mitigate the number of measure/layout passes or even a totally custom &lt;code&gt;View&lt;/code&gt; that overrides &lt;code&gt;onDraw()&lt;/code&gt; to draw everything by hand.&lt;/p&gt;
+
+&lt;p&gt;The talk was very easy to follow and really useful: most of the advices covered are often ignored because singularly they have less impact, but, if taken all together and especially as good habits, they could really make the difference in maintain the &lt;strong&gt;UI smooth and lag-free&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;day-2:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Day 2&lt;/h1&gt;
+
+&lt;h2 id=&#34;android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Android reactive programming with RxJava - &lt;a href=&#34;https://twitter.com/hamen&#34;&gt;&lt;em&gt;Ivan Morgillo&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;During last couple of years RxJava has been echoing all over the Android developers community and given its huge popularity I was surprised to see that Droidcon IT offered only one talk about it.&lt;/p&gt;
+
+&lt;p&gt;Fortunately Ivan Morgillo is a topic expert — he also wrote a &lt;a href=&#34;https://www.packtpub.com/application-development/rxjava-essentials&#34;&gt;book&lt;/a&gt; about RxJava and Android — and during the talk he went through some of the &lt;strong&gt;basics of reactive programming&lt;/strong&gt; (&lt;code&gt;Observables&lt;/code&gt;, &lt;code&gt;Observer&lt;/code&gt;, &lt;code&gt;Subscription&lt;/code&gt;…) and a lot of useful &lt;strong&gt;operators&lt;/strong&gt;, which are one of the strengths of RxJava and Reactive extensions (Rx*) in general.&lt;/p&gt;
+
+&lt;p&gt;To be honest I was hoping for a more theoretical talk with an analysis of the advantages and disadvantages of embracing the reactive pattern in our Android projects. It was instead a lot practical and it covered a great number of common use cases where reactive programming could really help to make code mode readable and maintainable.&lt;/p&gt;
+
+&lt;h2 id=&#34;you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk:cff18b79afe3f01c3e654e6856c73831&#34;&gt;You can do better with Kotlin - &lt;a href=&#34;https://github.com/svtk&#34;&gt;&lt;em&gt;Svetlana Isakova&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/svtk/you-can-do-better-with-kotlin&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Kotlin has recently reached &lt;a href=&#34;https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/&#34;&gt;&lt;strong&gt;1.0 version&lt;/strong&gt;&lt;/a&gt; and it is gaining a lot of attention within the Java community and especially the Android one. A lot of developers — me included — are in fact hoping that Google will make it the default programming language for its mobile OS.&lt;/p&gt;
+
+&lt;p&gt;Kotlin is a &lt;strong&gt;modern&lt;/strong&gt;, &lt;strong&gt;pragmatic&lt;/strong&gt; and &lt;strong&gt;Android-friendly&lt;/strong&gt; programming language, with robust supporting tools since it is developed from the people behind IntelliJ (thus, Android Studio). It could be mixed with Java code — thus making the switch painless — since there is no Kotlin SDK but just JDK plus extensions, and it includes a lot of modern concept such as &lt;em&gt;data classes&lt;/em&gt;, &lt;em&gt;null-safety&lt;/em&gt;, &lt;em&gt;extension functions&lt;/em&gt; and &lt;em&gt;lambdas&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The speaker showed also ANKO, a DSL written in Kotlin, that uses &lt;em&gt;lambdas with receivers&lt;/em&gt;, to create layouts and views and allows to write code like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;verticalLayout {
+    val name = editText()
+    button(&amp;quot;Say Hello&amp;quot;) {
+        onClick { toast(&amp;quot;Hello, ${name.text}!&amp;quot;) }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This talk was one of the most interesting to me, as it persuaded me to try and deepen my knowledge of Kotlin. Svetlana was very good at showing the main features of the JetBrains language and at explaining how they convert in Java code, an aspect that I found very useful to mutate my mindset with new concepts and  syntaxes.&lt;/p&gt;
+
+&lt;h2 id=&#34;fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej:cff18b79afe3f01c3e654e6856c73831&#34;&gt;fun things (you: CanDo &lt;in Kotlin&gt; ) = … - &lt;a href=&#34;https://github.com/mg6maciej&#34;&gt;&lt;em&gt;Maciej Górski&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/mg6maciej/fun-things-you-CanDo-in-Kotlin&#34;&gt;Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The second Droidcon talk about Kotlin was a very fun one, with the speaker acting a funny scene where a nephew tries to explain to his granpa why he should use &lt;strong&gt;Kotlin instead of Java&lt;/strong&gt; with a live coding session.&lt;/p&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/RVu_0TIiH8Q&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The second part of the talk was still in live programming (without slides) and showed some Kotlin feature in practice. It covered some advanced topics such as functional programming, operator overloading, infix functions, laziness and more.&lt;/p&gt;
+
+&lt;p&gt;It was funny and informative to watch a &lt;strong&gt;live coding talk&lt;/strong&gt; and for sure it made me more curious and confident about Kotlin.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusions:cff18b79afe3f01c3e654e6856c73831&#34;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;The Droidcon IT is already, after three editions, the &lt;strong&gt;point of reference&lt;/strong&gt; for the Android community in Italy and this year too it lived up to the expectations. We saw a lot of well-known speakers and developers such as the Googlers Nick Butcher and  Wojtek Kaliciński. It was a conference rich of interesting talks in addition to those summarized in this post, ranging between al lot of various topics such as TDD, UX, tools and many more. The only thing that surprised me was the lack of talks about Android Wear: perhaps Google is slowing down to push this platform among developers?&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:cff18b79afe3f01c3e654e6856c73831:1&#34;&gt;&lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:cff18b79afe3f01c3e654e6856c73831:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
