@@ -3451,6 +3451,11 @@
 
 /** VARIOUS FIXES **/
 
+	p + ol,
+	p + ul {
+		margin-top: -1.2em;
+	}
+
 	.post img {
 		max-width: 100%;
 	}
@@ -3459,15 +3464,15 @@
 		border: none;
 	}
 
-	pre {
+	pre, .gist {
 		display: table;
 		table-layout: fixed;
 		width: 100%
 	}
 
-	.post p a,
-	.post ul a,
-	.post ol a {
+	.post > p a,
+	.post > ul a,
+	.post > ol a {
 		border-bottom: double 3px rgba(160, 160, 160, 0.85)
 	}
 
