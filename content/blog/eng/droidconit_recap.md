@@ -2,7 +2,7 @@
 authors: ["giacomo"]
 comments: true
 date: "2016-04-18"
-draft: true
+draft: false
 image: "/images/droidconit-recap/logo_droidcon_it.png"
 menu: ""
 share: true
