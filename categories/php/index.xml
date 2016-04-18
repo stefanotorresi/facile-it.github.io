@@ -883,6 +883,288 @@ Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Ph
     </item>
     
     <item>
+      <title>PHP 7 Overview</title>
+      <link>/blog/ita/php-7-overview/</link>
+      <pubDate>Mon, 06 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/php-7-overview/</guid>
+      <description>
+
+&lt;p&gt;Il linguaggio che ha contribuito alla nascita e alla crescita di più del 80% dei siti web oggi online, tra i quali alcuni dei più famosi al mondo, è prossimo a una svolta.&lt;/p&gt;
+
+&lt;p&gt;Secondo la &lt;a href=&#34;https://wiki.php.net/rfc/php7timeline&#34;&gt;timeline ufficiale&lt;/a&gt; PHP 7 sarà rilasciato intorno al &lt;strong&gt;15 Ottobre 2015&lt;/strong&gt;: chi volesse provarlo in anteprima, tuttavia, può trovare binari, rpm, deb, dockerfiles e quant&amp;rsquo;altro su &lt;a href=&#34;http://php7.zend.com/&#34;&gt;php7.zend.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;La release 7 costituisce una delle più importanti per PHP, sia in termini di funzionalità che di performance.&lt;/p&gt;
+
+&lt;p&gt;Nell&amp;rsquo;ultimo anno il team degli internals ha affrontato innumerevoli sfide, tra cui:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Implementazione dell&amp;rsquo;&lt;a href=&#34;http://c2.com/cgi/wiki?AbstractSyntaxTree&#34;&gt;Abstract Syntax Tree&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;Riscrittura di grosse porzioni dello &lt;strong&gt;Zend Engine&lt;/strong&gt; che ora può beneficiare di nuove strutture dati e gestione delle risorse ottimizzata;&lt;/li&gt;
+&lt;li&gt;Disposizione di solide basi per aprire il linguaggio a futuri miglioramenti come la &lt;a href=&#34;https://en.wikipedia.org/wiki/Just-in-time_compilation&#34;&gt;Just in Time Compilation&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;Implementazione di un corposo set di nuove feature, come vedremo a breve.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;performance:815871a857d9019d8dba5e4073c801e4&#34;&gt;Performance&lt;/h2&gt;
+
+&lt;p&gt;Sull&amp;rsquo;onda degli ottimi risultati ottenuti dal team di HHVM, anche il team degli internals ha iniziato a lavorare estensivamente al miglioramento delle performance dell&amp;rsquo;implementazione originale di PHP. Gli impressionanti risultati (si parla di un miglioramento di circa il 100%) sono stati dimostrati da vari benchmark fatti sui vari CMS/Framework esistenti. Eccone di seguito due tra i più significativi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://talks.php.net/oz15#/boxspecs&#34;&gt;Benchmark di Rasmus Lerdorf, 12 Marzo 2015, Sydney, Australia&lt;/a&gt; - Benchmark su vari CMS/Applicativi scritti in PHP in esecuzione sulle varie versioni di PHP e HHVM&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://pages.zend.com/rs/zendtechnologies/images/PHP7-Performance%20Infographic.pdf&#34;&gt;Infografica Zend&lt;/a&gt; - Benchmark di vari CMS/Framework (Magento 1.9, Wordpress, Drupal, Zend Framework 2, Laravel) su PHP 5.6 PHP 7 e HHVM 3.7. Contiene inoltre una comparazione tra PHP e altri linguaggi di scripting.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;features:815871a857d9019d8dba5e4073c801e4&#34;&gt;Features&lt;/h2&gt;
+
+&lt;p&gt;Qui di seguito riportiamo alcune delle feature che ci hanno colpito maggiormente; l&amp;rsquo;elenco seguente non è da considerarsi esaustivo rispetto a tutte le feature di PHP 7: una lista completa di tutte le RFC può essere trovata &lt;a href=&#34;https://wiki.php.net/rfc#php_70&#34;&gt;qui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;null-coalesce-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Null Coalesce operator&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/isset_ternary&#34;&gt;Null Coalesce Operator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Il Null Coalesce operator (&lt;code&gt;??&lt;/code&gt;) ritorna l&amp;rsquo;operando di sinistra se questo non è &lt;code&gt;null&lt;/code&gt;, altrimenti ritorna l&amp;rsquo;operando di destra. Esso di fatto rappresenta un&amp;rsquo;abbreviazione dell&amp;rsquo;utilizzo di &lt;code&gt;isset()&lt;/code&gt; in un operatore ternario.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$name = $_GET[’name’] ?? &amp;quot;Name&amp;quot;;
+// equivalente a
+$name = isset($_GET[’name’]) ? $_GET[’name’] : &amp;quot;Name&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/SnCQY&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;uniform-variable-syntax:815871a857d9019d8dba5e4073c801e4&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/uniform_variable_syntax&#34;&gt;Uniform Variable Syntax&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;PHP 7 Introduce una nuova e più consistente sintassi delle variabili, che apre le porte ad alcuni nuovi modi di costruire le espressioni, come mostrato nei due esempi di seguito. Una lista più completa di esempi può essere trovata al link del RFC.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Annidare chiamate di funzione&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$sum = function($l) {
+    return function($r) use ($l) {
+        return $l + $r;
+    };
+};
+
+echo $sum(4)(2); // 6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/mZHt3&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Effettuare una chiamata a metodo su un array contenente una coppia di oggetto: nome metodo.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+class Person
+{
+    public function getName()
+    {
+        return &amp;quot;Lorenzo&amp;quot;;
+    }
+}
+
+$p = new Person();
+echo [$p, &#39;getName&#39;]();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/bEU7t&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;group-use-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Group use declarations&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/group_use_declarations&#34;&gt;Group Use Declarations&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+use Zend\ModuleManager\ModuleEvent;
+use Zend\ModuleManager\ModuleManagerInterface;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Equivale a&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+use Zend\ModuleManager\{
+    ModuleEvent,
+    ModuleManagerInterface
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;combined-comparison-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Combined Comparison operator&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/combined-comparison-operator&#34;&gt;Combined Comparison (Spaceship) Operator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Il Combined Comparison operator (aka &lt;em&gt;Spaceship Operator&lt;/em&gt;) è il nuovo operatore che mette in relazione i due operandi restituendo:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-1&lt;/code&gt; se l&amp;rsquo;operando di sinistra è minore dell&amp;rsquo;operando di destra&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt; se l&amp;rsquo;operando di sinistra è maggiore dell&amp;rsquo;operando di destra&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt; se gli operandi sono uguali&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+echo 100 &amp;lt;=&amp;gt; 200; // -1
+echo 200 &amp;lt;=&amp;gt; 100; // 1
+echo 200 &amp;lt;=&amp;gt; 200; // 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/PV5kq&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;context-sensitive-lexer:815871a857d9019d8dba5e4073c801e4&#34;&gt;Context sensitive lexer&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/context_sensitive_lexer&#34;&gt;Context Sensitive Lexer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Allo stato attuale PHP ha circa 64 keyword riservate globalmente.
+In PHP 7 questo comportamento è stato cambiato rendendo alcune keyword &lt;strong&gt;riservate solo in maniera parziale.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio vediamo come sia possibile dichiarare due metodi chiamati &lt;code&gt;list&lt;/code&gt; e &lt;code&gt;forEach&lt;/code&gt;. Questo non è possibile in PHP&amp;lt;7.0.0 per via del fatto che queste due keyword sono riservate globalmente e non parzialmente.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class Collection {
+    public function forEach(callable $callback) {}
+    public function list() {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;anonymous-classes:815871a857d9019d8dba5e4073c801e4&#34;&gt;Anonymous classes&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/anonymous_classes&#34;&gt;Anonymous Classes&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;PHP 7 introduce la possibilità di creare classi anonime che sono particolarmente utili, ad esempio nel caso in cui si abbia la necessità di implementare un&amp;rsquo;interfaccia per l&amp;rsquo;utilizzo immediato della classe stessa come dipendenza di un&amp;rsquo;altra classe.&lt;/p&gt;
+
+&lt;p&gt;Vediamo due esempi contrapposti, uno con named class e uno con classe anonima, assumendo di avere una classe &lt;code&gt;PersonNamePrinter&lt;/code&gt;che accetta nel proprio costruttore instanze di&lt;code&gt;PersonInterface&lt;/code&gt;. &lt;code&gt;PersonInterface&lt;/code&gt; richiede di implementare il solo metodo &lt;code&gt;getName()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class SpecificPerson implements PersonInterface
+{
+   public function getName()
+   {
+        return &amp;quot;Lorenzo&amp;quot;;
+   }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$person = new SpecificPerson()
+echo new PersonPrinter($person);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;equivale a&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+echo new PersonPrinter(new class implements PersonInterface {
+    public function getName()
+    {
+        return &amp;quot;Lorenzo&amp;quot;;
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;scalar-type-hints:815871a857d9019d8dba5e4073c801e4&#34;&gt;Scalar type hints&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/scalar_type_hints&#34;&gt;Scalar Type Hints&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Questa feature introduce la possiblità di dichiarare il tipo di dato del parametro di una funzione utilizzando anche i nuovi tipi di dato scalari &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;float&lt;/code&gt;, &lt;code&gt;string&lt;/code&gt; e &lt;code&gt;bool&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;È possibile rendere i parametri rigorosi (strict) facendo &lt;strong&gt;iniziare lo script con lo statement preposto a mutare questo comportamento&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+declare(strict_types=1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vediamo un esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+function printIntValue(int $value)
+{
+    var_dump($value);
+}
+
+printIntValue(5.9); // int(5)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/bp1Xt&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio precedente stiamo dichiarando una funzione &lt;code&gt;printIntValue&lt;/code&gt; la quale richiede che &lt;code&gt;$value&lt;/code&gt; sia di tipo &lt;code&gt;int&lt;/code&gt;; quindi andiamo a chiamare la funzione stessa passando invece &lt;code&gt;$value&lt;/code&gt; come &lt;code&gt;float(5.9)&lt;/code&gt;.
+Siccome al primo statement non abbiamo dichiarato i tipi come rigorosi, PHP costringerà il casting del valore passato a &lt;code&gt;int&lt;/code&gt;, troncando la parte dopo la virgola e convertendolo in &lt;code&gt;int(5)&lt;/code&gt;. Se invece avessimo dichiarato i tipi come rigorosi avremmo ottenuto un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;return-type-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Return Type Declarations&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/return_types&#34;&gt;Return Type Declarations&lt;/a&gt;
+In PHP 7 è stata introdotta la possiblità di dichiarare il tipo di ritorno di una funzione.
+Alcuni vantaggi di questa feature sono:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Previene valori di ritorno non intenzionali;&lt;/li&gt;
+&lt;li&gt;Documenta i tipi di ritorno in maniera strict, diversamente da come è oggi con i commenti e phpdoc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vediamo un esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class DateTimeGenerator
+{
+    public function getDateTime() : \DateTime
+    {
+        return new \DateTime();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/3QXVK&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio precedente abbiamo dichiarato una classe &lt;code&gt;DateTimeGenerator&lt;/code&gt; che contiene un metodo &lt;code&gt;getDateTime()&lt;/code&gt; che deve ritornare necessariamente un&amp;rsquo;instanza di &lt;code&gt;\DateTime&lt;/code&gt;. Nel caso questo non avvenisse otterremmo ancora una volta un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;bind-closure-on-call:815871a857d9019d8dba5e4073c801e4&#34;&gt;Bind Closure on Call&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/closure_apply&#34;&gt;Closure::call&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In PHP 5.4 era già possibile fare il binding dello scope di una classe all&amp;rsquo;interno di una closure utilizzando &lt;a href=&#34;http://php.net/manual/en/closure.bindto.php&#34;&gt;Closure-&amp;gt;bindTo()&lt;/a&gt; e &lt;a href=&#34;http://php.net/manual/en/closure.bind.php&#34;&gt;Closure::bind()&lt;/a&gt;. Questo metodo richiedeva però la creazione di una closure intermedia che facesse da &lt;em&gt;collante&lt;/em&gt; tra l&amp;rsquo;invocazione della closure e il binding dello scope dell&amp;rsquo;oggetto.
+Questo non è più richiesto in PHP 7, dove è stato introdotto il metodo &lt;code&gt;Closure::call&lt;/code&gt; che permette di eseguire insieme i due step rendendo il tutto molto più compatto ed elegante.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+class DummyClass {private $value = 1;}
+
+// Before PHP 7
+$getValueCallBack = function() {return $this-&amp;gt;value;};
+$getValue = $getValueCallBack-&amp;gt;bindTo(new DummyClass, &#39;DummyClass&#39;);
+echo $getValue();
+
+// From PHP 7
+$getvalue = function() {return $this-&amp;gt;value;};
+echo $getValue-&amp;gt;call(new DummyClass);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://3v4l.org/YKtPC&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;filtered-unserialize:815871a857d9019d8dba5e4073c801e4&#34;&gt;Filtered Unserialize&lt;/h3&gt;
+
+&lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/secure_unserialize&#34;&gt;Filtered Unserialize&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Questa feature permette di prevenire eventuali injection abilitando l&amp;rsquo;opzione di impostare una lista di classi per le quali è possibile fare l&amp;rsquo;unserialize.
+Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;oggetto incompleto &lt;code&gt;__PHP_Incomplete_Class&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nell&amp;rsquo;esempio seguente il contenuto di &lt;code&gt;$foo&lt;/code&gt; verrà deserializzato solo se &lt;code&gt;$foo&lt;/code&gt; sarà instanza di &lt;code&gt;OnePossibleClass&lt;/code&gt; o di &lt;code&gt;AnotherPossibileClass&lt;/code&gt;, altrimenti verrà convertito in &lt;code&gt;__PHP_Incomplete_Class&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$data = unserialize($foo, [&amp;quot;allowed_classes&amp;quot; =&amp;gt; [&amp;quot;OnePossibleClass&amp;quot;, &amp;quot;AnotherPossibileClass&amp;quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;conclusioni:815871a857d9019d8dba5e4073c801e4&#34;&gt;Conclusioni&lt;/h2&gt;
+
+&lt;p&gt;Ora andate! Testate le vostre applicazioni su PHP 7 e, se potete, aiutate a migrare le estensioni. Non sapete come fare? No problem, chiunque può iniziare a fare qualcosa con i giusti punti di partenza.&lt;/p&gt;
+
+&lt;p&gt;Ecco alcune risorse utili:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://gophp7.org/gophp7-ext/&#34;&gt;GoPHP7-ext&lt;/a&gt; Progetto che supporta la migrazione delle estensioni verso PHP 7, raccogliendo risorse e consigli utili ad ottenere questo scopo.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://spaghetti.io/cont/article/getting-started-with-php-extensions-development/52/1.html&#34;&gt;Getting started with PHP Extensions development&lt;/a&gt; - Un mio breve articolo (in inglese) su come scrivere la propria prima estensione PHP.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Se il post vi è piaciuto non dimenticate di condividerlo e di commentarlo qui sotto o su twitter menzionando &lt;a href=&#34;https://twitter.com/FacileIt_Engr&#34;&gt;@FacileIt_Engr&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Facile.it devs @ PHP Day 2015</title>
       <link>/blog/ita/php-day-2015/</link>
       <pubDate>Tue, 19 May 2015 00:00:00 +0000</pubDate>

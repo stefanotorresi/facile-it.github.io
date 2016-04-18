@@ -719,7 +719,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
 
-&lt;h2 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h1 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
@@ -757,17 +757,17 @@ If you are using a device to read this post you are probably using at least one 
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
-&lt;img src=&#34;/content/images/2016/01/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h2&gt;
+&lt;h1 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h1&gt;
 
 &lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
 
-&lt;h3 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h3&gt;
+&lt;h2 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h2&gt;
 
 &lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
 
-&lt;h4 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h4&gt;
+&lt;h3 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;GCC or Clang&lt;/li&gt;
@@ -789,7 +789,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h4&gt;
+&lt;h3 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
@@ -806,14 +806,14 @@ If you are using a device to read this post you are probably using at least one 
 &lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h3&gt;
+&lt;h2 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h2&gt;
 
 &lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
 
 &lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h3&gt;
+&lt;h2 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h2&gt;
 
 &lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
 
@@ -835,21 +835,39 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
 
-&lt;h4 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
 
 &lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
 
-&lt;h5 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h5&gt;
+&lt;h4 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h4&gt;
 
 &lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/f373ee1e423566642d71.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int getattr_callback(const char *path, struct stat *stbuf) {
+  memset(stbuf, 0, sizeof(struct stat));
+
+  if (strcmp(path, &amp;quot;/&amp;quot;) == 0) {
+    stbuf-&amp;gt;st_mode = S_IFDIR | 0755;
+    stbuf-&amp;gt;st_nlink = 2;
+    return 0;
+  }
+
+  if (strcmp(path, filepath) == 0) {
+    stbuf-&amp;gt;st_mode = S_IFREG | 0777;
+    stbuf-&amp;gt;st_nlink = 1;
+    stbuf-&amp;gt;st_size = strlen(filecontent);
+    return 0;
+  }
+
+  return -ENOENT;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What we are doing here is simple:&lt;/p&gt;
 
@@ -865,32 +883,75 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 &lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;h5 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h5&gt;
+&lt;h4 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h4&gt;
 
 &lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
 
-&lt;h5 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h5&gt;
+&lt;h4 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h4&gt;
 
 &lt;p&gt;This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
 As done in the getattr callback, here I&amp;rsquo;m checking if the given path equals to a known one, I copy the &lt;code&gt;filecontent&lt;/code&gt; into the &lt;code&gt;buf&lt;/code&gt; and then return the requested number of bytes.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/91ee912e4d58295ee18d.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int read_callback(const char *path, char *buf, size_t size, off_t offset,
+    struct fuse_file_info *fi) {
 
-&lt;h5 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h5&gt;
+  if (strcmp(path, filepath) == 0) {
+    size_t len = strlen(filecontent);
+    if (offset &amp;gt;= len) {
+      return 0;
+    }
+
+    if (offset + size &amp;gt; len) {
+      memcpy(buf, filecontent + offset, len - offset);
+      return len - offset;
+    }
+
+    memcpy(buf, filecontent + offset, size);
+    return size;
+  }
+
+  return -ENOENT;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h4&gt;
 
 &lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/5e712738bdab28f1a1c0.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int readdir_callback(const char *path, void *buf, fuse_fill_dir_t filler,
+    off_t offset, struct fuse_file_info *fi) {
+  (void) offset;
+  (void) fi;
 
-&lt;h5 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h5&gt;
+  filler(buf, &amp;quot;.&amp;quot;, NULL, 0);
+  filler(buf, &amp;quot;..&amp;quot;, NULL, 0);
+
+  filler(buf, filename, NULL, 0);
+
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h4&gt;
 
 &lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/57922d3b64a9fa042aca.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static struct fuse_operations fuse_example_operations = {
+  .getattr = getattr_callback,
+  .open = open_callback,
+  .read = read_callback,
+  .readdir = readdir_callback,
+};
 
-&lt;h4 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h4&gt;
+int main(int argc, char *argv[])
+{
+  return fuse_main(argc, argv, &amp;amp;fuse_example_operations, NULL);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h3&gt;
 
 &lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
 
@@ -910,7 +971,7 @@ Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, 
 
 &lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
 
-&lt;h4 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h4&gt;
+&lt;h3 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h3&gt;
 
 &lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
 
@@ -946,7 +1007,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h3&gt;
+&lt;h2 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
@@ -954,7 +1015,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h3&gt;
+&lt;h2 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
@@ -1858,6 +1919,23 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 &lt;p&gt;Preziose sono state anche le informazioni riguardanti l&amp;rsquo;&lt;a href=&#34;https://wiki.php.net/rfc/abstract_syntax_tree&#34;&gt;AST&lt;/a&gt; (&lt;a href=&#34;https://en.wikipedia.org/wiki/Abstract_syntax_tree&#34;&gt;Abstract Syntax Tree&lt;/a&gt;) che è stata introdotta in questa nuova versione e che permette non solo di ragionare in termini più strutturati quando si effettuano modifiche agli internals del linguaggio ma che sarà causa della nascita, secondo Rasmus, di una serie infinita di tool come: analizzatori statici, compilatori, parser in userland etc..&lt;/p&gt;
 
 &lt;p&gt;Ultime ma non meno importanti sono le informazioni date riguardo la &lt;strong&gt;FDO&lt;/strong&gt; di gcc (&lt;a href=&#34;https://gcc.gnu.org/onlinedocs/gcc-4.1.0/gcc/Optimize-Options.html&#34;&gt;Feedback Directed Optimization&lt;/a&gt;) con la quale, per chi compila PHP da sé, si possono ottenere degli ulteriori &lt;strong&gt;incrementi di performance facendo training&lt;/strong&gt; sulla propria codebase in fase di compilazione della SAPI.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>#FacileHack 2015</title>
+      <link>/blog/ita/facilehack-2015/</link>
+      <pubDate>Wed, 25 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/facilehack-2015/</guid>
+      <description>&lt;p&gt;Sono stati due giorni ricchi di emozioni quelli trascorsi con i partecipanti di #FacileHack, il primo hackathon organizzato da Facile.it.
+Abbiamo visto impegno nella competizione, talenti diversi e complementari tra loro, passione per la tecnologia, serietà e molto caffè&amp;hellip; momenti che vogliamo rivivere insieme a voi con questo video.&lt;/p&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/7B8NtkvNXlQ&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/oWWJX5WUZ8A&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Grazie a tutti!&lt;/p&gt;
 </description>
     </item>
     
@@ -2900,6 +2978,380 @@ NS_ASSUME_NONNULL_END
     </item>
     
     <item>
+      <title>Da sviluppo a produzione con Docker e AWS Elastic Beanstalk</title>
+      <link>/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</link>
+      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
+      <description>
+
+&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
+
+&lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
+
+&lt;p&gt;Avere un ambiente di sviluppo/test &lt;strong&gt;il più simile possibile&lt;/strong&gt; a quello di produzione aiuta molto nel garantire un &lt;strong&gt;corretto funzionamento dopo il deploy&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati);&lt;/li&gt;
+&lt;li&gt;è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione;&lt;/li&gt;
+&lt;li&gt;condividere l&amp;rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It works on my machine &lt;em&gt;(in locale funzionava)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
+
+&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
+
+&lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
+
+&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
+
+&lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Le dipendenze in PHP sono gestite attraverso &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, e per soddisfarle basta digitare il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gli assets del frontend sono gestiti attraverso &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; i due seguenti comandi scaricheranno e compileranno le dipendenze e produrranno gli assets direttamente nella cartella pubblica:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install
+grunt dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
+
+&lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Osservando il contenuto di &lt;code&gt;docker/development&lt;/code&gt; possiamo trovare altre due cartelle:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: questa directory contiene un Dockerfile che eredita l&amp;rsquo;immagine da &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; per crearne una nuova con la configurazione nginx necessaria;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: questa directory contiene un Dockerfile che eredita l&amp;rsquo;immagine da &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; per crearne una nuova con la configurazione e le estensioni di php-fpm necessarie;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
+
+&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
+
+&lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A questo punto, nel nostro &lt;code&gt;docker-compose.yml&lt;/code&gt; dovremmo avere quattro container da avviare:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;il container &lt;strong&gt;Nginx&lt;/strong&gt;, che contiene un paragrafo server in ascolto sulla porta 80.&lt;/li&gt;
+&lt;li&gt;il container &lt;strong&gt;fpm&lt;/strong&gt;, che condivide un volume con la macchina host in modo da poter modificare il codice senza bisogno di ricostruire il container; inoltre, il container è collegato al container mysql per consentire agli script php di connettervisi;&lt;/li&gt;
+&lt;li&gt;il container &lt;strong&gt;mysql&lt;/strong&gt;, che conterrà i nostri dati di sviluppo;&lt;/li&gt;
+&lt;li&gt;il container &lt;strong&gt;redis&lt;/strong&gt;, usato come cache, principalmente da Doctrine;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Si noti come, dal momento che &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;i container sono collegati&lt;/a&gt; è possibile accedere ad un servizio esposto usando il nome assegnato al container collegato; ad esempio, nel nostro caso il container fpm è &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;collegato al container mysql&lt;/a&gt;: è per questo che l&amp;rsquo;host configurato nella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;configurazione di doctrine locale&lt;/a&gt; è &lt;code&gt;mysql&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se non l&amp;rsquo;avete ancora fatto, dovrete buildare l&amp;rsquo;immagine &lt;code&gt;fpm&lt;/code&gt; e scaricare le immagini &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; e &lt;code&gt;redis&lt;/code&gt;; per farlo, digitate il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ora che avete tutto ciò che vi serve potete avviare i container con:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A questo punto i quattro container dovrebbero essere in esecuzione: potete verificare che tutto sia a posto con il comando &lt;code&gt;docker ps&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per proseguire, abbiamo bisogno di conoscere l&amp;rsquo;indirizzo ip del container nginx. Il port forwarding del container nginx è configurato come &lt;code&gt;80:80&lt;/code&gt;, perciò è disponibile su &lt;strong&gt;linux&lt;/strong&gt; agli indirizzi &lt;code&gt;127.0.0.1:80&lt;/code&gt; e &lt;code&gt;localhost:80&lt;/code&gt;, mentre su &lt;strong&gt;OS X&lt;/strong&gt; all&amp;rsquo;indirizzo associato alla docker-machine; per identificarlo, usare il comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;È ora di collegarci all&amp;rsquo;ip del nostro container nginx!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
+
+&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
+
+&lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
+
+&lt;p&gt;La scelta è caduta su &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; ha tutto ciò che abbiamo elencato ed ha inoltre una tariffazione più competitiva con un &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; iniziale, sufficiente per far girare questa demo.&lt;/p&gt;
+
+&lt;p&gt;Prima di iniziare abbiamo bisogno di un account &lt;strong&gt;Amazon Web Services&lt;/strong&gt;; se non ne avete ancora uno, potete crearlo &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;qui&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Per configurare, rilasciare e gestire la nostra infrastruttura avremo bisogno del &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;comando eb&lt;/a&gt;; per installarlo, digitare:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install awsebcli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Per avere accesso alla piattaforma dalla vostra riga di comando usando il comando &lt;strong&gt;eb&lt;/strong&gt; dovrete configurare uno &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; ed associarlo ad uno &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. La creazione assistita di uno IAM User vi &lt;strong&gt;darà due chiavi&lt;/strong&gt;, chiamate &lt;em&gt;AWS Access Key ID&lt;/em&gt; e &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. Ci serviranno durante il prossimo passaggio.&lt;/p&gt;
+
+&lt;p&gt;A questo punto possiamo &lt;strong&gt;initialize&lt;/strong&gt; il nostro progetto Bookshelf. Questo comando ci chiederà le due Access keys, oltre che alcune domande durante l&amp;rsquo;installazione.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ora che il progetto è inizializzato dobbiamo &lt;strong&gt;creare un nuovo ambiente&lt;/strong&gt;. Questo comando creerà effettivamente un&amp;rsquo;istanza &lt;strong&gt;t2.micro EC2&lt;/strong&gt;, i gruppi di sicurezza, il load balancer, le notifiche cloudwatch ecc..&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Prima di rilasciare l&amp;rsquo;applicazione in produzione dobbiamo generare un &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Token Github per composer&lt;/a&gt;.
+Questo è necessario per scaricare tutte le dipendenze senza intoppi.
+Per aggiungere il token all&amp;rsquo;ambiente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ora potete verificare che il sistema sia pronto digitando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Quando lo stato dell&amp;rsquo;applicazione diventa &lt;strong&gt;Ready&lt;/strong&gt; potete a tutti gli effetti pubblicare l&amp;rsquo;applicazione con:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il deployment creerà i container descritti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; e i files descritti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se vi state chiedendo cosa sia realmente il file &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt;, basta dire che sta ad Elastic Beanstalk come &lt;code&gt;docker-compose.yml&lt;/code&gt; sta all&amp;rsquo;ambiente locale.&lt;/p&gt;
+
+&lt;p&gt;I file contenuti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; consentono di personalizzare e configurare il software da cui la vostra applicazione dipende. Il file &lt;strong&gt;dependencies.config&lt;/strong&gt; è uno di questi. È proprio lui a risolvere le dipendenze di composer, a compilare gli asset del frontend con grunt e bower e a creare l&amp;rsquo;immagine PHP FPM usata nel &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; di produzione. È importante notare che l&amp;rsquo;immagine viene nuovamente costruita solo se il Dockerfile viene modificato.&lt;/p&gt;
+
+&lt;p&gt;Come avrete notato, [Dockerrun.aws.json](&lt;a href=&#34;https://github.com&#34;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La configurazione di default dell&amp;rsquo;applicazione Bookshelf riceve i parametri di connessione a Mysql e Redis &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;dalle variabili d&amp;rsquo;ambiente&lt;/a&gt; che sono:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MYSQL_HOST
+MYSQL_PORT
+MYSQL_USERNAME
+MYSQL_PASSWORD
+MYSQL_DATABASE
+REDIS_HOST
+REDIS_PORT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ognuna di queste variabili d&amp;rsquo;ambiente può essere impostata usando il comando che abbiamo precedentemente usato per &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Potete ottenere i parametri di connessione per Mysql e Redis dopo aver creato &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;un&amp;rsquo;istanza RDS Mysql DB&lt;/a&gt; e un &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;Cluster ElastiCache Redis&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A questo punto, con i container nginx e fpm in esecuzione e i database configurati, potete digitare &lt;code&gt;eb open&lt;/code&gt; per aprire l&amp;rsquo;applicazione in produzione e verificare se tutto è ok!&lt;/p&gt;
+
+&lt;p&gt;La vostra infrastruttura, così com&amp;rsquo;è, è anche già pronta per scalare automaticamente; per muovere i primi passi in questa direzione potete dare un&amp;rsquo;occhiata al comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; e alla &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;documentazione di AWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
+
+&lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>From development to production with Docker and AWS Elastic Beanstalk</title>
+      <link>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
+      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
+      <description>
+
+&lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
+
+&lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
+
+&lt;p&gt;Having a development/testing environment &lt;strong&gt;as close as possible&lt;/strong&gt; to the production one helps a lot in assuring that &lt;strong&gt;things will behave correctly when delivered&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In a typical scenario, the developer has all the services on which the application depends installed on his local machine, which means the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;there&amp;rsquo;s no isolation between projects using the same services (versions, configurations, data);&lt;/li&gt;
+&lt;li&gt;it&amp;rsquo;s hard to have and maintain production-like services&amp;rsquo; versions and configurations in development;&lt;/li&gt;
+&lt;li&gt;sharing the development environment with co-workers is difficult if not impossible;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of that leads to one of the worst sentences I&amp;rsquo;ve ever heard saying in my experience:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It works on my machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
+
+&lt;h1 id=&#34;bookshelf-application:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Bookshelf application&lt;/h1&gt;
+
+&lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
+
+&lt;h2 id=&#34;download-and-dependencies:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Download and dependencies&lt;/h2&gt;
+
+&lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHP Dependencies are managed through &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, and to get them just issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Frontend assets are managed through &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; the following two commands will respectively download build dependencies and then build the assets, by copying them in the public directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install
+grunt dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running development environment&lt;/h2&gt;
+
+&lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;By inspecting the content of the &lt;code&gt;docker/development&lt;/code&gt; folder we can find two directories:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; image to create a new one with the needed nginx configurations;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; image to create a new one with the needed php-fpm configurations and extensions;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point, in our &lt;code&gt;docker-compose.yml&lt;/code&gt; we should have four containers to start:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;Nginx&lt;/strong&gt; container, which contains a server block  for the bookshelf application listening on port 80.&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;fpm&lt;/strong&gt; container, which does have a shared volume with the host machine so you can change the code without the need to rebuild the container image; also, the container is linked with the mysql container to allow mysql access from php scripts;&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;mysql&lt;/strong&gt; container, which will contain our development data;&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;redis&lt;/strong&gt; container, used for caching purposes, mainly by Doctrine;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please note that since &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;containers are linked&lt;/a&gt; you can access to an exposed service by using the name given to the linked container; for example, in our case the fpm container is &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;linked to the mysql container&lt;/a&gt;: that&amp;rsquo;s why the configured host is &lt;code&gt;mysql&lt;/code&gt; in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;doctrine local connection configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you haven&amp;rsquo;t done it yet, you need to build the &lt;code&gt;fpm&lt;/code&gt; docker image and download the &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; and &lt;code&gt;redis&lt;/code&gt; images; to do so, issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that you have all what you need you can start the containers with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point the four containers should be up and running: you can check if everything&amp;rsquo;s okay by issuing the &lt;code&gt;docker ps&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;To proceed, we need to know the ip address of our nginx container. Since the nginx container&amp;rsquo;s port forwarding configuration is &lt;code&gt;80:80&lt;/code&gt;, on &lt;strong&gt;linux&lt;/strong&gt; it should be available at &lt;code&gt;127.0.0.1:80&lt;/code&gt; or &lt;code&gt;localhost:80&lt;/code&gt;, while on &lt;strong&gt;OS X&lt;/strong&gt; it should be available at the ip address associated to the docker-machine host; to retrieve it, issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s time to point your browser to the nginx container ip address!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
+
+&lt;h2 id=&#34;up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running production environment&lt;/h2&gt;
+
+&lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
+
+&lt;p&gt;The choice fell on &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; because it has all those things and in addition it has a more competitive pricing model with an initial &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; which it is enough to run this demo.&lt;/p&gt;
+
+&lt;p&gt;Before we start we need an &lt;strong&gt;Amazon Web Services&lt;/strong&gt; account, if you don&amp;rsquo;t have one yet, you can create it &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To configure, deploy and manage our infrastructure we are going to need the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;eb command&lt;/a&gt;, to get it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install awsebcli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to obtain access to the platform from your command line using the &lt;strong&gt;eb&lt;/strong&gt; command you have to setup an &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; and associate it to an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. The IAM User creation wizard will &lt;strong&gt;give you two keys&lt;/strong&gt;, namely the &lt;em&gt;AWS Access Key ID&lt;/em&gt; and the &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. We are going to need them during the next step.&lt;/p&gt;
+
+&lt;p&gt;At this point we can &lt;strong&gt;initialize&lt;/strong&gt; our bookshelf project. This command will prompt us for the two Access keys plus a few question about our setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that the project is initialized we have to &lt;strong&gt;create a new environment&lt;/strong&gt;. This will actually start a &lt;strong&gt;t2.micro EC2&lt;/strong&gt; instance, create the security groups, the load balancer, cloudwatch alarms etc..&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Before deploying the application to production we have to generate a &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Github Token for composer&lt;/a&gt;.
+This is needed to allow composer to download dependencies without hassle.
+To add the token to your environment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can check if the system is ready issuing a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the status becomes &lt;strong&gt;Ready&lt;/strong&gt; you can actually deploy the application with a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The deployment will create the containers described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; and create the files described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;p&gt;If you are asking yourslef what the &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt; actually is, suffice it to say that is to Elastic beanstalk as the &lt;code&gt;docker-compose.yml&lt;/code&gt; is to the local environment.&lt;/p&gt;
+
+&lt;p&gt;The files contained in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; allows you to customize and configure the software that your application depends on. The &lt;strong&gt;dependencies.config&lt;/strong&gt; is one of them. It actually resolves composer dependencies, build frontend assets using grunt and bower and create the PHP FPM image using the production &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt;. It&amp;rsquo;s important to note that the image is rebuilt only if changes are made to the Dockerfile.&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; contains definitions just for the Nginx and fpm containers. This is because for &lt;strong&gt;Redis&lt;/strong&gt; and &lt;strong&gt;Mysql&lt;/strong&gt; we are going to use respectively &lt;a href=&#34;https://aws.amazon.com/elasticache/&#34;&gt;&lt;strong&gt;Elasticache&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/rds/&#34;&gt;&lt;strong&gt;RDS&lt;/strong&gt;&lt;/a&gt;. RDS and Elasticache are two production ready, scalable and reliable solutions that makes easier to setup a cost-efficient relational database and key value store taking charge of common database administration tasks.&lt;/p&gt;
+
+&lt;p&gt;The Bookshelf application by default is configured to take Mysql and Redis connection parameters &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;from environment variables&lt;/a&gt; which are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MYSQL_HOST
+MYSQL_PORT
+MYSQL_USERNAME
+MYSQL_PASSWORD
+MYSQL_DATABASE
+REDIS_HOST
+REDIS_PORT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each one of these environment variables can be set using the command we previously used for the &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can obtain Mysql and Redis connection parameters after creating an &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;RDS Mysql DB instance&lt;/a&gt; and an &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;ElastiCache Redis Cluster&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point with the running Nginx and fpm containers and configured databases you can issue an &lt;code&gt;eb open&lt;/code&gt; to open the live production application and see if all&amp;rsquo;s okay!&lt;/p&gt;
+
+&lt;p&gt;As well as ready your infrastructure is also ready to scale and auto scale, to move a first step trough this direction you can take a look at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; command and at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;AWS documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;you-are-done:824629f989995bd0ef3a2fb42ac10127&#34;&gt;You are done!&lt;/h1&gt;
+
+&lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Paraunit: test paralleli, Doctrine e le fixture</title>
       <link>/blog/ita/paraunit/</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
@@ -3144,731 +3596,6 @@ The weakness lies in the fact masterkey is left in the hands of our users: if th
 Also a key - which is user&amp;rsquo;s choice - too simple would be easy to circumvent through brute force or other techniques.&lt;/p&gt;
 
 &lt;p&gt;Finally, I want to urge you to comply with all &lt;a href=&#34;https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system&#34;&gt;general rules concerning the composition of the password&lt;/a&gt;, avoid users to choose a too simple one.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Protezione di dati sensibili usando la crittografia</title>
-      <link>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</link>
-      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</guid>
-      <description>
-
-&lt;p&gt;La protezione dei dati è uno dei problemi più sentiti e ricorrenti degli ultimi anni: che si tratti di informazioni private di utenti, o dell&amp;rsquo;azienda per cui lavoriamo, il problema è sempre lo stesso.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Come proteggere questi dati da eventuali malintenzionati che vorrebbero -  e potrebbero(!!) -  riuscire a entrarne in possesso ?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Prima di arrivare alla soluzione di questo problema però, è doveroso suddividere la casistica in almeno due rami. Nel mondo del web i dati possono essere &amp;ldquo;ottenuti&amp;rdquo; in due momenti differenti: 1) mentre transitano sulla rete sotto forma di pacchetti, oppure 2) successivamente al loro immagazzinamento (es. database o file) all&amp;rsquo;interno di uno o più server.&lt;/p&gt;
-
-&lt;p&gt;In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &amp;ldquo;in casa&amp;rdquo;?.&lt;/p&gt;
-
-&lt;h2 id=&#34;mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Mettere i dati in cassaforte&lt;/h2&gt;
-
-&lt;p&gt;In caso di dati immagazzinati, ad esempio, all&amp;rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &amp;ldquo;sicuro&amp;rdquo; all&amp;rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
-Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
-Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo potrebbe esporre le nostre ricchezze ad attacchi di vario genere, permettendo a chiunque (o quasi) di ottenerle.&lt;/p&gt;
-
-&lt;p&gt;Una possibile ed efficace tecnica di protezione in questi casi è &lt;strong&gt;rendere inutili o illeggibili i dati&lt;/strong&gt; per coloro che li hanno ottenuti in maniera illegittima, attraverso il loro immagazzinamento in forma cifrata.&lt;/p&gt;
-
-&lt;p&gt;Quella che proporrò di seguito è una possibile soluzione al problema di come immagazzinare e cifrare questi dati, in modo da ottenere un livello di sicurezza adeguato e mantenere una buona elasticità, tanto da permettere differenti implementazioni e da coprire quanti più possibili casi d&amp;rsquo;uso.&lt;/p&gt;
-
-&lt;p&gt;La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&amp;rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.&lt;/p&gt;
-
-&lt;h2 id=&#34;algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Crittografici Simmetrici e Asimmetrici&lt;/h2&gt;
-
-&lt;p&gt;Con &lt;em&gt;algoritmi crittografici&lt;/em&gt; si intendono tutti quei &lt;strong&gt;processi e procedure finalizzati ad ottenere un dato &amp;ldquo;offuscato&amp;rdquo; in modo da non essere comprensibile/intelligibile&lt;/strong&gt; da persone non autorizzate a leggerlo.&lt;/p&gt;
-
-&lt;h3 id=&#34;algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Simmetrici&lt;/h3&gt;
-
-&lt;p&gt;Questa tipologia di algoritmi si basa sull&amp;rsquo;uso di chiavi di cifratura dette &lt;strong&gt;simmetriche&lt;/strong&gt; che permettono di cifrare e decifrare dati &lt;strong&gt;utilizzando la medesima chiave crittografica&lt;/strong&gt;.
-Un esempio è &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard), evoluzione dell&amp;rsquo;algoritmo &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&amp;rsquo;ottima velocità, sia che venga implementato via hardware che software.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Asimmetrici&lt;/h3&gt;
-
-&lt;p&gt;Gli algoritmi asimmetrici si distinguono dai precedenti per l&amp;rsquo;utilizzo di &lt;strong&gt;due chiavi crittografiche distinte&lt;/strong&gt;, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
-Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene &lt;strong&gt;liberamente scambiata&lt;/strong&gt;, mentre la chiave privata &lt;strong&gt;rimane a conoscenza solo di coloro che devono poter leggere i dati&lt;/strong&gt; o i messaggi scambiati.
-La particolarità che caratterizza queste chiavi è l&amp;rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&amp;rsquo;algoritmo, l&amp;rsquo;unico metodo per ottenere tale chiave è il &lt;strong&gt;brute force&lt;/strong&gt; sui dati stessi.
-In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;La soluzione combinando RSA e AES&lt;/h2&gt;
-
-&lt;p&gt;Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.&lt;/p&gt;
-
-&lt;p&gt;Immaginiamo di avere una piattaforma che permetta ai vari &lt;strong&gt;utenti&lt;/strong&gt; di collegarsi con le proprie credenziali e di effettuare svariate operazioni, tra cui immagazzinare i propri documenti privati (foto, documenti, password, contratti, etc.) che necessitano di un più alto livello di sicurezza, e magari di poter condividere tra loro questi dati in un futuro prossimo.&lt;/p&gt;
-
-&lt;p&gt;Partendo da queste semplici condizioni, e predisponendo il tutto alla futura &amp;ldquo;condivisibilità&amp;rdquo; dei documenti, una possibile soluzione è la seguente:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;utilizzeremo AES per cifrare i singoli documenti;&lt;/li&gt;
-&lt;li&gt;per permettere la condivisione, utilizzeremo una tabella (di scambio) del nostro database; al suo interno verranno tracciati il proprietario del documento e gli utenti che potranno accedervi;&lt;/li&gt;
-&lt;li&gt;ogni singolo utente avrà il suo portachiavi, contenente le chiavi RSA che fungeranno da &amp;ldquo;lucchetto&amp;rdquo; per la chiave del singolo documento;&lt;/li&gt;
-&lt;li&gt;sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&amp;rsquo;accesso solo al proprietario;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Gestire gli utenti&lt;/h3&gt;
-
-&lt;p&gt;Alla creazione di un nuovo utente sarà nostra premura &lt;strong&gt;generare una nuova coppia di chiavi&lt;/strong&gt; RSA, che andrà legata all&amp;rsquo;utente.
-Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&amp;rsquo;utente o in un&amp;rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una &lt;strong&gt;masterkey&lt;/strong&gt; all&amp;rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
-La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
-&lt;strong&gt;N.B.&lt;/strong&gt; È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&amp;rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.&lt;/p&gt;
-
-&lt;h3 id=&#34;cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Cifrare il documento&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Ogni volta&lt;/strong&gt; in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica &lt;strong&gt;univoca&lt;/strong&gt;. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&amp;rsquo;interno della nostra base dati.&lt;/p&gt;
-
-&lt;h3 id=&#34;associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Associare il file all&amp;rsquo;utente&lt;/h3&gt;
-
-&lt;p&gt;Come ultimo passo dovremo associare i dati cifrati all&amp;rsquo;utente che li sta memorizzando. È il momento di utilizzare la &amp;ldquo;tabella di scambio&amp;rdquo;. Inseriremo un record contenente i riferimenti all&amp;rsquo;utente e al file, insieme alla chiave univoca legata a quest&amp;rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&amp;rsquo;utente.&lt;/p&gt;
-
-&lt;p&gt;Abbiamo ottenuto un sistema simile a quello visualizzato di seguito:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;condividere:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Condividere!&lt;/h3&gt;
-
-&lt;p&gt;Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;richiedere la masterkey dell&amp;rsquo;utente;&lt;/li&gt;
-&lt;li&gt;decifrare la chiave privata dello stesso utente utilizzando la chiave appena ottenuta;&lt;/li&gt;
-&lt;li&gt;decifrare la chiave legata al documento (recuperata dalla tabella di scambio);&lt;/li&gt;
-&lt;li&gt;effettuare una copia del record di scambio, sostituendo l&amp;rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;e-ora:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;E ora?&lt;/h3&gt;
-
-&lt;p&gt;Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati &lt;strong&gt;siamo definitivamente al sicuro?&lt;/strong&gt; &lt;strong&gt;Assolutamente no!&lt;/strong&gt; Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che &lt;strong&gt;abbiamo affidato buona parte della sicurezza del nostro sistema all&amp;rsquo;utente&lt;/strong&gt;.
-Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
-Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sarebbe facilmente aggirabile tramite brute force o altre tecniche.&lt;/p&gt;
-
-&lt;p&gt;In conclusione, tengo ad esortarvi a rispettare tutte le &lt;a href=&#34;https://en.wikipedia.org/wiki/Password#Factors_in_the_security_of_a_password_system&#34;&gt;regole generali riguardanti la composizione delle password&lt;/a&gt;, impendendo agli utenti di sceglierne una troppo semplice.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>WAMP, Web Application Messaging Protocol.. e PHP!</title>
-      <link>/blog/ita/wamp-web-application-messaging-protocol-e-php/</link>
-      <pubDate>Mon, 28 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/ita/wamp-web-application-messaging-protocol-e-php/</guid>
-      <description>
-
-&lt;p&gt;Dalle notifiche di Facebook ad un tweet stream, da Google Docs ai giochi multiplayer in HTML5, la necessità di uno &lt;strong&gt;scambio dati&lt;/strong&gt; in &lt;strong&gt;due direzioni&lt;/strong&gt;, &lt;strong&gt;efficiente&lt;/strong&gt; e a &lt;strong&gt;bassa latenza&lt;/strong&gt;, ha determinato l’ascesa negli ultimi anni di &lt;strong&gt;soluzioni basate su &lt;a href=&#34;https://www.websocket.org/&#34; target=&#34;_blank&#34;&gt;WebSocket&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
-
-&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
-
-&lt;p&gt;Il protocollo risulta piuttosto &lt;strong&gt;completo ed adeguato&lt;/strong&gt; a diversi scenari di utilizzo se comparato ad altri sistemi di messaggistica ed RPC.&lt;/p&gt;
-
-&lt;p&gt;&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Technology&lt;/th&gt;
-&lt;th&gt;PubSub&lt;/th&gt;
-&lt;th&gt;RPC&lt;/th&gt;
-&lt;th&gt;Routed RPC&lt;/th&gt;
-&lt;th&gt;Web native&lt;/th&gt;
-&lt;th&gt;Cross Language&lt;/th&gt;
-&lt;th&gt;Open Standard&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;WAMP&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;AJAX&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;AMQP&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;REST&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SOAP&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Socket.io&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SockJS&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;XMPP&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;ZeroMQ&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;em&gt;fonte: Wikipedia&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Può essere utilizzato con profitto per sviluppare una piattaforma di gioco &lt;strong&gt;online multiplayer&lt;/strong&gt;, strumenti di &lt;strong&gt;business intelligence&lt;/strong&gt; real time e &lt;strong&gt;piattaforme collaborative&lt;/strong&gt; per numerosi utenti.&lt;/p&gt;
-
-&lt;p&gt;Una piattaforma web di help desk ad esempio, può beneficiare di notifiche, chat, strumenti di scrittura multi-utente ed analisi dell’andamento in tempo reale  &lt;strong&gt;sullo stesso protocollo WAMP&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
-Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
-
-&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
-
-&lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
-
-&lt;p&gt;Nessuna delle altre implementazioni è poi al momento in grado di vantare le stesse &lt;strong&gt;prestazioni&lt;/strong&gt; e la &lt;strong&gt;stabilità&lt;/strong&gt; di Crossbar: una istanza del router è in grado di servire 1000 messaggi/secondo su Pub/Sub, a 1000 client, con una &lt;strong&gt;latenza di 25ms&lt;/strong&gt; su una &lt;strong&gt;RaspberryPi&lt;/strong&gt;!&lt;/p&gt;
-
-&lt;p&gt;&lt;table&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;th&gt;Router&lt;/th&gt;
-&lt;th&gt;Broker&lt;/th&gt;
-&lt;th&gt;Dealer&lt;/th&gt;
-&lt;th&gt;Advanced Profile&lt;/th&gt;
-&lt;th&gt;Language&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Crossbar&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;Pyhton&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Thruway&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;PHP&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;wamp.rt&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;NodeJS&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;jawampa&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Java&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;WampSharp&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;C#&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Erwa&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;✔&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Erlang&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
-
-&lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
-Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
-
-&lt;p&gt;Esistono diverse librerie (come &lt;a href=&#34;https://github.com/voryx/Thruway&#34; target=&#34;_blank&#34;&gt;Thruway&lt;/a&gt;) che permettono di operare come &lt;strong&gt;client PHP&lt;/strong&gt; in ambiente WAMP, ma per &lt;strong&gt;semplificare&lt;/strong&gt; l&amp;rsquo;integrazione del protocollo con altri servizi, Crossbar supporta il &lt;a href=&#34;http://crossbar.io/docs/HTTP-Bridge-Services/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;bridge HTTP&lt;/strong&gt;&lt;/a&gt; delle funzionalità Pub/Sub e RPC.&lt;/p&gt;
-
-&lt;p&gt;In pratica, parlando ad esempio di Pub/Sub, è possibile &lt;strong&gt;pubblicare via HTTP&lt;/strong&gt; (o HTTPS) su Crossbar messaggi che saranno inoltrati su topic ai &lt;strong&gt;client connessi via WebSocket&lt;/strong&gt; in maniera trasparente. Altresì è possibile &lt;strong&gt;iscriversi ai topic&lt;/strong&gt; fornendo un &lt;strong&gt;endpoint HTTP&lt;/strong&gt; da chiamare per ricevere i messaggi pubblicati da client WebSocket.&lt;/p&gt;
-
-&lt;p&gt;L&amp;rsquo;esempio sottostante configura un router Crossbar in grado di accettare connessioni websocket, pubblicazioni via HTTP e che si occupa di forwardare alcuni messaggi ad un endpoint HTTPS:&lt;/p&gt;
-
-&lt;p&gt;&lt;style type=&#34;text/css&#34;&gt;
-  .gist-file
-  .gist-data {max-height: 500px;}
-&lt;/style&gt;
-&lt;script src=&#34;https://gist.github.com/peelandsee/51417b3c7c1dc400e85f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Il gist precedente può essere lanciato al volo con &lt;a href=&#34;https://docs.docker.com/&#34; target=&#34;_blank&#34;&gt;docker&lt;/a&gt;:
-&lt;code&gt;docker run -p 80:80 -p 8080:8080 -v $PWD/crossbar-config.json:/.crossbar/config.json vinelab/crossbar&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ovviamente l&amp;rsquo;esempio non tiene conto di profili di configurazione più avanzati, come &lt;strong&gt;cifratura TLS&lt;/strong&gt;, autenticazione, ruoli separati di pubblicazione e/o iscrizione, disponibili nella documentazione di Crossbar.&lt;/p&gt;
-
-&lt;p&gt;Features come la firma delle richieste HTTP, richiedono più di qualche minuto di sviluppo, ma sono indispensabili in un &lt;strong&gt;ambiente di produzione&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Per semplificare l&amp;rsquo;adozione del bridge HTTP in &lt;strong&gt;ambito PHP&lt;/strong&gt;, in Facile.it abbiamo sviluppato e rilasciato un &lt;strong&gt;bundle&lt;/strong&gt; che permette la configurazione automatica di &lt;strong&gt;servizi di Publisher WAMP nel service container&lt;/strong&gt; di Symfony 2.&lt;/p&gt;
-
-&lt;p&gt;Il bundle, disponibile su &lt;a href=&#34;https://packagist.org/packages/facile-it/crossbar-http-publisher-bundle&#34; target=&#34;_blank&#34;&gt;Packagist (composer)&lt;/a&gt; può essere installato con
-&lt;code&gt;$ composer require facile-it/crossbar-http-publisher-bundle dev-master&lt;/code&gt;
-e richiede una &lt;strong&gt;configurazione rapida&lt;/strong&gt; ed intuitiva:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;facile_crossbar_http_publisher:
-  connections:
-    foo_publisher_1:
-        protocol: http
-        host: 127.0.0.1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;L&amp;rsquo;uso è molto semplice:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// recupero del servizio
-$fooPublisher = $container
-                -&amp;gt;get(&#39;facile.crossbar.publisher.foo_publisher_1&#39;);
-
-$topic = &#39;com.myapp.hello&#39;;
-
-// pubblicazione
-$firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Con le poche righe sopra riportate, attraverso il metodo &lt;code&gt;publish()&lt;/code&gt; viene effettuata una &lt;strong&gt;chiamata HTTP POST&lt;/strong&gt; verso il router WAMP, ed il messaggio &lt;code&gt;[&#39;foo&#39;,1]&lt;/code&gt; raggiunge in tempo (quasi) reale tutti i client (ad esempio &lt;strong&gt;tutti i browser degli utenti&lt;/strong&gt;) iscritti al topic &lt;code&gt;com.myapp.hello&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
-
-&lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
-la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
-
-&lt;p&gt;Qualora il browser di un vostro utente non supportasse WebSocket (e &lt;a href=&#34;http://caniuse.com/#feat=websockets&#34; target=&#34;_blank&#34;&gt;dovrebbe&lt;/a&gt; oramai!), Autobahn|JS è in grado di fornire un &lt;strong&gt;fallback automatico&lt;/strong&gt; a long polling.&lt;/p&gt;
-
-&lt;p&gt;Iscriversi ad un topic o pubblicare un messaggio richiede poche linee:&lt;/p&gt;
-
-&lt;script src=&#34;https://gist.github.com/peelandsee/c853bc3fd3971e78527c.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;Nell&amp;rsquo;esempio sopra riportato, il client JS &lt;strong&gt;si iscrive&lt;/strong&gt; al topic &lt;code&gt;com.myapp.hello&lt;/code&gt; e passa i messaggi ricevuti ad una semplice funzione &lt;code&gt;console.log()&lt;/code&gt;; inoltre &lt;strong&gt;pubblica un messaggio&lt;/strong&gt; sul topic &lt;code&gt;com.myapp.topic1&lt;/code&gt;. Quest&amp;rsquo;ultimo, sarà anche &lt;strong&gt;forwardato da Crossbar sul nostro endpoint HTTPS&lt;/strong&gt; &lt;code&gt;https://hostname/subscriptions&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Grazie alle &lt;strong&gt;funzionalità HTTP bridge&lt;/strong&gt; di Crossabar l&amp;rsquo;utilizzo di WAMP in ambito PHP, senza connessioni persistenti o consumer sempre accesi, è &lt;strong&gt;semplice ed immediato&lt;/strong&gt;!&lt;/p&gt;
-
-&lt;p&gt;Per un ulteriore &lt;strong&gt;approfondimento su WAMP&lt;/strong&gt;, saranno inoltre utili le slide che seguono:&lt;/p&gt;
-
-&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://crossbar.io/docs/TOC/&#34;&gt;Crossbar - Documentazione&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://crossbar.io/docs/HTTP-Bridge-Services/&#34;&gt;Crossbar - HTTP Bridge&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://autobahn.ws/js/&#34;&gt;Autobahn|JS - Documentazione&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/facile-it/crossbar-http-publisher-bundle&#34;&gt;Facile.it CrossbarHTTPPublisherBundle - GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>No Country For If Else</title>
-      <link>/blog/eng/no-country-for-if-else/</link>
-      <pubDate>Tue, 15 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/eng/no-country-for-if-else/</guid>
-      <description>
-
-&lt;p&gt;There is an &lt;strong&gt;unwanted guest&lt;/strong&gt; with us as we write code and build software projects: it&amp;rsquo;s the code that&amp;rsquo;s &lt;strong&gt;already written&lt;/strong&gt;, and we must take into account its complexity as the code base increases in size. High complexity of the existing code can make the following activities particularly difficult:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;understanding the meaning of old code, written by others or ourselves;&lt;/li&gt;
-&lt;li&gt;tracing the causes of bugs, i.e. errors, in code;&lt;/li&gt;
-&lt;li&gt;making changes to a certain procedure;&lt;/li&gt;
-&lt;li&gt;adding features to existing structures;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Even if we approach the development of new software with &lt;a href=&#34;https://en.wikipedia.org/wiki/Agile_software_development&#34;&gt;agile methodologies&lt;/a&gt;, we always have to deal with the existing code, and to do that we must at least be able to &lt;strong&gt;understand it without overexertion&lt;/strong&gt;. So when I talk about &lt;em&gt;complexity&lt;/em&gt; I am referring in particular to the difficulty with which a programmer can &lt;em&gt;reason about&lt;/em&gt; the existing code: the preface of the well-known academic textbook &lt;a href=&#34;http://deptinfo.unice.fr/~roy/sicp.pdf&#34;&gt;Structure and Interpretation of Computer Programs&lt;/a&gt; contains the following sentence:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;programs must be written for people to read, and only incidentally for machines to execute&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I couldn&amp;rsquo;t agree more: the time spent by a programmer in writing new code is &lt;strong&gt;only a fraction&lt;/strong&gt; of his/her total working time; much of it is spent reading the existing code, to correct, extend, modify or simply understand it. Generating more understandable code, about which it&amp;rsquo;s easier to reason, we can more easily evaluate the &lt;strong&gt;correctness&lt;/strong&gt; of what we wrote so far or, if the obtained behavior is not the one expected, find the error. Of course this shouldn&amp;rsquo;t undo the techniques that we routinely use to test the correctness of software &lt;em&gt;a posteriori&lt;/em&gt;: indeed, no technical or scientific discipline is exempt from empirical tests, and in fact the empirical approach to software engineering is accepted in the academic community, as evidenced by the &lt;a href=&#34;http://static.springer.com/sgw/documents/1525357/application/pdf/10664_JournalMetrics_Flyer.pdf&#34;&gt;existence&lt;/a&gt; of the &lt;a href=&#34;http://link.springer.com/journal/10664&#34;&gt;Empirical Software Engineering&lt;/a&gt; journal. My personal position is in the middle: software testing is important, but it&amp;rsquo;s also important to think in advance about its correctness, to avoid causes of &lt;strong&gt;accidental complexity&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;index:c252b88516f644ca0545d16795aa645d&#34;&gt;Index&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#the-importance-of-abstraction&#34;&gt;The importance of abstraction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#measuring-complexity&#34;&gt;Measuring complexity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-structured-solution&#34;&gt;Example: structured solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-oo-solution&#34;&gt;Example: OO solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#example-functional-solution&#34;&gt;Example: functional solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#an-empirical-validation&#34;&gt;An empirical validation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusions&#34;&gt;Conclusions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;the-importance-of-abstraction&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;the-importance-of-abstraction:c252b88516f644ca0545d16795aa645d&#34;&gt;The importance of abstraction&lt;/h2&gt;
-
-&lt;p&gt;As we&amp;rsquo;ve seen in a &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;previous article&lt;/a&gt;, rather than the inherent complexity related to the logic of our software, we must worry about the &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;accidental complexity&lt;/a&gt; we introduce in the code by adopting &lt;strong&gt;non-optimal, pointlessly complicated solutions&lt;/strong&gt;: the excessive use of &lt;em&gt;if-else-for-switch&lt;/em&gt; control structures tends to make the code hard to understand, maintain and test; see for example the well-known &lt;a href=&#34;http://c2.com/cgi/wiki?ArrowAntiPattern&#34;&gt;Arrow Anti-Pattern&lt;/a&gt;. It should be noted that the introduction of &lt;a href=&#34;https://en.wikipedia.org/wiki/Structured_programming&#34;&gt;structured programming&lt;/a&gt;, i.e. programming based on the aforementioned control structures, was a &lt;strong&gt;major step forward&lt;/strong&gt; in software development between the &amp;lsquo;60s and the &amp;lsquo;70s: it allowed to program at a higher level of abstraction than the previous style, removing the need to manually manage code execution order with the &lt;a href=&#34;https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF&#34;&gt;infamous&lt;/a&gt; &lt;code&gt;goto&lt;/code&gt; statement.&lt;/p&gt;
-
-&lt;p&gt;Software development paradigms change when programmers find themselves managing larger and more complex projects: to avoid being entangled by the excessive complexity of our own code, or code written by others that we still maintain, we have to work at &lt;strong&gt;higher levels of abstraction&lt;/strong&gt;. How much high? A good answer could be the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;at a high level of abstraction we can tell the system to do what we want, without specifying how to do it&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At an appropriate level of abstraction we can focus on the &lt;em&gt;what&lt;/em&gt; and let the system decide the &lt;em&gt;how&lt;/em&gt;. Obviously there&amp;rsquo;s no &amp;ldquo;maximum&amp;rdquo; level of abstraction, and as programmers we always find ourselves working &lt;strong&gt;halfway&lt;/strong&gt; between the moving electrical charges in a microprocessor, and the needs of our company&amp;rsquo;s business: however, working at a low abstraction level will greatly increase the risk of introducing accidental complexity, and we must be able to identify those cases. For example, when we use a control structure such as &lt;em&gt;if-else&lt;/em&gt; within a relatively large procedure, we are &lt;em&gt;manually&lt;/em&gt; making a decision based on the current state of our system: it would be much better to develop a software component, for example an object, which is able to &lt;strong&gt;make that kind of decision for us&lt;/strong&gt;; our role, at that point, will be to &lt;em&gt;declare&lt;/em&gt; the required functionality. Mixing the &lt;em&gt;what&lt;/em&gt; with the &lt;em&gt;how&lt;/em&gt; will make it particularly hard to understand what a block of code is going to do, because it can lead to the obfuscation of a procedure&amp;rsquo;s &lt;strong&gt;intent&lt;/strong&gt; - connected to the business logic - with the &lt;strong&gt;implementation details&lt;/strong&gt;, which are separate concepts, often completely independent (the same intention can be expressed with different lower level implementations).&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a simple example. Suppose we have the following function:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func &amp;lt;A&amp;gt; optionalValue1 (value: A, cond1: Bool, cond2: Bool) -&amp;gt; A? {
-	var x: A?
-	if cond1 == true {
-		if cond2 == true {
-			x = nil
-		}
-		else {
-			x = value
-		}
-	}
-	else {
-		if cond2 == true {
-			x = value
-		}
-		else {
-			x = nil
-		}
-	}
-	return x
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Although the expressed intent is rather simple, what&amp;rsquo;s really going on is not immediately obvious; let&amp;rsquo;s analyze the function step-by-step:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a variable &lt;code&gt;x&lt;/code&gt; of type &lt;code&gt;A?&lt;/code&gt; is declared;&lt;/li&gt;
-&lt;li&gt;the first condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the first condition is true, then the second condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the second condition is true, then the variable is set to &lt;code&gt;nil&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;if the second condition is false, then the variable is set to &lt;code&gt;value&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if the first condition is false, the second condition is checked:
-
-&lt;ul&gt;
-&lt;li&gt;if the second condition is true, then the variable is set to &lt;code&gt;value&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;if the second condition is false, then the variable is set to &lt;code&gt;nil&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;the variable &lt;code&gt;x&lt;/code&gt; is returned;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To think about it, the intent is the following: return &lt;code&gt;value&lt;/code&gt; if the conditions are different from each other, otherwise return &lt;code&gt;nil&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func &amp;lt;A&amp;gt; optionalValue2 (value: A, cond1: Bool, cond2: Bool) -&amp;gt; A? {
-	return cond1 != cond2 ? value : nil
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We have greatly simplified the function, making it easier to understand &lt;strong&gt;just by looking at it&lt;/strong&gt; once. But in a more complex case, with many different conditions and possible code routes, it may not suffice to just try and simplify the conditions.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;measuring-complexity&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;measuring-complexity:c252b88516f644ca0545d16795aa645d&#34;&gt;Measuring complexity&lt;/h2&gt;
-
-&lt;p&gt;A unit of measure often taken into account in assessing the complexity of a method or function is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Cyclomatic_complexity&#34;&gt;cyclomatic complexity&lt;/a&gt; (CC): it&amp;rsquo;s defined as the degree of complexity generated by the use of multiple control structures in a procedure. You can calculate the number of CC for a structured procedure by representing it with a &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_graph&#34;&gt;directed graph&lt;/a&gt; and counting the number of nodes and arcs. For example, we can represent the &lt;code&gt;optionalValue1&lt;/code&gt; function with the following graph:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[(value,cond1,cond2)]
-|
-|-&amp;gt; [var x] -&amp;gt; [cond1 == true ?]
-               |
-               |-y-&amp;gt; [cond2 == true ?]
-               |     |
-               |     |-y-&amp;gt; [x = nil] --------|
-               |     |-n-&amp;gt; [x = value] ------|
-               |                             |
-               |-n-&amp;gt; [cond2 == true ?]       |
-                     |                       |
-                     |-y-&amp;gt; [x = value] ------|
-                     |-n-&amp;gt; [x = nil] --------|
-                                             |-&amp;gt; [return x]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For a single connected graph, the number of CC is calculated according to the following formula:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CC = [number of arcs] - [number of nodes] + 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For the &lt;code&gt;defaultValue1&lt;/code&gt; you can see that CC = 4. Apparently the simplified version&lt;code&gt;defaulValue2&lt;/code&gt; has a lower cyclomatic complexity, but in reality, as indicated in T.J.McCabe&amp;rsquo;s &lt;a href=&#34;http://www.literateprogramming.com/mccabe.pdf&#34;&gt;original article&lt;/a&gt;, CC can only be calculated for a &lt;em&gt;completely structured&lt;/em&gt; procedure, that is a procedure with a single entry point and a single exit point; CC should also take into account &lt;strong&gt;all the possible cases&lt;/strong&gt; for a condition, and &lt;code&gt;if cond1 != cond2&lt;/code&gt; has precisely four possible cases. A dissertation of possible evolutions of CC, considering multiple entry/exit points for a module, is a available &lt;a href=&#34;http://www.acis.pamplin.vt.edu/faculty/tegarden/wrk-pap/SQJ.PDF&#34;&gt;here&lt;/a&gt;. Thus, we won&amp;rsquo;t keep account of CC in the rest of the article for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;the complexity that interests us is the one related to the &amp;ldquo;understandability&amp;rdquo; of a function, and unstructured patterns (such as &lt;code&gt;guard clause&lt;/code&gt;, early &lt;code&gt;return&lt;/code&gt; or conditional expressions like the one generated by the ternary operator &lt;code&gt;?:&lt;/code&gt;) can often make a function or method easier to understand;&lt;/li&gt;
-&lt;li&gt;the goal is to write a program by composing many small functions whose complexity is the &lt;strong&gt;minimum possible&lt;/strong&gt;, e.g. no control structures, so it will have little value to measure the number of CC for each function;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;However, it seemed important to mention cyclomatic complexity in this article, but rather than &lt;em&gt;measuring&lt;/em&gt; accidental complexity, we are interested in &lt;strong&gt;removing it completely&lt;/strong&gt; by replacing conditional statements, often used of structured programming, with something else. Notice that a conditional &lt;em&gt;expression&lt;/em&gt; is a &lt;strong&gt;simpler&lt;/strong&gt; concept than a conditional &lt;em&gt;statement&lt;/em&gt;: in the former, the entire expression simply returns something based on one or more conditions; in the latter, based on some state, the code could contain various statements, i.e., commands that could be executed or not.&lt;/p&gt;
-
-&lt;p&gt;Say you have a function like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func getCorrectValueConsideringConditions &amp;lt;A&amp;gt; (cond1: Condition&amp;lt;A&amp;gt;, cond2: Condition&amp;lt;A&amp;gt;, cond3: Condition&amp;lt;A&amp;gt; ...) -&amp;gt; A? {
-	/// do stuff
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this case we have a large number of conditions attached to a value of type &lt;code&gt;A&lt;/code&gt;, and we might need to evaluate each of these conditions with several &lt;em&gt;if-else&lt;/em&gt; and/or nested &lt;em&gt;switch&lt;/em&gt; statements. One way to simplify this problem could consist in &lt;em&gt;abstracting&lt;/em&gt; the concept of &lt;em&gt;condition&lt;/em&gt;, turning it into a &lt;em&gt;static relationship&lt;/em&gt; between a few parameters and a value of type &lt;code&gt;A&lt;/code&gt;: we should therefore create a system that is able to &lt;em&gt;solve&lt;/em&gt; any number of relations, possibly in &lt;strong&gt;any order&lt;/strong&gt;, and according to them deduce the resulting value.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s see a practical example.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-structured-solution&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-structured-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: structured solution&lt;/h2&gt;
-
-&lt;p&gt;A person goes to the employment office to find a job: according to certain attributes (job preferences, young/old, number of children younger than 18) the person could be sent to a certain desk to choose a job, or outside in case no job is available for a person with those attributes. Here is the complete procedure (the realism is not important, it&amp;rsquo;s just an example):&lt;/p&gt;
-
-&lt;p&gt;A person &lt;strong&gt;p1&lt;/strong&gt; comes to the desk &lt;strong&gt;d1&lt;/strong&gt; to seek employment; &lt;strong&gt;p1&lt;/strong&gt; has a list of job preferences, but could also accept other jobs outside the list; &lt;strong&gt;p1&lt;/strong&gt; also has a list of jobs that would certainly never accept;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; is young you get from &lt;strong&gt;p1&lt;/strong&gt; a list &lt;strong&gt;l1&lt;/strong&gt; of preferences;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;l1&lt;/strong&gt; is too small, you ask &lt;strong&gt;p1&lt;/strong&gt; to enlarge the list with secondary preferences;&lt;/li&gt;
-&lt;li&gt;you match the preferences with the available jobs and get list &lt;strong&gt;l2&lt;/strong&gt; of jobs to choose;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;l2&lt;/strong&gt; is empty, you ask &lt;strong&gt;p1&lt;/strong&gt; if they want the full list of the positions;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, they&amp;rsquo;re sent to desk &lt;strong&gt;d2&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; is elderly, you ask &lt;strong&gt;p1&lt;/strong&gt; to choose from the list &lt;strong&gt;l3&lt;/strong&gt; of suitable jobs for older people;
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, they&amp;rsquo;re sent to desk &lt;strong&gt;d3&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has children, in any case the list of available jobs will be affected by the number of children:
-
-&lt;ul&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has one child younger than 18, they will choose a job from the list &lt;strong&gt;l4&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has two children younger than 18, they will choose a job from the list &lt;strong&gt;l5&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;in the two previous cases, if &lt;strong&gt;p1&lt;/strong&gt; chooses a job, &lt;strong&gt;p1&lt;/strong&gt; is sent to desk &lt;strong&gt;d4&lt;/strong&gt; to continue with the procedure;&lt;/li&gt;
-&lt;li&gt;if &lt;strong&gt;p1&lt;/strong&gt; has three or more children younger than 18, &lt;strong&gt;p1&lt;/strong&gt; is sent to desk &lt;strong&gt;d5&lt;/strong&gt; to continue the procedure;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A &amp;ldquo;structured&amp;rdquo; approach to the problem could consist in writing a function in which the entire procedure is expressed with a series of &lt;em&gt;if-else&lt;/em&gt; statements, or &lt;em&gt;switch&lt;/em&gt; in the case of the number of children.&lt;/p&gt;
-
-&lt;p&gt;The project related to this article is available on &lt;a href=&#34;https://github.com/broomburgo/NoCountryForIfElse&#34;&gt;github&lt;/a&gt;: I strongly recommend to check the code as the article goes on; &lt;code&gt;.swift&lt;/code&gt; files are just text files, and can be opened with any text editor. In the file &lt;code&gt;common.swift&lt;/code&gt; you&amp;rsquo;ll find common structures and functions to all the proposed solutions. In particular, we will represent a &amp;ldquo;person&amp;rdquo; with &lt;code&gt;struct Person&lt;/code&gt;, basically a immutable &lt;em&gt;value object&lt;/em&gt; that collects the various attributes considered in the problem:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;struct Person {
-    
-    let name: String
-    let isYoung: Bool
-    let childrenCount: Int
-    let likedJobsMain: [String]
-    let likedJobsSecondary: [String]
-    let dislikedJobs: [String]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The idea is to write a function called &lt;code&gt;placeNameForPerson&lt;/code&gt;, returning the next destination&amp;rsquo;s name for the input person: the destination could be another desk &lt;code&gt;d2, d3, d4, d5&lt;/code&gt;, or &lt;code&gt;outside&lt;/code&gt; in case the person leaves the employment agency without a job. &lt;code&gt;placeNameForPerson_structured&lt;/code&gt; returns the name of the destination considering the input &lt;code&gt;Person&lt;/code&gt; and also requires a second input, a &lt;code&gt;DeskWithJobs&lt;/code&gt;, i.e. a desk with several lists of available jobs, considering the various cases. In the structured solution, the entire execution logic is written in the function &lt;code&gt;placeNameForPerson_structured&lt;/code&gt;, and is in fact based upon nested conditional tests.&lt;/p&gt;
-
-&lt;p&gt;We can immediately see that it is rather hard to understand what happens in the function just by reading it once: probably, in a &amp;ldquo;real&amp;rdquo; software, a function like this would probably be annotated with &lt;strong&gt;several comments&lt;/strong&gt;. In addition, it can be easily seen that to trace a bug in a function like this would require a step-by-step debugging procedure, because the large number of conditions makes the function basically not testable in an efficient way. Finally, changing conditions or introducing more of them would probably be really hard.&lt;/p&gt;
-
-&lt;p&gt;The underlying problem is actually due to the fact that, with a structured approach, we&amp;rsquo;re &lt;strong&gt;mixing the intent with the implementation&lt;/strong&gt;: in this case the intent is to associate groups of conditions to specific results, but these relations are &amp;ldquo;hidden&amp;rdquo; within the code and must be deduced from it; for example, if we are asked what is the door for an elderly person with two children, we&amp;rsquo;d be forced to follow the flow of code:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;because the first condition is related to the number of children, we immediately enter the branch &lt;code&gt;childrenCount != 0&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;at this point we enter the &lt;code&gt;case 2&lt;/code&gt; for the number of children;&lt;/li&gt;
-&lt;li&gt;there&amp;rsquo;s a condition for checking that there&amp;rsquo;s a job available;&lt;/li&gt;
-&lt;li&gt;a positive choice would lead to the &amp;ldquo;d4&amp;rdquo; desk;&lt;/li&gt;
-&lt;li&gt;where&amp;rsquo;s the &amp;ldquo;young/old&amp;rdquo; condition? Is there a bug? By analyzing the branch &lt;code&gt;childrenCount == 0&lt;/code&gt; we can verify that this condition is actually checked, but it&amp;rsquo;s simply irrelevant for the other branch;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It is a relatively long way to understand one simple thing, and it is noteworthy that if we wanted to make changes to the procedure, we should always run the entirety of it to make sure we covered all possible cases and there are no conflicts or ambiguities.&lt;/p&gt;
-
-&lt;p&gt;We can do better.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-oo-solution&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-oo-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: OO solution&lt;/h2&gt;
-
-&lt;p&gt;OO design is a often a work of &lt;strong&gt;both reason and creativity&lt;/strong&gt;: frequently, a same problem can be solved with multiple OO approaches. As said before, our intent is to &lt;em&gt;abstract&lt;/em&gt; the concept of &lt;em&gt;condition&lt;/em&gt;; considering this approach, let&amp;rsquo;s try and establish some foundation, in order to identify the responsibilities and behaviors to be assigned to each class:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;we want to represent each condition as if it were a single &lt;em&gt;check&lt;/em&gt; separated from the others, e.g. with a &lt;code&gt;Check&lt;/code&gt; type characterized by methods that verify whether a given person passes a step or not;&lt;/li&gt;
-&lt;li&gt;we want to represent separately the checks related to a person&amp;rsquo;s attribute, like the number of children, to those related to the list of jobs to choose from;&lt;/li&gt;
-&lt;li&gt;we want to build objects that are able to combine multiple checks into a single check;&lt;/li&gt;
-&lt;li&gt;we want to create an object that represents a list of checks, and is able to assess whether the person is going to pass one and only one of those checks, or no check;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The file &lt;code&gt;oo.swift&lt;/code&gt; contains the complete implementation of the OO solution. We define a &lt;code&gt;protocol PersonCheckType&lt;/code&gt;, i.e., an interface that declares a &lt;code&gt;personIsValid&lt;/code&gt; method that returns &lt;code&gt;true&lt;/code&gt; if a certain &lt;code&gt;Person&lt;/code&gt; passes the check:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;protocol PersonCheckType {
-    func personIsValid(person: Person) -&amp;gt; Bool
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then some classes implementing the &lt;code&gt;PersonCheckType&lt;/code&gt; protocol are declared, which individually test the various inherent attributes of a &lt;code&gt;Person&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The type &lt;code&gt;JobsType&lt;/code&gt; simply declares a &lt;code&gt;availableJobs&lt;/code&gt; property to collect the available jobs: from it more &lt;em&gt;checks&lt;/em&gt; are derived, also of type &lt;code&gt;PersonCheckType&lt;/code&gt;, that verify whether a person is valid from the point of view of preferred jobs.&lt;/p&gt;
-
-&lt;p&gt;Finally, the type &lt;code&gt;NextDeskType&lt;/code&gt; declares a &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; method by which you can define what the name of the next desk for a person will be; the method returns &lt;code&gt;String?&lt;/code&gt; because maybe there&amp;rsquo;s no desk for a certain person:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;protocol NextDeskType {
-    func nextDeskNameForPerson(person: Person) -&amp;gt; String?
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;From &lt;code&gt;NextDeskType&lt;/code&gt; we derive the following classes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;CheckNode&lt;/code&gt;, which represents a node in the decision-making structure of the software;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;CheckStructure&lt;/code&gt;, which represents the entire tree of nodes;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In fact, the implementation of &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; in &lt;code&gt;CheckStructure&lt;/code&gt; corresponds exactly to the solution of the problem: find the name of destination desk.&lt;/p&gt;
-
-&lt;p&gt;The idea is to create some simple &lt;strong&gt;unit checks&lt;/strong&gt;, using various classes of type &lt;code&gt;PersonCheckType&lt;/code&gt;, and combine those into concrete objects of the class &lt;code&gt;CheckNode&lt;/code&gt;, thus defining our &lt;code&gt;CheckStructure&lt;/code&gt;. In &amp;ldquo;pure&amp;rdquo; OO style, we defined classes called &lt;code&gt;ComposedCheck&lt;/code&gt; and &lt;code&gt;MultipleCheck&lt;/code&gt; to compose more checks into one, and &lt;code&gt;FailingCheck&lt;/code&gt; to encapsulate a check that is required to fail. None of the implemented methods has conditional structures related to the &lt;em&gt;business logic&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;As an example, here&amp;rsquo;s the implementation for the class &lt;code&gt;ChildrenCountCheck&lt;/code&gt;, which validates a person considering the number of children:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class ChildrenCountCheck: PersonCheckType {
-    
-    let childrenCount: Int
-    init(_ childrenCount: Int) {
-        self.childrenCount = childrenCount
-    }
-    
-    func personIsValid(person: Person) -&amp;gt; Bool {
-        return person.childrenCount == childrenCount
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;structure&lt;/code&gt; object defined in &lt;code&gt;main.swift&lt;/code&gt; contains the list of conditions, in the form of properly configured objects; as you can see, the list is easily readable and the conditions are clear: thus, we can &lt;em&gt;declare&lt;/em&gt; the intent, separated from the implementation details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;example-functional-solution&#34;&gt; &lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;example-functional-solution:c252b88516f644ca0545d16795aa645d&#34;&gt;Example: functional solution&lt;/h2&gt;
-
-&lt;p&gt;In structuring the OO solution we have adopted a &lt;strong&gt;composition principle&lt;/strong&gt;: atomic objects with simple behavior, properly prepared, composed with each other in order to obtain more complex structures. In particular, each of our objects represents a specific &lt;em&gt;atomic behavior&lt;/em&gt;, that&amp;rsquo;s combined with others to obtain a &lt;em&gt;compound behavior&lt;/em&gt;. &lt;strong&gt;The abstraction holds&lt;/strong&gt;, and we can accept the fact that the objects we&amp;rsquo;re using are black boxes that encapsulate a single decision on a person: by creating a larger box with smaller boxes inside, we can define a more complex condition. However there are two problems specific to the OO approach:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;each class requires a lot of code just to build the &amp;ldquo;decision-in-the-box&amp;rdquo; abstraction;&lt;/li&gt;
-&lt;li&gt;objects&amp;rsquo; composition is based on the methods of the objects themselves, that results, again, in writing a lot of code, which could obfuscate the intent;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can get the same result, namely to create a complex decision-making structure from simple components, more clearly by using &lt;strong&gt;functional programming&lt;/strong&gt;. The functional code is described in &lt;code&gt;functional.swift&lt;/code&gt;. We always start by the immutable &lt;code&gt;struct Person&lt;/code&gt; and create, for convenience, another simple data container, &lt;code&gt;struct DeskNode&lt;/code&gt;, which simply pairs the name of a node to the name of a optional destination desk. For the rest, we will exclusively define functions, by modeling the entire problem as a series of data transformations.&lt;/p&gt;
-
-&lt;p&gt;In this case &lt;code&gt;PersonCheck&lt;/code&gt; is a &lt;strong&gt;type of function&lt;/strong&gt;, which associates a &lt;code&gt;Person&lt;/code&gt; to a &lt;code&gt;Bool&lt;/code&gt;. We also define the type of function &lt;code&gt;PersonNode&lt;/code&gt;, which associates a certain &lt;code&gt;DeskNode&lt;/code&gt; to a &lt;code&gt;Person&lt;/code&gt;, and that has basically the purpose that the &lt;code&gt;nextDeskNameForPerson&lt;/code&gt; method had in the OO solution.&lt;/p&gt;
-
-&lt;p&gt;Finally, we represent the various &amp;ldquo;nodes&amp;rdquo; with a function of type &lt;code&gt;JobsNode&lt;/code&gt;, which constructs a &lt;code&gt;PersonNode&lt;/code&gt; based on a certain &lt;code&gt;PersonCheck&lt;/code&gt;: in this way, to build a list of &lt;code&gt;PersonNode&lt;/code&gt; we&amp;rsquo;ll just need to apply the various checks (&lt;code&gt;PersonCheck&lt;/code&gt;) to the respective nodes (&lt;code&gt;JobsNode&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;The method most frequently adopted in functional programming to compose functions is to use custom operators. We want, for example, compose the various &lt;code&gt;PersonCheck&lt;/code&gt; as if we were composing simple &lt;code&gt;Bool&lt;/code&gt; values, by defining &lt;strong&gt;AND&lt;/strong&gt; and &lt;strong&gt;OR&lt;/strong&gt; operators. By association with the classic &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; we define respectively the operators &lt;code&gt;&amp;lt;&amp;amp;&amp;gt;&lt;/code&gt; is &lt;code&gt;&amp;lt;|&amp;gt;&lt;/code&gt;, also copying &lt;a href=&#34;https://en.wikipedia.org/wiki/Operator_associativity&#34;&gt;precedence and associativity&lt;/a&gt; rules from the standard library. To improve readability and clarity of functions&amp;rsquo; composition, we also declare a &lt;em&gt;function application&lt;/em&gt; operator, defined as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;infix operator &amp;lt;*&amp;gt; {
-    associativity left
-    precedence 100
-}
-func &amp;lt;*&amp;gt; &amp;lt;A, B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp;gt; B {
-    return left(right)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can see from the definition that the operator &lt;code&gt;&amp;lt;*&amp;gt;&lt;/code&gt; basically applies an argument (positioned to the right of the operator) to a certain function (positioned to the left of the operator): thus, it represents an alternative way to apply a function other than writing its arguments in &lt;strong&gt;parentheses&lt;/strong&gt;, and is particularly suitable for improving the readability of the code when we use &lt;a href=&#34;https://en.wikipedia.org/wiki/Higher-order_function&#34;&gt;higher-order functions&lt;/a&gt;. We can see these operators at work in &lt;code&gt;main.swift&lt;/code&gt;, when we define our nodes, for example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;node(&amp;quot;old&amp;quot;, nextDeskName: &amp;quot;d3&amp;quot;)
-    &amp;lt;*&amp;gt; oldCheck
-    &amp;lt;&amp;amp;&amp;gt; mustFail(childrenChecks)
-    &amp;lt;&amp;amp;&amp;gt; checkExtendedJobs(availableJobsElderly)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above-mentioned function builds a &lt;code&gt;PersonNode&lt;/code&gt; named &amp;ldquo;old&amp;rdquo; that returns the desk &amp;ldquo;d3&amp;rdquo; if the input &lt;code&gt;Person&lt;/code&gt; complies with following conditions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;oldCheck&lt;/code&gt;: the person is elderly;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mustFail(childrenChecks)&lt;/code&gt;: the person must not have children;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;checkExtendedJobs(availableJobsElderly)&lt;/code&gt;: the senior citizens jobs set and the person&amp;rsquo;s favorite jobs set must have some intersection;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;At first glance it may seem difficult to understand, but you just need to get the basic abstractions on which functional composition is based in order to appreciate its &lt;strong&gt;power and expressiveness&lt;/strong&gt;. The array &lt;code&gt;nodes&lt;/code&gt;, in &lt;code&gt;main.swift&lt;/code&gt;, contains all the nodes of the problem, represented as functions: compared to the OO solution contained in &lt;code&gt;structure&lt;/code&gt;, the functional one is more clear and readable.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;an-empirical-validation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;an-empirical-validation:c252b88516f644ca0545d16795aa645d&#34;&gt;An empirical validation&lt;/h2&gt;
-
-&lt;p&gt;In designing the &amp;ldquo;OO&amp;rdquo; and &amp;ldquo;functional&amp;rdquo; solutions it was made the specific choice that the order in which the checks occur should be irrelevant: in this way we can remove a known cause of accidental complexity, the one of &amp;ldquo;control&amp;rdquo;, i.e, the &lt;strong&gt;order&lt;/strong&gt; in which the operations are carried out (we talked about it &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/#cause-di-complessita&#34;&gt;here&lt;/a&gt;). To do this, you must have &lt;strong&gt;non-ambiguous&lt;/strong&gt; checks: at most one check must pass for a certain person. It&amp;rsquo;d be probably possible to write a formal method to prove that a given set of conditions is non-ambiguous, and then write a unit test based on such proof, but in this case an &lt;em&gt;empirical approach&lt;/em&gt; seems more suitable and &lt;strong&gt;easier&lt;/strong&gt; to implement.&lt;/p&gt;
-
-&lt;p&gt;It was therefore choosen to use a &lt;a href=&#34;https://hackage.haskell.org/package/QuickCheck&#34;&gt;QuickCheck&lt;/a&gt; approach: QuickCheck is a library for the &lt;a href=&#34;https://www.haskell.org&#34;&gt;Haskell&lt;/a&gt; language, that allows you to automatically test that certain functions satisfy certain properties. The idea is to verify that a particular function always behaves in the same way, testing it with &lt;strong&gt;a large number of random inputs&lt;/strong&gt;: in our case, the function is just the list of checks, and the input is a value of type &lt;code&gt;Person&lt;/code&gt;. To verify that the checks are not ambiguous we can just try them with a large number of randomly generated persons: if for a certain value of &lt;code&gt;Person&lt;/code&gt; two or more checks are positive, the test stops and the ambiguous checks&amp;rsquo; names are logged. In the case of two ambiguous checks, to solve the problem it will suffice to make one of them more specific, for example by requiring that the other fails. We will use here the term &lt;em&gt;QuickCheck&lt;/em&gt; to indicate the empirical test implemented, but in fact the original library does much more: please refer to the &lt;a href=&#34;https://hackage.haskell.org/package/QuickCheck&#34;&gt;linked&lt;/a&gt; page for all the information.&lt;/p&gt;
-
-&lt;p&gt;The functions &lt;code&gt;quickCheck_functional&lt;/code&gt; and &lt;code&gt;quickCheck_oo&lt;/code&gt;  implement the required feature: they generate a large number of random &lt;code&gt;Person&lt;/code&gt;, and verify that the number of passed checks for each person is either 0 or 1. We can try this test by adding a new node. For example, suppose that at some point, after some time that the code was successfully used to solve the problem, you choose to add a new condition: there&amp;rsquo;s a special desk for older people with only one child. Notice that modifying the code of the function &lt;code&gt;placeNameForPerson_structured&lt;/code&gt; would be rather complicated: we should probably &lt;strong&gt;change more than one decision branch&lt;/strong&gt;, adding the same condition at different points, and the likelyhood of error would be high. On the other side, with the other two solutions we just need to add a new node. However, after adding the node, by executing the program we will see that QuickCheck fails, printing the following message:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ambiguous nodes: [1 child, 1 child old]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;QuickCheck is informing us that the nodes called &amp;ldquo;one child&amp;rdquo; and &amp;ldquo;one child old&amp;rdquo; are &lt;strong&gt;ambiguous&lt;/strong&gt;: in fact, if the &lt;code&gt;Person&lt;/code&gt; has one child and is old, the check for both nodes will pass. To solve the problem it will suffice to introduce another condition in the &amp;ldquo;one child&amp;rdquo; node: the seniority check must fail.&lt;/p&gt;
-
-&lt;p&gt;In the project you&amp;rsquo;ll also find a &lt;code&gt;quickCheck_consistency&lt;/code&gt; function, which performs a &lt;em&gt;sanity check&lt;/em&gt;: it verifies that the target desk for a large number of randomly generated &lt;code&gt;Person&lt;/code&gt; remains the same in the 3 cases: structured, oo and functional.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;conclusions&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusions:c252b88516f644ca0545d16795aa645d&#34;&gt;Conclusions&lt;/h2&gt;
-
-&lt;p&gt;We have seen three ways to solve the same relatively complex problem, and in two of them we were able to get a &lt;strong&gt;more manageable&lt;/strong&gt;, extensible and modifiable code by working at a &lt;strong&gt;higher level of abstraction&lt;/strong&gt;. In particular, the &amp;ldquo;functional&amp;rdquo; way allowed us to write more compact code, characterized by a more evident intent, at the (low) cost of an initial step of abstraction, represented by custom operators. But the key to the whole process is once again to be found in the aforementioned phrase in &lt;em&gt;Structure and Interpretation of Computer Programs&lt;/em&gt;, which I quote again:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;programs must be written for people to read, and only incidentally for machines to execute&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Adopting a more &lt;strong&gt;declarative&lt;/strong&gt; style, where the &lt;em&gt;business logic&lt;/em&gt; code &amp;ldquo;declares the intent&amp;rdquo;, describing the &amp;ldquo;what&amp;rdquo; and not the &amp;ldquo;how&amp;rdquo;, you can write more clear and readable software. This software will probably also be more &lt;em&gt;testable&lt;/em&gt; because it is based on lower level &lt;strong&gt;atomic components&lt;/strong&gt;, easy to test individually, which are combined through patterns of composition, also easily testable and provable. The ultimate goal is to build software architectures that are able to &lt;strong&gt;automatically solve problems&lt;/strong&gt;, which are described in code by using &lt;strong&gt;basic building blocks&lt;/strong&gt;. Finally, we have seen how a mixed &amp;ldquo;reasoned&amp;rdquo; and &amp;ldquo;empirical&amp;rdquo; approach can give excellent results; &lt;em&gt;a priori&lt;/em&gt; reasoning and &lt;em&gt;a posteriori&lt;/em&gt; verification are both useful tools, but their union is particularly powerful: indeed, every scientific discipline requires both the logical-mathematical reasoning for the definition of the theories, and the experimental verification to test their validity.&lt;/p&gt;
-
-&lt;p&gt;The tools are there, we just need to &lt;strong&gt;start using them&lt;/strong&gt;.&lt;/p&gt;
 </description>
     </item>
     

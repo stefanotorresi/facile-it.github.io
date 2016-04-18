@@ -1,0 +1,1174 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Da sviluppo a produzione con Docker e AWS Elastic Beanstalk</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Da sviluppo a produzione con Docker e AWS Elastic Beanstalk"/>
+<meta name="twitter:description" content="In locale funzionava Questo articolo si rivolge a chi ha già una conoscenza base di docker e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione. Avere un ambiente di sviluppo/test il più simile possibile a quello di produzione aiuta molto nel garantire un corretto funzionamento dopo il deploy. In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue: nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati); è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione; condividere l&rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile; Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa: It works on my machine (in locale funzionava) Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&rsquo;overhead."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Da sviluppo a produzione con Docker e AWS Elastic Beanstalk" />
+<meta property="og:description" content="In locale funzionava Questo articolo si rivolge a chi ha già una conoscenza base di docker e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione. Avere un ambiente di sviluppo/test il più simile possibile a quello di produzione aiuta molto nel garantire un corretto funzionamento dopo il deploy. In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue: nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati); è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione; condividere l&rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile; Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa: It works on my machine (in locale funzionava) Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&rsquo;overhead." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/" />
+
+
+<meta property="og:updated_time" content="2015-10-19T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Da sviluppo a produzione con Docker e AWS Elastic Beanstalk">
+<meta itemprop="description" content="In locale funzionava Questo articolo si rivolge a chi ha già una conoscenza base di docker e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione. Avere un ambiente di sviluppo/test il più simile possibile a quello di produzione aiuta molto nel garantire un corretto funzionamento dopo il deploy. In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue: nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati); è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione; condividere l&rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile; Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa: It works on my machine (in locale funzionava) Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&rsquo;overhead.">
+
+
+<meta itemprop="dateModified" content="2015-10-19T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1332">
+
+
+
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,ACL,AES,AWS,Agile,Algorithms,Artificial intelligence,Backlog,C,CMake,Code reuse,Codemotion,Composer,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,FacileHack,Filesystem,Functional programming,Fuse,Git,Git flow,GraphQL,HTTP,Hackathon,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PHPDay,PSR,Package manager,Pair programming,Puli,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Complexity,Software Crisis,Software Testing,Software complexity,Software testing,Structured Programming,Structured programming,SummerCamp,Swift,Symfony,TDD,Test coverage,Type First Development,WAMP,Websocket,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/eng/graphql-an-introduction/"><p>GraphQL: an introduction</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&text=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/">Da sviluppo a produzione con Docker e AWS Elastic Beanstalk</a></h1>
+            
+        
+        
+        
+        
+            <p class="translated-article">
+                This article is also available
+                <a href="/blog/eng/from-development-to-production-with-docker-and-amazon-ecs">in english</a>
+            </p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-10-19'>
+            19 October 2015
+        </time>
+
+        
+            <a href="/authors/lorenzo" class="author">
+            
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+            
+            </a>
+        
+            <a href="/authors/daniele" class="author">
+            
+                <span class="name">Daniele Contini</span>
+                <img src="/images/avatar-daniele.jpg" alt="Daniele Contini avatar" />
+            
+            </a>
+        
+
+        
+            <p>7 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<h2 id="in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb">In locale funzionava</h2>
+
+<p>Questo articolo si rivolge a chi ha già una <a href="https://docs.docker.com/articles/basics">conoscenza base di docker</a> e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.</p>
+
+<p>Avere un ambiente di sviluppo/test <strong>il più simile possibile</strong> a quello di produzione aiuta molto nel garantire un <strong>corretto funzionamento dopo il deploy</strong>.</p>
+
+<p>In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue:</p>
+
+<ul>
+<li>nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati);</li>
+<li>è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione;</li>
+<li>condividere l&rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile;</li>
+</ul>
+
+<p>Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa:</p>
+
+<blockquote>
+<p>It works on my machine <em>(in locale funzionava)</em></p>
+</blockquote>
+
+<p><img src="/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg" alt="It works on my machine meme" /></p>
+
+<p>Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.</p>
+
+<h2 id="bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb">Bookshelf: uno scaffale virtuale</h2>
+
+<p>Per snellire questo articolo ho preparato un&rsquo;<a href="https://github.com/pennyphp/bookshelf">applicazione demo</a> basata su <a href="http://github.com/pennyphp/penny">Penny PHP Framework</a>: è una semplice applicazione per l&rsquo;archiviazione di libri, che consente all&rsquo;utente di creare e visualizzare una lista di libri.</p>
+
+<h4 id="download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb">Download e dipendenze</h4>
+
+<p>Per prima cosa, scarichiamo l&rsquo;applicazione dal suo repository:</p>
+
+<pre><code>git clone https://github.com/pennyphp/bookshelf
+</code></pre>
+
+<p>Le dipendenze in PHP sono gestite attraverso <a href="https://getcomposer.org/">composer</a>, e per soddisfarle basta digitare il comando:</p>
+
+<pre><code>composer install
+</code></pre>
+
+<p>Gli assets del frontend sono gestiti attraverso <a href="http://bower.io">Bower</a> + <a href="http://gruntjs.com/">Grunt</a>; i due seguenti comandi scaricheranno e compileranno le dipendenze e produrranno gli assets direttamente nella cartella pubblica:</p>
+
+<pre><code>npm install
+grunt dev
+</code></pre>
+
+<h4 id="avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb">Avviare l&rsquo;ambiente di sviluppo</h4>
+
+<p>Come potete vedere l&rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella <a href="https://github.com/pennyphp/bookshelf/tree/master/docker/development">docker/development</a>.</p>
+
+<p>Osservando il contenuto di <code>docker/development</code> possiamo trovare altre due cartelle:</p>
+
+<ul>
+<li><code>nginx/</code>: questa directory contiene un Dockerfile che eredita l&rsquo;immagine da <a href="https://github.com/fntlnz/dockerfiles/tree/master/nginx">fntlnz/nginx</a> per crearne una nuova con la configurazione nginx necessaria;</li>
+<li><code>fpm/</code>: questa directory contiene un Dockerfile che eredita l&rsquo;immagine da <a href="https://github.com/fntlnz/dockerfiles/tree/master/php">fntlnz/php</a> per crearne una nuova con la configurazione e le estensioni di php-fpm necessarie;</li>
+</ul>
+
+<p>Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando <strong>docker-compose</strong>. Ho deciso di usare Docker Compose al posto del comando <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html"><strong>eb local</strong></a> (che consente di far girare l&rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&rsquo;arte compose è più facile da usare e mantenere in locale.</p>
+
+<h6 id="il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb">Il file <code>docker-compose.yml</code></h6>
+
+<p>Per farlo dobbiamo creare un file <code>docker-compose.yml</code> nella nostra root di progetto.</p>
+
+<pre><code>cp docker/docker-compose.yml.development docker-compose.yml
+</code></pre>
+
+<p>A questo punto, nel nostro <code>docker-compose.yml</code> dovremmo avere quattro container da avviare:</p>
+
+<ul>
+<li>il container <strong>Nginx</strong>, che contiene un paragrafo server in ascolto sulla porta 80.</li>
+<li>il container <strong>fpm</strong>, che condivide un volume con la macchina host in modo da poter modificare il codice senza bisogno di ricostruire il container; inoltre, il container è collegato al container mysql per consentire agli script php di connettervisi;</li>
+<li>il container <strong>mysql</strong>, che conterrà i nostri dati di sviluppo;</li>
+<li>il container <strong>redis</strong>, usato come cache, principalmente da Doctrine;</li>
+</ul>
+
+<p>Si noti come, dal momento che <a href="https://docs.docker.com/userguide/dockerlinks/">i container sono collegati</a> è possibile accedere ad un servizio esposto usando il nome assegnato al container collegato; ad esempio, nel nostro caso il container fpm è <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20">collegato al container mysql</a>: è per questo che l&rsquo;host configurato nella <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13">configurazione di doctrine locale</a> è <code>mysql</code>.</p>
+
+<p>Se non l&rsquo;avete ancora fatto, dovrete buildare l&rsquo;immagine <code>fpm</code> e scaricare le immagini <code>nginx</code>, <code>mysql</code> e <code>redis</code>; per farlo, digitate il comando:</p>
+
+<pre><code>$ docker-compose build
+</code></pre>
+
+<p>Ora che avete tutto ciò che vi serve potete avviare i container con:</p>
+
+<pre><code>$ docker-compose up
+</code></pre>
+
+<p>A questo punto i quattro container dovrebbero essere in esecuzione: potete verificare che tutto sia a posto con il comando <code>docker ps</code>.</p>
+
+<p>Per proseguire, abbiamo bisogno di conoscere l&rsquo;indirizzo ip del container nginx. Il port forwarding del container nginx è configurato come <code>80:80</code>, perciò è disponibile su <strong>linux</strong> agli indirizzi <code>127.0.0.1:80</code> e <code>localhost:80</code>, mentre su <strong>OS X</strong> all&rsquo;indirizzo associato alla docker-machine; per identificarlo, usare il comando:</p>
+
+<pre><code>docker-machine env &lt;yourmachinename&gt; | grep DOCKER_HOST
+</code></pre>
+
+<p>È ora di collegarci all&rsquo;ip del nostro container nginx!</p>
+
+<p><img src="/images/from-development-to-production-with-docker-and-amazon-ecs/books.png" alt="Bookshelf screenshot" /></p>
+
+<p>Yay! Il nostro ambiente di sviluppo è in esecuzione!</p>
+
+<h4 id="configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb">Configurare e attivare l&rsquo;ambiente di produzione</h4>
+
+<p>A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.</p>
+
+<p>La scelta è caduta su <a href="https://aws.amazon.com/elasticbeanstalk">AWS Elastic Beanstalk</a> ha tutto ciò che abbiamo elencato ed ha inoltre una tariffazione più competitiva con un <a href="https://aws.amazon.com/free/">Free Tier</a> iniziale, sufficiente per far girare questa demo.</p>
+
+<p>Prima di iniziare abbiamo bisogno di un account <strong>Amazon Web Services</strong>; se non ne avete ancora uno, potete crearlo <a href="https://aws.amazon.com/account">qui</a></p>
+
+<p>Per configurare, rilasciare e gestire la nostra infrastruttura avremo bisogno del <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html">comando eb</a>; per installarlo, digitare:</p>
+
+<pre><code>pip install awsebcli
+</code></pre>
+
+<p>Per avere accesso alla piattaforma dalla vostra riga di comando usando il comando <strong>eb</strong> dovrete configurare uno <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html"><strong>IAM ROLE</strong></a> ed associarlo ad uno <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html"><strong>IAM User</strong></a>. La creazione assistita di uno IAM User vi <strong>darà due chiavi</strong>, chiamate <em>AWS Access Key ID</em> e <em>AWS Secret Access Key</em>. Ci serviranno durante il prossimo passaggio.</p>
+
+<p>A questo punto possiamo <strong>initialize</strong> il nostro progetto Bookshelf. Questo comando ci chiederà le due Access keys, oltre che alcune domande durante l&rsquo;installazione.</p>
+
+<pre><code>eb init
+</code></pre>
+
+<p>Ora che il progetto è inizializzato dobbiamo <strong>creare un nuovo ambiente</strong>. Questo comando creerà effettivamente un&rsquo;istanza <strong>t2.micro EC2</strong>, i gruppi di sicurezza, il load balancer, le notifiche cloudwatch ecc..</p>
+
+<pre><code>eb create bookshelf-production
+</code></pre>
+
+<p>Prima di rilasciare l&rsquo;applicazione in produzione dobbiamo generare un <a href="https://github.com/settings/tokens/new">Token Github per composer</a>.
+Questo è necessario per scaricare tutte le dipendenze senza intoppi.
+Per aggiungere il token all&rsquo;ambiente:</p>
+
+<pre><code>eb setenv COMPOSER_TOKEN=&lt;your-token-here&gt;
+</code></pre>
+
+<p>Ora potete verificare che il sistema sia pronto digitando:</p>
+
+<pre><code>eb status
+</code></pre>
+
+<p>Quando lo stato dell&rsquo;applicazione diventa <strong>Ready</strong> potete a tutti gli effetti pubblicare l&rsquo;applicazione con:</p>
+
+<pre><code>eb deploy
+</code></pre>
+
+<p>Il deployment creerà i container descritti in <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json">Dockerrun.aws.json</a> e i files descritti in <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config">dependencies.config</a>.</p>
+
+<p>Se vi state chiedendo cosa sia realmente il file <strong>Dockerrun.aws.json</strong>, basta dire che sta ad Elastic Beanstalk come <code>docker-compose.yml</code> sta all&rsquo;ambiente locale.</p>
+
+<p>I file contenuti in <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/">.ebextensions</a> consentono di personalizzare e configurare il software da cui la vostra applicazione dipende. Il file <strong>dependencies.config</strong> è uno di questi. È proprio lui a risolvere le dipendenze di composer, a compilare gli asset del frontend con grunt e bower e a creare l&rsquo;immagine PHP FPM usata nel <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile">Dockerfile</a> di produzione. È importante notare che l&rsquo;immagine viene nuovamente costruita solo se il Dockerfile viene modificato.</p>
+
+<p>Come avrete notato, [Dockerrun.aws.json](<a href="https://github.com">https://github.com</a></p>
+
+<p>La configurazione di default dell&rsquo;applicazione Bookshelf riceve i parametri di connessione a Mysql e Redis <a href="https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php">dalle variabili d&rsquo;ambiente</a> che sono:</p>
+
+<pre><code>MYSQL_HOST
+MYSQL_PORT
+MYSQL_USERNAME
+MYSQL_PASSWORD
+MYSQL_DATABASE
+REDIS_HOST
+REDIS_PORT
+</code></pre>
+
+<p>Ognuna di queste variabili d&rsquo;ambiente può essere impostata usando il comando che abbiamo precedentemente usato per <code>COMPOSER_TOKEN</code>.</p>
+
+<p>Potete ottenere i parametri di connessione per Mysql e Redis dopo aver creato <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html">un&rsquo;istanza RDS Mysql DB</a> e un <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html">Cluster ElastiCache Redis</a></p>
+
+<p>A questo punto, con i container nginx e fpm in esecuzione e i database configurati, potete digitare <code>eb open</code> per aprire l&rsquo;applicazione in produzione e verificare se tutto è ok!</p>
+
+<p>La vostra infrastruttura, così com&rsquo;è, è anche già pronta per scalare automaticamente; per muovere i primi passi in questa direzione potete dare un&rsquo;occhiata al comando <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html"><code>eb scale</code></a> e alla <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html">documentazione di AWS</a>.</p>
+
+<p><strong>Troubleshooting</strong>: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con <code>eb ssh</code> e analizzare lo stato dei container usando strumenti che già conoscete come <code>docker logs</code>.</p>
+
+<h4 id="è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb">È fatta!</h4>
+
+<p>Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.</p>
+
+<p><img src="/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg" alt="congratulations" /></p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&text=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f&title=Da%20sviluppo%20a%20produzione%20con%20Docker%20e%20AWS%20Elastic%20Beanstalk" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=%2fblog%2fita%2fda-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/docker">Docker</a></li>
+    
+        <li><a href="/categories/aws">AWS</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/"
+                class="button big previous">From development to production with Docker and AWS Elastic Beanstalk</a></li>
+    
+
+    
+        <li><a href="/blog/ita/optionals-in-objective-c/"
+                class="button big next">Optionals in Objective-C</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_url = '\/blog\/ita\/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk\/';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/json-web-tokens/">Json Web Token</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-08'>
+                                        8 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-03-15'>
+                                        15 March 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/ea25f7f9a012bed5c79d4338ac564aa6?s=250&amp;d=mm&amp;r=x" alt="Vito Latrofa avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="/blog/eng/graphql-an-introduction/">GraphQL: an introduction</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-01-18'>
+                                        18 January 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">32</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">13</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile.it Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

@@ -316,10 +316,15 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/">L&#39;operatore ternario è associativo a sinistra!</a></h2>
+            <h2><a href="/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/">Da sviluppo a produzione con Docker e AWS Elastic Beanstalk</a></h2>
         
         
         
+        
+            <p class="translated-article">
+                This article is also available
+                <a href="/blog/eng/from-development-to-production-with-docker-and-amazon-ecs">in english</a>
+            </p>
         
     </div>
     <div class="meta">
@@ -327,8 +332,8 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-03-02'>
-            2 March 2015
+        <time class="published" datetime='2015-10-19'>
+            19 October 2015
         </time>
 
         
@@ -339,20 +344,27 @@ ga('send', 'pageview');
             
             </a>
         
+            <a href="/authors/daniele" class="author">
+            
+                <span class="name">Daniele Contini</span>
+                <img src="/images/avatar-daniele.jpg" alt="Daniele Contini avatar" />
+            
+            </a>
+        
 
         
-            <p>1 minute read</p>
+            <p>7 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Gli operatori ternari sono diffusi in molti linguaggi di programmazione e permettono di esprimire con una sintassi breve logiche condizionali. Per utilizzarli propriamente in PHP è però necessario conoscerne il comportamento. Vediamo un esempio var_dump(true ? &lsquo;a&rsquo; : &lsquo;b&rsquo; ? &lsquo;c&rsquo; : &rsquo;d&rsquo;); // OUTPUT: string(1) &quot;c&quot; Se state pensando che il risultato di questa espressione sia ovvio, vediamo cosa succede ad esempio in javascript console.log(true ? &lsquo;a&rsquo; : &lsquo;b&rsquo; ?</p>
+    <p>In locale funzionava Questo articolo si rivolge a chi ha già una conoscenza base di docker e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione. Avere un ambiente di sviluppo/test il più simile possibile a quello di produzione aiuta molto nel garantire un corretto funzionamento dopo il deploy. In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue: nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati); è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione; condividere l&rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile; Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa: It works on my machine (in locale funzionava) Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&rsquo;overhead.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="/blog/ita/operatore-ternario-e-associativo-a-sinistra/" class="button big">Continue Reading</a></li>
+            <li><a href="/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -374,7 +386,9 @@ ga('send', 'pageview');
     
         <li><a href="/categories/italiano">Italiano</a></li>
     
-        <li><a href="/categories/php">PHP</a></li>
+        <li><a href="/categories/docker">Docker</a></li>
+    
+        <li><a href="/categories/aws">AWS</a></li>
     
 </ul>
 
@@ -386,9 +400,14 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
+            <h2><a href="/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/">From development to production with Docker and AWS Elastic Beanstalk</a></h2>
         
         
+        
+            <p class="translated-article">
+                Questo articolo è disponibile anche
+                <a href="/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk">in italiano</a>
+            </p>
         
         
     </div>
@@ -397,8 +416,8 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-03-02'>
-            2 March 2015
+        <time class="published" datetime='2015-10-19'>
+            19 October 2015
         </time>
 
         
@@ -411,18 +430,18 @@ ga('send', 'pageview');
         
 
         
-            <p>2 minute read</p>
+            <p>7 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
+    <p>It works on my machine This post is addressed to people who already have basic knowledge about docker, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day. Having a development/testing environment as close as possible to the production one helps a lot in assuring that things will behave correctly when delivered.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
+            <li><a href="/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -442,11 +461,11 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="/categories/italiano">Italiano</a></li>
+        <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/php">PHP</a></li>
+        <li><a href="/categories/docker">Docker</a></li>
     
-        <li><a href="/categories/php-internals">PHP internals</a></li>
+        <li><a href="/categories/aws">AWS</a></li>
     
 </ul>
 
@@ -688,6 +707,8 @@ ga('send', 'pageview');
                     
                 
                     
+                
+                    
                     <li>
                         <article>
                             <header>
@@ -709,14 +730,18 @@ ga('send', 'pageview');
                     
                 
                     
+                
+                    
                     <li>
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">8</span>
+                                <span style="float:right;">9</span>
                             </header>
                         </article>
                     </li>
+                    
+                
                     
                 
                     
@@ -743,14 +768,18 @@ ga('send', 'pageview');
                     
                 
                     
+                
+                    
                     <li>
                         <article>
                             <header>
                                 <a href="/categories/italiano/">Italiano</a>
-                                <span style="float:right;">27</span>
+                                <span style="float:right;">32</span>
                             </header>
                         </article>
                     </li>
+                    
+                
                     
                 
                     
@@ -787,7 +816,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/php/">PHP</a>
-                                <span style="float:right;">12</span>
+                                <span style="float:right;">13</span>
                             </header>
                         </article>
                     </li>

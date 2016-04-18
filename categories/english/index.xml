@@ -719,7 +719,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
 
-&lt;h2 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h1 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
@@ -757,17 +757,17 @@ If you are using a device to read this post you are probably using at least one 
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
-&lt;img src=&#34;/content/images/2016/01/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h2&gt;
+&lt;h1 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h1&gt;
 
 &lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
 
-&lt;h3 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h3&gt;
+&lt;h2 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h2&gt;
 
 &lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
 
-&lt;h4 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h4&gt;
+&lt;h3 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;GCC or Clang&lt;/li&gt;
@@ -789,7 +789,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h4&gt;
+&lt;h3 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
@@ -806,14 +806,14 @@ If you are using a device to read this post you are probably using at least one 
 &lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h3&gt;
+&lt;h2 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h2&gt;
 
 &lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
 
 &lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h3&gt;
+&lt;h2 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h2&gt;
 
 &lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
 
@@ -835,21 +835,39 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
 
-&lt;h4 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
 
 &lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
 
-&lt;h5 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h5&gt;
+&lt;h4 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h4&gt;
 
 &lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/f373ee1e423566642d71.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int getattr_callback(const char *path, struct stat *stbuf) {
+  memset(stbuf, 0, sizeof(struct stat));
+
+  if (strcmp(path, &amp;quot;/&amp;quot;) == 0) {
+    stbuf-&amp;gt;st_mode = S_IFDIR | 0755;
+    stbuf-&amp;gt;st_nlink = 2;
+    return 0;
+  }
+
+  if (strcmp(path, filepath) == 0) {
+    stbuf-&amp;gt;st_mode = S_IFREG | 0777;
+    stbuf-&amp;gt;st_nlink = 1;
+    stbuf-&amp;gt;st_size = strlen(filecontent);
+    return 0;
+  }
+
+  return -ENOENT;
+}
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What we are doing here is simple:&lt;/p&gt;
 
@@ -865,32 +883,75 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 &lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;h5 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h5&gt;
+&lt;h4 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h4&gt;
 
 &lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
 
-&lt;h5 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h5&gt;
+&lt;h4 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h4&gt;
 
 &lt;p&gt;This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
 As done in the getattr callback, here I&amp;rsquo;m checking if the given path equals to a known one, I copy the &lt;code&gt;filecontent&lt;/code&gt; into the &lt;code&gt;buf&lt;/code&gt; and then return the requested number of bytes.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/91ee912e4d58295ee18d.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int read_callback(const char *path, char *buf, size_t size, off_t offset,
+    struct fuse_file_info *fi) {
 
-&lt;h5 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h5&gt;
+  if (strcmp(path, filepath) == 0) {
+    size_t len = strlen(filecontent);
+    if (offset &amp;gt;= len) {
+      return 0;
+    }
+
+    if (offset + size &amp;gt; len) {
+      memcpy(buf, filecontent + offset, len - offset);
+      return len - offset;
+    }
+
+    memcpy(buf, filecontent + offset, size);
+    return size;
+  }
+
+  return -ENOENT;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h4&gt;
 
 &lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/5e712738bdab28f1a1c0.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int readdir_callback(const char *path, void *buf, fuse_fill_dir_t filler,
+    off_t offset, struct fuse_file_info *fi) {
+  (void) offset;
+  (void) fi;
 
-&lt;h5 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h5&gt;
+  filler(buf, &amp;quot;.&amp;quot;, NULL, 0);
+  filler(buf, &amp;quot;..&amp;quot;, NULL, 0);
+
+  filler(buf, filename, NULL, 0);
+
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h4&gt;
 
 &lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
 
-&lt;script src=&#34;https://gist.github.com/fntlnz/57922d3b64a9fa042aca.js&#34;&gt;&lt;/script&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static struct fuse_operations fuse_example_operations = {
+  .getattr = getattr_callback,
+  .open = open_callback,
+  .read = read_callback,
+  .readdir = readdir_callback,
+};
 
-&lt;h4 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h4&gt;
+int main(int argc, char *argv[])
+{
+  return fuse_main(argc, argv, &amp;amp;fuse_example_operations, NULL);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h3&gt;
 
 &lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
 
@@ -910,7 +971,7 @@ Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, 
 
 &lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
 
-&lt;h4 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h4&gt;
+&lt;h3 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h3&gt;
 
 &lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
 
@@ -946,7 +1007,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h3&gt;
+&lt;h2 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
@@ -954,7 +1015,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h3&gt;
+&lt;h2 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
@@ -1674,6 +1735,193 @@ NS_ASSUME_NONNULL_END
 &lt;p&gt;Bringing back the &lt;code&gt;Optional&lt;/code&gt; type from Swift to Objective-C allowed us to build a JSON parsing routine, often something hard to maintain and error-prone, in a simple, linear and readable way. Of course there&amp;rsquo;s &lt;strong&gt;plenty of cases&lt;/strong&gt; where working with optionals can give us the same advantages: by composing &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt; operations we can express our intent in a clean and readable way. But this is not just about the &lt;code&gt;Optional&lt;/code&gt; type: some readers may have probably noticed that many languages (including Swift) allow operations with the same names on lists and arrays, and the meanings are also the same: &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;flatMap&lt;/code&gt;, in particular, are &lt;strong&gt;generic concepts&lt;/strong&gt; related to monads (in fact, the array type is also a monad) and allow declarative compositions of transformations. This concept is at the core of &lt;strong&gt;functional programming&lt;/strong&gt;, and I think there&amp;rsquo;s plenty of reasons to apply similar concepts to a more object-oriented environment: they will help the programmer in reasoning about the code and express the intent in a more declarative way.&lt;/p&gt;
 
 &lt;p&gt;The code for the &lt;code&gt;Optional&lt;/code&gt; class used throughout the article can be found on &lt;a href=&#34;https://gist.github.com/broomburgo/e318228a5f7d6a605e82&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>From development to production with Docker and AWS Elastic Beanstalk</title>
+      <link>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
+      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
+      <description>
+
+&lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
+
+&lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
+
+&lt;p&gt;Having a development/testing environment &lt;strong&gt;as close as possible&lt;/strong&gt; to the production one helps a lot in assuring that &lt;strong&gt;things will behave correctly when delivered&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In a typical scenario, the developer has all the services on which the application depends installed on his local machine, which means the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;there&amp;rsquo;s no isolation between projects using the same services (versions, configurations, data);&lt;/li&gt;
+&lt;li&gt;it&amp;rsquo;s hard to have and maintain production-like services&amp;rsquo; versions and configurations in development;&lt;/li&gt;
+&lt;li&gt;sharing the development environment with co-workers is difficult if not impossible;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of that leads to one of the worst sentences I&amp;rsquo;ve ever heard saying in my experience:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It works on my machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
+
+&lt;h1 id=&#34;bookshelf-application:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Bookshelf application&lt;/h1&gt;
+
+&lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
+
+&lt;h2 id=&#34;download-and-dependencies:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Download and dependencies&lt;/h2&gt;
+
+&lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHP Dependencies are managed through &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, and to get them just issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;composer install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Frontend assets are managed through &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; the following two commands will respectively download build dependencies and then build the assets, by copying them in the public directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install
+grunt dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running development environment&lt;/h2&gt;
+
+&lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;By inspecting the content of the &lt;code&gt;docker/development&lt;/code&gt; folder we can find two directories:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; image to create a new one with the needed nginx configurations;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; image to create a new one with the needed php-fpm configurations and extensions;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point, in our &lt;code&gt;docker-compose.yml&lt;/code&gt; we should have four containers to start:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;Nginx&lt;/strong&gt; container, which contains a server block  for the bookshelf application listening on port 80.&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;fpm&lt;/strong&gt; container, which does have a shared volume with the host machine so you can change the code without the need to rebuild the container image; also, the container is linked with the mysql container to allow mysql access from php scripts;&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;mysql&lt;/strong&gt; container, which will contain our development data;&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;redis&lt;/strong&gt; container, used for caching purposes, mainly by Doctrine;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please note that since &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;containers are linked&lt;/a&gt; you can access to an exposed service by using the name given to the linked container; for example, in our case the fpm container is &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;linked to the mysql container&lt;/a&gt;: that&amp;rsquo;s why the configured host is &lt;code&gt;mysql&lt;/code&gt; in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;doctrine local connection configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you haven&amp;rsquo;t done it yet, you need to build the &lt;code&gt;fpm&lt;/code&gt; docker image and download the &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; and &lt;code&gt;redis&lt;/code&gt; images; to do so, issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that you have all what you need you can start the containers with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-compose up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point the four containers should be up and running: you can check if everything&amp;rsquo;s okay by issuing the &lt;code&gt;docker ps&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;To proceed, we need to know the ip address of our nginx container. Since the nginx container&amp;rsquo;s port forwarding configuration is &lt;code&gt;80:80&lt;/code&gt;, on &lt;strong&gt;linux&lt;/strong&gt; it should be available at &lt;code&gt;127.0.0.1:80&lt;/code&gt; or &lt;code&gt;localhost:80&lt;/code&gt;, while on &lt;strong&gt;OS X&lt;/strong&gt; it should be available at the ip address associated to the docker-machine host; to retrieve it, issue the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s time to point your browser to the nginx container ip address!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
+
+&lt;h2 id=&#34;up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running production environment&lt;/h2&gt;
+
+&lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
+
+&lt;p&gt;The choice fell on &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; because it has all those things and in addition it has a more competitive pricing model with an initial &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; which it is enough to run this demo.&lt;/p&gt;
+
+&lt;p&gt;Before we start we need an &lt;strong&gt;Amazon Web Services&lt;/strong&gt; account, if you don&amp;rsquo;t have one yet, you can create it &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To configure, deploy and manage our infrastructure we are going to need the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;eb command&lt;/a&gt;, to get it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install awsebcli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to obtain access to the platform from your command line using the &lt;strong&gt;eb&lt;/strong&gt; command you have to setup an &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; and associate it to an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. The IAM User creation wizard will &lt;strong&gt;give you two keys&lt;/strong&gt;, namely the &lt;em&gt;AWS Access Key ID&lt;/em&gt; and the &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. We are going to need them during the next step.&lt;/p&gt;
+
+&lt;p&gt;At this point we can &lt;strong&gt;initialize&lt;/strong&gt; our bookshelf project. This command will prompt us for the two Access keys plus a few question about our setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that the project is initialized we have to &lt;strong&gt;create a new environment&lt;/strong&gt;. This will actually start a &lt;strong&gt;t2.micro EC2&lt;/strong&gt; instance, create the security groups, the load balancer, cloudwatch alarms etc..&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Before deploying the application to production we have to generate a &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Github Token for composer&lt;/a&gt;.
+This is needed to allow composer to download dependencies without hassle.
+To add the token to your environment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can check if the system is ready issuing a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When the status becomes &lt;strong&gt;Ready&lt;/strong&gt; you can actually deploy the application with a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eb deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The deployment will create the containers described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; and create the files described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;p&gt;If you are asking yourslef what the &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt; actually is, suffice it to say that is to Elastic beanstalk as the &lt;code&gt;docker-compose.yml&lt;/code&gt; is to the local environment.&lt;/p&gt;
+
+&lt;p&gt;The files contained in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; allows you to customize and configure the software that your application depends on. The &lt;strong&gt;dependencies.config&lt;/strong&gt; is one of them. It actually resolves composer dependencies, build frontend assets using grunt and bower and create the PHP FPM image using the production &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt;. It&amp;rsquo;s important to note that the image is rebuilt only if changes are made to the Dockerfile.&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; contains definitions just for the Nginx and fpm containers. This is because for &lt;strong&gt;Redis&lt;/strong&gt; and &lt;strong&gt;Mysql&lt;/strong&gt; we are going to use respectively &lt;a href=&#34;https://aws.amazon.com/elasticache/&#34;&gt;&lt;strong&gt;Elasticache&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/rds/&#34;&gt;&lt;strong&gt;RDS&lt;/strong&gt;&lt;/a&gt;. RDS and Elasticache are two production ready, scalable and reliable solutions that makes easier to setup a cost-efficient relational database and key value store taking charge of common database administration tasks.&lt;/p&gt;
+
+&lt;p&gt;The Bookshelf application by default is configured to take Mysql and Redis connection parameters &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;from environment variables&lt;/a&gt; which are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MYSQL_HOST
+MYSQL_PORT
+MYSQL_USERNAME
+MYSQL_PASSWORD
+MYSQL_DATABASE
+REDIS_HOST
+REDIS_PORT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each one of these environment variables can be set using the command we previously used for the &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can obtain Mysql and Redis connection parameters after creating an &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;RDS Mysql DB instance&lt;/a&gt; and an &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;ElastiCache Redis Cluster&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point with the running Nginx and fpm containers and configured databases you can issue an &lt;code&gt;eb open&lt;/code&gt; to open the live production application and see if all&amp;rsquo;s okay!&lt;/p&gt;
+
+&lt;p&gt;As well as ready your infrastructure is also ready to scale and auto scale, to move a first step trough this direction you can take a look at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; command and at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;AWS documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;you-are-done:824629f989995bd0ef3a2fb42ac10127&#34;&gt;You are done!&lt;/h1&gt;
+
+&lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
