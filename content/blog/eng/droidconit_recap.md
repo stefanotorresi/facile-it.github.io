@@ -109,7 +109,7 @@ This talk was one of the most interesting to me, as it persuaded me to try and d
 
 The second Droidcon talk about Kotlin was a very fun one, with the speaker acting a funny scene where a nephew tries to explain to his granpa why he should use **Kotlin instead of Java** with a live coding session.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RVu_0TIiH8Q" frameborder="0" allowfullscreen></iframe>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/RVu_0TIiH8Q' frameborder='0' allowfullscreen></iframe></div>
 
 The second part of the talk was still in live programming (without slides) and showed some Kotlin feature in practice. It covered some advanced topics such as functional programming, operator overloading, infix functions, laziness and more.
 
