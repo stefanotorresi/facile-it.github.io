@@ -3493,18 +3493,40 @@
 	ul.posts h1,
 	ul.posts h2,
 	ul.posts h3,
-	ul.posts h4 {
+	ul.posts h4,
+	ul.posts h5,
+	ul.posts h6 {
 		text-transform: capitalize;
 	}
 
-	#sidebar ul > header h3 {
+	article h1 {
+		font-size: 1.4em;
+	}
+
+	article h2 {
+		font-size: 1.3em;
+	}
+
+	article h3 {
+		font-size: 1.2em;
+	}
+
+	article h4 {
+		font-size: 1.1em;
+	}
+
+	article h5 {
+		font-size: 1.0em;
+	}
+
+	article h6 {
+		font-size: 1.0em;
+	}
+
+#sidebar ul > header h3 {
 		text-transform: uppercase;
 	}
 
 	#sidebar article h3 a {
 		font-size: larger;
-	}
-
-	body {
-		font-size: 20px;
 	}
