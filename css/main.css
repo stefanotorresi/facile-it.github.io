@@ -2814,7 +2814,7 @@
 
 		}
 
-		@media screen and (max-width: 480px) {
+		@media screen and (max-width: 520px) {
 
 			.post > header .meta {
 				-moz-align-items: center;
@@ -3523,10 +3523,17 @@
 		font-size: 1.0em;
 	}
 
-#sidebar ul > header h3 {
+	#sidebar ul > header h3 {
 		text-transform: uppercase;
 	}
 
 	#sidebar article h3 a {
 		font-size: larger;
+	}
+
+	@media screen and (max-width: 640px) {
+		.post > header .meta .author .name {
+			display: block;
+			margin: 0 2.5em 0 1.5em;
+		}
 	}
