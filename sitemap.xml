@@ -2,223 +2,223 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/engineering.facile.it/</loc>
+    <loc>http://engineering.facile.it/</loc>
     <lastmod>2016-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/droidconit_recap/</loc>
+    <loc>http://engineering.facile.it/blog/eng/droidconit_recap/</loc>
     <lastmod>2016-04-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/json-web-tokens/</loc>
+    <loc>http://engineering.facile.it/blog/eng/json-web-tokens/</loc>
     <lastmod>2016-04-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/careers/</loc>
+    <loc>http://engineering.facile.it/careers/</loc>
     <lastmod>2016-03-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/</loc>
+    <loc>http://engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/</loc>
     <lastmod>2016-03-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/graphql-an-introduction/</loc>
+    <loc>http://engineering.facile.it/blog/eng/graphql-an-introduction/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/write-filesystem-fuse/</loc>
+    <loc>http://engineering.facile.it/blog/eng/write-filesystem-fuse/</loc>
     <lastmod>2016-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</loc>
+    <loc>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</loc>
     <lastmod>2015-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/code-reuse-a-primer/</loc>
+    <loc>http://engineering.facile.it/blog/eng/code-reuse-a-primer/</loc>
     <lastmod>2015-12-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/codice-riusabile-un-primer/</loc>
+    <loc>http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/</loc>
     <lastmod>2015-12-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/facile-it-devs-codemotion-milan-2015/</loc>
+    <loc>http://engineering.facile.it/blog/ita/facile-it-devs-codemotion-milan-2015/</loc>
     <lastmod>2015-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/facilehack-2015/</loc>
+    <loc>http://engineering.facile.it/blog/ita/facilehack-2015/</loc>
     <lastmod>2015-11-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/optionals-in-objective-c/</loc>
+    <loc>http://engineering.facile.it/blog/eng/optionals-in-objective-c/</loc>
     <lastmod>2015-11-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/optionals-in-objective-c/</loc>
+    <loc>http://engineering.facile.it/blog/ita/optionals-in-objective-c/</loc>
     <lastmod>2015-11-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</loc>
+    <loc>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</loc>
+    <loc>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/paraunit/</loc>
+    <loc>http://engineering.facile.it/blog/ita/paraunit/</loc>
     <lastmod>2015-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/protection-of-sensitive-data-using-encryption/</loc>
+    <loc>http://engineering.facile.it/blog/eng/protection-of-sensitive-data-using-encryption/</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</loc>
+    <loc>http://engineering.facile.it/blog/ita/protezione-di-dati-sensibili-usando-la-crittografia/</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/wamp-web-application-messaging-protocol-e-php/</loc>
+    <loc>http://engineering.facile.it/blog/ita/wamp-web-application-messaging-protocol-e-php/</loc>
     <lastmod>2015-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/eng/no-country-for-if-else/</loc>
+    <loc>http://engineering.facile.it/blog/eng/no-country-for-if-else/</loc>
     <lastmod>2015-09-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/no-country-for-if-else/</loc>
+    <loc>http://engineering.facile.it/blog/ita/no-country-for-if-else/</loc>
     <lastmod>2015-09-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-summer-camp-2015/</loc>
+    <loc>http://engineering.facile.it/blog/ita/php-summer-camp-2015/</loc>
     <lastmod>2015-09-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/si-fa-presto-a-dire-docker-e-os-x/</loc>
+    <loc>http://engineering.facile.it/blog/ita/si-fa-presto-a-dire-docker-e-os-x/</loc>
     <lastmod>2015-07-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/miniiad-vimercate-2015-reportage/</loc>
+    <loc>http://engineering.facile.it/blog/ita/miniiad-vimercate-2015-reportage/</loc>
     <lastmod>2015-07-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/programmazione-funzionale-perche-preoccuparsi/</loc>
+    <loc>http://engineering.facile.it/blog/ita/programmazione-funzionale-perche-preoccuparsi/</loc>
     <lastmod>2015-07-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-7-overview/</loc>
+    <loc>http://engineering.facile.it/blog/ita/php-7-overview/</loc>
     <lastmod>2015-07-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/git-flow-semantic-versioning/</loc>
+    <loc>http://engineering.facile.it/blog/ita/git-flow-semantic-versioning/</loc>
     <lastmod>2015-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/continuos-integration-docker-drone/</loc>
+    <loc>http://engineering.facile.it/blog/ita/continuos-integration-docker-drone/</loc>
     <lastmod>2015-06-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/swift-testing-avanzato-stubbing-e-test-asincroni/</loc>
+    <loc>http://engineering.facile.it/blog/ita/swift-testing-avanzato-stubbing-e-test-asincroni/</loc>
     <lastmod>2015-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-day-2015/</loc>
+    <loc>http://engineering.facile.it/blog/ita/php-day-2015/</loc>
     <lastmod>2015-05-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/</loc>
+    <loc>http://engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/</loc>
     <lastmod>2015-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/type-first-development-in-swift/</loc>
+    <loc>http://engineering.facile.it/blog/ita/type-first-development-in-swift/</loc>
     <lastmod>2015-05-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/un-flusso-di-lavoro-agile/</loc>
+    <loc>http://engineering.facile.it/blog/ita/un-flusso-di-lavoro-agile/</loc>
     <lastmod>2015-04-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/tracciamento-di-eventi-lato-server/</loc>
+    <loc>http://engineering.facile.it/blog/ita/tracciamento-di-eventi-lato-server/</loc>
     <lastmod>2015-04-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</loc>
+    <loc>http://engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</loc>
     <lastmod>2015-04-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/xcode-testing-in-pratica/</loc>
+    <loc>http://engineering.facile.it/blog/ita/xcode-testing-in-pratica/</loc>
     <lastmod>2015-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/gestione-di-acl-su-insiemi-di-records/</loc>
+    <loc>http://engineering.facile.it/blog/ita/gestione-di-acl-su-insiemi-di-records/</loc>
     <lastmod>2015-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</loc>
+    <loc>http://engineering.facile.it/blog/ita/php-fig-standard-psr-7-http-message-interfaces/</loc>
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/software-testing-coverage-vs-efficacia/</loc>
+    <loc>http://engineering.facile.it/blog/ita/software-testing-coverage-vs-efficacia/</loc>
     <lastmod>2015-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/mysql-has-gone-away-come-back/</loc>
+    <loc>http://engineering.facile.it/blog/ita/mysql-has-gone-away-come-back/</loc>
     <lastmod>2015-03-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/operatore-ternario-e-associativo-a-sinistra/</loc>
+    <loc>http://engineering.facile.it/blog/ita/operatore-ternario-e-associativo-a-sinistra/</loc>
     <lastmod>2015-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/zvals-refcount/</loc>
+    <loc>http://engineering.facile.it/blog/ita/zvals-refcount/</loc>
     <lastmod>2015-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/</loc>
+    <loc>http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/</loc>
     <lastmod>2015-03-02T00:00:00+00:00</lastmod>
   </url>
   

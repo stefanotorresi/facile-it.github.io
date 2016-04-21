@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Giacomo on Facile.it Engineering</title>
-    <link>engineering.facile.it/authors/giacomo/</link>
+    <link>http://engineering.facile.it/authors/giacomo/</link>
     <description>Recent content in Giacomo on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 18 Apr 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="engineering.facile.it/authors/giacomo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://engineering.facile.it/authors/giacomo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Droidcon It 2016</title>
-      <link>/engineering.facile.it/blog/eng/droidconit_recap/</link>
+      <link>http://engineering.facile.it/blog/eng/droidconit_recap/</link>
       <pubDate>Mon, 18 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/engineering.facile.it/blog/eng/droidconit_recap/</guid>
+      <guid>http://engineering.facile.it/blog/eng/droidconit_recap/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/droidconit-recap/logo_droidcon_it.png&#34; alt=&#34;Droidcon It&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/droidconit-recap/logo_droidcon_it.png&#34; alt=&#34;Droidcon It&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The third edition of &lt;a href=&#34;http://it.droidcon.com/2016/&#34;&gt;Droidcon IT&lt;/a&gt; was, as expected, a great conference, full of interesting talks and people coming from all over the world. We saw a lot of GDEs (&lt;a href=&#34;https://developers.google.com/experts/all/technology/android&#34;&gt;Google Developer Expert&lt;/a&gt;) and also some Developer Advocates from Google, although it was not organized directly by the company. Back in March the Android team surprisingly released the brand new &lt;strong&gt;N Developer Preview&lt;/strong&gt; earlier than expected, so this year we were already able to talk about the new features in Android N and analyze them. Furthermore, there was talk of &lt;strong&gt;Kotlin&lt;/strong&gt;, &lt;strong&gt;RxJava&lt;/strong&gt; and a lot of other useful and interesting topics.&lt;/p&gt;
 
@@ -41,7 +41,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;The most interesting and encouraging aspect coming out from the keynote and the N Preview release itself, is the fact that Google is, finally, trying to fix the Android updates issue.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/droidconit-recap/n-preview-updates.png&#34; alt=&#34;N Preview Updates&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/droidconit-recap/n-preview-updates.png&#34; alt=&#34;N Preview Updates&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.&lt;/p&gt;
 
