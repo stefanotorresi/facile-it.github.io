@@ -701,8 +701,12 @@ la libreria <a href="http://autobahn.ws/js/" target="_blank"><strong>Autobahn|JS
 </ul>
 
 
+
+    
         <article class="post">
-            <div id="disqus_thread"></div>
+            
+
+<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
         this.page.url = "http://engineering.facile.it/blog/ita/wamp-web-application-messaging-protocol-e-php/";
@@ -710,18 +714,22 @@ la libreria <a href="http://autobahn.ws/js/" target="_blank"><strong>Autobahn|JS
         this.page.title = "WAMP, Web Application Messaging Protocol.. e PHP!";
     };
 
+    (function () {
+        var d = document, s = d.createElement('script');
 
+        s.src = '//facile-it.disqus.com/embed.js';
 
-
-
-
-
-
-
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">commentspowered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
         </article>
+    
+
 
     </div>
     

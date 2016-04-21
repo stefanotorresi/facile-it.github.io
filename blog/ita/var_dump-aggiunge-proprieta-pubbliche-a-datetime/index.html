@@ -477,8 +477,12 @@ echo $date-&gt;date; // OUTPUT: 2015-03-01 23:21:05.000000
 </ul>
 
 
+
+    
         <article class="post">
-            <div id="disqus_thread"></div>
+            
+
+<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
         this.page.url = "http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/";
@@ -486,18 +490,22 @@ echo $date-&gt;date; // OUTPUT: 2015-03-01 23:21:05.000000
         this.page.title = "var_dump() aggiunge proprietà pubbliche a DateTime";
     };
 
+    (function () {
+        var d = document, s = d.createElement('script');
 
+        s.src = '//facile-it.disqus.com/embed.js';
 
-
-
-
-
-
-
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">commentspowered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
         </article>
+    
+
 
     </div>
     

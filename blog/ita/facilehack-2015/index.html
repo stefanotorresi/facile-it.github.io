@@ -443,8 +443,12 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 </ul>
 
 
+
+    
         <article class="post">
-            <div id="disqus_thread"></div>
+            
+
+<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
         this.page.url = "http://engineering.facile.it/blog/ita/facilehack-2015/";
@@ -452,18 +456,22 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
         this.page.title = "#FacileHack 2015";
     };
 
+    (function () {
+        var d = document, s = d.createElement('script');
 
+        s.src = '//facile-it.disqus.com/embed.js';
 
-
-
-
-
-
-
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">commentspowered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
         </article>
+    
+
 
     </div>
     

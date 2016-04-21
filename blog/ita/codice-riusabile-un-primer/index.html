@@ -621,8 +621,12 @@ sender.signal.send(20)
 </ul>
 
 
+
+    
         <article class="post">
-            <div id="disqus_thread"></div>
+            
+
+<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
         this.page.url = "http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/";
@@ -630,18 +634,22 @@ sender.signal.send(20)
         this.page.title = "Codice riusabile: un primer";
     };
 
+    (function () {
+        var d = document, s = d.createElement('script');
 
+        s.src = '//facile-it.disqus.com/embed.js';
 
-
-
-
-
-
-
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">commentspowered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
         </article>
+    
+
 
     </div>
     
