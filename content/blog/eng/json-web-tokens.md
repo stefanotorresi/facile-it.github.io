@@ -12,6 +12,9 @@ title: "Json Web Token"
 languageCode: "en-En"
 type: "post"
 
+
+aliases: 
+  - "/json-web-token"
 ---
 ![JWT](/images/json-web-tokens/logo.svg)
 
