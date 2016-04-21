@@ -4,7 +4,7 @@ comments: true
 date: "2015-06-16"
 draft: false
 share: true
-categories: [Italiano, Git, Semantic versioning, Git flow, Continuous integration]
+categories: [Italiano, Git, Semantic versioning, Continuous integration]
 title: "GIT flow e versionamento semantico"
 
 languageCode: "it-IT"

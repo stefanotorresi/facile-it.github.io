@@ -4,7 +4,7 @@ comments: true
 date: "2015-05-19"
 draft: false
 share: true
-categories: [Italiano, PHP, PHPDay, Conferences]
+categories: [Italiano, PHP, Conferences]
 title: "Facile.it devs @ PHP Day 2015"
 
 languageCode: "it-IT"

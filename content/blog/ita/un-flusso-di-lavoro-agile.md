@@ -4,7 +4,7 @@ comments: true
 date: "2015-04-30"
 draft: false
 share: true
-categories: [Italiano, Agile, Scrum, Backlog, Pair programming, Kanban]
+categories: [Italiano, Agile, Scrum, Kanban]
 title: "Un flusso di lavoro agile"
 
 languageCode: "it-IT"

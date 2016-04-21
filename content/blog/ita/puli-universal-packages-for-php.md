@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-categories: [Italiano, "PHP", "Open Source", "Composer", "Puli", "Package manager"]
+categories: [Italiano, "PHP", "Open Source"]
 title: "Puli: Universal Packages for PHP"
 
 languageCode: "it-IT"

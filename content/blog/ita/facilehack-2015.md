@@ -6,7 +6,7 @@ draft: false
 image: ""
 menu: ""
 share: true
-categories: [Italiano, "FacileHack", "Hackathon"]
+categories: [Italiano, "Hackathon"]
 title: "#FacileHack 2015"
 
 languageCode: "it-IT"

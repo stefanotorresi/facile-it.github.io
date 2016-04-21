@@ -4,7 +4,7 @@ comments: true
 date: "2015-09-28"
 draft: false
 share: true
-categories: [Italiano, WAMP, PHP, Open Source, Python, Networking, Websocket, Symfony]
+categories: [Italiano, PHP, Open Source, Python, Networking, Websocket, Symfony]
 title: "WAMP, Web Application Messaging Protocol.. e PHP!"
 
 languageCode: "it-IT"

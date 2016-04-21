@@ -4,7 +4,7 @@ comments: true
 date: "2015-09-08"
 draft: false
 share: true
-categories: [Italiano, Conferences, PHP, SummerCamp]
+categories: [Italiano, Conferences, PHP]
 title: "Php Summer Camp 2015"
 type: "post"
 
