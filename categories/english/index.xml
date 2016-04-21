@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>English on Facile.it Engineering</title>
-    <link>/categories/english/</link>
+    <link>engineering.facile.it/categories/english/</link>
     <description>Recent content in English on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 18 Apr 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/english/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="engineering.facile.it/categories/english/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Droidcon It 2016</title>
-      <link>/blog/eng/droidconit_recap/</link>
+      <link>/engineering.facile.it/blog/eng/droidconit_recap/</link>
       <pubDate>Mon, 18 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/droidconit_recap/</guid>
+      <guid>/engineering.facile.it/blog/eng/droidconit_recap/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;/images/droidconit-recap/logo_droidcon_it.png&#34; alt=&#34;Droidcon It&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/droidconit-recap/logo_droidcon_it.png&#34; alt=&#34;Droidcon It&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The third edition of &lt;a href=&#34;http://it.droidcon.com/2016/&#34;&gt;Droidcon IT&lt;/a&gt; was, as expected, a great conference, full of interesting talks and people coming from all over the world. We saw a lot of GDEs (&lt;a href=&#34;https://developers.google.com/experts/all/technology/android&#34;&gt;Google Developer Expert&lt;/a&gt;) and also some Developer Advocates from Google, although it was not organized directly by the company. Back in March the Android team surprisingly released the brand new &lt;strong&gt;N Developer Preview&lt;/strong&gt; earlier than expected, so this year we were already able to talk about the new features in Android N and analyze them. Furthermore, there was talk of &lt;strong&gt;Kotlin&lt;/strong&gt;, &lt;strong&gt;RxJava&lt;/strong&gt; and a lot of other useful and interesting topics.&lt;/p&gt;
 
@@ -41,7 +41,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;The most interesting and encouraging aspect coming out from the keynote and the N Preview release itself, is the fact that Google is, finally, trying to fix the Android updates issue.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/droidconit-recap/n-preview-updates.png&#34; alt=&#34;N Preview Updates&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/droidconit-recap/n-preview-updates.png&#34; alt=&#34;N Preview Updates&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.&lt;/p&gt;
 
@@ -138,13 +138,13 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
     
     <item>
       <title>Json Web Token</title>
-      <link>/blog/eng/json-web-tokens/</link>
+      <link>/engineering.facile.it/blog/eng/json-web-tokens/</link>
       <pubDate>Fri, 08 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/json-web-tokens/</guid>
+      <guid>/engineering.facile.it/blog/eng/json-web-tokens/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;/images/json-web-tokens/logo.svg&#34; alt=&#34;JWT&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/json-web-tokens/logo.svg&#34; alt=&#34;JWT&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When I started my study about JWT, I was searching for a smart method to authenticate a request, without querying the database each time to check the applicant reliability.
 I needed a token or something similar with the ability to validate itself and flexible enough to customize the validation strategy.
@@ -236,10 +236,10 @@ As an example, if on authentication I want to be sure that the token is issued b
     
     <item>
       <title>Decoupling view controllers with Signals</title>
-      <link>/blog/eng/decoupling-view-controllers-with.signals/</link>
+      <link>/engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/</link>
       <pubDate>Tue, 15 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/decoupling-view-controllers-with.signals/</guid>
+      <guid>/engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/code-reuse-a-primer/&#34;&gt;Last time&lt;/a&gt; we looked at the &lt;strong&gt;Signal&lt;/strong&gt; class, that is, a simple, reusable way of encapsulating the &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;. There are many use cases for a signal, and I&amp;rsquo;m going to show one possible application, spawned from a real-world problem. View controllers&amp;rsquo; composition and decoupling is &lt;strong&gt;hard&lt;/strong&gt;: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow. We often find ourselves in a situation in which several different responsibilities are all expressed in a single view controller, with the effect of creating a gigantic class, full of entangled imperative statements, hard-to-understand sequencing and general complexity. We&amp;rsquo;ll use the &lt;code&gt;Signal&lt;/code&gt; class to assign the various responsibilities to different classes, and write cleaner, more declarative code. The core of this architectural pattern lies in inverting the way in which objects communicate, view controller or other: instead of asking objects to do things, we&amp;rsquo;re going to &lt;strong&gt;observe&lt;/strong&gt; what objects are doing, and &lt;strong&gt;react&lt;/strong&gt; accordingly. &lt;em&gt;Observe&lt;/em&gt; and &lt;em&gt;React&lt;/em&gt; are the cornerstones of the programming paradigm known as &lt;a href=&#34;https://en.wikipedia.org/wiki/Functional_reactive_programming&#34;&gt;functional reactive programming(FRP)&lt;/a&gt;; the present article is not going to talk about FRP as a whole, nor to present shared FRP techniques; the point is to discuss an architectural pattern for decoupling view controllers from responsibilities not strictly related to user interaction, by leveraging some basic FRP tools.&lt;/p&gt;
@@ -448,10 +448,10 @@ pageFactory.signalMakeSelectionPage
     
     <item>
       <title>GraphQL: an introduction</title>
-      <link>/blog/eng/graphql-an-introduction/</link>
+      <link>/engineering.facile.it/blog/eng/graphql-an-introduction/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/graphql-an-introduction/</guid>
+      <guid>/engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
       <description>
 
 &lt;h2 id=&#34;the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
@@ -838,10 +838,10 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
     
     <item>
       <title>Write a filesystem with FUSE</title>
-      <link>/blog/eng/write-filesystem-fuse/</link>
+      <link>/engineering.facile.it/blog/eng/write-filesystem-fuse/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/write-filesystem-fuse/</guid>
+      <guid>/engineering.facile.it/blog/eng/write-filesystem-fuse/</guid>
       <description>
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
@@ -884,7 +884,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
-&lt;img src=&#34;/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;engineering.facile.it/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h1&gt;
 
@@ -1160,10 +1160,10 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
     
     <item>
       <title>Code reuse: a primer</title>
-      <link>/blog/eng/code-reuse-a-primer/</link>
+      <link>/engineering.facile.it/blog/eng/code-reuse-a-primer/</link>
       <pubDate>Wed, 09 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/code-reuse-a-primer/</guid>
+      <guid>/engineering.facile.it/blog/eng/code-reuse-a-primer/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/optionals-in-objective-c/&#34;&gt;Last time&lt;/a&gt; we looked at a possible implementation for the &lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optional&lt;/a&gt; type in Objective-C; while the main point was to port to Objective-C a tool that&amp;rsquo;s frequently used in Swift, making use of the &lt;code&gt;Optional&lt;/code&gt; class can be considered an application of a much more general concept: &lt;strong&gt;code reuse&lt;/strong&gt;. In fact, &lt;code&gt;Optional&lt;/code&gt; is not tied to a particular domain, and can be reused over and over again in multiple projects: that&amp;rsquo;s what actually happens in Swift. But, to think about it, that&amp;rsquo;s what happens for a wide range of &lt;em&gt;classes&lt;/em&gt; in Objective-C, or &lt;em&gt;types&lt;/em&gt; in Swift: for example, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are both constructs that expose a certain interface, have a certain implementation, and are reused multiple times within methods and functions. And again, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are not tied to a particular domain, and have two important properties:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1348,10 +1348,10 @@ sender.signal.send(20)
     
     <item>
       <title>Optionals in Objective-C</title>
-      <link>/blog/eng/optionals-in-objective-c/</link>
+      <link>/engineering.facile.it/blog/eng/optionals-in-objective-c/</link>
       <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/optionals-in-objective-c/</guid>
+      <guid>/engineering.facile.it/blog/eng/optionals-in-objective-c/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Objective-C is not going anywhere&lt;/strong&gt;. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while:&lt;/p&gt;
@@ -1867,10 +1867,10 @@ NS_ASSUME_NONNULL_END
     
     <item>
       <title>From development to production with Docker and AWS Elastic Beanstalk</title>
-      <link>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
+      <link>/engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
+      <guid>/engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
       <description>
 
 &lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
@@ -1893,7 +1893,7 @@ NS_ASSUME_NONNULL_END
 &lt;p&gt;It works on my machine.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
 
@@ -1969,7 +1969,7 @@ grunt dev
 
 &lt;p&gt;It&amp;rsquo;s time to point your browser to the nginx container ip address!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
 
@@ -2048,16 +2048,16 @@ REDIS_PORT
 
 &lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Protection of sensitive data using encryption</title>
-      <link>/blog/eng/protection-of-sensitive-data-using-encryption/</link>
+      <link>/engineering.facile.it/blog/eng/protection-of-sensitive-data-using-encryption/</link>
       <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/protection-of-sensitive-data-using-encryption/</guid>
+      <guid>/engineering.facile.it/blog/eng/protection-of-sensitive-data-using-encryption/</guid>
       <description>
 
 &lt;p&gt;Data protection is one of the major and recurrent problems in recent years: whether it is private information of users, or the company for which we work, the problem is always the same.&lt;/p&gt;
@@ -2089,7 +2089,7 @@ Any flaw, both hardware and software, however limited in time could expose our w
 &lt;p&gt;This type of algorithm is based on the use of encryption keys said symmetrical that allow  &lt;strong&gt;to encrypt and decrypt data using the same cryptographic key&lt;/strong&gt;.
 An example is &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard) algorithm, evolution of &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; the whose characteristics can be summarized in a good level of safety and excellent speed, whether it is implemented in hardware or software.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;asymmetric-algorithms:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Asymmetric Algorithms&lt;/h3&gt;
 
@@ -2098,7 +2098,7 @@ The name derives from the method by which the two keys are to be used. The publi
 The feature that characterizes these keys is the impossibility of obtaining, for example, the private key being in possession of the public key. Unless a particular algorithm exploits, the only method to obtain this key is the brute force **on that data.
 In this case the example for excellence is &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), a de facto standard in the security on data transmission: it is in fact widely used to encrypt the communications that take place between the client and server.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;the-solution-combining-rsa-and-aes:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;The solution combining RSA and AES&lt;/h2&gt;
 
@@ -2132,7 +2132,7 @@ Masterkey chosen will be very important as it will be required each time we have
 
 &lt;p&gt;We got a similar system to the one shown below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;System&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;System&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;share:cba7ee5925403671cf2cdf5f560f7388&#34;&gt;Share!&lt;/h3&gt;
 
@@ -2157,10 +2157,10 @@ Also a key - which is user&amp;rsquo;s choice - too simple would be easy to circ
     
     <item>
       <title>No Country For If Else</title>
-      <link>/blog/eng/no-country-for-if-else/</link>
+      <link>/engineering.facile.it/blog/eng/no-country-for-if-else/</link>
       <pubDate>Tue, 15 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/eng/no-country-for-if-else/</guid>
+      <guid>/engineering.facile.it/blog/eng/no-country-for-if-else/</guid>
       <description>
 
 &lt;p&gt;There is an &lt;strong&gt;unwanted guest&lt;/strong&gt; with us as we write code and build software projects: it&amp;rsquo;s the code that&amp;rsquo;s &lt;strong&gt;already written&lt;/strong&gt;, and we must take into account its complexity as the code base increases in size. High complexity of the existing code can make the following activities particularly difficult:&lt;/p&gt;

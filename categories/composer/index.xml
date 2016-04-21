@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Composer on Facile.it Engineering</title>
-    <link>/categories/composer/</link>
+    <link>engineering.facile.it/categories/composer/</link>
     <description>Recent content in Composer on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Dec 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/composer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="engineering.facile.it/categories/composer/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Puli: Universal Packages for PHP</title>
-      <link>/blog/ita/puli-universal-packages-for-php/</link>
+      <link>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/ita/puli-universal-packages-for-php/</guid>
+      <guid>/engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
       <description>
 
 &lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;

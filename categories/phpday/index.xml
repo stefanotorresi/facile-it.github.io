@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PHPDay on Facile.it Engineering</title>
-    <link>/categories/phpday/</link>
+    <link>engineering.facile.it/categories/phpday/</link>
     <description>Recent content in PHPDay on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 May 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/phpday/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="engineering.facile.it/categories/phpday/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Facile.it devs @ PHP Day 2015</title>
-      <link>/blog/ita/php-day-2015/</link>
+      <link>/engineering.facile.it/blog/ita/php-day-2015/</link>
       <pubDate>Tue, 19 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>/blog/ita/php-day-2015/</guid>
+      <guid>/engineering.facile.it/blog/ita/php-day-2015/</guid>
       <description>
 
 &lt;p&gt;Anche quest&amp;rsquo;anno si è svolto il &lt;strong&gt;&lt;a href=&#34;http://2015.phpday.it/&#34;&gt;PHP Day&lt;/a&gt; a Verona, il 15 e 16 maggio&lt;/strong&gt;. Noi sviluppatori di Facile.it abbiamo partecipato con un folto gruppo e seguito i vari talks.&lt;/p&gt;
