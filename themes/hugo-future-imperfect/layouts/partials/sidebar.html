@@ -95,11 +95,7 @@
                     <h3><a href="/categories/">Top categories</a></h3>
                 </header>
 
-                {{ if .Site.Params.categoriesByCount }}
-                    {{ $.Scratch.Set "categories" .Site.Taxonomies.categories.ByCount }}
-                {{ else }}
-                    {{ $.Scratch.Set "categories" .Site.Taxonomies.categories.Alphabetical }}
-                {{ end }}
+                {{ $.Scratch.Set "categories" .Site.Taxonomies.categories.ByCount }}
 
                 {{ range $key, $value := $.Scratch.Get "categories" }}
                     {{ if ge $value.Count 5 }}
