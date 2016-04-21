@@ -12,6 +12,8 @@ title: Droidcon It 2016
 languageCode: "en-En"
 type: "post"
 
+aliases: 
+  - "/droidcon-it-2016"
 ---
 ![Droidcon It](/images/droidconit-recap/logo_droidcon_it.png)
 
