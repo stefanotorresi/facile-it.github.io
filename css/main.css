@@ -3451,6 +3451,11 @@
 
 /** VARIOUS FIXES **/
 
+	p + ol,
+	p + ul {
+		margin-top: -1.2em;
+	}
+
 	.post img {
 		max-width: 100%;
 	}
@@ -3459,16 +3464,76 @@
 		border: none;
 	}
 
-	.post pre {
-		max-width: 50em;
+	pre, .gist {
+		display: table;
+		table-layout: fixed;
+		width: 100%
 	}
 
-	.post p  a,
-	.post ul a,
-	.post ol a {
+	.post > p a,
+	.post > ul a,
+	.post > ol a {
 		border-bottom: double 3px rgba(160, 160, 160, 0.85)
 	}
 
 	.post p a:hover {
 		border-bottom-color: rgba(46, 186, 174, 0.25)
+	}
+
+	.post > header .meta {
+		padding: 1.75em 3em 1.75em 3em;
+		top: 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		text-transform: none;
+		letter-spacing: 0;
+	}
+
+	ul.posts h1,
+	ul.posts h2,
+	ul.posts h3,
+	ul.posts h4,
+	ul.posts h5,
+	ul.posts h6 {
+		text-transform: capitalize;
+	}
+
+	article h1 {
+		font-size: 1.4em;
+	}
+
+	article h2 {
+		font-size: 1.3em;
+	}
+
+	article h3 {
+		font-size: 1.2em;
+	}
+
+	article h4 {
+		font-size: 1.1em;
+	}
+
+	article h5 {
+		font-size: 1.0em;
+	}
+
+	article h6 {
+		font-size: 1.0em;
+	}
+
+	#sidebar ul > header h3 {
+		text-transform: uppercase;
+	}
+
+	#sidebar article h3 a {
+		font-size: larger;
+	}
+
+	@media screen and (max-width: 640px) {
+		.post > header .meta .author .name {
+			display: block;
+			margin: 0 2.5em 0 1.5em;
+		}
 	}
