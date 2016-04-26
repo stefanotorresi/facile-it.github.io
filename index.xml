@@ -6,8 +6,77 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Apr 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Blog restyling: switching to Hugo and GitHub Pages</title>
+      <link>http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/</link>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/</guid>
+      <description>
+
+&lt;p&gt;As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
+We are very happy with those changes, but the reason behind this transition is not just a simple template change.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-we-were-searching-for:07063062dea63684291e8b15e998f464&#34;&gt;What we were searching for&lt;/h2&gt;
+
+&lt;p&gt;Before, we were using an hosted CMS to run the blog, &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;. We were happy with the results, it wasn&amp;rsquo;t our concern to administrate the server or bother about other hosting stuff.&lt;/p&gt;
+
+&lt;p&gt;But, as many other developers, we were &lt;strong&gt;hitching for something&lt;/strong&gt; more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having &lt;strong&gt;problems during the revision phase&lt;/strong&gt; of the articles, since multiple persons couldn&amp;rsquo;t review and edit an article at the same time, fearing the risk of overwriting each other&amp;rsquo;s work.&lt;/p&gt;
+
+&lt;p&gt;We then came down with a list of requirements for our blog; we wanted:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;easy review of articles&lt;/strong&gt;: parallels reviews are a must&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;an easy workflow&lt;/strong&gt;: no major overhead, since the blog contributions are voluntary amongs us; we want to dedicate all the time to writing the articles, not wrestling with technical difficulties&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;no security flaws&lt;/strong&gt;: this point disqualified Wordpress and other famous CMS solutions; we wouldn&amp;rsquo;t like to spend time staying ahead of possible security risks, or have to worry over the hosting and installation problems that a widespread used CMS has&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;easy image hosting&lt;/strong&gt; and embedding&lt;/li&gt;
+&lt;li&gt;easy management and modifications of the &lt;strong&gt;template&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;easy integrations of previously used &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus comments&lt;/a&gt; and Google Analytics&lt;/li&gt;
+&lt;li&gt;preferably &lt;strong&gt;markdown content format&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;support for &lt;strong&gt;multilanguage articles&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;git-and-the-github-pages:07063062dea63684291e8b15e998f464&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
+
+&lt;p&gt;The first solution that came to us was obviously &lt;strong&gt;Git&lt;/strong&gt;, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub pages&lt;/a&gt; as an hosting solution: that is ideal, since we already have a &lt;a href=&#34;https://github.com/facile-it&#34;&gt;Github organization&lt;/a&gt; in place, so an organization homepage/site would perfectly fit the bill for our blog.&lt;/p&gt;
+
+&lt;h2 id=&#34;hugo:07063062dea63684291e8b15e998f464&#34;&gt;Hugo&lt;/h2&gt;
+
+&lt;p&gt;Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;: it&amp;rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;it generates the static HMTL site live, with a &lt;strong&gt;&lt;a href=&#34;https://gohugo.io/extras/livereload/&#34;&gt;live reload&lt;/a&gt; functionality&lt;/strong&gt;: while you edit your markdown article, the site refresh itself on each save of the file(s), so you can see a live preview of what you&amp;rsquo;re writing&lt;/li&gt;
+&lt;li&gt;there are many templates ready to be used, and we &lt;a href=&#34;http://themes.gohugo.io/future-imperfect/&#34;&gt;chose one&lt;/a&gt; to be modified to our needs&lt;/li&gt;
+&lt;li&gt;the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;deploying:07063062dea63684291e8b15e998f464&#34;&gt;Deploying&lt;/h2&gt;
+
+&lt;p&gt;The last step needed to smooth out our workflow was to find a &lt;strong&gt;deploy strategy&lt;/strong&gt;. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.&lt;/p&gt;
+
+&lt;p&gt;We needed an easy way to reproduce this steps, ideally with a script commited to the repo, ready for everyone to use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;generate&lt;/strong&gt; the static site with Hugo&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;avoid mixing (and committing)&lt;/strong&gt; the static copy with the source files&lt;/li&gt;
+&lt;li&gt;commit the files to the master branch&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hugo normally generates the static copy in the &lt;code&gt;./public&lt;/code&gt; directory; to achieve this we used &lt;a href=&#34;https://github.com/X1011/git-directory-deploy&#34;&gt;a script that I found on GitHub itself&lt;/a&gt; that solved this exact problem. We started an empty &lt;code&gt;source&lt;/code&gt; branch, &lt;strong&gt;detached&lt;/strong&gt; from master:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git checkout -b source --orphan
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We started our Hugo site inside it, and we put the &lt;code&gt;./public&lt;/code&gt; in the &lt;code&gt;.gitIgnore&lt;/code&gt;, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of &lt;code&gt;publish: &amp;lt;last commit message from source&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;et-voilà-here-we-are:07063062dea63684291e8b15e998f464&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
+
+&lt;p&gt;So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Droidcon It 2016</title>
@@ -3325,193 +3394,6 @@ REDIS_PORT
 &lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
 
 &lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>From development to production with Docker and AWS Elastic Beanstalk</title>
-      <link>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
-      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
-      <description>
-
-&lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
-
-&lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
-
-&lt;p&gt;Having a development/testing environment &lt;strong&gt;as close as possible&lt;/strong&gt; to the production one helps a lot in assuring that &lt;strong&gt;things will behave correctly when delivered&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In a typical scenario, the developer has all the services on which the application depends installed on his local machine, which means the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;there&amp;rsquo;s no isolation between projects using the same services (versions, configurations, data);&lt;/li&gt;
-&lt;li&gt;it&amp;rsquo;s hard to have and maintain production-like services&amp;rsquo; versions and configurations in development;&lt;/li&gt;
-&lt;li&gt;sharing the development environment with co-workers is difficult if not impossible;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;All of that leads to one of the worst sentences I&amp;rsquo;ve ever heard saying in my experience:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It works on my machine.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
-
-&lt;h1 id=&#34;bookshelf-application:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Bookshelf application&lt;/h1&gt;
-
-&lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
-
-&lt;h2 id=&#34;download-and-dependencies:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Download and dependencies&lt;/h2&gt;
-
-&lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;PHP Dependencies are managed through &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, and to get them just issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;composer install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Frontend assets are managed through &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; the following two commands will respectively download build dependencies and then build the assets, by copying them in the public directory:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm install
-grunt dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running development environment&lt;/h2&gt;
-
-&lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;By inspecting the content of the &lt;code&gt;docker/development&lt;/code&gt; folder we can find two directories:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; image to create a new one with the needed nginx configurations;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; image to create a new one with the needed php-fpm configurations and extensions;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
-
-&lt;h4 id=&#34;the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;At this point, in our &lt;code&gt;docker-compose.yml&lt;/code&gt; we should have four containers to start:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;the &lt;strong&gt;Nginx&lt;/strong&gt; container, which contains a server block  for the bookshelf application listening on port 80.&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;fpm&lt;/strong&gt; container, which does have a shared volume with the host machine so you can change the code without the need to rebuild the container image; also, the container is linked with the mysql container to allow mysql access from php scripts;&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;mysql&lt;/strong&gt; container, which will contain our development data;&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;redis&lt;/strong&gt; container, used for caching purposes, mainly by Doctrine;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please note that since &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;containers are linked&lt;/a&gt; you can access to an exposed service by using the name given to the linked container; for example, in our case the fpm container is &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;linked to the mysql container&lt;/a&gt;: that&amp;rsquo;s why the configured host is &lt;code&gt;mysql&lt;/code&gt; in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;doctrine local connection configuration&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you haven&amp;rsquo;t done it yet, you need to build the &lt;code&gt;fpm&lt;/code&gt; docker image and download the &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; and &lt;code&gt;redis&lt;/code&gt; images; to do so, issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that you have all what you need you can start the containers with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;At this point the four containers should be up and running: you can check if everything&amp;rsquo;s okay by issuing the &lt;code&gt;docker ps&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;p&gt;To proceed, we need to know the ip address of our nginx container. Since the nginx container&amp;rsquo;s port forwarding configuration is &lt;code&gt;80:80&lt;/code&gt;, on &lt;strong&gt;linux&lt;/strong&gt; it should be available at &lt;code&gt;127.0.0.1:80&lt;/code&gt; or &lt;code&gt;localhost:80&lt;/code&gt;, while on &lt;strong&gt;OS X&lt;/strong&gt; it should be available at the ip address associated to the docker-machine host; to retrieve it, issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It&amp;rsquo;s time to point your browser to the nginx container ip address!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
-
-&lt;h2 id=&#34;up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running production environment&lt;/h2&gt;
-
-&lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
-
-&lt;p&gt;The choice fell on &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; because it has all those things and in addition it has a more competitive pricing model with an initial &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; which it is enough to run this demo.&lt;/p&gt;
-
-&lt;p&gt;Before we start we need an &lt;strong&gt;Amazon Web Services&lt;/strong&gt; account, if you don&amp;rsquo;t have one yet, you can create it &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To configure, deploy and manage our infrastructure we are going to need the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;eb command&lt;/a&gt;, to get it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install awsebcli
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In order to obtain access to the platform from your command line using the &lt;strong&gt;eb&lt;/strong&gt; command you have to setup an &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; and associate it to an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. The IAM User creation wizard will &lt;strong&gt;give you two keys&lt;/strong&gt;, namely the &lt;em&gt;AWS Access Key ID&lt;/em&gt; and the &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. We are going to need them during the next step.&lt;/p&gt;
-
-&lt;p&gt;At this point we can &lt;strong&gt;initialize&lt;/strong&gt; our bookshelf project. This command will prompt us for the two Access keys plus a few question about our setup.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that the project is initialized we have to &lt;strong&gt;create a new environment&lt;/strong&gt;. This will actually start a &lt;strong&gt;t2.micro EC2&lt;/strong&gt; instance, create the security groups, the load balancer, cloudwatch alarms etc..&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Before deploying the application to production we have to generate a &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Github Token for composer&lt;/a&gt;.
-This is needed to allow composer to download dependencies without hassle.
-To add the token to your environment:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can check if the system is ready issuing a:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the status becomes &lt;strong&gt;Ready&lt;/strong&gt; you can actually deploy the application with a:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb deploy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The deployment will create the containers described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; and create the files described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt; file.&lt;/p&gt;
-
-&lt;p&gt;If you are asking yourslef what the &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt; actually is, suffice it to say that is to Elastic beanstalk as the &lt;code&gt;docker-compose.yml&lt;/code&gt; is to the local environment.&lt;/p&gt;
-
-&lt;p&gt;The files contained in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; allows you to customize and configure the software that your application depends on. The &lt;strong&gt;dependencies.config&lt;/strong&gt; is one of them. It actually resolves composer dependencies, build frontend assets using grunt and bower and create the PHP FPM image using the production &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt;. It&amp;rsquo;s important to note that the image is rebuilt only if changes are made to the Dockerfile.&lt;/p&gt;
-
-&lt;p&gt;As you may have noticed, the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; contains definitions just for the Nginx and fpm containers. This is because for &lt;strong&gt;Redis&lt;/strong&gt; and &lt;strong&gt;Mysql&lt;/strong&gt; we are going to use respectively &lt;a href=&#34;https://aws.amazon.com/elasticache/&#34;&gt;&lt;strong&gt;Elasticache&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/rds/&#34;&gt;&lt;strong&gt;RDS&lt;/strong&gt;&lt;/a&gt;. RDS and Elasticache are two production ready, scalable and reliable solutions that makes easier to setup a cost-efficient relational database and key value store taking charge of common database administration tasks.&lt;/p&gt;
-
-&lt;p&gt;The Bookshelf application by default is configured to take Mysql and Redis connection parameters &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;from environment variables&lt;/a&gt; which are:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MYSQL_HOST
-MYSQL_PORT
-MYSQL_USERNAME
-MYSQL_PASSWORD
-MYSQL_DATABASE
-REDIS_HOST
-REDIS_PORT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Each one of these environment variables can be set using the command we previously used for the &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can obtain Mysql and Redis connection parameters after creating an &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;RDS Mysql DB instance&lt;/a&gt; and an &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;ElastiCache Redis Cluster&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;At this point with the running Nginx and fpm containers and configured databases you can issue an &lt;code&gt;eb open&lt;/code&gt; to open the live production application and see if all&amp;rsquo;s okay!&lt;/p&gt;
-
-&lt;p&gt;As well as ready your infrastructure is also ready to scale and auto scale, to move a first step trough this direction you can take a look at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; command and at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;AWS documentation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;you-are-done:824629f989995bd0ef3a2fb42ac10127&#34;&gt;You are done!&lt;/h1&gt;
-
-&lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
 </description>

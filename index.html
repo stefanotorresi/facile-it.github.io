@@ -211,15 +211,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"><p>Blog restyling: switching to Hugo and GitHub Pages</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"><p>Droidcon It 2016</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/"><p>Decoupling view controllers with Signals</p></a>
                     </li>
                 
             </ul>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/">Droidcon It 2016</a></h2>
+            <h2><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/">Blog restyling: switching to Hugo and GitHub Pages</a></h2>
         
         
         
@@ -247,21 +247,21 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-04-18'>
-            18 April 2016
+        <time class="published" datetime='2016-04-26'>
+            26 April 2016
         </time>
 
         
-            <a href="/authors/giacomo" class="author">
+            <a href="/authors/jean" class="author">
             
-                <span class="name">Giacomo Bresciani</span>
-                <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" />
+                <span class="name">Alessandro Lai</span>
+                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
             
             </a>
         
 
         
-            <p>10 minute read</p>
+            <p>4 minute read</p>
         
     </div>
 </header>
@@ -271,122 +271,64 @@ ga('send', 'pageview');
 
     
 
-<p><img src="/images/droidconit-recap/logo_droidcon_it.png" alt="Droidcon It" /></p>
+<p>As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
+We are very happy with those changes, but the reason behind this transition is not just a simple template change.</p>
 
-<p>The third edition of <a href="http://it.droidcon.com/2016/">Droidcon IT</a> was, as expected, a great conference, full of interesting talks and people coming from all over the world. We saw a lot of GDEs (<a href="https://developers.google.com/experts/all/technology/android">Google Developer Expert</a>) and also some Developer Advocates from Google, although it was not organized directly by the company. Back in March the Android team surprisingly released the brand new <strong>N Developer Preview</strong> earlier than expected, so this year we were already able to talk about the new features in Android N and analyze them. Furthermore, there was talk of <strong>Kotlin</strong>, <strong>RxJava</strong> and a lot of other useful and interesting topics.</p>
+<h2 id="what-we-were-searching-for:07063062dea63684291e8b15e998f464">What we were searching for</h2>
 
-<p>In this post I&rsquo;m going to recap the event and make some considerations about the most interesting (and funny) talks.</p>
+<p>Before, we were using an hosted CMS to run the blog, <a href="https://ghost.org/">Ghost</a>. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff.</p>
 
-<h1 id="day-1:d76462adf2f880be726dc4f2826c7d21">Day 1</h1>
+<p>But, as many other developers, we were <strong>hitching for something</strong> more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having <strong>problems during the revision phase</strong> of the articles, since multiple persons couldn&rsquo;t review and edit an article at the same time, fearing the risk of overwriting each other&rsquo;s work.</p>
 
-<h2 id="keynote-wojtek-kalicinski-https-twitter-com-wkalic:d76462adf2f880be726dc4f2826c7d21">Keynote - <em><a href="https://twitter.com/wkalic">Wojtek Kalicinski</a></em></h2>
-
-<p>The day 1 keynote was all about the N Developer Preview and was given by Wojtek Kalicinski, a developer advocate directly from Google.
-Wojtek went through all the new improvements of the platform, both from user&rsquo;s and developer&rsquo;s point of view. Here’s a short summary of the most relevant ones:</p>
+<p>We then came down with a list of requirements for our blog; we wanted:</p>
 
 <ul>
-<li><strong>Multi-window support</strong>: probably the most requested user feature. I’ve always thought that its implementation would have been relatively straightforward, given the already responsive UI of Android, and in fact the code changes that are needed to support this feature are minimal. Just make sure you don’t lock screen orientation using <code>android:screenOrientation</code> in your manifest.</li>
-<li><strong>Better notifications</strong>: in addition to a visual change of the notification panel, apps will now be able to let the user interact with bundled notifications individually or to reply from the notification itself directly. Moreover, if the app already supports Android Wear notifications, most of this will come for free, since the APIs are the same.</li>
-<li><strong>Doze improvements</strong>: the battery saving mode called Doze, now works — in a less aggressive mode — when the phone is in the user pocket or hands, and not only when the phone is stationary. Wojtek said that most of the apps should continue to work without any change — or eventually <a href="http://developer.android.com/intl/ko/training/monitoring-device-state/doze-standby.html#assessing_your_app">minimal</a> —, but he strongly encouraged to test apps against this new feature.</li>
-<li><strong>JAVA 8 features!</strong>: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including <em>lambdas</em> (🎉) and <em>default and static interface methods</em> (TODO: add DP2 apis). All of this is possibile thanks to the Jack<sup class="footnote-ref" id="fnref:d76462adf2f880be726dc4f2826c7d21:1"><a rel="footnote" href="#fn:d76462adf2f880be726dc4f2826c7d21:1">1</a></sup> toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.</li>
+<li><strong>easy review of articles</strong>: parallels reviews are a must</li>
+<li><strong>an easy workflow</strong>: no major overhead, since the blog contributions are voluntary amongs us; we want to dedicate all the time to writing the articles, not wrestling with technical difficulties</li>
+<li><strong>no security flaws</strong>: this point disqualified Wordpress and other famous CMS solutions; we wouldn&rsquo;t like to spend time staying ahead of possible security risks, or have to worry over the hosting and installation problems that a widespread used CMS has</li>
+<li><strong>easy image hosting</strong> and embedding</li>
+<li>easy management and modifications of the <strong>template</strong></li>
+<li>easy integrations of previously used <a href="https://disqus.com/">Disqus comments</a> and Google Analytics</li>
+<li>preferably <strong>markdown content format</strong></li>
+<li>support for <strong>multilanguage articles</strong></li>
 </ul>
 
-<p>Other changes include improvements to <a href="http://developer.android.com/intl/ko/preview/api-overview.html#background_optimizations">Project Svelte</a>, a new <a href="http://developer.android.com/intl/ko/preview/api-overview.html#data_saver">Data Saver</a> feature, the addition of the <a href="http://developer.android.com/intl/ko/preview/api-overview.html#tile_api">Quick Settings Tile API</a> and <a href="http://developer.android.com/intl/ko/preview/api-overview.html">many more</a>.</p>
+<h2 id="git-and-the-github-pages:07063062dea63684291e8b15e998f464">Git and the GitHub pages</h2>
 
-<p>The most interesting and encouraging aspect coming out from the keynote and the N Preview release itself, is the fact that Google is, finally, trying to fix the Android updates issue.</p>
+<p>The first solution that came to us was obviously <strong>Git</strong>, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the <a href="https://pages.github.com/">GitHub pages</a> as an hosting solution: that is ideal, since we already have a <a href="https://github.com/facile-it">Github organization</a> in place, so an organization homepage/site would perfectly fit the bill for our blog.</p>
 
-<p><img src="/images/droidconit-recap/n-preview-updates.png" alt="N Preview Updates" /></p>
+<h2 id="hugo:07063062dea63684291e8b15e998f464">Hugo</h2>
 
-<p>Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.</p>
+<p>Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was <a href="http://gohugo.io/">Hugo</a>: it&rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:</p>
 
-<h2 id="perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev:d76462adf2f880be726dc4f2826c7d21">#PERFMATTERS for Android - <em><a href="https://twitter.com/alosdev">Hasan Hosgel</a></em></h2>
+<ul>
+<li>it generates the static HMTL site live, with a <strong><a href="https://gohugo.io/extras/livereload/">live reload</a> functionality</strong>: while you edit your markdown article, the site refresh itself on each save of the file(s), so you can see a live preview of what you&rsquo;re writing</li>
+<li>there are many templates ready to be used, and we <a href="http://themes.gohugo.io/future-imperfect/">chose one</a> to be modified to our needs</li>
+<li>the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&hellip;</li>
+</ul>
 
-<p><a href="https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016">Slides</a></p>
+<h2 id="deploying:07063062dea63684291e8b15e998f464">Deploying</h2>
 
-<p>The talk was all about performance in Android. The speaker analyzed why #<strong>PERFMATTERS</strong> on Android: the typical mobile user is generally <em>impatient</em> and <em>intolerant</em> and even just a couple of extra seconds during the start-up could make the difference in the user&rsquo;s choice to use or not your app. Hasan went through a lot of interesting tips and tricks to improve performance, such as avoiding multi-pass nested layout — a topic discussed in more detail by Huyen Tue Dao during her <a href="#lean-layouts">talk</a> —, avoiding memory leaks or having a cache on disk for data.</p>
+<p>The last step needed to smooth out our workflow was to find a <strong>deploy strategy</strong>. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.</p>
 
-<p>Performance is crucial to <strong>engage the user</strong> and I think the speaker did a great job in summarizing useful tips to improve it. Moreover most of them doesn’t alter the readability or the maintainability of the code, as is often the case for performance driven code changes.</p>
+<p>We needed an easy way to reproduce this steps, ideally with a script commited to the repo, ready for everyone to use:</p>
 
-<h2 id="let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn:d76462adf2f880be726dc4f2826c7d21">Let it flow! Unidirectional data flow architecture in Android - <a href="https://twitter.com/dorvaryn"><em>Benjamin Augustin</em></a></h2>
+<ul>
+<li><strong>generate</strong> the static site with Hugo</li>
+<li><strong>avoid mixing (and committing)</strong> the static copy with the source files</li>
+<li>commit the files to the master branch</li>
+</ul>
 
-<p><a href="https://speakerdeck.com/dorvaryn/let-it-flow">Slides</a></p>
+<p>Hugo normally generates the static copy in the <code>./public</code> directory; to achieve this we used <a href="https://github.com/X1011/git-directory-deploy">a script that I found on GitHub itself</a> that solved this exact problem. We started an empty <code>source</code> branch, <strong>detached</strong> from master:</p>
 
-<p>The use of patterns to structure the presentation layer (UI) in Android is still infrequent. During the last couple of years we have seen a lot of discussions about <strong>MVC</strong>/<strong>MVP</strong>/<strong>MVVM</strong> patterns within the Android developers community, and some implementations of them.
-During the talk the speaker presented a new approach that takes some concepts from the web development world like <a href="https://facebook.github.io/flux/"><em>Flux</em></a> and <a href="http://redux.js.org"><em>Redux</em></a>. The concept in a nutshell is that the UI, in addition to being as dumb as possible, should also be <strong>stateless</strong>. In other words, the UI listens to state changes pushed by the business logic and updates itself accordingly.
-Benjamin chose to focus more on the practical aspects and so he made the concept clear by directly building an <a href="https://github.com/Dorvaryn/unidirectionalDataFlow">app</a> using Kotlin and RxJava.</p>
-
-<p>I personally likey approach that Benjamin showed us, since it has a lot of advantages. It makes the UI state completely <strong>predictable</strong> and <strong>reproducible</strong>: it allows us to represent an app state without the need to go through all the steps needed to reach it, thus it can be very useful in reproducing a bug or testing a particular situation. The problem is that, as you can see from the demo app, it adds a lot of boilerplate code and it&rsquo;s also much more verbose and difficult to implement without tools like RxJava or Kotlin, that might be problematic to some.</p>
-
-<h2 id="play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin:d76462adf2f880be726dc4f2826c7d21">Play everywhere: providing a consistent experience across very different devices - <a href="http://it.droidcon.com/2016/speakers/alessandro-bizzarri/"><em>Alessandro Bizzarri</em></a> &amp; <a href="http://it.droidcon.com/2016/speakers/dima-kunin/"><em>Dima Kunin</em></a></h2>
-
-<p>The two speakers showed a high-level tour of how at <strong>Spotify</strong> they  are able to provide a consistent experience across different devices — defined as the combination of its physical form and its OS.
-They created their own <strong>design language</strong> to support the majority of platforms used to define almost everything, from color palette and buttons style to animations and sounds.
-They explained also how they use a <strong>C++ library</strong> common to all platforms to reuse code; in particular on Android they use it through the NDK, a toolset to include C or C++ code in your app and call it from Java code.</p>
-
-<p>It was a light talk but still it was interesting to see how a big company like Spotify finds solutions to scale and maintain a <strong>consistent and engaging UX</strong> across all of its user-base.</p>
-
-<h2 id="loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a:d76462adf2f880be726dc4f2826c7d21">Loving lean layouts - <a href="https://twitter.com/queencodemonkey"><em>Huyen Tue Dao</em></a> <a name="lean-layouts"></a></h2>
-
-<p><a href="https://speakerdeck.com/queencodemonkey/droidcon-italy-2016-loving-lean-layouts">Slides</a></p>
-
-<p>The speaker gave a really great talk about one of the best ways to keep an app smooth and responsive: <strong>optimize layouts</strong> to be as flat as possible. The Android UI layer will call <code>measure()</code> and    <code>layout()</code> methods — two times in the case of <code>RelativeLayout</code> — through all the hierarchy of views to be able to draw the layout; so, for example, having a useless root level  or useless views will result in more measure/layout passes, thus poor performance. Huyen explained how sometimes the solution to this problem may be to choose the right view or layout, but it could be useful to know that there is always the possibility to implement a custom <code>ViewGroup</code> to mitigate the number of measure/layout passes or even a totally custom <code>View</code> that overrides <code>onDraw()</code> to draw everything by hand.</p>
-
-<p>The talk was very easy to follow and really useful: most of the advices covered are often ignored because singularly they have less impact, but, if taken all together and especially as good habits, they could really make the difference in maintain the <strong>UI smooth and lag-free</strong>.</p>
-
-<h1 id="day-2:d76462adf2f880be726dc4f2826c7d21">Day 2</h1>
-
-<h2 id="android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen:d76462adf2f880be726dc4f2826c7d21">Android reactive programming with RxJava - <a href="https://twitter.com/hamen"><em>Ivan Morgillo</em></a></h2>
-
-<p>During last couple of years RxJava has been echoing all over the Android developers community and given its huge popularity I was surprised to see that Droidcon IT offered only one talk about it.</p>
-
-<p>Fortunately Ivan Morgillo is a topic expert — he also wrote a <a href="https://www.packtpub.com/application-development/rxjava-essentials">book</a> about RxJava and Android — and during the talk he went through some of the <strong>basics of reactive programming</strong> (<code>Observables</code>, <code>Observer</code>, <code>Subscription</code>…) and a lot of useful <strong>operators</strong>, which are one of the strengths of RxJava and Reactive extensions (Rx*) in general.</p>
-
-<p>To be honest I was hoping for a more theoretical talk with an analysis of the advantages and disadvantages of embracing the reactive pattern in our Android projects. It was instead a lot practical and it covered a great number of common use cases where reactive programming could really help to make code mode readable and maintainable.</p>
-
-<h2 id="you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk:d76462adf2f880be726dc4f2826c7d21">You can do better with Kotlin - <a href="https://github.com/svtk"><em>Svetlana Isakova</em></a></h2>
-
-<p><a href="https://speakerdeck.com/svtk/you-can-do-better-with-kotlin">Slides</a></p>
-
-<p>Kotlin has recently reached <a href="https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/"><strong>1.0 version</strong></a> and it is gaining a lot of attention within the Java community and especially the Android one. A lot of developers — me included — are in fact hoping that Google will make it the default programming language for its mobile OS.</p>
-
-<p>Kotlin is a <strong>modern</strong>, <strong>pragmatic</strong> and <strong>Android-friendly</strong> programming language, with robust supporting tools since it is developed from the people behind IntelliJ (thus, Android Studio). It could be mixed with Java code — thus making the switch painless — since there is no Kotlin SDK but just JDK plus extensions, and it includes a lot of modern concept such as <em>data classes</em>, <em>null-safety</em>, <em>extension functions</em> and <em>lambdas</em>.</p>
-
-<p>The speaker showed also ANKO, a DSL written in Kotlin, that uses <em>lambdas with receivers</em>, to create layouts and views and allows to write code like:</p>
-
-<pre><code>verticalLayout {
-    val name = editText()
-    button(&quot;Say Hello&quot;) {
-        onClick { toast(&quot;Hello, ${name.text}!&quot;) }
-    }
-}
+<pre><code>git checkout -b source --orphan
 </code></pre>
 
-<p>This talk was one of the most interesting to me, as it persuaded me to try and deepen my knowledge of Kotlin. Svetlana was very good at showing the main features of the JetBrains language and at explaining how they convert in Java code, an aspect that I found very useful to mutate my mindset with new concepts and  syntaxes.</p>
+<p>We started our Hugo site inside it, and we put the <code>./public</code> in the <code>.gitIgnore</code>, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of <code>publish: &lt;last commit message from source&gt;</code>.</p>
 
-<h2 id="fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej:d76462adf2f880be726dc4f2826c7d21">fun things (you: CanDo <in Kotlin> ) = … - <a href="https://github.com/mg6maciej"><em>Maciej Górski</em></a></h2>
+<h2 id="et-voilà-here-we-are:07063062dea63684291e8b15e998f464">Et voilà, here we are!</h2>
 
-<p><a href="https://github.com/mg6maciej/fun-things-you-CanDo-in-Kotlin">Code</a></p>
-
-<p>The second Droidcon talk about Kotlin was a very fun one, with the speaker acting a funny scene where a nephew tries to explain to his granpa why he should use <strong>Kotlin instead of Java</strong> with a live coding session.</p>
-
-<p><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/RVu_0TIiH8Q' frameborder='0' allowfullscreen></iframe></div></p>
-
-<p>The second part of the talk was still in live programming (without slides) and showed some Kotlin feature in practice. It covered some advanced topics such as functional programming, operator overloading, infix functions, laziness and more.</p>
-
-<p>It was funny and informative to watch a <strong>live coding talk</strong> and for sure it made me more curious and confident about Kotlin.</p>
-
-<h1 id="conclusions:d76462adf2f880be726dc4f2826c7d21">Conclusions</h1>
-
-<p>The Droidcon IT is already, after three editions, the <strong>point of reference</strong> for the Android community in Italy and this year too it lived up to the expectations. We saw a lot of well-known speakers and developers such as the Googlers Nick Butcher and  Wojtek Kaliciński. It was a conference rich of interesting talks in addition to those summarized in this post, ranging between al lot of various topics such as TDD, UX, tools and many more. The only thing that surprised me was the lack of talks about Android Wear: perhaps Google is slowing down to push this platform among developers?</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:d76462adf2f880be726dc4f2826c7d21:1"><a href="https://source.android.com/source/jack.html">Jack</a> is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
- <a class="footnote-return" href="#fnref:d76462adf2f880be726dc4f2826c7d21:1"><sup>[return]</sup></a></li>
-</ol>
-</div>
+<p>So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!</p>
 
 
     <section id="social-share">
@@ -394,43 +336,43 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&text=Droidcon%20It%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -458,9 +400,13 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
     
         <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/android">Android</a></li>
+        <li><a href="/categories/blog">Blog</a></li>
     
-        <li><a href="/categories/conferences">Conferences</a></li>
+        <li><a href="/categories/hugo">Hugo</a></li>
+    
+        <li><a href="/categories/static-site">Static site</a></li>
+    
+        <li><a href="/categories/github">GitHub</a></li>
     
 </ul>
 
@@ -468,8 +414,8 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 </article>
 <ul class="actions pagination">
     
-        <li><a href="http://engineering.facile.it/blog/eng/json-web-tokens/"
-                class="button big previous">Json Web Token</a></li>
+        <li><a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"
+                class="button big previous">Droidcon It 2016</a></li>
     
 
     
@@ -484,9 +430,9 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-        this.page.url = "http://engineering.facile.it/blog/eng/droidcon-it-2016/";
-        this.page.identifier = "http://engineering.facile.it/blog/eng/droidcon-it-2016/";
-        this.page.title = "Droidcon It 2016";
+        this.page.url = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
+        this.page.title = "Blog restyling: switching to Hugo and GitHub Pages";
     };
 
     (function () {
@@ -516,43 +462,43 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&text=Droidcon%20It%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f&title=Droidcon%20It%202016" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fdroidcon-it-2016%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -672,6 +618,27 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                             <header>
                                     
                                         
+                                            <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/">Blog restyling: switching to Hugo and GitHub Pages</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-26'>
+                                        26 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -704,27 +671,6 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                                     
                                     <time class="published" datetime='2016-04-08'>
                                         8 April 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/decoupling-view-controllers-with.signals/">Decoupling view controllers with Signals</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-03-15'>
-                                        15 March 2016
                                     </time>
                             </header>
                         </article>
@@ -785,7 +731,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">10</span>
+                                <span style="float:right;">11</span>
                             </header>
                         </article>
                     </li>
@@ -833,6 +779,14 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     

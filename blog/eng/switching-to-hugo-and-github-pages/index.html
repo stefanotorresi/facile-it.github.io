@@ -1,0 +1,1034 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Blog restyling: switching to Hugo and GitHub Pages</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Blog restyling: switching to Hugo and GitHub Pages"/>
+<meta name="twitter:description" content="As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure. We are very happy with those changes, but the reason behind this transition is not just a simple template change. What we were searching for Before, we were using an hosted CMS to run the blog, Ghost. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Blog restyling: switching to Hugo and GitHub Pages" />
+<meta property="og:description" content="As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure. We are very happy with those changes, but the reason behind this transition is not just a simple template change. What we were searching for Before, we were using an hosted CMS to run the blog, Ghost. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/" />
+
+
+<meta property="og:updated_time" content="2016-04-26T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Blog restyling: switching to Hugo and GitHub Pages">
+<meta itemprop="description" content="As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure. We are very happy with those changes, but the reason behind this transition is not just a simple template change. What we were searching for Before, we were using an hosted CMS to run the blog, Ghost. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff.">
+
+
+<meta itemprop="dateModified" content="2016-04-26T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="694">
+
+
+
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/blog/">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors/">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/careers/">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:http://engineering.facile.it">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://engineering.facile.it">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors/">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/careers/">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"><p>Blog restyling: switching to Hugo and GitHub Pages</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"><p>Droidcon It 2016</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/">Blog restyling: switching to Hugo and GitHub Pages</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2016-04-26'>
+            26 April 2016
+        </time>
+
+        
+            <a href="/authors/jean" class="author">
+            
+                <span class="name">Alessandro Lai</span>
+                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
+            
+            </a>
+        
+
+        
+            <p>4 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+    
+
+<p>As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
+We are very happy with those changes, but the reason behind this transition is not just a simple template change.</p>
+
+<h2 id="what-we-were-searching-for:07063062dea63684291e8b15e998f464">What we were searching for</h2>
+
+<p>Before, we were using an hosted CMS to run the blog, <a href="https://ghost.org/">Ghost</a>. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff.</p>
+
+<p>But, as many other developers, we were <strong>hitching for something</strong> more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having <strong>problems during the revision phase</strong> of the articles, since multiple persons couldn&rsquo;t review and edit an article at the same time, fearing the risk of overwriting each other&rsquo;s work.</p>
+
+<p>We then came down with a list of requirements for our blog; we wanted:</p>
+
+<ul>
+<li><strong>easy review of articles</strong>: parallels reviews are a must</li>
+<li><strong>an easy workflow</strong>: no major overhead, since the blog contributions are voluntary amongs us; we want to dedicate all the time to writing the articles, not wrestling with technical difficulties</li>
+<li><strong>no security flaws</strong>: this point disqualified Wordpress and other famous CMS solutions; we wouldn&rsquo;t like to spend time staying ahead of possible security risks, or have to worry over the hosting and installation problems that a widespread used CMS has</li>
+<li><strong>easy image hosting</strong> and embedding</li>
+<li>easy management and modifications of the <strong>template</strong></li>
+<li>easy integrations of previously used <a href="https://disqus.com/">Disqus comments</a> and Google Analytics</li>
+<li>preferably <strong>markdown content format</strong></li>
+<li>support for <strong>multilanguage articles</strong></li>
+</ul>
+
+<h2 id="git-and-the-github-pages:07063062dea63684291e8b15e998f464">Git and the GitHub pages</h2>
+
+<p>The first solution that came to us was obviously <strong>Git</strong>, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the <a href="https://pages.github.com/">GitHub pages</a> as an hosting solution: that is ideal, since we already have a <a href="https://github.com/facile-it">Github organization</a> in place, so an organization homepage/site would perfectly fit the bill for our blog.</p>
+
+<h2 id="hugo:07063062dea63684291e8b15e998f464">Hugo</h2>
+
+<p>Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was <a href="http://gohugo.io/">Hugo</a>: it&rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:</p>
+
+<ul>
+<li>it generates the static HMTL site live, with a <strong><a href="https://gohugo.io/extras/livereload/">live reload</a> functionality</strong>: while you edit your markdown article, the site refresh itself on each save of the file(s), so you can see a live preview of what you&rsquo;re writing</li>
+<li>there are many templates ready to be used, and we <a href="http://themes.gohugo.io/future-imperfect/">chose one</a> to be modified to our needs</li>
+<li>the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&hellip;</li>
+</ul>
+
+<h2 id="deploying:07063062dea63684291e8b15e998f464">Deploying</h2>
+
+<p>The last step needed to smooth out our workflow was to find a <strong>deploy strategy</strong>. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.</p>
+
+<p>We needed an easy way to reproduce this steps, ideally with a script commited to the repo, ready for everyone to use:</p>
+
+<ul>
+<li><strong>generate</strong> the static site with Hugo</li>
+<li><strong>avoid mixing (and committing)</strong> the static copy with the source files</li>
+<li>commit the files to the master branch</li>
+</ul>
+
+<p>Hugo normally generates the static copy in the <code>./public</code> directory; to achieve this we used <a href="https://github.com/X1011/git-directory-deploy">a script that I found on GitHub itself</a> that solved this exact problem. We started an empty <code>source</code> branch, <strong>detached</strong> from master:</p>
+
+<pre><code>git checkout -b source --orphan
+</code></pre>
+
+<p>We started our Hugo site inside it, and we put the <code>./public</code> in the <code>.gitIgnore</code>, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of <code>publish: &lt;last commit message from source&gt;</code>.</p>
+
+<h2 id="et-voilà-here-we-are:07063062dea63684291e8b15e998f464">Et voilà, here we are!</h2>
+
+<p>So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/blog">Blog</a></li>
+    
+        <li><a href="/categories/hugo">Hugo</a></li>
+    
+        <li><a href="/categories/static-site">Static site</a></li>
+    
+        <li><a href="/categories/github">GitHub</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"
+                class="button big previous">Droidcon It 2016</a></li>
+    
+
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
+        this.page.title = "Blog restyling: switching to Hugo and GitHub Pages";
+    };
+
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//facile-it.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/">Blog restyling: switching to Hugo and GitHub Pages</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-26'>
+                                        26 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/">Droidcon It 2016</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-18'>
+                                        18 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/json-web-tokens/">Json Web Token</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-04-08'>
+                                        8 April 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">32</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">13</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">11</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">6</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; Facile.it Engineering.<br/>
+                Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.<br/>
+                Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a><br/>
+                Modified by <a href="//github.com/Jean85" target="_blank">Alessandro Lai</a>.<br/>
+                Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+
