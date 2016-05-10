@@ -24,8 +24,6 @@ New features have been added such as the possibility to **push resources to the 
 The main reason that led to HTTP/2 is **improving performance**.
 Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.
 
-The website [Http2demo.io](http://www.http2demo.io/) compares performance metrics between HTTP/1.1 and HTTP/2.
-
 ## HTTP/1.1 issues
 HTTP/2 deals with many of the performance issues of HTTP/1.1:
 
@@ -73,4 +71,6 @@ A the moment, they only allow HTTP/2 over TLS via [ALPN](https://tools.ietf.org/
 RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.
 
 ## Additional resources
+The website [Http2demo.io](http://www.http2demo.io/) compares performance metrics between HTTP/1.1 and HTTP/2.
+
 If you want to learn more about HTTP/2, you can read the official specifications (**[RFC 7540](https://tools.ietf.org/html/rfc7540)**) or download the book **[Http2 explained](https://daniel.haxx.se/http2/)** which also examines the reasons behind HTTP/2.
