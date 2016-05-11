@@ -214,15 +214,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"><p>Blog restyling: switching to Hugo and GitHub Pages</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"><p>Droidcon It 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
                     </li>
                 
             </ul>
@@ -237,6 +237,78 @@ ga('send', 'pageview');
         
             
         
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="http://engineering.facile.it/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
+        </time>
+
+        
+            <a href="/authors/lorenzo" class="author">
+            
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+            
+            </a>
+        
+
+        
+            <p>2 minute read</p>
+        
+    </div>
+</header>
+
+    
+
+    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="http://engineering.facile.it/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/italiano">Italiano</a></li>
+    
+        <li><a href="/categories/php">PHP</a></li>
+    
+        <li><a href="/categories/php-internals">PHP internals</a></li>
+    
+</ul>
+
+    </footer>
+</article>
 
         
             <article class="post">
@@ -434,6 +506,27 @@ ga('send', 'pageview');
                             <header>
                                     
                                         
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-05-11'>
+                                        11 May 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -466,27 +559,6 @@ ga('send', 'pageview');
                                     
                                     <time class="published" datetime='2016-04-18'>
                                         18 April 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/json-web-tokens/">Json Web Token</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-04-08'>
-                                        8 April 2016
                                     </time>
                             </header>
                         </article>
@@ -547,7 +619,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">11</span>
+                                <span style="float:right;">12</span>
                             </header>
                         </article>
                     </li>

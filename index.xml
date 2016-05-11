@@ -6,8 +6,89 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 May 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Faster Web with HTTP/2</title>
+      <link>http://engineering.facile.it/blog/eng/faster-web-with-http-2/</link>
+      <pubDate>Wed, 11 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/faster-web-with-http-2/</guid>
+      <description>
+
+&lt;p&gt;HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources).
+Nowadays it&amp;rsquo;s been adopted for many different purposes. It&amp;rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more.
+For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance.&lt;/p&gt;
+
+&lt;p&gt;In May 2015, the latest version 2.0 was standardized with &lt;em&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc7540&#34;&gt;RFC 7540&lt;/a&gt;&lt;/em&gt;.
+This introduced major differences on how the low-level protocol works.
+From the application perspective, very little has changed: requests, responses, resources, headers and HTTP methods are still there.
+New features have been added such as the possibility to &lt;strong&gt;push resources to the client&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The main reason that led to HTTP/2 is &lt;strong&gt;improving performance&lt;/strong&gt;.
+Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.&lt;/p&gt;
+
+&lt;h2 id=&#34;http-1-1-issues:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;HTTP/1.1 issues&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 deals with many of the performance issues of HTTP/1.1:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTTP/1.1 doesn&amp;rsquo;t support headers compression even though it would be particularly effective against text-based data;&lt;/li&gt;
+&lt;li&gt;HTTP/1.1 &lt;a href=&#34;https://en.wikipedia.org/wiki/HTTP_pipelining&#34;&gt;request pipelining&lt;/a&gt; is not so efficient due to &lt;a href=&#34;https://en.wikipedia.org/wiki/Head-of-line_blocking&#34;&gt;head-of-line blocking&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;Modern web applications have complex resources that are linked to each other. HTTP/1.1 servers have no way to send all the related resources at once in order to avoid additional round-trips;&lt;/li&gt;
+&lt;li&gt;HTTP/1.1 connections are designed to have short lifespans. Unfortunately, web resources change over time and additional connections are required to fetch the updated data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;People have adopted several tricks to mitigate these problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Session data is usually persisted on the server to minimize the amount of headers sent at every request;&lt;/li&gt;
+&lt;li&gt;To reduce latency and to achieve request multiplexing, browsers open several TCP connections during page load. This is not recommended: it consumes many more resources (both client-side and server-side) and &lt;a href=&#34;https://en.wikipedia.org/wiki/TCP_congestion_control&#34;&gt;TCP congestion avoidance&lt;/a&gt; techniques are no longer effective;&lt;/li&gt;
+&lt;li&gt;Recent web applications prefer leaving connections open to reduce connection setup latency for subsequent requests;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;what-s-changed:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;What&amp;rsquo;s changed&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 is &lt;strong&gt;no longer text-based&lt;/strong&gt;; this means debugging could be somewhat difficult without using special tools.&lt;/p&gt;
+
+&lt;p&gt;Server and client communicate by sending small binary messages named &lt;strong&gt;Frames&lt;/strong&gt;.
+There are different types of frames. The most important ones are &lt;code&gt;DATA&lt;/code&gt;, &lt;code&gt;HEADERS&lt;/code&gt;, &lt;code&gt;SETTINGS&lt;/code&gt; and &lt;code&gt;PUSH_PROMISE&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 uses the concept of &lt;strong&gt;streams&lt;/strong&gt;. Each stream is identified by an ID and it&amp;rsquo;s allocated for every request/response lifecycle.
+Several streams can be active at the same time on the same connection: this provides &lt;strong&gt;real request pipelining and multiplexing&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Each frame contains the ID of the stream they refer to. Thus, frames of different streams can be interleaved without interfering.&lt;/p&gt;
+
+&lt;p&gt;Servers, by sending the &lt;code&gt;PUSH_PROMISE&lt;/code&gt; frame, can allocate new streams without waiting for an explicit request from the client. By the virtue of this, &lt;strong&gt;the server can push resources to the client&lt;/strong&gt; and reduce the number of round-trip messages needed.&lt;/p&gt;
+
+&lt;p&gt;Http headers (both requests&amp;rsquo; and responses&amp;rsquo; ones) are always compressed and they are sent using one or more &lt;code&gt;HEADERS&lt;/code&gt; frames.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;a href=&#34;https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1&#34;&gt;Response Status-Line&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&#34;https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1&#34;&gt;request Request-Line&lt;/a&gt;&lt;/em&gt; have been moved. They are now stored in the header section via special headers (pseudo-headers): &lt;code&gt;:method&lt;/code&gt;, &lt;code&gt;:path&lt;/code&gt;, &lt;code&gt;:status&lt;/code&gt;, etc..&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Response Status-Line Reason-Phrase&lt;/em&gt; has been completely removed: there is no equivalent in HTTP/2.&lt;/p&gt;
+
+&lt;p&gt;Servers and clients may use &lt;code&gt;PING&lt;/code&gt; frames to check the underlying connection&amp;rsquo;s state and to keep the connection alive even for a long period of time.&lt;/p&gt;
+
+&lt;h2 id=&#34;support-by-servers-and-user-agents:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Support by servers and user agents&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 is actually a fork of &lt;a href=&#34;http://dev.chromium.org/spdy/spdy-whitepaper&#34;&gt;SPDY&lt;/a&gt;, a protocol developed by Google.
+A lot of different servers and clients already supported the SPDY protocol, so the transition from SPDY to HTTP/2 was pretty straightforward.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 was officially released in May 2015; since then &lt;strong&gt;all major web servers have added support for HTTP/2&lt;/strong&gt; such as Apache HTTP, Apache Tomcat, Nginx, IIS and Jetty.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;All major browsers now support HTTP/2&lt;/strong&gt;, e.g. Firefox, Chrome, IE and Edge.&lt;/p&gt;
+
+&lt;p&gt;A the moment, they only allow HTTP/2 over TLS via &lt;a href=&#34;https://tools.ietf.org/html/rfc7301&#34;&gt;ALPN&lt;/a&gt; or &lt;a href=&#34;https://tools.ietf.org/html/draft-agl-tls-nextprotoneg-04&#34;&gt;NPN&lt;/a&gt; as Protocol Negotiation mechanisms.
+RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.&lt;/p&gt;
+
+&lt;h2 id=&#34;additional-resources:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Additional resources&lt;/h2&gt;
+
+&lt;p&gt;The website &lt;a href=&#34;http://www.http2demo.io/&#34;&gt;Http2demo.io&lt;/a&gt; compares performance metrics between HTTP/1.1 and HTTP/2.&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more about HTTP/2, you can read the official specifications (&lt;strong&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc7540&#34;&gt;RFC 7540&lt;/a&gt;&lt;/strong&gt;) or download the book &lt;strong&gt;&lt;a href=&#34;https://daniel.haxx.se/http2/&#34;&gt;Http2 explained&lt;/a&gt;&lt;/strong&gt; which also examines the reasons behind HTTP/2.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Blog restyling: switching to Hugo and GitHub Pages</title>
@@ -3209,193 +3290,6 @@ NS_ASSUME_NONNULL_END
 &lt;p&gt;Implementare la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C ci ha permesso di parsare un JSON, cosa spesso difficile da mantenere e soggetta a errori, in un modo semplice e lineare. In realtà ci sono &lt;strong&gt;molti casi&lt;/strong&gt; in cui lavorare con gli &lt;em&gt;optionals&lt;/em&gt; ci può dare gli stessi vantaggi: componendo operazioni di tipo &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; e &lt;code&gt;filter&lt;/code&gt; possiamo esprimere il nostro intento in maniera chiara e leggibile. Ma tutto questo non riguarda solo il tipo &lt;code&gt;Optional&lt;/code&gt;: alcuni lettori avranno probabilmente notato che molti linguaggi (incluso Swift) permettono operazioni dell stesso tipo su liste e array, e il loro significato è identico: &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt;, in particolare, sono &lt;strong&gt;concetti generici&lt;/strong&gt; legati ai &lt;em&gt;monad&lt;/em&gt; (in effetti, anche il tipo &lt;code&gt;Array&lt;/code&gt; è un &lt;em&gt;monad&lt;/em&gt;), e riguarda la composizione dichiarativa di trasformazioni. Questo concetto è alla base della &lt;strong&gt;programmazione funzionale&lt;/strong&gt;, e penso ci siano molti motivi per applicare concetti simili ad ambienti più &lt;em&gt;object-oriented&lt;/em&gt;, perché aiuterebbero il programmatore a ragionare sul codice ed esprimere l&amp;rsquo;intento in maniera più dichiarativa.&lt;/p&gt;
 
 &lt;p&gt;Il codice per la classe &lt;code&gt;Optional&lt;/code&gt; mostrata nell&amp;rsquo;articolo è reperibile su &lt;a href=&#34;https://gist.github.com/broomburgo/e318228a5f7d6a605e82&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Da sviluppo a produzione con Docker e AWS Elastic Beanstalk</title>
-      <link>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</link>
-      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
-      <description>
-
-&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
-
-&lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
-
-&lt;p&gt;Avere un ambiente di sviluppo/test &lt;strong&gt;il più simile possibile&lt;/strong&gt; a quello di produzione aiuta molto nel garantire un &lt;strong&gt;corretto funzionamento dopo il deploy&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In uno scenario tipico, lo sviluppatore ha installati sulla propria macchina locale tutti i servizi da cui dipende la sua applicazione, il che comporta quanto segue:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;nessun tipo di isolamento tra progetti che usano gli stessi servizi (versione, configurazione, dati);&lt;/li&gt;
-&lt;li&gt;è difficile avere e mantenere in locale la stessa versione e la stessa configurazione dei servizi in produzione;&lt;/li&gt;
-&lt;li&gt;condividere l&amp;rsquo;ambiente di sviluppo con colleghi e collaboratori è difficile se non impossibile;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Tutto questo conduce ad una delle peggiori frasi che io abbia mai sentito in tutta la mia esperienza lavorativa:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It works on my machine &lt;em&gt;(in locale funzionava)&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
-
-&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
-
-&lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
-
-&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
-
-&lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Le dipendenze in PHP sono gestite attraverso &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, e per soddisfarle basta digitare il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;composer install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Gli assets del frontend sono gestiti attraverso &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; i due seguenti comandi scaricheranno e compileranno le dipendenze e produrranno gli assets direttamente nella cartella pubblica:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm install
-grunt dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
-
-&lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Osservando il contenuto di &lt;code&gt;docker/development&lt;/code&gt; possiamo trovare altre due cartelle:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: questa directory contiene un Dockerfile che eredita l&amp;rsquo;immagine da &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; per crearne una nuova con la configurazione nginx necessaria;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: questa directory contiene un Dockerfile che eredita l&amp;rsquo;immagine da &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; per crearne una nuova con la configurazione e le estensioni di php-fpm necessarie;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
-
-&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
-
-&lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A questo punto, nel nostro &lt;code&gt;docker-compose.yml&lt;/code&gt; dovremmo avere quattro container da avviare:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;il container &lt;strong&gt;Nginx&lt;/strong&gt;, che contiene un paragrafo server in ascolto sulla porta 80.&lt;/li&gt;
-&lt;li&gt;il container &lt;strong&gt;fpm&lt;/strong&gt;, che condivide un volume con la macchina host in modo da poter modificare il codice senza bisogno di ricostruire il container; inoltre, il container è collegato al container mysql per consentire agli script php di connettervisi;&lt;/li&gt;
-&lt;li&gt;il container &lt;strong&gt;mysql&lt;/strong&gt;, che conterrà i nostri dati di sviluppo;&lt;/li&gt;
-&lt;li&gt;il container &lt;strong&gt;redis&lt;/strong&gt;, usato come cache, principalmente da Doctrine;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Si noti come, dal momento che &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;i container sono collegati&lt;/a&gt; è possibile accedere ad un servizio esposto usando il nome assegnato al container collegato; ad esempio, nel nostro caso il container fpm è &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;collegato al container mysql&lt;/a&gt;: è per questo che l&amp;rsquo;host configurato nella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;configurazione di doctrine locale&lt;/a&gt; è &lt;code&gt;mysql&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Se non l&amp;rsquo;avete ancora fatto, dovrete buildare l&amp;rsquo;immagine &lt;code&gt;fpm&lt;/code&gt; e scaricare le immagini &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; e &lt;code&gt;redis&lt;/code&gt;; per farlo, digitate il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ora che avete tutto ciò che vi serve potete avviare i container con:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A questo punto i quattro container dovrebbero essere in esecuzione: potete verificare che tutto sia a posto con il comando &lt;code&gt;docker ps&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Per proseguire, abbiamo bisogno di conoscere l&amp;rsquo;indirizzo ip del container nginx. Il port forwarding del container nginx è configurato come &lt;code&gt;80:80&lt;/code&gt;, perciò è disponibile su &lt;strong&gt;linux&lt;/strong&gt; agli indirizzi &lt;code&gt;127.0.0.1:80&lt;/code&gt; e &lt;code&gt;localhost:80&lt;/code&gt;, mentre su &lt;strong&gt;OS X&lt;/strong&gt; all&amp;rsquo;indirizzo associato alla docker-machine; per identificarlo, usare il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;È ora di collegarci all&amp;rsquo;ip del nostro container nginx!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
-
-&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
-
-&lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
-
-&lt;p&gt;La scelta è caduta su &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; ha tutto ciò che abbiamo elencato ed ha inoltre una tariffazione più competitiva con un &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; iniziale, sufficiente per far girare questa demo.&lt;/p&gt;
-
-&lt;p&gt;Prima di iniziare abbiamo bisogno di un account &lt;strong&gt;Amazon Web Services&lt;/strong&gt;; se non ne avete ancora uno, potete crearlo &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;qui&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Per configurare, rilasciare e gestire la nostra infrastruttura avremo bisogno del &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;comando eb&lt;/a&gt;; per installarlo, digitare:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install awsebcli
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Per avere accesso alla piattaforma dalla vostra riga di comando usando il comando &lt;strong&gt;eb&lt;/strong&gt; dovrete configurare uno &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; ed associarlo ad uno &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. La creazione assistita di uno IAM User vi &lt;strong&gt;darà due chiavi&lt;/strong&gt;, chiamate &lt;em&gt;AWS Access Key ID&lt;/em&gt; e &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. Ci serviranno durante il prossimo passaggio.&lt;/p&gt;
-
-&lt;p&gt;A questo punto possiamo &lt;strong&gt;initialize&lt;/strong&gt; il nostro progetto Bookshelf. Questo comando ci chiederà le due Access keys, oltre che alcune domande durante l&amp;rsquo;installazione.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ora che il progetto è inizializzato dobbiamo &lt;strong&gt;creare un nuovo ambiente&lt;/strong&gt;. Questo comando creerà effettivamente un&amp;rsquo;istanza &lt;strong&gt;t2.micro EC2&lt;/strong&gt;, i gruppi di sicurezza, il load balancer, le notifiche cloudwatch ecc..&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Prima di rilasciare l&amp;rsquo;applicazione in produzione dobbiamo generare un &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Token Github per composer&lt;/a&gt;.
-Questo è necessario per scaricare tutte le dipendenze senza intoppi.
-Per aggiungere il token all&amp;rsquo;ambiente:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ora potete verificare che il sistema sia pronto digitando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Quando lo stato dell&amp;rsquo;applicazione diventa &lt;strong&gt;Ready&lt;/strong&gt; potete a tutti gli effetti pubblicare l&amp;rsquo;applicazione con:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb deploy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il deployment creerà i container descritti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; e i files descritti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Se vi state chiedendo cosa sia realmente il file &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt;, basta dire che sta ad Elastic Beanstalk come &lt;code&gt;docker-compose.yml&lt;/code&gt; sta all&amp;rsquo;ambiente locale.&lt;/p&gt;
-
-&lt;p&gt;I file contenuti in &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; consentono di personalizzare e configurare il software da cui la vostra applicazione dipende. Il file &lt;strong&gt;dependencies.config&lt;/strong&gt; è uno di questi. È proprio lui a risolvere le dipendenze di composer, a compilare gli asset del frontend con grunt e bower e a creare l&amp;rsquo;immagine PHP FPM usata nel &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; di produzione. È importante notare che l&amp;rsquo;immagine viene nuovamente costruita solo se il Dockerfile viene modificato.&lt;/p&gt;
-
-&lt;p&gt;Come avrete notato, [Dockerrun.aws.json](&lt;a href=&#34;https://github.com&#34;&gt;https://github.com&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La configurazione di default dell&amp;rsquo;applicazione Bookshelf riceve i parametri di connessione a Mysql e Redis &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;dalle variabili d&amp;rsquo;ambiente&lt;/a&gt; che sono:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MYSQL_HOST
-MYSQL_PORT
-MYSQL_USERNAME
-MYSQL_PASSWORD
-MYSQL_DATABASE
-REDIS_HOST
-REDIS_PORT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ognuna di queste variabili d&amp;rsquo;ambiente può essere impostata usando il comando che abbiamo precedentemente usato per &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Potete ottenere i parametri di connessione per Mysql e Redis dopo aver creato &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;un&amp;rsquo;istanza RDS Mysql DB&lt;/a&gt; e un &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;Cluster ElastiCache Redis&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;A questo punto, con i container nginx e fpm in esecuzione e i database configurati, potete digitare &lt;code&gt;eb open&lt;/code&gt; per aprire l&amp;rsquo;applicazione in produzione e verificare se tutto è ok!&lt;/p&gt;
-
-&lt;p&gt;La vostra infrastruttura, così com&amp;rsquo;è, è anche già pronta per scalare automaticamente; per muovere i primi passi in questa direzione potete dare un&amp;rsquo;occhiata al comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; e alla &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;documentazione di AWS&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
-
-&lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

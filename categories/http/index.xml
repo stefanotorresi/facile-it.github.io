@@ -6,8 +6,89 @@
     <description>Recent content in HTTP on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Jan 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 May 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/categories/http/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Faster Web with HTTP/2</title>
+      <link>http://engineering.facile.it/blog/eng/faster-web-with-http-2/</link>
+      <pubDate>Wed, 11 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/faster-web-with-http-2/</guid>
+      <description>
+
+&lt;p&gt;HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources).
+Nowadays it&amp;rsquo;s been adopted for many different purposes. It&amp;rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more.
+For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance.&lt;/p&gt;
+
+&lt;p&gt;In May 2015, the latest version 2.0 was standardized with &lt;em&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc7540&#34;&gt;RFC 7540&lt;/a&gt;&lt;/em&gt;.
+This introduced major differences on how the low-level protocol works.
+From the application perspective, very little has changed: requests, responses, resources, headers and HTTP methods are still there.
+New features have been added such as the possibility to &lt;strong&gt;push resources to the client&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The main reason that led to HTTP/2 is &lt;strong&gt;improving performance&lt;/strong&gt;.
+Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.&lt;/p&gt;
+
+&lt;h2 id=&#34;http-1-1-issues:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;HTTP/1.1 issues&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 deals with many of the performance issues of HTTP/1.1:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTTP/1.1 doesn&amp;rsquo;t support headers compression even though it would be particularly effective against text-based data;&lt;/li&gt;
+&lt;li&gt;HTTP/1.1 &lt;a href=&#34;https://en.wikipedia.org/wiki/HTTP_pipelining&#34;&gt;request pipelining&lt;/a&gt; is not so efficient due to &lt;a href=&#34;https://en.wikipedia.org/wiki/Head-of-line_blocking&#34;&gt;head-of-line blocking&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;Modern web applications have complex resources that are linked to each other. HTTP/1.1 servers have no way to send all the related resources at once in order to avoid additional round-trips;&lt;/li&gt;
+&lt;li&gt;HTTP/1.1 connections are designed to have short lifespans. Unfortunately, web resources change over time and additional connections are required to fetch the updated data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;People have adopted several tricks to mitigate these problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Session data is usually persisted on the server to minimize the amount of headers sent at every request;&lt;/li&gt;
+&lt;li&gt;To reduce latency and to achieve request multiplexing, browsers open several TCP connections during page load. This is not recommended: it consumes many more resources (both client-side and server-side) and &lt;a href=&#34;https://en.wikipedia.org/wiki/TCP_congestion_control&#34;&gt;TCP congestion avoidance&lt;/a&gt; techniques are no longer effective;&lt;/li&gt;
+&lt;li&gt;Recent web applications prefer leaving connections open to reduce connection setup latency for subsequent requests;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;what-s-changed:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;What&amp;rsquo;s changed&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 is &lt;strong&gt;no longer text-based&lt;/strong&gt;; this means debugging could be somewhat difficult without using special tools.&lt;/p&gt;
+
+&lt;p&gt;Server and client communicate by sending small binary messages named &lt;strong&gt;Frames&lt;/strong&gt;.
+There are different types of frames. The most important ones are &lt;code&gt;DATA&lt;/code&gt;, &lt;code&gt;HEADERS&lt;/code&gt;, &lt;code&gt;SETTINGS&lt;/code&gt; and &lt;code&gt;PUSH_PROMISE&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 uses the concept of &lt;strong&gt;streams&lt;/strong&gt;. Each stream is identified by an ID and it&amp;rsquo;s allocated for every request/response lifecycle.
+Several streams can be active at the same time on the same connection: this provides &lt;strong&gt;real request pipelining and multiplexing&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Each frame contains the ID of the stream they refer to. Thus, frames of different streams can be interleaved without interfering.&lt;/p&gt;
+
+&lt;p&gt;Servers, by sending the &lt;code&gt;PUSH_PROMISE&lt;/code&gt; frame, can allocate new streams without waiting for an explicit request from the client. By the virtue of this, &lt;strong&gt;the server can push resources to the client&lt;/strong&gt; and reduce the number of round-trip messages needed.&lt;/p&gt;
+
+&lt;p&gt;Http headers (both requests&amp;rsquo; and responses&amp;rsquo; ones) are always compressed and they are sent using one or more &lt;code&gt;HEADERS&lt;/code&gt; frames.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;a href=&#34;https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1&#34;&gt;Response Status-Line&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&#34;https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1&#34;&gt;request Request-Line&lt;/a&gt;&lt;/em&gt; have been moved. They are now stored in the header section via special headers (pseudo-headers): &lt;code&gt;:method&lt;/code&gt;, &lt;code&gt;:path&lt;/code&gt;, &lt;code&gt;:status&lt;/code&gt;, etc..&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Response Status-Line Reason-Phrase&lt;/em&gt; has been completely removed: there is no equivalent in HTTP/2.&lt;/p&gt;
+
+&lt;p&gt;Servers and clients may use &lt;code&gt;PING&lt;/code&gt; frames to check the underlying connection&amp;rsquo;s state and to keep the connection alive even for a long period of time.&lt;/p&gt;
+
+&lt;h2 id=&#34;support-by-servers-and-user-agents:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Support by servers and user agents&lt;/h2&gt;
+
+&lt;p&gt;HTTP/2 is actually a fork of &lt;a href=&#34;http://dev.chromium.org/spdy/spdy-whitepaper&#34;&gt;SPDY&lt;/a&gt;, a protocol developed by Google.
+A lot of different servers and clients already supported the SPDY protocol, so the transition from SPDY to HTTP/2 was pretty straightforward.&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 was officially released in May 2015; since then &lt;strong&gt;all major web servers have added support for HTTP/2&lt;/strong&gt; such as Apache HTTP, Apache Tomcat, Nginx, IIS and Jetty.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;All major browsers now support HTTP/2&lt;/strong&gt;, e.g. Firefox, Chrome, IE and Edge.&lt;/p&gt;
+
+&lt;p&gt;A the moment, they only allow HTTP/2 over TLS via &lt;a href=&#34;https://tools.ietf.org/html/rfc7301&#34;&gt;ALPN&lt;/a&gt; or &lt;a href=&#34;https://tools.ietf.org/html/draft-agl-tls-nextprotoneg-04&#34;&gt;NPN&lt;/a&gt; as Protocol Negotiation mechanisms.
+RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.&lt;/p&gt;
+
+&lt;h2 id=&#34;additional-resources:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Additional resources&lt;/h2&gt;
+
+&lt;p&gt;The website &lt;a href=&#34;http://www.http2demo.io/&#34;&gt;Http2demo.io&lt;/a&gt; compares performance metrics between HTTP/1.1 and HTTP/2.&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more about HTTP/2, you can read the official specifications (&lt;strong&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc7540&#34;&gt;RFC 7540&lt;/a&gt;&lt;/strong&gt;) or download the book &lt;strong&gt;&lt;a href=&#34;https://daniel.haxx.se/http2/&#34;&gt;Http2 explained&lt;/a&gt;&lt;/strong&gt; which also examines the reasons behind HTTP/2.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>GraphQL: an introduction</title>

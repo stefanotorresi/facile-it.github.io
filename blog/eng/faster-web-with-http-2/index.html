@@ -1,19 +1,11 @@
-
-
-
-    
-        
-    
-
-
-
-
 <!DOCTYPE HTML>
 
 <html>
     <head>
         
-            <title>PHP Posts - Facile.it Engineering</title>
+            
+                <title>Faster Web with HTTP/2</title>
+            
         
 
         <meta charset="utf-8" />
@@ -30,13 +22,24 @@
         
 
         
-        <meta property="og:title" content="PHP" />
-<meta property="og:description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://engineering.facile.it/categories/php/" />
+
+  <meta name="twitter:card" content="summary"/>
 
 
-<meta property="og:updated_time" content="2015-12-15T00:00:00&#43;00:00"/>
+
+<meta name="twitter:title" content="Faster Web with HTTP/2"/>
+<meta name="twitter:description" content="HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources). Nowadays it&rsquo;s been adopted for many different purposes. It&rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more. For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance. In May 2015, the latest version 2.0 was standardized with RFC 7540."/>
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Faster Web with HTTP/2" />
+<meta property="og:description" content="HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources). Nowadays it&rsquo;s been adopted for many different purposes. It&rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more. For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance. In May 2015, the latest version 2.0 was standardized with RFC 7540." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://engineering.facile.it/blog/eng/faster-web-with-http-2/" />
+
+
+<meta property="og:updated_time" content="2016-05-11T00:00:00&#43;00:00"/>
+
 
 
 
@@ -47,9 +50,16 @@
 
 
         
-<meta itemprop="name" content="PHP">
-<meta itemprop="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+<meta itemprop="name" content="Faster Web with HTTP/2">
+<meta itemprop="description" content="HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources). Nowadays it&rsquo;s been adopted for many different purposes. It&rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more. For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance. In May 2015, the latest version 2.0 was standardized with RFC 7540.">
 
+
+<meta itemprop="dateModified" content="2016-05-11T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="711">
+
+
+
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -84,6 +94,7 @@ ga('send', 'pageview');
         
         <div id="wrapper">
 
+    
     
 <header id="header">
     
@@ -125,6 +136,10 @@ ga('send', 'pageview');
     </nav>
     <nav class="main">
         <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
             
             <li class="search">
                 <a class="fa-search" href="#search">Search</a>
@@ -232,16 +247,70 @@ ga('send', 'pageview');
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&text=Faster%20Web%20with%20HTTP%2f2&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
-        <h1>Articles in category: PHP</h1>
         
         
-            <article class="post">
+        <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/">Puli: Universal Packages for PHP</a></h2>
+            <h1><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h1>
+            
         
         
         
@@ -252,8 +321,8 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-12-15'>
-            15 December 2015
+        <time class="published" datetime='2016-05-11'>
+            11 May 2016
         </time>
 
         
@@ -266,175 +335,137 @@ ga('send', 'pageview');
         
 
         
-            <p>6 minute read</p>
+            <p>4 minute read</p>
         
     </div>
 </header>
 
-    
 
-    <p>Composer e l&rsquo;ecosistema PHP L&rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&rsquo;introduzione di Composer. Esso ha definito degli standard per risolvere problemi comuni come l&rsquo;autoloading e la gestione di pacchetti e dipendenze. In questi ultimi anni si è assistito ad un proliferare di numerose componenti software riusabili che hanno significativamente modificato le strategie di sviluppo. Nonostante Composer si sia evoluto molto, in alcuni contesti le sue funzionalità risultano essere limitanti e incomplete.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
     
 
     
-        
-            <li>
-                
-                    <i class="fa fa-folder-open-o">&nbsp;</i>
-                
-        
 
-                
-                    Categories
-                
-            </li>
-    
+<p>HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources).
+Nowadays it&rsquo;s been adopted for many different purposes. It&rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more.
+For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance.</p>
 
-    
-        <li><a href="/categories/italiano">Italiano</a></li>
-    
-        <li><a href="/categories/php">PHP</a></li>
-    
-        <li><a href="/categories/open-source">Open Source</a></li>
-    
+<p>In May 2015, the latest version 2.0 was standardized with <em><a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a></em>.
+This introduced major differences on how the low-level protocol works.
+From the application perspective, very little has changed: requests, responses, resources, headers and HTTP methods are still there.
+New features have been added such as the possibility to <strong>push resources to the client</strong>.</p>
+
+<p>The main reason that led to HTTP/2 is <strong>improving performance</strong>.
+Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.</p>
+
+<h2 id="http-1-1-issues:cd7d608f5e6f553a5281263d75f1bec2">HTTP/1.1 issues</h2>
+
+<p>HTTP/2 deals with many of the performance issues of HTTP/1.1:</p>
+
+<ul>
+<li>HTTP/1.1 doesn&rsquo;t support headers compression even though it would be particularly effective against text-based data;</li>
+<li>HTTP/1.1 <a href="https://en.wikipedia.org/wiki/HTTP_pipelining">request pipelining</a> is not so efficient due to <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">head-of-line blocking</a>;</li>
+<li>Modern web applications have complex resources that are linked to each other. HTTP/1.1 servers have no way to send all the related resources at once in order to avoid additional round-trips;</li>
+<li>HTTP/1.1 connections are designed to have short lifespans. Unfortunately, web resources change over time and additional connections are required to fetch the updated data.</li>
 </ul>
 
-    </footer>
-</article>
+<p>People have adopted several tricks to mitigate these problems:</p>
 
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://engineering.facile.it/blog/ita/paraunit/">Paraunit: test paralleli, Doctrine e le fixture</a></h2>
-        
-        
-        
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published" datetime='2015-10-09'>
-            9 October 2015
-        </time>
-
-        
-            <a href="/authors/jean" class="author">
-            
-                <span class="name">Alessandro Lai</span>
-                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
-            
-            </a>
-        
-
-        
-            <p>8 minute read</p>
-        
-    </div>
-</header>
-
-    
-
-    <p>Questo articolo è la sintesi di un talk presentato al SymfonyDay 2015; potete trovare le slide qui. I test e la loro durata Sviluppare applicazioni scrivendo test e facendo Test Driven Development è un&rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&rsquo;andare del tempo, si fa crescere la suite di test del proprio progetto, cercando di aumentarne la copertura e l&rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/paraunit/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-
-    
-        
-            <li>
-                
-                    <i class="fa fa-folder-open-o">&nbsp;</i>
-                
-        
-
-                
-                    Categories
-                
-            </li>
-    
-
-    
-        <li><a href="/categories/italiano">Italiano</a></li>
-    
-        <li><a href="/categories/software-testing">Software Testing</a></li>
-    
-        <li><a href="/categories/php">PHP</a></li>
-    
-        <li><a href="/categories/database">Database</a></li>
-    
-        <li><a href="/categories/open-source">Open Source</a></li>
-    
-        <li><a href="/categories/symfony">Symfony</a></li>
-    
-        <li><a href="/categories/conferences">Conferences</a></li>
-    
-        <li><a href="/categories/doctrine">Doctrine</a></li>
-    
-        <li><a href="/categories/mysql">MySQL</a></li>
-    
+<ul>
+<li>Session data is usually persisted on the server to minimize the amount of headers sent at every request;</li>
+<li>To reduce latency and to achieve request multiplexing, browsers open several TCP connections during page load. This is not recommended: it consumes many more resources (both client-side and server-side) and <a href="https://en.wikipedia.org/wiki/TCP_congestion_control">TCP congestion avoidance</a> techniques are no longer effective;</li>
+<li>Recent web applications prefer leaving connections open to reduce connection setup latency for subsequent requests;</li>
 </ul>
 
-    </footer>
-</article>
+<h2 id="what-s-changed:cd7d608f5e6f553a5281263d75f1bec2">What&rsquo;s changed</h2>
 
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://engineering.facile.it/blog/ita/wamp-web-application-messaging-protocol-e-php/">WAMP, Web Application Messaging Protocol.. e PHP!</a></h2>
-        
-        
-        
-        
-    </div>
-    <div class="meta">
-        
+<p>HTTP/2 is <strong>no longer text-based</strong>; this means debugging could be somewhat difficult without using special tools.</p>
+
+<p>Server and client communicate by sending small binary messages named <strong>Frames</strong>.
+There are different types of frames. The most important ones are <code>DATA</code>, <code>HEADERS</code>, <code>SETTINGS</code> and <code>PUSH_PROMISE</code>.</p>
+
+<p>HTTP/2 uses the concept of <strong>streams</strong>. Each stream is identified by an ID and it&rsquo;s allocated for every request/response lifecycle.
+Several streams can be active at the same time on the same connection: this provides <strong>real request pipelining and multiplexing</strong>.</p>
+
+<p>Each frame contains the ID of the stream they refer to. Thus, frames of different streams can be interleaved without interfering.</p>
+
+<p>Servers, by sending the <code>PUSH_PROMISE</code> frame, can allocate new streams without waiting for an explicit request from the client. By the virtue of this, <strong>the server can push resources to the client</strong> and reduce the number of round-trip messages needed.</p>
+
+<p>Http headers (both requests&rsquo; and responses&rsquo; ones) are always compressed and they are sent using one or more <code>HEADERS</code> frames.</p>
+
+<p><em><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1">Response Status-Line</a></em> and <em><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1">request Request-Line</a></em> have been moved. They are now stored in the header section via special headers (pseudo-headers): <code>:method</code>, <code>:path</code>, <code>:status</code>, etc..</p>
+
+<p><em>Response Status-Line Reason-Phrase</em> has been completely removed: there is no equivalent in HTTP/2.</p>
+
+<p>Servers and clients may use <code>PING</code> frames to check the underlying connection&rsquo;s state and to keep the connection alive even for a long period of time.</p>
+
+<h2 id="support-by-servers-and-user-agents:cd7d608f5e6f553a5281263d75f1bec2">Support by servers and user agents</h2>
+
+<p>HTTP/2 is actually a fork of <a href="http://dev.chromium.org/spdy/spdy-whitepaper">SPDY</a>, a protocol developed by Google.
+A lot of different servers and clients already supported the SPDY protocol, so the transition from SPDY to HTTP/2 was pretty straightforward.</p>
+
+<p>HTTP/2 was officially released in May 2015; since then <strong>all major web servers have added support for HTTP/2</strong> such as Apache HTTP, Apache Tomcat, Nginx, IIS and Jetty.</p>
+
+<p><strong>All major browsers now support HTTP/2</strong>, e.g. Firefox, Chrome, IE and Edge.</p>
+
+<p>A the moment, they only allow HTTP/2 over TLS via <a href="https://tools.ietf.org/html/rfc7301">ALPN</a> or <a href="https://tools.ietf.org/html/draft-agl-tls-nextprotoneg-04">NPN</a> as Protocol Negotiation mechanisms.
+RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.</p>
+
+<h2 id="additional-resources:cd7d608f5e6f553a5281263d75f1bec2">Additional resources</h2>
+
+<p>The website <a href="http://www.http2demo.io/">Http2demo.io</a> compares performance metrics between HTTP/1.1 and HTTP/2.</p>
+
+<p>If you want to learn more about HTTP/2, you can read the official specifications (<strong><a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a></strong>) or download the book <strong><a href="https://daniel.haxx.se/http2/">Http2 explained</a></strong> which also examines the reasons behind HTTP/2.</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
             
-        
 
-        <time class="published" datetime='2015-09-28'>
-            28 September 2015
-        </time>
 
-        
-            <a href="/authors/luca" class="author">
-            
-                <span class="name">Luca Boeri</span>
-                <img src="/images/avatar-luca.jpg" alt="Luca Boeri avatar" />
-            
-            </a>
-        
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&text=Faster%20Web%20with%20HTTP%2f2&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
 
-        
-            <p>5 minute read</p>
-        
-    </div>
-</header>
 
-    
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
 
-    <p>Dalle notifiche di Facebook ad un tweet stream, da Google Docs ai giochi multiplayer in HTML5, la necessità di uno scambio dati in due direzioni, efficiente e a bassa latenza, ha determinato l’ascesa negli ultimi anni di soluzioni basate su WebSocket. Internet delle cose e web 2.0 trovano oramai sempre meno spazio all’interno del protocollo HTTP/1. Le tecniche di polling e long polling, in voga fino a pochi anni fa, non permettevano di trasmettere in full duplex (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano diversi sforzi per simulare notifiche push server side.</p>
 
-    <footer>
-        <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/wamp-web-application-messaging-protocol-e-php/" class="button big">Continue Reading</a></li>
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
         </ul>
+    </section>
+    <footer>
         <ul class="stats">
     
 
@@ -453,38 +484,55 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="/categories/italiano">Italiano</a></li>
+        <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/php">PHP</a></li>
-    
-        <li><a href="/categories/open-source">Open Source</a></li>
-    
-        <li><a href="/categories/python">Python</a></li>
+        <li><a href="/categories/http">HTTP</a></li>
     
         <li><a href="/categories/networking">Networking</a></li>
     
-        <li><a href="/categories/websocket">Websocket</a></li>
-    
-        <li><a href="/categories/symfony">Symfony</a></li>
-    
 </ul>
 
     </footer>
 </article>
-
-        
-
-        
 <ul class="actions pagination">
     
-        <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+        <li><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"
+                class="button big previous">Blog restyling: switching to Hugo and GitHub Pages</a></li>
     
 
     
-        <li><a href="/categories/php/page/2/"
-                class="button big next">Next Page</a></li>
-    
 </ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "http://engineering.facile.it/blog/eng/faster-web-with-http-2/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/faster-web-with-http-2/";
+        this.page.title = "Faster Web with HTTP/2";
+    };
+
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//facile-it.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
 
     </div>
     

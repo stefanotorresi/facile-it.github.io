@@ -211,15 +211,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"><p>Blog restyling: switching to Hugo and GitHub Pages</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"><p>Droidcon It 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/json-web-tokens/"><p>Json Web Token</p></a>
                     </li>
                 
             </ul>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/">Blog restyling: switching to Hugo and GitHub Pages</a></h2>
+            <h2><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h2>
         
         
         
@@ -247,15 +247,15 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-04-26'>
-            26 April 2016
+        <time class="published" datetime='2016-05-11'>
+            11 May 2016
         </time>
 
         
-            <a href="/authors/jean" class="author">
+            <a href="/authors/sergio" class="author">
             
-                <span class="name">Alessandro Lai</span>
-                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
+                <span class="name">Sergio Santoro</span>
+                <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" />
             
             </a>
         
@@ -271,64 +271,76 @@ ga('send', 'pageview');
 
     
 
-<p>As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
-We are very happy with those changes, but the reason behind this transition is not just a simple template change.</p>
+<p>HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources).
+Nowadays it&rsquo;s been adopted for many different purposes. It&rsquo;s used for: multimedia content transfer, rich real-time session-based web applications, API messages dispatch, Internet of Things and much more.
+For this reason, the HTTP specifications are continuously updated, by adding new features and improving performance.</p>
 
-<h2 id="what-we-were-searching-for:07063062dea63684291e8b15e998f464">What we were searching for</h2>
+<p>In May 2015, the latest version 2.0 was standardized with <em><a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a></em>.
+This introduced major differences on how the low-level protocol works.
+From the application perspective, very little has changed: requests, responses, resources, headers and HTTP methods are still there.
+New features have been added such as the possibility to <strong>push resources to the client</strong>.</p>
 
-<p>Before, we were using an hosted CMS to run the blog, <a href="https://ghost.org/">Ghost</a>. We were happy with the results, it wasn&rsquo;t our concern to administrate the server or bother about other hosting stuff.</p>
+<p>The main reason that led to HTTP/2 is <strong>improving performance</strong>.
+Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.</p>
 
-<p>But, as many other developers, we were <strong>hitching for something</strong> more aligned with our inclinations: we wanted a tool that was closer to our daily jobs and our skills. We were also having <strong>problems during the revision phase</strong> of the articles, since multiple persons couldn&rsquo;t review and edit an article at the same time, fearing the risk of overwriting each other&rsquo;s work.</p>
+<h2 id="http-1-1-issues:cd7d608f5e6f553a5281263d75f1bec2">HTTP/1.1 issues</h2>
 
-<p>We then came down with a list of requirements for our blog; we wanted:</p>
-
-<ul>
-<li><strong>easy review of articles</strong>: parallels reviews are a must</li>
-<li><strong>an easy workflow</strong>: no major overhead, since the blog contributions are voluntary amongs us; we want to dedicate all the time to writing the articles, not wrestling with technical difficulties</li>
-<li><strong>no security flaws</strong>: this point disqualified Wordpress and other famous CMS solutions; we wouldn&rsquo;t like to spend time staying ahead of possible security risks, or have to worry over the hosting and installation problems that a widespread used CMS has</li>
-<li><strong>easy image hosting</strong> and embedding</li>
-<li>easy management and modifications of the <strong>template</strong></li>
-<li>easy integrations of previously used <a href="https://disqus.com/">Disqus comments</a> and Google Analytics</li>
-<li>preferably <strong>markdown content format</strong></li>
-<li>support for <strong>multilanguage articles</strong></li>
-</ul>
-
-<h2 id="git-and-the-github-pages:07063062dea63684291e8b15e998f464">Git and the GitHub pages</h2>
-
-<p>The first solution that came to us was obviously <strong>Git</strong>, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the <a href="https://pages.github.com/">GitHub pages</a> as an hosting solution: that is ideal, since we already have a <a href="https://github.com/facile-it">Github organization</a> in place, so an organization homepage/site would perfectly fit the bill for our blog.</p>
-
-<h2 id="hugo:07063062dea63684291e8b15e998f464">Hugo</h2>
-
-<p>Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was <a href="http://gohugo.io/">Hugo</a>: it&rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:</p>
+<p>HTTP/2 deals with many of the performance issues of HTTP/1.1:</p>
 
 <ul>
-<li>it generates the static HMTL site live, with a <strong><a href="https://gohugo.io/extras/livereload/">live reload</a> functionality</strong>: while you edit your markdown article, the site refresh itself on each save of the file(s), so you can see a live preview of what you&rsquo;re writing</li>
-<li>there are many templates ready to be used, and we <a href="http://themes.gohugo.io/future-imperfect/">chose one</a> to be modified to our needs</li>
-<li>the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&hellip;</li>
+<li>HTTP/1.1 doesn&rsquo;t support headers compression even though it would be particularly effective against text-based data;</li>
+<li>HTTP/1.1 <a href="https://en.wikipedia.org/wiki/HTTP_pipelining">request pipelining</a> is not so efficient due to <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">head-of-line blocking</a>;</li>
+<li>Modern web applications have complex resources that are linked to each other. HTTP/1.1 servers have no way to send all the related resources at once in order to avoid additional round-trips;</li>
+<li>HTTP/1.1 connections are designed to have short lifespans. Unfortunately, web resources change over time and additional connections are required to fetch the updated data.</li>
 </ul>
 
-<h2 id="deploying:07063062dea63684291e8b15e998f464">Deploying</h2>
-
-<p>The last step needed to smooth out our workflow was to find a <strong>deploy strategy</strong>. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.</p>
-
-<p>We needed an easy way to reproduce this steps, ideally with a script commited to the repo, ready for everyone to use:</p>
+<p>People have adopted several tricks to mitigate these problems:</p>
 
 <ul>
-<li><strong>generate</strong> the static site with Hugo</li>
-<li><strong>avoid mixing (and committing)</strong> the static copy with the source files</li>
-<li>commit the files to the master branch</li>
+<li>Session data is usually persisted on the server to minimize the amount of headers sent at every request;</li>
+<li>To reduce latency and to achieve request multiplexing, browsers open several TCP connections during page load. This is not recommended: it consumes many more resources (both client-side and server-side) and <a href="https://en.wikipedia.org/wiki/TCP_congestion_control">TCP congestion avoidance</a> techniques are no longer effective;</li>
+<li>Recent web applications prefer leaving connections open to reduce connection setup latency for subsequent requests;</li>
 </ul>
 
-<p>Hugo normally generates the static copy in the <code>./public</code> directory; to achieve this we used <a href="https://github.com/X1011/git-directory-deploy">a script that I found on GitHub itself</a> that solved this exact problem. We started an empty <code>source</code> branch, <strong>detached</strong> from master:</p>
+<h2 id="what-s-changed:cd7d608f5e6f553a5281263d75f1bec2">What&rsquo;s changed</h2>
 
-<pre><code>git checkout -b source --orphan
-</code></pre>
+<p>HTTP/2 is <strong>no longer text-based</strong>; this means debugging could be somewhat difficult without using special tools.</p>
 
-<p>We started our Hugo site inside it, and we put the <code>./public</code> in the <code>.gitIgnore</code>, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of <code>publish: &lt;last commit message from source&gt;</code>.</p>
+<p>Server and client communicate by sending small binary messages named <strong>Frames</strong>.
+There are different types of frames. The most important ones are <code>DATA</code>, <code>HEADERS</code>, <code>SETTINGS</code> and <code>PUSH_PROMISE</code>.</p>
 
-<h2 id="et-voilà-here-we-are:07063062dea63684291e8b15e998f464">Et voilà, here we are!</h2>
+<p>HTTP/2 uses the concept of <strong>streams</strong>. Each stream is identified by an ID and it&rsquo;s allocated for every request/response lifecycle.
+Several streams can be active at the same time on the same connection: this provides <strong>real request pipelining and multiplexing</strong>.</p>
 
-<p>So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!</p>
+<p>Each frame contains the ID of the stream they refer to. Thus, frames of different streams can be interleaved without interfering.</p>
+
+<p>Servers, by sending the <code>PUSH_PROMISE</code> frame, can allocate new streams without waiting for an explicit request from the client. By the virtue of this, <strong>the server can push resources to the client</strong> and reduce the number of round-trip messages needed.</p>
+
+<p>Http headers (both requests&rsquo; and responses&rsquo; ones) are always compressed and they are sent using one or more <code>HEADERS</code> frames.</p>
+
+<p><em><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1">Response Status-Line</a></em> and <em><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1">request Request-Line</a></em> have been moved. They are now stored in the header section via special headers (pseudo-headers): <code>:method</code>, <code>:path</code>, <code>:status</code>, etc..</p>
+
+<p><em>Response Status-Line Reason-Phrase</em> has been completely removed: there is no equivalent in HTTP/2.</p>
+
+<p>Servers and clients may use <code>PING</code> frames to check the underlying connection&rsquo;s state and to keep the connection alive even for a long period of time.</p>
+
+<h2 id="support-by-servers-and-user-agents:cd7d608f5e6f553a5281263d75f1bec2">Support by servers and user agents</h2>
+
+<p>HTTP/2 is actually a fork of <a href="http://dev.chromium.org/spdy/spdy-whitepaper">SPDY</a>, a protocol developed by Google.
+A lot of different servers and clients already supported the SPDY protocol, so the transition from SPDY to HTTP/2 was pretty straightforward.</p>
+
+<p>HTTP/2 was officially released in May 2015; since then <strong>all major web servers have added support for HTTP/2</strong> such as Apache HTTP, Apache Tomcat, Nginx, IIS and Jetty.</p>
+
+<p><strong>All major browsers now support HTTP/2</strong>, e.g. Firefox, Chrome, IE and Edge.</p>
+
+<p>A the moment, they only allow HTTP/2 over TLS via <a href="https://tools.ietf.org/html/rfc7301">ALPN</a> or <a href="https://tools.ietf.org/html/draft-agl-tls-nextprotoneg-04">NPN</a> as Protocol Negotiation mechanisms.
+RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.</p>
+
+<h2 id="additional-resources:cd7d608f5e6f553a5281263d75f1bec2">Additional resources</h2>
+
+<p>The website <a href="http://www.http2demo.io/">Http2demo.io</a> compares performance metrics between HTTP/1.1 and HTTP/2.</p>
+
+<p>If you want to learn more about HTTP/2, you can read the official specifications (<strong><a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a></strong>) or download the book <strong><a href="https://daniel.haxx.se/http2/">Http2 explained</a></strong> which also examines the reasons behind HTTP/2.</p>
 
 
     <section id="social-share">
@@ -336,43 +348,43 @@ We are very happy with those changes, but the reason behind this transition is n
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&text=Faster%20Web%20with%20HTTP%2f2&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -400,13 +412,9 @@ We are very happy with those changes, but the reason behind this transition is n
     
         <li><a href="/categories/english">English</a></li>
     
-        <li><a href="/categories/blog">Blog</a></li>
+        <li><a href="/categories/http">HTTP</a></li>
     
-        <li><a href="/categories/hugo">Hugo</a></li>
-    
-        <li><a href="/categories/static-site">Static site</a></li>
-    
-        <li><a href="/categories/github">GitHub</a></li>
+        <li><a href="/categories/networking">Networking</a></li>
     
 </ul>
 
@@ -414,8 +422,8 @@ We are very happy with those changes, but the reason behind this transition is n
 </article>
 <ul class="actions pagination">
     
-        <li><a href="http://engineering.facile.it/blog/eng/droidcon-it-2016/"
-                class="button big previous">Droidcon It 2016</a></li>
+        <li><a href="http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/"
+                class="button big previous">Blog restyling: switching to Hugo and GitHub Pages</a></li>
     
 
     
@@ -430,9 +438,9 @@ We are very happy with those changes, but the reason behind this transition is n
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-        this.page.url = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
-        this.page.identifier = "http://engineering.facile.it/blog/eng/switching-to-hugo-and-github-pages/";
-        this.page.title = "Blog restyling: switching to Hugo and GitHub Pages";
+        this.page.url = "http://engineering.facile.it/blog/eng/faster-web-with-http-2/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/faster-web-with-http-2/";
+        this.page.title = "Faster Web with HTTP/2";
     };
 
     (function () {
@@ -462,43 +470,43 @@ We are very happy with those changes, but the reason behind this transition is n
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&text=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&text=Faster%20Web%20with%20HTTP%2f2&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f&title=Blog%20restyling%3a%20switching%20to%20Hugo%20and%20GitHub%20Pages" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f&title=Faster%20Web%20with%20HTTP%2f2" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fswitching-to-hugo-and-github-pages%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2ffaster-web-with-http-2%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -618,6 +626,27 @@ We are very happy with those changes, but the reason behind this transition is n
                             <header>
                                     
                                         
+                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-05-11'>
+                                        11 May 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -650,27 +679,6 @@ We are very happy with those changes, but the reason behind this transition is n
                                     
                                     <time class="published" datetime='2016-04-18'>
                                         18 April 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/d9b386ec082da4173b8b03a2585478b0" alt="Alessandro Galli avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/json-web-tokens/">Json Web Token</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-04-08'>
-                                        8 April 2016
                                     </time>
                             </header>
                         </article>
@@ -731,7 +739,7 @@ We are very happy with those changes, but the reason behind this transition is n
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">11</span>
+                                <span style="float:right;">12</span>
                             </header>
                         </article>
                     </li>
