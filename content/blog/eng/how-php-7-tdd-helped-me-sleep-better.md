@@ -5,7 +5,7 @@ date: "2016-05-16"
 draft: true
 share: true
 categories: [English, TDD, PHP]
-title: "How TDD & PHP7 helped me being a dad and a developer at the same time"
+title: "How PHP 7 & TDD helped me sleep better"
 
 languageCode: "en-US"
 type: "post"
@@ -13,8 +13,10 @@ type: "post"
 # The enemies of programming
 As many of you will agree with me, **sleep deprivation** is the enemy of programming.   
 Maybe we fear only one thing more than that: **being interrupted**.
+<p style="text-align: center;">
+    [![Why you shouldn't interrupt a programmer (by Jason Heeris)](/images/how-php-7-tdd-helped-me-sleep-better/interruption.png)](http://heeris.id.au/2013/this-is-why-you-shouldnt-interrupt-a-programmer/)
+</p>
 
-[![Why you shouldn't interrupt a programmer (by Jason Heeris)](/images/how-tdd-php-7-helped-being-dad-and-developer-at-same-time/interruption.png)](http://heeris.id.au/2013/this-is-why-you-shouldnt-interrupt-a-programmer/)
 
 While writing code we have to think really hard, we use complex abstractions, we go through long business workflows and so on... fatigue and interruptions are the main enemies of those in this line of work.
 
@@ -22,8 +24,9 @@ While writing code we have to think really hard, we use complex abstractions, we
 On my daily job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine and so on; in this project we luckily use a good deal of **good practices**, and **automated sofware testing** is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.
 
 Nearly half a year ago I became a dad. It has been great, and you also get some unexpected perks! For example, my colleagues got me this gift for my son:
-
-![A blue elePHPant!](/images/how-tdd-php-7-helped-being-dad-and-developer-at-same-time/blue-elephpant.jpg)
+<p style="text-align: center;">
+    ![A blue elePHPant!](/images/how-php-7-tdd-helped-me-sleep-better/blue-elephpant.jpg)
+</p>
 
 So, we can say that his future is pretty clear... But don't say this to my wife! 
 
@@ -54,8 +57,9 @@ I then wrote some functional test to assure that the **collaboration between my 
 
 ## PHP 7: scalar and return types declarations
 The second good choice was **PHP 7**: two of the main reasons behind it as the language version for this project were the [two main new features](http://php.net/manual/en/migration70.new-features.php) introduced in that version: **scalar types** and **return type declarations**. 
-
-![Return types, return types everywhere!](/images/how-tdd-php-7-helped-being-dad-and-developer-at-same-time/return-types-everywhere-meme.jpg)
+<p style="text-align: center;">
+    ![Return types, return types everywhere!](/images/how-php-7-tdd-helped-me-sleep-better/return-types-everywhere-meme.jpg)
+</p>
 
 Before Facile.it, I worked as C++ developer, and oh boy! did I really missed scalars and return types! 
 
