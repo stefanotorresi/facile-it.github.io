@@ -23,7 +23,7 @@ While writing code we have to think really hard, we use complex abstractions, we
 # My experience 
 On my daily job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine and so on; in this project we luckily use a good deal of **good practices**, and **automated sofware testing** is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.
 
-Nearly half a year ago I became a dad. It has been great, and you also get some unexpected perks! For example, my colleagues got me this gift for my son:
+Nearly half a year ago **I became a dad**. It has been great, and you also get some unexpected perks! For example, my colleagues got me this gift for my son:
 <p style="text-align: center;">
     ![A blue elePHPant!](/images/how-php-7-tdd-helped-me-sleep-better/blue-elephpant.jpg)
 </p>
@@ -32,7 +32,7 @@ So, we can say that his future is pretty clear... But don't say this to my wife!
 
 During the pregnancy, many of my friends and fellow parents warned me, half jokingly, about one thing: *"sleep now, you'll be deadly tired after!"*. Now I can say that they were a bit exagerating, but I can't deny that, having a child has a toll on your sleep schedule... Even if, as in my case, having a 9 to 6 office job, my wonderful wife does all the parenting heavy lifting (and I consider myself pretty lucky for having her!). 
 
-A few months after my son was born I also had the opportunity to start **a new, fresh project**. To be completly honest, it was not actually fresh, but it was a **complete rewrite** of an internal service that is used to manage invoices for multiple business units inside our company. I knew pretty well the old system that had to be replaced, so I was put in charge of redoing it from scratch.
+A few months after my son was born I also had the opportunity to start **a new, fresh project**. To be completely honest, it was not actually fresh, but it was a **complete rewrite** of an internal service that is used to manage invoices for multiple business units inside our company. I knew pretty well the old system that had to be replaced, so I was put in charge of redoing it from scratch.
 
 One of the issue with the old system (and the main reason behind the rewrite) was **maintainability**: we had no tests, we hadn't a proper dev environment, and the design was not great; also, bureaucracy and invoicing are the core domain of the system, so it was inherently complicated. This created the perfect environment to see the [Broken windows theory](https://en.wikipedia.org/wiki/Broken_windows_theory) in action, and the code base got worse over time, one patch, copy paste or fast fix at a time. 
 
@@ -63,11 +63,11 @@ The second good choice was **PHP 7**: two of the main reasons behind it as the l
 
 Before Facile.it, I worked as C++ developer, and oh boy! did I really missed scalars and return types! 
 
-*"I came onboard of the PHP community right in time"*, I thought... So I exploited this situation to start using all this new features. I started to enjoy having again the possibility of typehint string and integers, and I discovered how return types declaration enforces really well the cohesion of your objects, making it **rightly painful returning different types of data from the same method**, or mixing a type with null.
+*"I came onboard of the PHP community right in time"*, I thought... So I exploited this situation to start using all this new features. I started to enjoy having again the possibility of typehint string and integers; I discovered how return types declaration enforces really well the cohesion of your objects, making it **rightly painful returning different things**: it became impossible returning something OR null, for example.
 
 Return types also demonstrated to be a **double edged sword** in some cases, especially on Doctrine entities: they are really useful to enforce consistency in your values, since they trigger a `\TypeError` each time you call a getter method on a erroneously empty property, but **you can't use them on nullable fields**, since it will break your application at any time during execution.
 
-On the other end, having return types declared on your business-logic classes it's pretty useful, and even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it **indirectly helps maintaining the collaboration contract between objects**, without too much hassle. If I changed the signature of a method that was mocked somewhere, the mock would break the test, **highlighting the issue and making the test (and the high coverage) even more valuable**.
+On the other end, having return types declared on your business-logic classes it's pretty useful, and even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it **indirectly helps maintaining the collaboration contract between objects**, without too much hassle. If I changed the signature of a method that was mocked somewhere, the mock would break the test, **highlighting the issue and making the tests** (and the high coverage) **even more valuable**.
 
 # Conclusions
 At the end of the day, this (and other) **good practices are helpful** for both your job and your life: you can do a lot of things to be in your best shape and fit when you do your work, but stressful and (good) distracting events are unavoidable, you often will have to fight stress, fatigue or distraction and there will be days where you can't be at the top of your game, for any number of reasons.
