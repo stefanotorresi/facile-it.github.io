@@ -65,6 +65,13 @@ Before Facile.it, I worked as C++ developer, and oh boy! did I really missed sca
 
 *"I came onboard of the PHP community right in time"*, I thought... So I exploited this situation to start using all this new features. I started to enjoy having again the possibility of typehint string and integers; I discovered how return types declaration enforces really well the cohesion of your objects, making it **rightly painful returning different things**: it became impossible returning something OR null, for example.
 
+Interestingly, I found myself writing a lot of this in my tests:
+
+    $result = $testClass->method();
+    $this->assertInstanceOf(SomeClass::class, $result);
+
+I did this more than once, just to immediately realize that I was wasting time! This was normally the first TDD step on PHP 5.x code, but now this kind of assertion were futile, because the return type was already checked at a language level! Great!
+
 Return types also demonstrated to be a **double edged sword** in some cases, especially on Doctrine entities: they are really useful to enforce consistency in your values, since they trigger a `\TypeError` each time you call a getter method on a erroneously empty property, but **you can't use them on nullable fields**, since it will break your application at any time during execution.
 
 On the other end, having return types declared on your business-logic classes it's pretty useful, and even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it **indirectly helps maintaining the collaboration contract between objects**, without too much hassle. If I changed the signature of a method that was mocked somewhere, the mock would break the test, **highlighting the issue and making the tests** (and the high coverage) **even more valuable**.
