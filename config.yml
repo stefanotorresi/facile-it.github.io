@@ -3,7 +3,7 @@ languageCode: "en-us"
 title: "Facile.it Engineering"
 theme: "hugo-future-imperfect"
 preserveTaxonomyNames: true
-paginate: 3
+paginate: 5
 disqusShortname: "facile-it"
 googleAnalytics: "UA-22342495-1"
 
@@ -62,11 +62,6 @@ params:
 # You can use identifier to prepend a font awesome icon to your text
 menu:
   main:
-    - blog:
-      name: "Blog"
-      url: "/blog"
-      identifier: "fa fa-newspaper-o"
-      weight: 1
     - categories:
       name: "Categories"
       url: "/categories"
