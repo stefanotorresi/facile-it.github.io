@@ -2,6 +2,11 @@
     {{ .Render "header" }}
 
     {{ .Render "featured" }}
+
+    {{ if .Params.toc }}
+        {{ .TableOfContents }}
+    {{ end }}
+
     {{ .Content }}
 
     <section id="social-share">
