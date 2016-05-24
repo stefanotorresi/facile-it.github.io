@@ -36,7 +36,7 @@
 <meta property="og:url" content="http://engineering.facile.it/categories/italiano/" />
 
 
-<meta property="og:updated_time" content="2015-05-19T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2015-03-02T00:00:00&#43;00:00"/>
 
 
 
@@ -94,13 +94,6 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/blog/">
-                        
-                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
-                    </a>
-                </li>
-            
-                <li>
                     <a href="/categories/">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
@@ -154,17 +147,6 @@ ga('send', 'pageview');
     
         <section>
             <ul class="links">
-                
-                    <li>
-                        <a href="/blog/">
-                            <h3>
-                                
-                                    <i class="fa fa-newspaper-o">&nbsp;</i>
-                                
-                                Blog
-                            </h3>
-                        </a>
-                    </li>
                 
                     <li>
                         <a href="/categories/">
@@ -241,7 +223,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/ita/php-day-2015/">Facile.it devs @ PHP Day 2015</a></h2>
+            <h2><a href="http://engineering.facile.it/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h2>
         
         
         
@@ -252,32 +234,32 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-05-19'>
-            19 May 2015
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
         </time>
 
         
-            <a href="/authors/jean" class="author">
+            <a href="/authors/lorenzo" class="author">
             
-                <span class="name">Alessandro Lai</span>
-                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
             
             </a>
         
 
         
-            <p>6 minute read</p>
+            <p>2 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Anche quest&rsquo;anno si è svolto il PHP Day a Verona, il 15 e 16 maggio. Noi sviluppatori di Facile.it abbiamo partecipato con un folto gruppo e seguito i vari talks. In questo breve articolo vorremmo citare quelli che in qualche maniera ci hanno colpito, per motivi tecnici e non, per dare l&rsquo;opportunità a chi non ha potuto partecipare di sapere qualcosa di più, o per dare un assaggio della conferenza a chi non ha mai partecipato a qualcosa del genere e, speriamo, invogliarlo a far parte della community!</p>
+    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile <em>/ zend_uint refcount__gc; /</em> Il conto delle referenze legato alla variabile <em>/ zend_uchar type; /</em> L&rsquo;identificativo del tipo di dato <em>/ zend_uchar is_ref__gc; /</em> Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/php-day-2015/" class="button big">Continue Reading</a></li>
+            <li><a href="http://engineering.facile.it/blog/ita/zvals-refcount/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -301,7 +283,7 @@ ga('send', 'pageview');
     
         <li><a href="/categories/php">PHP</a></li>
     
-        <li><a href="/categories/conferences">Conferences</a></li>
+        <li><a href="/categories/php-internals">PHP internals</a></li>
     
 </ul>
 
@@ -313,7 +295,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/">Intelligenza artificiale: algoritmo A*</a></h2>
+            <h2><a href="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/">var_dump() aggiunge proprietà pubbliche a DateTime</a></h2>
         
         
         
@@ -324,32 +306,32 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-05-12'>
-            12 May 2015
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
         </time>
 
         
-            <a href="/authors/sergio" class="author">
+            <a href="/authors/lorenzo" class="author">
             
-                <span class="name">Sergio Santoro</span>
-                <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" />
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
             
             </a>
         
 
         
-            <p>5 minute read</p>
+            <p>2 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Introduzione A* è un algoritmo di ricerca e ottimizzazione basato su grafi. Viene frequentemente impiegato nell&rsquo;intelligenza artificiale perché in grado di gestire grafi ampi e indeterminati. L&rsquo;algoritmo A* può essere utilizzato per risolvere problemi come: gioco del 15, percorso minimo, Sudoku, cubo di Rubik, ecc. In generale, A* può risolvere efficacemente i problemi che soddisfano i requisiti: La soluzione è determinata da cambamenti sequenziali di stato rappresentabili con grafi; Il nodo iniziale e il nodo finale devono essere noti.</p>
+    <p>PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/" class="button big">Continue Reading</a></li>
+            <li><a href="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -371,85 +353,9 @@ ga('send', 'pageview');
     
         <li><a href="/categories/italiano">Italiano</a></li>
     
-        <li><a href="/categories/python">Python</a></li>
+        <li><a href="/categories/php">PHP</a></li>
     
-        <li><a href="/categories/algorithms">Algorithms</a></li>
-    
-        <li><a href="/categories/artificial-intelligence">Artificial intelligence</a></li>
-    
-</ul>
-
-    </footer>
-</article>
-
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://engineering.facile.it/blog/ita/type-first-development-in-swift/">Type First Development in Swift</a></h2>
-        
-        
-        
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published" datetime='2015-05-05'>
-            5 May 2015
-        </time>
-
-        
-            <a href="/authors/elviro" class="author">
-            
-                <span class="name">Elviro Rocca</span>
-                <img src="http://www.gravatar.com/avatar/fb2983ff4983323312496f2b67e26186?d=404&amp;s=250" alt="Elviro Rocca avatar" />
-            
-            </a>
-        
-
-        
-            <p>17 minute read</p>
-        
-    </div>
-</header>
-
-    
-
-    <p>Con Type First Development può intendersi un approccio allo sviluppo di nuove funzionalità o moduli di un software partendo dai tipi di dati coinvolti: non si tratta quindi di un pattern o una pratica codificata, ma solo di un possibile punto di partenza per iniziare il ragionamento. Ragionando esclusivamente sui tipi, prima ancora di pensare alle singole specifiche implementazioni dei vari blocchi di codice, è possibile costruire più facilmente una mappa dei vari di flussi di dati che attraversano il nostro software, e verificare immediatamente se stiamo scrivendo qualcosa di sensato, solido ed adeguatamente estendibile.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/ita/type-first-development-in-swift/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-
-    
-        
-            <li>
-                
-                    <i class="fa fa-folder-open-o">&nbsp;</i>
-                
-        
-
-                
-                    Categories
-                
-            </li>
-    
-
-    
-        <li><a href="/categories/italiano">Italiano</a></li>
-    
-        <li><a href="/categories/swift">Swift</a></li>
-    
-        <li><a href="/categories/functional-programming">Functional programming</a></li>
-    
-        <li><a href="/categories/type-first-development">Type First Development</a></li>
+        <li><a href="/categories/php-internals">PHP internals</a></li>
     
 </ul>
 
@@ -466,8 +372,7 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="/categories/italiano/page/8/"
-                class="button big next">Next Page</a></li>
+        <li><a href="#" class="disabled button big next">Next Page</a></li>
     
 </ul>
 
