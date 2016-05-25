@@ -3472,11 +3472,13 @@
 
 	.post > p a,
 	.post > ul a,
-	.post > ol a {
+	.post > ol a,
+	#TableOfContents a {
 		border-bottom: double 3px rgba(160, 160, 160, 0.85)
 	}
 
-	.post p a:hover {
+	.post p a:hover,
+	#TableOfContents a:hover {
 		border-bottom-color: rgba(46, 186, 174, 0.25)
 	}
 
@@ -3536,4 +3538,21 @@
 			display: block;
 			margin: 0 2.5em 0 1.5em;
 		}
+	}
+
+	#TableOfContents {
+		font-size: smaller;
+	}
+
+	#TableOfContents ul {
+		padding: 0 0 0 1em;
+		list-style: square;
+	}
+
+	#TableOfContents > ul {
+		margin-left: 1em;
+	}
+
+	#TableOfContents ul li ul {
+		margin: 0;
 	}

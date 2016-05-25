@@ -325,6 +325,9 @@ ga('send', 'pageview');
 
     
 
+
+    
+
     
 
 <p><a href="http://engineering.facile.it/xcode-testing-in-pratica/">In un precedente articolo</a> abbiamo visto le impostazioni di base in Xcode per la scrittura dei <strong>test unitari</strong>: abbiamo evidenziato inoltre <strong>l&rsquo;importanza e l&rsquo;utilità intrinseca dei test</strong>, attraverso un semplice esempio riguardante un caso d&rsquo;uso tipico. Nel presente articolo vedremo alcune tecniche un po&rsquo; più avanzate:</p>
@@ -411,7 +414,7 @@ extension LocationCoordinator: CLLocationManagerDelegate {
 
 <p>Come si può vedere, la classe è configurata per richiedere l&rsquo;autorizzazione a leggere la posizione GPS del dispositivo quando l&rsquo;app è in uso, ma non sarà necessario fornire questa autorizzazione per i test: creeremo infatti uno <em>stub</em> che genererà posizioni arbitrarie, senza usare i sensori di sistema. Si ricorda inoltre che usando iOS SDK &gt;= 8.0, per usare i servizi di localizzazione sarà necessario inserire nel file Info.plist una chiave che descrive il motivo per il quale l&rsquo;app chiede l&rsquo;autorizzazione ad accedere a tali servizi:</p>
 
-<p><img src="/content/images/2015/06/Schermata-2015-06-03-alle-08-44-25-1.png" alt="" /></p>
+<p><img src="/images/swift-testing-avanzato-stubbing-e-test-asincroni/locationUsageDescription.png" alt="" /></p>
 
 <p>Sebbene l&rsquo;aggiunta della chiave <code>NSLocationWhenIsUseUsageDescription</code> non sia necessaria per eseguire i test, senza questa chiave l&rsquo;app non potrà funzionare in iOS8 nel caso in cui provassimo ad avviarla normalmente.</p>
 
