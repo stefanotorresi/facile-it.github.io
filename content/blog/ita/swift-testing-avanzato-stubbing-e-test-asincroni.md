@@ -94,7 +94,7 @@ extension LocationCoordinator: CLLocationManagerDelegate {
 
 Come si può vedere, la classe è configurata per richiedere l'autorizzazione a leggere la posizione GPS del dispositivo quando l'app è in uso, ma non sarà necessario fornire questa autorizzazione per i test: creeremo infatti uno *stub* che genererà posizioni arbitrarie, senza usare i sensori di sistema. Si ricorda inoltre che usando iOS SDK >= 8.0, per usare i servizi di localizzazione sarà necessario inserire nel file Info.plist una chiave che descrive il motivo per il quale l'app chiede l'autorizzazione ad accedere a tali servizi:
 
-![](/content/images/2015/06/Schermata-2015-06-03-alle-08-44-25-1.png)
+![](/images/swift-testing-avanzato-stubbing-e-test-asincroni/locationUsageDescription.png)
 
 Sebbene l'aggiunta della chiave `NSLocationWhenIsUseUsageDescription` non sia necessaria per eseguire i test, senza questa chiave l'app non potrà funzionare in iOS8 nel caso in cui provassimo ad avviarla normalmente.
 
