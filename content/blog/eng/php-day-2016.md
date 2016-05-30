@@ -46,9 +46,16 @@ This talk was about **using Jenkins with Docker** and having optimized pipelines
 
 ## Evolution of Web Application Architecture
  * Kore Nordmann ([@koredn](http://twitter.com/koredn))
- * Day 2 - 15:30 – 16:30 - track 1 ([slides](https://qafoo.com/resources/presentations/phpday_2016_2016/evolution_of_web_application_architecture.html))
+ * Day 2 - 15:30 – 16:30 - track 2 ([slides](https://qafoo.com/resources/presentations/phpday_2016_2016/evolution_of_web_application_architecture.html))
  
 The talk covered the **evolution of the technological stack** behind a normal web application, from a single server to a multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of **when and why** such steps should be taken when enriching a project with new functionalities or overcoming technical challenges.
+
+## Being functional in PHP
+ * David de Boer ([@ddeboer_nl](http://twitter.com/ddeboer_nl))
+ * Day 2 - 16:30 – 17:00 - track 1 ([slides](http://www.slideshare.net/boerdedavid/being-functional-in-php-php-day-italy-2016))
+
+This talk was an **introduction to functional programming**.
+The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the possibilities we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. In the end, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.
 
 # Keynotes
 ## Deploying PHP 7
