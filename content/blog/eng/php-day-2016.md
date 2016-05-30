@@ -44,6 +44,12 @@ In this talk we started from basic **regular expressions**, to basic pattern rec
 
 This talk was about **using Jenkins with Docker** and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.  
 
+## Drinking Beer with a Raspberry Pi and PHP
+ * Andrew Carter ([@AndrewCarterUK](http://twitter.com/AndrewCarterUK))
+ * Day 2 - 15:30 – 16:30 - track 1
+
+This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of AaaS (Alcohol as a Service) machine. This is a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.
+
 ## Evolution of Web Application Architecture
  * Kore Nordmann ([@koredn](http://twitter.com/koredn))
  * Day 2 - 15:30 – 16:30 - track 2 ([slides](https://qafoo.com/resources/presentations/phpday_2016_2016/evolution_of_web_application_architecture.html))
@@ -54,8 +60,7 @@ The talk covered the **evolution of the technological stack** behind a normal we
  * David de Boer ([@ddeboer_nl](http://twitter.com/ddeboer_nl))
  * Day 2 - 16:30 – 17:00 - track 1 ([slides](http://www.slideshare.net/boerdedavid/being-functional-in-php-php-day-italy-2016))
 
-This talk was an **introduction to functional programming**.
-The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the possibilities we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. In the end, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.
+This talk was an **introduction to functional programming**. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the possibilities we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. In the end, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.
 
 # Keynotes
 ## Deploying PHP 7
