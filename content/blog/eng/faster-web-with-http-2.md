@@ -10,6 +10,8 @@ categories: [English, HTTP, Networking]
 title: "Faster Web with HTTP/2"
 languageCode: "en-US"
 type: "post"
+images: ['/images/logo.png']
+
 ---
 
 HTTP is the protocol that powers the Web. It was originally designed in 1996 for transferring and manipulating simple text-based documents (mainly hypertext resources).

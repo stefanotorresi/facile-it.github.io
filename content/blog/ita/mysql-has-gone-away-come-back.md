@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/mysql-has-gone-away-come-back"
+images: ['/images/logo.png']
+
 ---
 
 A ben più di uno sviluppatore sarà capitato di incappare nel comune errore [*MySQL server has gone away!*](http://dev.mysql.com/doc/refman/5.5/en/gone-away.html), magari seguito da un eccezione lanciata da una delle [**classi PDO**](http://php.net/manual/en/book.pdo.php), come ad esempio *PDOStatement::execute(): Error reading result set's header*.

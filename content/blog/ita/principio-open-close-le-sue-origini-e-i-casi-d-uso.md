@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/principio-open-close-le-sue-origini-e-i-casi-d-uso"
+images: ['/images/logo.png']
+
 ---
 ## Definizione:
 Il principio *OPEN/CLOSE* fa riferimento all'acronimo [SOLID](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)).  introdotto da  Michael Feathers che riporta alcune *buone pratiche* di programmazione ad oggetti ancora di forte attualità.

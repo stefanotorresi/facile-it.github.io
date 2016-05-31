@@ -12,6 +12,8 @@ languageCode: "en-US"
 type: "post"
 aliases:
   - "/optionals-in-objective-c"
+images: ['/images/logo.png']
+
 ---
 
 **Objective-C is not going anywhere**. While Swift is most certainly the new hotness for iOS and OS X programming, there are some concrete reasons to stick with Objective-C for a while:

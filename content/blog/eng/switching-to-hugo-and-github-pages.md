@@ -9,6 +9,8 @@ title: "Blog restyling: switching to Hugo and GitHub Pages"
 
 languageCode: "en-US"
 type: "post"
+images: ['/images/logo.png']
+
 ---
 As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure. 
 We are very happy with those changes, but the reason behind this transition is not just a simple template change.

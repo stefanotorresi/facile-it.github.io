@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/software-testing-coverage-vs-efficacia"
+images: ['/images/logo.png']
+
 ---
 Controllare il tasso di coverage dei test è un'attività frequente tra gli sviluppatori.
 

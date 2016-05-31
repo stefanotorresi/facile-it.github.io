@@ -13,6 +13,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/si-fa-presto-a-dire-docker-e-os-x"
+images: ['/images/logo.png']
+
 ---
 Di guide per l'installazione di Docker su OS X è pieno il web, ma **le soluzioni sono molte** e spesso scegliere non è facile.
 In questo articolo vi mostrerò quello che è stato il mio personale percorso, nella speranza che possa essere utile a chiarirvi le idee e magari evitare qualche buco nell'acqua.

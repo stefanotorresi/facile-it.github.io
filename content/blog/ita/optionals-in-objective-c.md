@@ -12,6 +12,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/optionals-in-objective-c-ita"
+images: ['/images/logo.png']
+
 ---
 
 **Objective-C vivrà ancora per molto**. Nonostante Swift sia il nuovo punto di riferimento per lo sviluppo iOS e OS X, ci sono ragioni concrete per scegliere di continuare a sviluppare in Objective-C, almeno per un po':

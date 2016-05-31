@@ -13,6 +13,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/facilehack-2015"
+images: ['/images/logo.png']
+
 ---
 Sono stati due giorni ricchi di emozioni quelli trascorsi con i partecipanti di #FacileHack, il primo hackathon organizzato da Facile.it.
 Abbiamo visto impegno nella competizione, talenti diversi e complementari tra loro, passione per la tecnologia, serietà e molto caffè... momenti che vogliamo rivivere insieme a voi con questo video.

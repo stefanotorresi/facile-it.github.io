@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/xcode-testing-in-pratica"
+images: ['/images/logo.png']
+
 ---
 
 Tra i molti strumenti utili presenti in Xcode, il testing framework **XCTest** è certamente uno dei più rilevanti, non solo per l'importanza intrinseca dello Unit Testing in generale, ma soprattutto per la facilità con la quale è possibile scrivere ed eseguire test direttamente dall'IDE *out-of-the-box*, **senza la necessità di installare componenti di terze parti** o impostare una particolare configurazione per i progetti.

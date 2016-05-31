@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/miniiad-vimercate-2015-reportage"
+images: ['/images/logo.png']
+
 ---
 
 Lo scorso 23 Maggio 2015, si è tenuto a Vimercate, presso la sede di Alcatel-Lucent all'Energy Park, il [Mini Italian Agile Day](http://www.agileday.it/mini/2015/vimercate/).

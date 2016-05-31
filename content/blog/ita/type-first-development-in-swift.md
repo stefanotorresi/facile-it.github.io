@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/type-first-development-in-swift"
+images: ['/images/logo.png']
+
 ---
 
 Con *Type First Development* può intendersi un approccio allo sviluppo di nuove funzionalità o moduli di un software partendo dai **tipi** di dati coinvolti: non si tratta quindi di un pattern o una pratica codificata, ma solo di **un possibile punto di partenza** per iniziare il ragionamento. Ragionando esclusivamente sui tipi, prima ancora di pensare alle singole specifiche implementazioni dei vari blocchi di codice, è possibile costruire più facilmente una mappa dei vari di flussi di dati che attraversano il nostro software, e verificare immediatamente se stiamo scrivendo qualcosa di sensato, solido ed adeguatamente estendibile.

@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/continuos-integration-docker-drone"
+images: ['/images/logo.png']
+
 ---
 La **continuous integration** è una pratica che consiste nel **frequente allineamento**, su di una base comune definita *mainline*, delle copie di lavoro degli sviluppatori che collaborano al codice di un progetto.
 

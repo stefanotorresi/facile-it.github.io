@@ -12,6 +12,8 @@ languageCode: "en-US"
 type: "post"
 aliases:
   - "/no-country-for-if-else-english-version"
+images: ['/images/logo.png']
+
 ---
 
 There is an **unwanted guest** with us as we write code and build software projects: it's the code that's **already written**, and we must take into account its complexity as the code base increases in size. High complexity of the existing code can make the following activities particularly difficult:

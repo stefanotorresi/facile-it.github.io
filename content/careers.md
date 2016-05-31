@@ -4,6 +4,8 @@ date: "2016-03-24"
 draft: false
 share: true
 title: "Careers"
+images: ['/images/logo.png']
+
 ---
 
 ### Web Developer

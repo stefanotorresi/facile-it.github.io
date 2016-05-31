@@ -11,6 +11,7 @@ title: "Autenticazione API con Symfony e JWT [1/2]"
 
 languageCode: "en-En"
 type: "post"
+images: ['/images/logo.png']
 
 ---
 As promised in the previous post [Json Web Token]((http://engineering.facile.it/json-web-joken/), with this article I want to explain an example of JWT authentication on Symfony 3.0.

@@ -15,6 +15,8 @@ type: "post"
 
 aliases: 
   - "/json-web-token"
+images: ['/images/json-web-tokens/logo.svg', '/images/logo.png']
+
 ---
 ![JWT](/images/json-web-tokens/logo.svg)
 

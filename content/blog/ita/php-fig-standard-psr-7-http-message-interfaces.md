@@ -11,6 +11,8 @@ type: "post"
 languageCode: "it-IT"
 aliases:
   - "/php-fig-standard-psr-7-http-message-interfaces"
+images: ['/images/logo.png']
+
 ---
 Le specifiche PSR-7 descrivono una [proposta di standardizzazione](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md) delle **interfacce per i messaggi HTTP**.
 

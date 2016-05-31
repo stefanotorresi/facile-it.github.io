@@ -11,6 +11,8 @@ title: "Write a filesystem with FUSE"
 type: "post"
 aliases:
   - "/write-filesystem-fuse"
+images: ['/images/logo.png']
+
 ---
 During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.
 

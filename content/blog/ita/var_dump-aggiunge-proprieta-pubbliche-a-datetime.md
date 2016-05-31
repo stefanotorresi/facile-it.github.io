@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/var_dump-aggiunge-proprieta-pubbliche-a-datetime"
+images: ['/images/logo.png']
+
 ---
 PHP, fin dalla versione 5.2.0, introduce gli oggetti `\DateTime` per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali.
 

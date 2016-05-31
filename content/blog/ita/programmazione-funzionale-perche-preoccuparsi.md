@@ -11,6 +11,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/programmazione-funzionale-perche-preoccuparsi"
+images: ['/images/logo.png']
+
 ---
 
 Nel suo discorso di accettazione del [Premio Turing 1972](http://amturing.acm.org/award_winners/dijkstra_1053701.cfm), dal titolo "[The humble programmer](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html)", **Edsger Wybe Dijkstra**, uno dei più celebri *computing scientists* del 20° secolo (morto nel 2002), affrontò le cause della nota [Software Crisis](https://it.wikipedia.org/wiki/Software_crisis), cioè la crisi che colpì l'industria del software nella seconda metà degli anni sessanta: la potenza e la capacità di elaborazione dei computer stavano **crescendo esponenzialmente**, molto più rapidamente dell'abilità dei programmatori di **gestire la complessità** e scrivere software funzionante. Nello stesso discorso, Dijkstra propose anche delle possibili strade da intraprendere che a suo avviso avrebbero portato aziende e università a migliorare la qualità del loro software. Riporto qui una frase che a mio parere riassume abbastanza bene l'intero discorso:

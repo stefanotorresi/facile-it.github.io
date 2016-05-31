@@ -13,6 +13,8 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/puli-universal-packages-for-php"
+images: ['/images/logo.png']
+
 ---
 
 ## Composer e l'ecosistema PHP
