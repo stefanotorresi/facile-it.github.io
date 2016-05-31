@@ -14,8 +14,7 @@ type: "post"
 
 aliases: 
   - "/droidcon-it-2016"
-images: ['images/droidconit-recap/logo_droidcon_it.png', '/images/logo.png']
-
+twitterImage: 'images/droidconit-recap/logo_droidcon_it.png'
 ---
 ![Droidcon It](/images/droidconit-recap/logo_droidcon_it.png)
 

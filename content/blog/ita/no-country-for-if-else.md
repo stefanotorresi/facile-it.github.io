@@ -12,8 +12,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/no-country-for-if-else"
-images: ['/images/logo.png']
-
 ---
 
 C'è un **ospite indesiderato** che ci accompagna sempre mentre scriviamo codice e realizziamo progetti software: si tratta del **codice già esistente**, e dobbiamo tener conto della sua complessità man mano che la *code base* aumenta di dimensioni. Un'elevata complessità del codice può rendere le seguenti attività particolarmente difficili:

@@ -13,8 +13,6 @@ languageCode: "en-US"
 type: "post"
 aliases:
   - "/from-development-to-production-with-docker-and-amazon-ecs"
-images: ['/images/logo.png']
-
 ---
 
 # It works on my machine

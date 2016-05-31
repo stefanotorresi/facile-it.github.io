@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/swift-testing-avanzato-stubbing-e-test-asincroni"
-images: ['/images/logo.png']
-
 ---
 
 [In un precedente articolo](http://engineering.facile.it/xcode-testing-in-pratica/) abbiamo visto le impostazioni di base in Xcode per la scrittura dei **test unitari**: abbiamo evidenziato inoltre **l'importanza e l'utilità intrinseca dei test**, attraverso un semplice esempio riguardante un caso d'uso tipico. Nel presente articolo vedremo alcune tecniche un po' più avanzate: 

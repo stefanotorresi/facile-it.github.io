@@ -11,8 +11,6 @@ title: "GraphQL: an introduction"
 type: "post"
 aliases: 
   - "/graphql-an-introduction"
-images: ['/images/logo.png']
-
 ---
 
 

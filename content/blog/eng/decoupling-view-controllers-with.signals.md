@@ -11,8 +11,6 @@ languageCode: "en-US"
 type: "post"
 aliases:
   - "/decoupling-view-controllers-with-signals"
-images: ['/images/logo.png']
-
 ---
 
 [Last time](http://engineering.facile.it/code-reuse-a-primer/) we looked at the **Signal** class, that is, a simple, reusable way of encapsulating the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern). There are many use cases for a signal, and I'm going to show one possible application, spawned from a real-world problem. View controllers' composition and decoupling is **hard**: we often need an input from a view controller, that has to send its input back to its creator, while handling the back navigation somehow. We often find ourselves in a situation in which several different responsibilities are all expressed in a single view controller, with the effect of creating a gigantic class, full of entangled imperative statements, hard-to-understand sequencing and general complexity. We'll use the `Signal` class to assign the various responsibilities to different classes, and write cleaner, more declarative code. The core of this architectural pattern lies in inverting the way in which objects communicate, view controller or other: instead of asking objects to do things, we're going to **observe** what objects are doing, and **react** accordingly. *Observe* and *React* are the cornerstones of the programming paradigm known as [functional reactive programming(FRP)](https://en.wikipedia.org/wiki/Functional_reactive_programming); the present article is not going to talk about FRP as a whole, nor to present shared FRP techniques; the point is to discuss an architectural pattern for decoupling view controllers from responsibilities not strictly related to user interaction, by leveraging some basic FRP tools. 

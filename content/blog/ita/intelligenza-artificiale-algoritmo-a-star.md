@@ -11,8 +11,6 @@ type: "post"
 languageCode: "it-IT"
 aliases:
   - "/intelligenza-artificiale-ricerca-best-first-con-a/"
-images: ['/images/logo.png']
-
 ---
 # Introduzione
 A* è un [algoritmo di ricerca](https://it.wikipedia.org/wiki/Algoritmo_di_ricerca) e ottimizzazione basato su grafi. Viene frequentemente impiegato nell'[intelligenza artificiale](https://it.wikipedia.org/wiki/Intelligenza_artificiale) perché in grado di gestire grafi ampi e

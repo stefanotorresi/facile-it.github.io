@@ -9,8 +9,7 @@ title: "How PHP 7 & TDD helped me sleep better"
 
 languageCode: "en-US"
 type: "post"
-images: ['/images/how-php-7-tdd-helped-me-sleep-better/blue-elephpant.jpg', '/images/logo.png']
-
+twitterImage: '/images/how-php-7-tdd-helped-me-sleep-better/blue-elephpant.jpg'
 ---
 # The enemies of programming
 As many of you will agree with me, **sleep deprivation** is the enemy of programming.   

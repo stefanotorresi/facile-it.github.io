@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/wamp-web-application-messaging-protocol-e-php"
-images: ['/images/logo.png']
-
 ---
 
 Dalle notifiche di Facebook ad un tweet stream, da Google Docs ai giochi multiplayer in HTML5, la necessità di uno **scambio dati** in **due direzioni**, **efficiente** e a **bassa latenza**, ha determinato l’ascesa negli ultimi anni di **soluzioni basate su <a href="https://www.websocket.org/" target="_blank">WebSocket</a>**.

@@ -13,8 +13,6 @@ eng: "from-development-to-production-with-docker-and-amazon-ecs"
 languageCode: "it-IT"
 aliases:
   - "/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk"
-images: ['/images/logo.png']
-
 ---
 
 ## In locale funzionava

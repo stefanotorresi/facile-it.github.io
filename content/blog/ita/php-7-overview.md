@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/php-7-overview"
-images: ['/images/logo.png']
-
 ---
 Il linguaggio che ha contribuito alla nascita e alla crescita di più del 80% dei siti web oggi online, tra i quali alcuni dei più famosi al mondo, è prossimo a una svolta.
 

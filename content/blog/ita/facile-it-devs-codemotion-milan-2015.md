@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/facile-it-devs-codemotion-milan-2015"
-images: ['/images/logo.png']
-
 ---
 
 L'appuntamento con il [Codemotion](http://milan2015.codemotionworld.com) di quest'anno a Milano è stato particolarmente **ricco**: tante tracce, moltissimi contenuti suddivisi tra talk tecnici, workshop e keynote, e alcuni ospiti illustri, tra cui il celebre [Rasmus Lerdorf](https://twitter.com/rasmus), creatore del linguaggio **PHP**. Come già fatto per il [PHP Day 2015](http://engineering.facile.it/php-day-2015/), proponiamo le nostre impressioni sulla conferenza, citando i talk che ci hanno colpito maggiormente: la scelta dei talk è basata sul gusto personale dei vari membri della redazione di Facile.it Engineering, e le considerazioni esposte non vanno lette come recensioni, ma come riflessioni di vario genere sulle tematiche trattate, volte a stimolare nei lettori l'interesse a **partecipare** a conferenze come il Codemotion.

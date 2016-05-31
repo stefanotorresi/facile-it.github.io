@@ -10,7 +10,6 @@ title: "Facile.it devs @ PhpDay 2016"
 languageCode: "en-EN"
 type: "post"
 toc: true
-images: ['/images/logo.png']
 
 ---
 Almost like a nice tradition, we went to the **[PHP Day conference](http://2016.phpday.it/)** this year as well; this time too it was held in Verona, on **May 13th and 14th**. 

@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/zvals-refcount"
-images: ['/images/logo.png']
-
 ---
 Assegnare valori alle variabili è sicuramente l'operazione più comune all'interno di uno script PHP. Ma come vengono conservate queste informazioni dall'interprete? Vediamolo assieme!
 

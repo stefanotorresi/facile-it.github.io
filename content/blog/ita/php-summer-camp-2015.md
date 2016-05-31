@@ -11,8 +11,6 @@ type: "post"
 languageCode: "it-IT"
 aliases:
   - "/php-summer-camp-2015/"
-images: ['/images/logo.png']
-
 ---
 # Introduzione
 Dal 26 al 29 agosto 2015 ho avuto l'occasione di partecipare al [**PhpSummerCamp**](http://2015.phpsummercamp.com/) in Rovigno (Croazia).

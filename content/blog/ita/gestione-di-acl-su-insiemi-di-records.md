@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/gestione-di-acl-su-insiemi-di-records"
-images: ['/images/logo.png']
-
 ---
 Le **ACL** (*Access Control List*) sono un strumento molto potente per poter definire l'accesso a risorse con una granularità molto fine. Nel quotidiano abbiamo già modo di utilizzarle per definire i permessi per accedere a file su Unix o quali pacchetti far passare attraverso un firewall o ancora l'accesso a database.
 

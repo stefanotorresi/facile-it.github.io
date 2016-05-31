@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/php-day-2015"
-images: ['/images/logo.png']
-
 ---
 Anche quest'anno si è svolto il **[PHP Day](http://2015.phpday.it/) a Verona, il 15 e 16 maggio**. Noi sviluppatori di Facile.it abbiamo partecipato con un folto gruppo e seguito i vari talks. 
 

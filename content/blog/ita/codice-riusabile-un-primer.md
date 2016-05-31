@@ -12,8 +12,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/codice-riusabile-un-primer"
-images: ['/images/logo.png']
-
 ---
 
 [L'ultima volta](http://engineering.facile.it/optionals-in-objective-c-ita/) abbiamo visto una possibile implementazione del tipo [Optional](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330) in Objective-C; l'obiettivo primario dell'articolo era quello di importare in Objective-C uno strumento frequentemente utilizzato in Swift, ma usare una classe come `Optional` può essere considerato un'applicazione di un concetto molto più generale: il **riutilizzo del codice**. In effetti, `Optional` non è legato a un particolare dominio, e può essere riutilizzato più e più volte in molti progetti: questo è esattamente ciò che accade in Swift. Ma a pensarci bene, questo è ciò che accade per una grande varietà di *classi* in Objective-C (e di *tipi* in Swift): ad esempio, `NSArray` e `Array` sono entrambi costrutti che espongono una specifica interfaccia, possiedono una certa implementazione, e vengono riutilizzati continuamente in metodi e funzioni. `NSArray` e `Array` non sono legati a un particolare dominio, e possiedono due importanti caratteristiche:

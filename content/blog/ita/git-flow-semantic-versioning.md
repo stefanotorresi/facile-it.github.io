@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases:
   - "/git-flow-semantic-versioning"
-images: ['/images/logo.png']
-
 ---
 
 GIT flow è un **flusso di sviluppo**, ideato da [Vincent Driessen](http://nvie.com/about/), che descrive un modello di diramazione, ([branching](http://git-scm.com/docs/git-branch)), ben preciso costruito intorno al concetto di release software.

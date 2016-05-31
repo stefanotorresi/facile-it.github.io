@@ -11,8 +11,6 @@ languageCode: "it-IT"
 type: "post"
 aliases: 
   - "/operatore-ternario-e-associativo-a-sinistra"
-images: ['/images/logo.png']
-
 ---
 Gli [*operatori ternari*](http://it.wikipedia.org/wiki/Operatore_ternario) sono diffusi in molti linguaggi di programmazione e permettono di esprimire con una **sintassi breve** logiche condizionali. Per utilizzarli propriamente in PHP è però necessario conoscerne il comportamento.
 

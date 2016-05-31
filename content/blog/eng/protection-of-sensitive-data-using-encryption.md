@@ -11,7 +11,6 @@ title: "Protection of sensitive data using encryption"
 
 languageCode: "en-En"
 type: "post"
-images: ['/images/logo.png']
 
 ---
 Data protection is one of the major and recurrent problems in recent years: whether it is private information of users, or the company for which we work, the problem is always the same.
