@@ -6,8 +6,114 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 May 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Facile.it devs @ PhpDay 2016</title>
+      <link>http://engineering.facile.it/blog/eng/php-day-2016/</link>
+      <pubDate>Tue, 31 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/php-day-2016/</guid>
+      <description>
+
+&lt;p&gt;Almost like a nice tradition, we went to the &lt;strong&gt;&lt;a href=&#34;http://2016.phpday.it/&#34;&gt;PHP Day conference&lt;/a&gt;&lt;/strong&gt; this year as well; this time too it was held in Verona, on &lt;strong&gt;May 13th and 14th&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We participated and attended numerous talks and, &lt;a href=&#34;http://engineering.facile.it/blog/ita/php-day-2015/&#34;&gt;as last year&lt;/a&gt;, we wanted to write a light summary; this won&amp;rsquo;t be a full &amp;ldquo;review&amp;rdquo;, but our intent instead is to highlight what captured our interest most, or what we found more valuable for our everyday work.&lt;/p&gt;
+
+&lt;p&gt;In this way, we hope to give a brief glimpse of what we experienced to fellow developers that hadn&amp;rsquo;t the opportunity to attend, and to tempt some of you to join conferences like this one or those in the PHP community at large, for your personal and professional growth.&lt;/p&gt;
+
+&lt;p&gt;The talks are in chronological order, and we linked the slides when available. Enjoy your reading!&lt;/p&gt;
+
+&lt;h1 id=&#34;technical-talks:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Technical Talks&lt;/h1&gt;
+
+&lt;h2 id=&#34;your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Your API is a UI&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Christopher Hoult (&lt;a href=&#34;http://twitter.com/choult&#34;&gt;@choult&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 11:00 – 12:00 - track 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This was an interesting and very smooth talk. It stayed pretty general with nice advices about &lt;strong&gt;API development&lt;/strong&gt;, but showed some reasoning about a pyramidal &amp;ldquo;scheme of priorities&amp;rdquo; that we should follow, deriving from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&#34;&gt;Maslow&amp;rsquo;s hierarchy of needs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;James Titcumb (&lt;a href=&#34;http://twitter.com/asgrim&#34;&gt;@asgrim&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 14:30 – 15:30 - track 1 (&lt;a href=&#34;http://www.slideshare.net/asgrim1/dip-your-toes-in-the-sea-of-security-phpday-2016&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this talk we saw an interesting overview of &lt;strong&gt;security issues&lt;/strong&gt; that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 15:30 – 16:30 - track 1 (&lt;a href=&#34;http://slides.seld.be/?file=2016-05-13+How+I+learned+to+stop+worrying+and+love+Regular+Expressions.html&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this talk we went from basic &lt;strong&gt;regular expressions&lt;/strong&gt;, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the &lt;em&gt;Dr. Strangelove&lt;/em&gt; movie, from images to phrases used in the examples.&lt;/p&gt;
+
+&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Paul Dragoonis (&lt;a href=&#34;http://twitter.com/dr4goonis&#34;&gt;@dr4goonis&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 17:00 – 17:30 - track 2 (&lt;a href=&#34;http://dragoonis.com/talks/phpday-may-2016/#/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This talk was about &lt;strong&gt;using Jenkins with Docker&lt;/strong&gt; and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.&lt;/p&gt;
+
+&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Andrew Carter (&lt;a href=&#34;http://twitter.com/AndrewCarterUK&#34;&gt;@AndrewCarterUK&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 15:30 – 16:30 - track 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.&lt;/p&gt;
+
+&lt;h2 id=&#34;evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Kore Nordmann (&lt;a href=&#34;http://twitter.com/koredn&#34;&gt;@koredn&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 15:30 – 16:30 - track 2 (&lt;a href=&#34;https://qafoo.com/resources/presentations/phpday_2016_2016/evolution_of_web_application_architecture.html&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The talk covered the &lt;strong&gt;evolution of the technological stack&lt;/strong&gt; behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of &lt;strong&gt;when and why&lt;/strong&gt; such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.&lt;/p&gt;
+
+&lt;h2 id=&#34;being-functional-in-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Being functional in PHP&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;David de Boer (&lt;a href=&#34;http://twitter.com/ddeboer_nl&#34;&gt;@ddeboer_nl&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 2 - 16:30 – 17:00 - track 1 (&lt;a href=&#34;http://www.slideshare.net/boerdedavid/being-functional-in-php-php-day-italy-2016&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This talk was an &lt;strong&gt;introduction to functional programming&lt;/strong&gt;. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.&lt;/p&gt;
+
+&lt;h1 id=&#34;keynotes:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Keynotes&lt;/h1&gt;
+
+&lt;h2 id=&#34;deploying-php-7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Deploying PHP 7&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;http://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Day 1 - 09:45 – 10:45 (&lt;a href=&#34;http://talks.php.net/phpday16#/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&amp;rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from &lt;strong&gt;benchmark data&lt;/strong&gt; to technical tips on how to smooth the transition to this new major version of PHP.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nikolay Krapivnyy&lt;/li&gt;
+&lt;li&gt;Day 2 - 09:45 – 10:45 (&lt;a href=&#34;https://dl.dropboxusercontent.com/u/216377/verona_php_2.pdf&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://techblog.badoo.com/blog/2016/03/14/how-badoo-saved-one-million-dollars-switching-to-php7/&#34;&gt;blog post&lt;/a&gt; about this technological switch made the rounds on a lot on PHP-related websites some months ago; this talk was very technical too, and it showed us how big is Badoo&amp;rsquo;s technological stack, with 3000 servers, 1000 of which running PHP. It gave us a nice overview of the &lt;strong&gt;technical challenges&lt;/strong&gt; that their tech team endured to do this upgrade, and how it gave them the possibility to save more than a half of their hardware resources; also&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;it&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Badoo put PHP 7 in production on Friday&amp;hellip; &lt;br&gt;/cc &lt;a href=&#34;https://twitter.com/agilegigi&#34;&gt;@agilegigi&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/poiluned%C3%ACcepensiamo?src=hash&#34;&gt;#poilunedìcepensiamo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/phpday?src=hash&#34;&gt;#phpday&lt;/a&gt; &lt;a href=&#34;https://t.co/OEj3Emxxee&#34;&gt;pic.twitter.com/OEj3Emxxee&lt;/a&gt;&lt;/p&gt;&amp;mdash; Alessandro Lai (@AlessandroLai) &lt;a href=&#34;https://twitter.com/AlessandroLai/status/731403882321063936&#34;&gt;14 maggio 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Faster Web with HTTP/2</title>
@@ -2771,525 +2877,6 @@ NS_ASSUME_NONNULL_END
 &lt;p&gt;Bringing back the &lt;code&gt;Optional&lt;/code&gt; type from Swift to Objective-C allowed us to build a JSON parsing routine, often something hard to maintain and error-prone, in a simple, linear and readable way. Of course there&amp;rsquo;s &lt;strong&gt;plenty of cases&lt;/strong&gt; where working with optionals can give us the same advantages: by composing &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt; operations we can express our intent in a clean and readable way. But this is not just about the &lt;code&gt;Optional&lt;/code&gt; type: some readers may have probably noticed that many languages (including Swift) allow operations with the same names on lists and arrays, and the meanings are also the same: &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;flatMap&lt;/code&gt;, in particular, are &lt;strong&gt;generic concepts&lt;/strong&gt; related to monads (in fact, the array type is also a monad) and allow declarative compositions of transformations. This concept is at the core of &lt;strong&gt;functional programming&lt;/strong&gt;, and I think there&amp;rsquo;s plenty of reasons to apply similar concepts to a more object-oriented environment: they will help the programmer in reasoning about the code and express the intent in a more declarative way.&lt;/p&gt;
 
 &lt;p&gt;The code for the &lt;code&gt;Optional&lt;/code&gt; class used throughout the article can be found on &lt;a href=&#34;https://gist.github.com/broomburgo/e318228a5f7d6a605e82&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Optionals in Objective-C</title>
-      <link>http://engineering.facile.it/blog/ita/optionals-in-objective-c/</link>
-      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/ita/optionals-in-objective-c/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Objective-C vivrà ancora per molto&lt;/strong&gt;. Nonostante Swift sia il nuovo punto di riferimento per lo sviluppo iOS e OS X, ci sono ragioni concrete per scegliere di continuare a sviluppare in Objective-C, almeno per un po&amp;rsquo;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;progetti esistenti basati su Objective-C richiedono ancora mantenimento e probabile aggiunta di nuove funzionalità, e anche se è tecnicamente possibile mescolare i linguaggi, la cosa può risultare &lt;strong&gt;poco conveniente&lt;/strong&gt; per via della natura molto dinamica di Objective-C;&lt;/li&gt;
-&lt;li&gt;Swift sta cambiando rapidamente, presenta ancora alcuni bug e &lt;strong&gt;problemi di performance&lt;/strong&gt;, e il suo workflow manca ancora di alcune feature fondamentali per i professionisti, mentre Objective-C è un linguaggio maturo, con una community molto vivace;&lt;/li&gt;
-&lt;li&gt;alcuni possono &lt;strong&gt;preferire un linguaggio più dinamico&lt;/strong&gt;, e il supporto di Apple su Objective-C è &lt;a href=&#34;https://netguru.co/blog/objective-c-generics&#34;&gt;ancora forte&lt;/a&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Personalmente ho la tendenza a preferire linguaggi più statici, e un approccio &lt;a href=&#34;http://engineering.facile.it/type-first-development-in-swift/&#34;&gt;type-first&lt;/a&gt; alla programmazione, ma di tanto in tanto mi piace lavorare in un ambiente più &lt;em&gt;dinamico&lt;/em&gt;, quindi, sia per preferenza personale che per esigenze di business, non ho ancora messo Objective-C da parte. Ma dopo poche settimane di Swift, mi è mancata subito una delle sue funzionalità più potenti: gli &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optionals&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;indice:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Indice&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#il-tipo-optional&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#optionals-in-swift&#34;&gt;Optionals in Swift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#torniamo-a-objective-c&#34;&gt;Torniamo a Objective-C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#esempio-un-parser-json&#34;&gt;Esempio: un parser JSON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusione&#34;&gt;Conclusione&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;il-tipo-optional&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;il-tipo-optional:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt; è un tipo &lt;em&gt;generico&lt;/em&gt; (o, più propriamente, &lt;em&gt;parametrico&lt;/em&gt;), dipendente da un &lt;strong&gt;tipo secondario&lt;/strong&gt;: è possibile ad esempio definire un &lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt; oppure un &lt;code&gt;Optional&amp;lt;Int&amp;gt;&lt;/code&gt;: la sintassi di Swift permette di scrivere i tipi appena indicati con &lt;code&gt;String?&lt;/code&gt; e &lt;code&gt;Int?&lt;/code&gt;. Ma cos&amp;rsquo;è esattamente un &lt;code&gt;Optional&lt;/code&gt;?. È un tipo particolare che serve a rappresentare un dato che &lt;em&gt;potrebbe&lt;/em&gt; esistere, ed essere quindi di un certo tipo secondario, o potrebbe non esistere, ed essere quindi &lt;strong&gt;nil&lt;/strong&gt;: &lt;em&gt;inscatolando&lt;/em&gt; il valore opzionale in un &lt;code&gt;Optional&lt;/code&gt;, il compilatore di Swift saprà che quel valore potrà essere nil, e emettere un errore nei casi in cui stiamo usando un &lt;code&gt;Optional&lt;/code&gt; dove ci si aspetta un valore &lt;strong&gt;sempre&lt;/strong&gt; presente. Questa semplice funzionalità ci garantisce notevole rigore nella definizione dei nostri tipi di dato e funzione: ad esempio, in Swift non possiamo inizializzare un valore non opzionale con nil, e considerando che, per il compilatore, un valore non può essere usato prima di essere istanziato, se assegniamo il tipo &lt;code&gt;String&lt;/code&gt; a un valore, siamo sicuri al 100% che quel valore sarà &lt;strong&gt;sempre a comunque&lt;/strong&gt; una stringa.&lt;/p&gt;
-
-&lt;p&gt;Al contrario, in Objective-C un oggetto può essere sempre nil, e spesso siamo costretti a controllare l&amp;rsquo;effettiva presenza di un oggetto ogni volta in cui abbiamo bisogno di un&amp;rsquo;istanza che non sia nil. In realtà non si tratta di un grosso problema: è un classico &lt;strong&gt;compromesso&lt;/strong&gt; dei linguaggi dinamici, e il fatto che posso sempre inviare un messaggio a un riferimento nil può essere anche considerato una &lt;em&gt;feature&lt;/em&gt;: usando un linguaggio dinamico, ci si aspetta che progettiamo le nostre API tenendo sempre in considerazione il concetto di &lt;a href=&#34;https://en.wikipedia.org/wiki/Late_binding&#34;&gt;late-binding&lt;/a&gt;. Inoltre, i nuovi &lt;a href=&#34;https://developer.apple.com/swift/blog/?id=25&#34;&gt;&lt;em&gt;nullability specifiers&lt;/em&gt;&lt;/a&gt; di Objective-C aiutano il compilatore a emettere avvisi quando stiamo passando nil a un metodo o una &lt;em&gt;property&lt;/em&gt; che richiedono invece che il parametro sia &lt;code&gt;nonnull&lt;/code&gt;. Ma il problema rimane: abbiamo bisogno di molto &lt;em&gt;boilerplate&lt;/em&gt; per verificare se qualcosa è nil, e ciò può portare a codice poco leggibile e comprensibile, soggetto ad errori. Swift non ha tipicamente bisogno di questo &lt;em&gt;boilerplate&lt;/em&gt; grazie alla natura stessa del tipo &lt;code&gt;Optional&lt;/code&gt;: esso ha le stesse caratteristiche del tipo &lt;code&gt;Maybe&lt;/code&gt; in Haskell, o del tipo &lt;code&gt;Option&lt;/code&gt; in Scala, cioè &lt;code&gt;Optional&lt;/code&gt; è in realtà un &lt;strong&gt;monad&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Il concetto di &lt;em&gt;monad&lt;/em&gt; è ereditato, in programmazione funzionale, dalla &lt;a href=&#34;https://it.wikipedia.org/wiki/Teoria_delle_categorie&#34;&gt;teoria delle categorie&lt;/a&gt;, ed è facile trovare &lt;a href=&#34;https://wiki.haskell.org/Monad&#34;&gt;molti&lt;/a&gt; &lt;a href=&#34;https://www.haskell.org/tutorial/monads.html&#34;&gt;testi&lt;/a&gt; &lt;a href=&#34;http://learnyouahaskell.com/a-fistful-of-monads&#34;&gt;introduttivi&lt;/a&gt; sul tema, quindi non approfondirò ulteriormente: dirò solo che un &lt;em&gt;monad&lt;/em&gt; è un &lt;em&gt;contesto computazionale&lt;/em&gt;, quindi una &lt;em&gt;specifica&lt;/em&gt; per il modo in cui una espressione deve essere valutata. Applicare una certa trasformazione a un &lt;em&gt;monad&lt;/em&gt; avrà come risultato un&amp;rsquo;altra istanza dello stesso &lt;em&gt;monad&lt;/em&gt; differente dalla prima, a seconda dello specifico tipo di &lt;em&gt;monad&lt;/em&gt;. Ad esempio, applicare una trasformazione a un &lt;code&gt;Optional&lt;/code&gt; risulterà nell&amp;rsquo;applicazione della stessa trasformazione al valore &lt;em&gt;contenuto&lt;/em&gt;, se presente, o assolutamente niente se l&amp;rsquo;&lt;code&gt;Optional&lt;/code&gt; contiene nil: in entrambi i casi, il risultato della trasformazione sarà un nuovo &lt;code&gt;Optional&lt;/code&gt;, possibilmente con un tipo secondario diverso.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;optionals-in-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;optionals-in-swift:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Optionals in Swift&lt;/h2&gt;
-
-&lt;p&gt;Consideriamo il seguente codice Swift:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func makeOptionalIntFrom(value: Int, ifTrue: Bool) -&amp;gt; Int?  
-{
-  return ifTrue ? value : nil
-}
-
-let optionalInt = makeOptionalIntFrom(3, ifTrue: true)  
-print(optionalInt.dynamicType) /// prints &#39;Optional&amp;lt;Int&amp;gt;&#39;
-
-let toString: Int -&amp;gt; String = { &amp;quot;\($0)&amp;quot; }
-
-let optionalString = optionalInt.map(toString)  
-print(optionalString.dynamicType) /// prints &#39;Optional&amp;lt;String&amp;gt;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nell&amp;rsquo;esempio, &lt;code&gt;optionalInt&lt;/code&gt; è un &lt;code&gt;Int&lt;/code&gt; &lt;em&gt;contenuto&lt;/em&gt; in un &lt;code&gt;Optional&lt;/code&gt;, che quindi ha tipo &lt;code&gt;Optional&amp;lt;Int&amp;gt;&lt;/code&gt; (in Swift è possibile abbreviarlo in &lt;code&gt;Int?&lt;/code&gt;), e applicando ad esso la funzione &lt;code&gt;toString&lt;/code&gt; otteniamo un&amp;rsquo;istanza di &lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt;. Possiamo vedere che, per applicare effettivamente la funzione &lt;code&gt;toString&lt;/code&gt;, abbiamo passato la funzione come argomento al metodo &lt;code&gt;map&lt;/code&gt; del &lt;code&gt;Optional&lt;/code&gt;: questa operazione è solitamente chiamata &lt;em&gt;lifting&lt;/em&gt; di una funzione, perché la funzione &lt;code&gt;toString&lt;/code&gt;, di tipo &lt;code&gt;Int -&amp;gt; String&lt;/code&gt;, è &lt;em&gt;sollevata&lt;/em&gt; (&lt;em&gt;lifted&lt;/em&gt;) fino a diventare di tipo &lt;code&gt;Optional&amp;lt;Int&amp;gt; -&amp;gt; Optional&amp;lt;String&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Come possiamo vedere, non sono state usate istruzioni condizionali nel manipolare il valore intero &lt;em&gt;opzionale&lt;/em&gt;: &lt;em&gt;sollevando&lt;/em&gt; le trasformazioni con il metodo &lt;code&gt;map&lt;/code&gt;, possiamo applicarle direttamente alle istanze di &lt;code&gt;Optional&lt;/code&gt;, e possiamo anche concatenarle molto facilmente, ad esempio:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func makeOptionalIntFrom(value: Int, ifTrue: Bool) -&amp;gt; Int?  
-{
-  return ifTrue ? value : nil
-}
-
-let optionalInt = makeOptionalIntFrom(3, ifTrue: true)  
-print(optionalInt.dynamicType) /// prints &#39;Optional&amp;lt;Int&amp;gt;&#39;
-
-let doubled: Int -&amp;gt; Int = { $0*2 }
-
-let toString: Int -&amp;gt; String = { &amp;quot;\($0)&amp;quot; }
-
-let optionalDoubledString = optionalInt.map(doubled).map(toString)  
-print(optionalDoubledString.dynamicType) /// prints &#39;Optional&amp;lt;String&amp;gt;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Volendo esprimere l&amp;rsquo;operazione opposta, avremmo un problema: trasformare una stringa in un intero non è sempre possibile in Swift (ad esempio se non c&amp;rsquo;è alcun numero nella stringa), quindi l&amp;rsquo;operazione stessa risulterebbe in un &lt;code&gt;Optional&lt;/code&gt;. Infatti:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func makeOptionalStringFrom(value: String, ifTrue: Bool) -&amp;gt; String?  
-{
-  return ifTrue ? value : nil
-}
-
-let toInt: String -&amp;gt; Int? = { Int($0) }
-
-let anotherOptionalString = makeOptionalStringFrom(&amp;quot;3&amp;quot;, ifTrue: true)
-
-let anotherOptionalInt = anotherOptionalString.map(toInt).map(doubled)
-/// errore di compilazione!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il problema qui è che la funzione &lt;code&gt;toInt&lt;/code&gt; è di tipo &lt;code&gt;String -&amp;gt; Optional&amp;lt;Int&amp;gt;&lt;/code&gt;, e il &lt;em&gt;lifting&lt;/em&gt; della funzione verso il &lt;em&gt;mondo opzionale&lt;/em&gt; la trasformerebbe in una funzione del tipo &lt;code&gt;Optional&amp;lt;String&amp;gt; -&amp;gt; Optional&amp;lt;Optional&amp;lt;Int&amp;gt;&amp;gt;&lt;/code&gt;, quindi un intero opzionale contenuto in un altro &lt;code&gt;Optional&lt;/code&gt;; in base alla terminologia accettata, abbiamo bisogno di un&amp;rsquo;operazione di &lt;code&gt;flatMap&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;let anotherOptionalInt = anotherOptionalString.flatMap(toInt).map(doubled)  
-/// funziona
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Quindi, per quanto riguarda il tipo &lt;code&gt;Optional&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; è simile a &lt;code&gt;map&lt;/code&gt;, ma deve essere usato per il &lt;em&gt;lifting&lt;/em&gt; di funzioni che generano altri valori opzionali. Nel leggere il codice, &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt; possono sostanzialmente essere letti nello stesso modo: indicano entrambi una trasformazione, e il fatto che le funzioni passate a &lt;code&gt;flatMap&lt;/code&gt; abbiano un tipo diverso può essere considerato un dettaglio di implementazione.&lt;/p&gt;
-
-&lt;p&gt;In realtà Swift tratta questi tipi di dato &lt;strong&gt;in maniera differente&lt;/strong&gt; rispetto ad altri linguaggi: ad esempio, nei linguaggi &lt;em&gt;funzionali&lt;/em&gt; &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt; sono di norma &lt;em&gt;funzioni libere&lt;/em&gt;, mentre in Swift sono &lt;strong&gt;metodi&lt;/strong&gt;. In generale, Swift incoraggia l&amp;rsquo;uso dei metodi, e del loro &lt;strong&gt;concatenamento&lt;/strong&gt;, invece di funzioni libere, composte con operatori speciali: si tratta, più che altro, di una questione filosofica, ma nel trasportare queste feature in Objective-C l&amp;rsquo;approccio basato sui metodi tornerà utile poiché non c&amp;rsquo;è un modo semplice di rappresentare funzioni libere nel linguaggio, mentre i metodi hanno la classica sintassi alla quale siamo abituati.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;torniamo-a-objective-c&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;torniamo-a-objective-c:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Torniamo a Objective-C&lt;/h2&gt;
-
-&lt;p&gt;Implementiamo la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.h
-
-#import &amp;lt;Foundation/Foundation.h&amp;gt;
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface Optional : NSObject
-
-+ (Optional*)with:(id _Nullable)value;
-
-- (Optional*)map:(id(^)(id))mapBlock;
-- (Optional*)flatMap:(Optional*(^)(id))flatMapBlock;
-
-@end
-
-NS_ASSUME_NONNULL_END 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.m
-
-#import &amp;quot;Optional.h&amp;quot;
-
-@interface Optional ()
-
-@property (strong, nonatomic, nullable) id value;
-
-@end
-
-@implementation Optional
-
-+ (Optional*)with:(id _Nullable)value
-{
-  Optional* optional = [Optional new];
-  optional.value = value;
-  return optional;
-}
-
-- (Optional *)map:(id  _Nonnull (^)(id _Nonnull))mapBlock
-{
-  if (self.value != nil)
-  {
-    return [Optional with:mapBlock(self.value)];
-  }
-  return self;
-}
-
-- (Optional *)flatMap:(Optional* _Nonnull (^)(id _Nonnull))flatMapBlock
-{
-  if (self.value != nil)
-  {
-    return flatMapBlock(self.value);
-  }
-  return self;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come possiamo vedere, il metodo di classe &lt;code&gt;with:&lt;/code&gt; crea un oggetto &lt;code&gt;Optional&lt;/code&gt; inscatolando un altro oggetto, di tipo non specificato: poiché non esiste un vero concetto di &lt;em&gt;generic&lt;/em&gt; in Objective-C, non sarà possibile realizzare un tipo &lt;code&gt;Optional&lt;/code&gt; sicuro, dal punto di vista dei tipi, come in Swift, ma non sarà un grosso problema, e saremo comunque in grado di ereditare da Swift &lt;strong&gt;potenti features&lt;/strong&gt;. Il metodo &lt;code&gt;map:&lt;/code&gt; verifica se l&amp;rsquo;oggetto contenuto non sia nil, e in tal caso applica la trasformazione espressa con &lt;code&gt;mapBlock&lt;/code&gt;: in questo caso i &lt;em&gt;nullability specifiers&lt;/em&gt; di Objective-C ci hanno aiutato nello scrivere la firma dei metodi, infatti abbiamo chiaramente specificato che &lt;code&gt;mapBlock&lt;/code&gt; accetta e ritorna oggetti che non siano nil; &lt;code&gt;flatMapBlock&lt;/code&gt; ritorna invece un altro &lt;code&gt;Optional&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Possiamo testare la cosa riscrivendo lo stesso esempio visto per Swift:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Test.h
-
-#import &amp;lt;Foundation/Foundation.h&amp;gt;
-
-@interface Test : NSObject
-
-+ (void)testOptional;
-
-@end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Test.m
-
-#import &amp;quot;Test.h&amp;quot;
-#import &amp;quot;Optional.h&amp;quot;
-
-@implementation Test
-
-+ (void)testOptional
-{
-  Optional* optionalInt = [self makeOptionalIntFrom:@3 ifTrue:YES];
-  Optional* optionalDoubledString = [[optionalInt
-                                      map:[self doubled]]
-                                     map:[self toString]];
-  NSLog(@&amp;quot;%@&amp;quot;, optionalDoubledString);
-}
-
-+ (Optional*)makeOptionalIntFrom:(NSNumber*)fromInt ifTrue:(BOOL)ifTrue
-{
-  return [Optional with:ifTrue ? fromInt : nil];
-}
-
-
-+ (NSNumber*(^)(NSNumber*))doubled
-{
-  return ^NSNumber*(NSNumber* value)  {
-    return @(value.integerValue*2);
-  };
-}
-
-+ (NSString*(^)(NSNumber*))toString
-{
-  return ^NSString*(NSNumber* value)  {
-    return [NSString stringWithFormat:@&amp;quot;%@&amp;quot;, value];
-  };
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Un volta applicate le trasformazioni, abbiamo bisogno di un metodo per &amp;ldquo;estrarre&amp;rdquo; l&amp;rsquo;oggetto all&amp;rsquo;interno del &lt;code&gt;Optional&lt;/code&gt;: Swift permette questa operazione a livello di sintassi, mentre in Objective-C possiamo seguire le convenzioni standard in programmazione funzionale, e cioè definire un metodo &lt;code&gt;get&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.h
-
-- (id _Nullable)get;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.m
-
-- (id)get
-{
-  return self.value;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il metodo &lt;code&gt;get&lt;/code&gt; ritorna un &lt;code&gt;id _Nullable&lt;/code&gt;: ciò vuol dire che l&amp;rsquo;oggetto ritornato può (ovviamente) essere nil. Un pattern frequente quando si ha a che fare con oggetti nil consiste nel sostituirli con versioni di &amp;ldquo;default&amp;rdquo;: può essere utile quando non ci interessano tanto i dati contenuti in un oggetto, ma non vogliamo correre i rischi associati al lavorare riferimenti &lt;em&gt;null&lt;/em&gt;. Ancora una volta, con la classe &lt;code&gt;Optional&lt;/code&gt; possiamo evitare istruzioni condizionali ed esprimere il meccanismo di &amp;ldquo;defaulting&amp;rdquo; in un modo più dichiarativo: dobbiamo semplicemente aggiungere un metodo &lt;code&gt;getOrElse:&lt;/code&gt;, che ritorni l&amp;rsquo;oggetto contenuto se presente, o un oggetto di default passato al metodo stesso:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.h
-
-- (id)getOrElse:(id(^)())elseBlock;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.m
-
-- (id)getOrElse:(id  _Nonnull (^)())elseBlock
-{
-  if (self.value != nil)
-  {
-    return self.value;
-  }
-  return elseBlock();
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come si può vedere, il metodo &lt;code&gt;getOrElse:&lt;/code&gt; &lt;strong&gt;non&lt;/strong&gt; ritorna un oggetto &lt;code&gt;_Nullable&lt;/code&gt;: in effetti non stiamo passando l&amp;rsquo;oggetto, ma un block che &amp;ldquo;produrrà&amp;rdquo; l&amp;rsquo;oggetto una volta invocato; in questo modo riusciamo a ottenere l&amp;rsquo;oggetto di default in maniera &lt;strong&gt;lazy&lt;/strong&gt;, perché se l&amp;rsquo;oggetto contenuto è presente, non è necessario generare l&amp;rsquo;oggetto di default.&lt;/p&gt;
-
-&lt;p&gt;Per il resto dell&amp;rsquo;articolo lavoreremo su un esempio più concreto, e implementeremo diverse funzionalità per la classe &lt;code&gt;Optional&lt;/code&gt;, rendendola via via più utile e potente.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;esempio-un-parser-json&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;esempio-un-parser-json:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Esempio: un parser JSON&lt;/h2&gt;
-
-&lt;p&gt;Supponiamo di voler realizzare un&amp;rsquo;app che mostra informazioni sui film: possiamo ottenerle in formato JSON da un sito come &lt;a href=&#34;http://api.myapifilms.com/index.do&#34;&gt;myapifilms&lt;/a&gt;. La rappresentazione JSON di ogni film è del tipo seguente:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;{
-    &amp;quot;countries&amp;quot;: [
-        &amp;quot;USA&amp;quot;
-    ],
-    &amp;quot;directors&amp;quot;: [
-        {
-            &amp;quot;name&amp;quot;: &amp;quot;Frank Darabont&amp;quot;,
-            &amp;quot;nameId&amp;quot;: &amp;quot;nm0001104&amp;quot;
-        }
-    ],
-    &amp;quot;filmingLocations&amp;quot;: [
-        &amp;quot;St. Croix&amp;quot;,
-        &amp;quot;U.S. Virgin Islands&amp;quot;
-    ],
-    &amp;quot;genres&amp;quot;: [
-        &amp;quot;Crime&amp;quot;,
-        &amp;quot;Drama&amp;quot;
-    ],
-    &amp;quot;idIMDB&amp;quot;: &amp;quot;tt0111161&amp;quot;,
-    &amp;quot;languages&amp;quot;: [
-        &amp;quot;English&amp;quot;
-    ],
-    &amp;quot;metascore&amp;quot;: &amp;quot;80/100&amp;quot;,
-    &amp;quot;originalTitle&amp;quot;: &amp;quot;&amp;quot;,
-    &amp;quot;plot&amp;quot;: &amp;quot;Andy Dufresne is a young and successful banker whose life changes drastically when he is convicted and sentenced to life imprisonment for the murder of his wife and her lover. Set in the 1940s, the film shows how Andy, with the help of his friend Red, the prison entrepreneur, turns out to be a most unconventional prisoner.&amp;quot;,
-    &amp;quot;ranking&amp;quot;: 1,
-    &amp;quot;rated&amp;quot;: &amp;quot;R&amp;quot;,
-    &amp;quot;rating&amp;quot;: &amp;quot;9.3&amp;quot;,
-    &amp;quot;releaseDate&amp;quot;: &amp;quot;19941014&amp;quot;,
-    &amp;quot;runtime&amp;quot;: [
-        &amp;quot;142 min&amp;quot;
-    ],
-    &amp;quot;simplePlot&amp;quot;: &amp;quot;Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.&amp;quot;,
-    &amp;quot;title&amp;quot;: &amp;quot;The Shawshank Redemption&amp;quot;,
-    &amp;quot;type&amp;quot;: &amp;quot;Movie&amp;quot;,
-    &amp;quot;urlIMDB&amp;quot;: &amp;quot;http://www.imdb.com/title/tt0111161&amp;quot;,
-    &amp;quot;urlPoster&amp;quot;: &amp;quot;http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg&amp;quot;,
-    &amp;quot;votes&amp;quot;: &amp;quot;1,533,914&amp;quot;,
-    &amp;quot;writers&amp;quot;: [
-        {
-            &amp;quot;name&amp;quot;: &amp;quot;Stephen King&amp;quot;,
-            &amp;quot;nameId&amp;quot;: &amp;quot;nm0000175&amp;quot;
-        },
-        {
-            &amp;quot;name&amp;quot;: &amp;quot;Frank Darabont&amp;quot;,
-            &amp;quot;nameId&amp;quot;: &amp;quot;nm0001104&amp;quot;
-        }
-    ],
-    &amp;quot;year&amp;quot;: &amp;quot;1994&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Vogliamo definire la nostra rappresentazione interna del film con un &lt;em&gt;value object&lt;/em&gt;, modificare in parte la struttura e magari ignorare alcuni elementi che non consideriamo rilevanti. Ecco un&amp;rsquo;interfaccia possibile per la classe &lt;code&gt;Movie&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NS_ASSUME_NONNULL_BEGIN
-
-@interface Movie : NSObject
-
-@property (copy, nonatomic, readonly) NSString* title;
-@property (copy, nonatomic, readonly) NSNumber* rating;
-@property (copy, nonatomic, readonly) NSNumber* year;
-@property (copy, nonatomic, readonly) NSNumber* lengthInMinutes;
-
-+ (Movie*)withJSONDict:(NSDictionary*)dict;
-
-@end
-
-NS_ASSUME_NONNULL_END
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il metodo di classe &lt;code&gt;withJSONDict:&lt;/code&gt; crea un&amp;rsquo;istanza di &lt;code&gt;Movie&lt;/code&gt; da un dizionario JSON come quello appena mostrato: come si può vedere dall&amp;rsquo;interfaccia dichiarata, abbiamo deciso di non permettere valori nil per le varie &lt;em&gt;property&lt;/em&gt;; ma quando abbiamo a che fare con JSON &lt;strong&gt;tutto può succedere&lt;/strong&gt;, come chiavi mancanti, valori null o di tipo diverso. Useremo il tipo &lt;code&gt;Optional&lt;/code&gt; per parsare il dizionario JSON in modo chiaro, dichiarativo e a prova di errore.&lt;/p&gt;
-
-&lt;p&gt;Iniziamo con i titolo. Dal JSON vediamo che il titolo si trova in corrispondenza della chiave &amp;ldquo;title&amp;rdquo;, e dovrebbe essere una stringa (&lt;code&gt;NSString&lt;/code&gt; in Objective-C), quindi possiamo ottenere il titolo così:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NSString* title = [[[[Optional
-                        with:[dict objectForKey:@&amp;quot;title&amp;quot;]]
-
-                       flatMap:^Optional*(id title) {
-                         return [Optional with:[title isKindOfClass:[NSString class]] ? title : nil];
-                       }]
-
-                      flatMap:^Optional*(NSString* title) {
-                        return [Optional with:title.length &amp;gt; 0 ? title : nil];
-                      }]
-
-                     getOrElse:^NSString*{
-                       return @&amp;quot;NO TITLE&amp;quot;;
-                     }];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il primo &lt;code&gt;flatMap&lt;/code&gt; indica che l&amp;rsquo;oggetto &amp;ldquo;titolo&amp;rdquo; deve appartenere alla classe &lt;code&gt;NSString&lt;/code&gt;. Conviene astrarre questa operazione inserendola direttamente nel costruttore, perché l&amp;rsquo;applicheremo ogni volta per tutti i dati:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;+ (Optional *)with:(id)value as:(Class)valueClass
-{
-  if ([value isKindOfClass:valueClass])
-  {
-    return [Optional with:value];
-  }
-  return [Optional with:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il secondo &lt;code&gt;flatMap:&lt;/code&gt; indica che se la stringa trovata ha lunghezza 0, considereremo il titolo come &amp;ldquo;sconosciuto&amp;rdquo;. In effetti questo step avrà l&amp;rsquo;effetto di &amp;ldquo;filtro&amp;rdquo;, perché lascerà &amp;ldquo;passare&amp;rdquo; solo le stringhe non vuote; considerando ciò, aggiungiamo un metodo &lt;code&gt;filter:&lt;/code&gt; alla classe &lt;code&gt;Optional&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.h
-
-- (Optional*)filter:(BOOL(^)(id))filterBlock;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;///Optional.m
-
-- (Optional*)filter:(BOOL (^)(id _Nonnull))filterBlock
-{
-  return [self flatMap:^Optional*(id value) {
-    if (filterBlock(value))
-    {
-      return self;
-    }
-    else
-    {
-      return [Optional with:nil];
-    }
-  }];
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il metodo &lt;code&gt;filter:&lt;/code&gt; accetta come parametro un block che ritorna un &lt;code&gt;BOOL&lt;/code&gt; basato sul valore contenuto: internamente, &lt;code&gt;filter:&lt;/code&gt; chiamerà comunque &lt;code&gt;flatMap:&lt;/code&gt;, con un&amp;rsquo;espressione condizionale che verifichi se &lt;code&gt;filterBlock&lt;/code&gt; riesce o fallisce.&lt;/p&gt;
-
-&lt;p&gt;Infine:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NSString* title = [[[Optional  
-                       with:[dict objectForKey:@&amp;quot;title&amp;quot;]
-                       as:[NSString class]]
-
-                      filter:^BOOL(NSString* string) {
-                        return string.length &amp;gt; 0;
-                      }]
-
-                     getOrElse:^NSString*{ return @&amp;quot;NO TITLE&amp;quot;; }];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Quindi, nessuna espressione condizionale, e poche linee di codice, completamente dichiarative.&lt;/p&gt;
-
-&lt;p&gt;Per quanto riguarda i parametri &lt;code&gt;rating&lt;/code&gt; e &lt;code&gt;year&lt;/code&gt; abbiamo bisogno di un &lt;code&gt;map&lt;/code&gt; che converta &lt;code&gt;NSString&lt;/code&gt; in &lt;code&gt;NSNumber&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NSNumber* rating = [[[[Optional  
-                         with:[dict objectForKey:@&amp;quot;rating&amp;quot;]
-                         as:[NSString class]]
-
-                        filter:^BOOL(NSString* string) {
-                          return string.length &amp;gt; 0;
-                        }]
-
-                       map:^NSNumber*(NSString* stringValue) {
-                         return [NSDecimalNumber decimalNumberWithString:stringValue];
-                       }]
-
-                      getOrElse:^NSNumber*{ return @0; }];
-  movie.rating = rating;
-
-  NSNumber* year = [[[[Optional
-                       with:[dict objectForKey:@&amp;quot;year&amp;quot;]
-                       as:[NSString class]]
-
-                      filter:^BOOL(NSString* string) {
-                        return string.length &amp;gt; 0;
-                      }]
-
-                     map:^NSNumber*(NSString* stringValue) {
-                       return [NSDecimalNumber decimalNumberWithString:stringValue];
-                     }]
-
-                    getOrElse:^NSNumber*{ return @0; }];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il parametro &lt;code&gt;lengthInMinutes&lt;/code&gt; è un po&amp;rsquo; complicato; dal JSON possiamo vedere che la sua rappresentazione è la seguente:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;&amp;quot;runtime&amp;quot;: [ 
-    &amp;quot;142 min&amp;quot; 
-]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Quindi ci aspettiamo un array, del quale siamo interessati solo al primo elemento (quindi l&amp;rsquo;array non deve essere vuoto), che deve essere una stringa; di questa stringa abbiamo bisogno solo della prima parte, rimuovendo &lt;code&gt;min&lt;/code&gt;. Fortunatamente abbiamo già tutti gli strumenti necessari per procedere:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NSNumber* lengthInMinutes =
-  [[[[[[Optional
-        with:[dict objectForKey:@&amp;quot;runtime&amp;quot;]
-        as:[NSArray class]]
-
-       flatMap:^Optional*(NSArray* array) {
-         return [Optional with:[array firstObject]];
-       }]
-
-      map:^NSString*(NSString* string) {
-        return [string
-                stringByReplacingOccurrencesOfString:@&amp;quot; min&amp;quot;
-                withString:@&amp;quot;&amp;quot;];
-      }]
-
-     filter:^BOOL(NSString* string) {
-       return string.length &amp;gt; 0;
-     }]
-
-    map:^NSNumber*(NSString* stringValue) {
-      return @([stringValue integerValue]);
-    }]
-
-   getOrElse:^NSNumber*{ return @0; }];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In realtà manca qualcosa: il metodo &lt;code&gt;[array firstObject]&lt;/code&gt; ritorna il primo oggetto dell&amp;rsquo;array se questo ha almeno un elemento, oppure ritorna nil se l&amp;rsquo;array è vuoto: non c&amp;rsquo;è alcuna indicazione sul fatto che vogliamo che il primo elemento sia di tipo &lt;code&gt;NSString&lt;/code&gt;, quindi dobbiamo aggiungere uno step &lt;code&gt;filter&lt;/code&gt; per assicurarci che la classe dell&amp;rsquo;istanza trovata sia corretta. Quindi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ObjectiveC&#34;&gt;NSNumber* lengthInMinutes =
-  [[[[[[[Optional
-         with:[dict objectForKey:@&amp;quot;runtime&amp;quot;]
-         as:[NSArray class]]
-
-        flatMap:^id(NSArray* array) {
-          return [Optional with:[array firstObject]];
-        }]
-
-       filter:^BOOL(id value) {
-         return [value isKindOfClass:[NSString class]];
-       }]
-
-      map:^NSString*(NSString* string) {
-        return [string
-                stringByReplacingOccurrencesOfString:@&amp;quot; min&amp;quot;
-                withString:@&amp;quot;&amp;quot;];
-      }]
-
-     filter:^BOOL(NSString* string) {
-       return string.length &amp;gt; 0;
-     }]
-
-    map:^NSNumber*(NSString* stringValue) {
-      return @([stringValue integerValue]);
-    }]
-
-   getOrElse:^NSNumber*{ return @0; }];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Come possiamo vedere, lavorando con la classe &lt;code&gt;Optional&lt;/code&gt;, aggiungere una condizione significa semplicemente &lt;strong&gt;aggiungere uno step&lt;/strong&gt; nella sequenza lineare di espressioni.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusione:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Conclusione&lt;/h2&gt;
-
-&lt;p&gt;Implementare la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C ci ha permesso di parsare un JSON, cosa spesso difficile da mantenere e soggetta a errori, in un modo semplice e lineare. In realtà ci sono &lt;strong&gt;molti casi&lt;/strong&gt; in cui lavorare con gli &lt;em&gt;optionals&lt;/em&gt; ci può dare gli stessi vantaggi: componendo operazioni di tipo &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; e &lt;code&gt;filter&lt;/code&gt; possiamo esprimere il nostro intento in maniera chiara e leggibile. Ma tutto questo non riguarda solo il tipo &lt;code&gt;Optional&lt;/code&gt;: alcuni lettori avranno probabilmente notato che molti linguaggi (incluso Swift) permettono operazioni dell stesso tipo su liste e array, e il loro significato è identico: &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt;, in particolare, sono &lt;strong&gt;concetti generici&lt;/strong&gt; legati ai &lt;em&gt;monad&lt;/em&gt; (in effetti, anche il tipo &lt;code&gt;Array&lt;/code&gt; è un &lt;em&gt;monad&lt;/em&gt;), e riguarda la composizione dichiarativa di trasformazioni. Questo concetto è alla base della &lt;strong&gt;programmazione funzionale&lt;/strong&gt;, e penso ci siano molti motivi per applicare concetti simili ad ambienti più &lt;em&gt;object-oriented&lt;/em&gt;, perché aiuterebbero il programmatore a ragionare sul codice ed esprimere l&amp;rsquo;intento in maniera più dichiarativa.&lt;/p&gt;
-
-&lt;p&gt;Il codice per la classe &lt;code&gt;Optional&lt;/code&gt; mostrata nell&amp;rsquo;articolo è reperibile su &lt;a href=&#34;https://gist.github.com/broomburgo/e318228a5f7d6a605e82&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

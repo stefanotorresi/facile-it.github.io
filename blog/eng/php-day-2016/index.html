@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>ZVALs refcount AKA come vengono memorizzate le nostre variabili</title>
+                <title>Facile.it devs @ PhpDay 2016</title>
             
         
 
@@ -29,20 +29,20 @@
 
 
 
-<meta name="twitter:title" content="ZVALs refcount AKA come vengono memorizzate le nostre variabili"/>
-<meta name="twitter:description" content="Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile */ zend_uint refcount__gc; /* Il conto delle referenze legato alla variabile */ zend_uchar type; /* L&#39;identificativo del tipo di dato */ zend_uchar is_ref__gc; /* Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande."/>
+<meta name="twitter:title" content="Facile.it devs @ PhpDay 2016"/>
+<meta name="twitter:description" content="Almost like a nice tradition, we went to the PHP Day conference this year as well; this time too it was held in Verona, on May 13th and 14th. We participated and attended numerous talks and, as last year, we wanted to write a light summary; this won&rsquo;t be a full &ldquo;review&rdquo;, but our intent instead is to highlight what captured our interest most, or what we found more valuable for our everyday work."/>
 <meta name="twitter:site" content="@FacileIt_Engr"/>
 
 
-        <meta property="og:title" content="ZVALs refcount AKA come vengono memorizzate le nostre variabili" />
-<meta property="og:description" content="Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile */ zend_uint refcount__gc; /* Il conto delle referenze legato alla variabile */ zend_uchar type; /* L&#39;identificativo del tipo di dato */ zend_uchar is_ref__gc; /* Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande." />
+        <meta property="og:title" content="Facile.it devs @ PhpDay 2016" />
+<meta property="og:description" content="Almost like a nice tradition, we went to the PHP Day conference this year as well; this time too it was held in Verona, on May 13th and 14th. We participated and attended numerous talks and, as last year, we wanted to write a light summary; this won&rsquo;t be a full &ldquo;review&rdquo;, but our intent instead is to highlight what captured our interest most, or what we found more valuable for our everyday work." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://engineering.facile.it/blog/ita/zvals-refcount/" />
+<meta property="og:url" content="http://engineering.facile.it/blog/eng/php-day-2016/" />
 
   <meta property="og:image" content="http://engineering.facile.it/images/logo.png" />
 
 
-<meta property="og:updated_time" content="2015-03-02T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2016-05-31T00:00:00&#43;00:00"/>
 
 
 
@@ -54,12 +54,12 @@
 
 
         
-<meta itemprop="name" content="ZVALs refcount AKA come vengono memorizzate le nostre variabili">
-<meta itemprop="description" content="Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme! L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla linea 334 di zend.h, la riporto qui di seguito per commentarne le proprietà. struct _zval_struct { zvalue_value value; /* Il valore assegnato alla variabile */ zend_uint refcount__gc; /* Il conto delle referenze legato alla variabile */ zend_uchar type; /* L&#39;identificativo del tipo di dato */ zend_uchar is_ref__gc; /* Flag che indica se la variabile è o meno una referenza */ }; Il tipo di dato zvalue_value non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo ogni variabile che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo stesso spazio in memoria richiesto per il tipo di dato più grande.">
+<meta itemprop="name" content="Facile.it devs @ PhpDay 2016">
+<meta itemprop="description" content="Almost like a nice tradition, we went to the PHP Day conference this year as well; this time too it was held in Verona, on May 13th and 14th. We participated and attended numerous talks and, as last year, we wanted to write a light summary; this won&rsquo;t be a full &ldquo;review&rdquo;, but our intent instead is to highlight what captured our interest most, or what we found more valuable for our everyday work.">
 
 
-<meta itemprop="dateModified" content="2015-03-02T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="308">
+<meta itemprop="dateModified" content="2016-05-31T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="918">
 
   <meta itemprop="image" content="http://engineering.facile.it/images/logo.png">
 
@@ -244,43 +244,43 @@ ga('send', 'pageview');
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&text=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&text=Facile.it%20devs%20%40%20PhpDay%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -297,7 +297,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h1><a href="http://engineering.facile.it/blog/ita/zvals-refcount/">ZVALs refcount AKA come vengono memorizzate le nostre variabili</a></h1>
+            <h1><a href="http://engineering.facile.it/blog/eng/php-day-2016/">Facile.it devs @ PhpDay 2016</a></h1>
             
         
         
@@ -309,21 +309,28 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2015-03-02'>
-            2 March 2015
+        <time class="published" datetime='2016-05-31'>
+            31 May 2016
         </time>
 
         
-            <a href="/authors/lorenzo" class="author">
+            <a href="/authors/jean" class="author">
             
-                <span class="name">Lorenzo Fontana</span>
-                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
+                <span class="name">Alessandro Lai</span>
+                <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" />
+            
+            </a>
+        
+            <a href="/authors/sergio" class="author">
+            
+                <span class="name">Sergio Santoro</span>
+                <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" />
             
             </a>
         
 
         
-            <p>2 minute read</p>
+            <p>5 minute read</p>
         
     </div>
 </header>
@@ -333,47 +340,124 @@ ga('send', 'pageview');
 
 
     
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#technical-talks:0f4097aa76370db2c3b733d9c072072e">Technical Talks</a>
+<ul>
+<li><a href="#your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e">Your API is a UI</a></li>
+<li><a href="#dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e">Dip Your Toes in the Sea of Security</a></li>
+<li><a href="#how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e">How I learned to stop worrying and love Regular Expressions</a></li>
+<li><a href="#dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e">Dockerizing your PHP CI Pipelines</a></li>
+<li><a href="#drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e">Drinking Beer with a Raspberry Pi and PHP</a></li>
+<li><a href="#evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e">Evolution of Web Application Architecture</a></li>
+<li><a href="#being-functional-in-php:0f4097aa76370db2c3b733d9c072072e">Being functional in PHP</a></li>
+</ul></li>
+<li><a href="#keynotes:0f4097aa76370db2c3b733d9c072072e">Keynotes</a>
+<ul>
+<li><a href="#deploying-php-7:0f4097aa76370db2c3b733d9c072072e">Deploying PHP 7</a></li>
+<li><a href="#how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e">How Badoo Saved $1M Switching to PHP7</a></li>
+</ul></li>
+</ul>
+</nav>
+    
 
-    <p>Assegnare valori alle variabili è sicuramente l&rsquo;operazione più comune all&rsquo;interno di uno script PHP. Ma come vengono conservate queste informazioni dall&rsquo;interprete? Vediamolo assieme!</p>
+    
 
-<p>L&rsquo;unità fondamentale di storage dei dati in PHP è la Zend Value (zval). Si tratta di una struct definita alla <a href="https://github.com/php/php-src/blob/ae15e636e2b213bf748fa0b94ca95ac96d6eae3a/Zend/zend.h#L334-L340">linea 334 di <code>zend.h</code></a>, la riporto qui di seguito per commentarne le proprietà.</p>
+<p>Almost like a nice tradition, we went to the <strong><a href="http://2016.phpday.it/">PHP Day conference</a></strong> this year as well; this time too it was held in Verona, on <strong>May 13th and 14th</strong>.</p>
 
-<pre><code>struct _zval_struct {
-	zvalue_value value;	 /* Il valore assegnato alla variabile */
-	zend_uint refcount__gc; /* Il conto delle referenze legato alla variabile */
-	zend_uchar type;	/* L'identificativo del tipo di dato */
-	zend_uchar is_ref__gc; /* Flag che indica se la variabile è o meno una referenza */
-};
-</code></pre>
+<p>We participated and attended numerous talks and, <a href="http://engineering.facile.it/blog/ita/php-day-2015/">as last year</a>, we wanted to write a light summary; this won&rsquo;t be a full &ldquo;review&rdquo;, but our intent instead is to highlight what captured our interest most, or what we found more valuable for our everyday work.</p>
 
-<p>Il tipo di dato <code>zvalue_value</code> non è altro che una union contenente tutti i tipi di dato gestiti da php, per questo <strong>ogni variabile</strong> che instanziamo in PHP, sia essa un intero o una stringa occuperà comunque lo <strong>stesso spazio in memoria</strong> richiesto per il tipo di dato più grande.</p>
+<p>In this way, we hope to give a brief glimpse of what we experienced to fellow developers that hadn&rsquo;t the opportunity to attend, and to tempt some of you to join conferences like this one or those in the PHP community at large, for your personal and professional growth.</p>
 
-<p>Per mostrare come php gestisce l&rsquo;allocazione delle variabili vediamo un semplice esempio:</p>
+<p>The talks are in chronological order, and we linked the slides when available. Enjoy your reading!</p>
 
-<pre><code>$a = 1; // value=1, refcount=1
-$b = $a; // value=1, refcount=2
-$a++;    // value=2, refcount = 1
-$c = $b; // value=1, refcount=2
-</code></pre>
+<h1 id="technical-talks:0f4097aa76370db2c3b733d9c072072e">Technical Talks</h1>
 
-<p>Cosa succede qui?</p>
+<h2 id="your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e">Your API is a UI</h2>
 
 <ul>
-<li><p><code>$a</code> viene allocata con valore <code>1</code>, e quindi per la variabile <code>$a</code> il refcount viene
-impostato a 1.</p></li>
-
-<li><p>Il valore di <code>$a</code> viene assegnato anche a <code>$b</code>, quindi PHP per evitare di sprecare memoria assegna la stessa zval anche a <code>$b</code>, aumentando di 1 il refcount.</p></li>
-
-<li><p><code>$a</code> viene incrementato di <code>1</code>,</p></li>
-
-<li><p>Essendo il valore della zval di <code>$a</code> è cambiato, php crea una nuova zval per <code>$b</code> e <code>$c</code></p></li>
-
-<li><p>Ora la zval di <code>$a</code> appartiene solo ad <code>$a</code> con valore <code>2</code> e refcount <code>1</code></p></li>
-
-<li><p><code>$b</code> ha una nuova zval con valore <code>1</code> e refcount <code>1</code></p></li>
-
-<li><p>Essendo la zval di <code>$c</code> è la stessa di <code>$b</code> la zval di <code>$c</code> ha valore <code>1</code> e refcount <code>2</code></p></li>
+<li>Christopher Hoult (<a href="http://twitter.com/choult">@choult</a>)</li>
+<li>Day 1 - 11:00 – 12:00 - track 1</li>
 </ul>
+
+<p>This was an interesting and very smooth talk. It stayed pretty general with nice advices about <strong>API development</strong>, but showed some reasoning about a pyramidal &ldquo;scheme of priorities&rdquo; that we should follow, deriving from the <a href="https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs">Maslow&rsquo;s hierarchy of needs</a>.</p>
+
+<h2 id="dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e">Dip Your Toes in the Sea of Security</h2>
+
+<ul>
+<li>James Titcumb (<a href="http://twitter.com/asgrim">@asgrim</a>)</li>
+<li>Day 1 - 14:30 – 15:30 - track 1 (<a href="http://www.slideshare.net/asgrim1/dip-your-toes-in-the-sea-of-security-phpday-2016">slides</a>)</li>
+</ul>
+
+<p>In this talk we saw an interesting overview of <strong>security issues</strong> that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.</p>
+
+<h2 id="how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e">How I learned to stop worrying and love Regular Expressions</h2>
+
+<ul>
+<li>Jordi Boggiano (<a href="http://twitter.com/seldaek">@seldaek</a>)</li>
+<li>Day 1 - 15:30 – 16:30 - track 1 (<a href="http://slides.seld.be/?file=2016-05-13+How+I+learned+to+stop+worrying+and+love+Regular+Expressions.html">slides</a>)</li>
+</ul>
+
+<p>In this talk we went from basic <strong>regular expressions</strong>, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the <em>Dr. Strangelove</em> movie, from images to phrases used in the examples.</p>
+
+<h2 id="dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e">Dockerizing your PHP CI Pipelines</h2>
+
+<ul>
+<li>Paul Dragoonis (<a href="http://twitter.com/dr4goonis">@dr4goonis</a>)</li>
+<li>Day 1 - 17:00 – 17:30 - track 2 (<a href="http://dragoonis.com/talks/phpday-may-2016/#/">slides</a>)</li>
+</ul>
+
+<p>This talk was about <strong>using Jenkins with Docker</strong> and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.</p>
+
+<h2 id="drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e">Drinking Beer with a Raspberry Pi and PHP</h2>
+
+<ul>
+<li>Andrew Carter (<a href="http://twitter.com/AndrewCarterUK">@AndrewCarterUK</a>)</li>
+<li>Day 2 - 15:30 – 16:30 - track 1</li>
+</ul>
+
+<p>This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.</p>
+
+<h2 id="evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e">Evolution of Web Application Architecture</h2>
+
+<ul>
+<li>Kore Nordmann (<a href="http://twitter.com/koredn">@koredn</a>)</li>
+<li>Day 2 - 15:30 – 16:30 - track 2 (<a href="https://qafoo.com/resources/presentations/phpday_2016_2016/evolution_of_web_application_architecture.html">slides</a>)</li>
+</ul>
+
+<p>The talk covered the <strong>evolution of the technological stack</strong> behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of <strong>when and why</strong> such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.</p>
+
+<h2 id="being-functional-in-php:0f4097aa76370db2c3b733d9c072072e">Being functional in PHP</h2>
+
+<ul>
+<li>David de Boer (<a href="http://twitter.com/ddeboer_nl">@ddeboer_nl</a>)</li>
+<li>Day 2 - 16:30 – 17:00 - track 1 (<a href="http://www.slideshare.net/boerdedavid/being-functional-in-php-php-day-italy-2016">slides</a>)</li>
+</ul>
+
+<p>This talk was an <strong>introduction to functional programming</strong>. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.</p>
+
+<h1 id="keynotes:0f4097aa76370db2c3b733d9c072072e">Keynotes</h1>
+
+<h2 id="deploying-php-7:0f4097aa76370db2c3b733d9c072072e">Deploying PHP 7</h2>
+
+<ul>
+<li>Rasmus Lerdorf (<a href="http://twitter.com/rasmus">@rasmus</a>)</li>
+<li>Day 1 - 09:45 – 10:45 (<a href="http://talks.php.net/phpday16#/">slides</a>)</li>
+</ul>
+
+<p>Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from <strong>benchmark data</strong> to technical tips on how to smooth the transition to this new major version of PHP.</p>
+
+<h2 id="how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e">How Badoo Saved $1M Switching to PHP7</h2>
+
+<ul>
+<li>Nikolay Krapivnyy</li>
+<li>Day 2 - 09:45 – 10:45 (<a href="https://dl.dropboxusercontent.com/u/216377/verona_php_2.pdf">slides</a>)</li>
+</ul>
+
+<p>The <a href="https://techblog.badoo.com/blog/2016/03/14/how-badoo-saved-one-million-dollars-switching-to-php7/">blog post</a> about this technological switch made the rounds on a lot on PHP-related websites some months ago; this talk was very technical too, and it showed us how big is Badoo&rsquo;s technological stack, with 3000 servers, 1000 of which running PHP. It gave us a nice overview of the <strong>technical challenges</strong> that their tech team endured to do this upgrade, and how it gave them the possibility to save more than a half of their hardware resources; also&hellip;</p>
+
+<p><blockquote class="twitter-tweet" data-lang="it"><p lang="en" dir="ltr">Badoo put PHP 7 in production on Friday&hellip; <br>/cc <a href="https://twitter.com/agilegigi">@agilegigi</a> <a href="https://twitter.com/hashtag/poiluned%C3%ACcepensiamo?src=hash">#poilunedìcepensiamo</a> <a href="https://twitter.com/hashtag/phpday?src=hash">#phpday</a> <a href="https://t.co/OEj3Emxxee">pic.twitter.com/OEj3Emxxee</a></p>&mdash; Alessandro Lai (@AlessandroLai) <a href="https://twitter.com/AlessandroLai/status/731403882321063936">14 maggio 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
 
     <section id="social-share">
@@ -381,43 +465,43 @@ impostato a 1.</p></li>
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&text=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&text=Facile.it%20devs%20%40%20PhpDay%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f&title=ZVALs%20refcount%20AKA%20come%20vengono%20memorizzate%20le%20nostre%20variabili" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f&title=Facile.it%20devs%20%40%20PhpDay%202016" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2fita%2fzvals-refcount%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fphp-day-2016%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -443,11 +527,11 @@ impostato a 1.</p></li>
     
 
     
-        <li><a href="/categories/italiano">Italiano</a></li>
+        <li><a href="/categories/english">English</a></li>
     
         <li><a href="/categories/php">PHP</a></li>
     
-        <li><a href="/categories/php-internals">PHP internals</a></li>
+        <li><a href="/categories/conferences">Conferences</a></li>
     
 </ul>
 
@@ -455,13 +539,10 @@ impostato a 1.</p></li>
 </article>
 <ul class="actions pagination">
     
-        <li><a href="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/"
-                class="button big previous">var_dump() aggiunge proprietà pubbliche a DateTime</a></li>
+        <li><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"
+                class="button big previous">Faster Web with HTTP/2</a></li>
     
 
-    
-        <li><a href="http://engineering.facile.it/blog/ita/operatore-ternario-e-associativo-a-sinistra/"
-                class="button big next">L&#39;operatore ternario è associativo a sinistra!</a></li>
     
 </ul>
 
@@ -474,9 +555,9 @@ impostato a 1.</p></li>
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-        this.page.url = "http://engineering.facile.it/blog/ita/zvals-refcount/";
-        this.page.identifier = "http://engineering.facile.it/blog/ita/zvals-refcount/";
-        this.page.title = "ZVALs refcount AKA come vengono memorizzate le nostre variabili";
+        this.page.url = "http://engineering.facile.it/blog/eng/php-day-2016/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/php-day-2016/";
+        this.page.title = "Facile.it devs @ PhpDay 2016";
     };
 
     (function () {

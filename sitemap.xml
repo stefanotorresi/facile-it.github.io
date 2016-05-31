@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://engineering.facile.it/</loc>
-    <lastmod>2016-05-11T00:00:00+00:00</lastmod>
+    <lastmod>2016-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://engineering.facile.it/blog/eng/php-day-2016/</loc>
+    <lastmod>2016-05-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
