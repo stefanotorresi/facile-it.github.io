@@ -22,15 +22,22 @@
         
 
         
+    
+        <meta name="twitter:card" content="summary"/>
+        
+            <meta name="twitter:image:src" content="http://engineering.facile.it/images/social/twitter-card-logo.png"/>
+        
+    
+    
+    <meta name="twitter:title" content="var_dump() aggiunge proprietà pubbliche a DateTime"/>
+    <meta name="twitter:description" content="PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime."/>
+    
+        
+            
+        
+    
 
 
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image:src" content="http://engineering.facile.it/images/logo.png"/>
-
-
-
-<meta name="twitter:title" content="var_dump() aggiunge proprietà pubbliche a DateTime"/>
-<meta name="twitter:description" content="PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime."/>
 <meta name="twitter:site" content="@FacileIt_Engr"/>
 
 
@@ -38,8 +45,6 @@
 <meta property="og:description" content="PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/" />
-
-  <meta property="og:image" content="http://engineering.facile.it/images/logo.png" />
 
 
 <meta property="og:updated_time" content="2015-03-02T00:00:00&#43;00:00"/>
@@ -60,8 +65,6 @@
 
 <meta itemprop="dateModified" content="2015-03-02T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="244">
-
-  <meta itemprop="image" content="http://engineering.facile.it/images/logo.png">
 
 
 
