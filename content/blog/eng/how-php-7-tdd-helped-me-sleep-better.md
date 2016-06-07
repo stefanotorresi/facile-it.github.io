@@ -1,8 +1,8 @@
 ---
 authors: ["jean"]
 comments: true
-date: "2016-05-16"
-draft: true
+date: "2016-06-07"
+draft: false
 share: true
 categories: [English, TDD, PHP]
 title: "How PHP 7 & TDD helped me sleep better"
