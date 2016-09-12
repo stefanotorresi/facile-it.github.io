@@ -6,6 +6,7 @@ draft: false
 share: true
 categories: [Italiano, Agile, Scrum, Kanban]
 title: "Un flusso di lavoro agile"
+eng: "agile-workflow"
 
 languageCode: "it-IT"
 type: "post"

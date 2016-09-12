@@ -6,13 +6,14 @@ draft: true
 share: true
 categories: [English, Agile, Scrum, Kanban]
 title: "An Agile workflow"
+ita: "un-flusso-di-lavoro-agile"
 
 languageCode: "en-EN"
 type: "post"
 ---
-Talking about **agile methodologies** is very difficult. First of all, because it is not possible to define a generic method that is universally valid. I am used to listen that "with SCRUM you’ll sure to get good results". I think this is incorrect.
+Talking about **agile methodologies** is very difficult. First of all, because it is not possible to define a generic method that is universally valid. I am used to listen that "with SCRUM you’ll be sure to get good results". I think this is incorrect.
 
-Lots of people assume that the values and principles of the [Agile Manifesto](http://www.agilemanifesto.org/) are just a collection of "ready to use recipes" to achieve good results in a software development process. What is "*agile*"  with this approach? It's like cooking with a kitchen robot. For this reason, I am sure that the perfect recipe is something to discover "testing" your favorite ingredients combined together (I’ll continue with cooking jokes... You’ve been warned!).
+Lots of people assume that the values and principles of the [Agile Manifesto](http://www.agilemanifesto.org/) are just a collection of "ready to use recipes" to achieve good results in a software development process. What is "*agile*" with this approach? It's like cooking with a kitchen robot. For this reason, I am sure that the perfect recipe is something to discover "testing" your favorite ingredients combined together (I’ll continue with the cooking puns... You’ve been warned!).
 
 Some likes simple recipes, like a *grill*. For example, some groups like a very present manager, a boss that tells to every member of the team what he wants them to do, step by step. All is guided but efficient. 
 Others love sophisticated organization, like a complex recipe of a *starred restaurant*. Very complicated systems to track communications and time organization (remote teams often needs procedures and tools, I admire this kind of complexity).
@@ -20,8 +21,7 @@ In the end, we have groups that love *fast food*. Fast food is the same everywhe
 So, someone can assume that SCRUM is a good recipe because many people like standard recipes. But, are we sure that the typical fast food sandwich is the best way to eat?
 
 ## Learn by own mistakes
-Our group have crossed some months trying to apply SCRUM. It was 
-jJust trouble! We were trying to understand where we were failing, without any clue. We got a lot of stress and created a lot of conflicts, and our retrospectives seemed more like an Alcoholics Anonymous meeting rather than a time for giving feedback. Now we know some of the things that we did wrong:
+Our group have crossed some months trying to apply SCRUM. It was just trouble! We were trying to understand where we were failing, without any clue. We got a lot of stress and created a lot of conflicts, and our retrospectives seemed more like an Alcoholics Anonymous meeting rather than a time for giving feedback. Now we know some of the things that we did wrong:
 
  * our internal client needed to change requirements faster than our one-week iteration; these changes generated too much frustration and we were feeling that every iteration was failing;
  * we had just lose some important and senior developers; our domain is very complicated and we had trouble with estimation; every week we were reducing the quality of our codebase with technical debt and the quality of our work life;
