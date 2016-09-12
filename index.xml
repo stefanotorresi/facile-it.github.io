@@ -592,9 +592,8 @@ As an example, if on authentication I want to be sure that the token is issued b
 
 &lt;p&gt;Tutte le nostre applicazioni si basano sulla piattaforma LAMP. Per entrare nel nostro team devi quindi conoscere bene strumenti quali Linux, Apache, MySQL e PHP, oltre a rispondere “sì” a queste domande:&lt;/p&gt;
 
-&lt;p&gt;Ti appassiona la programmazione a oggetti ed usi i principali Design Pattern?&lt;/p&gt;
-
 &lt;ul&gt;
+&lt;li&gt;Ti appassiona la programmazione a oggetti ed usi i principali Design Pattern?&lt;/li&gt;
 &lt;li&gt;Scrivi codice pulito (Coding Standards) e sai gestire correttamente le dipendenze (Composer)?&lt;/li&gt;
 &lt;li&gt;Sei capace di gestire cospicui flussi di dati da webservice?&lt;/li&gt;
 &lt;li&gt;Se parliamo di HTTP e REST sai a cosa alludiamo?&lt;/li&gt;
@@ -603,7 +602,7 @@ As an example, if on authentication I want to be sure that the token is issued b
 &lt;li&gt;Sei in grado di raccogliere specifiche, analizzarle e proporre soluzioni concrete?&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Son da considerarsi titoli preferenziali:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Son da considerarsi titoli preferenziali:&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Conoscenza Framework PHP (Symfony2 o Zend Framework 2)&lt;/li&gt;
@@ -613,7 +612,49 @@ As an example, if on authentication I want to be sure that the token is issued b
 &lt;li&gt;Abitudine all&amp;rsquo;utilizzo di sistemi di versionamento del codice (noi usiamo GIT!)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://jobs.facile.it/chi-cerchiamo/candidati.html&#34; target=&#34;_blank&#34;&gt;Candidati »&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://jobs.facile.it/chi-cerchiamo/candidati.html&#34; target=&#34;\_blank&#34;&gt;Candidati »&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;android-developer:6035441c68e33538441e623a4322ab2f&#34;&gt;Android Developer&lt;/h3&gt;
+
+&lt;p&gt;Facile.it è una web company con applicazioni sviluppate per Android e iOS usando tecnologie native.&lt;/p&gt;
+
+&lt;p&gt;Cerchiamo un nuovo sviluppatore Android da inserire nel team di sviluppo mobile: la figura sarà coinvolta nell’analisi dei requisiti, nelle scelte tecnologiche e nella definizione delle strategie di sviluppo.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Il candidato ideale risponde sì alle seguenti domande:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sei appassionato di programmazione e ti piace migliorare e imparare sempre cose nuove?&lt;/li&gt;
+&lt;li&gt;Hai un’ottima conoscenza del SDK, almeno dalla versione 5 di Android, con esperienza nella risoluzione di problemi di retrocompatibilità fino ad Android 4.1 (API level 16)?&lt;/li&gt;
+&lt;li&gt;Hai familiarità con i principali pattern di programmazione a oggetti e i principi del SOLID?&lt;/li&gt;
+&lt;li&gt;Sai realizzare applicazioni client comunicanti con server tramite web service REST, con dati in formato JSON?&lt;/li&gt;
+&lt;li&gt;Hai familitarità con RxJava e hai sentito parlare di Kotlin?&lt;/li&gt;
+&lt;li&gt;Hai familiarità con Git?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;È un valore aggiunto se:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ti piace scrivere codice pulito, testabile e facile da mantenere.&lt;/li&gt;
+&lt;li&gt;Possiedi capacità di refactoring e sviluppo di test unitari.&lt;/li&gt;
+&lt;li&gt;Hai esperienza nel processo di pubblicazione su Google Play Store.&lt;/li&gt;
+&lt;li&gt;Segui con interesse le novità nel mondo dello sviluppo per Android&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jobs.facile.it/chi-cerchiamo/candidati.html&#34; target=&#34;\_blank&#34;&gt;Candidati »&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;cosa-offriamo-in-facile-it:6035441c68e33538441e623a4322ab2f&#34;&gt;Cosa offriamo in Facile.it:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assunzione a tempo indeterminato con RAL in base alla tua esperienza + fondo salute integrativo&lt;/li&gt;
+&lt;li&gt;Possibilità di crescita economica in base alle nuove competenze acquisite&lt;/li&gt;
+&lt;li&gt;1 venerdì al mese fuori ufficio dedicato alla condivisione ed allo studio col team&lt;/li&gt;
+&lt;li&gt;Biblioteca di libri di tecnologia con più di 100 titoli&lt;/li&gt;
+&lt;li&gt;Budget annuale di 1.500€ per l’hardware e software di cui hai bisogno&lt;/li&gt;
+&lt;li&gt;Partecipazione ad eventi di tecnologia a nostro carico (Pragma Conference, Droidcon, Codemotion, etc)&lt;/li&gt;
+&lt;li&gt;Sala relax con sofà, ping-pong e calcetto&lt;/li&gt;
+&lt;li&gt;Convenzioni (bar, ristoranti, palestre and more!), Ticket Restaurant, caffè, acqua e frutta fresca ogni giorno&lt;/li&gt;
+&lt;li&gt;Fare il lavoro che ami in una realtà italiana di successo con un top team al tuo fianco&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
