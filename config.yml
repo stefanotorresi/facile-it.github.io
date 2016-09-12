@@ -76,7 +76,7 @@ menu:
       weight: 3
     - categories:
       name: "Careers"
-      url: "/careers"
+      url: "/ita/careers"
       identifier: "fa fa-briefcase"
       weight: 4
     - categories:
