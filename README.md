@@ -11,6 +11,10 @@ git clone git@github.com:facile-it/facile-it.github.io.git
 ```
 ./hugo server --buildDrafts
 ```
+or, if you are on Windows:
+```
+bin\hugo.exe server --buildDrafts
+```
 
  * To deploy the blog: 
 ```
@@ -38,6 +42,8 @@ git clone git@github.com:facile-it/facile-it.github.io.git
 `type`: always "post" for articles
 
 `aliases`: an array of URLS which will redirect to this page; used for the transition from the old site
+
+`ita` or `eng`: the file name of the article of the opposite language, to obtain cross-linking between translations
 
 `twitterImage`: used for the twitter cards when sharing the url of this page; needs to be at least 120x120, will be cropped to square. If not specified, the ENGR logo will be used
 

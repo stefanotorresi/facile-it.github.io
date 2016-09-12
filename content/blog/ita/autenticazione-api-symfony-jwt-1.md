@@ -13,7 +13,7 @@ languageCode: "en-En"
 type: "post"
 
 ---
-As promised in the previous post [Json Web Token]((http://engineering.facile.it/json-web-joken/), with this article I want to explain an example of JWT authentication on Symfony 3.0.
+As promised in the previous post [Json Web Token](http://engineering.facile.it/json-web-joken/), with this article I want to explain an example of JWT authentication on Symfony 3.0.
 In this first part I will focus on the firewall setup and services necessary to realize a JWT login and token generation with a stateless implementation, without the use of pre-packaged bundles.
 All you will see is the result of experiments done during my "journey" to discover the JSON Web Tokens and Symfony framework; and for this reason I preferred not to use third-party bundle, but instead realize a "personal solution".
 
