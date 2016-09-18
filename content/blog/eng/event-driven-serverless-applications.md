@@ -24,7 +24,7 @@ As reported on their website: « *AWS Lambda is a serverless compute service tha
 ## Serverless architecture{#serverless-architecture}
 
 Lambda is completely serverless. The term "serverless" can be considered misleading, obviously Lambda uses physical servers to run your code, but we don’t take care of everything required to do it. We just need to upload our code on AWS console and it handles capacity, scaling, monitoring, logging and security without any server to manage. 
-To be strict functions are executed in containers and in this context kernel-based virtualization is very useful because it allows to build multiple isolated environments in a few time.
+To be strict, functions are executed in containers and in this context kernel-based virtualization is very useful because it allows to build multiple isolated environments in a few time.
 
 ## High-availability{#high-availability}
 
@@ -32,9 +32,9 @@ AWS Lambda maintains compute capacity across multiple availability zones in each
 
 ## Event-driven{#event-driven}
 
-"Event-driven" means that a Lambda function is triggered when an event occurs, so the flow of the application is mainly driven by events. In this kind of architecture, all Lambda functions are events consumer because they are invoked by an event and they are responsible to do something to process it. 
-An event comes to life, for example, whenever a new item is created on an Amazon DynamoDB table, a file is deleted on an Amazon S3 bucket, an Amazon API Gateway is called, but we also can use AWS SDK to invoke a function directly on a mobile or web app back-end. 
-This is a good way to write application logic without design and maintain a centralized workflow.
+"Event-driven" means that a Lambda function is triggered when an event occurs, so the flow of the application is mainly driven by events. In this kind of architecture all Lambda functions are events consumer, because they are invoked by an event and they are responsible to do something to process it. 
+An event comes to life, for example, whenever a new item is created on an Amazon DynamoDB table, a file is deleted on an Amazon S3 bucket, an Amazon API Gateway is called, but we can also use AWS SDK to invoke a function directly on a mobile or web app back-end. 
+This is a good way to write application logic without to design and to maintain a centralized workflow.
 
 ## Zero administration{#zero-administration}
 
@@ -56,22 +56,22 @@ In addition to the code, each Lambda function has many configuration information
 
 ## Invocation types{#invocation-types}
 
-We can invoke a Lambda function directly, for example using the Invoke API, or indirectly, for example using the Amazon API Gateway. A function invocation needs to specify the kind of invocation type. There are three invocation types allowed: `RequestResponse`, `Event` and `DryRun`. Each one of them has different purposes:
+We can invoke a Lambda function directly, for example using the Invoke API, or indirectly, for example using the Amazon API Gateway. A function invocation needs to specify the `InvocationType`. There are three invocation types allowed: `RequestResponse`, `Event` and `DryRun`. Each one of them has different purposes:
 
  * `RequestResponse`: in this case we expect a **synchronous** behaviour. The function receives input parameters as an event and it returns a result;
- * `Event`: in this case we expect an **asynchronous** behaviour. The function receives input parameters as an event, it returns immediately no value while the function continues its execution;
+ * `Event`: in this case we expect an **asynchronous** behaviour. The function receives input parameters as an event, it returns immediately no value, while the function continues its execution;
  * `DryRun`: it is used to verify access to a function without running it.
 
 ![Synchronous vs asynchronous behaviour](/images/event-driven-serverless-applications/synchronous-vs-asynchronous-behaviour.png)
 
 # Lambda alternatives{#lambda-alternatives}
 
-Serverless is a new cloud computing trend, accordingly many cloud providers - in addition to Amazon - started offering their Function as a Service (FaaS) as for example **Google** with his [Cloud Functions](https://cloud.google.com/functions/), **IBM** with his [OpenWhisk](https://developer.ibm.com/openwhisk/), **Auth0** with his [WebTasks](https://webtask.io/) and **Microsoft** with his [Azure Functions](https://functions.azure.com/).
+Serverless is a new cloud computing trend, accordingly many cloud providers &ndash; in addition to Amazon &ndash; started offering their Function as a Service (FaaS) as for example **Google** with its [Cloud Functions](https://cloud.google.com/functions/), **IBM** with its [OpenWhisk](https://developer.ibm.com/openwhisk/), **Auth0** with its [WebTasks](https://webtask.io/) and **Microsoft** with its [Azure Functions](https://functions.azure.com/).
 
 # Conclusions{#conclusions}
 
-Functions are very useful when we want to build lightweight microservices applications without servers. Their approach could be considered a way to achieve fine-grained microservices, in which there is relation one-to-one between functions and endpoints instead of one service per one resource, for this reason they are often referred to as "nanoservices".
+Functions are very useful when we want to build lightweight microservices applications without servers. Their approach could be considered a way to achieve fine-grained microservices, in which there is a relation one-to-one between functions and endpoints instead of one service per one resource, for this reason they are often referred to as "nanoservices".
 
-They could help developers to focus on the code and to only charge for code really running in an infrastructure, that is able to autonomously grow up on demand, without overhead in managing it. With functions, we can consider our code as a small and independent building block that can be easily replaced or connected with other blocks using events.
+They could help developers to focus on the code and to only charge for code really running in an infrastructure, that is able to autonomously grow up on demand, without effort in managing it. With functions, we can consider our code as a small and independent building block that can be easily replaced or connected with other blocks using events.
 
 Another consideration is in regard to reuse existing skills or encouraging the adoption of different languages in a small team to develop software that matches better business requirements.
