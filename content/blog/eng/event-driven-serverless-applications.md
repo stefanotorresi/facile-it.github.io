@@ -1,17 +1,13 @@
 ---
 authors: ["salvatore-cordiano"]
-comments: true
 date: "2016-09-19"
 draft: true
-image: ""
-menu: ""
 share: true
 categories: [English, Event driven, Serverless, AWS]
 title: "Event-driven serverless applications"
 type: "post"
 languageCode: "en-EN"
-aliases:
-  - "/event-driven-serverless-applications"
+twitterImage: '/images/event-driven-serverless-applications/aws-lambda-key-concepts.png'
 ---
 If we think about computing in the Cloud Era, immediately our mind is focused on virtual machines and containers. Therefore, when we are building a production environment with both approaches, for example, we have to take care of patching the operating system or upgrading the container. At the end of 2014 **Amazon Web Services** (AWS) announced a new service called "**[Lambda](https://aws.amazon.com/lambda/)**", that allows us to focus on business logic and not on infrastructure.
 
