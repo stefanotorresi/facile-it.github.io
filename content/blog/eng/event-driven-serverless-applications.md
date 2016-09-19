@@ -50,7 +50,7 @@ Right now Lambda functions support natively code written in **Java**, **Node.js*
 
 When we write a function we must think a **stateless** code, so everything begins and ends in the same request and any persistent state should be stored in a storage service (not necessarily within Amazon world). Keeping function stateless is the keystone to enable the system to be able to instantly launch new instances needed to serve the incoming events rate.
 
-In addition to the code, each Lambda function has many configuration informations, such as name, description, runtime, handler, memory, max execution time and execution role. A more detailed explanation is available [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction-function.html).
+In addition to the code, each Lambda function has many configuration informations, such as name, description, runtime, handler, memory, max execution time and execution role. A detailed explanation is available [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction-function.html).
 
 ## Invocation types{#invocation-types}
 
