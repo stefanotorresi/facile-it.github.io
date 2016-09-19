@@ -20,7 +20,8 @@ As reported on their website: « *AWS Lambda is a serverless compute service tha
 ## Serverless architecture{#serverless-architecture}
 
 Lambda is completely serverless. The term "serverless" can be considered misleading, obviously Lambda uses physical servers to run your code, but we don’t take care of everything required to do it. We just need to upload our code on AWS console and it handles capacity, scaling, monitoring, logging and security without any server to manage. 
-To be strict, functions are executed in containers and in this context kernel-based virtualization is very useful because it allows to build multiple isolated environments in a few time.
+To be strict, functions are executed in containers and in this context kernel-based virtualization is very useful because it allows to build multiple isolated environments in a few time. 
+A more detailed explanation of serverless architectures can be found [here](http://www.martinfowler.com/articles/serverless.html).
 
 ## High-availability{#high-availability}
 
@@ -30,7 +31,8 @@ AWS Lambda maintains compute capacity across multiple availability zones in each
 
 "Event-driven" means that a Lambda function is triggered when an event occurs, so the flow of the application is mainly driven by events. In this kind of architecture all Lambda functions are events consumer, because they are invoked by an event and they are responsible to do something to process it. 
 An event comes to life, for example, whenever a new item is created on an Amazon DynamoDB table, a file is deleted on an Amazon S3 bucket, an Amazon API Gateway is called, but we can also use AWS SDK to invoke a function directly on a mobile or web app back-end. 
-This is a good way to write application logic without to design and to maintain a centralized workflow.
+This is a good way to write application logic without to design and to maintain a centralized workflow. 
+More about event-driven programming [here](https://en.wikipedia.org/wiki/Event-driven_programming).
 
 ## Zero administration{#zero-administration}
 
