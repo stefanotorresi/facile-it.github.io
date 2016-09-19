@@ -25,7 +25,7 @@ A more detailed explanation of serverless architectures can be found [here](http
 
 ## High-availability{#high-availability}
 
-AWS Lambda maintains compute capacity across multiple availability zones in each region - at the moment there are 8 regions distributed among Americas, EMEA and Asia Pacific -: in this way Lambda is able to protect your code against data center failures.
+AWS Lambda maintains compute capacity across multiple availability zones in each region - at the moment there are 8 regions distributed among Americas, EMEA and Asia Pacific - in this way Lambda is able to protect your code against data center failures.
 
 ## Event-driven{#event-driven}
 
