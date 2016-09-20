@@ -1,7 +1,7 @@
 ---
 authors: ["salvatore-cordiano"]
-date: "2016-09-19"
-draft: true
+date: "2016-09-20"
+draft: false
 share: true
 categories: [English, Event driven, Serverless, AWS]
 title: "Event-driven serverless applications"
