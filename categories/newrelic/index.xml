@@ -32,13 +32,13 @@
 &lt;li&gt;tramite &lt;strong&gt;&lt;em&gt;eventi personalizzati&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;custom-attributes:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Custom Attributes&lt;/h4&gt;
+&lt;h4 id=&#34;custom-attributes&#34;&gt;Custom Attributes&lt;/h4&gt;
 
 &lt;p&gt;I &lt;em&gt;custom attributes&lt;/em&gt; sono delle coppie di chiave-valore da aggiungere alla transazione corrente (Web e Non-Web) già tracciata dagli strumenti di &lt;em&gt;NewRelic&lt;/em&gt; per i principali linguaggi di programmazione (&lt;strong&gt;PHP&lt;/strong&gt;, &lt;strong&gt;NodeJs&lt;/strong&gt;, &lt;strong&gt;Ruby&lt;/strong&gt;, &lt;strong&gt;Python&lt;/strong&gt;, &lt;em&gt;Java&lt;/em&gt;, &lt;em&gt;.NET&lt;/em&gt;). Possiamo aggiungere ad esempio l’utente attualmente collegato che sta effettuando tale transazione, il numero di oggetti presenti nel carrello o ancora il loro valore.&lt;/p&gt;
 
 &lt;p&gt;Ad esempio, tramite l&amp;rsquo;estensione di &lt;em&gt;NewRelic&lt;/em&gt; disponibile per &lt;strong&gt;PHP&lt;/strong&gt;, è possibile aggiungere i dettagli dell&amp;rsquo;utente attualmente collegato chiamando la funzione &lt;code&gt;newrelic_add_custom_parameter (&#39;userID&#39;, $userId)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;eventi-personalizzati:0fc835fee623e5d493f15e3070958a9c&#34;&gt;Eventi personalizzati&lt;/h4&gt;
+&lt;h4 id=&#34;eventi-personalizzati&#34;&gt;Eventi personalizzati&lt;/h4&gt;
 
 &lt;p&gt;Gli &lt;em&gt;eventi personalizzati&lt;/em&gt; vanno inviati ad un &lt;strong&gt;webservice REST&lt;/strong&gt; in formato &lt;strong&gt;JSON&lt;/strong&gt;. Ci mettono in grado di tracciare un qualsiasi evento all’interno di una normale transazione già tracciata da NewRelic, come ad esempio i tempi di risposta di un servizio esterno utilizzato dall’applicazione.&lt;/p&gt;
 

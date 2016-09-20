@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -379,7 +379,7 @@ ga('send', 'pageview');
 
 <p>Non potrei essere più d&rsquo;accordo: il tempo speso da un programmatore a scrivere nuovo codice rappresenta solo <strong>una minima parte</strong> del suo tempo totale di lavoro; molto tempo è passato a leggere il codice esistente, per correggerlo, estenderlo, modificarlo o semplicemente comprenderlo. Generando codice più comprensibile, sul quale sia più semplice ragionare, possiamo valutare più facilmente la <strong>correttezza</strong> di quanto abbiamo scritto o, in caso di comportamento non atteso, trovare agevolmente l&rsquo;errore. Ovviamente tutto questo non deve prescindere dalle tecniche che abitualmente utilizziamo per testare la correttezza del software <em>a posteriori</em>: d&rsquo;altronde, nessuna disciplina tecnico/scientifica è esente da verifiche empiriche, e in effetti l&rsquo;approccio empirico all&rsquo;ingegneria del software è preso in considerazione anche in ambito accademico, come dimostra l&rsquo;<a href="http://static.springer.com/sgw/documents/1525357/application/pdf/10664_JournalMetrics_Flyer.pdf">esistenza</a> della rivista <a href="http://link.springer.com/journal/10664">Empirical Software Engineering</a>. La mia personale posizione è nel mezzo: il testing è importante, ma è anche importante ragionare <em>a priori</em> sul proprio design, sulla sua correttezza, e sulla presenza di eventuale <strong>complessità accidentale</strong>.</p>
 
-<h2 id="indice:c252b88516f644ca0545d16795aa645d">Indice</h2>
+<h2 id="indice">Indice</h2>
 
 <ul>
 <li><a href="#l-importanza-dell-astrazione">L&rsquo;importanza dell&rsquo;astrazione</a></li>
@@ -393,7 +393,7 @@ ga('send', 'pageview');
 
 <p><a name="l-importanza-dell-astrazione"></a></p>
 
-<h2 id="l-importanza-dell-astrazione:c252b88516f644ca0545d16795aa645d">L&rsquo;importanza dell&rsquo;astrazione</h2>
+<h2 id="l-importanza-dell-astrazione">L&rsquo;importanza dell&rsquo;astrazione</h2>
 
 <p>Come abbiamo visto in un <a href="http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/">precedente articolo</a>, più che della complessità intrinseca legata alla logica del nostro software, dobbiamo preoccuparci della <a href="http://shaffner.us/cs/papers/tarpit.pdf">complessità accidentale</a> che introduciamo adottando <strong>soluzioni non ottimali e inutilmente complicate</strong>: l&rsquo;utilizzo eccessivo di strutture di controllo <em>if-else-for-switch</em> tende a rendere il codice difficile da comprendere, da mantenere e da testare; si veda ad esempio il noto <a href="http://c2.com/cgi/wiki?ArrowAntiPattern">Arrow Anti-Pattern</a>. È da notare che l&rsquo;introduzione della <a href="https://en.wikipedia.org/wiki/Structured_programming">programmazione <em>strutturata</em></a>, cioè quella basata proprio sulle strutture di controllo appena citate, ha rappresentato <strong>un grande passo avanti</strong> nello sviluppo del software a cavallo tra gli anni &lsquo;60 e &lsquo;70: essa ha permesso di programmare a un più alto livello di astrazione rispetto allo stile precedente, rimuovendo la necessità di gestire manualmente l&rsquo;ordine di esecuzione del codice con il <a href="https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF">famigerato</a> comando <code>goto</code>.</p>
 
@@ -463,7 +463,7 @@ ga('send', 'pageview');
 
 <p><a name="misurare-la-complessita"></a></p>
 
-<h2 id="misurare-la-complessità:c252b88516f644ca0545d16795aa645d">Misurare la complessità</h2>
+<h2 id="misurare-la-complessità">Misurare la complessità</h2>
 
 <p>Un&rsquo;unità di misura presa spesso in considerazione nel valutare la complessità di un metodo o una funzione è la <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">complessità ciclomatica</a> (CC): essa rappresenta il livello di complessità generato dall&rsquo;uso di molteplici strutture di controllo in un metodo o una funzione. È possibile calcolare il numero di CC per una procedura strutturata rappresentando quest&rsquo;ultima con un <a href="https://en.wikipedia.org/wiki/Directed_graph">grafo diretto</a> e contando il numero di archi e nodi. Ad esempio, possiamo rappresentare la funzione <code>optionalValue1</code> con il seguente grafo:</p>
 
@@ -510,7 +510,7 @@ ga('send', 'pageview');
 
 <p><a name="esempio-soluzione-strutturata"></a></p>
 
-<h2 id="esempio-soluzione-strutturata:c252b88516f644ca0545d16795aa645d">Esempio: soluzione strutturata</h2>
+<h2 id="esempio-soluzione-strutturata">Esempio: soluzione strutturata</h2>
 
 <p>Una persona si reca all&rsquo;ufficio di collocamento per cercare lavoro: in base ad alcuni attributi (preferenze, giovane/anziano, numero di figli di età inferiore ai 18 anni) essa può essere inviata a un certo sportello per selezionare un impiego tra i vari disponibili, oppure mandata fuori dall&rsquo;ufficio nel caso in cui il set di attributi non generi una lista di lavori accettabili. Ecco la procedura completa (non è importante il realismo, è solo un esempio):</p>
 
@@ -575,7 +575,7 @@ ga('send', 'pageview');
 
 <p><a name="esempio-soluzione-oo"></a></p>
 
-<h2 id="esempio-soluzione-oo:c252b88516f644ca0545d16795aa645d">Esempio: soluzione OO</h2>
+<h2 id="esempio-soluzione-oo">Esempio: soluzione OO</h2>
 
 <p>Progettare una soluzione a oggetti è spesso un&rsquo;operazione <strong>tanto razionale quanto creativa</strong>: in genere è possibile immaginare moltissimi design OO per risolvere uno stesso problema. Come detto, il nostro intento è di <em>astrarre</em> il concetto di <em>condizione</em>; basandoci su questo approccio, proviamo fissare qualche punto, in modo da identificare le responsabilità e i comportamenti da assegnare alla classi:</p>
 
@@ -634,7 +634,7 @@ ga('send', 'pageview');
 
 <p><a name="esempio-soluzione-funzionale"></a></p>
 
-<h2 id="esempio-soluzione-funzionale:c252b88516f644ca0545d16795aa645d">Esempio: soluzione funzionale</h2>
+<h2 id="esempio-soluzione-funzionale">Esempio: soluzione funzionale</h2>
 
 <p>Nello strutturare la soluzione OO abbiamo adottato un <strong>principio di composizione</strong>: oggetti dal comportamento semplice, adeguatamente preparati, composti tra loro per poter ottenere strutture più complesse. In particolare ciascuno dei nostri oggetti rappresenta uno specifico <em>comportamento unitario</em>, e i vari <em>comportamenti</em> sono combinati per ottenere un <em>comportamento composto</em>. <strong>L&rsquo;astrazione regge</strong>, e riusciamo ad accettare il fatto che gli oggetti <em>check</em> siano scatole chiuse che incapsulano una singola decisione su una persona: creando una scatola più grande, con dentro scatole più piccole, possiamo rappresentare una condizione più complessa. Tuttavia ci sono due problemi tipici dell&rsquo;approccio OO:</p>
 
@@ -680,7 +680,7 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
 
 <p><a name="una-verifica-empirica"></a></p>
 
-<h2 id="una-verifica-empirica:c252b88516f644ca0545d16795aa645d">Una verifica empirica</h2>
+<h2 id="una-verifica-empirica">Una verifica empirica</h2>
 
 <p>Nel progettare le soluzioni &ldquo;OO&rdquo; e &ldquo;funzionale&rdquo; si è specificamente scelto di costruire strutture di verifica nelle quali l&rsquo;ordine con il quale i check sono eseguiti fosse irrilevante: in questo modo rimuoviamo una nota causa di complessità accidentale, quella del &ldquo;controllo&rdquo;, e cioè dell&rsquo;<strong>ordine</strong> con il quale le operazioni sono eseguite (ne abbiamo parlato <a href="http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/#cause-di-complessita">qui</a>). Per fare ciò è tuttavia necessario che i check presenti nella lista <strong>non siano ambigui</strong>: al massimo un solo check deve poter passare per una certa persona. Probabilmente sarebbe possibile impostare un <strong>metodo formale</strong> per poter provare che un determinato set di condizioni sia non-ambiguo, e scrivere quindi un test unitario basato su tale prova, ma in questo caso un approccio <em>empirico</em> sembra più adatto, e <strong>più semplice</strong>.</p>
 
@@ -697,7 +697,7 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
 
 <p><a name="conclusioni"></a></p>
 
-<h2 id="conclusioni:c252b88516f644ca0545d16795aa645d">Conclusioni</h2>
+<h2 id="conclusioni">Conclusioni</h2>
 
 <p>Abbiamo visto tre metodi per risolvere uno stesso problema relativamente complesso, e in due di essi siamo riusciti a ottenere un sistema <strong>più facilmente gestibile</strong>, estendibile e modificabile in sicurezza, lavorando a un <strong>più alto livello di astrazione</strong>. In particolare il metodo &ldquo;funzionale&rdquo; ci ha permesso di scrivere codice più compatto, caratterizzato da un intento più evidente, al costo (basso) di un passo iniziale di astrazione in più, rappresentato dagli operatori personalizzati. Ma la chiave di lettura dell&rsquo;intero processo è ancora una volta da ricercarsi nella già citata frase presente in <em>Structure and Interpretation of Computer Programs</em>, che riporto nuovamente:</p>
 
@@ -944,6 +944,27 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -980,27 +1001,6 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -1049,7 +1049,7 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -1060,8 +1060,8 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -1109,6 +1109,10 @@ func &lt;*&gt; &lt;A,B&gt; (left: A -&gt; B, right: A) -&gt; B {
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

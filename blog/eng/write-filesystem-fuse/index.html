@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -359,7 +359,7 @@ ga('send', 'pageview');
 
 <p>During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.</p>
 
-<h1 id="introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012">Introduction</h1>
+<h1 id="introduction">Introduction</h1>
 
 <p>A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.</p>
@@ -399,15 +399,15 @@ If you are using a device to read this post you are probably using at least one 
 <p>Here&rsquo;s a flow-chart diagram showing how FUSE works, source: <a href="https://commons.wikimedia.org/wiki/File:FUSE_structure.svg">Wikimedia Commons</a>
 <img src="/images/write-filesystem-fuse/FUSE_structure.svg" alt="A flow-chart diagram showing how FUSE works" /></p>
 
-<h1 id="getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012">Getting started with FUSE</h1>
+<h1 id="getting-started-with-fuse">Getting started with FUSE</h1>
 
 <p>This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&rsquo;s going on whether you execute the code or not.</p>
 
-<h2 id="build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012">Build dependencies</h2>
+<h2 id="build-dependencies">Build dependencies</h2>
 
 <p>From now you&rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.</p>
 
-<h3 id="linux:b00e3fe04fd8cc4ced6f5bb08e0d0012">Linux</h3>
+<h3 id="linux">Linux</h3>
 
 <ul>
 <li>GCC or Clang</li>
@@ -429,7 +429,7 @@ If you are using a device to read this post you are probably using at least one 
 <pre><code class="language-bash">apt-get install gcc fuse libfuse-dev make cmake
 </code></pre>
 
-<h3 id="mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012">Mac OSX</h3>
+<h3 id="mac-osx">Mac OSX</h3>
 
 <ul>
 <li>Command line tools for Xcode (contains Clang and make)</li>
@@ -446,14 +446,14 @@ If you are using a device to read this post you are probably using at least one 
 <li><a href="https://osxfuse.github.io/">OSXFuse</a></li>
 </ul>
 
-<h2 id="fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012">FUSE API</h2>
+<h2 id="fuse-api">FUSE API</h2>
 
 <p>The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.</p>
 
 <p>The most complete source of documentation on what are the callbacks and their behavior is the <code>fuse.h</code> declaration file. You can find an online version <a href="https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577">here</a>.</p>
 
-<h2 id="example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012">Example project</h2>
+<h2 id="example-project">Example project</h2>
 
 <p>For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named <code>file</code> and its content.</p>
 
@@ -475,17 +475,17 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 </code></pre>
 
-<h3 id="cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012"><a href="https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt">CMakeLists.txt</a></h3>
+<h3 id="cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt"><a href="https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt">CMakeLists.txt</a></h3>
 
 <p>As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The <code>CMake/FindFuse.cmake</code> is needed in order to tell CMake where to find the FUSE related things while compiling/linking.</p>
 
-<h3 id="fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012"><a href="https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c">fuse-example.c</a></h3>
+<h3 id="fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c"><a href="https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c">fuse-example.c</a></h3>
 
 <p>Here&rsquo;s where the magic actually happen!</p>
 
 <p>In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.</p>
 
-<h4 id="getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012">getattr</h4>
+<h4 id="getattr">getattr</h4>
 
 <p>The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.</p>
 
@@ -523,11 +523,11 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 <p><a href="http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html">Here</a> you can find more information about <code>&lt;sys/stat.h&gt;</code></p>
 
-<h4 id="open:b00e3fe04fd8cc4ced6f5bb08e0d0012">open</h4>
+<h4 id="open">open</h4>
 
 <p>The open callback is called when the system requests for a file to be opened. Since we don&rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.</p>
 
-<h4 id="read:b00e3fe04fd8cc4ced6f5bb08e0d0012">read</h4>
+<h4 id="read">read</h4>
 
 <p>This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument <code>buf</code> with the content of those bytes.
@@ -555,7 +555,7 @@ As done in the getattr callback, here I&rsquo;m checking if the given path equal
 }
 </code></pre>
 
-<h4 id="readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012">readdir</h4>
+<h4 id="readdir">readdir</h4>
 
 <p>The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is <code>/</code>, this function always return its representation, we are doing it by filling <code>buf</code> with the two links for the upper directory <code>..</code> and current directory <code>.</code> and with the only file we have: <code>file</code>.</p>
@@ -574,7 +574,7 @@ Since at the moment the only available directory is <code>/</code>, this functio
 }
 </code></pre>
 
-<h4 id="main:b00e3fe04fd8cc4ced6f5bb08e0d0012">main</h4>
+<h4 id="main">main</h4>
 
 <p>Last but not least, the <code>main</code> function here is acting as a proxy to the <code>fuse_main</code> passing arguments through it and configuring it with the implemented FUSE operation callbacks via the <code>fuse_example_operations</code> variable.</p>
 
@@ -591,7 +591,7 @@ int main(int argc, char *argv[])
 }
 </code></pre>
 
-<h3 id="build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012">Build and run</h3>
+<h3 id="build-and-run">Build and run</h3>
 
 <p>Do you remember that you installed CMake, make, gcc and libfuse? It&rsquo;s time to use them!</p>
 
@@ -611,7 +611,7 @@ int main(int argc, char *argv[])
 
 <p>Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!</p>
 
-<h3 id="run:b00e3fe04fd8cc4ced6f5bb08e0d0012">Run!</h3>
+<h3 id="run">Run!</h3>
 
 <p>Before doing anything we need a mountpoint, so let&rsquo;s create the directory where the filesystem will be mounted:</p>
 
@@ -647,7 +647,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 <p>You can see the list of all mount options using <code>-h</code>.</p>
 
-<h2 id="thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012">Thoughts and notes</h2>
+<h2 id="thoughts-and-notes">Thoughts and notes</h2>
 
 <ul>
 <li>An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.</li>
@@ -655,7 +655,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 <li>By default, accessing the mounted filesystem for other users is not allowed.</li>
 </ul>
 
-<h2 id="other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012">Other resources</h2>
+<h2 id="other-resources">Other resources</h2>
 
 <ul>
 <li><a href="https://github.com/hanwen/go-fuse">Fuse bindings in Go</a></li>
@@ -904,6 +904,27 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -940,27 +961,6 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -1009,7 +1009,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -1020,8 +1020,8 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -1069,6 +1069,10 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

@@ -21,7 +21,7 @@
 
 &lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
 
-&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
+&lt;h2 id=&#34;il-protocollo-wamp&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
 
@@ -130,7 +130,7 @@
 &lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
 Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
 
-&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
+&lt;h2 id=&#34;crossbar&#34;&gt;Crossbar&lt;/h2&gt;
 
 &lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
 
@@ -190,7 +190,7 @@ Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo 
 &lt;/table&gt;
 &lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
+&lt;h2 id=&#34;e-php&#34;&gt;..e PHP?&lt;/h2&gt;
 
 &lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
 Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
@@ -243,7 +243,7 @@ $firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
 
 &lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
+&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
 
 &lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
 la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
@@ -262,7 +262,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
+&lt;h2 id=&#34;riferimenti&#34;&gt;Riferimenti&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;
@@ -282,7 +282,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
       <guid>http://engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/</guid>
       <description>
 
-&lt;h1 id=&#34;introduzione:2400028604853ea154d2cde8c70195ac&#34;&gt;Introduzione&lt;/h1&gt;
+&lt;h1 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h1&gt;
 
 &lt;p&gt;A* è un &lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_di_ricerca&#34;&gt;algoritmo di ricerca&lt;/a&gt; e ottimizzazione basato su grafi. Viene frequentemente impiegato nell&amp;rsquo;&lt;a href=&#34;https://it.wikipedia.org/wiki/Intelligenza_artificiale&#34;&gt;intelligenza artificiale&lt;/a&gt; perché in grado di gestire grafi ampi e
 indeterminati.&lt;/p&gt;
@@ -298,7 +298,7 @@ indeterminati.&lt;/p&gt;
 &lt;li&gt;Deve essere sempre noto il costo che separa due nodi adiacenti. (Nella maggioranza dei problemi tale valore è sempre unitario).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;l-euristica:2400028604853ea154d2cde8c70195ac&#34;&gt;L&amp;rsquo;euristica&lt;/h1&gt;
+&lt;h1 id=&#34;l-euristica&#34;&gt;L&amp;rsquo;euristica&lt;/h1&gt;
 
 &lt;p&gt;L&amp;rsquo;&lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_euristico&#34;&gt;algoritmo euristico&lt;/a&gt; ha il compito di stimare la distanza tra qualsiasi nodo e la soluzione.
 L&amp;rsquo;euristica influenza fortemente i risultati conseguiti da A*. Esso, in particolare, ne determina il tempo complessivo di esecuzione.
@@ -325,7 +325,7 @@ Dove E è l&amp;rsquo;insieme degli archi, s è il nodo soluzione e la funzione 
 &lt;p&gt;Una funzione euristica monotona semplifica ulteriormente la struttura di A* in quanto la lista dei nodi già visitati diviene superflua. In questi casi, la sola coda a priorità è sufficiente.
 Una funzione euristica monotona è sempre ammissibile.&lt;/p&gt;
 
-&lt;h1 id=&#34;struttura-dell-algoritmo:2400028604853ea154d2cde8c70195ac&#34;&gt;Struttura dell&amp;rsquo;algoritmo&lt;/h1&gt;
+&lt;h1 id=&#34;struttura-dell-algoritmo&#34;&gt;Struttura dell&amp;rsquo;algoritmo&lt;/h1&gt;
 
 &lt;p&gt;A* rientra nella categoria degli algoritmi di &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Best-first_search&#34;&gt;ricerca best-first&lt;/a&gt;&lt;/strong&gt;. Esso infatti esamina, passo dopo passo, i nodi che hanno il punteggio migliore.
 Esso tuttavia non è &lt;em&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_greedy&#34;&gt;greedy&lt;/a&gt;&lt;/em&gt; in quanto il punteggio non è determinato esclusivamente dall&amp;rsquo;euristica.&lt;/p&gt;
@@ -390,7 +390,7 @@ La funzione h corrisponde alla definizione dell&amp;rsquo;algoritmo euristico en
 end function
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;esempio-d-implementazione:2400028604853ea154d2cde8c70195ac&#34;&gt;Esempio d&amp;rsquo;implementazione&lt;/h1&gt;
+&lt;h1 id=&#34;esempio-d-implementazione&#34;&gt;Esempio d&amp;rsquo;implementazione&lt;/h1&gt;
 
 &lt;p&gt;Si analizza un&amp;rsquo;implementazione dell&amp;rsquo;algoritmo A* che consente di risolvere il problema del &lt;a href=&#34;https://it.wikipedia.org/wiki/Gioco_del_quindici&#34;&gt;gioco del 15&lt;/a&gt;.&lt;/p&gt;
 
@@ -417,7 +417,7 @@ Essa calcola, per ogni casella, la quantità minima di spostamenti necessari per
 
 &lt;p&gt;L&amp;rsquo;algoritmo mostra in output la lista dei movimenti che la casella vuota deve compiere per risolvere il problema.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusioni:2400028604853ea154d2cde8c70195ac&#34;&gt;Conclusioni&lt;/h1&gt;
+&lt;h1 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h1&gt;
 
 &lt;p&gt;A* è un algoritmo semplice ma dalle grandi potenzialità. Esso getta le basi per ulteriori metodologie di ricerca più complesse come &lt;a href=&#34;https://en.wikipedia.org/wiki/Iterative_deepening_A*&#34;&gt;IDA*&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/D*&#34;&gt;D*&lt;/a&gt;.
 La sua principale limitazione è nell&amp;rsquo;assenza di &lt;em&gt;vincoli sulla profondità di ricerca&lt;/em&gt;.

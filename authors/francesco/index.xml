@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Francesco on Facile.it Engineering</title>
+    <title>francesco on Facile.it Engineering</title>
     <link>http://engineering.facile.it/authors/francesco/</link>
-    <description>Recent content in Francesco on Facile.it Engineering</description>
+    <description>Recent content in francesco on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Apr 2015 00:00:00 +0000</lastBuildDate>
@@ -17,15 +17,15 @@
       <guid>http://engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</guid>
       <description>
 
-&lt;h2 id=&#34;definizione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Definizione:&lt;/h2&gt;
+&lt;h2 id=&#34;definizione&#34;&gt;Definizione:&lt;/h2&gt;
 
-&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design&#34;&gt;SOLID&lt;/a&gt;).  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
+&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)&#34;&gt;SOLID&lt;/a&gt;.  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;OPEN/CLOSE&lt;/em&gt; (la &lt;strong&gt;O&lt;/strong&gt; dell&amp;rsquo;acronimo), nella sua definizione più generale indica che:  un modulo (un oggetto, una classe o un gruppo di funzioni) debba essere &lt;strong&gt;aperto alle estensioni&lt;/strong&gt; ma &lt;strong&gt;chiuso alle modifiche&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;Questo principio tuttavia non è altro che la formalizzazione e il raggruppamento di concetti e linee guida già presenti da tempo nella programmazione ad oggetti.&lt;/p&gt;
 
-&lt;h3 id=&#34;chiuso-alle-modifiche:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
+&lt;h3 id=&#34;chiuso-alle-modifiche&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Chiuso alle modifiche che potrebbero aver effetto sul client&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -58,7 +58,7 @@ class ClasseEsterna
 &lt;li&gt;Abbiamo realizzato un &lt;em&gt;low coupling&lt;/em&gt; fra la l&amp;rsquo;&lt;strong&gt;oggettoInterno&lt;/strong&gt; e il client che utilizza la &lt;strong&gt;ClasseEsterna&lt;/strong&gt;, promuovendo, di fatto, il ==riuso== di &lt;strong&gt;oggettoInterno&lt;/strong&gt; in altri contesti.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;aperto-alle-estensioni:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
+&lt;h3 id=&#34;aperto-alle-estensioni&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Aperto ad essere esteso ed adattato&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -71,7 +71,7 @@ Un modulo che non può cambiare è solitamente considerato qualcosa che ha un co
 
 &lt;p&gt;Un esempio è il pattern chain of responsibility che vediamo di seguito.&lt;/p&gt;
 
-&lt;h3 id=&#34;chain-of-responsibility:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chain of responsibility:&lt;/h3&gt;
+&lt;h3 id=&#34;chain-of-responsibility&#34;&gt;Chain of responsibility:&lt;/h3&gt;
 
 &lt;p&gt;Questo pattern risolve un’ampia classe di situazioni nelle quali vi sia la necessità di eseguire operazioni &lt;strong&gt;sequenziali&lt;/strong&gt; e &lt;strong&gt;condizionali&lt;/strong&gt;.&lt;/p&gt;
 
@@ -150,7 +150,7 @@ class Gestore
 &lt;li&gt;È presente coesione fra l&amp;rsquo;interfaccia dei singoli anelli e il gestore. Purché si rispetti questo contratto è possibile esprimere anche logiche complesse.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;conclusione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Conclusione:&lt;/h3&gt;
+&lt;h3 id=&#34;conclusione&#34;&gt;Conclusione:&lt;/h3&gt;
 
 &lt;p&gt;È necessario &lt;strong&gt;scegliere le proprie battaglie&lt;/strong&gt; quando si parla di design, sia che si tratti di scelte macro-architetturali che piccole scelte sulla singola istanza.&lt;/p&gt;
 
@@ -160,7 +160,7 @@ class Gestore
 
 &lt;p&gt;L&amp;rsquo;obbiettivo finale dovrebbe essere sempre minimizzare l&amp;rsquo;impatto sul sistema dei (naturali) cambiamenti; Open/Close PV e low coupling sono alcune delle strategie più efficaci.&lt;/p&gt;
 
-&lt;h4 id=&#34;bibliografia:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Bibliografia&lt;/h4&gt;
+&lt;h4 id=&#34;bibliografia&#34;&gt;Bibliografia&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.utdallas.edu/~chung/SP/applying-uml-and-patterns.pdf&#34;&gt;Applying UML and Patterns – An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd ed.)&lt;/a&gt;&lt;/li&gt;

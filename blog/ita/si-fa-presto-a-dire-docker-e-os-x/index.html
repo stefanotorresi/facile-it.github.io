@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -362,30 +362,30 @@ In questo articolo vi mostrerò quello che è stato il mio personale percorso, n
 
 <p>Da sviluppatore web, la mia esigenza è di conservare i sorgenti sulla macchina host e condividerli con la VM; per la natura di PHP, la condivisione deve anche essere molto veloce, poiché ad ogni richiesta i files verranno letti nuovamente dal disco. Nulla di complicato, quindi sono partito dalla cosa più semplice.</p>
 
-<h2 id="boot2docker:aeddcc759c6f7b3a77b59769b654e3a1">boot2docker</h2>
+<h2 id="boot2docker">boot2docker</h2>
 
 <p>Probabilmente la soluzione più nota e diffusa, <a href="https://docs.docker.com/installation/mac/">boot2docker</a> è stata la mia prima scelta. Si installa con <code>homebrew</code> o <code>curl</code> e viene distribuita con una propria ISO, molto leggera e progettata appositamente per Docker, che gira su VirtualBox.
 L&rsquo;unica vera pecca è proprio il protocollo di condivisione nativo di VirtualBox, <code>vboxsf</code>, che risulta <strong>molto lento</strong> per progetti di medie dimensioni e rende il caricamento delle pagine lunghissimo.</p>
 
-<h2 id="docker-osx:aeddcc759c6f7b3a77b59769b654e3a1">docker-osx</h2>
+<h2 id="docker-osx">docker-osx</h2>
 
 <p>Decido di <a href="https://github.com/noplay/docker-osx">provarlo</a> incuriosito da un collega che ne aveva creato una versione modificata per supportare la <strong>condivisione NFS</strong>, ma nonostante questo non lo trovo migliore di boot2docker. Inoltre il suo sviluppo è precedente, e il progetto è stato abbandonato quando Docker ha iniziato a supportare ufficialmente boot2docker: è in effetti lo stesso sviluppatore a sconsigliarne l&rsquo;utilizzo da parte di nuovi utenti.</p>
 
-<h2 id="vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box:aeddcc759c6f7b3a77b59769b654e3a1">Vagrant e <a href="https://github.com/Parallels/boot2docker-vagrant-box">parallels/boot2docker</a></h2>
+<h2 id="vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box">Vagrant e <a href="https://github.com/Parallels/boot2docker-vagrant-box">parallels/boot2docker</a></h2>
 
 <p>Leggo su un blog che è possibile avere prestazioni migliori utilizzando un sistema di virtualizzazione alternativo a VirtualBox, come ad esempio Parallels o VMWare Fusion. Per entrambi esistono delle ISO modificate di boot2docker e la macchina dev&rsquo;essere configurata usando Vagrant. La mia scelta cade su <strong>Parallels</strong>, e finalmente riesco a creare <strong>una macchina performante</strong> con condivisione NFS.
 Purtroppo il mantenimento della ISO sembra non stare al passo con la frequenza di rilascio di Docker (ero fermo alla versione 1.4.1 quando la 1.5 era disponibile da diverse settimane), quindi decido di cambiare nuovamente soluzione.</p>
 
-<h2 id="vagrant-e-ubuntu:aeddcc759c6f7b3a77b59769b654e3a1">Vagrant e Ubuntu</h2>
+<h2 id="vagrant-e-ubuntu">Vagrant e Ubuntu</h2>
 
 <p>Dati i precedenti limiti e relativi fallimenti, tento una strada alternativa e <a href="https://github.com/ildanno/parallels-docker-vagrantfile">preparo un Vagrantfile</a> contenente tutto quello che mi serve: una macchina Ubuntu che gira su Parallels, repository di Docker aggiornato, condivisione NFS e possibilità di eseguire comandi al boot.
 Ma ancora una volta ho un problema fastidioso, che si verificava già con la soluzione precedente ma che (sbagliando) attribuivo a boot2docker. Ad ogni avvio della macchina, infatti, si crea <strong>un conflitto</strong> con OS X per l&rsquo;utilizzo di <strong>alcune risorse di rete</strong> e devo risolverle manualmente riavviando il demone NAT di Parallels. Inoltre scopro che con vagrant+parallels lo spazio utilizzato dal disco virtuale non è più recuperabile una volta allocato e il mio SSD è ormai alle strette.</p>
 
-<h2 id="vm-custom:aeddcc759c6f7b3a77b59769b654e3a1">VM custom</h2>
+<h2 id="vm-custom">VM custom</h2>
 
 <p>Preso dallo sconforto scelgo di avere il <strong>controllo completo</strong>: installo <strong>VMWare Fusion</strong> per avere un sistema di virtualizzazione più performante di VirtualBox, ma senza gli inconvenienti di Parallels, e configuro una macchina con Ubuntu server. Posso montare share NFS e ridimensionare il disco virtuale. Mi sembra una soluzione molto artigianale, ma funziona esattamente come voglio io e credo finalmente di avere trovato la mia pace. Ma non è così.</p>
 
-<h2 id="docker-machine:aeddcc759c6f7b3a77b59769b654e3a1">Docker Machine</h2>
+<h2 id="docker-machine">Docker Machine</h2>
 
 <p>Da alcune settimane è uscita una novità sul mercato, direttamente da casa Docker, che ho inizialmente ignorato. Si chiama <a href="https://docs.docker.com/machine/">Docker Machine</a> e ad una prima occhiata non sembra fare cose molto diverse da boot2docker, tant&rsquo;è che ne utilizza la stessa ISO. Però il fatto che venga rilasciato direttamente dalla casa madre mi fa ben sperare, vista anche l&rsquo;evoluzione avuta da altri tools come <a href="https://docs.docker.com/compose/">Docker Compose</a>, e dopo qualche tempo decido di dargli una possibilità.</p>
 
@@ -657,6 +657,27 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -693,27 +714,6 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -762,7 +762,7 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -773,8 +773,8 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -822,6 +822,10 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

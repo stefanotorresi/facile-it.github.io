@@ -20,7 +20,7 @@
 &lt;p&gt;As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
 We are very happy with those changes, but the reason behind this transition is not just a simple template change.&lt;/p&gt;
 
-&lt;h2 id=&#34;what-we-were-searching-for:07063062dea63684291e8b15e998f464&#34;&gt;What we were searching for&lt;/h2&gt;
+&lt;h2 id=&#34;what-we-were-searching-for&#34;&gt;What we were searching for&lt;/h2&gt;
 
 &lt;p&gt;Before, we were using an hosted CMS to run the blog, &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;. We were happy with the results, it wasn&amp;rsquo;t our concern to administrate the server or bother about other hosting stuff.&lt;/p&gt;
 
@@ -39,11 +39,11 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;support for &lt;strong&gt;multilanguage articles&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;git-and-the-github-pages:07063062dea63684291e8b15e998f464&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
+&lt;h2 id=&#34;git-and-the-github-pages&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
 
 &lt;p&gt;The first solution that came to us was obviously &lt;strong&gt;Git&lt;/strong&gt;, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub pages&lt;/a&gt; as an hosting solution: that is ideal, since we already have a &lt;a href=&#34;https://github.com/facile-it&#34;&gt;Github organization&lt;/a&gt; in place, so an organization homepage/site would perfectly fit the bill for our blog.&lt;/p&gt;
 
-&lt;h2 id=&#34;hugo:07063062dea63684291e8b15e998f464&#34;&gt;Hugo&lt;/h2&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
 
 &lt;p&gt;Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;: it&amp;rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:&lt;/p&gt;
 
@@ -53,7 +53,7 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;deploying:07063062dea63684291e8b15e998f464&#34;&gt;Deploying&lt;/h2&gt;
+&lt;h2 id=&#34;deploying&#34;&gt;Deploying&lt;/h2&gt;
 
 &lt;p&gt;The last step needed to smooth out our workflow was to find a &lt;strong&gt;deploy strategy&lt;/strong&gt;. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.&lt;/p&gt;
 
@@ -72,7 +72,7 @@ We are very happy with those changes, but the reason behind this transition is n
 
 &lt;p&gt;We started our Hugo site inside it, and we put the &lt;code&gt;./public&lt;/code&gt; in the &lt;code&gt;.gitIgnore&lt;/code&gt;, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of &lt;code&gt;publish: &amp;lt;last commit message from source&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;et-voilà-here-we-are:07063062dea63684291e8b15e998f464&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
+&lt;h2 id=&#34;et-voilà-here-we-are&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
 
 &lt;p&gt;So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!&lt;/p&gt;
 </description>

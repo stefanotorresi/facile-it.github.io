@@ -30,13 +30,13 @@
 
 &lt;p&gt;Ma al di là di questi vantaggi, &lt;strong&gt;&lt;em&gt;possiamo affermare che una test suite con un&amp;rsquo;alta percentuale di coverage sia realmente efficace?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;quando-un-test-è-efficace:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quando un test è efficace?&lt;/h3&gt;
+&lt;h3 id=&#34;quando-un-test-è-efficace&#34;&gt;Quando un test è efficace?&lt;/h3&gt;
 
 &lt;p&gt;Una test suite è considerata efficace se consente di rilevare una grande quantità di failure; d&amp;rsquo;altronde, ciò è proprio la finalità ultima del software testing.
 La massima efficacia è realizzabile solo applicando testing esaustivo ma, siccome ciò è spesso impraticabile, ci si accontenta di test più semplici con un&amp;rsquo;efficacia inferiore.
 È importante notare che, a differenza del coverage, il livello d&amp;rsquo;efficacia viene stabilito soggettivamente dallo sviluppatore.&lt;/p&gt;
 
-&lt;h3 id=&#34;quanti-tipi-di-coverage:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quanti tipi di coverage?&lt;/h3&gt;
+&lt;h3 id=&#34;quanti-tipi-di-coverage&#34;&gt;Quanti tipi di coverage?&lt;/h3&gt;
 
 &lt;p&gt;La copertura può essere misurata in molti modi differenti. Essa è sempre un rapporto tipicamente espresso in forma percentuale.&lt;/p&gt;
 
@@ -58,9 +58,9 @@ Qui di seguito è presente un elenco esemplificativo e non esaustivo delle diver
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;un-esempio-pratico:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Un esempio pratico&lt;/h3&gt;
+&lt;h3 id=&#34;un-esempio-pratico&#34;&gt;Un esempio pratico&lt;/h3&gt;
 
-&lt;h4 id=&#34;funzione-under-test:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Funzione under-test&lt;/h4&gt;
+&lt;h4 id=&#34;funzione-under-test&#34;&gt;Funzione under-test&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def weightedAverage(array):
 	sum = weightSum = 0     # Bug, dovrebbe essere: sum = weightSum = 0.0
@@ -87,7 +87,7 @@ Ad esempio: &lt;code&gt;[(10, 2), (11, 4), (5, 1)]&lt;/code&gt;&lt;/li&gt;
 L&amp;rsquo;errore è risolvibile modificando &lt;code&gt;sum = weightSum = 0&lt;/code&gt; in &lt;code&gt;sum = weightSum = 0.0&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;test-suite-1:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #1&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-1&#34;&gt;Test suite #1&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverage():
 	expected = 25.0
@@ -101,7 +101,7 @@ L&amp;rsquo;errore è risolvibile modificando &lt;code&gt;sum = weightSum = 0&lt
 
 &lt;p&gt;La test suite #1 ha statement coverage 100%, tuttavia non consente di rilevare i due errori menzionati in precedenza. Sebbene la coverage sia alta, l&amp;rsquo;efficacia è molto bassa.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-suite-2:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #2&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-2&#34;&gt;Test suite #2&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageDifferentWeight():
 	expected = 26.0
@@ -118,7 +118,7 @@ Il primo errore viene rilevato, il secondo no.
 È importante notare che questo problema viene risolto aggiungendo l&amp;rsquo;asserzione &lt;code&gt;type(actual) is float&lt;/code&gt;.&lt;br /&gt;
 Le asserzioni sono parte fondamentale del testing; date loro la giusta importanza! Ogni buona asserzione in più consente di migliorare sensibilmente l&amp;rsquo;efficacia dei vostri test case.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-suite-3:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #3&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-3&#34;&gt;Test suite #3&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageFloatResult():
 	expected = 27.2
@@ -132,7 +132,7 @@ Le asserzioni sono parte fondamentale del testing; date loro la giusta importanz
 
 &lt;p&gt;La test suite #3 ha statement coverage 100% ed è efficace perché ci consente di rilevare tutti gli errori.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto che percentuali di coverage alte non sempre implicano test efficaci.
 Tuttavia test suite efficaci hanno necessariamente bisogno di coverage rate alti.

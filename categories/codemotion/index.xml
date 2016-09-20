@@ -21,7 +21,7 @@
 
 &lt;p&gt;I talk sono in ordine cronologico.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:fd439f196c3125ae563b4be0e3399006&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#a-programmer-is&#34;&gt;A programmer is&amp;hellip;&lt;/a&gt;&lt;/li&gt;
@@ -42,7 +42,7 @@
 
 &lt;p&gt;&lt;a name=&#34;a-programmer-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;a-programmer-is:fd439f196c3125ae563b4be0e3399006&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;a-programmer-is&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Birgitta Boeckeler (&lt;a href=&#34;https://twitter.com/birgitta410&#34;&gt;@birgitta410&lt;/a&gt;)&lt;/li&gt;
@@ -63,7 +63,7 @@
 
 &lt;p&gt;&lt;a name=&#34;tdd-per-android&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-per-android:fd439f196c3125ae563b4be0e3399006&#34;&gt;TDD per Android&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-per-android&#34;&gt;TDD per Android&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Matteo Vaccari (&lt;a href=&#34;https://twitter.com/xpmatteo&#34;&gt;@xpmatteo&lt;/a&gt;)&lt;/li&gt;
@@ -80,7 +80,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;platformer-2d&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity:fd439f196c3125ae563b4be0e3399006&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
+&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paolo Cattaneo (&lt;a href=&#34;https://twitter.com/RavenTravelStd&#34;&gt;Raven Travel Studios&lt;/a&gt;)&lt;/li&gt;
@@ -91,7 +91,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;grocery-site-in-react&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react:fd439f196c3125ae563b4be0e3399006&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
+&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Robbie McCorkell (&lt;a href=&#34;https://twitter.com/robbiemccorkell&#34;&gt;@robbiemccorkell&lt;/a&gt;)&lt;/li&gt;
@@ -107,7 +107,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;alert-overload&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise:fd439f196c3125ae563b4be0e3399006&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
+&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Wells (&lt;a href=&#34;https://twitter.com/sarahjwells&#34;&gt;@sarahjwells&lt;/a&gt;)&lt;/li&gt;
@@ -138,14 +138,14 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;f-sharp-not-a-game&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;f-not-a-game:fd439f196c3125ae563b4be0e3399006&#34;&gt;F#, not a game!!!&lt;/h2&gt;
+&lt;h2 id=&#34;f-not-a-game&#34;&gt;F#, not a game!!!&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrea Magnorsky (&lt;a href=&#34;https://twitter.com/silverspoon&#34;&gt;@silverspoon&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;day 1 - 14:10 - 14:50 - Game Dev track (&lt;a href=&#34;http://www.roundcrisis.com/presentations/2015-codemotion-milan/#/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language&#34;&gt;F#&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language)&#34;&gt;F#&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nel giustificare un approccio più funzionale allo sviluppo software in generale, Andrea parla del bellissimo articolo &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;Out of the Tar Pit&lt;/a&gt;, di Ben Moseley e Peter Marks, già citato più volte su questo blog. L&amp;rsquo;eccessiva &lt;strong&gt;complessità&lt;/strong&gt; può rendere ingestibili i progetti software, compresi i giochi, e un linguaggio come F#, basato - come ogni linguaggio funzionale - sull&amp;rsquo;uso di strutture dati immbutabili, funzioni pure e &lt;em&gt;pattern matching&lt;/em&gt;, permette di gestire lo stato del sistema in maniera più semplice: F# risulta essere particolarmente potente per questo scopo, grazie agli &lt;a href=&#34;http://fsharpforfunandprofit.com/posts/convenience-active-patterns/&#34;&gt;&lt;em&gt;active patterns&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
@@ -153,7 +153,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;polymer-firebase&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase:fd439f196c3125ae563b4be0e3399006&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
+&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Michel Murabito (&lt;a href=&#34;https://twitter.com/michelmurabito&#34;&gt;@michelmurabito&lt;/a&gt;)&lt;/li&gt;
@@ -165,7 +165,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;offline-web-applications&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications:fd439f196c3125ae563b4be0e3399006&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
+&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christiane Kurz (&lt;a href=&#34;https://twitter.com/learnui5&#34;&gt;@learnui5&lt;/a&gt;)&lt;/li&gt;
@@ -178,7 +178,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;feature-gluttony&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;how-to-defeat-feature-gluttony:fd439f196c3125ae563b4be0e3399006&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
+&lt;h2 id=&#34;how-to-defeat-feature-gluttony&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kasia Mrowca (&lt;a href=&#34;https://twitter.com/MrowcaKasia&#34;&gt;@MrowcaKasia&lt;/a&gt;)&lt;/li&gt;
@@ -191,7 +191,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;webassembly&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript:fd439f196c3125ae563b4be0e3399006&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
+&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Boyan Mihaylov (&lt;a href=&#34;https://twitter.com/bmihaylov&#34;&gt;@bmihaylov&lt;/a&gt;)&lt;/li&gt;
@@ -229,7 +229,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;fatal-error&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error:fd439f196c3125ae563b4be0e3399006&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
+&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Ciro Continisio (&lt;a href=&#34;https://twitter.com/ccontinisio&#34;&gt;@ccontinisio&lt;/a&gt;), Ennio Pirolo (&lt;a href=&#34;https://twitter.com/santennio&#34;&gt;@SantEnnio&lt;/a&gt;)&lt;/li&gt;
@@ -240,7 +240,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;ancora-cpp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c:fd439f196c3125ae563b4be0e3399006&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
+&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Arena (&lt;a href=&#34;https://twitter.com/italiancpp&#34;&gt;@italiancpp&lt;/a&gt;)&lt;/li&gt;
@@ -251,7 +251,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;mobile-senza-unity&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk:fd439f196c3125ae563b4be0e3399006&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
+&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Giuseppe Navarria (&lt;a href=&#34;https://twitter.com/waveringradiant&#34;&gt;@WaveringRadiant&lt;/a&gt;)&lt;/li&gt;
@@ -262,7 +262,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;php-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;speeding-up-the-web-with-php-7:fd439f196c3125ae563b4be0e3399006&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;speeding-up-the-web-with-php-7&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;https://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;

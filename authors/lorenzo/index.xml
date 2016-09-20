@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lorenzo on Facile.it Engineering</title>
+    <title>lorenzo on Facile.it Engineering</title>
     <link>http://engineering.facile.it/authors/lorenzo/</link>
-    <description>Recent content in Lorenzo on Facile.it Engineering</description>
+    <description>Recent content in lorenzo on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Jan 2016 00:00:00 +0000</lastBuildDate>
@@ -19,7 +19,7 @@
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
 
-&lt;h1 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h1&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
@@ -59,15 +59,15 @@ If you are using a device to read this post you are probably using at least one 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
 &lt;img src=&#34;http://engineering.facile.it/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h1&gt;
+&lt;h1 id=&#34;getting-started-with-fuse&#34;&gt;Getting started with FUSE&lt;/h1&gt;
 
 &lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
 
-&lt;h2 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h2&gt;
+&lt;h2 id=&#34;build-dependencies&#34;&gt;Build dependencies&lt;/h2&gt;
 
 &lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
 
-&lt;h3 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h3&gt;
+&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;GCC or Clang&lt;/li&gt;
@@ -89,7 +89,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h3&gt;
+&lt;h3 id=&#34;mac-osx&#34;&gt;Mac OSX&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
@@ -106,14 +106,14 @@ If you are using a device to read this post you are probably using at least one 
 &lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h2&gt;
+&lt;h2 id=&#34;fuse-api&#34;&gt;FUSE API&lt;/h2&gt;
 
 &lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
 
 &lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h2&gt;
+&lt;h2 id=&#34;example-project&#34;&gt;Example project&lt;/h2&gt;
 
 &lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
 
@@ -135,17 +135,17 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
 
-&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
 
 &lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
 
-&lt;h4 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h4&gt;
+&lt;h4 id=&#34;getattr&#34;&gt;getattr&lt;/h4&gt;
 
 &lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
 
@@ -183,11 +183,11 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 &lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h4&gt;
+&lt;h4 id=&#34;open&#34;&gt;open&lt;/h4&gt;
 
 &lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
 
-&lt;h4 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h4&gt;
+&lt;h4 id=&#34;read&#34;&gt;read&lt;/h4&gt;
 
 &lt;p&gt;This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
@@ -215,7 +215,7 @@ As done in the getattr callback, here I&amp;rsquo;m checking if the given path e
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h4&gt;
+&lt;h4 id=&#34;readdir&#34;&gt;readdir&lt;/h4&gt;
 
 &lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
@@ -234,7 +234,7 @@ Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, 
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h4&gt;
+&lt;h4 id=&#34;main&#34;&gt;main&lt;/h4&gt;
 
 &lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
 
@@ -251,7 +251,7 @@ int main(int argc, char *argv[])
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h3&gt;
+&lt;h3 id=&#34;build-and-run&#34;&gt;Build and run&lt;/h3&gt;
 
 &lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
 
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 
 &lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
 
-&lt;h3 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h3&gt;
+&lt;h3 id=&#34;run&#34;&gt;Run!&lt;/h3&gt;
 
 &lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
 
@@ -307,7 +307,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h2&gt;
+&lt;h2 id=&#34;thoughts-and-notes&#34;&gt;Thoughts and notes&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
@@ -315,7 +315,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h2&gt;
+&lt;h2 id=&#34;other-resources&#34;&gt;Other resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
@@ -339,7 +339,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
       <guid>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
       <description>
 
-&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
+&lt;h2 id=&#34;in-locale-funzionava&#34;&gt;In locale funzionava&lt;/h2&gt;
 
 &lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
 
@@ -363,11 +363,11 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
 
-&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
+&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
 
 &lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
 
-&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
+&lt;h4 id=&#34;download-e-dipendenze&#34;&gt;Download e dipendenze&lt;/h4&gt;
 
 &lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
 
@@ -385,7 +385,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
+&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
 
 &lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
 
@@ -398,7 +398,7 @@ grunt dev
 
 &lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
 
-&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
+&lt;h6 id=&#34;il-file-docker-compose-yml&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
 
 &lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
 
@@ -439,7 +439,7 @@ grunt dev
 
 &lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
 
-&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
+&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
 
 &lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
 
@@ -510,7 +510,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
+&lt;h4 id=&#34;è-fatta&#34;&gt;È fatta!&lt;/h4&gt;
 
 &lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
 
@@ -526,7 +526,7 @@ REDIS_PORT
       <guid>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
       <description>
 
-&lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
+&lt;h1 id=&#34;it-works-on-my-machine&#34;&gt;It works on my machine&lt;/h1&gt;
 
 &lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
 
@@ -550,11 +550,11 @@ REDIS_PORT
 
 &lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
 
-&lt;h1 id=&#34;bookshelf-application:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Bookshelf application&lt;/h1&gt;
+&lt;h1 id=&#34;bookshelf-application&#34;&gt;Bookshelf application&lt;/h1&gt;
 
 &lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
 
-&lt;h2 id=&#34;download-and-dependencies:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Download and dependencies&lt;/h2&gt;
+&lt;h2 id=&#34;download-and-dependencies&#34;&gt;Download and dependencies&lt;/h2&gt;
 
 &lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
 
@@ -572,7 +572,7 @@ REDIS_PORT
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running development environment&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running-development-environment&#34;&gt;Up and running development environment&lt;/h2&gt;
 
 &lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
 
@@ -585,7 +585,7 @@ grunt dev
 
 &lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
 
-&lt;h4 id=&#34;the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;the-docker-compose-yml&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
 
@@ -626,7 +626,7 @@ grunt dev
 
 &lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
 
-&lt;h2 id=&#34;up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running production environment&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running-production-environment&#34;&gt;Up and running production environment&lt;/h2&gt;
 
 &lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
 
@@ -697,7 +697,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;you-are-done:824629f989995bd0ef3a2fb42ac10127&#34;&gt;You are done!&lt;/h1&gt;
+&lt;h1 id=&#34;you-are-done&#34;&gt;You are done!&lt;/h1&gt;
 
 &lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
 
@@ -728,7 +728,7 @@ REDIS_PORT
 &lt;li&gt;Implementazione di un corposo set di nuove feature, come vedremo a breve.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;performance:815871a857d9019d8dba5e4073c801e4&#34;&gt;Performance&lt;/h2&gt;
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
 
 &lt;p&gt;Sull&amp;rsquo;onda degli ottimi risultati ottenuti dal team di HHVM, anche il team degli internals ha iniziato a lavorare estensivamente al miglioramento delle performance dell&amp;rsquo;implementazione originale di PHP. Gli impressionanti risultati (si parla di un miglioramento di circa il 100%) sono stati dimostrati da vari benchmark fatti sui vari CMS/Framework esistenti. Eccone di seguito due tra i più significativi:&lt;/p&gt;
 
@@ -737,11 +737,11 @@ REDIS_PORT
 &lt;li&gt;&lt;a href=&#34;https://pages.zend.com/rs/zendtechnologies/images/PHP7-Performance%20Infographic.pdf&#34;&gt;Infografica Zend&lt;/a&gt; - Benchmark di vari CMS/Framework (Magento 1.9, Wordpress, Drupal, Zend Framework 2, Laravel) su PHP 5.6 PHP 7 e HHVM 3.7. Contiene inoltre una comparazione tra PHP e altri linguaggi di scripting.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;features:815871a857d9019d8dba5e4073c801e4&#34;&gt;Features&lt;/h2&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
 
 &lt;p&gt;Qui di seguito riportiamo alcune delle feature che ci hanno colpito maggiormente; l&amp;rsquo;elenco seguente non è da considerarsi esaustivo rispetto a tutte le feature di PHP 7: una lista completa di tutte le RFC può essere trovata &lt;a href=&#34;https://wiki.php.net/rfc#php_70&#34;&gt;qui&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;null-coalesce-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Null Coalesce operator&lt;/h3&gt;
+&lt;h3 id=&#34;null-coalesce-operator&#34;&gt;Null Coalesce operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/isset_ternary&#34;&gt;Null Coalesce Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -755,7 +755,7 @@ $name = isset($_GET[’name’]) ? $_GET[’name’] : &amp;quot;Name&amp;quot;;
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/SnCQY&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;uniform-variable-syntax:815871a857d9019d8dba5e4073c801e4&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
+&lt;h3 id=&#34;uniform-variable-syntax&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/uniform_variable_syntax&#34;&gt;Uniform Variable Syntax&lt;/a&gt;&lt;/p&gt;
 
@@ -793,7 +793,7 @@ echo [$p, &#39;getName&#39;]();
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/bEU7t&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;group-use-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Group use declarations&lt;/h3&gt;
+&lt;h3 id=&#34;group-use-declarations&#34;&gt;Group use declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/group_use_declarations&#34;&gt;Group Use Declarations&lt;/a&gt;&lt;/p&gt;
 
@@ -811,7 +811,7 @@ use Zend\ModuleManager\{
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;combined-comparison-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Combined Comparison operator&lt;/h3&gt;
+&lt;h3 id=&#34;combined-comparison-operator&#34;&gt;Combined Comparison operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/combined-comparison-operator&#34;&gt;Combined Comparison (Spaceship) Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -831,7 +831,7 @@ echo 200 &amp;lt;=&amp;gt; 200; // 0
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/PV5kq&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;context-sensitive-lexer:815871a857d9019d8dba5e4073c801e4&#34;&gt;Context sensitive lexer&lt;/h3&gt;
+&lt;h3 id=&#34;context-sensitive-lexer&#34;&gt;Context sensitive lexer&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/context_sensitive_lexer&#34;&gt;Context Sensitive Lexer&lt;/a&gt;&lt;/p&gt;
 
@@ -847,7 +847,7 @@ class Collection {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;anonymous-classes:815871a857d9019d8dba5e4073c801e4&#34;&gt;Anonymous classes&lt;/h3&gt;
+&lt;h3 id=&#34;anonymous-classes&#34;&gt;Anonymous classes&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/anonymous_classes&#34;&gt;Anonymous Classes&lt;/a&gt;&lt;/p&gt;
 
@@ -881,7 +881,7 @@ echo new PersonPrinter(new class implements PersonInterface {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;scalar-type-hints:815871a857d9019d8dba5e4073c801e4&#34;&gt;Scalar type hints&lt;/h3&gt;
+&lt;h3 id=&#34;scalar-type-hints&#34;&gt;Scalar type hints&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/scalar_type_hints&#34;&gt;Scalar Type Hints&lt;/a&gt;&lt;/p&gt;
 
@@ -910,7 +910,7 @@ printIntValue(5.9); // int(5)
 &lt;p&gt;Nell&amp;rsquo;esempio precedente stiamo dichiarando una funzione &lt;code&gt;printIntValue&lt;/code&gt; la quale richiede che &lt;code&gt;$value&lt;/code&gt; sia di tipo &lt;code&gt;int&lt;/code&gt;; quindi andiamo a chiamare la funzione stessa passando invece &lt;code&gt;$value&lt;/code&gt; come &lt;code&gt;float(5.9)&lt;/code&gt;.
 Siccome al primo statement non abbiamo dichiarato i tipi come rigorosi, PHP costringerà il casting del valore passato a &lt;code&gt;int&lt;/code&gt;, troncando la parte dopo la virgola e convertendolo in &lt;code&gt;int(5)&lt;/code&gt;. Se invece avessimo dichiarato i tipi come rigorosi avremmo ottenuto un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;return-type-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Return Type Declarations&lt;/h3&gt;
+&lt;h3 id=&#34;return-type-declarations&#34;&gt;Return Type Declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/return_types&#34;&gt;Return Type Declarations&lt;/a&gt;
 In PHP 7 è stata introdotta la possiblità di dichiarare il tipo di ritorno di una funzione.
@@ -937,7 +937,7 @@ class DateTimeGenerator
 
 &lt;p&gt;Nell&amp;rsquo;esempio precedente abbiamo dichiarato una classe &lt;code&gt;DateTimeGenerator&lt;/code&gt; che contiene un metodo &lt;code&gt;getDateTime()&lt;/code&gt; che deve ritornare necessariamente un&amp;rsquo;instanza di &lt;code&gt;\DateTime&lt;/code&gt;. Nel caso questo non avvenisse otterremmo ancora una volta un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;bind-closure-on-call:815871a857d9019d8dba5e4073c801e4&#34;&gt;Bind Closure on Call&lt;/h3&gt;
+&lt;h3 id=&#34;bind-closure-on-call&#34;&gt;Bind Closure on Call&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/closure_apply&#34;&gt;Closure::call&lt;/a&gt;&lt;/p&gt;
 
@@ -960,7 +960,7 @@ echo $getValue-&amp;gt;call(new DummyClass);
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/YKtPC&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;filtered-unserialize:815871a857d9019d8dba5e4073c801e4&#34;&gt;Filtered Unserialize&lt;/h3&gt;
+&lt;h3 id=&#34;filtered-unserialize&#34;&gt;Filtered Unserialize&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/secure_unserialize&#34;&gt;Filtered Unserialize&lt;/a&gt;&lt;/p&gt;
 
@@ -972,7 +972,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;pre&gt;&lt;code&gt;$data = unserialize($foo, [&amp;quot;allowed_classes&amp;quot; =&amp;gt; [&amp;quot;OnePossibleClass&amp;quot;, &amp;quot;AnotherPossibileClass&amp;quot;]);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;conclusioni:815871a857d9019d8dba5e4073c801e4&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;Ora andate! Testate le vostre applicazioni su PHP 7 e, se potete, aiutate a migrare le estensioni. Non sapete come fare? No problem, chiunque può iniziare a fare qualcosa con i giusti punti di partenza.&lt;/p&gt;
 
@@ -1019,7 +1019,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;li&gt;Automatizza il deploy&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;soluzioni-per-la-ci-ed-il-testing-automatico:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Soluzioni per la CI ed il testing automatico&lt;/h2&gt;
+&lt;h2 id=&#34;soluzioni-per-la-ci-ed-il-testing-automatico&#34;&gt;Soluzioni per la CI ed il testing automatico&lt;/h2&gt;
 
 &lt;p&gt;Negli ultimi anni si sono diffuse molte &lt;strong&gt;soluzioni software&lt;/strong&gt; che permettono di automatizzare il processo di &lt;strong&gt;build e testing&lt;/strong&gt; a partire da un semplice &lt;em&gt;push&lt;/em&gt; sulla mainline di sviluppo. Ognuno di queste ha le sue peculiari caratteristiche che la rendono diverso dagli altri.&lt;/p&gt;
 
@@ -1039,7 +1039,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;La nostra scelta è ricaduta su &lt;a href=&#34;https://github.com/drone/drone&#34;&gt;Drone&lt;/a&gt;, una piattaforma di continuous integration piuttosto giovane, ma sufficientemente stabile per un utilizzo in produzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;drone-build-attraverso-container-docker:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Drone: build attraverso container Docker&lt;/h2&gt;
+&lt;h2 id=&#34;drone-build-attraverso-container-docker&#34;&gt;Drone: build attraverso container Docker&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/drone/drone&#34;&gt;Drone&lt;/a&gt;, rilasciato con licenza Apache 2.0, è una piattaforma di CI che automatizza le build &lt;strong&gt;all&amp;rsquo;interno di container Docker&lt;/strong&gt;: la soluzione ideale in un ambiente dove &lt;strong&gt;numerosi gruppi di lavoro&lt;/strong&gt; utilizzano &lt;strong&gt;ambienti molto diversi&lt;/strong&gt; (per sistema operativo, versioni di interpreti di linguaggio, sistemi di database o caching) ma vogliono centralizzare i processi di Continuous Integration.&lt;/p&gt;
 
@@ -1059,7 +1059,7 @@ in questo modo è possibile scrivere &lt;strong&gt;plugin in qualsiasi linguaggi
 
 &lt;p&gt;Quella che segue, è una guida per &lt;strong&gt;l&amp;rsquo;installazione di Drone&lt;/strong&gt; (a sua volta in un container!), molto simile a quella  utilizzata in Facile.it.&lt;/p&gt;
 
-&lt;h2 id=&#34;prerequisiti:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Prerequisiti&lt;/h2&gt;
+&lt;h2 id=&#34;prerequisiti&#34;&gt;Prerequisiti&lt;/h2&gt;
 
 &lt;p&gt;Per testare questa guida abbiamo utilizzato Docker 1.6.2 e &lt;a href=&#34;https://docs.docker.com/compose/install/&#34;&gt;docker-compose 1.2.0&lt;/a&gt;.
 Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per definire convenientemente una configurazione complessa&lt;/strong&gt; (di solito multi-container) in un singolo file &lt;em&gt;yaml&lt;/em&gt;, potendo poi lanciare tutti i container in essa definiti con un singolo conveniente comando anzichè con molti tediosi &lt;code&gt;docker run&lt;/code&gt;.&lt;/p&gt;
@@ -1073,13 +1073,13 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Una volta entrati nella cartella del gist, troviamo due file, &lt;em&gt;docker-compose.yml&lt;/em&gt; e &lt;em&gt;nginx.conf&lt;/em&gt;,  descritti in dettaglio di seguito:&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-compose-yml:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;docker-compose.yml&lt;/h2&gt;
+&lt;h2 id=&#34;docker-compose-yml&#34;&gt;docker-compose.yml&lt;/h2&gt;
 
 &lt;p&gt;Questo file contiene la configurazione dei container che ci permetterà di mettere insieme il nostro ambiente.&lt;/p&gt;
 
 &lt;p&gt;Al suo interno abbiamo &lt;strong&gt;tre nodi&lt;/strong&gt; principali: &lt;em&gt;drone&lt;/em&gt;, &lt;em&gt;nginx&lt;/em&gt; e &lt;em&gt;wall&lt;/em&gt;; analizziamoli singolarmente:&lt;/p&gt;
 
-&lt;h3 id=&#34;drone:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;DRONE&lt;/h3&gt;
+&lt;h3 id=&#34;drone&#34;&gt;DRONE&lt;/h3&gt;
 
 &lt;p&gt;Come abbiamo detto in precedenza Drone supporta i vari servizi di hosting repository git, sia open source che PaaS. Per questa guida abbiamo scelto l&amp;rsquo;integrazione più semplice e immediata, quella con &lt;strong&gt;GitHub&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1102,11 +1102,11 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Un&amp;rsquo;altra riga di questo nodo che è degna di nota è &lt;code&gt;privileged: true&lt;/code&gt;: è infatti &lt;strong&gt;necessario che il container contenente Drone giri in modalità privilegiata&lt;/strong&gt;, per disattivare quei controlli di sicurezza che altrimenti non permetterebbero al container di operare alla creazione, distruzione e modifica di altri container.&lt;/p&gt;
 
-&lt;h3 id=&#34;wall:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;WALL&lt;/h3&gt;
+&lt;h3 id=&#34;wall&#34;&gt;WALL&lt;/h3&gt;
 
 &lt;p&gt;In questo nodo è necessario impostare la variabile d&amp;rsquo;ambiente &lt;code&gt;API_TOKEN&lt;/code&gt;, necessaria ad autorizzare la dashboard di visualizzazione delle build: il token si trova nel proprio profilo utente di Drone una volta avviato. Questa configurazione può essere quindi completata solo dopo aver avviato Drone per la prima volta.&lt;/p&gt;
 
-&lt;h3 id=&#34;nginx:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;NGINX&lt;/h3&gt;
+&lt;h3 id=&#34;nginx&#34;&gt;NGINX&lt;/h3&gt;
 
 &lt;p&gt;Questo nodo fa il binding della porta 80 dell&amp;rsquo;host verso la porta 80 del container e condivide due volumi, rispettivamente:&lt;/p&gt;
 
@@ -1119,7 +1119,7 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Al suo interno contiene già due &lt;em&gt;server blocks&lt;/em&gt;, i quali a loro volta contengono le direttive &lt;code&gt;server_name&lt;/code&gt;, rispettivamente &lt;code&gt;drone.local&lt;/code&gt; per Drone e &lt;code&gt;wall.drone.local&lt;/code&gt; per il Drone Wall.&lt;/p&gt;
 
-&lt;h2 id=&#34;up-and-running:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Up And Running&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running&#34;&gt;Up And Running&lt;/h2&gt;
 
 &lt;p&gt;Ora che abbiamo completato la configurazione, possiamo semplicemente avviare i nostri container con questo comando, che va eseguito nella cartella contentente il clone del gist di sopra:&lt;/p&gt;
 

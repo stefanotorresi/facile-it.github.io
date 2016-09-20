@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -72,7 +72,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -118,28 +118,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -184,7 +184,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -195,7 +195,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -206,7 +206,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -217,7 +217,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -242,15 +242,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -392,7 +392,7 @@ ga('send', 'pageview');
 <li>Automatizza il deploy</li>
 </ul>
 
-<h2 id="soluzioni-per-la-ci-ed-il-testing-automatico:3d304be90cd6edeb527d6149ec7b0239">Soluzioni per la CI ed il testing automatico</h2>
+<h2 id="soluzioni-per-la-ci-ed-il-testing-automatico">Soluzioni per la CI ed il testing automatico</h2>
 
 <p>Negli ultimi anni si sono diffuse molte <strong>soluzioni software</strong> che permettono di automatizzare il processo di <strong>build e testing</strong> a partire da un semplice <em>push</em> sulla mainline di sviluppo. Ognuno di queste ha le sue peculiari caratteristiche che la rendono diverso dagli altri.</p>
 
@@ -412,7 +412,7 @@ ga('send', 'pageview');
 
 <p>La nostra scelta è ricaduta su <a href="https://github.com/drone/drone">Drone</a>, una piattaforma di continuous integration piuttosto giovane, ma sufficientemente stabile per un utilizzo in produzione.</p>
 
-<h2 id="drone-build-attraverso-container-docker:3d304be90cd6edeb527d6149ec7b0239">Drone: build attraverso container Docker</h2>
+<h2 id="drone-build-attraverso-container-docker">Drone: build attraverso container Docker</h2>
 
 <p><a href="https://github.com/drone/drone">Drone</a>, rilasciato con licenza Apache 2.0, è una piattaforma di CI che automatizza le build <strong>all&rsquo;interno di container Docker</strong>: la soluzione ideale in un ambiente dove <strong>numerosi gruppi di lavoro</strong> utilizzano <strong>ambienti molto diversi</strong> (per sistema operativo, versioni di interpreti di linguaggio, sistemi di database o caching) ma vogliono centralizzare i processi di Continuous Integration.</p>
 
@@ -432,7 +432,7 @@ in questo modo è possibile scrivere <strong>plugin in qualsiasi linguaggio</str
 
 <p>Quella che segue, è una guida per <strong>l&rsquo;installazione di Drone</strong> (a sua volta in un container!), molto simile a quella  utilizzata in Facile.it.</p>
 
-<h2 id="prerequisiti:3d304be90cd6edeb527d6149ec7b0239">Prerequisiti</h2>
+<h2 id="prerequisiti">Prerequisiti</h2>
 
 <p>Per testare questa guida abbiamo utilizzato Docker 1.6.2 e <a href="https://docs.docker.com/compose/install/">docker-compose 1.2.0</a>.
 Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire convenientemente una configurazione complessa</strong> (di solito multi-container) in un singolo file <em>yaml</em>, potendo poi lanciare tutti i container in essa definiti con un singolo conveniente comando anzichè con molti tediosi <code>docker run</code>.</p>
@@ -446,13 +446,13 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
 
 <p>Una volta entrati nella cartella del gist, troviamo due file, <em>docker-compose.yml</em> e <em>nginx.conf</em>,  descritti in dettaglio di seguito:</p>
 
-<h2 id="docker-compose-yml:3d304be90cd6edeb527d6149ec7b0239">docker-compose.yml</h2>
+<h2 id="docker-compose-yml">docker-compose.yml</h2>
 
 <p>Questo file contiene la configurazione dei container che ci permetterà di mettere insieme il nostro ambiente.</p>
 
 <p>Al suo interno abbiamo <strong>tre nodi</strong> principali: <em>drone</em>, <em>nginx</em> e <em>wall</em>; analizziamoli singolarmente:</p>
 
-<h3 id="drone:3d304be90cd6edeb527d6149ec7b0239">DRONE</h3>
+<h3 id="drone">DRONE</h3>
 
 <p>Come abbiamo detto in precedenza Drone supporta i vari servizi di hosting repository git, sia open source che PaaS. Per questa guida abbiamo scelto l&rsquo;integrazione più semplice e immediata, quella con <strong>GitHub</strong>.</p>
 
@@ -475,11 +475,11 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
 
 <p>Un&rsquo;altra riga di questo nodo che è degna di nota è <code>privileged: true</code>: è infatti <strong>necessario che il container contenente Drone giri in modalità privilegiata</strong>, per disattivare quei controlli di sicurezza che altrimenti non permetterebbero al container di operare alla creazione, distruzione e modifica di altri container.</p>
 
-<h3 id="wall:3d304be90cd6edeb527d6149ec7b0239">WALL</h3>
+<h3 id="wall">WALL</h3>
 
 <p>In questo nodo è necessario impostare la variabile d&rsquo;ambiente <code>API_TOKEN</code>, necessaria ad autorizzare la dashboard di visualizzazione delle build: il token si trova nel proprio profilo utente di Drone una volta avviato. Questa configurazione può essere quindi completata solo dopo aver avviato Drone per la prima volta.</p>
 
-<h3 id="nginx:3d304be90cd6edeb527d6149ec7b0239">NGINX</h3>
+<h3 id="nginx">NGINX</h3>
 
 <p>Questo nodo fa il binding della porta 80 dell&rsquo;host verso la porta 80 del container e condivide due volumi, rispettivamente:</p>
 
@@ -492,7 +492,7 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
 
 <p>Al suo interno contiene già due <em>server blocks</em>, i quali a loro volta contengono le direttive <code>server_name</code>, rispettivamente <code>drone.local</code> per Drone e <code>wall.drone.local</code> per il Drone Wall.</p>
 
-<h2 id="up-and-running:3d304be90cd6edeb527d6149ec7b0239">Up And Running</h2>
+<h2 id="up-and-running">Up And Running</h2>
 
 <p>Ora che abbiamo completato la configurazione, possiamo semplicemente avviare i nostri container con questo comando, che va eseguito nella cartella contentente il clone del gist di sopra:</p>
 
@@ -732,6 +732,27 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -768,27 +789,6 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -837,7 +837,7 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -848,8 +848,8 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -897,6 +897,10 @@ Per chi non conoscesse Compose, basti sapere che è un <strong>tool per definire
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

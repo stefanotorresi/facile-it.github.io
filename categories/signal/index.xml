@@ -113,7 +113,7 @@ public final class Emitter&amp;lt;Subtype&amp;gt; {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;the-megacontroller:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;The megacontroller&lt;/h2&gt;
+&lt;h2 id=&#34;the-megacontroller&#34;&gt;The megacontroller&lt;/h2&gt;
 
 &lt;p&gt;Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:&lt;/p&gt;
 
@@ -140,7 +140,7 @@ public final class Emitter&amp;lt;Subtype&amp;gt; {
 
 &lt;p&gt;We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we&amp;rsquo;re going to try and think with signals.&lt;/p&gt;
 
-&lt;h2 id=&#34;the-model:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;The model&lt;/h2&gt;
+&lt;h2 id=&#34;the-model&#34;&gt;The model&lt;/h2&gt;
 
 &lt;p&gt;For example, if the model changes we need to update the text shown on the &lt;code&gt;MainPage&lt;/code&gt;: a possible way to manage this could be to create a &lt;code&gt;ModelController&lt;/code&gt; class, which holds the model, and &lt;em&gt;emits a signal&lt;/em&gt; each time the model changes. Then, the &lt;code&gt;MainPage&lt;/code&gt; could &lt;em&gt;react&lt;/em&gt; to this signal, and change the UI accordingly. A nice to way to do this is injecting the &lt;code&gt;ModelController&lt;/code&gt; in the &lt;code&gt;MainPage&lt;/code&gt; constructor, so that &lt;code&gt;MainPage&lt;/code&gt; can establish the appropriate bindings:&lt;/p&gt;
 
@@ -156,7 +156,7 @@ init(feedbackModelController: ModelController&amp;lt;FeedbackModel&amp;gt;) {
 
 &lt;p&gt;An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the &lt;code&gt;viewDidLoad&lt;/code&gt; method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the &lt;code&gt;ModelController&lt;/code&gt; is available: the line &lt;code&gt;viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify&lt;/code&gt; means that when the &lt;code&gt;viewReadyEmitter&lt;/code&gt;, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to &lt;em&gt;notify&lt;/em&gt; its current value to all the observers; this way we don&amp;rsquo;t need to manually update the views in the &lt;code&gt;viewDidLoad&lt;/code&gt; method: everything is connected, and the signals will &lt;strong&gt;propagate&lt;/strong&gt; according to the declarative bindings.&lt;/p&gt;
 
-&lt;h2 id=&#34;handling-page-creation-and-presentation:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Handling page creation and presentation&lt;/h2&gt;
+&lt;h2 id=&#34;handling-page-creation-and-presentation&#34;&gt;Handling page creation and presentation&lt;/h2&gt;
 
 &lt;p&gt;Transitioning between pages is one the key points in iOS programming: page presentation has to be &lt;strong&gt;predictable and smooth&lt;/strong&gt;, to avoid a confusing user experience. One of the main premises of the &lt;code&gt;UIViewController&lt;/code&gt; class was and still is the creation of a modular hierarchy of views, that&amp;rsquo;s independent from the way it&amp;rsquo;s presented to the user: that way we can easily reuse &lt;strong&gt;the same&lt;/strong&gt; view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic &lt;em&gt;inside&lt;/em&gt; the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.&lt;/p&gt;
 
@@ -175,7 +175,7 @@ pageFactory.signalMakeSelectionPage
 
 &lt;p&gt;In the code just shown, the signals that are triggered when the pages are initialized are &lt;em&gt;flatMapped&lt;/em&gt; to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the &lt;em&gt;second&lt;/em&gt; signal will be available only when the &lt;em&gt;first&lt;/em&gt; signal is triggered: the &lt;code&gt;flatMap&lt;/code&gt; method will let us reference a signal that is not yet available. The &lt;code&gt;inAnyCase&lt;/code&gt; function is used because &lt;code&gt;NavigationHandler&lt;/code&gt; is not interested in the &lt;em&gt;content&lt;/em&gt; of the signals, but just the fact that they are triggered; the content is going to be handled by another class: &lt;code&gt;FeedbackCollector&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;composing-signals:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Composing signals&lt;/h2&gt;
+&lt;h2 id=&#34;composing-signals&#34;&gt;Composing signals&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;FeedbackCollector&lt;/code&gt; has the responsibility of &lt;em&gt;collecting the whole feedback&lt;/em&gt;: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it&amp;rsquo;s the result of &lt;strong&gt;many different interactions&lt;/strong&gt; from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:&lt;/p&gt;
 
@@ -208,7 +208,7 @@ pageFactory.signalMakeSelectionPage
 
 &lt;p&gt;&lt;code&gt;ModelController&lt;/code&gt;&amp;rsquo;s &lt;code&gt;deltaSignal&lt;/code&gt; is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by &lt;em&gt;filtering&lt;/em&gt; the &lt;code&gt;deltaSignal&lt;/code&gt;, because we need a signal that is triggered only when the new feedback is different from the previous and positive.&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusion:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:&lt;/p&gt;
 

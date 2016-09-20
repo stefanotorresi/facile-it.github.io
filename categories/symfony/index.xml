@@ -19,7 +19,7 @@
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -41,7 +41,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -56,7 +56,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -77,7 +77,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -99,7 +99,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -120,7 +120,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
@@ -130,13 +130,13 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -166,7 +166,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
 
-&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
+&lt;h2 id=&#34;il-protocollo-wamp&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
 
@@ -275,7 +275,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
 Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
 
-&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
+&lt;h2 id=&#34;crossbar&#34;&gt;Crossbar&lt;/h2&gt;
 
 &lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
 
@@ -335,7 +335,7 @@ Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo 
 &lt;/table&gt;
 &lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
+&lt;h2 id=&#34;e-php&#34;&gt;..e PHP?&lt;/h2&gt;
 
 &lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
 Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
@@ -388,7 +388,7 @@ $firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
 
 &lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
+&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
 
 &lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
 la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
@@ -407,7 +407,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
+&lt;h2 id=&#34;riferimenti&#34;&gt;Riferimenti&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;

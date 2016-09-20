@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -365,7 +365,7 @@ ga('send', 'pageview');
 
 <p>In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &ldquo;in casa&rdquo;?.</p>
 
-<h2 id="mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792">Mettere i dati in cassaforte</h2>
+<h2 id="mettere-i-dati-in-cassaforte">Mettere i dati in cassaforte</h2>
 
 <p>In caso di dati immagazzinati, ad esempio, all&rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &ldquo;sicuro&rdquo; all&rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
 Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
@@ -377,27 +377,27 @@ Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo po
 
 <p>La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.</p>
 
-<h2 id="algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Crittografici Simmetrici e Asimmetrici</h2>
+<h2 id="algoritmi-crittografici-simmetrici-e-asimmetrici">Algoritmi Crittografici Simmetrici e Asimmetrici</h2>
 
 <p>Con <em>algoritmi crittografici</em> si intendono tutti quei <strong>processi e procedure finalizzati ad ottenere un dato &ldquo;offuscato&rdquo; in modo da non essere comprensibile/intelligibile</strong> da persone non autorizzate a leggerlo.</p>
 
-<h3 id="algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Simmetrici</h3>
+<h3 id="algoritmi-simmetrici">Algoritmi Simmetrici</h3>
 
 <p>Questa tipologia di algoritmi si basa sull&rsquo;uso di chiavi di cifratura dette <strong>simmetriche</strong> che permettono di cifrare e decifrare dati <strong>utilizzando la medesima chiave crittografica</strong>.
 Un esempio è <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> (Advanced Encryption Standard), evoluzione dell&rsquo;algoritmo <a href="https://en.wikipedia.org/wiki/Rijndael_key_schedule">Rijndael</a> le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&rsquo;ottima velocità, sia che venga implementato via hardware che software.</p>
 
 <p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png" alt="AES" /></p>
 
-<h3 id="algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792">Algoritmi Asimmetrici</h3>
+<h3 id="algoritmi-asimmetrici">Algoritmi Asimmetrici</h3>
 
 <p>Gli algoritmi asimmetrici si distinguono dai precedenti per l&rsquo;utilizzo di <strong>due chiavi crittografiche distinte</strong>, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
 Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene <strong>liberamente scambiata</strong>, mentre la chiave privata <strong>rimane a conoscenza solo di coloro che devono poter leggere i dati</strong> o i messaggi scambiati.
 La particolarità che caratterizza queste chiavi è l&rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&rsquo;algoritmo, l&rsquo;unico metodo per ottenere tale chiave è il <strong>brute force</strong> sui dati stessi.
-In questo caso l&rsquo;esempio per eccellenza è <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">RSA</a>), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.</p>
+In questo caso l&rsquo;esempio per eccellenza è <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA</a>, uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.</p>
 
 <p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png" alt="RSA" /></p>
 
-<h2 id="la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792">La soluzione combinando RSA e AES</h2>
+<h2 id="la-soluzione-combinando-rsa-e-aes">La soluzione combinando RSA e AES</h2>
 
 <p>Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.</p>
 
@@ -412,18 +412,18 @@ In questo caso l&rsquo;esempio per eccellenza è <a href="https://en.wikipedia.o
 <li>sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&rsquo;accesso solo al proprietario;</li>
 </ul>
 
-<h3 id="gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792">Gestire gli utenti</h3>
+<h3 id="gestire-gli-utenti">Gestire gli utenti</h3>
 
 <p>Alla creazione di un nuovo utente sarà nostra premura <strong>generare una nuova coppia di chiavi</strong> RSA, che andrà legata all&rsquo;utente.
 Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&rsquo;utente o in un&rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una <strong>masterkey</strong> all&rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
 La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
 <strong>N.B.</strong> È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.</p>
 
-<h3 id="cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792">Cifrare il documento</h3>
+<h3 id="cifrare-il-documento">Cifrare il documento</h3>
 
 <p><strong>Ogni volta</strong> in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica <strong>univoca</strong>. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&rsquo;interno della nostra base dati.</p>
 
-<h3 id="associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792">Associare il file all&rsquo;utente</h3>
+<h3 id="associare-il-file-all-utente">Associare il file all&rsquo;utente</h3>
 
 <p>Come ultimo passo dovremo associare i dati cifrati all&rsquo;utente che li sta memorizzando. È il momento di utilizzare la &ldquo;tabella di scambio&rdquo;. Inseriremo un record contenente i riferimenti all&rsquo;utente e al file, insieme alla chiave univoca legata a quest&rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&rsquo;utente.</p>
 
@@ -431,7 +431,7 @@ La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual v
 
 <p><img src="/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png" alt="" /></p>
 
-<h3 id="condividere:f7580f2fe0a81e31d01e286edcaea792">Condividere!</h3>
+<h3 id="condividere">Condividere!</h3>
 
 <p>Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:</p>
 
@@ -442,7 +442,7 @@ La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual v
 <li>effettuare una copia del record di scambio, sostituendo l&rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;</li>
 </ul>
 
-<h3 id="e-ora:f7580f2fe0a81e31d01e286edcaea792">E ora?</h3>
+<h3 id="e-ora">E ora?</h3>
 
 <p>Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati <strong>siamo definitivamente al sicuro?</strong> <strong>Assolutamente no!</strong> Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che <strong>abbiamo affidato buona parte della sicurezza del nostro sistema all&rsquo;utente</strong>.
 Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
@@ -687,6 +687,27 @@ Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe f
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -723,27 +744,6 @@ Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe f
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -792,7 +792,7 @@ Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe f
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -803,8 +803,8 @@ Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe f
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -852,6 +852,10 @@ Inoltre una chiave - che è scelta dell&rsquo;utente - troppo semplice sarebbe f
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

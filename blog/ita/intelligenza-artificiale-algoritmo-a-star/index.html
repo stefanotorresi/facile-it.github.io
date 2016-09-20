@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -357,7 +357,7 @@ ga('send', 'pageview');
 
     
 
-<h1 id="introduzione:2400028604853ea154d2cde8c70195ac">Introduzione</h1>
+<h1 id="introduzione">Introduzione</h1>
 
 <p>A* è un <a href="https://it.wikipedia.org/wiki/Algoritmo_di_ricerca">algoritmo di ricerca</a> e ottimizzazione basato su grafi. Viene frequentemente impiegato nell&rsquo;<a href="https://it.wikipedia.org/wiki/Intelligenza_artificiale">intelligenza artificiale</a> perché in grado di gestire grafi ampi e
 indeterminati.</p>
@@ -373,7 +373,7 @@ indeterminati.</p>
 <li>Deve essere sempre noto il costo che separa due nodi adiacenti. (Nella maggioranza dei problemi tale valore è sempre unitario).</li>
 </ul>
 
-<h1 id="l-euristica:2400028604853ea154d2cde8c70195ac">L&rsquo;euristica</h1>
+<h1 id="l-euristica">L&rsquo;euristica</h1>
 
 <p>L&rsquo;<a href="https://it.wikipedia.org/wiki/Algoritmo_euristico">algoritmo euristico</a> ha il compito di stimare la distanza tra qualsiasi nodo e la soluzione.
 L&rsquo;euristica influenza fortemente i risultati conseguiti da A*. Esso, in particolare, ne determina il tempo complessivo di esecuzione.
@@ -400,7 +400,7 @@ Dove E è l&rsquo;insieme degli archi, s è il nodo soluzione e la funzione g ca
 <p>Una funzione euristica monotona semplifica ulteriormente la struttura di A* in quanto la lista dei nodi già visitati diviene superflua. In questi casi, la sola coda a priorità è sufficiente.
 Una funzione euristica monotona è sempre ammissibile.</p>
 
-<h1 id="struttura-dell-algoritmo:2400028604853ea154d2cde8c70195ac">Struttura dell&rsquo;algoritmo</h1>
+<h1 id="struttura-dell-algoritmo">Struttura dell&rsquo;algoritmo</h1>
 
 <p>A* rientra nella categoria degli algoritmi di <strong><a href="https://it.wikipedia.org/wiki/Best-first_search">ricerca best-first</a></strong>. Esso infatti esamina, passo dopo passo, i nodi che hanno il punteggio migliore.
 Esso tuttavia non è <em><a href="https://it.wikipedia.org/wiki/Algoritmo_greedy">greedy</a></em> in quanto il punteggio non è determinato esclusivamente dall&rsquo;euristica.</p>
@@ -465,7 +465,7 @@ La funzione h corrisponde alla definizione dell&rsquo;algoritmo euristico enunci
 end function
 </code></pre>
 
-<h1 id="esempio-d-implementazione:2400028604853ea154d2cde8c70195ac">Esempio d&rsquo;implementazione</h1>
+<h1 id="esempio-d-implementazione">Esempio d&rsquo;implementazione</h1>
 
 <p>Si analizza un&rsquo;implementazione dell&rsquo;algoritmo A* che consente di risolvere il problema del <a href="https://it.wikipedia.org/wiki/Gioco_del_quindici">gioco del 15</a>.</p>
 
@@ -492,7 +492,7 @@ Essa calcola, per ogni casella, la quantità minima di spostamenti necessari per
 
 <p>L&rsquo;algoritmo mostra in output la lista dei movimenti che la casella vuota deve compiere per risolvere il problema.</p>
 
-<h1 id="conclusioni:2400028604853ea154d2cde8c70195ac">Conclusioni</h1>
+<h1 id="conclusioni">Conclusioni</h1>
 
 <p>A* è un algoritmo semplice ma dalle grandi potenzialità. Esso getta le basi per ulteriori metodologie di ricerca più complesse come <a href="https://en.wikipedia.org/wiki/Iterative_deepening_A*">IDA*</a> e <a href="https://en.wikipedia.org/wiki/D*">D*</a>.
 La sua principale limitazione è nell&rsquo;assenza di <em>vincoli sulla profondità di ricerca</em>.
@@ -731,6 +731,27 @@ Ciò non consente l&rsquo;analisi di problemi troppo complessi come i giochi di 
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -767,27 +788,6 @@ Ciò non consente l&rsquo;analisi di problemi troppo complessi come i giochi di 
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -836,7 +836,7 @@ Ciò non consente l&rsquo;analisi di problemi troppo complessi come i giochi di 
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -847,8 +847,8 @@ Ciò non consente l&rsquo;analisi di problemi troppo complessi come i giochi di 
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -896,6 +896,10 @@ Ciò non consente l&rsquo;analisi di problemi troppo complessi come i giochi di 
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

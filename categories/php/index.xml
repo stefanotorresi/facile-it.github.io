@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/</guid>
       <description>
 
-&lt;h1 id=&#34;the-enemies-of-programming:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;The enemies of programming&lt;/h1&gt;
+&lt;h1 id=&#34;the-enemies-of-programming&#34;&gt;The enemies of programming&lt;/h1&gt;
 
 &lt;p&gt;As many of you will agree with me, &lt;strong&gt;sleep deprivation&lt;/strong&gt; is the enemy of programming.&lt;br /&gt;
 Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;/strong&gt;.
@@ -27,7 +27,7 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;While writing code we have to think really hard, we use complex abstractions, we go through long business workflows and so on&amp;hellip; fatigue and interruptions are the main enemies of those in this line of work.&lt;/p&gt;
 
-&lt;h1 id=&#34;my-experience:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;My experience&lt;/h1&gt;
+&lt;h1 id=&#34;my-experience&#34;&gt;My experience&lt;/h1&gt;
 
 &lt;p&gt;On my day job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine etc.; luckily, in this project we use a good deal of &lt;strong&gt;good practices&lt;/strong&gt;, and &lt;strong&gt;automated software testing&lt;/strong&gt; is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.&lt;/p&gt;
 
@@ -46,13 +46,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Obviously, as anyone that&amp;rsquo;s passionate in technology would do, I took the opportunity to use a lot of new shiny tools: I picked &lt;strong&gt;PHP 7&lt;/strong&gt;, which had just been released, and started the project with something familiar to me but still pretty new and cool, &lt;strong&gt;Symfony 3.0&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;what-i-found-to-be-useful:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;What I found to be useful&lt;/h1&gt;
+&lt;h1 id=&#34;what-i-found-to-be-useful&#34;&gt;What I found to be useful&lt;/h1&gt;
 
 &lt;p&gt;I rambled and thought about this project a lot in the past months with my colleagues, because the old system was costing us a lot of overhead in usage and maintenance, and we had a pretty clear idea of what its problems were, so I didn&amp;rsquo;t need to study a lot before starting to write the first classes.&lt;/p&gt;
 
 &lt;p&gt;Thus, I had to spend &lt;em&gt;some&lt;/em&gt; time thinking about an object oriented design for my project, but I was rapidly able to start writing code with confidence. In the end, most of this confidence came from a few choices that I pursued during the development of this project.&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-and-high-coverage:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;TDD and high coverage&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-and-high-coverage&#34;&gt;TDD and high coverage&lt;/h2&gt;
 
 &lt;p&gt;The first choice that I am pretty satisfied about is &lt;strong&gt;automatic testing&lt;/strong&gt;: I already knew the advantages of doing tests and Test Driven Development, but in the previous project that practice was not introduced from the start, so not all the codebase was covered, and we couldn&amp;rsquo;t (or wouldn&amp;rsquo;t?) do TDD 100% of the time.&lt;/p&gt;
 
@@ -60,13 +60,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Of course, I still left some parts without coverage or specific tests, since it was pointless to test them (e.g. Doctrine entities), while I covered some parts multiple times, since they were &lt;strong&gt;critical paths&lt;/strong&gt; inside my application.&lt;/p&gt;
 
-&lt;h2 id=&#34;unit-tests-to-the-rescue:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
+&lt;h2 id=&#34;unit-tests-to-the-rescue&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
 
 &lt;p&gt;Last but not least, the main critical advantage that TDD gave me was &lt;strong&gt;focus even on strained days&lt;/strong&gt;: I wrote the classes starting from unit tests, giving all my effort to one piece of code at a time, without having to keep in mind the entire project with its complexities.&lt;/p&gt;
 
 &lt;p&gt;I then wrote some functional tests to assure that the &lt;strong&gt;collaboration between my unit-tested objects&lt;/strong&gt; was fine, and this later step was also useful in delaying the definition of the classes as services inside the Symfony DI container. I was also &lt;strong&gt;able to change my mind&lt;/strong&gt; a few times on some details of the design without having to suffer mental confusion or rewrite too much code.&lt;/p&gt;
 
-&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
+&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
 
 &lt;p&gt;The second good choice was &lt;strong&gt;PHP 7&lt;/strong&gt;: among the reasons behind it as the language version of choice for this project were the &lt;a href=&#34;http://php.net/manual/en/migration70.new-features.php&#34;&gt;two main new features&lt;/a&gt; introduced: &lt;strong&gt;scalar types&lt;/strong&gt; and &lt;strong&gt;return type declarations&lt;/strong&gt;.
 &lt;p style=&#34;text-align: center;&#34;&gt;
@@ -89,7 +89,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;On the other hand, having return types declared on your business-logic classes it&amp;rsquo;s pretty useful, even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it &lt;strong&gt;indirectly helps maintaining the collaboration contract between objects&lt;/strong&gt;, without too much hassle. If I changed a method&amp;rsquo;s signature that was mocked somewhere, the mock would break the test, &lt;strong&gt;highlighting the issue and making the tests&lt;/strong&gt; (and an high coverage) &lt;strong&gt;even more valuable&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;At the end of the day, these and other &lt;strong&gt;good practices are helpful&lt;/strong&gt; for both your job and your personal life: you can go a long way in being fit and in the best shape while working, but stressful and (good) distracting events are unavoidable: you&amp;rsquo;ll often have to fight stress, fatigue or distractions, and there will be days where you can&amp;rsquo;t be at the top of your game, for any number of reasons.&lt;/p&gt;
 
@@ -113,9 +113,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talks are in chronological order, and we linked the slides when available. Enjoy your reading!&lt;/p&gt;
 
-&lt;h1 id=&#34;technical-talks:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Technical Talks&lt;/h1&gt;
+&lt;h1 id=&#34;technical-talks&#34;&gt;Technical Talks&lt;/h1&gt;
 
-&lt;h2 id=&#34;your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Your API is a UI&lt;/h2&gt;
+&lt;h2 id=&#34;your-api-is-a-ui&#34;&gt;Your API is a UI&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christopher Hoult (&lt;a href=&#34;http://twitter.com/choult&#34;&gt;@choult&lt;/a&gt;)&lt;/li&gt;
@@ -124,7 +124,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This was an interesting and very smooth talk. It stayed pretty general with nice advices about &lt;strong&gt;API development&lt;/strong&gt;, but showed some reasoning about a pyramidal &amp;ldquo;scheme of priorities&amp;rdquo; that we should follow, deriving from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&#34;&gt;Maslow&amp;rsquo;s hierarchy of needs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
+&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;James Titcumb (&lt;a href=&#34;http://twitter.com/asgrim&#34;&gt;@asgrim&lt;/a&gt;)&lt;/li&gt;
@@ -133,7 +133,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we saw an interesting overview of &lt;strong&gt;security issues&lt;/strong&gt; that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
+&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -142,7 +142,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we went from basic &lt;strong&gt;regular expressions&lt;/strong&gt;, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the &lt;em&gt;Dr. Strangelove&lt;/em&gt; movie, from images to phrases used in the examples.&lt;/p&gt;
 
-&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
+&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paul Dragoonis (&lt;a href=&#34;http://twitter.com/dr4goonis&#34;&gt;@dr4goonis&lt;/a&gt;)&lt;/li&gt;
@@ -151,7 +151,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was about &lt;strong&gt;using Jenkins with Docker&lt;/strong&gt; and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.&lt;/p&gt;
 
-&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
+&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrew Carter (&lt;a href=&#34;http://twitter.com/AndrewCarterUK&#34;&gt;@AndrewCarterUK&lt;/a&gt;)&lt;/li&gt;
@@ -160,7 +160,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.&lt;/p&gt;
 
-&lt;h2 id=&#34;evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
+&lt;h2 id=&#34;evolution-of-web-application-architecture&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kore Nordmann (&lt;a href=&#34;http://twitter.com/koredn&#34;&gt;@koredn&lt;/a&gt;)&lt;/li&gt;
@@ -169,7 +169,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talk covered the &lt;strong&gt;evolution of the technological stack&lt;/strong&gt; behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of &lt;strong&gt;when and why&lt;/strong&gt; such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.&lt;/p&gt;
 
-&lt;h2 id=&#34;being-functional-in-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Being functional in PHP&lt;/h2&gt;
+&lt;h2 id=&#34;being-functional-in-php&#34;&gt;Being functional in PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David de Boer (&lt;a href=&#34;http://twitter.com/ddeboer_nl&#34;&gt;@ddeboer_nl&lt;/a&gt;)&lt;/li&gt;
@@ -178,9 +178,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was an &lt;strong&gt;introduction to functional programming&lt;/strong&gt;. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h1&gt;
 
-&lt;h2 id=&#34;deploying-php-7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Deploying PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;deploying-php-7&#34;&gt;Deploying PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;http://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -189,7 +189,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&amp;rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from &lt;strong&gt;benchmark data&lt;/strong&gt; to technical tips on how to smooth the transition to this new major version of PHP.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
+&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nikolay Krapivnyy&lt;/li&gt;
@@ -211,7 +211,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
       <guid>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
       <description>
 
-&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+&lt;h2 id=&#34;composer-e-l-ecosistema-php&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
 
 &lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
 Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
@@ -221,7 +221,7 @@ In questi ultimi anni si è assistito ad un proliferare di numerose componenti s
 I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
 Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
 
-&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+&lt;h2 id=&#34;la-soluzione-puli&#34;&gt;La soluzione: Puli&lt;/h2&gt;
 
 &lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
 Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
@@ -238,7 +238,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+&lt;h2 id=&#34;le-componenti-di-puli&#34;&gt;Le componenti di Puli&lt;/h2&gt;
 
 &lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
 
@@ -248,7 +248,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;Public resources manager&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
+&lt;h3 id=&#34;configurazione&#34;&gt;Configurazione&lt;/h3&gt;
 
 &lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
 
@@ -256,7 +256,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
 Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
 
-&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
+&lt;h3 id=&#34;installazione&#34;&gt;Installazione&lt;/h3&gt;
 
 &lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
 Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
@@ -281,12 +281,12 @@ $puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
 $puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
+&lt;h3 id=&#34;resource-repository&#34;&gt;Resource repository&lt;/h3&gt;
 
 &lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
 Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
 
 &lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
 
@@ -298,7 +298,7 @@ $translationContent = file_get_contents($translationFileName);
 
 &lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
 
 &lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
 Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
@@ -319,7 +319,7 @@ $translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
 
 &lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
+&lt;h4 id=&#34;resource-overriding&#34;&gt;Resource overriding&lt;/h4&gt;
 
 &lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
 Immaginiamo di dover lavorare con due pacchetti: A e B.
@@ -329,7 +329,7 @@ Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali 
 
 &lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
+&lt;h3 id=&#34;discovery-service&#34;&gt;Discovery service&lt;/h3&gt;
 
 &lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
 
@@ -346,7 +346,7 @@ I resource providers possono quindi associare una o più risorse a tali Binding 
 
 &lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
 
-&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
+&lt;h4 id=&#34;esempio&#34;&gt;Esempio&lt;/h4&gt;
 
 &lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
 
@@ -395,7 +395,7 @@ $ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-templa
 
 &lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
+&lt;h3 id=&#34;public-resources-manager&#34;&gt;Public resources manager&lt;/h3&gt;
 
 &lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
 
@@ -428,7 +428,7 @@ echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
 
 &lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+&lt;h4 id=&#34;installazione-delle-risorse&#34;&gt;Installazione delle risorse&lt;/h4&gt;
 
 &lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
 
@@ -440,7 +440,7 @@ Installing /acme/blog/public into public_html via symlink...
 
 &lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
 Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
@@ -458,7 +458,7 @@ Per approfondire, la documentazione ufficiale è molto chiara e completa ed è d
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -480,7 +480,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -495,7 +495,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -516,7 +516,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -538,7 +538,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -559,7 +559,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
@@ -569,13 +569,13 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -605,7 +605,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
 
-&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
+&lt;h2 id=&#34;il-protocollo-wamp&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
 
@@ -714,7 +714,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
 Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
 
-&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
+&lt;h2 id=&#34;crossbar&#34;&gt;Crossbar&lt;/h2&gt;
 
 &lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
 
@@ -774,7 +774,7 @@ Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo 
 &lt;/table&gt;
 &lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
+&lt;h2 id=&#34;e-php&#34;&gt;..e PHP?&lt;/h2&gt;
 
 &lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
 Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
@@ -827,7 +827,7 @@ $firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
 
 &lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
+&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
 
 &lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
 la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
@@ -846,7 +846,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
+&lt;h2 id=&#34;riferimenti&#34;&gt;Riferimenti&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;
@@ -866,7 +866,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
       <guid>http://engineering.facile.it/blog/ita/php-summer-camp-2015/</guid>
       <description>
 
-&lt;h1 id=&#34;introduzione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Introduzione&lt;/h1&gt;
+&lt;h1 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h1&gt;
 
 &lt;p&gt;Dal 26 al 29 agosto 2015 ho avuto l&amp;rsquo;occasione di partecipare al &lt;a href=&#34;http://2015.phpsummercamp.com/&#34;&gt;&lt;strong&gt;PhpSummerCamp&lt;/strong&gt;&lt;/a&gt; in Rovigno (Croazia).
 Negli stessi giorni e nello stesso luogo si è svolto anche il &lt;a href=&#34;http://2015.ezsummercamp.com/&#34;&gt;&lt;strong&gt;SummerCamp EzPublish&lt;/strong&gt;&lt;/a&gt;.
@@ -878,7 +878,7 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;In questo articolo descriverò gli eventi a cui ho partecipato e gli argomenti trattati, con particolare riguardo a ciò che mi ha personalmente colpito di più.&lt;/p&gt;
 
-&lt;h1 id=&#34;indice:58029b8459d31227431cf79c0465e6bb&#34;&gt;Indice&lt;/h1&gt;
+&lt;h1 id=&#34;indice&#34;&gt;Indice&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#mercoledi&#34;&gt;Mercoledì 26 agosto&lt;/a&gt;
@@ -908,13 +908,13 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;&lt;a name=&#34;mercoledi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;mercoledì-26-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;mercoledì-26-agosto&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
 
 &lt;p&gt;Un brevissimo keynote di apertura ha illustrato la storia del SummerCamp. Esso inizialmente ospitava soltanto la sezione EzPublish; solo negli ultimi anni è stata aggiunta la parte più generica relativa a Symfony e PHP.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;ci&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli:58029b8459d31227431cf79c0465e6bb&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
+&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
 
 &lt;p&gt;Il primo workshop ha illustrato come configurare e utilizzare &lt;a href=&#34;https://jenkins-ci.org/&#34;&gt;&lt;strong&gt;Jenkins&lt;/strong&gt;&lt;/a&gt;.
 L&amp;rsquo;obiettivo della sessione è stato abilitare un &lt;strong&gt;sistema di continuous integration&lt;/strong&gt; su un piccolo progetto Symfony che già aveva alcune test suite.
@@ -926,7 +926,7 @@ Sono state approfondite alcune configurazioni particolari di PhpUnit che consent
 
 &lt;p&gt;&lt;a name=&#34;modernising&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;modernising-the-legacy-marek-matulka:58029b8459d31227431cf79c0465e6bb&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
+&lt;h3 id=&#34;modernising-the-legacy-marek-matulka&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
 
 &lt;p&gt;Il presentatore ha illustrato le feature implementate da un&amp;rsquo;applicazione PHP legacy. Il codice era molto disordinato e praticamente impossibile da testare.
 Logica di business, data retrieval e viste erano mescolate in un&amp;rsquo;applicazione che non era dotata nemmeno di un singolo &lt;a href=&#34;https://it.wikipedia.org/wiki/Front_Controller_pattern&#34;&gt;front-controller&lt;/a&gt;.
@@ -941,7 +941,7 @@ La struttura del workshop era particolare: ciascun macro-task era diviso in molt
 
 &lt;p&gt;&lt;a name=&#34;frontend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo:58029b8459d31227431cf79c0465e6bb&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
+&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
 
 &lt;p&gt;Purtroppo, data la scarsa presenza di partecipanti con competenze avanzate di JavaScript, la presentazione ha trattato argomenti abbastanza basilari rispetto a quelli pianificati.
 Si è visto come applicare il &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;paradigma object oriented&lt;/a&gt; in JavaScript con numerosi confronti di funzionalità e sintassi tra JS e PHP che hanno consentito a tutti di comprendere l&amp;rsquo;argomento.
@@ -952,7 +952,7 @@ In generale il workshop è stato interessante ma, rispetto agli altri, conteneva
 
 &lt;p&gt;&lt;a name=&#34;debate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;celebrity-debate:58029b8459d31227431cf79c0465e6bb&#34;&gt;Celebrity debate&lt;/h3&gt;
+&lt;h3 id=&#34;celebrity-debate&#34;&gt;Celebrity debate&lt;/h3&gt;
 
 &lt;p&gt;È stata una gara scherzosa tra i due partecipanti Ryan Weaver e Bernhard Schussek nel sostenere le loro opinioni su molteplici domande, alcune delle quali anche stabilite dal pubblico.
 Alcuni esempi di domande: Mac vs Linux, &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;Functional programming&lt;/a&gt; vs &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;OOP&lt;/a&gt;, Tea vs Coffee, USA vs Europe
@@ -963,11 +963,11 @@ Il vincitore Ryan Weaver è stato selezionato dal pubblico in base ad un contegg
 
 &lt;p&gt;&lt;a name=&#34;giovedi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;giovedì-27-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;giovedì-27-agosto&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;coupling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
+&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
 
 &lt;p&gt;L&amp;rsquo;obiettivo della sessione era disaccoppiare l&amp;rsquo;applicazione &lt;a href=&#34;http://symfony.com/blog/introducing-the-symfony-demo-application&#34;&gt;Symfony Demo&lt;/a&gt; da &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine ORM/DBAL&lt;/a&gt; e di consentire lo switch ad altre strategie di storage.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Quite a crowd at &lt;a href=&#34;https://twitter.com/jakub_zalas&#34;&gt;@jakub_zalas&lt;/a&gt; workshop on loose coupling with &lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@Symfony&lt;/a&gt;! &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/KnvqaafRfG&#34;&gt;pic.twitter.com/KnvqaafRfG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Marek ✈ (@super_marek) &lt;a href=&#34;https://twitter.com/super_marek/status/636805256987455488&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -985,7 +985,7 @@ Anche in questo workshop le soluzioni ai problemi erano già presenti nel reposi
 
 &lt;p&gt;&lt;a name=&#34;puli&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek:58029b8459d31227431cf79c0465e6bb&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
+&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
 
 &lt;p&gt;Questa sessione è stata divisa in due parti. La prima è una presentazione del &lt;strong&gt;progetto &lt;a href=&#34;http://docs.puli.io/en/latest/&#34;&gt;Puli&lt;/a&gt;&lt;/strong&gt;. Sono state illustrate le funzionalità dell&amp;rsquo;applicazione e i problemi che essa risolve.
 Puli è un gestore della configurazione di pacchetti che mira a rendere &lt;strong&gt;le librerie PHP più omogenee e più semplici da configurare&lt;/strong&gt;. Esso, per funzionare, usa &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt; che continua a gestire il package retrieval e l&amp;rsquo;autoloading.
@@ -1006,7 +1006,7 @@ Ciò a consentito ai partecipanti di proseguire in autonomia senza ritardi colle
 
 &lt;p&gt;&lt;a name=&#34;unconference&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;unconference:58029b8459d31227431cf79c0465e6bb&#34;&gt;Unconference&lt;/h3&gt;
+&lt;h3 id=&#34;unconference&#34;&gt;Unconference&lt;/h3&gt;
 
 &lt;p&gt;A fine giornata si è svolta la sessione &amp;ldquo;unconference&amp;rdquo;.
 Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
@@ -1019,13 +1019,13 @@ Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;venerdi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;venerdì-28-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;venerdì-28-agosto&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;profiling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
 
-&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;).
+&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming)&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;.
 Sono state esaminate le tecniche principali di collezione delle informazioni: &lt;a href=&#34;https://en.wikipedia.org/wiki/Hooking&#34;&gt;&lt;strong&gt;function hooks&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;sampling&lt;/strong&gt;, così come diversi tool per la profilazione: &lt;a href=&#34;http://xdebug.org/&#34;&gt;XDebug&lt;/a&gt;, &lt;a href=&#34;http://xhprof.io/&#34;&gt;Xhprof&lt;/a&gt; e &lt;a href=&#34;http://newrelic.com/&#34;&gt;New Relic&lt;/a&gt;.
 Prove pratiche con questi tool hanno consentito di evidenziare le loro peculiarità e differenze. È stato interessante notare, ad esempio, l&amp;rsquo;accuratezza e la semplicità delle informazioni fornite dalla libreria Xhprof rispetto ai concorrenti.
 Le prove pratiche hanno inoltre evidenziato che l&amp;rsquo;attività di profilazione non è semplice, soprattutto a causa del setup richiesto.
@@ -1039,7 +1039,7 @@ Le attività di Input/Output superflue causano rallentamenti, esempi sono le scr
 
 &lt;p&gt;&lt;a name=&#34;symfony3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
 
 &lt;p&gt;Questo workshop ha consentito di apprendere la &lt;strong&gt;roadmap a lungo termine del framework Symfony&lt;/strong&gt;.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;on the way to symfony 3 at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; with &lt;a href=&#34;https://twitter.com/nicolasgrekas&#34;&gt;@nicolasgrekas&lt;/a&gt; &lt;a href=&#34;http://t.co/vijn5ttzPG&#34;&gt;pic.twitter.com/vijn5ttzPG&lt;/a&gt;&lt;/p&gt;&amp;mdash; dbu (@dbu) &lt;a href=&#34;https://twitter.com/dbu/status/637233201635835904&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -1054,7 +1054,7 @@ Ciò consente all&amp;rsquo;utente di rilevare subito eventuali utilizzi non cor
 
 &lt;p&gt;&lt;a name=&#34;experts&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;meet-the-experts:58029b8459d31227431cf79c0465e6bb&#34;&gt;Meet the experts&lt;/h3&gt;
+&lt;h3 id=&#34;meet-the-experts&#34;&gt;Meet the experts&lt;/h3&gt;
 
 &lt;p&gt;Diversi gruppi di persone si sono riunite per parlare di molteplici argomenti.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Ecommerce on Symfony roundtable at &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/RD8ueJX7Nj&#34;&gt;pic.twitter.com/RD8ueJX7Nj&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ivo Lukač (@ilukac) &lt;a href=&#34;https://twitter.com/ilukac/status/637288188231450625&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -1068,7 +1068,7 @@ Un confronto tra esperti, il miglior modo per chiudere la giornata.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Conclusione&lt;/h1&gt;
+&lt;h1 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h1&gt;
 
 &lt;p&gt;Il PhpSummerCamp è un evento particolare: presentazioni, discussioni, workshop e attività extra lo hanno reso interessante e divertente allo stesso tempo.
 Tesi rafforzata dalla continua affluenza di sviluppatori che ogni anno non vogliono perdersi tale evento.
@@ -1099,7 +1099,7 @@ Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Ph
 &lt;li&gt;Implementazione di un corposo set di nuove feature, come vedremo a breve.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;performance:815871a857d9019d8dba5e4073c801e4&#34;&gt;Performance&lt;/h2&gt;
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
 
 &lt;p&gt;Sull&amp;rsquo;onda degli ottimi risultati ottenuti dal team di HHVM, anche il team degli internals ha iniziato a lavorare estensivamente al miglioramento delle performance dell&amp;rsquo;implementazione originale di PHP. Gli impressionanti risultati (si parla di un miglioramento di circa il 100%) sono stati dimostrati da vari benchmark fatti sui vari CMS/Framework esistenti. Eccone di seguito due tra i più significativi:&lt;/p&gt;
 
@@ -1108,11 +1108,11 @@ Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Ph
 &lt;li&gt;&lt;a href=&#34;https://pages.zend.com/rs/zendtechnologies/images/PHP7-Performance%20Infographic.pdf&#34;&gt;Infografica Zend&lt;/a&gt; - Benchmark di vari CMS/Framework (Magento 1.9, Wordpress, Drupal, Zend Framework 2, Laravel) su PHP 5.6 PHP 7 e HHVM 3.7. Contiene inoltre una comparazione tra PHP e altri linguaggi di scripting.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;features:815871a857d9019d8dba5e4073c801e4&#34;&gt;Features&lt;/h2&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
 
 &lt;p&gt;Qui di seguito riportiamo alcune delle feature che ci hanno colpito maggiormente; l&amp;rsquo;elenco seguente non è da considerarsi esaustivo rispetto a tutte le feature di PHP 7: una lista completa di tutte le RFC può essere trovata &lt;a href=&#34;https://wiki.php.net/rfc#php_70&#34;&gt;qui&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;null-coalesce-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Null Coalesce operator&lt;/h3&gt;
+&lt;h3 id=&#34;null-coalesce-operator&#34;&gt;Null Coalesce operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/isset_ternary&#34;&gt;Null Coalesce Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -1126,7 +1126,7 @@ $name = isset($_GET[’name’]) ? $_GET[’name’] : &amp;quot;Name&amp;quot;;
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/SnCQY&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;uniform-variable-syntax:815871a857d9019d8dba5e4073c801e4&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
+&lt;h3 id=&#34;uniform-variable-syntax&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/uniform_variable_syntax&#34;&gt;Uniform Variable Syntax&lt;/a&gt;&lt;/p&gt;
 
@@ -1164,7 +1164,7 @@ echo [$p, &#39;getName&#39;]();
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/bEU7t&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;group-use-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Group use declarations&lt;/h3&gt;
+&lt;h3 id=&#34;group-use-declarations&#34;&gt;Group use declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/group_use_declarations&#34;&gt;Group Use Declarations&lt;/a&gt;&lt;/p&gt;
 
@@ -1182,7 +1182,7 @@ use Zend\ModuleManager\{
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;combined-comparison-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Combined Comparison operator&lt;/h3&gt;
+&lt;h3 id=&#34;combined-comparison-operator&#34;&gt;Combined Comparison operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/combined-comparison-operator&#34;&gt;Combined Comparison (Spaceship) Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -1202,7 +1202,7 @@ echo 200 &amp;lt;=&amp;gt; 200; // 0
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/PV5kq&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;context-sensitive-lexer:815871a857d9019d8dba5e4073c801e4&#34;&gt;Context sensitive lexer&lt;/h3&gt;
+&lt;h3 id=&#34;context-sensitive-lexer&#34;&gt;Context sensitive lexer&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/context_sensitive_lexer&#34;&gt;Context Sensitive Lexer&lt;/a&gt;&lt;/p&gt;
 
@@ -1218,7 +1218,7 @@ class Collection {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;anonymous-classes:815871a857d9019d8dba5e4073c801e4&#34;&gt;Anonymous classes&lt;/h3&gt;
+&lt;h3 id=&#34;anonymous-classes&#34;&gt;Anonymous classes&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/anonymous_classes&#34;&gt;Anonymous Classes&lt;/a&gt;&lt;/p&gt;
 
@@ -1252,7 +1252,7 @@ echo new PersonPrinter(new class implements PersonInterface {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;scalar-type-hints:815871a857d9019d8dba5e4073c801e4&#34;&gt;Scalar type hints&lt;/h3&gt;
+&lt;h3 id=&#34;scalar-type-hints&#34;&gt;Scalar type hints&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/scalar_type_hints&#34;&gt;Scalar Type Hints&lt;/a&gt;&lt;/p&gt;
 
@@ -1281,7 +1281,7 @@ printIntValue(5.9); // int(5)
 &lt;p&gt;Nell&amp;rsquo;esempio precedente stiamo dichiarando una funzione &lt;code&gt;printIntValue&lt;/code&gt; la quale richiede che &lt;code&gt;$value&lt;/code&gt; sia di tipo &lt;code&gt;int&lt;/code&gt;; quindi andiamo a chiamare la funzione stessa passando invece &lt;code&gt;$value&lt;/code&gt; come &lt;code&gt;float(5.9)&lt;/code&gt;.
 Siccome al primo statement non abbiamo dichiarato i tipi come rigorosi, PHP costringerà il casting del valore passato a &lt;code&gt;int&lt;/code&gt;, troncando la parte dopo la virgola e convertendolo in &lt;code&gt;int(5)&lt;/code&gt;. Se invece avessimo dichiarato i tipi come rigorosi avremmo ottenuto un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;return-type-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Return Type Declarations&lt;/h3&gt;
+&lt;h3 id=&#34;return-type-declarations&#34;&gt;Return Type Declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/return_types&#34;&gt;Return Type Declarations&lt;/a&gt;
 In PHP 7 è stata introdotta la possiblità di dichiarare il tipo di ritorno di una funzione.
@@ -1308,7 +1308,7 @@ class DateTimeGenerator
 
 &lt;p&gt;Nell&amp;rsquo;esempio precedente abbiamo dichiarato una classe &lt;code&gt;DateTimeGenerator&lt;/code&gt; che contiene un metodo &lt;code&gt;getDateTime()&lt;/code&gt; che deve ritornare necessariamente un&amp;rsquo;instanza di &lt;code&gt;\DateTime&lt;/code&gt;. Nel caso questo non avvenisse otterremmo ancora una volta un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;bind-closure-on-call:815871a857d9019d8dba5e4073c801e4&#34;&gt;Bind Closure on Call&lt;/h3&gt;
+&lt;h3 id=&#34;bind-closure-on-call&#34;&gt;Bind Closure on Call&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/closure_apply&#34;&gt;Closure::call&lt;/a&gt;&lt;/p&gt;
 
@@ -1331,7 +1331,7 @@ echo $getValue-&amp;gt;call(new DummyClass);
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/YKtPC&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;filtered-unserialize:815871a857d9019d8dba5e4073c801e4&#34;&gt;Filtered Unserialize&lt;/h3&gt;
+&lt;h3 id=&#34;filtered-unserialize&#34;&gt;Filtered Unserialize&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/secure_unserialize&#34;&gt;Filtered Unserialize&lt;/a&gt;&lt;/p&gt;
 
@@ -1343,7 +1343,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;pre&gt;&lt;code&gt;$data = unserialize($foo, [&amp;quot;allowed_classes&amp;quot; =&amp;gt; [&amp;quot;OnePossibleClass&amp;quot;, &amp;quot;AnotherPossibileClass&amp;quot;]);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;conclusioni:815871a857d9019d8dba5e4073c801e4&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;Ora andate! Testate le vostre applicazioni su PHP 7 e, se potete, aiutate a migrare le estensioni. Non sapete come fare? No problem, chiunque può iniziare a fare qualcosa con i giusti punti di partenza.&lt;/p&gt;
 
@@ -1374,7 +1374,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;I talk sono in ordine cronologico. Buona lettura!&lt;/p&gt;
 
-&lt;h4 id=&#34;indice:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Indice&lt;/h4&gt;
+&lt;h4 id=&#34;indice&#34;&gt;Indice&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#prophecy&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/a&gt;&lt;/li&gt;
@@ -1385,7 +1385,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;li&gt;&lt;a href=&#34;#doctrine&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h6 id=&#34;keynotes:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h6&gt;
+&lt;h6 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h6&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#coderabbi&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/a&gt;&lt;/li&gt;
@@ -1393,11 +1393,11 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;li&gt;&lt;a href=&#34;#seldaek&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;talk-tecnici:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talk tecnici&lt;/h1&gt;
+&lt;h1 id=&#34;talk-tecnici&#34;&gt;Talk tecnici&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;prophecy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
+&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Khalil (&lt;a href=&#34;http://twitter.com/saro0h&#34;&gt;@saro0h&lt;/a&gt;)&lt;/li&gt;
@@ -1412,7 +1412,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;containerize&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;containerize-your-php:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Containerize your PHP&lt;/h4&gt;
+&lt;h4 id=&#34;containerize-your-php&#34;&gt;Containerize your PHP&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marek Jelen (&lt;a href=&#34;http://twitter.com/marek_jelen&#34;&gt;@marek_jelen&lt;/a&gt;)&lt;/li&gt;
@@ -1425,7 +1425,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;varnish&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
+&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David De Boer&lt;/li&gt;
@@ -1440,7 +1440,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;psr-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;hello-psr-7:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Hello, PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;hello-psr-7&#34;&gt;Hello, PSR-7&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Beau Simensen (&lt;a href=&#34;http://www.twitter.com/beausimensen&#34;&gt;@beausimensen&lt;/a&gt;)&lt;/li&gt;
@@ -1455,7 +1455,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;php7-data-structures&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
+&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Patrick Allaert (&lt;a href=&#34;http://www.twitter.com/patrick_allaert&#34;&gt;@patrick_allaert&lt;/a&gt;)&lt;/li&gt;
@@ -1468,7 +1468,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;doctrine&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
+&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Pivetta (&lt;a href=&#34;http://www.twitter.com/Ocramius&#34;&gt;@Ocramius&lt;/a&gt;)&lt;/li&gt;
@@ -1479,13 +1479,13 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;Usiamo &lt;strong&gt;Doctrine&lt;/strong&gt; tutti i giorni, ma questo talk, sebbene marcato come di livello &lt;strong&gt;beginner&lt;/strong&gt;, si è rivelato molto interessante e fonte di numerose discussioni e &lt;strong&gt;riflessioni&lt;/strong&gt; tra colleghi. Lo speaker è uno dei principali contributors al progetto &lt;a href=&#34;https://github.com/doctrine/doctrine2&#34;&gt;doctrine-orm&lt;/a&gt;, e ci ha elencato una serie di &lt;strong&gt;best practices&lt;/strong&gt;, partendo dal chiedersi se e quando è il caso di usare un ORM, passando poi a problemi quali l&amp;rsquo;uso e l&amp;rsquo;implementazione di entità, la loro consistenza, l&amp;rsquo;evitare di usare setter brutali o di esporre le ArrayCollection che rappresentano le nostre relazioni.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes-1:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes-1&#34;&gt;Keynotes&lt;/h1&gt;
 
 &lt;p&gt;Abbiamo voluto citare in questo articolo anche i &lt;strong&gt;3 keynote&lt;/strong&gt; della conferenza: sono stati tutti piuttosto interessanti, profondamente motivazionali e coinvolgenti.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;coderabbi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
+&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Yitzchok Willroth (&lt;a href=&#34;http://www.twitter.com/coderabbi&#34;&gt;@coderabbi&lt;/a&gt;)&lt;/li&gt;
@@ -1503,7 +1503,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;calevans&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
+&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Cal Evans (&lt;a href=&#34;http://www.twitter.com/calevans&#34;&gt;@CalEvans&lt;/a&gt;)&lt;/li&gt;
@@ -1516,7 +1516,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 
 &lt;p&gt;&lt;a name=&#34;seldaek&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
+&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -1535,15 +1535,15 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
       <guid>http://engineering.facile.it/blog/ita/principio-open-close-le-sue-origini-e-i-casi-d-uso/</guid>
       <description>
 
-&lt;h2 id=&#34;definizione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Definizione:&lt;/h2&gt;
+&lt;h2 id=&#34;definizione&#34;&gt;Definizione:&lt;/h2&gt;
 
-&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design&#34;&gt;SOLID&lt;/a&gt;).  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
+&lt;p&gt;Il principio &lt;em&gt;OPEN/CLOSE&lt;/em&gt; fa riferimento all&amp;rsquo;acronimo &lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)&#34;&gt;SOLID&lt;/a&gt;.  introdotto da  Michael Feathers che riporta alcune &lt;em&gt;buone pratiche&lt;/em&gt; di programmazione ad oggetti ancora di forte attualità.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;OPEN/CLOSE&lt;/em&gt; (la &lt;strong&gt;O&lt;/strong&gt; dell&amp;rsquo;acronimo), nella sua definizione più generale indica che:  un modulo (un oggetto, una classe o un gruppo di funzioni) debba essere &lt;strong&gt;aperto alle estensioni&lt;/strong&gt; ma &lt;strong&gt;chiuso alle modifiche&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;Questo principio tuttavia non è altro che la formalizzazione e il raggruppamento di concetti e linee guida già presenti da tempo nella programmazione ad oggetti.&lt;/p&gt;
 
-&lt;h3 id=&#34;chiuso-alle-modifiche:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
+&lt;h3 id=&#34;chiuso-alle-modifiche&#34;&gt;Chiuso alle modifiche&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Chiuso alle modifiche che potrebbero aver effetto sul client&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1576,7 +1576,7 @@ class ClasseEsterna
 &lt;li&gt;Abbiamo realizzato un &lt;em&gt;low coupling&lt;/em&gt; fra la l&amp;rsquo;&lt;strong&gt;oggettoInterno&lt;/strong&gt; e il client che utilizza la &lt;strong&gt;ClasseEsterna&lt;/strong&gt;, promuovendo, di fatto, il ==riuso== di &lt;strong&gt;oggettoInterno&lt;/strong&gt; in altri contesti.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;aperto-alle-estensioni:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
+&lt;h3 id=&#34;aperto-alle-estensioni&#34;&gt;Aperto alle estensioni:&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Aperto ad essere esteso ed adattato&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1589,7 +1589,7 @@ Un modulo che non può cambiare è solitamente considerato qualcosa che ha un co
 
 &lt;p&gt;Un esempio è il pattern chain of responsibility che vediamo di seguito.&lt;/p&gt;
 
-&lt;h3 id=&#34;chain-of-responsibility:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Chain of responsibility:&lt;/h3&gt;
+&lt;h3 id=&#34;chain-of-responsibility&#34;&gt;Chain of responsibility:&lt;/h3&gt;
 
 &lt;p&gt;Questo pattern risolve un’ampia classe di situazioni nelle quali vi sia la necessità di eseguire operazioni &lt;strong&gt;sequenziali&lt;/strong&gt; e &lt;strong&gt;condizionali&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1668,7 +1668,7 @@ class Gestore
 &lt;li&gt;È presente coesione fra l&amp;rsquo;interfaccia dei singoli anelli e il gestore. Purché si rispetti questo contratto è possibile esprimere anche logiche complesse.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;conclusione:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Conclusione:&lt;/h3&gt;
+&lt;h3 id=&#34;conclusione&#34;&gt;Conclusione:&lt;/h3&gt;
 
 &lt;p&gt;È necessario &lt;strong&gt;scegliere le proprie battaglie&lt;/strong&gt; quando si parla di design, sia che si tratti di scelte macro-architetturali che piccole scelte sulla singola istanza.&lt;/p&gt;
 
@@ -1678,7 +1678,7 @@ class Gestore
 
 &lt;p&gt;L&amp;rsquo;obbiettivo finale dovrebbe essere sempre minimizzare l&amp;rsquo;impatto sul sistema dei (naturali) cambiamenti; Open/Close PV e low coupling sono alcune delle strategie più efficaci.&lt;/p&gt;
 
-&lt;h4 id=&#34;bibliografia:4d43e339c52ffe85c41a2012c2e2301f&#34;&gt;Bibliografia&lt;/h4&gt;
+&lt;h4 id=&#34;bibliografia&#34;&gt;Bibliografia&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Craig Larman - &lt;a href=&#34;http://www.utdallas.edu/~chung/SP/applying-uml-and-patterns.pdf&#34;&gt;Applying UML and Patterns – An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd ed.)&lt;/a&gt;&lt;/li&gt;
@@ -1773,7 +1773,7 @@ class User
 
 &lt;p&gt;A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&amp;rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.&lt;/p&gt;
 
-&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
+&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
 
 &lt;p&gt;I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.&lt;/p&gt;
 
@@ -1825,7 +1825,7 @@ class GreetingSentence
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;symfony-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Symfony 2&lt;/h6&gt;
+&lt;h6 id=&#34;symfony-2&#34;&gt;Symfony 2&lt;/h6&gt;
 
 &lt;p&gt;Ecco come implementeremmo la funzionalità richiesta in Symfony2:&lt;/p&gt;
 
@@ -1868,7 +1868,7 @@ class MainController
 } 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;zend-framework-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Zend Framework 2&lt;/h6&gt;
+&lt;h6 id=&#34;zend-framework-2&#34;&gt;Zend Framework 2&lt;/h6&gt;
 
 &lt;p&gt;Questa è invece l&amp;rsquo;implementazione in Zend Framework 2:&lt;/p&gt;
 
@@ -1909,7 +1909,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora &lt;strong&gt;come uno standard come quello proposto dal PSR-7 possa aiutarci&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
+&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
 
 &lt;p&gt;Potremmo voler implemenare la nostra soluzione come un &lt;strong&gt;middleware&lt;/strong&gt;, ovvero un componente che &lt;strong&gt;esiste durante il ciclo di vita di una comunicazione HTTP&lt;/strong&gt;, cioè dall&amp;rsquo;accettazione della richiesta fino all&amp;rsquo;evasione della risposta.&lt;/p&gt;
 
@@ -1927,7 +1927,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal &lt;a href=&#34;http://www.php-fig.org/&#34;&gt;&lt;strong&gt;FIG&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
 
 &lt;p&gt;La proposta dello standard PSR-7 si riassume nella descrizione di una serie di &lt;a href=&#34;https://github.com/php-fig/http-message/tree/master/src&#34;&gt;interfacce&lt;/a&gt;.&lt;/p&gt;
 
@@ -1989,7 +1989,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Ovviamente questo middleware adesso come adesso è tutt&amp;rsquo;altro che utilizzabile all&amp;rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che &lt;strong&gt;in un futuro&lt;/strong&gt; non troppo lontano le varie implementazioni &lt;strong&gt;convergeranno&lt;/strong&gt; su qualcosa di simile a quella appena vista e proposta da O&amp;rsquo;Phinney.&lt;/p&gt;
 
-&lt;h4 id=&#34;conclusioni:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Conclusioni&lt;/h4&gt;
+&lt;h4 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h4&gt;
 
 &lt;p&gt;Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&amp;rsquo;ambiente contenenti tutti i valori necessari (&lt;code&gt;$_SERVER&lt;/code&gt;, &lt;code&gt;$_GET&lt;/code&gt;, &lt;code&gt;$_POST&lt;/code&gt;, &lt;code&gt;$_FILES&lt;/code&gt;, &amp;hellip;).&lt;/p&gt;
 
@@ -1997,7 +1997,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Sicuramente tenere &lt;a href=&#34;https://github.com/php-fig/fig-standards&#34;&gt;a portata di github&lt;/a&gt; gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui &lt;strong&gt;futuri sviluppi&lt;/strong&gt; dei più blasonati framework e componenti PHP, tenendo conto, &lt;strong&gt;come già accaduto per le precedenti proposte&lt;/strong&gt; &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&#34;&gt;PSR-0&lt;/a&gt; e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&#34;&gt;PSR-4&lt;/a&gt; (autoloading) e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&#34;&gt;PSR-3&lt;/a&gt; (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.&lt;/p&gt;
 
-&lt;h4 id=&#34;altre-risorse-consultabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
+&lt;h4 id=&#34;altre-risorse-consultabili&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Blog di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&#34;&gt;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&lt;/a&gt;&lt;/li&gt;
@@ -2023,15 +2023,15 @@ class AcmeLifeCycle
 
 &lt;p&gt;Qualora l&amp;rsquo;errore sia noto e prevedibile (ad esempio avvenga alla stessa linea di codice ad ogni esecuzione) è possibile chiudere la connessione in maniera esplicita ed evitarlo, ma questa logica oltre che risultare &lt;strong&gt;scomoda&lt;/strong&gt; e &lt;strong&gt;ripetitiva&lt;/strong&gt; non è sempre applicabile e richiede una esplicita precauzione dello sviluppatore.&lt;/p&gt;
 
-&lt;h3 id=&#34;ma-quanto-è-grave-il-problema:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Ma quanto è grave il problema?&lt;/h3&gt;
+&lt;h3 id=&#34;ma-quanto-è-grave-il-problema&#34;&gt;Ma quanto è grave il problema?&lt;/h3&gt;
 
 &lt;p&gt;Come illustrato, un errore di tipo &lt;em&gt;MySQL server has gone away&lt;/em&gt; &lt;strong&gt;non&lt;/strong&gt; ha alterato le informazioni presenti nel database, &lt;strong&gt;non&lt;/strong&gt; implica un errore logico o di integrità e &lt;strong&gt;non&lt;/strong&gt; ci impedisce di tentare nuovamente la query da cui è scaturito. Perciò si potrebbe dire che, da un punto di vista applicativo l&amp;rsquo;errore, se correttamente &lt;strong&gt;intercettato e gestito&lt;/strong&gt;, non sia per nulla grave.&lt;/p&gt;
 
-&lt;h3 id=&#34;allora-potrei-ignorarlo:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Allora potrei ignorarlo?&lt;/h3&gt;
+&lt;h3 id=&#34;allora-potrei-ignorarlo&#34;&gt;Allora potrei ignorarlo?&lt;/h3&gt;
 
 &lt;p&gt;Ignorare deliberatamente degli errori non può essere considerata una strategia vincente, perciò per prima cosa bisogna assicurarsi di aver fatto tutto quanto suggerito nella &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.5/en/gone-away.html&#34;&gt;documentazione&lt;/a&gt; per &lt;strong&gt;rimuovere le cause del problema&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;e-se-non-dovesse-bastare:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;E se non dovesse bastare?&lt;/h3&gt;
+&lt;h3 id=&#34;e-se-non-dovesse-bastare&#34;&gt;E se non dovesse bastare?&lt;/h3&gt;
 
 &lt;p&gt;Ritentare la query dovrebbe essere sempre possibile nonchè piuttosto semplice, a patto di saper riconoscere con precisione le eccezioni del &lt;strong&gt;tipo corretto&lt;/strong&gt;.&lt;/p&gt;
 
@@ -2041,7 +2041,7 @@ class AcmeLifeCycle
 echo $e-&amp;gt;getMessage(); // &#39;SQLSTATE[HY000]: General error: 2006 MySQL server has gone away&#39;`
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;come-funziona:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Come funziona?&lt;/h3&gt;
+&lt;h3 id=&#34;come-funziona&#34;&gt;Come funziona?&lt;/h3&gt;
 
 &lt;p&gt;Chiariamoci le idee con del codice:&lt;/p&gt;
 
@@ -2072,7 +2072,7 @@ while ($retry) {
 
 &lt;p&gt;Trattandosi di una &lt;strong&gt;nuova connessione&lt;/strong&gt;, non è possibile utilizzare questa procedura nel caso l&amp;rsquo;errore avvenga durante una &lt;a href=&#34;http://en.wikipedia.org/wiki/Database_transaction&#34;&gt;&lt;strong&gt;transazione&lt;/strong&gt;&lt;/a&gt; MySQL. Tutte le query inviate all&amp;rsquo;interno della connessione sarebbero ovviamente &lt;strong&gt;perdute&lt;/strong&gt; e non sarebbe possibile recuperarle!&lt;/p&gt;
 
-&lt;h3 id=&#34;ma-devo-farlo-ogni-volta-a-mano:0b2586f94b018b2b7cc561b28a014b73&#34;&gt;Ma devo farlo ogni volta a mano?&lt;/h3&gt;
+&lt;h3 id=&#34;ma-devo-farlo-ogni-volta-a-mano&#34;&gt;Ma devo farlo ogni volta a mano?&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;NO!&lt;/strong&gt;&lt;/p&gt;
 

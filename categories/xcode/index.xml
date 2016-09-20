@@ -24,7 +24,7 @@
 &lt;li&gt;analizzeremo un altro caso di test &lt;em&gt;asincrono&lt;/em&gt;;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;lo-stub-object:4b7c206247a0a425bb1064c53b31df66&#34;&gt;Lo &lt;em&gt;Stub Object&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;lo-stub-object&#34;&gt;Lo &lt;em&gt;Stub Object&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;Uno &lt;em&gt;Stub Object&lt;/em&gt; (per il resto dell&amp;rsquo;articolo, &lt;em&gt;stub&lt;/em&gt;) rappresenta un&amp;rsquo;istanza di una certa classe, la quale &lt;em&gt;mima&lt;/em&gt; una vera classe presente nella nostra &lt;em&gt;code base&lt;/em&gt;:  l&amp;rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio &lt;strong&gt;alcuni metodi possono essere sovrascritti&lt;/strong&gt; per poter fornire &lt;strong&gt;un determinato output&lt;/strong&gt; utile per i test. Nell&amp;rsquo;implementare uno &lt;em&gt;stub&lt;/em&gt; non è generalmente consentito modificare dettagli di logica interni relativi alla classe che stiamo mimando, ma &lt;strong&gt;è possibile sovrascrivere metodi pubblici&lt;/strong&gt;, in modo che essi ritornino i valori che vogliamo, oppure che svolgano una particolare procedura necessaria per i test. Tanto per fare un esempio pratico potremmo &lt;em&gt;stubbare&lt;/em&gt; una classe che ci fornisce la data precisa in un certo istante, in modo da ottenere una data diversa da usare nei test, oppure un client che chiede a un server delle informazioni su un utente, in modo da far ritonare al client &lt;em&gt;stub&lt;/em&gt; delle informazioni arbitrarie.&lt;/p&gt;
 
@@ -38,7 +38,7 @@
 
 &lt;p&gt;Il classico caso in cui uno &lt;em&gt;stub&lt;/em&gt; risulta utile è quello del client che fa una richiesta al server: se la logica di implementazione del server è sotto il nostro controllo possiamo &lt;strong&gt;testare che il server rispetti il contratto con i suoi client&lt;/strong&gt; generando degli &lt;em&gt;stub&lt;/em&gt; di questi per ogni possibile richiesta; d&amp;rsquo;altra parte, per verificare che i client siano in grado di &lt;strong&gt;gestire correttamente ogni possibile risposta del server&lt;/strong&gt;, possiamo generare uno &lt;em&gt;stub&lt;/em&gt; del server che fornisca ogni possibile risposta: in questo modo possiamo testare in maniera disaccoppiata client e server.&lt;/p&gt;
 
-&lt;h2 id=&#34;un-caso-d-uso-location-services:4b7c206247a0a425bb1064c53b31df66&#34;&gt;Un caso d&amp;rsquo;uso: &lt;em&gt;Location Services&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;un-caso-d-uso-location-services&#34;&gt;Un caso d&amp;rsquo;uso: &lt;em&gt;Location Services&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;Il caso d&amp;rsquo;uso che tratteremo è relativo ai &lt;strong&gt;servizi di localizzazione&lt;/strong&gt;, uno strumento frequentemente utilizzato dagli sviluppatori iOS e in generale da chi sviluppa su &lt;strong&gt;smartphone&lt;/strong&gt;: per tali sviluppatori, quello dei servizi di localizzazione è un tema molto importante, &lt;strong&gt;fonte di complessità e sfide&lt;/strong&gt; che caratterizzano tipicamente il mondo &lt;em&gt;mobile&lt;/em&gt;. Non è infatti possibile ottenere l&amp;rsquo;attuale posizione GPS in un preciso momento: l&amp;rsquo;ultima posizione GPS disponibile si basa su una regressione, effettuata dal sistema, dei dati ricevuti da diversi sensori - antenne wifi, cellulare e ovviamente GPS, e spesso anche i sensori di movimento - in diversi momenti; &lt;strong&gt;il sistema può inviare notifiche alla nostra app in qualsiasi momento&lt;/strong&gt;, ed essa deve essere in grado di &amp;ldquo;digerire&amp;rdquo; correttamente i dati ricevuti, interpretando anche eventuali errori. Scrivere dei test unitari per verificare che la nostra app geolocalizzata funzioni correttamente può presentare non poche difficoltà: non possiamo infatti affidarci ai &amp;ldquo;veri&amp;rdquo; sensori del dispositivo, perché probabilmente i test verranno eseguiti sul simulatore, oppure magari su un vero iPhone la cui ricezione GPS in un certo istante potrà essere più o meno buona, ma essa rappresenterà un solo caso possibile rispetto a tanti. Vogliamo essere in grado di &lt;strong&gt;testare ogni possibile risposta&lt;/strong&gt; del sistema GPS del dispositivo, dall&amp;rsquo;assenza totale di segnale al cambiamento frequente di posizione, alla &lt;strong&gt;mancata autorizzazione&lt;/strong&gt; da parte dell&amp;rsquo;utente per l&amp;rsquo;accesso ai servizi di localizzazione.&lt;/p&gt;
 
@@ -114,7 +114,7 @@ extension LocationCoordinator: CLLocationManagerDelegate {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;implementiamo-i-test:4b7c206247a0a425bb1064c53b31df66&#34;&gt;Implementiamo i test&lt;/h2&gt;
+&lt;h2 id=&#34;implementiamo-i-test&#34;&gt;Implementiamo i test&lt;/h2&gt;
 
 &lt;p&gt;Per testare la classe verificheremo che, a seconda dei diversi possibili risultati ottenibili dalla ricerca della posizione GPS, un&amp;rsquo;istanza di essa &lt;strong&gt;aggiorni correttamente il suo stato attuale&lt;/strong&gt;. È quindi necessario fare in modo che un&amp;rsquo;istanza del &lt;code&gt;LocationCoordinator&lt;/code&gt; ignori le notifiche ricevute da &lt;code&gt;CLLocationManager&lt;/code&gt;, in modo da forzare posizioni ed errori comodi per i nostri test; per farlo dichiariamo una sottoclasse di &lt;code&gt;LocationCoordinator&lt;/code&gt; chiamata &lt;code&gt;STUB_LocationCoordinator&lt;/code&gt; che modifichi la &lt;em&gt;parent class&lt;/em&gt; nel seguente modo:&lt;/p&gt;
 
@@ -187,7 +187,7 @@ forceDelayedErrorLocationUnknown
 
 &lt;p&gt;Come mostrato nell&amp;rsquo;immagine, Xcode ha anche creato automaticamente il file &lt;em&gt;AwesomeAppTests.swift&lt;/em&gt;, all&amp;rsquo;interno del quale potremo iniziare a scrivere i nostri test.&lt;/p&gt;
 
-&lt;h2 id=&#34;setup-dell-ambiente-di-test:8e547c1c6819d235540b10fca98b5c29&#34;&gt;Setup dell&amp;rsquo;ambiente di test&lt;/h2&gt;
+&lt;h2 id=&#34;setup-dell-ambiente-di-test&#34;&gt;Setup dell&amp;rsquo;ambiente di test&lt;/h2&gt;
 
 &lt;p&gt;Al di là del meccanismo con il quale il testing avviene, è importante capire che il codice con il quale i test sono stati scritti è compilato in un bundle diverso, e per far sì che i test &amp;ldquo;vedano&amp;rdquo; il resto dell&amp;rsquo;app, è necessario seguire le &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html&#34;&gt;regole di access control tra i moduli in Swift&lt;/a&gt;; quindi classi, struct, funzioni, costanti e così via che abbiamo dichiarato e implementato nella nostra app, o libreria che sia, &lt;strong&gt;dovranno essere marcati con la keyword *public&lt;/strong&gt;*:&lt;/p&gt;
 
@@ -234,7 +234,7 @@ public class AwesomeItem {
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/xcode-testing-in-pratica/image_4.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;xctestcase-e-xctassert:8e547c1c6819d235540b10fca98b5c29&#34;&gt;XCTestCase e XCTAssert&lt;/h2&gt;
+&lt;h2 id=&#34;xctestcase-e-xctassert&#34;&gt;XCTestCase e XCTAssert&lt;/h2&gt;
 
 &lt;p&gt;Nel framework &lt;strong&gt;XCTest&lt;/strong&gt; un &lt;em&gt;Test Case&lt;/em&gt; è rappresentato da una sottoclasse della classe &lt;code&gt;XCTestCase&lt;/code&gt;: al momento dell&amp;rsquo;avvio dei test viene automaticamente generata un&amp;rsquo;istanza di ciascun Test Case che abbiamo implementato, e vengono eseguiti uno a uno tutti i test dichiarati, avviando le funzioni &lt;code&gt;testSomething()&lt;/code&gt; che li implementano. Anche i metodi &lt;code&gt;setUp()&lt;/code&gt; e &lt;code&gt;tearDown()&lt;/code&gt; sono chiamati automaticamente nel corso dei test: come indicano i commenti inseriti da Xcode, il metodo &lt;code&gt;setUp()&lt;/code&gt; è chiamato immediatamente prima di ogni test, e permette di inizializzare eventuali attributi d&amp;rsquo;istanza, o variabili globali; come è intuibile, il metodo &lt;code&gt;tearDown()&lt;/code&gt; permette di ripristinare eventualmente lo stato iniziale dopo ciascun test. L&amp;rsquo;implementazione di questi due metodi è comunque del tutto opzionale: essi rappresentano semplicemente degli strumenti in più.&lt;/p&gt;
 
@@ -306,7 +306,7 @@ public class AwesomeItem {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;test-asincroni:8e547c1c6819d235540b10fca98b5c29&#34;&gt;Test asincroni&lt;/h2&gt;
+&lt;h2 id=&#34;test-asincroni&#34;&gt;Test asincroni&lt;/h2&gt;
 
 &lt;p&gt;La libreria XCTest include alcuni strumenti per eseguire &lt;strong&gt;test su computazioni asincrone&lt;/strong&gt;, cioè eseguite da funzioni che non ritornano immediatamente un valore ma che potrebbero chiamare una funzione di callback a un certo punto nel futuro. Per testare una funzione asincrona è necessario:&lt;/p&gt;
 

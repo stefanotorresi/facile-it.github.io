@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Daniele on Facile.it Engineering</title>
+    <title>daniele on Facile.it Engineering</title>
     <link>http://engineering.facile.it/authors/daniele/</link>
-    <description>Recent content in Daniele on Facile.it Engineering</description>
+    <description>Recent content in daniele on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Nov 2015 00:00:00 +0000</lastBuildDate>
@@ -34,7 +34,7 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
       <guid>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
       <description>
 
-&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
+&lt;h2 id=&#34;in-locale-funzionava&#34;&gt;In locale funzionava&lt;/h2&gt;
 
 &lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
 
@@ -58,11 +58,11 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 
 &lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
 
-&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
+&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
 
 &lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
 
-&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
+&lt;h4 id=&#34;download-e-dipendenze&#34;&gt;Download e dipendenze&lt;/h4&gt;
 
 &lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
 
@@ -80,7 +80,7 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
+&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
 
 &lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
 
@@ -93,7 +93,7 @@ grunt dev
 
 &lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
 
-&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
+&lt;h6 id=&#34;il-file-docker-compose-yml&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
 
 &lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
 
@@ -134,7 +134,7 @@ grunt dev
 
 &lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
 
-&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
+&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
 
 &lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
 
@@ -205,7 +205,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
+&lt;h4 id=&#34;è-fatta&#34;&gt;È fatta!&lt;/h4&gt;
 
 &lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
 
@@ -226,30 +226,30 @@ In questo articolo vi mostrerò quello che è stato il mio personale percorso, n
 
 &lt;p&gt;Da sviluppatore web, la mia esigenza è di conservare i sorgenti sulla macchina host e condividerli con la VM; per la natura di PHP, la condivisione deve anche essere molto veloce, poiché ad ogni richiesta i files verranno letti nuovamente dal disco. Nulla di complicato, quindi sono partito dalla cosa più semplice.&lt;/p&gt;
 
-&lt;h2 id=&#34;boot2docker:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;boot2docker&lt;/h2&gt;
+&lt;h2 id=&#34;boot2docker&#34;&gt;boot2docker&lt;/h2&gt;
 
 &lt;p&gt;Probabilmente la soluzione più nota e diffusa, &lt;a href=&#34;https://docs.docker.com/installation/mac/&#34;&gt;boot2docker&lt;/a&gt; è stata la mia prima scelta. Si installa con &lt;code&gt;homebrew&lt;/code&gt; o &lt;code&gt;curl&lt;/code&gt; e viene distribuita con una propria ISO, molto leggera e progettata appositamente per Docker, che gira su VirtualBox.
 L&amp;rsquo;unica vera pecca è proprio il protocollo di condivisione nativo di VirtualBox, &lt;code&gt;vboxsf&lt;/code&gt;, che risulta &lt;strong&gt;molto lento&lt;/strong&gt; per progetti di medie dimensioni e rende il caricamento delle pagine lunghissimo.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-osx:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;docker-osx&lt;/h2&gt;
+&lt;h2 id=&#34;docker-osx&#34;&gt;docker-osx&lt;/h2&gt;
 
 &lt;p&gt;Decido di &lt;a href=&#34;https://github.com/noplay/docker-osx&#34;&gt;provarlo&lt;/a&gt; incuriosito da un collega che ne aveva creato una versione modificata per supportare la &lt;strong&gt;condivisione NFS&lt;/strong&gt;, ma nonostante questo non lo trovo migliore di boot2docker. Inoltre il suo sviluppo è precedente, e il progetto è stato abbandonato quando Docker ha iniziato a supportare ufficialmente boot2docker: è in effetti lo stesso sviluppatore a sconsigliarne l&amp;rsquo;utilizzo da parte di nuovi utenti.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;Leggo su un blog che è possibile avere prestazioni migliori utilizzando un sistema di virtualizzazione alternativo a VirtualBox, come ad esempio Parallels o VMWare Fusion. Per entrambi esistono delle ISO modificate di boot2docker e la macchina dev&amp;rsquo;essere configurata usando Vagrant. La mia scelta cade su &lt;strong&gt;Parallels&lt;/strong&gt;, e finalmente riesco a creare &lt;strong&gt;una macchina performante&lt;/strong&gt; con condivisione NFS.
 Purtroppo il mantenimento della ISO sembra non stare al passo con la frequenza di rilascio di Docker (ero fermo alla versione 1.4.1 quando la 1.5 era disponibile da diverse settimane), quindi decido di cambiare nuovamente soluzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-ubuntu:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-ubuntu&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
 
 &lt;p&gt;Dati i precedenti limiti e relativi fallimenti, tento una strada alternativa e &lt;a href=&#34;https://github.com/ildanno/parallels-docker-vagrantfile&#34;&gt;preparo un Vagrantfile&lt;/a&gt; contenente tutto quello che mi serve: una macchina Ubuntu che gira su Parallels, repository di Docker aggiornato, condivisione NFS e possibilità di eseguire comandi al boot.
 Ma ancora una volta ho un problema fastidioso, che si verificava già con la soluzione precedente ma che (sbagliando) attribuivo a boot2docker. Ad ogni avvio della macchina, infatti, si crea &lt;strong&gt;un conflitto&lt;/strong&gt; con OS X per l&amp;rsquo;utilizzo di &lt;strong&gt;alcune risorse di rete&lt;/strong&gt; e devo risolverle manualmente riavviando il demone NAT di Parallels. Inoltre scopro che con vagrant+parallels lo spazio utilizzato dal disco virtuale non è più recuperabile una volta allocato e il mio SSD è ormai alle strette.&lt;/p&gt;
 
-&lt;h2 id=&#34;vm-custom:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;VM custom&lt;/h2&gt;
+&lt;h2 id=&#34;vm-custom&#34;&gt;VM custom&lt;/h2&gt;
 
 &lt;p&gt;Preso dallo sconforto scelgo di avere il &lt;strong&gt;controllo completo&lt;/strong&gt;: installo &lt;strong&gt;VMWare Fusion&lt;/strong&gt; per avere un sistema di virtualizzazione più performante di VirtualBox, ma senza gli inconvenienti di Parallels, e configuro una macchina con Ubuntu server. Posso montare share NFS e ridimensionare il disco virtuale. Mi sembra una soluzione molto artigianale, ma funziona esattamente come voglio io e credo finalmente di avere trovato la mia pace. Ma non è così.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-machine:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Docker Machine&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine&#34;&gt;Docker Machine&lt;/h2&gt;
 
 &lt;p&gt;Da alcune settimane è uscita una novità sul mercato, direttamente da casa Docker, che ho inizialmente ignorato. Si chiama &lt;a href=&#34;https://docs.docker.com/machine/&#34;&gt;Docker Machine&lt;/a&gt; e ad una prima occhiata non sembra fare cose molto diverse da boot2docker, tant&amp;rsquo;è che ne utilizza la stessa ISO. Però il fatto che venga rilasciato direttamente dalla casa madre mi fa ben sperare, vista anche l&amp;rsquo;evoluzione avuta da altri tools come &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker Compose&lt;/a&gt;, e dopo qualche tempo decido di dargli una possibilità.&lt;/p&gt;
 

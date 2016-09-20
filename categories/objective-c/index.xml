@@ -27,7 +27,7 @@
 
 &lt;p&gt;Personally, while I naturally lean towards a more static, &lt;a href=&#34;http://engineering.facile.it/type-first-development-in-swift/&#34;&gt;type-first&lt;/a&gt; approach to programming, from time to time I like to work in a more dynamic environment, so both for preference and for business needs, I still didn&amp;rsquo;t put Objective-C completely away. But just after a few weeks of Swift I found myself missing one of the most powerful features of the language: &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optionals&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;table-of-contents:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Table of contents&lt;/h2&gt;
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of contents&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#the-optional-type&#34;&gt;The &lt;code&gt;Optional&lt;/code&gt; type&lt;/a&gt;&lt;/li&gt;
@@ -39,7 +39,7 @@
 
 &lt;p&gt;&lt;a name=&#34;the-optional-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-optional-type:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;The &lt;code&gt;Optional&lt;/code&gt; type&lt;/h2&gt;
+&lt;h2 id=&#34;the-optional-type&#34;&gt;The &lt;code&gt;Optional&lt;/code&gt; type&lt;/h2&gt;
 
 &lt;p&gt;A Optional is a &lt;em&gt;generic&lt;/em&gt; type, that is, a type that&amp;rsquo;s dependent  (actually, &lt;em&gt;parametric&lt;/em&gt;) on another &lt;strong&gt;subtype&lt;/strong&gt;, so whe can have, for example, a &lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt; or a &lt;code&gt;Optional&amp;lt;Int&amp;gt;&lt;/code&gt;: thanks to some syntactic sugar, those types are written in Swift as &lt;code&gt;String?&lt;/code&gt; and &lt;code&gt;Int?&lt;/code&gt;. So, what is an &lt;code&gt;Optional&lt;/code&gt;? It&amp;rsquo;s a representation   of a value that could be there, and be of a particular subtype, or could not, therefore being &lt;strong&gt;nil&lt;/strong&gt;: by &lt;em&gt;wrapping&lt;/em&gt; the subtype into an &lt;code&gt;Optional&lt;/code&gt;, the Swift compiler knows that the value could be nil, and complain in the cases where we are using an &lt;code&gt;Optional&lt;/code&gt; where a value that&amp;rsquo;s &lt;strong&gt;never&lt;/strong&gt; nil is expected. By itself, this simple feature grants us a lot of type-safety for free: for example, in Swift we can&amp;rsquo;t initialize a non-optional value with nil, and considering that, for the Swift&amp;rsquo;s compiler, a value cannot be used before being initialized, by saying that a value&amp;rsquo;s type is &lt;code&gt;String&lt;/code&gt; the compiler will assure us that the value will &lt;strong&gt;always&lt;/strong&gt; be a string, no matter what.&lt;/p&gt;
 
@@ -49,7 +49,7 @@
 
 &lt;p&gt;&lt;a name=&#34;optionals-in-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;optionals-in-swift:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Optionals in Swift&lt;/h2&gt;
+&lt;h2 id=&#34;optionals-in-swift&#34;&gt;Optionals in Swift&lt;/h2&gt;
 
 &lt;p&gt;Consider the following Swift code:&lt;/p&gt;
 
@@ -114,7 +114,7 @@ let anotherOptionalInt = anotherOptionalString.map(toInt).map(doubled)
 
 &lt;p&gt;&lt;a name=&#34;back-to-objective-c&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;back-to-objective-c:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Back to Objective-C&lt;/h2&gt;
+&lt;h2 id=&#34;back-to-objective-c&#34;&gt;Back to Objective-C&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s implement the &lt;code&gt;Optional&lt;/code&gt; class in Objective-C:&lt;/p&gt;
 
@@ -270,7 +270,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;example-a-json-parser&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;example-a-json-parser:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Example: a JSON parser&lt;/h2&gt;
+&lt;h2 id=&#34;example-a-json-parser&#34;&gt;Example: a JSON parser&lt;/h2&gt;
 
 &lt;p&gt;Suppose we want to create an app that shows movie informations: we are retrieving those informations in JSON format from a website like &lt;a href=&#34;http://api.myapifilms.com&#34;&gt;myapifilms&lt;/a&gt;. Each movie has a JSON representation like the following:&lt;/p&gt;
 
@@ -520,7 +520,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;conclusion&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusion:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Bringing back the &lt;code&gt;Optional&lt;/code&gt; type from Swift to Objective-C allowed us to build a JSON parsing routine, often something hard to maintain and error-prone, in a simple, linear and readable way. Of course there&amp;rsquo;s &lt;strong&gt;plenty of cases&lt;/strong&gt; where working with optionals can give us the same advantages: by composing &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt; operations we can express our intent in a clean and readable way. But this is not just about the &lt;code&gt;Optional&lt;/code&gt; type: some readers may have probably noticed that many languages (including Swift) allow operations with the same names on lists and arrays, and the meanings are also the same: &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;flatMap&lt;/code&gt;, in particular, are &lt;strong&gt;generic concepts&lt;/strong&gt; related to monads (in fact, the array type is also a monad) and allow declarative compositions of transformations. This concept is at the core of &lt;strong&gt;functional programming&lt;/strong&gt;, and I think there&amp;rsquo;s plenty of reasons to apply similar concepts to a more object-oriented environment: they will help the programmer in reasoning about the code and express the intent in a more declarative way.&lt;/p&gt;
 
@@ -546,7 +546,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;Personalmente ho la tendenza a preferire linguaggi più statici, e un approccio &lt;a href=&#34;http://engineering.facile.it/type-first-development-in-swift/&#34;&gt;type-first&lt;/a&gt; alla programmazione, ma di tanto in tanto mi piace lavorare in un ambiente più &lt;em&gt;dinamico&lt;/em&gt;, quindi, sia per preferenza personale che per esigenze di business, non ho ancora messo Objective-C da parte. Ma dopo poche settimane di Swift, mi è mancata subito una delle sue funzionalità più potenti: gli &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optionals&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#il-tipo-optional&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
@@ -558,7 +558,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;il-tipo-optional&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;il-tipo-optional:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;il-tipo-optional&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt; è un tipo &lt;em&gt;generico&lt;/em&gt; (o, più propriamente, &lt;em&gt;parametrico&lt;/em&gt;), dipendente da un &lt;strong&gt;tipo secondario&lt;/strong&gt;: è possibile ad esempio definire un &lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt; oppure un &lt;code&gt;Optional&amp;lt;Int&amp;gt;&lt;/code&gt;: la sintassi di Swift permette di scrivere i tipi appena indicati con &lt;code&gt;String?&lt;/code&gt; e &lt;code&gt;Int?&lt;/code&gt;. Ma cos&amp;rsquo;è esattamente un &lt;code&gt;Optional&lt;/code&gt;?. È un tipo particolare che serve a rappresentare un dato che &lt;em&gt;potrebbe&lt;/em&gt; esistere, ed essere quindi di un certo tipo secondario, o potrebbe non esistere, ed essere quindi &lt;strong&gt;nil&lt;/strong&gt;: &lt;em&gt;inscatolando&lt;/em&gt; il valore opzionale in un &lt;code&gt;Optional&lt;/code&gt;, il compilatore di Swift saprà che quel valore potrà essere nil, e emettere un errore nei casi in cui stiamo usando un &lt;code&gt;Optional&lt;/code&gt; dove ci si aspetta un valore &lt;strong&gt;sempre&lt;/strong&gt; presente. Questa semplice funzionalità ci garantisce notevole rigore nella definizione dei nostri tipi di dato e funzione: ad esempio, in Swift non possiamo inizializzare un valore non opzionale con nil, e considerando che, per il compilatore, un valore non può essere usato prima di essere istanziato, se assegniamo il tipo &lt;code&gt;String&lt;/code&gt; a un valore, siamo sicuri al 100% che quel valore sarà &lt;strong&gt;sempre a comunque&lt;/strong&gt; una stringa.&lt;/p&gt;
 
@@ -568,7 +568,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;optionals-in-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;optionals-in-swift:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Optionals in Swift&lt;/h2&gt;
+&lt;h2 id=&#34;optionals-in-swift&#34;&gt;Optionals in Swift&lt;/h2&gt;
 
 &lt;p&gt;Consideriamo il seguente codice Swift:&lt;/p&gt;
 
@@ -633,7 +633,7 @@ let anotherOptionalInt = anotherOptionalString.map(toInt).map(doubled)
 
 &lt;p&gt;&lt;a name=&#34;torniamo-a-objective-c&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;torniamo-a-objective-c:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Torniamo a Objective-C&lt;/h2&gt;
+&lt;h2 id=&#34;torniamo-a-objective-c&#34;&gt;Torniamo a Objective-C&lt;/h2&gt;
 
 &lt;p&gt;Implementiamo la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C:&lt;/p&gt;
 
@@ -789,7 +789,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;esempio-un-parser-json&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;esempio-un-parser-json:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Esempio: un parser JSON&lt;/h2&gt;
+&lt;h2 id=&#34;esempio-un-parser-json&#34;&gt;Esempio: un parser JSON&lt;/h2&gt;
 
 &lt;p&gt;Supponiamo di voler realizzare un&amp;rsquo;app che mostra informazioni sui film: possiamo ottenerle in formato JSON da un sito come &lt;a href=&#34;http://api.myapifilms.com/index.do&#34;&gt;myapifilms&lt;/a&gt;. La rappresentazione JSON di ogni film è del tipo seguente:&lt;/p&gt;
 
@@ -1039,7 +1039,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusione:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Conclusione&lt;/h2&gt;
+&lt;h2 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h2&gt;
 
 &lt;p&gt;Implementare la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C ci ha permesso di parsare un JSON, cosa spesso difficile da mantenere e soggetta a errori, in un modo semplice e lineare. In realtà ci sono &lt;strong&gt;molti casi&lt;/strong&gt; in cui lavorare con gli &lt;em&gt;optionals&lt;/em&gt; ci può dare gli stessi vantaggi: componendo operazioni di tipo &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; e &lt;code&gt;filter&lt;/code&gt; possiamo esprimere il nostro intento in maniera chiara e leggibile. Ma tutto questo non riguarda solo il tipo &lt;code&gt;Optional&lt;/code&gt;: alcuni lettori avranno probabilmente notato che molti linguaggi (incluso Swift) permettono operazioni dell stesso tipo su liste e array, e il loro significato è identico: &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt;, in particolare, sono &lt;strong&gt;concetti generici&lt;/strong&gt; legati ai &lt;em&gt;monad&lt;/em&gt; (in effetti, anche il tipo &lt;code&gt;Array&lt;/code&gt; è un &lt;em&gt;monad&lt;/em&gt;), e riguarda la composizione dichiarativa di trasformazioni. Questo concetto è alla base della &lt;strong&gt;programmazione funzionale&lt;/strong&gt;, e penso ci siano molti motivi per applicare concetti simili ad ambienti più &lt;em&gt;object-oriented&lt;/em&gt;, perché aiuterebbero il programmatore a ragionare sul codice ed esprimere l&amp;rsquo;intento in maniera più dichiarativa.&lt;/p&gt;
 

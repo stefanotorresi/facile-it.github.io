@@ -22,30 +22,30 @@ In questo articolo vi mostrerò quello che è stato il mio personale percorso, n
 
 &lt;p&gt;Da sviluppatore web, la mia esigenza è di conservare i sorgenti sulla macchina host e condividerli con la VM; per la natura di PHP, la condivisione deve anche essere molto veloce, poiché ad ogni richiesta i files verranno letti nuovamente dal disco. Nulla di complicato, quindi sono partito dalla cosa più semplice.&lt;/p&gt;
 
-&lt;h2 id=&#34;boot2docker:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;boot2docker&lt;/h2&gt;
+&lt;h2 id=&#34;boot2docker&#34;&gt;boot2docker&lt;/h2&gt;
 
 &lt;p&gt;Probabilmente la soluzione più nota e diffusa, &lt;a href=&#34;https://docs.docker.com/installation/mac/&#34;&gt;boot2docker&lt;/a&gt; è stata la mia prima scelta. Si installa con &lt;code&gt;homebrew&lt;/code&gt; o &lt;code&gt;curl&lt;/code&gt; e viene distribuita con una propria ISO, molto leggera e progettata appositamente per Docker, che gira su VirtualBox.
 L&amp;rsquo;unica vera pecca è proprio il protocollo di condivisione nativo di VirtualBox, &lt;code&gt;vboxsf&lt;/code&gt;, che risulta &lt;strong&gt;molto lento&lt;/strong&gt; per progetti di medie dimensioni e rende il caricamento delle pagine lunghissimo.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-osx:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;docker-osx&lt;/h2&gt;
+&lt;h2 id=&#34;docker-osx&#34;&gt;docker-osx&lt;/h2&gt;
 
 &lt;p&gt;Decido di &lt;a href=&#34;https://github.com/noplay/docker-osx&#34;&gt;provarlo&lt;/a&gt; incuriosito da un collega che ne aveva creato una versione modificata per supportare la &lt;strong&gt;condivisione NFS&lt;/strong&gt;, ma nonostante questo non lo trovo migliore di boot2docker. Inoltre il suo sviluppo è precedente, e il progetto è stato abbandonato quando Docker ha iniziato a supportare ufficialmente boot2docker: è in effetti lo stesso sviluppatore a sconsigliarne l&amp;rsquo;utilizzo da parte di nuovi utenti.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;Leggo su un blog che è possibile avere prestazioni migliori utilizzando un sistema di virtualizzazione alternativo a VirtualBox, come ad esempio Parallels o VMWare Fusion. Per entrambi esistono delle ISO modificate di boot2docker e la macchina dev&amp;rsquo;essere configurata usando Vagrant. La mia scelta cade su &lt;strong&gt;Parallels&lt;/strong&gt;, e finalmente riesco a creare &lt;strong&gt;una macchina performante&lt;/strong&gt; con condivisione NFS.
 Purtroppo il mantenimento della ISO sembra non stare al passo con la frequenza di rilascio di Docker (ero fermo alla versione 1.4.1 quando la 1.5 era disponibile da diverse settimane), quindi decido di cambiare nuovamente soluzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-ubuntu:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-ubuntu&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
 
 &lt;p&gt;Dati i precedenti limiti e relativi fallimenti, tento una strada alternativa e &lt;a href=&#34;https://github.com/ildanno/parallels-docker-vagrantfile&#34;&gt;preparo un Vagrantfile&lt;/a&gt; contenente tutto quello che mi serve: una macchina Ubuntu che gira su Parallels, repository di Docker aggiornato, condivisione NFS e possibilità di eseguire comandi al boot.
 Ma ancora una volta ho un problema fastidioso, che si verificava già con la soluzione precedente ma che (sbagliando) attribuivo a boot2docker. Ad ogni avvio della macchina, infatti, si crea &lt;strong&gt;un conflitto&lt;/strong&gt; con OS X per l&amp;rsquo;utilizzo di &lt;strong&gt;alcune risorse di rete&lt;/strong&gt; e devo risolverle manualmente riavviando il demone NAT di Parallels. Inoltre scopro che con vagrant+parallels lo spazio utilizzato dal disco virtuale non è più recuperabile una volta allocato e il mio SSD è ormai alle strette.&lt;/p&gt;
 
-&lt;h2 id=&#34;vm-custom:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;VM custom&lt;/h2&gt;
+&lt;h2 id=&#34;vm-custom&#34;&gt;VM custom&lt;/h2&gt;
 
 &lt;p&gt;Preso dallo sconforto scelgo di avere il &lt;strong&gt;controllo completo&lt;/strong&gt;: installo &lt;strong&gt;VMWare Fusion&lt;/strong&gt; per avere un sistema di virtualizzazione più performante di VirtualBox, ma senza gli inconvenienti di Parallels, e configuro una macchina con Ubuntu server. Posso montare share NFS e ridimensionare il disco virtuale. Mi sembra una soluzione molto artigianale, ma funziona esattamente come voglio io e credo finalmente di avere trovato la mia pace. Ma non è così.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-machine:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Docker Machine&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine&#34;&gt;Docker Machine&lt;/h2&gt;
 
 &lt;p&gt;Da alcune settimane è uscita una novità sul mercato, direttamente da casa Docker, che ho inizialmente ignorato. Si chiama &lt;a href=&#34;https://docs.docker.com/machine/&#34;&gt;Docker Machine&lt;/a&gt; e ad una prima occhiata non sembra fare cose molto diverse da boot2docker, tant&amp;rsquo;è che ne utilizza la stessa ISO. Però il fatto che venga rilasciato direttamente dalla casa madre mi fa ben sperare, vista anche l&amp;rsquo;evoluzione avuta da altri tools come &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker Compose&lt;/a&gt;, e dopo qualche tempo decido di dargli una possibilità.&lt;/p&gt;
 

@@ -6,8 +6,92 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Jun 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Sep 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Event-driven serverless applications</title>
+      <link>http://engineering.facile.it/blog/eng/event-driven-serverless-applications/</link>
+      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/event-driven-serverless-applications/</guid>
+      <description>
+
+&lt;p&gt;If we think about computing in the Cloud Era, our mind is immediately drawn towards virtual machines and containers. Therefore, for example, when building a production environment with both approaches we think about the need of patching the operating system and/or upgrading the container. At the end of 2014 &lt;strong&gt;Amazon Web Services&lt;/strong&gt; (AWS) announced a new service called &amp;ldquo;&lt;strong&gt;&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;Lambda&lt;/a&gt;&lt;/strong&gt;&amp;rdquo;, that allows us to focus on business logic and not on infrastructure.&lt;/p&gt;
+
+&lt;h1 id=&#34;what-is-lambda&#34;&gt;What is Lambda?&lt;/h1&gt;
+
+&lt;p&gt;As reported on their website: « &lt;em&gt;AWS Lambda is a serverless compute service that runs your code highly-available in the cloud in response to events and it automatically performs all the administration of the compute resources for you&lt;/em&gt; ». In the previous sentence is condensed all the power of Lambda, that we can summarize with the following key concepts: &lt;strong&gt;&lt;a href=&#34;#serverless-architecture&#34;&gt;serverless architecture&lt;/a&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;a href=&#34;#high-availability&#34;&gt;high-availability&lt;/a&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;a href=&#34;#event-driven&#34;&gt;event-driven&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href=&#34;#zero-administration&#34;&gt;zero administration&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/event-driven-serverless-applications/aws-lambda-key-concepts.png&#34; alt=&#34;AWS Lambda key concepts&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;serverless-architecture&#34;&gt;Serverless architecture&lt;/h2&gt;
+
+&lt;p&gt;Lambda is completely &amp;ldquo;serverless&amp;rdquo;, a term that can be considered misleading: obviously Lambda uses physical servers to run your code, but we, as the service&amp;rsquo;s users, don’t take care of everything required to do it. We just need to upload our code on AWS console and it handles capacity, scaling, monitoring, logging and security without any server to manage.
+Strictly speaking, functions are executed in containers, and kernel-based virtualization is very useful in this context, because it allows to build multiple isolated environments in short time.
+A more detailed explanation of serverless architectures can be found &lt;a href=&#34;http://www.martinfowler.com/articles/serverless.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;high-availability&#34;&gt;High-availability&lt;/h2&gt;
+
+&lt;p&gt;AWS Lambda maintains compute capacity across multiple availability zones in each region - at the moment there are 8 regions distributed among Americas, EMEA and Asia Pacific - in this way Lambda is able to protect your code against data center failures.&lt;/p&gt;
+
+&lt;h2 id=&#34;event-driven&#34;&gt;Event-driven&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Event-driven&amp;rdquo; means that a Lambda function is triggered when an event occurs, so the flow of the application is mainly driven by events. In this kind of architecture all Lambda functions are event consumers, because they are invoked by an event and they have the responsibility to process it.
+An event comes to life, for example, whenever:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a new item is created on an Amazon DynamoDB table;&lt;/li&gt;
+&lt;li&gt;a file is deleted on an Amazon S3 bucket;&lt;/li&gt;
+&lt;li&gt;an Amazon API Gateway is called;&lt;/li&gt;
+&lt;li&gt;et cetera&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;but we can also use AWS SDK to invoke a function directly on a mobile or web app back-end.
+This is a good way to write application logic without designing and maintaining a centralized workflow.
+More about event-driven programming &lt;a href=&#34;https://en.wikipedia.org/wiki/Event-driven_programming&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;zero-administration&#34;&gt;Zero administration&lt;/h2&gt;
+
+&lt;p&gt;All the work you usually need to do in order to assure that your application works in a scalable, reliable and durable way is taken care by the service itself.  Behind the scenes the system performs all the needed administration for the compute resources, including server and operating system maintenance, code and security patch deployment, code monitoring and logging, and automatically matches the incoming rate of functions invocation for us, to assure capacity provisioning and automatic scaling.&lt;/p&gt;
+
+&lt;h1 id=&#34;lambda-functions&#34;&gt;Lambda functions&lt;/h1&gt;
+
+&lt;p&gt;The code we run on AWS Lambda is called a &amp;ldquo;&lt;strong&gt;lambda function&lt;/strong&gt;&amp;rdquo;. The name &amp;ldquo;lambda&amp;rdquo; derives from the 11th letter of the Greek alphabet. In general a &lt;em&gt;lambda&lt;/em&gt;, also called &lt;em&gt;anonymous function&lt;/em&gt;, is a function that&amp;rsquo;s defined inline (sometimes called &lt;em&gt;closure&lt;/em&gt;) and passed to some other function, method or procedure, to be stored or executed: the &lt;em&gt;anonymity&lt;/em&gt; is given by the fact that we don&amp;rsquo;t give a name to the function, but we just define it at the moment of need.&lt;/p&gt;
+
+&lt;h2 id=&#34;supported-languages&#34;&gt;Supported languages&lt;/h2&gt;
+
+&lt;p&gt;Right now Lambda functions natively support code written in &lt;strong&gt;Java&lt;/strong&gt;, &lt;strong&gt;Node.js&lt;/strong&gt; and &lt;strong&gt;Python&lt;/strong&gt;, but we can run C, Go and PHP using a Node.js wrapper. Hopefully Amazon will add official support for other languages such as PHP, Go, C, Swift and many more. We can also include libraries, even native ones.&lt;/p&gt;
+
+&lt;h2 id=&#34;stateless-code&#34;&gt;Stateless code&lt;/h2&gt;
+
+&lt;p&gt;When we write a function our code must be &lt;strong&gt;stateless&lt;/strong&gt;, thus everything begins and ends in the same request, and any persistent state is stored in a storage service (not necessarily within Amazon world). Keeping functions stateless is the keystone to enable the system to instantly launch new instances when needed, to serve the incoming events.&lt;/p&gt;
+
+&lt;p&gt;In addition to the code, each Lambda function has many configuration informations, such as name, description, runtime, handler, memory, max execution time and execution role. A detailed explanation is available &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction-function.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;invocation-types&#34;&gt;Invocation types&lt;/h2&gt;
+
+&lt;p&gt;We can invoke a Lambda function directly, for example using the Invoke API, or indirectly, for example using the Amazon API Gateway. A function invocation needs to specify the &lt;code&gt;InvocationType&lt;/code&gt;. There are three invocation types allowed: &lt;code&gt;RequestResponse&lt;/code&gt;, &lt;code&gt;Event&lt;/code&gt; and &lt;code&gt;DryRun&lt;/code&gt;. Each one of them has different purposes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RequestResponse&lt;/code&gt;: in this case we expect a &lt;strong&gt;synchronous&lt;/strong&gt; behavior. The function receives input parameters as an event, and returns a result;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Event&lt;/code&gt;: in this case we expect an &lt;strong&gt;asynchronous&lt;/strong&gt; behavior. The function receives input parameters as an event, returns immediately no value, but continues its execution asynchronously;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DryRun&lt;/code&gt;: it&amp;rsquo;s used to verify the access to a function without running it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/event-driven-serverless-applications/synchronous-vs-asynchronous-behaviour.png&#34; alt=&#34;Synchronous vs asynchronous behaviour&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;lambda-alternatives&#34;&gt;Lambda alternatives&lt;/h1&gt;
+
+&lt;p&gt;Serverless is a new cloud computing trend, and accordingly many cloud providers – in addition to Amazon - started offering their own &lt;em&gt;Function as a Service&lt;/em&gt; (FaaS), for example &lt;strong&gt;Google&lt;/strong&gt; with its &lt;a href=&#34;https://cloud.google.com/functions/&#34;&gt;Cloud Functions&lt;/a&gt;, &lt;strong&gt;IBM&lt;/strong&gt; with its &lt;a href=&#34;https://developer.ibm.com/openwhisk/&#34;&gt;OpenWhisk&lt;/a&gt;, &lt;strong&gt;Auth0&lt;/strong&gt; with its &lt;a href=&#34;https://webtask.io/&#34;&gt;WebTasks&lt;/a&gt; and &lt;strong&gt;Microsoft&lt;/strong&gt; with its &lt;a href=&#34;https://functions.azure.com/&#34;&gt;Azure Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;Functions are very useful when we want to build lightweight applications based on &lt;em&gt;microservices&lt;/em&gt; with no server. Their approach could be considered a way to achieve fine-grained microservices, in which there is a relation one-to-one between functions and endpoints instead of one service per one resource: for this reason they are often referred to as &lt;em&gt;nanoservices&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;They could help developers in focusing on the code, while only charging for code really running in an infrastructure that&amp;rsquo;s able to autonomously grow upon demand, without lots of efforts in managing it. With functions, we can see our code as a series of small and independent building blocks, that can be easily replaced or connected with other blocks using events. Also, Lamba could help small team in reusing existing skills while adopting different languages, in order to develop software that better matches business&amp;rsquo; requirements.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>How PHP 7 &amp; TDD helped me sleep better</title>
@@ -17,7 +101,7 @@
       <guid>http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/</guid>
       <description>
 
-&lt;h1 id=&#34;the-enemies-of-programming:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;The enemies of programming&lt;/h1&gt;
+&lt;h1 id=&#34;the-enemies-of-programming&#34;&gt;The enemies of programming&lt;/h1&gt;
 
 &lt;p&gt;As many of you will agree with me, &lt;strong&gt;sleep deprivation&lt;/strong&gt; is the enemy of programming.&lt;br /&gt;
 Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;/strong&gt;.
@@ -27,7 +111,7 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;While writing code we have to think really hard, we use complex abstractions, we go through long business workflows and so on&amp;hellip; fatigue and interruptions are the main enemies of those in this line of work.&lt;/p&gt;
 
-&lt;h1 id=&#34;my-experience:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;My experience&lt;/h1&gt;
+&lt;h1 id=&#34;my-experience&#34;&gt;My experience&lt;/h1&gt;
 
 &lt;p&gt;On my day job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine etc.; luckily, in this project we use a good deal of &lt;strong&gt;good practices&lt;/strong&gt;, and &lt;strong&gt;automated software testing&lt;/strong&gt; is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.&lt;/p&gt;
 
@@ -46,13 +130,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Obviously, as anyone that&amp;rsquo;s passionate in technology would do, I took the opportunity to use a lot of new shiny tools: I picked &lt;strong&gt;PHP 7&lt;/strong&gt;, which had just been released, and started the project with something familiar to me but still pretty new and cool, &lt;strong&gt;Symfony 3.0&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;what-i-found-to-be-useful:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;What I found to be useful&lt;/h1&gt;
+&lt;h1 id=&#34;what-i-found-to-be-useful&#34;&gt;What I found to be useful&lt;/h1&gt;
 
 &lt;p&gt;I rambled and thought about this project a lot in the past months with my colleagues, because the old system was costing us a lot of overhead in usage and maintenance, and we had a pretty clear idea of what its problems were, so I didn&amp;rsquo;t need to study a lot before starting to write the first classes.&lt;/p&gt;
 
 &lt;p&gt;Thus, I had to spend &lt;em&gt;some&lt;/em&gt; time thinking about an object oriented design for my project, but I was rapidly able to start writing code with confidence. In the end, most of this confidence came from a few choices that I pursued during the development of this project.&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-and-high-coverage:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;TDD and high coverage&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-and-high-coverage&#34;&gt;TDD and high coverage&lt;/h2&gt;
 
 &lt;p&gt;The first choice that I am pretty satisfied about is &lt;strong&gt;automatic testing&lt;/strong&gt;: I already knew the advantages of doing tests and Test Driven Development, but in the previous project that practice was not introduced from the start, so not all the codebase was covered, and we couldn&amp;rsquo;t (or wouldn&amp;rsquo;t?) do TDD 100% of the time.&lt;/p&gt;
 
@@ -60,13 +144,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Of course, I still left some parts without coverage or specific tests, since it was pointless to test them (e.g. Doctrine entities), while I covered some parts multiple times, since they were &lt;strong&gt;critical paths&lt;/strong&gt; inside my application.&lt;/p&gt;
 
-&lt;h2 id=&#34;unit-tests-to-the-rescue:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
+&lt;h2 id=&#34;unit-tests-to-the-rescue&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
 
 &lt;p&gt;Last but not least, the main critical advantage that TDD gave me was &lt;strong&gt;focus even on strained days&lt;/strong&gt;: I wrote the classes starting from unit tests, giving all my effort to one piece of code at a time, without having to keep in mind the entire project with its complexities.&lt;/p&gt;
 
 &lt;p&gt;I then wrote some functional tests to assure that the &lt;strong&gt;collaboration between my unit-tested objects&lt;/strong&gt; was fine, and this later step was also useful in delaying the definition of the classes as services inside the Symfony DI container. I was also &lt;strong&gt;able to change my mind&lt;/strong&gt; a few times on some details of the design without having to suffer mental confusion or rewrite too much code.&lt;/p&gt;
 
-&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
+&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
 
 &lt;p&gt;The second good choice was &lt;strong&gt;PHP 7&lt;/strong&gt;: among the reasons behind it as the language version of choice for this project were the &lt;a href=&#34;http://php.net/manual/en/migration70.new-features.php&#34;&gt;two main new features&lt;/a&gt; introduced: &lt;strong&gt;scalar types&lt;/strong&gt; and &lt;strong&gt;return type declarations&lt;/strong&gt;.
 &lt;p style=&#34;text-align: center;&#34;&gt;
@@ -89,7 +173,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;On the other hand, having return types declared on your business-logic classes it&amp;rsquo;s pretty useful, even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it &lt;strong&gt;indirectly helps maintaining the collaboration contract between objects&lt;/strong&gt;, without too much hassle. If I changed a method&amp;rsquo;s signature that was mocked somewhere, the mock would break the test, &lt;strong&gt;highlighting the issue and making the tests&lt;/strong&gt; (and an high coverage) &lt;strong&gt;even more valuable&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;At the end of the day, these and other &lt;strong&gt;good practices are helpful&lt;/strong&gt; for both your job and your personal life: you can go a long way in being fit and in the best shape while working, but stressful and (good) distracting events are unavoidable: you&amp;rsquo;ll often have to fight stress, fatigue or distractions, and there will be days where you can&amp;rsquo;t be at the top of your game, for any number of reasons.&lt;/p&gt;
 
@@ -113,9 +197,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talks are in chronological order, and we linked the slides when available. Enjoy your reading!&lt;/p&gt;
 
-&lt;h1 id=&#34;technical-talks:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Technical Talks&lt;/h1&gt;
+&lt;h1 id=&#34;technical-talks&#34;&gt;Technical Talks&lt;/h1&gt;
 
-&lt;h2 id=&#34;your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Your API is a UI&lt;/h2&gt;
+&lt;h2 id=&#34;your-api-is-a-ui&#34;&gt;Your API is a UI&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christopher Hoult (&lt;a href=&#34;http://twitter.com/choult&#34;&gt;@choult&lt;/a&gt;)&lt;/li&gt;
@@ -124,7 +208,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This was an interesting and very smooth talk. It stayed pretty general with nice advices about &lt;strong&gt;API development&lt;/strong&gt;, but showed some reasoning about a pyramidal &amp;ldquo;scheme of priorities&amp;rdquo; that we should follow, deriving from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&#34;&gt;Maslow&amp;rsquo;s hierarchy of needs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
+&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;James Titcumb (&lt;a href=&#34;http://twitter.com/asgrim&#34;&gt;@asgrim&lt;/a&gt;)&lt;/li&gt;
@@ -133,7 +217,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we saw an interesting overview of &lt;strong&gt;security issues&lt;/strong&gt; that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
+&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -142,7 +226,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we went from basic &lt;strong&gt;regular expressions&lt;/strong&gt;, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the &lt;em&gt;Dr. Strangelove&lt;/em&gt; movie, from images to phrases used in the examples.&lt;/p&gt;
 
-&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
+&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paul Dragoonis (&lt;a href=&#34;http://twitter.com/dr4goonis&#34;&gt;@dr4goonis&lt;/a&gt;)&lt;/li&gt;
@@ -151,7 +235,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was about &lt;strong&gt;using Jenkins with Docker&lt;/strong&gt; and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.&lt;/p&gt;
 
-&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
+&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrew Carter (&lt;a href=&#34;http://twitter.com/AndrewCarterUK&#34;&gt;@AndrewCarterUK&lt;/a&gt;)&lt;/li&gt;
@@ -160,7 +244,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.&lt;/p&gt;
 
-&lt;h2 id=&#34;evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
+&lt;h2 id=&#34;evolution-of-web-application-architecture&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kore Nordmann (&lt;a href=&#34;http://twitter.com/koredn&#34;&gt;@koredn&lt;/a&gt;)&lt;/li&gt;
@@ -169,7 +253,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talk covered the &lt;strong&gt;evolution of the technological stack&lt;/strong&gt; behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of &lt;strong&gt;when and why&lt;/strong&gt; such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.&lt;/p&gt;
 
-&lt;h2 id=&#34;being-functional-in-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Being functional in PHP&lt;/h2&gt;
+&lt;h2 id=&#34;being-functional-in-php&#34;&gt;Being functional in PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David de Boer (&lt;a href=&#34;http://twitter.com/ddeboer_nl&#34;&gt;@ddeboer_nl&lt;/a&gt;)&lt;/li&gt;
@@ -178,9 +262,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was an &lt;strong&gt;introduction to functional programming&lt;/strong&gt;. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h1&gt;
 
-&lt;h2 id=&#34;deploying-php-7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Deploying PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;deploying-php-7&#34;&gt;Deploying PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;http://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -189,7 +273,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&amp;rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from &lt;strong&gt;benchmark data&lt;/strong&gt; to technical tips on how to smooth the transition to this new major version of PHP.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
+&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nikolay Krapivnyy&lt;/li&gt;
@@ -223,7 +307,7 @@ New features have been added such as the possibility to &lt;strong&gt;push resou
 &lt;p&gt;The main reason that led to HTTP/2 is &lt;strong&gt;improving performance&lt;/strong&gt;.
 Previous versions of HTTP had critical problems that were not addressable without changing the low-level communication mechanisms.&lt;/p&gt;
 
-&lt;h2 id=&#34;http-1-1-issues:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;HTTP/1.1 issues&lt;/h2&gt;
+&lt;h2 id=&#34;http-1-1-issues&#34;&gt;HTTP/1.1 issues&lt;/h2&gt;
 
 &lt;p&gt;HTTP/2 deals with many of the performance issues of HTTP/1.1:&lt;/p&gt;
 
@@ -242,7 +326,7 @@ Previous versions of HTTP had critical problems that were not addressable withou
 &lt;li&gt;Recent web applications prefer leaving connections open to reduce connection setup latency for subsequent requests;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;what-s-changed:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;What&amp;rsquo;s changed&lt;/h2&gt;
+&lt;h2 id=&#34;what-s-changed&#34;&gt;What&amp;rsquo;s changed&lt;/h2&gt;
 
 &lt;p&gt;HTTP/2 is &lt;strong&gt;no longer text-based&lt;/strong&gt;; this means debugging could be somewhat difficult without using special tools.&lt;/p&gt;
 
@@ -264,7 +348,7 @@ Several streams can be active at the same time on the same connection: this prov
 
 &lt;p&gt;Servers and clients may use &lt;code&gt;PING&lt;/code&gt; frames to check the underlying connection&amp;rsquo;s state and to keep the connection alive even for a long period of time.&lt;/p&gt;
 
-&lt;h2 id=&#34;support-by-servers-and-user-agents:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Support by servers and user agents&lt;/h2&gt;
+&lt;h2 id=&#34;support-by-servers-and-user-agents&#34;&gt;Support by servers and user agents&lt;/h2&gt;
 
 &lt;p&gt;HTTP/2 is actually a fork of &lt;a href=&#34;http://dev.chromium.org/spdy/spdy-whitepaper&#34;&gt;SPDY&lt;/a&gt;, a protocol developed by Google.
 A lot of different servers and clients already supported the SPDY protocol, so the transition from SPDY to HTTP/2 was pretty straightforward.&lt;/p&gt;
@@ -276,7 +360,7 @@ A lot of different servers and clients already supported the SPDY protocol, so t
 &lt;p&gt;A the moment, they only allow HTTP/2 over TLS via &lt;a href=&#34;https://tools.ietf.org/html/rfc7301&#34;&gt;ALPN&lt;/a&gt; or &lt;a href=&#34;https://tools.ietf.org/html/draft-agl-tls-nextprotoneg-04&#34;&gt;NPN&lt;/a&gt; as Protocol Negotiation mechanisms.
 RFC 7540 considers the case of HTTP/2 being used on cleartext connections as well, but actually this is not extensively used.&lt;/p&gt;
 
-&lt;h2 id=&#34;additional-resources:cd7d608f5e6f553a5281263d75f1bec2&#34;&gt;Additional resources&lt;/h2&gt;
+&lt;h2 id=&#34;additional-resources&#34;&gt;Additional resources&lt;/h2&gt;
 
 &lt;p&gt;The website &lt;a href=&#34;http://www.http2demo.io/&#34;&gt;Http2demo.io&lt;/a&gt; compares performance metrics between HTTP/1.1 and HTTP/2.&lt;/p&gt;
 
@@ -295,7 +379,7 @@ RFC 7540 considers the case of HTTP/2 being used on cleartext connections as wel
 &lt;p&gt;As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
 We are very happy with those changes, but the reason behind this transition is not just a simple template change.&lt;/p&gt;
 
-&lt;h2 id=&#34;what-we-were-searching-for:07063062dea63684291e8b15e998f464&#34;&gt;What we were searching for&lt;/h2&gt;
+&lt;h2 id=&#34;what-we-were-searching-for&#34;&gt;What we were searching for&lt;/h2&gt;
 
 &lt;p&gt;Before, we were using an hosted CMS to run the blog, &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;. We were happy with the results, it wasn&amp;rsquo;t our concern to administrate the server or bother about other hosting stuff.&lt;/p&gt;
 
@@ -314,11 +398,11 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;support for &lt;strong&gt;multilanguage articles&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;git-and-the-github-pages:07063062dea63684291e8b15e998f464&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
+&lt;h2 id=&#34;git-and-the-github-pages&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
 
 &lt;p&gt;The first solution that came to us was obviously &lt;strong&gt;Git&lt;/strong&gt;, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub pages&lt;/a&gt; as an hosting solution: that is ideal, since we already have a &lt;a href=&#34;https://github.com/facile-it&#34;&gt;Github organization&lt;/a&gt; in place, so an organization homepage/site would perfectly fit the bill for our blog.&lt;/p&gt;
 
-&lt;h2 id=&#34;hugo:07063062dea63684291e8b15e998f464&#34;&gt;Hugo&lt;/h2&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
 
 &lt;p&gt;Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;: it&amp;rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:&lt;/p&gt;
 
@@ -328,7 +412,7 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;deploying:07063062dea63684291e8b15e998f464&#34;&gt;Deploying&lt;/h2&gt;
+&lt;h2 id=&#34;deploying&#34;&gt;Deploying&lt;/h2&gt;
 
 &lt;p&gt;The last step needed to smooth out our workflow was to find a &lt;strong&gt;deploy strategy&lt;/strong&gt;. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.&lt;/p&gt;
 
@@ -347,7 +431,7 @@ We are very happy with those changes, but the reason behind this transition is n
 
 &lt;p&gt;We started our Hugo site inside it, and we put the &lt;code&gt;./public&lt;/code&gt; in the &lt;code&gt;.gitIgnore&lt;/code&gt;, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of &lt;code&gt;publish: &amp;lt;last commit message from source&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;et-voilà-here-we-are:07063062dea63684291e8b15e998f464&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
+&lt;h2 id=&#34;et-voilà-here-we-are&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
 
 &lt;p&gt;So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!&lt;/p&gt;
 </description>
@@ -367,9 +451,9 @@ We are very happy with those changes, but the reason behind this transition is n
 
 &lt;p&gt;In this post I&amp;rsquo;m going to recap the event and make some considerations about the most interesting (and funny) talks.&lt;/p&gt;
 
-&lt;h1 id=&#34;day-1:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Day 1&lt;/h1&gt;
+&lt;h1 id=&#34;day-1&#34;&gt;Day 1&lt;/h1&gt;
 
-&lt;h2 id=&#34;keynote-wojtek-kalicinski-https-twitter-com-wkalic:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Keynote - &lt;em&gt;&lt;a href=&#34;https://twitter.com/wkalic&#34;&gt;Wojtek Kalicinski&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;keynote-wojtek-kalicinski-https-twitter-com-wkalic&#34;&gt;Keynote - &lt;em&gt;&lt;a href=&#34;https://twitter.com/wkalic&#34;&gt;Wojtek Kalicinski&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;The day 1 keynote was all about the N Developer Preview and was given by Wojtek Kalicinski, a developer advocate directly from Google.
 Wojtek went through all the new improvements of the platform, both from user&amp;rsquo;s and developer&amp;rsquo;s point of view. Here’s a short summary of the most relevant ones:&lt;/p&gt;
@@ -378,7 +462,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 &lt;li&gt;&lt;strong&gt;Multi-window support&lt;/strong&gt;: probably the most requested user feature. I’ve always thought that its implementation would have been relatively straightforward, given the already responsive UI of Android, and in fact the code changes that are needed to support this feature are minimal. Just make sure you don’t lock screen orientation using &lt;code&gt;android:screenOrientation&lt;/code&gt; in your manifest.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Better notifications&lt;/strong&gt;: in addition to a visual change of the notification panel, apps will now be able to let the user interact with bundled notifications individually or to reply from the notification itself directly. Moreover, if the app already supports Android Wear notifications, most of this will come for free, since the APIs are the same.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Doze improvements&lt;/strong&gt;: the battery saving mode called Doze, now works — in a less aggressive mode — when the phone is in the user pocket or hands, and not only when the phone is stationary. Wojtek said that most of the apps should continue to work without any change — or eventually &lt;a href=&#34;http://developer.android.com/intl/ko/training/monitoring-device-state/doze-standby.html#assessing_your_app&#34;&gt;minimal&lt;/a&gt; —, but he strongly encouraged to test apps against this new feature.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;JAVA 8 features!&lt;/strong&gt;: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including &lt;em&gt;lambdas&lt;/em&gt; (🎉) and &lt;em&gt;default and static interface methods&lt;/em&gt; (TODO: add DP2 apis). All of this is possibile thanks to the Jack&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JAVA 8 features!&lt;/strong&gt;: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including &lt;em&gt;lambdas&lt;/em&gt; (🎉) and &lt;em&gt;default and static interface methods&lt;/em&gt; (TODO: add DP2 apis). All of this is possibile thanks to the Jack&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Other changes include improvements to &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#background_optimizations&#34;&gt;Project Svelte&lt;/a&gt;, a new &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#data_saver&#34;&gt;Data Saver&lt;/a&gt; feature, the addition of the &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#tile_api&#34;&gt;Quick Settings Tile API&lt;/a&gt; and &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html&#34;&gt;many more&lt;/a&gt;.&lt;/p&gt;
@@ -389,7 +473,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.&lt;/p&gt;
 
-&lt;h2 id=&#34;perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev:d76462adf2f880be726dc4f2826c7d21&#34;&gt;#PERFMATTERS for Android - &lt;em&gt;&lt;a href=&#34;https://twitter.com/alosdev&#34;&gt;Hasan Hosgel&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev&#34;&gt;#PERFMATTERS for Android - &lt;em&gt;&lt;a href=&#34;https://twitter.com/alosdev&#34;&gt;Hasan Hosgel&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -397,7 +481,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;Performance is crucial to &lt;strong&gt;engage the user&lt;/strong&gt; and I think the speaker did a great job in summarizing useful tips to improve it. Moreover most of them doesn’t alter the readability or the maintainability of the code, as is often the case for performance driven code changes.&lt;/p&gt;
 
-&lt;h2 id=&#34;let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Let it flow! Unidirectional data flow architecture in Android - &lt;a href=&#34;https://twitter.com/dorvaryn&#34;&gt;&lt;em&gt;Benjamin Augustin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn&#34;&gt;Let it flow! Unidirectional data flow architecture in Android - &lt;a href=&#34;https://twitter.com/dorvaryn&#34;&gt;&lt;em&gt;Benjamin Augustin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/dorvaryn/let-it-flow&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -407,7 +491,7 @@ Benjamin chose to focus more on the practical aspects and so he made the concept
 
 &lt;p&gt;I personally likey approach that Benjamin showed us, since it has a lot of advantages. It makes the UI state completely &lt;strong&gt;predictable&lt;/strong&gt; and &lt;strong&gt;reproducible&lt;/strong&gt;: it allows us to represent an app state without the need to go through all the steps needed to reach it, thus it can be very useful in reproducing a bug or testing a particular situation. The problem is that, as you can see from the demo app, it adds a lot of boilerplate code and it&amp;rsquo;s also much more verbose and difficult to implement without tools like RxJava or Kotlin, that might be problematic to some.&lt;/p&gt;
 
-&lt;h2 id=&#34;play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Play everywhere: providing a consistent experience across very different devices - &lt;a href=&#34;http://it.droidcon.com/2016/speakers/alessandro-bizzarri/&#34;&gt;&lt;em&gt;Alessandro Bizzarri&lt;/em&gt;&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://it.droidcon.com/2016/speakers/dima-kunin/&#34;&gt;&lt;em&gt;Dima Kunin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin&#34;&gt;Play everywhere: providing a consistent experience across very different devices - &lt;a href=&#34;http://it.droidcon.com/2016/speakers/alessandro-bizzarri/&#34;&gt;&lt;em&gt;Alessandro Bizzarri&lt;/em&gt;&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://it.droidcon.com/2016/speakers/dima-kunin/&#34;&gt;&lt;em&gt;Dima Kunin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;The two speakers showed a high-level tour of how at &lt;strong&gt;Spotify&lt;/strong&gt; they  are able to provide a consistent experience across different devices — defined as the combination of its physical form and its OS.
 They created their own &lt;strong&gt;design language&lt;/strong&gt; to support the majority of platforms used to define almost everything, from color palette and buttons style to animations and sounds.
@@ -415,7 +499,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;It was a light talk but still it was interesting to see how a big company like Spotify finds solutions to scale and maintain a &lt;strong&gt;consistent and engaging UX&lt;/strong&gt; across all of its user-base.&lt;/p&gt;
 
-&lt;h2 id=&#34;loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Loving lean layouts - &lt;a href=&#34;https://twitter.com/queencodemonkey&#34;&gt;&lt;em&gt;Huyen Tue Dao&lt;/em&gt;&lt;/a&gt; &lt;a name=&#34;lean-layouts&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a&#34;&gt;Loving lean layouts - &lt;a href=&#34;https://twitter.com/queencodemonkey&#34;&gt;&lt;em&gt;Huyen Tue Dao&lt;/em&gt;&lt;/a&gt; &lt;a name=&#34;lean-layouts&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/queencodemonkey/droidcon-italy-2016-loving-lean-layouts&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -423,9 +507,9 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;The talk was very easy to follow and really useful: most of the advices covered are often ignored because singularly they have less impact, but, if taken all together and especially as good habits, they could really make the difference in maintain the &lt;strong&gt;UI smooth and lag-free&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;day-2:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Day 2&lt;/h1&gt;
+&lt;h1 id=&#34;day-2&#34;&gt;Day 2&lt;/h1&gt;
 
-&lt;h2 id=&#34;android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Android reactive programming with RxJava - &lt;a href=&#34;https://twitter.com/hamen&#34;&gt;&lt;em&gt;Ivan Morgillo&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen&#34;&gt;Android reactive programming with RxJava - &lt;a href=&#34;https://twitter.com/hamen&#34;&gt;&lt;em&gt;Ivan Morgillo&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;During last couple of years RxJava has been echoing all over the Android developers community and given its huge popularity I was surprised to see that Droidcon IT offered only one talk about it.&lt;/p&gt;
 
@@ -433,7 +517,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;To be honest I was hoping for a more theoretical talk with an analysis of the advantages and disadvantages of embracing the reactive pattern in our Android projects. It was instead a lot practical and it covered a great number of common use cases where reactive programming could really help to make code mode readable and maintainable.&lt;/p&gt;
 
-&lt;h2 id=&#34;you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk:d76462adf2f880be726dc4f2826c7d21&#34;&gt;You can do better with Kotlin - &lt;a href=&#34;https://github.com/svtk&#34;&gt;&lt;em&gt;Svetlana Isakova&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk&#34;&gt;You can do better with Kotlin - &lt;a href=&#34;https://github.com/svtk&#34;&gt;&lt;em&gt;Svetlana Isakova&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/svtk/you-can-do-better-with-kotlin&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -453,7 +537,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;This talk was one of the most interesting to me, as it persuaded me to try and deepen my knowledge of Kotlin. Svetlana was very good at showing the main features of the JetBrains language and at explaining how they convert in Java code, an aspect that I found very useful to mutate my mindset with new concepts and  syntaxes.&lt;/p&gt;
 
-&lt;h2 id=&#34;fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej:d76462adf2f880be726dc4f2826c7d21&#34;&gt;fun things (you: CanDo &lt;in Kotlin&gt; ) = … - &lt;a href=&#34;https://github.com/mg6maciej&#34;&gt;&lt;em&gt;Maciej Górski&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej&#34;&gt;fun things (you: CanDo &lt;in Kotlin&gt; ) = … - &lt;a href=&#34;https://github.com/mg6maciej&#34;&gt;&lt;em&gt;Maciej Górski&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/mg6maciej/fun-things-you-CanDo-in-Kotlin&#34;&gt;Code&lt;/a&gt;&lt;/p&gt;
 
@@ -465,7 +549,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;It was funny and informative to watch a &lt;strong&gt;live coding talk&lt;/strong&gt; and for sure it made me more curious and confident about Kotlin.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;The Droidcon IT is already, after three editions, the &lt;strong&gt;point of reference&lt;/strong&gt; for the Android community in Italy and this year too it lived up to the expectations. We saw a lot of well-known speakers and developers such as the Googlers Nick Butcher and  Wojtek Kaliciński. It was a conference rich of interesting talks in addition to those summarized in this post, ranging between al lot of various topics such as TDD, UX, tools and many more. The only thing that surprised me was the lack of talks about Android Wear: perhaps Google is slowing down to push this platform among developers?&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
@@ -473,8 +557,8 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:1&#34;&gt;&lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -510,14 +594,14 @@ Beyond this specific use case, JWT can be also useful to securely transmit data 
 &lt;p&gt;A JWT token can be trusted because it is digitally signed using a secret (usually with &lt;a href=&#34;https://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34;&gt;HMAC&lt;/a&gt; algorithm) or a keypair with &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA&#34;&gt;RSA&lt;/a&gt;.
 Its payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-the-token-presents-itself:be256830241f7dc27936f7751ed2a96e&#34;&gt;How the token presents itself&lt;/h2&gt;
+&lt;h2 id=&#34;how-the-token-presents-itself&#34;&gt;How the token presents itself&lt;/h2&gt;
 
 &lt;p&gt;A token is represented as three base64 encoded strings joined by two points:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;headers:be256830241f7dc27936f7751ed2a96e&#34;&gt;Headers&lt;/h3&gt;
+&lt;h3 id=&#34;headers&#34;&gt;Headers&lt;/h3&gt;
 
 &lt;p&gt;The first part of the string contains the headers, &lt;code&gt;&amp;quot;alg&amp;quot;&lt;/code&gt; is the algorithm used to secure the token and &lt;code&gt;&amp;quot;typ&amp;quot;&lt;/code&gt; is the type; in this case as we can see that I used an HMAC SHA256 to sign the JWT token:&lt;/p&gt;
 
@@ -527,7 +611,7 @@ Its payload contains all the required data to verify itself and, for example, tr
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;payload:be256830241f7dc27936f7751ed2a96e&#34;&gt;Payload&lt;/h3&gt;
+&lt;h3 id=&#34;payload&#34;&gt;Payload&lt;/h3&gt;
 
 &lt;p&gt;The second part is the payload: it&amp;rsquo;s the data sent with the token. It contains metadata and information like expiration, audience or subject, and whatever you need.&lt;/p&gt;
 
@@ -546,7 +630,7 @@ Its payload contains all the required data to verify itself and, for example, tr
 &lt;li&gt;&lt;strong&gt;Private claims&lt;/strong&gt;: custom claims created to share information between parties that agree with using them.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;sign:be256830241f7dc27936f7751ed2a96e&#34;&gt;Sign&lt;/h3&gt;
+&lt;h3 id=&#34;sign&#34;&gt;Sign&lt;/h3&gt;
 
 &lt;p&gt;The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algorithm described in headers.&lt;/p&gt;
 
@@ -586,7 +670,7 @@ As an example, if on authentication I want to be sure that the token is issued b
       <guid>http://engineering.facile.it/ita/careers/</guid>
       <description>
 
-&lt;h3 id=&#34;web-developer:6035441c68e33538441e623a4322ab2f&#34;&gt;Web Developer&lt;/h3&gt;
+&lt;h3 id=&#34;web-developer&#34;&gt;Web Developer&lt;/h3&gt;
 
 &lt;p&gt;Facile.it è in costante crescita e siamo sempre alla ricerca di programmatori da aggiungere al nostro team. Questa proposta è rivolta a sviluppatori PHP di grande esperienza, che credono nell’innovazione e sono sempre attenti alle nuove tecnologie e non vedono l’ora di metterle in pratica. Siamo un gruppo di lavoro dinamico, giovane e divertente. Siamo in totale 20 programmatori e gestiamo diversi progetti con vari stack tecnologici: Symfony2, Zend 2 e anche qualcosa fatto in casa.&lt;/p&gt;
 
@@ -614,7 +698,7 @@ As an example, if on authentication I want to be sure that the token is issued b
 
 &lt;p&gt;&lt;a href=&#34;http://jobs.facile.it/chi-cerchiamo/candidati.html&#34; target=&#34;\_blank&#34;&gt;Candidati »&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;android-developer:6035441c68e33538441e623a4322ab2f&#34;&gt;Android Developer&lt;/h3&gt;
+&lt;h3 id=&#34;android-developer&#34;&gt;Android Developer&lt;/h3&gt;
 
 &lt;p&gt;Facile.it è una web company con applicazioni sviluppate per Android e iOS usando tecnologie native.&lt;/p&gt;
 
@@ -642,7 +726,7 @@ As an example, if on authentication I want to be sure that the token is issued b
 
 &lt;p&gt;&lt;a href=&#34;http://jobs.facile.it/chi-cerchiamo/candidati.html&#34; target=&#34;\_blank&#34;&gt;Candidati »&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;cosa-offriamo-in-facile-it:6035441c68e33538441e623a4322ab2f&#34;&gt;Cosa offriamo in Facile.it:&lt;/h3&gt;
+&lt;h3 id=&#34;cosa-offriamo-in-facile-it&#34;&gt;Cosa offriamo in Facile.it:&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Assunzione a tempo indeterminato con RAL in base alla tua esperienza + fondo salute integrativo&lt;/li&gt;
@@ -796,7 +880,7 @@ public final class Emitter&amp;lt;Subtype&amp;gt; {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;the-megacontroller:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;The megacontroller&lt;/h2&gt;
+&lt;h2 id=&#34;the-megacontroller&#34;&gt;The megacontroller&lt;/h2&gt;
 
 &lt;p&gt;Suppose we need to create a simple app to leave a feedback for a movie we just watched; the feedback will be divided in two categories:&lt;/p&gt;
 
@@ -823,7 +907,7 @@ public final class Emitter&amp;lt;Subtype&amp;gt; {
 
 &lt;p&gt;We basically identified 4 different responsibilities, each of which is probably going to need its own class, but instead of thinking about the methods that need to be called on each one of them, we&amp;rsquo;re going to try and think with signals.&lt;/p&gt;
 
-&lt;h2 id=&#34;the-model:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;The model&lt;/h2&gt;
+&lt;h2 id=&#34;the-model&#34;&gt;The model&lt;/h2&gt;
 
 &lt;p&gt;For example, if the model changes we need to update the text shown on the &lt;code&gt;MainPage&lt;/code&gt;: a possible way to manage this could be to create a &lt;code&gt;ModelController&lt;/code&gt; class, which holds the model, and &lt;em&gt;emits a signal&lt;/em&gt; each time the model changes. Then, the &lt;code&gt;MainPage&lt;/code&gt; could &lt;em&gt;react&lt;/em&gt; to this signal, and change the UI accordingly. A nice to way to do this is injecting the &lt;code&gt;ModelController&lt;/code&gt; in the &lt;code&gt;MainPage&lt;/code&gt; constructor, so that &lt;code&gt;MainPage&lt;/code&gt; can establish the appropriate bindings:&lt;/p&gt;
 
@@ -839,7 +923,7 @@ init(feedbackModelController: ModelController&amp;lt;FeedbackModel&amp;gt;) {
 
 &lt;p&gt;An important characteristic of the view controllers is the fact that the views are not yet initialized in the constructor, so we often need to memorize some data and use it in the &lt;code&gt;viewDidLoad&lt;/code&gt; method, that is called by the framework when all the views are loaded, and can consequently be manipulated; but we used a signal to express the update logic directly in the constructor, where the &lt;code&gt;ModelController&lt;/code&gt; is available: the line &lt;code&gt;viewReadyEmitter.signal.onReception § eachTime § feedbackModelController.notify&lt;/code&gt; means that when the &lt;code&gt;viewReadyEmitter&lt;/code&gt;, i.e., the emitter that will send a signal when the view is ready, is triggering, the model controller has to &lt;em&gt;notify&lt;/em&gt; its current value to all the observers; this way we don&amp;rsquo;t need to manually update the views in the &lt;code&gt;viewDidLoad&lt;/code&gt; method: everything is connected, and the signals will &lt;strong&gt;propagate&lt;/strong&gt; according to the declarative bindings.&lt;/p&gt;
 
-&lt;h2 id=&#34;handling-page-creation-and-presentation:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Handling page creation and presentation&lt;/h2&gt;
+&lt;h2 id=&#34;handling-page-creation-and-presentation&#34;&gt;Handling page creation and presentation&lt;/h2&gt;
 
 &lt;p&gt;Transitioning between pages is one the key points in iOS programming: page presentation has to be &lt;strong&gt;predictable and smooth&lt;/strong&gt;, to avoid a confusing user experience. One of the main premises of the &lt;code&gt;UIViewController&lt;/code&gt; class was and still is the creation of a modular hierarchy of views, that&amp;rsquo;s independent from the way it&amp;rsquo;s presented to the user: that way we can easily reuse &lt;strong&gt;the same&lt;/strong&gt; view controller, for example, in full screen on the iPhone, or as a child view controller on a more complex hierarchy on iPad. The problem is that, if we write down the navigation and presentation logic &lt;em&gt;inside&lt;/em&gt; the view controller class, we are going to establish tight dependencies between the view controller and its presentation, thus going against the premise.&lt;/p&gt;
 
@@ -858,7 +942,7 @@ pageFactory.signalMakeSelectionPage
 
 &lt;p&gt;In the code just shown, the signals that are triggered when the pages are initialized are &lt;em&gt;flatMapped&lt;/em&gt; to the respective interaction signals, that is, the observed signal is a signal that will trigger when the second signal is triggered, but the &lt;em&gt;second&lt;/em&gt; signal will be available only when the &lt;em&gt;first&lt;/em&gt; signal is triggered: the &lt;code&gt;flatMap&lt;/code&gt; method will let us reference a signal that is not yet available. The &lt;code&gt;inAnyCase&lt;/code&gt; function is used because &lt;code&gt;NavigationHandler&lt;/code&gt; is not interested in the &lt;em&gt;content&lt;/em&gt; of the signals, but just the fact that they are triggered; the content is going to be handled by another class: &lt;code&gt;FeedbackCollector&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;composing-signals:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Composing signals&lt;/h2&gt;
+&lt;h2 id=&#34;composing-signals&#34;&gt;Composing signals&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;FeedbackCollector&lt;/code&gt; has the responsibility of &lt;em&gt;collecting the whole feedback&lt;/em&gt;: this seems tricky, because the creation of a new feedback is not a synchronous procedure, and it&amp;rsquo;s the result of &lt;strong&gt;many different interactions&lt;/strong&gt; from the user in different contexts. As we saw, a signal is an abstraction over asynchronous programming: we declare the signal bindings for actions that will trigger at a certain point in time. Thanks to signals we can express the logic for collecting feedback in a single function call, executed during the app startup phase, even if:&lt;/p&gt;
 
@@ -891,7 +975,7 @@ pageFactory.signalMakeSelectionPage
 
 &lt;p&gt;&lt;code&gt;ModelController&lt;/code&gt;&amp;rsquo;s &lt;code&gt;deltaSignal&lt;/code&gt; is triggered each time the model changes, and contains both the old and the new value: in the shown expression a signal is created by &lt;em&gt;filtering&lt;/em&gt; the &lt;code&gt;deltaSignal&lt;/code&gt;, because we need a signal that is triggered only when the new feedback is different from the previous and positive.&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusion:98c10da2faa40144e7de0ba94dc701c4&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;A clean and decoupled architecture is hard to get right, and can be obtained in different ways. Using signals will help us achieve the following:&lt;/p&gt;
 
@@ -912,7 +996,7 @@ pageFactory.signalMakeSelectionPage
       <guid>http://engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
       <description>
 
-&lt;h2 id=&#34;the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
+&lt;h2 id=&#34;the-lesson-we-learned-with-rest&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
 
 &lt;p&gt;For many developers, nowadays, building an &lt;strong&gt;API&lt;/strong&gt; for their applications essentially means mapping the &lt;em&gt;resources&lt;/em&gt; of the domain to &lt;em&gt;URIs&lt;/em&gt;, with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Representational_state_transfer&#34;&gt;REST&lt;/a&gt; principles in mind.
 Usually creating a &lt;strong&gt;&lt;em&gt;RESTful&lt;/em&gt;&lt;/strong&gt; system is not difficult, and the simplicity of the idea makes the task easier.
@@ -937,7 +1021,7 @@ Let&amp;rsquo;s see some of the consequences and benefits of choosing REST:&lt;/
 
 &lt;p&gt;Now let&amp;rsquo;s see how we can take a step forward and add some salt to our APIs, to make them even more powerful and expressive.&lt;/p&gt;
 
-&lt;h2 id=&#34;a-new-way-to-design-api-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;a-new-way-to-design-api-graphql&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;GraphQL&lt;/strong&gt; maintains all the advantages of REST (relies on HTTP, very small overhead on requests, stateless and cacheable) and adds some very useful enhancements.
 One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it back in 2012 was the need to find a way to access data on their server that allowed any type of client and device (especially mobile site and app) to decide exactly what fields they need, reducing the payload and then minimizing the traffic.&lt;/p&gt;
@@ -945,7 +1029,7 @@ One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it bac
 &lt;p&gt;Instead of explaining all the features, which can be read in the &lt;a href=&#34;http://graphql.org/docs/getting-started/&#34;&gt;official guide&lt;/a&gt;, in this post we&amp;rsquo;ll focus on what makes GraphQL interesting.
 In the next section we&amp;rsquo;ll use types and queries presented in our example project, that you can clone from &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;this repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;types-and-fields-driven-queries:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Types and fields driven queries&lt;/h3&gt;
+&lt;h3 id=&#34;types-and-fields-driven-queries&#34;&gt;Types and fields driven queries&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #1&lt;/strong&gt;&lt;/p&gt;
 
@@ -1024,7 +1108,7 @@ As you can see, the id has no semantic meaning like in REST, so you can describe
 &lt;pre&gt;&lt;code&gt;GET /game?title=Frogger
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;relations-between-entities-graph-representation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
+&lt;h3 id=&#34;relations-between-entities-graph-representation&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #4&lt;/strong&gt;&lt;/p&gt;
 
@@ -1077,7 +1161,7 @@ In Example #4, you can notice the complex field &lt;em&gt;developer&lt;/em&gt;; 
 &lt;p&gt;The field &lt;em&gt;developer&lt;/em&gt; is defined as type &lt;em&gt;Company&lt;/em&gt;, while the field &lt;em&gt;gamesAsDeveloper&lt;/em&gt; is a list of &lt;em&gt;Game&lt;/em&gt;.
 Please refer to the &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;demo project&lt;/a&gt; for the full implementation of this example.&lt;/p&gt;
 
-&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
+&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
 
 &lt;p&gt;This time we need the list of the &lt;em&gt;Japanese companies&lt;/em&gt; and some information about the games they worked on, but only for the &lt;em&gt;NES&lt;/em&gt; (Nintendo Entertainment System) platform.&lt;/p&gt;
 
@@ -1159,7 +1243,7 @@ GET ...
 &lt;li&gt;on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering &lt;em&gt;games&lt;/em&gt; with the given &lt;em&gt;platform&lt;/em&gt; is performed only on companies with the selected &lt;em&gt;nation&lt;/em&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;api-documentation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;API Documentation&lt;/h3&gt;
+&lt;h3 id=&#34;api-documentation&#34;&gt;API Documentation&lt;/h3&gt;
 
 &lt;p&gt;When you design a REST WebService, for every endpoint you&amp;rsquo;re mostly going to take care of its URI and the structure of the request and the response body.
 Unfortunately, there is no standard way to document this information and make it available to the client developers.&lt;/p&gt;
@@ -1240,7 +1324,7 @@ Unfortunately, there is no standard way to document this information and make it
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;mutations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Mutations&lt;/h2&gt;
+&lt;h2 id=&#34;mutations&#34;&gt;Mutations&lt;/h2&gt;
 
 &lt;p&gt;We&amp;rsquo;ve already talked about queries, but a few words need to be spent about the other important operation that you can perform on a GraphQL server: &lt;strong&gt;mutations&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1270,11 +1354,11 @@ In this example we are assigning a value (7) to the &lt;em&gt;rating&lt;/em&gt; 
 
 &lt;p&gt;As you can see, the specified type for the mutation is &lt;em&gt;Game&lt;/em&gt;; this means not only that the update should be performed on games, but also that the &lt;em&gt;Game&lt;/em&gt; field included in the request (id, title and rating) should be returned, just like a normal query.&lt;/p&gt;
 
-&lt;h2 id=&#34;implementations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Implementations&lt;/h2&gt;
+&lt;h2 id=&#34;implementations&#34;&gt;Implementations&lt;/h2&gt;
 
 &lt;p&gt;In the present article we sometimes referred to the official &lt;strong&gt;Javascript&lt;/strong&gt; library for GraphQL, but as you can see in &lt;a href=&#34;https://github.com/chentsulin/awesome-graphql&#34;&gt;this project&lt;/a&gt; there are many different implementations for the most popular languages.&lt;/p&gt;
 
-&lt;h2 id=&#34;the-future-of-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The future of GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;the-future-of-graphql&#34;&gt;The future of GraphQL&lt;/h2&gt;
 
 &lt;p&gt;It&amp;rsquo;s difficult to say what will become of GraphQL in the next year.
 Sure there&amp;rsquo;s a lot of hype around it, and for some very solid reasons.
@@ -1304,7 +1388,7 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 
 &lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
 
-&lt;h1 id=&#34;introduction:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Introduction&lt;/h1&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
 If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
@@ -1344,15 +1428,15 @@ If you are using a device to read this post you are probably using at least one 
 &lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
 &lt;img src=&#34;http://engineering.facile.it/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;getting-started-with-fuse:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Getting started with FUSE&lt;/h1&gt;
+&lt;h1 id=&#34;getting-started-with-fuse&#34;&gt;Getting started with FUSE&lt;/h1&gt;
 
 &lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
 
-&lt;h2 id=&#34;build-dependencies:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build dependencies&lt;/h2&gt;
+&lt;h2 id=&#34;build-dependencies&#34;&gt;Build dependencies&lt;/h2&gt;
 
 &lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
 
-&lt;h3 id=&#34;linux:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Linux&lt;/h3&gt;
+&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;GCC or Clang&lt;/li&gt;
@@ -1374,7 +1458,7 @@ If you are using a device to read this post you are probably using at least one 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;mac-osx:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Mac OSX&lt;/h3&gt;
+&lt;h3 id=&#34;mac-osx&#34;&gt;Mac OSX&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
@@ -1391,14 +1475,14 @@ If you are using a device to read this post you are probably using at least one 
 &lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;fuse-api:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;FUSE API&lt;/h2&gt;
+&lt;h2 id=&#34;fuse-api&#34;&gt;FUSE API&lt;/h2&gt;
 
 &lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
 The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
 
 &lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;example-project:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Example project&lt;/h2&gt;
+&lt;h2 id=&#34;example-project&#34;&gt;Example project&lt;/h2&gt;
 
 &lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
 
@@ -1420,17 +1504,17 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 └── fuse-example.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
 
-&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
 
 &lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
 
-&lt;h4 id=&#34;getattr:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;getattr&lt;/h4&gt;
+&lt;h4 id=&#34;getattr&#34;&gt;getattr&lt;/h4&gt;
 
 &lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
 
@@ -1468,11 +1552,11 @@ The libfuse library exposes a set of callbacks that you have to implement in ord
 
 &lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;open:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;open&lt;/h4&gt;
+&lt;h4 id=&#34;open&#34;&gt;open&lt;/h4&gt;
 
 &lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
 
-&lt;h4 id=&#34;read:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;read&lt;/h4&gt;
+&lt;h4 id=&#34;read&#34;&gt;read&lt;/h4&gt;
 
 &lt;p&gt;This callback is called when FUSE is reading data from an opened file.
 It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
@@ -1500,7 +1584,7 @@ As done in the getattr callback, here I&amp;rsquo;m checking if the given path e
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;readdir:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;readdir&lt;/h4&gt;
+&lt;h4 id=&#34;readdir&#34;&gt;readdir&lt;/h4&gt;
 
 &lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
 Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
@@ -1519,7 +1603,7 @@ Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, 
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;main:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;main&lt;/h4&gt;
+&lt;h4 id=&#34;main&#34;&gt;main&lt;/h4&gt;
 
 &lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
 
@@ -1536,7 +1620,7 @@ int main(int argc, char *argv[])
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;build-and-run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Build and run&lt;/h3&gt;
+&lt;h3 id=&#34;build-and-run&#34;&gt;Build and run&lt;/h3&gt;
 
 &lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
 
@@ -1556,7 +1640,7 @@ int main(int argc, char *argv[])
 
 &lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
 
-&lt;h3 id=&#34;run:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Run!&lt;/h3&gt;
+&lt;h3 id=&#34;run&#34;&gt;Run!&lt;/h3&gt;
 
 &lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
 
@@ -1592,7 +1676,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 
 &lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;thoughts-and-notes:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Thoughts and notes&lt;/h2&gt;
+&lt;h2 id=&#34;thoughts-and-notes&#34;&gt;Thoughts and notes&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
@@ -1600,7 +1684,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;other-resources:b00e3fe04fd8cc4ced6f5bb08e0d0012&#34;&gt;Other resources&lt;/h2&gt;
+&lt;h2 id=&#34;other-resources&#34;&gt;Other resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
@@ -1624,7 +1708,7 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
       <guid>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
       <description>
 
-&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+&lt;h2 id=&#34;composer-e-l-ecosistema-php&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
 
 &lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
 Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
@@ -1634,7 +1718,7 @@ In questi ultimi anni si è assistito ad un proliferare di numerose componenti s
 I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
 Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
 
-&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+&lt;h2 id=&#34;la-soluzione-puli&#34;&gt;La soluzione: Puli&lt;/h2&gt;
 
 &lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
 Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
@@ -1651,7 +1735,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+&lt;h2 id=&#34;le-componenti-di-puli&#34;&gt;Le componenti di Puli&lt;/h2&gt;
 
 &lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
 
@@ -1661,7 +1745,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;Public resources manager&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
+&lt;h3 id=&#34;configurazione&#34;&gt;Configurazione&lt;/h3&gt;
 
 &lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
 
@@ -1669,7 +1753,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
 Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
 
-&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
+&lt;h3 id=&#34;installazione&#34;&gt;Installazione&lt;/h3&gt;
 
 &lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
 Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
@@ -1694,12 +1778,12 @@ $puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
 $puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
+&lt;h3 id=&#34;resource-repository&#34;&gt;Resource repository&lt;/h3&gt;
 
 &lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
 Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
 
 &lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
 
@@ -1711,7 +1795,7 @@ $translationContent = file_get_contents($translationFileName);
 
 &lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
 
 &lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
 Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
@@ -1732,7 +1816,7 @@ $translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
 
 &lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
+&lt;h4 id=&#34;resource-overriding&#34;&gt;Resource overriding&lt;/h4&gt;
 
 &lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
 Immaginiamo di dover lavorare con due pacchetti: A e B.
@@ -1742,7 +1826,7 @@ Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali 
 
 &lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
+&lt;h3 id=&#34;discovery-service&#34;&gt;Discovery service&lt;/h3&gt;
 
 &lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
 
@@ -1759,7 +1843,7 @@ I resource providers possono quindi associare una o più risorse a tali Binding 
 
 &lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
 
-&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
+&lt;h4 id=&#34;esempio&#34;&gt;Esempio&lt;/h4&gt;
 
 &lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
 
@@ -1808,7 +1892,7 @@ $ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-templa
 
 &lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
+&lt;h3 id=&#34;public-resources-manager&#34;&gt;Public resources manager&lt;/h3&gt;
 
 &lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
 
@@ -1841,7 +1925,7 @@ echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
 
 &lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+&lt;h4 id=&#34;installazione-delle-risorse&#34;&gt;Installazione delle risorse&lt;/h4&gt;
 
 &lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
 
@@ -1853,7 +1937,7 @@ Installing /acme/blog/public into public_html via symlink...
 
 &lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
 Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
@@ -2046,194 +2130,6 @@ sender.signal.send(20)
 &lt;p&gt;There are many other options for composition of signals, but as long as we don&amp;rsquo;t need them, it&amp;rsquo;s better to keep the class &lt;strong&gt;simple&lt;/strong&gt;: then, gradually over time, we can start adding features to the class, and as long as they&amp;rsquo;re properly generic and tested, we will be able to use them in all of our projects.&lt;/p&gt;
 
 &lt;p&gt;To conclude, finding the right abstractions for reusability is of course a problem, and the solution is not an easy one: plenty of academic papers address the problem in several ways (classic Charles W. Krueger&amp;rsquo;s paper &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; contains a good overview of the used techniques), and the reason why &lt;a href=&#34;https://en.wikipedia.org/wiki/Category_theory&#34;&gt;category theory&lt;/a&gt; has many applications in functional programming is because it offers an excellent set of abstractions for tackling several classes of problems. But still, I think the advantages of code reuse are many, and that achieving a compositional design through atomic, reusable components is &lt;strong&gt;a worthy goal&lt;/strong&gt; to pursue.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Codice riusabile: un primer</title>
-      <link>http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/</link>
-      <pubDate>Wed, 09 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/optionals-in-objective-c-ita/&#34;&gt;L&amp;rsquo;ultima volta&lt;/a&gt; abbiamo visto una possibile implementazione del tipo &lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optional&lt;/a&gt; in Objective-C; l&amp;rsquo;obiettivo primario dell&amp;rsquo;articolo era quello di importare in Objective-C uno strumento frequentemente utilizzato in Swift, ma usare una classe come &lt;code&gt;Optional&lt;/code&gt; può essere considerato un&amp;rsquo;applicazione di un concetto molto più generale: il &lt;strong&gt;riutilizzo del codice&lt;/strong&gt;. In effetti, &lt;code&gt;Optional&lt;/code&gt; non è legato a un particolare dominio, e può essere riutilizzato più e più volte in molti progetti: questo è esattamente ciò che accade in Swift. Ma a pensarci bene, questo è ciò che accade per una grande varietà di &lt;em&gt;classi&lt;/em&gt; in Objective-C (e di &lt;em&gt;tipi&lt;/em&gt; in Swift): ad esempio, &lt;code&gt;NSArray&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt; sono entrambi costrutti che espongono una specifica interfaccia, possiedono una certa implementazione, e vengono riutilizzati continuamente in metodi e funzioni. &lt;code&gt;NSArray&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt; non sono legati a un particolare dominio, e possiedono due importanti caratteristiche:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sono &lt;strong&gt;generici&lt;/strong&gt;, quindi non sono legati a un particolare sottotipo: un array di numeri e un array di stringhe funzioneranno esattamente allo stesso modo per quanto riguarda le funzioni strettamente associate agli array, come il conteggio degli elementi, rimuovere o aggiungere un elemento, mappare, filtrare, ridurre e così via;&lt;/li&gt;
-&lt;li&gt;sono &lt;strong&gt;componibili&lt;/strong&gt;, quindi possono essere combinati tra loro e con altri oggetti più specifici, mantenendo comunque lo stesso &lt;strong&gt;comportamento predicibile&lt;/strong&gt;: un array di &lt;em&gt;clienti&lt;/em&gt;, ciascuno con il suo array &lt;em&gt;prodotti acquistati&lt;/em&gt;, può essere mappato in un array di array di &lt;em&gt;prodotti&lt;/em&gt;, che può essere appiattito in un array di &lt;em&gt;prodotti&lt;/em&gt;, che può essere ridotto a un numero che rappresenta il costo totale;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Array&lt;/code&gt;, come &lt;code&gt;Optional&lt;/code&gt;, è un ottimo esempio di codice perfettamente riutilizzabile, ma ci sono molti altri costrutti che soddisfano le regole di cui sopra, cioè &lt;em&gt;genericità&lt;/em&gt; e &lt;em&gt;componibilità&lt;/em&gt;. Gli oggetti specifici di dominio, invece, tipicamente non soddisfano queste regole, anche quando un oggetto sembra essere sufficientemente generico da poter essere riutilizzato. Una classe &lt;code&gt;Cliente&lt;/code&gt;, ad esempio, potrebbe sembrare un buon candidato, ma cercare di usare la stessa classe in due diversi progetti si rivelerebbe &lt;strong&gt;una pessima idea&lt;/strong&gt;: probabilmente saremo costretti a &lt;strong&gt;specializzare&lt;/strong&gt; la classe per ciascun progetto, portando a divergenza tra le implementazioni, o usare diversi livelli di &lt;strong&gt;indirezione&lt;/strong&gt;, perché stiamo inserendo a forza un oggetto in un dominio che non gli appartiene.&lt;/p&gt;
-
-&lt;p&gt;C&amp;rsquo;è un&amp;rsquo;altra cosa da considerare: se davvero vogliamo riutilizzare del codice, dovremo anche stare attenti alle nostre &lt;strong&gt;scelte di design&lt;/strong&gt;, perché non tutti i design permettono l&amp;rsquo;utilizzo di codice generico. Potrei dimenticarmi dell&amp;rsquo;esistenza dei tipi &lt;code&gt;Optional&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt;, e creare classi che non espongono mai i loro componenti di base; ad esempio, potrei creare una classe che rappresenta una collezione di oggetti opzionali, senza mai esporre nell&amp;rsquo;interfaccia il fatto che sto utilizzando &lt;code&gt;Array&lt;/code&gt; e &lt;code&gt;Optional&lt;/code&gt; nell&amp;rsquo;implementazione: ne risulterebbe una certa &lt;strong&gt;complicazione&lt;/strong&gt; della firma dei metodi, ma è possibile. Ma, a pensarci bene, è una buona idea? &lt;strong&gt;Ne dubito&lt;/strong&gt;. Creare una nuova e specifica classe, non componibile, per ogni possibile necessità produrrà migliaia di linee di codice &lt;strong&gt;boilerplate&lt;/strong&gt;, interfacce complicate, e nomi di classi assurdamente lunghi. Se vogliamo scrivere codice riutilizzabile, oltre a seguire le due regole già viste, dobbiamo anche prestare attenzione al modo in cui architettiamo le nostre app, e il principio di design da seguire in questo caso è il principio di &lt;strong&gt;composizione&lt;/strong&gt;, che può essere sintetizzato con la seguente frase:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Costrutti e comportamenti specifici del dominio dovrebbero essere realizzati componendo blocchi costruttivi atomici e generici.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Ciò significa sostanzialmente che, invece di creare di volta in volta una specifica implementazione per ovviare alle nostre necessità, dovremmo costruire le nuove funzionalità aggregando oggetti atomici già definiti. Sembra un&amp;rsquo;idea complessa, e forse dovremmo fermarci un attimo e chiederci se scrivere codice riutilizzabile sia davvero una buona idea. La mia risposta è un definitivo &lt;strong&gt;si&lt;/strong&gt;, per i seguenti motivi:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;scrivendo componenti riutilizzabili possiamo &lt;strong&gt;incapsulare&lt;/strong&gt; uno specifico comportamento, evitando di dover riscrivere di continuo sostanzialmente lo stesso codice;&lt;/li&gt;
-&lt;li&gt;potremmo disporre di &lt;strong&gt;linee guida&lt;/strong&gt; per progettare l&amp;rsquo;architettura delle nostre app, perché non avremmo bisogno di definire sempre nuove interfacce per rappresentare gli stessi comportamenti;&lt;/li&gt;
-&lt;li&gt;un componente riutilizzabile è molto facile da &lt;strong&gt;testare&lt;/strong&gt;, perché piccolo e atomico, quindi usandolo potremmo confidare maggiormente sulla correttezza del nostro codice;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Questi stessi vantaggi si ottengono, infatti, proprio usando oggetti come &lt;code&gt;Array&lt;/code&gt; e &lt;code&gt;Optional&lt;/code&gt;. Ma, come ho detto, esistono molti altri componenti di questo tipo, e in effetti definire le loro interfacce è un problema a sé, di non facile soluzione: lo trovo tuttavia un problema molto interessante. Seguendo le regole &lt;em&gt;generico&lt;/em&gt; e &lt;em&gt;componibile&lt;/em&gt; abbiamo già una linea guida per definire nuovi componenti riusabili, ma per chiudere il cerchio abbiamo bisogno di una terza regola, non meno importante:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;un oggetto riusabile deve essere &lt;strong&gt;semplice&lt;/strong&gt;, cioè deve avere una unica responsabilità, lineare e facile da descrivere;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Optional&lt;/code&gt; segue questa regola: è un contenitore generico per un oggetto che potrebbe esserci, oppure no. &lt;code&gt;Array&lt;/code&gt; segue questa regola: rappresenta una collezione ordinata di oggetti, ai quali posso accedere in un tempo costante. Proviamo a creare un nuovo componente riutilizzabile applicando le regole.&lt;/p&gt;
-
-&lt;p&gt;Consideriamo questo caso d&amp;rsquo;uso reale (piuttosto frequente): diversi oggetti devono essere notificati quando un certo oggetto cambia il suo stato, o compie qualche azione. Un modo per risolvere il problema è rappresentato dall&amp;rsquo;&lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;, che consiste nel far implementare ai nostri oggetti un&amp;rsquo;interfaccia che indica un comportamento di tipo &lt;a href=&#34;https://it.wikipedia.org/wiki/Publish/subscribe&#34;&gt;publish-subscribe&lt;/a&gt;. Tuttavia, far implementare agli oggetti un&amp;rsquo;interfaccia &lt;strong&gt;non è riusabile&lt;/strong&gt;: ogni volta in cui useremo questo pattern finiremo per &lt;strong&gt;riscrivere&lt;/strong&gt; codice molto simile. Vogliamo invece incapsulare il comportamento alla base di questo pattern in un oggetto generico, e riutilizzare quell&amp;rsquo;oggetto. Quanto segue è una possibile implementazione di tale oggetto, quella che personalmente uso in produzione, ma ce ne sono molte altre: in effetti, l&amp;rsquo;idea di trovare un modo generico e componibile di rappresentare e manipolare &lt;em&gt;flussi&lt;/em&gt; di segnali osservabili ha fatto nascere un intero paradigma di programmazione, chiamato &lt;a href=&#34;https://en.wikipedia.org/wiki/Functional_reactive_programming&#34;&gt;functional reactive programming&lt;/a&gt;. Ma nel nostro caso siamo interessati a creare un ben più semplice oggetto &lt;strong&gt;Signal&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;La classe &lt;code&gt;Signal&lt;/code&gt; che vogliamo implementare deve rappresentare un &lt;em&gt;aggiornamento&lt;/em&gt; per un certo oggetto: l&amp;rsquo;aggiornamento può riguardare qualsiasi cosa, per esempio un nuovo valore per un attributo, o il fatto che una certa azione è stata compiuta. Useremo il linguaggio Swift, grazie al quale potremo godere anche di ottima sicurezza sulla manipolazione dei &lt;strong&gt;tipi&lt;/strong&gt; coinvolti. Ecco in sintesi cosa chiediamo alla classe &lt;code&gt;Signal&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;deve avere un sottotipo &lt;strong&gt;parametrico&lt;/strong&gt;, che sarà appunto il tipo del valore segnalato ad ogni aggiornamento;&lt;/li&gt;
-&lt;li&gt;deve dichiarare un metodo &lt;code&gt;observe&lt;/code&gt;, che prende in ingresso una &lt;em&gt;closure&lt;/em&gt; che rappresenta l&amp;rsquo;azione da compiere a ogni aggiornamento;&lt;/li&gt;
-&lt;li&gt;deve dichiarare un metodo &lt;code&gt;send&lt;/code&gt;, che prende in ingresso un nuovo valore del tipo sottostante;&lt;/li&gt;
-&lt;li&gt;deve dichiarare semplici metodi di composizione, che seguano le convenzioni classiche per i nomi, come &lt;code&gt;map&lt;/code&gt; per generare un nuovo &lt;code&gt;Signal&lt;/code&gt; da uno esistente trasformando il valore osservato, e &lt;code&gt;forwardTo&lt;/code&gt; per fare in modo che un altro &lt;code&gt;Signal&lt;/code&gt;, quando produce un nuovo valore, &lt;em&gt;attivi&lt;/em&gt; il segnale di partenza;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Dal punto di vista semantico, possiamo descrivere un &lt;code&gt;Signal&lt;/code&gt; come un contenitore di un valore che esisterà a un certo punto nel futuro, e continuerà ad aggiornarsi indefinitamente.&lt;/p&gt;
-
-&lt;p&gt;Segue l&amp;rsquo;intera implementazione della classe &lt;code&gt;Signal&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public enum SignalContinuation
-{
-  case Continue
-  case Stop
-}
-
-public class Signal&amp;lt;Subtype&amp;gt;
-{
-  private var observers: [(Subtype -&amp;gt; SignalContinuation)] = []
-
-  public init() {}
-
-  public func observe (observeFunction: Subtype -&amp;gt; SignalContinuation)
-  {
-    observers.append(observeFunction)
-  }
-
-  public func send (value: Subtype)
-  {
-    var continuations: [(Subtype -&amp;gt; SignalContinuation)] = []
-    while observers.count &amp;gt; 0
-    {
-      let observer = observers.removeFirst()
-      let continuation = observer(value)
-      switch continuation
-      {
-      case .Continue:
-        continuations.append(observer)
-      case .Stop: break
-      }
-    }
-    observers = continuations
-  }
-
-  public func forwardTo (otherSignal: Signal&amp;lt;Subtype&amp;gt;) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(action)
-      return .Continue
-    }
-    return self
-  }
-
-  public func forwardTo &amp;lt;OtherSubtype&amp;gt; (
-    otherSignal: Signal&amp;lt;OtherSubtype&amp;gt;,
-    mappingFunction: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(mappingFunction(action))
-      return .Continue
-    }
-    return self
-  }
-
-  public func map &amp;lt;OtherSubtype&amp;gt; (transform: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal&amp;lt;OtherSubtype&amp;gt;
-  {
-    let mappedSignal = Signal&amp;lt;OtherSubtype&amp;gt;()
-    forwardTo(mappedSignal, mappingFunction: transform)
-    return mappedSignal
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;L&amp;rsquo;implementazione è semplice, ma potente. Un problema affrontato di frequente quando si implementa l&amp;rsquo;&lt;em&gt;observer pattern&lt;/em&gt; è la gestione delle disiscrizioni; è responsabilità di chi osserva smettere di farlo, e in questa implementazione di &lt;code&gt;Signal&lt;/code&gt; la cosa è gestita direttamente nella &lt;em&gt;closure&lt;/em&gt; passata al metodo &lt;code&gt;observe&lt;/code&gt;: la &lt;em&gt;closure&lt;/em&gt; deve ritornare un valore di tipo &lt;code&gt;SignalContinuation&lt;/code&gt; che può essere appunto &lt;code&gt;.Continue&lt;/code&gt; o &lt;code&gt;.Stop&lt;/code&gt;. Un altro problema è la gestione della memoria: dobbiamo assicurarci che quando la memoria di un osservatore è rilasciata, questo debba anche smettere di osservare i segnali, o il messaggio verrà inviato a un puntatore non valido, con conseguente crash dell&amp;rsquo;app. Swift definisce alcuni descrittori di &lt;em&gt;memory ownership&lt;/em&gt;, e &lt;code&gt;weak&lt;/code&gt; fa al caso nostro: sarà sufficiente inserire una &lt;em&gt;guard clause&lt;/em&gt; all&amp;rsquo;inizio della &lt;em&gt;closure&lt;/em&gt; passata al metodo &lt;code&gt;observe&lt;/code&gt;; se l&amp;rsquo;oggetto è diventato &lt;code&gt;nil&lt;/code&gt;, la &lt;em&gt;closure&lt;/em&gt; ritornerà &lt;code&gt;.Stop&lt;/code&gt;. L&amp;rsquo;esempio seguente mostra un possibile utilizzo della classe &lt;code&gt;Signal&lt;/code&gt;, incluso il meccanismo appena descritto:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class Sender
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func sendNew(value: Int)
-  {
-    signal.send(value)
-  }
-}
-
-class Receiver&amp;lt;Type: CustomStringConvertible&amp;gt;
-{
-  func startObserving(signal: Signal&amp;lt;Type&amp;gt;)
-  {
-    signal.observe { [weak self] value in
-      guard let this = self else { return .Stop }
-      this.printNewValue(value)
-      return .Continue
-    }
-  }
-
-  func printNewValue(value: Type)
-  {
-    print(value)
-  }
-}
-
-let sender = Sender()
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(sender.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 3, 5, 10, 20 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nell&amp;rsquo;esempio possiamo osservare l&amp;rsquo;applicazione dei concetti introdotti all&amp;rsquo;inizio dell&amp;rsquo;articolo: invece di creare una nuova interfaccia per lo stesso comportamento, stiamo direttamente usando e riusando l&amp;rsquo;oggetto &lt;code&gt;Signal&lt;/code&gt;. Un esempio più complesso potrebbe essere rappresentato dall&amp;rsquo;aggiunta di un &lt;em&gt;resonator&lt;/em&gt;, cioè di un oggetto che possiede un segnale che risuona con un altro, quindi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class DoublingResonator
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func resonateWith(otherSignal: Signal&amp;lt;Int&amp;gt;)
-  {
-    otherSignal.forwardTo(signal) { $0*2 }
-  }
-}
-
-let resonator = DoublingResonator()
-resonator.resonateWith(sender.signal)
-
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(resonator.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 6, 10, 20, 40 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ci sono molte altre opzioni per comporre segnali, ma finché non ne avremo bisogno sarà meglio mantenere la classe &lt;strong&gt;semplice&lt;/strong&gt;: gradualmente nel tempo potremo aggiungere nuove funzionalità, e fintanto che queste saranno sufficientemente generiche e propriamente testate, saremo in grado di usarle in tutti i nostri progetti.&lt;/p&gt;
-
-&lt;p&gt;Per concludere, definire le giuste astrazioni per conseguire riusabilità del codice non è un problema di semplice soluzione: molte pubblicazioni accademiche affrontano il problema (il classico articolo &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; di Charles W. Krueger fornisce una buona panoramica delle tecniche considerate), e il motivo per il quale la &lt;a href=&#34;https://it.wikipedia.org/wiki/Teoria_delle_categorie&#34;&gt;teoria delle categorie&lt;/a&gt; ha trovato molte applicazioni in programmazione funzionale è perché essa offre un eccellente insieme di astrazioni per affrontare diverse classi di problemi. Tuttavia sono convinto che i vantaggi legati allo scrivere codice riutilizzabile siano molti, e che poter basare un design sulla composizione di oggetti atomici sia &lt;strong&gt;un degno obiettivo&lt;/strong&gt; da perseguire.&lt;/p&gt;
 </description>
     </item>
     

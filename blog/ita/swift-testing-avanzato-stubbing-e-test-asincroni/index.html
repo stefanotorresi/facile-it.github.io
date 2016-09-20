@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -364,7 +364,7 @@ ga('send', 'pageview');
 <li>analizzeremo un altro caso di test <em>asincrono</em>;</li>
 </ul>
 
-<h2 id="lo-stub-object:4b7c206247a0a425bb1064c53b31df66">Lo <em>Stub Object</em></h2>
+<h2 id="lo-stub-object">Lo <em>Stub Object</em></h2>
 
 <p>Uno <em>Stub Object</em> (per il resto dell&rsquo;articolo, <em>stub</em>) rappresenta un&rsquo;istanza di una certa classe, la quale <em>mima</em> una vera classe presente nella nostra <em>code base</em>:  l&rsquo;istanza si comporta esattamente come una equivalente istanza della classe mimata, tranne alcune differenze, ad esempio <strong>alcuni metodi possono essere sovrascritti</strong> per poter fornire <strong>un determinato output</strong> utile per i test. Nell&rsquo;implementare uno <em>stub</em> non è generalmente consentito modificare dettagli di logica interni relativi alla classe che stiamo mimando, ma <strong>è possibile sovrascrivere metodi pubblici</strong>, in modo che essi ritornino i valori che vogliamo, oppure che svolgano una particolare procedura necessaria per i test. Tanto per fare un esempio pratico potremmo <em>stubbare</em> una classe che ci fornisce la data precisa in un certo istante, in modo da ottenere una data diversa da usare nei test, oppure un client che chiede a un server delle informazioni su un utente, in modo da far ritonare al client <em>stub</em> delle informazioni arbitrarie.</p>
 
@@ -378,7 +378,7 @@ ga('send', 'pageview');
 
 <p>Il classico caso in cui uno <em>stub</em> risulta utile è quello del client che fa una richiesta al server: se la logica di implementazione del server è sotto il nostro controllo possiamo <strong>testare che il server rispetti il contratto con i suoi client</strong> generando degli <em>stub</em> di questi per ogni possibile richiesta; d&rsquo;altra parte, per verificare che i client siano in grado di <strong>gestire correttamente ogni possibile risposta del server</strong>, possiamo generare uno <em>stub</em> del server che fornisca ogni possibile risposta: in questo modo possiamo testare in maniera disaccoppiata client e server.</p>
 
-<h2 id="un-caso-d-uso-location-services:4b7c206247a0a425bb1064c53b31df66">Un caso d&rsquo;uso: <em>Location Services</em></h2>
+<h2 id="un-caso-d-uso-location-services">Un caso d&rsquo;uso: <em>Location Services</em></h2>
 
 <p>Il caso d&rsquo;uso che tratteremo è relativo ai <strong>servizi di localizzazione</strong>, uno strumento frequentemente utilizzato dagli sviluppatori iOS e in generale da chi sviluppa su <strong>smartphone</strong>: per tali sviluppatori, quello dei servizi di localizzazione è un tema molto importante, <strong>fonte di complessità e sfide</strong> che caratterizzano tipicamente il mondo <em>mobile</em>. Non è infatti possibile ottenere l&rsquo;attuale posizione GPS in un preciso momento: l&rsquo;ultima posizione GPS disponibile si basa su una regressione, effettuata dal sistema, dei dati ricevuti da diversi sensori - antenne wifi, cellulare e ovviamente GPS, e spesso anche i sensori di movimento - in diversi momenti; <strong>il sistema può inviare notifiche alla nostra app in qualsiasi momento</strong>, ed essa deve essere in grado di &ldquo;digerire&rdquo; correttamente i dati ricevuti, interpretando anche eventuali errori. Scrivere dei test unitari per verificare che la nostra app geolocalizzata funzioni correttamente può presentare non poche difficoltà: non possiamo infatti affidarci ai &ldquo;veri&rdquo; sensori del dispositivo, perché probabilmente i test verranno eseguiti sul simulatore, oppure magari su un vero iPhone la cui ricezione GPS in un certo istante potrà essere più o meno buona, ma essa rappresenterà un solo caso possibile rispetto a tanti. Vogliamo essere in grado di <strong>testare ogni possibile risposta</strong> del sistema GPS del dispositivo, dall&rsquo;assenza totale di segnale al cambiamento frequente di posizione, alla <strong>mancata autorizzazione</strong> da parte dell&rsquo;utente per l&rsquo;accesso ai servizi di localizzazione.</p>
 
@@ -454,7 +454,7 @@ extension LocationCoordinator: CLLocationManagerDelegate {
 }
 </code></pre>
 
-<h2 id="implementiamo-i-test:4b7c206247a0a425bb1064c53b31df66">Implementiamo i test</h2>
+<h2 id="implementiamo-i-test">Implementiamo i test</h2>
 
 <p>Per testare la classe verificheremo che, a seconda dei diversi possibili risultati ottenibili dalla ricerca della posizione GPS, un&rsquo;istanza di essa <strong>aggiorni correttamente il suo stato attuale</strong>. È quindi necessario fare in modo che un&rsquo;istanza del <code>LocationCoordinator</code> ignori le notifiche ricevute da <code>CLLocationManager</code>, in modo da forzare posizioni ed errori comodi per i nostri test; per farlo dichiariamo una sottoclasse di <code>LocationCoordinator</code> chiamata <code>STUB_LocationCoordinator</code> che modifichi la <em>parent class</em> nel seguente modo:</p>
 
@@ -742,6 +742,27 @@ forceDelayedErrorLocationUnknown
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -778,27 +799,6 @@ forceDelayedErrorLocationUnknown
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -847,7 +847,7 @@ forceDelayedErrorLocationUnknown
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -858,8 +858,8 @@ forceDelayedErrorLocationUnknown
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -907,6 +907,10 @@ forceDelayedErrorLocationUnknown
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

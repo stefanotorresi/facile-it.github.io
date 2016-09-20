@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
       <description>
 
-&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
+&lt;h2 id=&#34;in-locale-funzionava&#34;&gt;In locale funzionava&lt;/h2&gt;
 
 &lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
 
@@ -41,11 +41,11 @@
 
 &lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
 
-&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
+&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
 
 &lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
 
-&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
+&lt;h4 id=&#34;download-e-dipendenze&#34;&gt;Download e dipendenze&lt;/h4&gt;
 
 &lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
 
@@ -63,7 +63,7 @@
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
+&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
 
 &lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
 
@@ -76,7 +76,7 @@ grunt dev
 
 &lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
 
-&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
+&lt;h6 id=&#34;il-file-docker-compose-yml&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
 
 &lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
 
@@ -117,7 +117,7 @@ grunt dev
 
 &lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
 
-&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
+&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
 
 &lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
 
@@ -188,7 +188,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
+&lt;h4 id=&#34;è-fatta&#34;&gt;È fatta!&lt;/h4&gt;
 
 &lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
 
@@ -204,7 +204,7 @@ REDIS_PORT
       <guid>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
       <description>
 
-&lt;h1 id=&#34;it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127&#34;&gt;It works on my machine&lt;/h1&gt;
+&lt;h1 id=&#34;it-works-on-my-machine&#34;&gt;It works on my machine&lt;/h1&gt;
 
 &lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
 
@@ -228,11 +228,11 @@ REDIS_PORT
 
 &lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
 
-&lt;h1 id=&#34;bookshelf-application:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Bookshelf application&lt;/h1&gt;
+&lt;h1 id=&#34;bookshelf-application&#34;&gt;Bookshelf application&lt;/h1&gt;
 
 &lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
 
-&lt;h2 id=&#34;download-and-dependencies:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Download and dependencies&lt;/h2&gt;
+&lt;h2 id=&#34;download-and-dependencies&#34;&gt;Download and dependencies&lt;/h2&gt;
 
 &lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
 
@@ -250,7 +250,7 @@ REDIS_PORT
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running development environment&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running-development-environment&#34;&gt;Up and running development environment&lt;/h2&gt;
 
 &lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
 
@@ -263,7 +263,7 @@ grunt dev
 
 &lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
 
-&lt;h4 id=&#34;the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;the-docker-compose-yml&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
 
@@ -304,7 +304,7 @@ grunt dev
 
 &lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
 
-&lt;h2 id=&#34;up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127&#34;&gt;Up and running production environment&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running-production-environment&#34;&gt;Up and running production environment&lt;/h2&gt;
 
 &lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
 
@@ -375,7 +375,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;you-are-done:824629f989995bd0ef3a2fb42ac10127&#34;&gt;You are done!&lt;/h1&gt;
+&lt;h1 id=&#34;you-are-done&#34;&gt;You are done!&lt;/h1&gt;
 
 &lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
 
@@ -396,30 +396,30 @@ In questo articolo vi mostrerò quello che è stato il mio personale percorso, n
 
 &lt;p&gt;Da sviluppatore web, la mia esigenza è di conservare i sorgenti sulla macchina host e condividerli con la VM; per la natura di PHP, la condivisione deve anche essere molto veloce, poiché ad ogni richiesta i files verranno letti nuovamente dal disco. Nulla di complicato, quindi sono partito dalla cosa più semplice.&lt;/p&gt;
 
-&lt;h2 id=&#34;boot2docker:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;boot2docker&lt;/h2&gt;
+&lt;h2 id=&#34;boot2docker&#34;&gt;boot2docker&lt;/h2&gt;
 
 &lt;p&gt;Probabilmente la soluzione più nota e diffusa, &lt;a href=&#34;https://docs.docker.com/installation/mac/&#34;&gt;boot2docker&lt;/a&gt; è stata la mia prima scelta. Si installa con &lt;code&gt;homebrew&lt;/code&gt; o &lt;code&gt;curl&lt;/code&gt; e viene distribuita con una propria ISO, molto leggera e progettata appositamente per Docker, che gira su VirtualBox.
 L&amp;rsquo;unica vera pecca è proprio il protocollo di condivisione nativo di VirtualBox, &lt;code&gt;vboxsf&lt;/code&gt;, che risulta &lt;strong&gt;molto lento&lt;/strong&gt; per progetti di medie dimensioni e rende il caricamento delle pagine lunghissimo.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-osx:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;docker-osx&lt;/h2&gt;
+&lt;h2 id=&#34;docker-osx&#34;&gt;docker-osx&lt;/h2&gt;
 
 &lt;p&gt;Decido di &lt;a href=&#34;https://github.com/noplay/docker-osx&#34;&gt;provarlo&lt;/a&gt; incuriosito da un collega che ne aveva creato una versione modificata per supportare la &lt;strong&gt;condivisione NFS&lt;/strong&gt;, ma nonostante questo non lo trovo migliore di boot2docker. Inoltre il suo sviluppo è precedente, e il progetto è stato abbandonato quando Docker ha iniziato a supportare ufficialmente boot2docker: è in effetti lo stesso sviluppatore a sconsigliarne l&amp;rsquo;utilizzo da parte di nuovi utenti.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;Leggo su un blog che è possibile avere prestazioni migliori utilizzando un sistema di virtualizzazione alternativo a VirtualBox, come ad esempio Parallels o VMWare Fusion. Per entrambi esistono delle ISO modificate di boot2docker e la macchina dev&amp;rsquo;essere configurata usando Vagrant. La mia scelta cade su &lt;strong&gt;Parallels&lt;/strong&gt;, e finalmente riesco a creare &lt;strong&gt;una macchina performante&lt;/strong&gt; con condivisione NFS.
 Purtroppo il mantenimento della ISO sembra non stare al passo con la frequenza di rilascio di Docker (ero fermo alla versione 1.4.1 quando la 1.5 era disponibile da diverse settimane), quindi decido di cambiare nuovamente soluzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-ubuntu:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-ubuntu&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
 
 &lt;p&gt;Dati i precedenti limiti e relativi fallimenti, tento una strada alternativa e &lt;a href=&#34;https://github.com/ildanno/parallels-docker-vagrantfile&#34;&gt;preparo un Vagrantfile&lt;/a&gt; contenente tutto quello che mi serve: una macchina Ubuntu che gira su Parallels, repository di Docker aggiornato, condivisione NFS e possibilità di eseguire comandi al boot.
 Ma ancora una volta ho un problema fastidioso, che si verificava già con la soluzione precedente ma che (sbagliando) attribuivo a boot2docker. Ad ogni avvio della macchina, infatti, si crea &lt;strong&gt;un conflitto&lt;/strong&gt; con OS X per l&amp;rsquo;utilizzo di &lt;strong&gt;alcune risorse di rete&lt;/strong&gt; e devo risolverle manualmente riavviando il demone NAT di Parallels. Inoltre scopro che con vagrant+parallels lo spazio utilizzato dal disco virtuale non è più recuperabile una volta allocato e il mio SSD è ormai alle strette.&lt;/p&gt;
 
-&lt;h2 id=&#34;vm-custom:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;VM custom&lt;/h2&gt;
+&lt;h2 id=&#34;vm-custom&#34;&gt;VM custom&lt;/h2&gt;
 
 &lt;p&gt;Preso dallo sconforto scelgo di avere il &lt;strong&gt;controllo completo&lt;/strong&gt;: installo &lt;strong&gt;VMWare Fusion&lt;/strong&gt; per avere un sistema di virtualizzazione più performante di VirtualBox, ma senza gli inconvenienti di Parallels, e configuro una macchina con Ubuntu server. Posso montare share NFS e ridimensionare il disco virtuale. Mi sembra una soluzione molto artigianale, ma funziona esattamente come voglio io e credo finalmente di avere trovato la mia pace. Ma non è così.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-machine:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Docker Machine&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine&#34;&gt;Docker Machine&lt;/h2&gt;
 
 &lt;p&gt;Da alcune settimane è uscita una novità sul mercato, direttamente da casa Docker, che ho inizialmente ignorato. Si chiama &lt;a href=&#34;https://docs.docker.com/machine/&#34;&gt;Docker Machine&lt;/a&gt; e ad una prima occhiata non sembra fare cose molto diverse da boot2docker, tant&amp;rsquo;è che ne utilizza la stessa ISO. Però il fatto che venga rilasciato direttamente dalla casa madre mi fa ben sperare, vista anche l&amp;rsquo;evoluzione avuta da altri tools come &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker Compose&lt;/a&gt;, e dopo qualche tempo decido di dargli una possibilità.&lt;/p&gt;
 
@@ -494,7 +494,7 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
 &lt;li&gt;Automatizza il deploy&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;soluzioni-per-la-ci-ed-il-testing-automatico:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Soluzioni per la CI ed il testing automatico&lt;/h2&gt;
+&lt;h2 id=&#34;soluzioni-per-la-ci-ed-il-testing-automatico&#34;&gt;Soluzioni per la CI ed il testing automatico&lt;/h2&gt;
 
 &lt;p&gt;Negli ultimi anni si sono diffuse molte &lt;strong&gt;soluzioni software&lt;/strong&gt; che permettono di automatizzare il processo di &lt;strong&gt;build e testing&lt;/strong&gt; a partire da un semplice &lt;em&gt;push&lt;/em&gt; sulla mainline di sviluppo. Ognuno di queste ha le sue peculiari caratteristiche che la rendono diverso dagli altri.&lt;/p&gt;
 
@@ -514,7 +514,7 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
 
 &lt;p&gt;La nostra scelta è ricaduta su &lt;a href=&#34;https://github.com/drone/drone&#34;&gt;Drone&lt;/a&gt;, una piattaforma di continuous integration piuttosto giovane, ma sufficientemente stabile per un utilizzo in produzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;drone-build-attraverso-container-docker:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Drone: build attraverso container Docker&lt;/h2&gt;
+&lt;h2 id=&#34;drone-build-attraverso-container-docker&#34;&gt;Drone: build attraverso container Docker&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/drone/drone&#34;&gt;Drone&lt;/a&gt;, rilasciato con licenza Apache 2.0, è una piattaforma di CI che automatizza le build &lt;strong&gt;all&amp;rsquo;interno di container Docker&lt;/strong&gt;: la soluzione ideale in un ambiente dove &lt;strong&gt;numerosi gruppi di lavoro&lt;/strong&gt; utilizzano &lt;strong&gt;ambienti molto diversi&lt;/strong&gt; (per sistema operativo, versioni di interpreti di linguaggio, sistemi di database o caching) ma vogliono centralizzare i processi di Continuous Integration.&lt;/p&gt;
 
@@ -534,7 +534,7 @@ in questo modo è possibile scrivere &lt;strong&gt;plugin in qualsiasi linguaggi
 
 &lt;p&gt;Quella che segue, è una guida per &lt;strong&gt;l&amp;rsquo;installazione di Drone&lt;/strong&gt; (a sua volta in un container!), molto simile a quella  utilizzata in Facile.it.&lt;/p&gt;
 
-&lt;h2 id=&#34;prerequisiti:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Prerequisiti&lt;/h2&gt;
+&lt;h2 id=&#34;prerequisiti&#34;&gt;Prerequisiti&lt;/h2&gt;
 
 &lt;p&gt;Per testare questa guida abbiamo utilizzato Docker 1.6.2 e &lt;a href=&#34;https://docs.docker.com/compose/install/&#34;&gt;docker-compose 1.2.0&lt;/a&gt;.
 Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per definire convenientemente una configurazione complessa&lt;/strong&gt; (di solito multi-container) in un singolo file &lt;em&gt;yaml&lt;/em&gt;, potendo poi lanciare tutti i container in essa definiti con un singolo conveniente comando anzichè con molti tediosi &lt;code&gt;docker run&lt;/code&gt;.&lt;/p&gt;
@@ -548,13 +548,13 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Una volta entrati nella cartella del gist, troviamo due file, &lt;em&gt;docker-compose.yml&lt;/em&gt; e &lt;em&gt;nginx.conf&lt;/em&gt;,  descritti in dettaglio di seguito:&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-compose-yml:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;docker-compose.yml&lt;/h2&gt;
+&lt;h2 id=&#34;docker-compose-yml&#34;&gt;docker-compose.yml&lt;/h2&gt;
 
 &lt;p&gt;Questo file contiene la configurazione dei container che ci permetterà di mettere insieme il nostro ambiente.&lt;/p&gt;
 
 &lt;p&gt;Al suo interno abbiamo &lt;strong&gt;tre nodi&lt;/strong&gt; principali: &lt;em&gt;drone&lt;/em&gt;, &lt;em&gt;nginx&lt;/em&gt; e &lt;em&gt;wall&lt;/em&gt;; analizziamoli singolarmente:&lt;/p&gt;
 
-&lt;h3 id=&#34;drone:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;DRONE&lt;/h3&gt;
+&lt;h3 id=&#34;drone&#34;&gt;DRONE&lt;/h3&gt;
 
 &lt;p&gt;Come abbiamo detto in precedenza Drone supporta i vari servizi di hosting repository git, sia open source che PaaS. Per questa guida abbiamo scelto l&amp;rsquo;integrazione più semplice e immediata, quella con &lt;strong&gt;GitHub&lt;/strong&gt;.&lt;/p&gt;
 
@@ -577,11 +577,11 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Un&amp;rsquo;altra riga di questo nodo che è degna di nota è &lt;code&gt;privileged: true&lt;/code&gt;: è infatti &lt;strong&gt;necessario che il container contenente Drone giri in modalità privilegiata&lt;/strong&gt;, per disattivare quei controlli di sicurezza che altrimenti non permetterebbero al container di operare alla creazione, distruzione e modifica di altri container.&lt;/p&gt;
 
-&lt;h3 id=&#34;wall:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;WALL&lt;/h3&gt;
+&lt;h3 id=&#34;wall&#34;&gt;WALL&lt;/h3&gt;
 
 &lt;p&gt;In questo nodo è necessario impostare la variabile d&amp;rsquo;ambiente &lt;code&gt;API_TOKEN&lt;/code&gt;, necessaria ad autorizzare la dashboard di visualizzazione delle build: il token si trova nel proprio profilo utente di Drone una volta avviato. Questa configurazione può essere quindi completata solo dopo aver avviato Drone per la prima volta.&lt;/p&gt;
 
-&lt;h3 id=&#34;nginx:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;NGINX&lt;/h3&gt;
+&lt;h3 id=&#34;nginx&#34;&gt;NGINX&lt;/h3&gt;
 
 &lt;p&gt;Questo nodo fa il binding della porta 80 dell&amp;rsquo;host verso la porta 80 del container e condivide due volumi, rispettivamente:&lt;/p&gt;
 
@@ -594,7 +594,7 @@ Per chi non conoscesse Compose, basti sapere che è un &lt;strong&gt;tool per de
 
 &lt;p&gt;Al suo interno contiene già due &lt;em&gt;server blocks&lt;/em&gt;, i quali a loro volta contengono le direttive &lt;code&gt;server_name&lt;/code&gt;, rispettivamente &lt;code&gt;drone.local&lt;/code&gt; per Drone e &lt;code&gt;wall.drone.local&lt;/code&gt; per il Drone Wall.&lt;/p&gt;
 
-&lt;h2 id=&#34;up-and-running:3d304be90cd6edeb527d6149ec7b0239&#34;&gt;Up And Running&lt;/h2&gt;
+&lt;h2 id=&#34;up-and-running&#34;&gt;Up And Running&lt;/h2&gt;
 
 &lt;p&gt;Ora che abbiamo completato la configurazione, possiamo semplicemente avviare i nostri container con questo comando, che va eseguito nella cartella contentente il clone del gist di sopra:&lt;/p&gt;
 

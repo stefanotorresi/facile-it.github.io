@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -362,7 +362,7 @@ ga('send', 'pageview');
 
     
 
-<h1 id="it-works-on-my-machine:824629f989995bd0ef3a2fb42ac10127">It works on my machine</h1>
+<h1 id="it-works-on-my-machine">It works on my machine</h1>
 
 <p>This post is addressed to people who already have <a href="https://docs.docker.com/articles/basics">basic knowledge about docker</a>, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.</p>
 
@@ -386,11 +386,11 @@ ga('send', 'pageview');
 
 <p>You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.</p>
 
-<h1 id="bookshelf-application:824629f989995bd0ef3a2fb42ac10127">Bookshelf application</h1>
+<h1 id="bookshelf-application">Bookshelf application</h1>
 
 <p>To streamline this article I prepared a <a href="https://github.com/pennyphp/bookshelf">demo application</a> using the <a href="http://github.com/pennyphp/penny">Penny PHP Framework</a>: it&rsquo;s a simple book archiving application, that allows the user to create and view a list of books.</p>
 
-<h2 id="download-and-dependencies:824629f989995bd0ef3a2fb42ac10127">Download and dependencies</h2>
+<h2 id="download-and-dependencies">Download and dependencies</h2>
 
 <p>First, download the demo application from its repository:</p>
 
@@ -408,7 +408,7 @@ ga('send', 'pageview');
 grunt dev
 </code></pre>
 
-<h2 id="up-and-running-development-environment:824629f989995bd0ef3a2fb42ac10127">Up and running development environment</h2>
+<h2 id="up-and-running-development-environment">Up and running development environment</h2>
 
 <p>As you can see the demo app comes with a docker development environment that can be found under the <a href="https://github.com/pennyphp/bookshelf/tree/master/docker/development">docker/development</a> folder.</p>
 
@@ -421,7 +421,7 @@ grunt dev
 
 <p>Because we don&rsquo;t have Elastic Beanstalk on our local machine (we&rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&rsquo;ll do it by using <strong>docker-compose</strong>. I decided to use Docker Compose instead of using the <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html"><strong>eb local</strong></a> command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.</p>
 
-<h4 id="the-docker-compose-yml:824629f989995bd0ef3a2fb42ac10127">The <code>docker-compose.yml</code></h4>
+<h4 id="the-docker-compose-yml">The <code>docker-compose.yml</code></h4>
 
 <p>In order to do so we have to create a <code>docker-compose.yml</code> in our project root.</p>
 
@@ -462,7 +462,7 @@ grunt dev
 
 <p>Yay! Our development environment is up and running!</p>
 
-<h2 id="up-and-running-production-environment:824629f989995bd0ef3a2fb42ac10127">Up and running production environment</h2>
+<h2 id="up-and-running-production-environment">Up and running production environment</h2>
 
 <p>At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&rsquo;s say, monitoring.</p>
 
@@ -533,7 +533,7 @@ REDIS_PORT
 
 <p><strong>Troubleshooting</strong>: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a <code>eb ssh</code> and inspect containers status using tools you already know like <code>docker logs</code>.</p>
 
-<h1 id="you-are-done:824629f989995bd0ef3a2fb42ac10127">You are done!</h1>
+<h1 id="you-are-done">You are done!</h1>
 
 <p>You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.</p>
 
@@ -770,6 +770,27 @@ REDIS_PORT
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -806,27 +827,6 @@ REDIS_PORT
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -875,7 +875,7 @@ REDIS_PORT
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -886,8 +886,8 @@ REDIS_PORT
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -935,6 +935,10 @@ REDIS_PORT
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

@@ -39,14 +39,14 @@ Beyond this specific use case, JWT can be also useful to securely transmit data 
 &lt;p&gt;A JWT token can be trusted because it is digitally signed using a secret (usually with &lt;a href=&#34;https://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34;&gt;HMAC&lt;/a&gt; algorithm) or a keypair with &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA&#34;&gt;RSA&lt;/a&gt;.
 Its payload contains all the required data to verify itself and, for example, transport the user data to avoid querying the database more than once.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-the-token-presents-itself:be256830241f7dc27936f7751ed2a96e&#34;&gt;How the token presents itself&lt;/h2&gt;
+&lt;h2 id=&#34;how-the-token-presents-itself&#34;&gt;How the token presents itself&lt;/h2&gt;
 
 &lt;p&gt;A token is represented as three base64 encoded strings joined by two points:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;headers:be256830241f7dc27936f7751ed2a96e&#34;&gt;Headers&lt;/h3&gt;
+&lt;h3 id=&#34;headers&#34;&gt;Headers&lt;/h3&gt;
 
 &lt;p&gt;The first part of the string contains the headers, &lt;code&gt;&amp;quot;alg&amp;quot;&lt;/code&gt; is the algorithm used to secure the token and &lt;code&gt;&amp;quot;typ&amp;quot;&lt;/code&gt; is the type; in this case as we can see that I used an HMAC SHA256 to sign the JWT token:&lt;/p&gt;
 
@@ -56,7 +56,7 @@ Its payload contains all the required data to verify itself and, for example, tr
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;payload:be256830241f7dc27936f7751ed2a96e&#34;&gt;Payload&lt;/h3&gt;
+&lt;h3 id=&#34;payload&#34;&gt;Payload&lt;/h3&gt;
 
 &lt;p&gt;The second part is the payload: it&amp;rsquo;s the data sent with the token. It contains metadata and information like expiration, audience or subject, and whatever you need.&lt;/p&gt;
 
@@ -75,7 +75,7 @@ Its payload contains all the required data to verify itself and, for example, tr
 &lt;li&gt;&lt;strong&gt;Private claims&lt;/strong&gt;: custom claims created to share information between parties that agree with using them.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;sign:be256830241f7dc27936f7751ed2a96e&#34;&gt;Sign&lt;/h3&gt;
+&lt;h3 id=&#34;sign&#34;&gt;Sign&lt;/h3&gt;
 
 &lt;p&gt;The third part of the string is the sign, obtained from hashing headers and payload with a secret using the algorithm described in headers.&lt;/p&gt;
 

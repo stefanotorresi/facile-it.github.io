@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jean on Facile.it Engineering</title>
+    <title>jean on Facile.it Engineering</title>
     <link>http://engineering.facile.it/authors/jean/</link>
-    <description>Recent content in Jean on Facile.it Engineering</description>
+    <description>Recent content in jean on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Jun 2016 00:00:00 +0000</lastBuildDate>
@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/</guid>
       <description>
 
-&lt;h1 id=&#34;the-enemies-of-programming:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;The enemies of programming&lt;/h1&gt;
+&lt;h1 id=&#34;the-enemies-of-programming&#34;&gt;The enemies of programming&lt;/h1&gt;
 
 &lt;p&gt;As many of you will agree with me, &lt;strong&gt;sleep deprivation&lt;/strong&gt; is the enemy of programming.&lt;br /&gt;
 Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;/strong&gt;.
@@ -27,7 +27,7 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;While writing code we have to think really hard, we use complex abstractions, we go through long business workflows and so on&amp;hellip; fatigue and interruptions are the main enemies of those in this line of work.&lt;/p&gt;
 
-&lt;h1 id=&#34;my-experience:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;My experience&lt;/h1&gt;
+&lt;h1 id=&#34;my-experience&#34;&gt;My experience&lt;/h1&gt;
 
 &lt;p&gt;On my day job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine etc.; luckily, in this project we use a good deal of &lt;strong&gt;good practices&lt;/strong&gt;, and &lt;strong&gt;automated software testing&lt;/strong&gt; is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.&lt;/p&gt;
 
@@ -46,13 +46,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Obviously, as anyone that&amp;rsquo;s passionate in technology would do, I took the opportunity to use a lot of new shiny tools: I picked &lt;strong&gt;PHP 7&lt;/strong&gt;, which had just been released, and started the project with something familiar to me but still pretty new and cool, &lt;strong&gt;Symfony 3.0&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;what-i-found-to-be-useful:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;What I found to be useful&lt;/h1&gt;
+&lt;h1 id=&#34;what-i-found-to-be-useful&#34;&gt;What I found to be useful&lt;/h1&gt;
 
 &lt;p&gt;I rambled and thought about this project a lot in the past months with my colleagues, because the old system was costing us a lot of overhead in usage and maintenance, and we had a pretty clear idea of what its problems were, so I didn&amp;rsquo;t need to study a lot before starting to write the first classes.&lt;/p&gt;
 
 &lt;p&gt;Thus, I had to spend &lt;em&gt;some&lt;/em&gt; time thinking about an object oriented design for my project, but I was rapidly able to start writing code with confidence. In the end, most of this confidence came from a few choices that I pursued during the development of this project.&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-and-high-coverage:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;TDD and high coverage&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-and-high-coverage&#34;&gt;TDD and high coverage&lt;/h2&gt;
 
 &lt;p&gt;The first choice that I am pretty satisfied about is &lt;strong&gt;automatic testing&lt;/strong&gt;: I already knew the advantages of doing tests and Test Driven Development, but in the previous project that practice was not introduced from the start, so not all the codebase was covered, and we couldn&amp;rsquo;t (or wouldn&amp;rsquo;t?) do TDD 100% of the time.&lt;/p&gt;
 
@@ -60,13 +60,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Of course, I still left some parts without coverage or specific tests, since it was pointless to test them (e.g. Doctrine entities), while I covered some parts multiple times, since they were &lt;strong&gt;critical paths&lt;/strong&gt; inside my application.&lt;/p&gt;
 
-&lt;h2 id=&#34;unit-tests-to-the-rescue:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
+&lt;h2 id=&#34;unit-tests-to-the-rescue&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
 
 &lt;p&gt;Last but not least, the main critical advantage that TDD gave me was &lt;strong&gt;focus even on strained days&lt;/strong&gt;: I wrote the classes starting from unit tests, giving all my effort to one piece of code at a time, without having to keep in mind the entire project with its complexities.&lt;/p&gt;
 
 &lt;p&gt;I then wrote some functional tests to assure that the &lt;strong&gt;collaboration between my unit-tested objects&lt;/strong&gt; was fine, and this later step was also useful in delaying the definition of the classes as services inside the Symfony DI container. I was also &lt;strong&gt;able to change my mind&lt;/strong&gt; a few times on some details of the design without having to suffer mental confusion or rewrite too much code.&lt;/p&gt;
 
-&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
+&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
 
 &lt;p&gt;The second good choice was &lt;strong&gt;PHP 7&lt;/strong&gt;: among the reasons behind it as the language version of choice for this project were the &lt;a href=&#34;http://php.net/manual/en/migration70.new-features.php&#34;&gt;two main new features&lt;/a&gt; introduced: &lt;strong&gt;scalar types&lt;/strong&gt; and &lt;strong&gt;return type declarations&lt;/strong&gt;.
 &lt;p style=&#34;text-align: center;&#34;&gt;
@@ -89,7 +89,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;On the other hand, having return types declared on your business-logic classes it&amp;rsquo;s pretty useful, even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it &lt;strong&gt;indirectly helps maintaining the collaboration contract between objects&lt;/strong&gt;, without too much hassle. If I changed a method&amp;rsquo;s signature that was mocked somewhere, the mock would break the test, &lt;strong&gt;highlighting the issue and making the tests&lt;/strong&gt; (and an high coverage) &lt;strong&gt;even more valuable&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;At the end of the day, these and other &lt;strong&gt;good practices are helpful&lt;/strong&gt; for both your job and your personal life: you can go a long way in being fit and in the best shape while working, but stressful and (good) distracting events are unavoidable: you&amp;rsquo;ll often have to fight stress, fatigue or distractions, and there will be days where you can&amp;rsquo;t be at the top of your game, for any number of reasons.&lt;/p&gt;
 
@@ -113,9 +113,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talks are in chronological order, and we linked the slides when available. Enjoy your reading!&lt;/p&gt;
 
-&lt;h1 id=&#34;technical-talks:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Technical Talks&lt;/h1&gt;
+&lt;h1 id=&#34;technical-talks&#34;&gt;Technical Talks&lt;/h1&gt;
 
-&lt;h2 id=&#34;your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Your API is a UI&lt;/h2&gt;
+&lt;h2 id=&#34;your-api-is-a-ui&#34;&gt;Your API is a UI&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christopher Hoult (&lt;a href=&#34;http://twitter.com/choult&#34;&gt;@choult&lt;/a&gt;)&lt;/li&gt;
@@ -124,7 +124,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This was an interesting and very smooth talk. It stayed pretty general with nice advices about &lt;strong&gt;API development&lt;/strong&gt;, but showed some reasoning about a pyramidal &amp;ldquo;scheme of priorities&amp;rdquo; that we should follow, deriving from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&#34;&gt;Maslow&amp;rsquo;s hierarchy of needs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
+&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;James Titcumb (&lt;a href=&#34;http://twitter.com/asgrim&#34;&gt;@asgrim&lt;/a&gt;)&lt;/li&gt;
@@ -133,7 +133,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we saw an interesting overview of &lt;strong&gt;security issues&lt;/strong&gt; that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
+&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -142,7 +142,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;In this talk we went from basic &lt;strong&gt;regular expressions&lt;/strong&gt;, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the &lt;em&gt;Dr. Strangelove&lt;/em&gt; movie, from images to phrases used in the examples.&lt;/p&gt;
 
-&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
+&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paul Dragoonis (&lt;a href=&#34;http://twitter.com/dr4goonis&#34;&gt;@dr4goonis&lt;/a&gt;)&lt;/li&gt;
@@ -151,7 +151,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was about &lt;strong&gt;using Jenkins with Docker&lt;/strong&gt; and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.&lt;/p&gt;
 
-&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
+&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrew Carter (&lt;a href=&#34;http://twitter.com/AndrewCarterUK&#34;&gt;@AndrewCarterUK&lt;/a&gt;)&lt;/li&gt;
@@ -160,7 +160,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.&lt;/p&gt;
 
-&lt;h2 id=&#34;evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
+&lt;h2 id=&#34;evolution-of-web-application-architecture&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kore Nordmann (&lt;a href=&#34;http://twitter.com/koredn&#34;&gt;@koredn&lt;/a&gt;)&lt;/li&gt;
@@ -169,7 +169,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;The talk covered the &lt;strong&gt;evolution of the technological stack&lt;/strong&gt; behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of &lt;strong&gt;when and why&lt;/strong&gt; such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.&lt;/p&gt;
 
-&lt;h2 id=&#34;being-functional-in-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Being functional in PHP&lt;/h2&gt;
+&lt;h2 id=&#34;being-functional-in-php&#34;&gt;Being functional in PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David de Boer (&lt;a href=&#34;http://twitter.com/ddeboer_nl&#34;&gt;@ddeboer_nl&lt;/a&gt;)&lt;/li&gt;
@@ -178,9 +178,9 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;This talk was an &lt;strong&gt;introduction to functional programming&lt;/strong&gt;. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h1&gt;
 
-&lt;h2 id=&#34;deploying-php-7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Deploying PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;deploying-php-7&#34;&gt;Deploying PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;http://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -189,7 +189,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&amp;rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from &lt;strong&gt;benchmark data&lt;/strong&gt; to technical tips on how to smooth the transition to this new major version of PHP.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
+&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nikolay Krapivnyy&lt;/li&gt;
@@ -214,7 +214,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 &lt;p&gt;As you may have noticed, we went through a bit of a restyling in the last few days, and our blog changed a lot in terms of appearance and structure.
 We are very happy with those changes, but the reason behind this transition is not just a simple template change.&lt;/p&gt;
 
-&lt;h2 id=&#34;what-we-were-searching-for:07063062dea63684291e8b15e998f464&#34;&gt;What we were searching for&lt;/h2&gt;
+&lt;h2 id=&#34;what-we-were-searching-for&#34;&gt;What we were searching for&lt;/h2&gt;
 
 &lt;p&gt;Before, we were using an hosted CMS to run the blog, &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;. We were happy with the results, it wasn&amp;rsquo;t our concern to administrate the server or bother about other hosting stuff.&lt;/p&gt;
 
@@ -233,11 +233,11 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;support for &lt;strong&gt;multilanguage articles&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;git-and-the-github-pages:07063062dea63684291e8b15e998f464&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
+&lt;h2 id=&#34;git-and-the-github-pages&#34;&gt;Git and the GitHub pages&lt;/h2&gt;
 
 &lt;p&gt;The first solution that came to us was obviously &lt;strong&gt;Git&lt;/strong&gt;, the everyday tool for a team of developers working on the same piece of code (or text, in this case). We obviously then thought of the &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub pages&lt;/a&gt; as an hosting solution: that is ideal, since we already have a &lt;a href=&#34;https://github.com/facile-it&#34;&gt;Github organization&lt;/a&gt; in place, so an organization homepage/site would perfectly fit the bill for our blog.&lt;/p&gt;
 
-&lt;h2 id=&#34;hugo:07063062dea63684291e8b15e998f464&#34;&gt;Hugo&lt;/h2&gt;
+&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
 
 &lt;p&gt;Once we set our eyes to that hosting solution, we started to search for a solution for building our blog. The proposed solution was &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;: it&amp;rsquo;s a static site generator, developed in Go, which fitted almost all of our requisites; also:&lt;/p&gt;
 
@@ -247,7 +247,7 @@ We are very happy with those changes, but the reason behind this transition is n
 &lt;li&gt;the templates are built with the Go Templating engine, and with some easy manual edits we obtained all the requested features: multi-author support, link between translated articles, recent articles and top categories in the sidebar&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;deploying:07063062dea63684291e8b15e998f464&#34;&gt;Deploying&lt;/h2&gt;
+&lt;h2 id=&#34;deploying&#34;&gt;Deploying&lt;/h2&gt;
 
 &lt;p&gt;The last step needed to smooth out our workflow was to find a &lt;strong&gt;deploy strategy&lt;/strong&gt;. Github pages need to have the site content published onto the master branch, and we obviously wanted to separate the source code of the site from that.&lt;/p&gt;
 
@@ -266,7 +266,7 @@ We are very happy with those changes, but the reason behind this transition is n
 
 &lt;p&gt;We started our Hugo site inside it, and we put the &lt;code&gt;./public&lt;/code&gt; in the &lt;code&gt;.gitIgnore&lt;/code&gt;, so each static generation would not be committed. We then prepared the deploy script that, after generating the static site, uses a Git subtree approach to commit its content to the master branch, with a commit message of &lt;code&gt;publish: &amp;lt;last commit message from source&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;et-voilà-here-we-are:07063062dea63684291e8b15e998f464&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
+&lt;h2 id=&#34;et-voilà-here-we-are&#34;&gt;Et voilà, here we are!&lt;/h2&gt;
 
 &lt;p&gt;So, we hope that you will enjoy our new blog at least as much as we enjoyed building it ! Happy reading!&lt;/p&gt;
 </description>
@@ -282,7 +282,7 @@ We are very happy with those changes, but the reason behind this transition is n
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -304,7 +304,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -319,7 +319,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -340,7 +340,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -362,7 +362,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -383,7 +383,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
@@ -393,13 +393,13 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -433,7 +433,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;I talk sono in ordine cronologico. Buona lettura!&lt;/p&gt;
 
-&lt;h4 id=&#34;indice:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Indice&lt;/h4&gt;
+&lt;h4 id=&#34;indice&#34;&gt;Indice&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#prophecy&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/a&gt;&lt;/li&gt;
@@ -444,7 +444,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#doctrine&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h6 id=&#34;keynotes:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h6&gt;
+&lt;h6 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h6&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#coderabbi&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/a&gt;&lt;/li&gt;
@@ -452,11 +452,11 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#seldaek&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;talk-tecnici:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talk tecnici&lt;/h1&gt;
+&lt;h1 id=&#34;talk-tecnici&#34;&gt;Talk tecnici&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;prophecy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
+&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Khalil (&lt;a href=&#34;http://twitter.com/saro0h&#34;&gt;@saro0h&lt;/a&gt;)&lt;/li&gt;
@@ -471,7 +471,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;containerize&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;containerize-your-php:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Containerize your PHP&lt;/h4&gt;
+&lt;h4 id=&#34;containerize-your-php&#34;&gt;Containerize your PHP&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marek Jelen (&lt;a href=&#34;http://twitter.com/marek_jelen&#34;&gt;@marek_jelen&lt;/a&gt;)&lt;/li&gt;
@@ -484,7 +484,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;varnish&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
+&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David De Boer&lt;/li&gt;
@@ -499,7 +499,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;psr-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;hello-psr-7:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Hello, PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;hello-psr-7&#34;&gt;Hello, PSR-7&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Beau Simensen (&lt;a href=&#34;http://www.twitter.com/beausimensen&#34;&gt;@beausimensen&lt;/a&gt;)&lt;/li&gt;
@@ -514,7 +514,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;php7-data-structures&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
+&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Patrick Allaert (&lt;a href=&#34;http://www.twitter.com/patrick_allaert&#34;&gt;@patrick_allaert&lt;/a&gt;)&lt;/li&gt;
@@ -527,7 +527,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;doctrine&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
+&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Pivetta (&lt;a href=&#34;http://www.twitter.com/Ocramius&#34;&gt;@Ocramius&lt;/a&gt;)&lt;/li&gt;
@@ -538,13 +538,13 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;Usiamo &lt;strong&gt;Doctrine&lt;/strong&gt; tutti i giorni, ma questo talk, sebbene marcato come di livello &lt;strong&gt;beginner&lt;/strong&gt;, si è rivelato molto interessante e fonte di numerose discussioni e &lt;strong&gt;riflessioni&lt;/strong&gt; tra colleghi. Lo speaker è uno dei principali contributors al progetto &lt;a href=&#34;https://github.com/doctrine/doctrine2&#34;&gt;doctrine-orm&lt;/a&gt;, e ci ha elencato una serie di &lt;strong&gt;best practices&lt;/strong&gt;, partendo dal chiedersi se e quando è il caso di usare un ORM, passando poi a problemi quali l&amp;rsquo;uso e l&amp;rsquo;implementazione di entità, la loro consistenza, l&amp;rsquo;evitare di usare setter brutali o di esporre le ArrayCollection che rappresentano le nostre relazioni.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes-1:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes-1&#34;&gt;Keynotes&lt;/h1&gt;
 
 &lt;p&gt;Abbiamo voluto citare in questo articolo anche i &lt;strong&gt;3 keynote&lt;/strong&gt; della conferenza: sono stati tutti piuttosto interessanti, profondamente motivazionali e coinvolgenti.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;coderabbi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
+&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Yitzchok Willroth (&lt;a href=&#34;http://www.twitter.com/coderabbi&#34;&gt;@coderabbi&lt;/a&gt;)&lt;/li&gt;
@@ -562,7 +562,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;calevans&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
+&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Cal Evans (&lt;a href=&#34;http://www.twitter.com/calevans&#34;&gt;@CalEvans&lt;/a&gt;)&lt;/li&gt;
@@ -575,7 +575,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;seldaek&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
+&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;

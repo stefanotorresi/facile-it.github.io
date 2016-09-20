@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Michele on Facile.it Engineering</title>
+    <title>michele on Facile.it Engineering</title>
     <link>http://engineering.facile.it/authors/michele/</link>
-    <description>Recent content in Michele on Facile.it Engineering</description>
+    <description>Recent content in michele on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 16 Jun 2015 00:00:00 +0000</lastBuildDate>
@@ -31,13 +31,13 @@
 
 &lt;p&gt;Inoltre è bene tenere a mente che diversi software di gestione delle dipendenze basano il proprio flusso operativo sul presupposto una strategia di versionamento semantico simile a quella che andremo a descrivere, come ad esempio &lt;a href=&#34;https://getcomposer.org&#34;&gt;composer&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;branch-storici:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch storici&lt;/h3&gt;
+&lt;h3 id=&#34;branch-storici&#34;&gt;Branch storici&lt;/h3&gt;
 
 &lt;p&gt;Anzitutto questo modello di workflow prevede la presenza di ben due master branch, &lt;strong&gt;&amp;ldquo;dev&amp;rdquo;&lt;/strong&gt; (o &amp;ldquo;develop&amp;rdquo;) utilizzato per lo sviluppo, ed il buon vecchio &lt;strong&gt;&amp;ldquo;master&amp;rdquo;&lt;/strong&gt; per i rilasci ufficiali.&lt;/p&gt;
 
 &lt;p&gt;Questi due branch assolvono il compito di &amp;ldquo;historical branch&amp;rdquo;, cioè essi devono detenere la storia pulita del progetto, a prescindere dagli sviluppi di nuove feature e hotfix, che altrimenti confluirebbero senza filtri sul ramo principale, rendendo meno comprensibile la storia del progetto e quindi più difficoltose operazioni di reversione (&lt;a href=&#34;https://en.wikipedia.org/wiki/Reversion_%28software_development%29&#34;&gt;revert&lt;/a&gt;) a stati precedenti.&lt;/p&gt;
 
-&lt;h3 id=&#34;branch-di-funzionalità:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di funzionalità&lt;/h3&gt;
+&lt;h3 id=&#34;branch-di-funzionalità&#34;&gt;Branch di funzionalità&lt;/h3&gt;
 
 &lt;p&gt;Un branch di funzionalità, ovvero un &lt;strong&gt;&amp;ldquo;feature branch&amp;rdquo;&lt;/strong&gt;, aggiunge una nuova funzionalità (&lt;a href=&#34;https://en.wikipedia.org/wiki/Software_feature&#34;&gt;feature&lt;/a&gt;) al software.
 Nel modello proposto dal GIT flow, questi branch &lt;strong&gt;devono sempre essere derivati dal branch &amp;ldquo;develop&amp;rdquo;&lt;/strong&gt; e rappresentano una &lt;strong&gt;feature&lt;/strong&gt;, ovvero una nuova funzionalità che si intende aggiungere al software.&lt;/p&gt;
@@ -57,7 +57,7 @@ Nel modello proposto dal GIT flow, questi branch &lt;strong&gt;devono sempre ess
 &lt;p&gt;In base alle dimensioni del team è possibile mantenere &lt;strong&gt;più feature branch contemporaneamente&lt;/strong&gt;, a patto di riportarli correttamente e in tempi auspicabilmente brevi sul branch di sviluppo.
 Di norma un singolo sviluppatore si concentra sul rilascio di una feature per volta.&lt;/p&gt;
 
-&lt;h3 id=&#34;branch-di-rilascio:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di rilascio&lt;/h3&gt;
+&lt;h3 id=&#34;branch-di-rilascio&#34;&gt;Branch di rilascio&lt;/h3&gt;
 
 &lt;p&gt;Quando il ramo di sviluppo (develop) contiene abbastanza feature per un &lt;strong&gt;rilascio&lt;/strong&gt; (o in base a qualsiasi altro tipo di scadenza prefissata), da questi viene derivato un nuovo branch detto di rilascio, o &lt;strong&gt;&lt;a href=&#34;http://producingoss.com/en/release-branches.html&#34;&gt;release branch&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 
@@ -80,7 +80,7 @@ quindi non verranno creati altri branch di funzionalità in quanto in questa fas
 
 &lt;p&gt;Una volta mergiato con i branch storici, il branch di release non ha più motivo di esistere e sarebbe opportuno cancellarlo.&lt;/p&gt;
 
-&lt;h3 id=&#34;branch-di-manutenzione:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Branch di manutenzione&lt;/h3&gt;
+&lt;h3 id=&#34;branch-di-manutenzione&#34;&gt;Branch di manutenzione&lt;/h3&gt;
 
 &lt;p&gt;Una migliore organizzazione dei rilasci non scongiura sicuramente l’occorrenza di problemi da risolvere con estrema urgenza.
 In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) direttamente da master un branch di manutenzione, contenente la fix necessaria a risolvere il problema insorto.&lt;/p&gt;
@@ -93,7 +93,7 @@ In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) d
 
 &lt;p&gt;Come nel caso dei branch di rilascio, qundo un branch di manutenzione viene riportato su master, il tag di master verrà contrassegnato appropriatamente.&lt;/p&gt;
 
-&lt;h3 id=&#34;versionamento-semantico:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Versionamento semantico&lt;/h3&gt;
+&lt;h3 id=&#34;versionamento-semantico&#34;&gt;Versionamento semantico&lt;/h3&gt;
 
 &lt;p&gt;Il versionamento semantico (semantic versioning) è un semplice schema di denominazione dei rilasci che ruota attorno a tre numeri: major, minor e patch.&lt;/p&gt;
 
@@ -130,28 +130,28 @@ Tali modifiche modifiche e correzioni dovrebbero susseguirsi andando a increment
 
 &lt;p&gt;Questo tipo di tag indicano le versioni del software che generalmente verranno installate sugli ambienti di &lt;a href=&#34;https://en.wikipedia.org/wiki/Deployment_environment#Staging&#34;&gt;staging&lt;/a&gt;, per poterle testare prima di essere riportate su master e andare quindi in &lt;a href=&#34;https://en.wikipedia.org/wiki/Deployment_environment#Production&#34;&gt;produzione&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Alla fine di questa analisi non possiamo affermare che git flow e il versionamento semantico possano essere gli strumenti definitivi per ogni team o progetto, e sicuramente la loro adozione porta vantaggi e svantaggi.
 Valutare un trade-off relativo all&amp;rsquo;impiego di git flow sta al buonsenso personale, ci limiteremo perciò ad elencare una serie di pro e contro che potrebbero aiutare nella decisione.&lt;/p&gt;
 
-&lt;h4 id=&#34;a-cosa-non-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;A cosa non serve git flow?&lt;/h4&gt;
+&lt;h4 id=&#34;a-cosa-non-serve-git-flow&#34;&gt;A cosa non serve git flow?&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Git flow non pone rimedio ad errori tecnici nella gestione del repository e nemmeno prescinde da una conoscenza approfondita di git.&lt;/li&gt;
 &lt;li&gt;Git flow de facto &lt;strong&gt;non semplifica il flusso di lavoro&lt;/strong&gt; con git, imponendo una strategia di diramazione complessa.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;a-cosa-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;A cosa serve git flow?&lt;/h4&gt;
+&lt;h4 id=&#34;a-cosa-serve-git-flow&#34;&gt;A cosa serve git flow?&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Git flow aiuta i vari elementi del team ad avere a colpo d&amp;rsquo;occhio &lt;strong&gt;una visione precisa dello stato degli sviluppi applicativi&lt;/strong&gt; a fronte di una convenzione essenziale e immediata di tagging.&lt;/li&gt;
 &lt;li&gt;Il versionamento semantico aiuta gli utilizzatori del software a capire esattamente lo stato di sviluppo del software e cosa aspettarsi, riportandosi a diverse versioni di rilascio.&lt;/li&gt;
-&lt;li&gt;Git flow coaudiva la &lt;a href=&#34;https://en.wikipedia.org/wiki/Velocity_(software_development&#34;&gt;velocity&lt;/a&gt;) del team di sviluppo permettendo l&amp;rsquo;attuazione di un piano di &lt;a href=&#34;http://guide.agilealliance.org/guide/cd.html&#34;&gt;continuous deploy&lt;/a&gt; e quindi di poter rilasciare nuove feature e fix in sicurezza.&lt;/li&gt;
+&lt;li&gt;Git flow coaudiva la &lt;a href=&#34;https://en.wikipedia.org/wiki/Velocity_(software_development)&#34;&gt;velocity&lt;/a&gt; del team di sviluppo permettendo l&amp;rsquo;attuazione di un piano di &lt;a href=&#34;http://guide.agilealliance.org/guide/cd.html&#34;&gt;continuous deploy&lt;/a&gt; e quindi di poter rilasciare nuove feature e fix in sicurezza.&lt;/li&gt;
 &lt;li&gt;Git flow è ottimo per la &lt;a href=&#34;https://en.wikipedia.org/wiki/Continuous_integration&#34;&gt;continuous integration&lt;/a&gt;, permettendo de facto di poter differenziare i rami dedicati ai vari ambienti: sviluppo, staging e produzione&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;risorse-consultabili-online:1dd853596dfead5a0fffb4551b5f2efb&#34;&gt;Risorse consultabili online&lt;/h3&gt;
+&lt;h3 id=&#34;risorse-consultabili-online&#34;&gt;Risorse consultabili online&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://nvie.com/posts/a-successful-git-branching-model/&#34;&gt;http://nvie.com/posts/a-successful-git-branching-model/&lt;/a&gt; Vincent Driessen espone GIT Flow&lt;/li&gt;
@@ -176,7 +176,7 @@ Valutare un trade-off relativo all&amp;rsquo;impiego di git flow sta al buonsens
 
 &lt;p&gt;A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&amp;rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.&lt;/p&gt;
 
-&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
+&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
 
 &lt;p&gt;I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.&lt;/p&gt;
 
@@ -228,7 +228,7 @@ class GreetingSentence
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;symfony-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Symfony 2&lt;/h6&gt;
+&lt;h6 id=&#34;symfony-2&#34;&gt;Symfony 2&lt;/h6&gt;
 
 &lt;p&gt;Ecco come implementeremmo la funzionalità richiesta in Symfony2:&lt;/p&gt;
 
@@ -271,7 +271,7 @@ class MainController
 } 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;zend-framework-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Zend Framework 2&lt;/h6&gt;
+&lt;h6 id=&#34;zend-framework-2&#34;&gt;Zend Framework 2&lt;/h6&gt;
 
 &lt;p&gt;Questa è invece l&amp;rsquo;implementazione in Zend Framework 2:&lt;/p&gt;
 
@@ -312,7 +312,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora &lt;strong&gt;come uno standard come quello proposto dal PSR-7 possa aiutarci&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
+&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
 
 &lt;p&gt;Potremmo voler implemenare la nostra soluzione come un &lt;strong&gt;middleware&lt;/strong&gt;, ovvero un componente che &lt;strong&gt;esiste durante il ciclo di vita di una comunicazione HTTP&lt;/strong&gt;, cioè dall&amp;rsquo;accettazione della richiesta fino all&amp;rsquo;evasione della risposta.&lt;/p&gt;
 
@@ -330,7 +330,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal &lt;a href=&#34;http://www.php-fig.org/&#34;&gt;&lt;strong&gt;FIG&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
 
 &lt;p&gt;La proposta dello standard PSR-7 si riassume nella descrizione di una serie di &lt;a href=&#34;https://github.com/php-fig/http-message/tree/master/src&#34;&gt;interfacce&lt;/a&gt;.&lt;/p&gt;
 
@@ -392,7 +392,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Ovviamente questo middleware adesso come adesso è tutt&amp;rsquo;altro che utilizzabile all&amp;rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che &lt;strong&gt;in un futuro&lt;/strong&gt; non troppo lontano le varie implementazioni &lt;strong&gt;convergeranno&lt;/strong&gt; su qualcosa di simile a quella appena vista e proposta da O&amp;rsquo;Phinney.&lt;/p&gt;
 
-&lt;h4 id=&#34;conclusioni:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Conclusioni&lt;/h4&gt;
+&lt;h4 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h4&gt;
 
 &lt;p&gt;Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&amp;rsquo;ambiente contenenti tutti i valori necessari (&lt;code&gt;$_SERVER&lt;/code&gt;, &lt;code&gt;$_GET&lt;/code&gt;, &lt;code&gt;$_POST&lt;/code&gt;, &lt;code&gt;$_FILES&lt;/code&gt;, &amp;hellip;).&lt;/p&gt;
 
@@ -400,7 +400,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Sicuramente tenere &lt;a href=&#34;https://github.com/php-fig/fig-standards&#34;&gt;a portata di github&lt;/a&gt; gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui &lt;strong&gt;futuri sviluppi&lt;/strong&gt; dei più blasonati framework e componenti PHP, tenendo conto, &lt;strong&gt;come già accaduto per le precedenti proposte&lt;/strong&gt; &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&#34;&gt;PSR-0&lt;/a&gt; e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&#34;&gt;PSR-4&lt;/a&gt; (autoloading) e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&#34;&gt;PSR-3&lt;/a&gt; (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.&lt;/p&gt;
 
-&lt;h4 id=&#34;altre-risorse-consultabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
+&lt;h4 id=&#34;altre-risorse-consultabili&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Blog di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&#34;&gt;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&lt;/a&gt;&lt;/li&gt;

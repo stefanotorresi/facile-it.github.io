@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
       <description>
 
-&lt;h2 id=&#34;the-lesson-we-learned-with-rest:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
+&lt;h2 id=&#34;the-lesson-we-learned-with-rest&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
 
 &lt;p&gt;For many developers, nowadays, building an &lt;strong&gt;API&lt;/strong&gt; for their applications essentially means mapping the &lt;em&gt;resources&lt;/em&gt; of the domain to &lt;em&gt;URIs&lt;/em&gt;, with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Representational_state_transfer&#34;&gt;REST&lt;/a&gt; principles in mind.
 Usually creating a &lt;strong&gt;&lt;em&gt;RESTful&lt;/em&gt;&lt;/strong&gt; system is not difficult, and the simplicity of the idea makes the task easier.
@@ -42,7 +42,7 @@ Let&amp;rsquo;s see some of the consequences and benefits of choosing REST:&lt;/
 
 &lt;p&gt;Now let&amp;rsquo;s see how we can take a step forward and add some salt to our APIs, to make them even more powerful and expressive.&lt;/p&gt;
 
-&lt;h2 id=&#34;a-new-way-to-design-api-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;a-new-way-to-design-api-graphql&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;GraphQL&lt;/strong&gt; maintains all the advantages of REST (relies on HTTP, very small overhead on requests, stateless and cacheable) and adds some very useful enhancements.
 One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it back in 2012 was the need to find a way to access data on their server that allowed any type of client and device (especially mobile site and app) to decide exactly what fields they need, reducing the payload and then minimizing the traffic.&lt;/p&gt;
@@ -50,7 +50,7 @@ One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it bac
 &lt;p&gt;Instead of explaining all the features, which can be read in the &lt;a href=&#34;http://graphql.org/docs/getting-started/&#34;&gt;official guide&lt;/a&gt;, in this post we&amp;rsquo;ll focus on what makes GraphQL interesting.
 In the next section we&amp;rsquo;ll use types and queries presented in our example project, that you can clone from &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;this repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;types-and-fields-driven-queries:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Types and fields driven queries&lt;/h3&gt;
+&lt;h3 id=&#34;types-and-fields-driven-queries&#34;&gt;Types and fields driven queries&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #1&lt;/strong&gt;&lt;/p&gt;
 
@@ -129,7 +129,7 @@ As you can see, the id has no semantic meaning like in REST, so you can describe
 &lt;pre&gt;&lt;code&gt;GET /game?title=Frogger
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;relations-between-entities-graph-representation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
+&lt;h3 id=&#34;relations-between-entities-graph-representation&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Example #4&lt;/strong&gt;&lt;/p&gt;
 
@@ -182,7 +182,7 @@ In Example #4, you can notice the complex field &lt;em&gt;developer&lt;/em&gt;; 
 &lt;p&gt;The field &lt;em&gt;developer&lt;/em&gt; is defined as type &lt;em&gt;Company&lt;/em&gt;, while the field &lt;em&gt;gamesAsDeveloper&lt;/em&gt; is a list of &lt;em&gt;Game&lt;/em&gt;.
 Please refer to the &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;demo project&lt;/a&gt; for the full implementation of this example.&lt;/p&gt;
 
-&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
+&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
 
 &lt;p&gt;This time we need the list of the &lt;em&gt;Japanese companies&lt;/em&gt; and some information about the games they worked on, but only for the &lt;em&gt;NES&lt;/em&gt; (Nintendo Entertainment System) platform.&lt;/p&gt;
 
@@ -264,7 +264,7 @@ GET ...
 &lt;li&gt;on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering &lt;em&gt;games&lt;/em&gt; with the given &lt;em&gt;platform&lt;/em&gt; is performed only on companies with the selected &lt;em&gt;nation&lt;/em&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;api-documentation:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;API Documentation&lt;/h3&gt;
+&lt;h3 id=&#34;api-documentation&#34;&gt;API Documentation&lt;/h3&gt;
 
 &lt;p&gt;When you design a REST WebService, for every endpoint you&amp;rsquo;re mostly going to take care of its URI and the structure of the request and the response body.
 Unfortunately, there is no standard way to document this information and make it available to the client developers.&lt;/p&gt;
@@ -345,7 +345,7 @@ Unfortunately, there is no standard way to document this information and make it
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;mutations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Mutations&lt;/h2&gt;
+&lt;h2 id=&#34;mutations&#34;&gt;Mutations&lt;/h2&gt;
 
 &lt;p&gt;We&amp;rsquo;ve already talked about queries, but a few words need to be spent about the other important operation that you can perform on a GraphQL server: &lt;strong&gt;mutations&lt;/strong&gt;.&lt;/p&gt;
 
@@ -375,11 +375,11 @@ In this example we are assigning a value (7) to the &lt;em&gt;rating&lt;/em&gt; 
 
 &lt;p&gt;As you can see, the specified type for the mutation is &lt;em&gt;Game&lt;/em&gt;; this means not only that the update should be performed on games, but also that the &lt;em&gt;Game&lt;/em&gt; field included in the request (id, title and rating) should be returned, just like a normal query.&lt;/p&gt;
 
-&lt;h2 id=&#34;implementations:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;Implementations&lt;/h2&gt;
+&lt;h2 id=&#34;implementations&#34;&gt;Implementations&lt;/h2&gt;
 
 &lt;p&gt;In the present article we sometimes referred to the official &lt;strong&gt;Javascript&lt;/strong&gt; library for GraphQL, but as you can see in &lt;a href=&#34;https://github.com/chentsulin/awesome-graphql&#34;&gt;this project&lt;/a&gt; there are many different implementations for the most popular languages.&lt;/p&gt;
 
-&lt;h2 id=&#34;the-future-of-graphql:5fc659d52e5815e37925e5b00b41abfb&#34;&gt;The future of GraphQL&lt;/h2&gt;
+&lt;h2 id=&#34;the-future-of-graphql&#34;&gt;The future of GraphQL&lt;/h2&gt;
 
 &lt;p&gt;It&amp;rsquo;s difficult to say what will become of GraphQL in the next year.
 Sure there&amp;rsquo;s a lot of hype around it, and for some very solid reasons.

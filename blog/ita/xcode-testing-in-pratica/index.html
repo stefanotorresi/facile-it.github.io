@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -365,7 +365,7 @@ ga('send', 'pageview');
 
 <p>Come mostrato nell&rsquo;immagine, Xcode ha anche creato automaticamente il file <em>AwesomeAppTests.swift</em>, all&rsquo;interno del quale potremo iniziare a scrivere i nostri test.</p>
 
-<h2 id="setup-dell-ambiente-di-test:8e547c1c6819d235540b10fca98b5c29">Setup dell&rsquo;ambiente di test</h2>
+<h2 id="setup-dell-ambiente-di-test">Setup dell&rsquo;ambiente di test</h2>
 
 <p>Al di là del meccanismo con il quale il testing avviene, è importante capire che il codice con il quale i test sono stati scritti è compilato in un bundle diverso, e per far sì che i test &ldquo;vedano&rdquo; il resto dell&rsquo;app, è necessario seguire le <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html">regole di access control tra i moduli in Swift</a>; quindi classi, struct, funzioni, costanti e così via che abbiamo dichiarato e implementato nella nostra app, o libreria che sia, <strong>dovranno essere marcati con la keyword *public</strong>*:</p>
 
@@ -412,7 +412,7 @@ public class AwesomeItem {
 
 <p><img src="/images/xcode-testing-in-pratica/image_4.jpg" alt="" /></p>
 
-<h2 id="xctestcase-e-xctassert:8e547c1c6819d235540b10fca98b5c29">XCTestCase e XCTAssert</h2>
+<h2 id="xctestcase-e-xctassert">XCTestCase e XCTAssert</h2>
 
 <p>Nel framework <strong>XCTest</strong> un <em>Test Case</em> è rappresentato da una sottoclasse della classe <code>XCTestCase</code>: al momento dell&rsquo;avvio dei test viene automaticamente generata un&rsquo;istanza di ciascun Test Case che abbiamo implementato, e vengono eseguiti uno a uno tutti i test dichiarati, avviando le funzioni <code>testSomething()</code> che li implementano. Anche i metodi <code>setUp()</code> e <code>tearDown()</code> sono chiamati automaticamente nel corso dei test: come indicano i commenti inseriti da Xcode, il metodo <code>setUp()</code> è chiamato immediatamente prima di ogni test, e permette di inizializzare eventuali attributi d&rsquo;istanza, o variabili globali; come è intuibile, il metodo <code>tearDown()</code> permette di ripristinare eventualmente lo stato iniziale dopo ciascun test. L&rsquo;implementazione di questi due metodi è comunque del tutto opzionale: essi rappresentano semplicemente degli strumenti in più.</p>
 
@@ -484,7 +484,7 @@ public class AwesomeItem {
 }
 </code></pre>
 
-<h2 id="test-asincroni:8e547c1c6819d235540b10fca98b5c29">Test asincroni</h2>
+<h2 id="test-asincroni">Test asincroni</h2>
 
 <p>La libreria XCTest include alcuni strumenti per eseguire <strong>test su computazioni asincrone</strong>, cioè eseguite da funzioni che non ritornano immediatamente un valore ma che potrebbero chiamare una funzione di callback a un certo punto nel futuro. Per testare una funzione asincrona è necessario:</p>
 
@@ -790,6 +790,27 @@ public class AwesomeItem {
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -826,27 +847,6 @@ public class AwesomeItem {
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -895,7 +895,7 @@ public class AwesomeItem {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -906,8 +906,8 @@ public class AwesomeItem {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -955,6 +955,10 @@ public class AwesomeItem {
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

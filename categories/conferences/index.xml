@@ -25,9 +25,9 @@
 
 &lt;p&gt;The talks are in chronological order, and we linked the slides when available. Enjoy your reading!&lt;/p&gt;
 
-&lt;h1 id=&#34;technical-talks:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Technical Talks&lt;/h1&gt;
+&lt;h1 id=&#34;technical-talks&#34;&gt;Technical Talks&lt;/h1&gt;
 
-&lt;h2 id=&#34;your-api-is-a-ui:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Your API is a UI&lt;/h2&gt;
+&lt;h2 id=&#34;your-api-is-a-ui&#34;&gt;Your API is a UI&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christopher Hoult (&lt;a href=&#34;http://twitter.com/choult&#34;&gt;@choult&lt;/a&gt;)&lt;/li&gt;
@@ -36,7 +36,7 @@
 
 &lt;p&gt;This was an interesting and very smooth talk. It stayed pretty general with nice advices about &lt;strong&gt;API development&lt;/strong&gt;, but showed some reasoning about a pyramidal &amp;ldquo;scheme of priorities&amp;rdquo; that we should follow, deriving from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Maslow%27s_hierarchy_of_needs&#34;&gt;Maslow&amp;rsquo;s hierarchy of needs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
+&lt;h2 id=&#34;dip-your-toes-in-the-sea-of-security&#34;&gt;Dip Your Toes in the Sea of Security&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;James Titcumb (&lt;a href=&#34;http://twitter.com/asgrim&#34;&gt;@asgrim&lt;/a&gt;)&lt;/li&gt;
@@ -45,7 +45,7 @@
 
 &lt;p&gt;In this talk we saw an interesting overview of &lt;strong&gt;security issues&lt;/strong&gt; that a web application can encounter. It ranged from basic SQL injection, to timing attacks (that were explained pretty well!), to CSRF protection.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
+&lt;h2 id=&#34;how-i-learned-to-stop-worrying-and-love-regular-expressions&#34;&gt;How I learned to stop worrying and love Regular Expressions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;
@@ -54,7 +54,7 @@
 
 &lt;p&gt;In this talk we went from basic &lt;strong&gt;regular expressions&lt;/strong&gt;, to basic pattern recognition, to advanced usage; the speaker took also the time to explain to us how the regex engine works, through thorough examples of pattern matching advancement and backtracking. Also, bonus points for the slides! They were pretty neat, and everything was themed to the &lt;em&gt;Dr. Strangelove&lt;/em&gt; movie, from images to phrases used in the examples.&lt;/p&gt;
 
-&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
+&lt;h2 id=&#34;dockerizing-your-php-ci-pipelines&#34;&gt;Dockerizing your PHP CI Pipelines&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paul Dragoonis (&lt;a href=&#34;http://twitter.com/dr4goonis&#34;&gt;@dr4goonis&lt;/a&gt;)&lt;/li&gt;
@@ -63,7 +63,7 @@
 
 &lt;p&gt;This talk was about &lt;strong&gt;using Jenkins with Docker&lt;/strong&gt; and having optimized pipelines for fast builds and short commit-to-deploy times. It should have been a 1-hour-long talk, so the speaker had to cut short on a lot of things, but I took a lot of useful advice from it nonetheless. Fortunately, he was kind enough to give the extra bits of his talk in the unconference track the day after.&lt;/p&gt;
 
-&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
+&lt;h2 id=&#34;drinking-beer-with-a-raspberry-pi-and-php&#34;&gt;Drinking Beer with a Raspberry Pi and PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrew Carter (&lt;a href=&#34;http://twitter.com/AndrewCarterUK&#34;&gt;@AndrewCarterUK&lt;/a&gt;)&lt;/li&gt;
@@ -72,7 +72,7 @@
 
 &lt;p&gt;This talk was uncommon but really funny. The speaker explained that programming the Raspberry Pi is possible even with PHP! He showed us a working example of an AaaS (Alcohol as a Service) machine. It was a simple tool with a liquid pump and a flow detector that is used to fill up glasses with any kind of drink. It can be activated via API as any regular service. The speaker also explained how it is possible to communicate with external devices via the powerful IO pins using Unix device files.&lt;/p&gt;
 
-&lt;h2 id=&#34;evolution-of-web-application-architecture:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
+&lt;h2 id=&#34;evolution-of-web-application-architecture&#34;&gt;Evolution of Web Application Architecture&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kore Nordmann (&lt;a href=&#34;http://twitter.com/koredn&#34;&gt;@koredn&lt;/a&gt;)&lt;/li&gt;
@@ -81,7 +81,7 @@
 
 &lt;p&gt;The talk covered the &lt;strong&gt;evolution of the technological stack&lt;/strong&gt; behind a normal web application, from single-server to multi-server architecture. Each addition to the stack was discussed and weighted, without taking for granted any single step: from adding a master-slave database configuration, to caching session and\or query results. This gave us a pretty clear idea of &lt;strong&gt;when and why&lt;/strong&gt; such steps should be taken while adding new functionalities to a project, or overcoming technical challenges.&lt;/p&gt;
 
-&lt;h2 id=&#34;being-functional-in-php:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Being functional in PHP&lt;/h2&gt;
+&lt;h2 id=&#34;being-functional-in-php&#34;&gt;Being functional in PHP&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David de Boer (&lt;a href=&#34;http://twitter.com/ddeboer_nl&#34;&gt;@ddeboer_nl&lt;/a&gt;)&lt;/li&gt;
@@ -90,9 +90,9 @@
 
 &lt;p&gt;This talk was an &lt;strong&gt;introduction to functional programming&lt;/strong&gt;. The speaker compared highly declarative languages such as Erlang with PHP. He demonstrated the options we have to adopt functional programming in PHP. Basic concepts were covered in a clear and simple way: mapping, reduction, function composition and higher-order functions. Particular focus was given to the use of pure functions and their main advantage: the absence of side effects. Finally, the speaker went through an interesting comparison between OOP and functional programming, showing their strengths and weaknesses.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h1&gt;
 
-&lt;h2 id=&#34;deploying-php-7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;Deploying PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;deploying-php-7&#34;&gt;Deploying PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;http://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -101,7 +101,7 @@
 
 &lt;p&gt;Rasmus is a veteran at PHPDay, and he gives opening keynotes here almost every two years. This year&amp;rsquo;s was obviously about PHP 7, and it was more a technical talk than else. It went from &lt;strong&gt;benchmark data&lt;/strong&gt; to technical tips on how to smooth the transition to this new major version of PHP.&lt;/p&gt;
 
-&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7:0f4097aa76370db2c3b733d9c072072e&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
+&lt;h2 id=&#34;how-badoo-saved-1m-switching-to-php7&#34;&gt;How Badoo Saved $1M Switching to PHP7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nikolay Krapivnyy&lt;/li&gt;
@@ -129,9 +129,9 @@
 
 &lt;p&gt;In this post I&amp;rsquo;m going to recap the event and make some considerations about the most interesting (and funny) talks.&lt;/p&gt;
 
-&lt;h1 id=&#34;day-1:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Day 1&lt;/h1&gt;
+&lt;h1 id=&#34;day-1&#34;&gt;Day 1&lt;/h1&gt;
 
-&lt;h2 id=&#34;keynote-wojtek-kalicinski-https-twitter-com-wkalic:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Keynote - &lt;em&gt;&lt;a href=&#34;https://twitter.com/wkalic&#34;&gt;Wojtek Kalicinski&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;keynote-wojtek-kalicinski-https-twitter-com-wkalic&#34;&gt;Keynote - &lt;em&gt;&lt;a href=&#34;https://twitter.com/wkalic&#34;&gt;Wojtek Kalicinski&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;The day 1 keynote was all about the N Developer Preview and was given by Wojtek Kalicinski, a developer advocate directly from Google.
 Wojtek went through all the new improvements of the platform, both from user&amp;rsquo;s and developer&amp;rsquo;s point of view. Here’s a short summary of the most relevant ones:&lt;/p&gt;
@@ -140,7 +140,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 &lt;li&gt;&lt;strong&gt;Multi-window support&lt;/strong&gt;: probably the most requested user feature. I’ve always thought that its implementation would have been relatively straightforward, given the already responsive UI of Android, and in fact the code changes that are needed to support this feature are minimal. Just make sure you don’t lock screen orientation using &lt;code&gt;android:screenOrientation&lt;/code&gt; in your manifest.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Better notifications&lt;/strong&gt;: in addition to a visual change of the notification panel, apps will now be able to let the user interact with bundled notifications individually or to reply from the notification itself directly. Moreover, if the app already supports Android Wear notifications, most of this will come for free, since the APIs are the same.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Doze improvements&lt;/strong&gt;: the battery saving mode called Doze, now works — in a less aggressive mode — when the phone is in the user pocket or hands, and not only when the phone is stationary. Wojtek said that most of the apps should continue to work without any change — or eventually &lt;a href=&#34;http://developer.android.com/intl/ko/training/monitoring-device-state/doze-standby.html#assessing_your_app&#34;&gt;minimal&lt;/a&gt; —, but he strongly encouraged to test apps against this new feature.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;JAVA 8 features!&lt;/strong&gt;: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including &lt;em&gt;lambdas&lt;/em&gt; (🎉) and &lt;em&gt;default and static interface methods&lt;/em&gt; (TODO: add DP2 apis). All of this is possibile thanks to the Jack&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JAVA 8 features!&lt;/strong&gt;: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including &lt;em&gt;lambdas&lt;/em&gt; (🎉) and &lt;em&gt;default and static interface methods&lt;/em&gt; (TODO: add DP2 apis). All of this is possibile thanks to the Jack&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Other changes include improvements to &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#background_optimizations&#34;&gt;Project Svelte&lt;/a&gt;, a new &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#data_saver&#34;&gt;Data Saver&lt;/a&gt; feature, the addition of the &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html#tile_api&#34;&gt;Quick Settings Tile API&lt;/a&gt; and &lt;a href=&#34;http://developer.android.com/intl/ko/preview/api-overview.html&#34;&gt;many more&lt;/a&gt;.&lt;/p&gt;
@@ -151,7 +151,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.&lt;/p&gt;
 
-&lt;h2 id=&#34;perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev:d76462adf2f880be726dc4f2826c7d21&#34;&gt;#PERFMATTERS for Android - &lt;em&gt;&lt;a href=&#34;https://twitter.com/alosdev&#34;&gt;Hasan Hosgel&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev&#34;&gt;#PERFMATTERS for Android - &lt;em&gt;&lt;a href=&#34;https://twitter.com/alosdev&#34;&gt;Hasan Hosgel&lt;/a&gt;&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -159,7 +159,7 @@ Wojtek went through all the new improvements of the platform, both from user&amp
 
 &lt;p&gt;Performance is crucial to &lt;strong&gt;engage the user&lt;/strong&gt; and I think the speaker did a great job in summarizing useful tips to improve it. Moreover most of them doesn’t alter the readability or the maintainability of the code, as is often the case for performance driven code changes.&lt;/p&gt;
 
-&lt;h2 id=&#34;let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Let it flow! Unidirectional data flow architecture in Android - &lt;a href=&#34;https://twitter.com/dorvaryn&#34;&gt;&lt;em&gt;Benjamin Augustin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn&#34;&gt;Let it flow! Unidirectional data flow architecture in Android - &lt;a href=&#34;https://twitter.com/dorvaryn&#34;&gt;&lt;em&gt;Benjamin Augustin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/dorvaryn/let-it-flow&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -169,7 +169,7 @@ Benjamin chose to focus more on the practical aspects and so he made the concept
 
 &lt;p&gt;I personally likey approach that Benjamin showed us, since it has a lot of advantages. It makes the UI state completely &lt;strong&gt;predictable&lt;/strong&gt; and &lt;strong&gt;reproducible&lt;/strong&gt;: it allows us to represent an app state without the need to go through all the steps needed to reach it, thus it can be very useful in reproducing a bug or testing a particular situation. The problem is that, as you can see from the demo app, it adds a lot of boilerplate code and it&amp;rsquo;s also much more verbose and difficult to implement without tools like RxJava or Kotlin, that might be problematic to some.&lt;/p&gt;
 
-&lt;h2 id=&#34;play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Play everywhere: providing a consistent experience across very different devices - &lt;a href=&#34;http://it.droidcon.com/2016/speakers/alessandro-bizzarri/&#34;&gt;&lt;em&gt;Alessandro Bizzarri&lt;/em&gt;&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://it.droidcon.com/2016/speakers/dima-kunin/&#34;&gt;&lt;em&gt;Dima Kunin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin&#34;&gt;Play everywhere: providing a consistent experience across very different devices - &lt;a href=&#34;http://it.droidcon.com/2016/speakers/alessandro-bizzarri/&#34;&gt;&lt;em&gt;Alessandro Bizzarri&lt;/em&gt;&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://it.droidcon.com/2016/speakers/dima-kunin/&#34;&gt;&lt;em&gt;Dima Kunin&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;The two speakers showed a high-level tour of how at &lt;strong&gt;Spotify&lt;/strong&gt; they  are able to provide a consistent experience across different devices — defined as the combination of its physical form and its OS.
 They created their own &lt;strong&gt;design language&lt;/strong&gt; to support the majority of platforms used to define almost everything, from color palette and buttons style to animations and sounds.
@@ -177,7 +177,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;It was a light talk but still it was interesting to see how a big company like Spotify finds solutions to scale and maintain a &lt;strong&gt;consistent and engaging UX&lt;/strong&gt; across all of its user-base.&lt;/p&gt;
 
-&lt;h2 id=&#34;loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Loving lean layouts - &lt;a href=&#34;https://twitter.com/queencodemonkey&#34;&gt;&lt;em&gt;Huyen Tue Dao&lt;/em&gt;&lt;/a&gt; &lt;a name=&#34;lean-layouts&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a&#34;&gt;Loving lean layouts - &lt;a href=&#34;https://twitter.com/queencodemonkey&#34;&gt;&lt;em&gt;Huyen Tue Dao&lt;/em&gt;&lt;/a&gt; &lt;a name=&#34;lean-layouts&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/queencodemonkey/droidcon-italy-2016-loving-lean-layouts&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -185,9 +185,9 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;The talk was very easy to follow and really useful: most of the advices covered are often ignored because singularly they have less impact, but, if taken all together and especially as good habits, they could really make the difference in maintain the &lt;strong&gt;UI smooth and lag-free&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;day-2:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Day 2&lt;/h1&gt;
+&lt;h1 id=&#34;day-2&#34;&gt;Day 2&lt;/h1&gt;
 
-&lt;h2 id=&#34;android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Android reactive programming with RxJava - &lt;a href=&#34;https://twitter.com/hamen&#34;&gt;&lt;em&gt;Ivan Morgillo&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen&#34;&gt;Android reactive programming with RxJava - &lt;a href=&#34;https://twitter.com/hamen&#34;&gt;&lt;em&gt;Ivan Morgillo&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;During last couple of years RxJava has been echoing all over the Android developers community and given its huge popularity I was surprised to see that Droidcon IT offered only one talk about it.&lt;/p&gt;
 
@@ -195,7 +195,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;To be honest I was hoping for a more theoretical talk with an analysis of the advantages and disadvantages of embracing the reactive pattern in our Android projects. It was instead a lot practical and it covered a great number of common use cases where reactive programming could really help to make code mode readable and maintainable.&lt;/p&gt;
 
-&lt;h2 id=&#34;you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk:d76462adf2f880be726dc4f2826c7d21&#34;&gt;You can do better with Kotlin - &lt;a href=&#34;https://github.com/svtk&#34;&gt;&lt;em&gt;Svetlana Isakova&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk&#34;&gt;You can do better with Kotlin - &lt;a href=&#34;https://github.com/svtk&#34;&gt;&lt;em&gt;Svetlana Isakova&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/svtk/you-can-do-better-with-kotlin&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
 
@@ -215,7 +215,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;This talk was one of the most interesting to me, as it persuaded me to try and deepen my knowledge of Kotlin. Svetlana was very good at showing the main features of the JetBrains language and at explaining how they convert in Java code, an aspect that I found very useful to mutate my mindset with new concepts and  syntaxes.&lt;/p&gt;
 
-&lt;h2 id=&#34;fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej:d76462adf2f880be726dc4f2826c7d21&#34;&gt;fun things (you: CanDo &lt;in Kotlin&gt; ) = … - &lt;a href=&#34;https://github.com/mg6maciej&#34;&gt;&lt;em&gt;Maciej Górski&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej&#34;&gt;fun things (you: CanDo &lt;in Kotlin&gt; ) = … - &lt;a href=&#34;https://github.com/mg6maciej&#34;&gt;&lt;em&gt;Maciej Górski&lt;/em&gt;&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/mg6maciej/fun-things-you-CanDo-in-Kotlin&#34;&gt;Code&lt;/a&gt;&lt;/p&gt;
 
@@ -227,7 +227,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;It was funny and informative to watch a &lt;strong&gt;live coding talk&lt;/strong&gt; and for sure it made me more curious and confident about Kotlin.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:d76462adf2f880be726dc4f2826c7d21&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;The Droidcon IT is already, after three editions, the &lt;strong&gt;point of reference&lt;/strong&gt; for the Android community in Italy and this year too it lived up to the expectations. We saw a lot of well-known speakers and developers such as the Googlers Nick Butcher and  Wojtek Kaliciński. It was a conference rich of interesting talks in addition to those summarized in this post, ranging between al lot of various topics such as TDD, UX, tools and many more. The only thing that surprised me was the lack of talks about Android Wear: perhaps Google is slowing down to push this platform among developers?&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
@@ -235,8 +235,8 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:d76462adf2f880be726dc4f2826c7d21:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:1&#34;&gt;&lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -254,7 +254,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;I talk sono in ordine cronologico.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:fd439f196c3125ae563b4be0e3399006&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#a-programmer-is&#34;&gt;A programmer is&amp;hellip;&lt;/a&gt;&lt;/li&gt;
@@ -275,7 +275,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;&lt;a name=&#34;a-programmer-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;a-programmer-is:fd439f196c3125ae563b4be0e3399006&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;a-programmer-is&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Birgitta Boeckeler (&lt;a href=&#34;https://twitter.com/birgitta410&#34;&gt;@birgitta410&lt;/a&gt;)&lt;/li&gt;
@@ -296,7 +296,7 @@ They explained also how they use a &lt;strong&gt;C++ library&lt;/strong&gt; comm
 
 &lt;p&gt;&lt;a name=&#34;tdd-per-android&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-per-android:fd439f196c3125ae563b4be0e3399006&#34;&gt;TDD per Android&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-per-android&#34;&gt;TDD per Android&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Matteo Vaccari (&lt;a href=&#34;https://twitter.com/xpmatteo&#34;&gt;@xpmatteo&lt;/a&gt;)&lt;/li&gt;
@@ -313,7 +313,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;platformer-2d&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity:fd439f196c3125ae563b4be0e3399006&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
+&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paolo Cattaneo (&lt;a href=&#34;https://twitter.com/RavenTravelStd&#34;&gt;Raven Travel Studios&lt;/a&gt;)&lt;/li&gt;
@@ -324,7 +324,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;grocery-site-in-react&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react:fd439f196c3125ae563b4be0e3399006&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
+&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Robbie McCorkell (&lt;a href=&#34;https://twitter.com/robbiemccorkell&#34;&gt;@robbiemccorkell&lt;/a&gt;)&lt;/li&gt;
@@ -340,7 +340,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;alert-overload&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise:fd439f196c3125ae563b4be0e3399006&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
+&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Wells (&lt;a href=&#34;https://twitter.com/sarahjwells&#34;&gt;@sarahjwells&lt;/a&gt;)&lt;/li&gt;
@@ -371,14 +371,14 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;f-sharp-not-a-game&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;f-not-a-game:fd439f196c3125ae563b4be0e3399006&#34;&gt;F#, not a game!!!&lt;/h2&gt;
+&lt;h2 id=&#34;f-not-a-game&#34;&gt;F#, not a game!!!&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrea Magnorsky (&lt;a href=&#34;https://twitter.com/silverspoon&#34;&gt;@silverspoon&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;day 1 - 14:10 - 14:50 - Game Dev track (&lt;a href=&#34;http://www.roundcrisis.com/presentations/2015-codemotion-milan/#/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language&#34;&gt;F#&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language)&#34;&gt;F#&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nel giustificare un approccio più funzionale allo sviluppo software in generale, Andrea parla del bellissimo articolo &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;Out of the Tar Pit&lt;/a&gt;, di Ben Moseley e Peter Marks, già citato più volte su questo blog. L&amp;rsquo;eccessiva &lt;strong&gt;complessità&lt;/strong&gt; può rendere ingestibili i progetti software, compresi i giochi, e un linguaggio come F#, basato - come ogni linguaggio funzionale - sull&amp;rsquo;uso di strutture dati immbutabili, funzioni pure e &lt;em&gt;pattern matching&lt;/em&gt;, permette di gestire lo stato del sistema in maniera più semplice: F# risulta essere particolarmente potente per questo scopo, grazie agli &lt;a href=&#34;http://fsharpforfunandprofit.com/posts/convenience-active-patterns/&#34;&gt;&lt;em&gt;active patterns&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
@@ -386,7 +386,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;polymer-firebase&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase:fd439f196c3125ae563b4be0e3399006&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
+&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Michel Murabito (&lt;a href=&#34;https://twitter.com/michelmurabito&#34;&gt;@michelmurabito&lt;/a&gt;)&lt;/li&gt;
@@ -398,7 +398,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;offline-web-applications&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications:fd439f196c3125ae563b4be0e3399006&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
+&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christiane Kurz (&lt;a href=&#34;https://twitter.com/learnui5&#34;&gt;@learnui5&lt;/a&gt;)&lt;/li&gt;
@@ -411,7 +411,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;feature-gluttony&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;how-to-defeat-feature-gluttony:fd439f196c3125ae563b4be0e3399006&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
+&lt;h2 id=&#34;how-to-defeat-feature-gluttony&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kasia Mrowca (&lt;a href=&#34;https://twitter.com/MrowcaKasia&#34;&gt;@MrowcaKasia&lt;/a&gt;)&lt;/li&gt;
@@ -424,7 +424,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;webassembly&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript:fd439f196c3125ae563b4be0e3399006&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
+&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Boyan Mihaylov (&lt;a href=&#34;https://twitter.com/bmihaylov&#34;&gt;@bmihaylov&lt;/a&gt;)&lt;/li&gt;
@@ -462,7 +462,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;fatal-error&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error:fd439f196c3125ae563b4be0e3399006&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
+&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Ciro Continisio (&lt;a href=&#34;https://twitter.com/ccontinisio&#34;&gt;@ccontinisio&lt;/a&gt;), Ennio Pirolo (&lt;a href=&#34;https://twitter.com/santennio&#34;&gt;@SantEnnio&lt;/a&gt;)&lt;/li&gt;
@@ -473,7 +473,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;ancora-cpp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c:fd439f196c3125ae563b4be0e3399006&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
+&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Arena (&lt;a href=&#34;https://twitter.com/italiancpp&#34;&gt;@italiancpp&lt;/a&gt;)&lt;/li&gt;
@@ -484,7 +484,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;mobile-senza-unity&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk:fd439f196c3125ae563b4be0e3399006&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
+&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Giuseppe Navarria (&lt;a href=&#34;https://twitter.com/waveringradiant&#34;&gt;@WaveringRadiant&lt;/a&gt;)&lt;/li&gt;
@@ -495,7 +495,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;php-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;speeding-up-the-web-with-php-7:fd439f196c3125ae563b4be0e3399006&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;speeding-up-the-web-with-php-7&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;https://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -522,7 +522,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -544,7 +544,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -559,7 +559,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -580,7 +580,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -602,7 +602,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -623,7 +623,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
@@ -633,13 +633,13 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -665,7 +665,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
       <guid>http://engineering.facile.it/blog/ita/php-summer-camp-2015/</guid>
       <description>
 
-&lt;h1 id=&#34;introduzione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Introduzione&lt;/h1&gt;
+&lt;h1 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h1&gt;
 
 &lt;p&gt;Dal 26 al 29 agosto 2015 ho avuto l&amp;rsquo;occasione di partecipare al &lt;a href=&#34;http://2015.phpsummercamp.com/&#34;&gt;&lt;strong&gt;PhpSummerCamp&lt;/strong&gt;&lt;/a&gt; in Rovigno (Croazia).
 Negli stessi giorni e nello stesso luogo si è svolto anche il &lt;a href=&#34;http://2015.ezsummercamp.com/&#34;&gt;&lt;strong&gt;SummerCamp EzPublish&lt;/strong&gt;&lt;/a&gt;.
@@ -677,7 +677,7 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;In questo articolo descriverò gli eventi a cui ho partecipato e gli argomenti trattati, con particolare riguardo a ciò che mi ha personalmente colpito di più.&lt;/p&gt;
 
-&lt;h1 id=&#34;indice:58029b8459d31227431cf79c0465e6bb&#34;&gt;Indice&lt;/h1&gt;
+&lt;h1 id=&#34;indice&#34;&gt;Indice&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#mercoledi&#34;&gt;Mercoledì 26 agosto&lt;/a&gt;
@@ -707,13 +707,13 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;&lt;a name=&#34;mercoledi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;mercoledì-26-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;mercoledì-26-agosto&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
 
 &lt;p&gt;Un brevissimo keynote di apertura ha illustrato la storia del SummerCamp. Esso inizialmente ospitava soltanto la sezione EzPublish; solo negli ultimi anni è stata aggiunta la parte più generica relativa a Symfony e PHP.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;ci&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli:58029b8459d31227431cf79c0465e6bb&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
+&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
 
 &lt;p&gt;Il primo workshop ha illustrato come configurare e utilizzare &lt;a href=&#34;https://jenkins-ci.org/&#34;&gt;&lt;strong&gt;Jenkins&lt;/strong&gt;&lt;/a&gt;.
 L&amp;rsquo;obiettivo della sessione è stato abilitare un &lt;strong&gt;sistema di continuous integration&lt;/strong&gt; su un piccolo progetto Symfony che già aveva alcune test suite.
@@ -725,7 +725,7 @@ Sono state approfondite alcune configurazioni particolari di PhpUnit che consent
 
 &lt;p&gt;&lt;a name=&#34;modernising&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;modernising-the-legacy-marek-matulka:58029b8459d31227431cf79c0465e6bb&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
+&lt;h3 id=&#34;modernising-the-legacy-marek-matulka&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
 
 &lt;p&gt;Il presentatore ha illustrato le feature implementate da un&amp;rsquo;applicazione PHP legacy. Il codice era molto disordinato e praticamente impossibile da testare.
 Logica di business, data retrieval e viste erano mescolate in un&amp;rsquo;applicazione che non era dotata nemmeno di un singolo &lt;a href=&#34;https://it.wikipedia.org/wiki/Front_Controller_pattern&#34;&gt;front-controller&lt;/a&gt;.
@@ -740,7 +740,7 @@ La struttura del workshop era particolare: ciascun macro-task era diviso in molt
 
 &lt;p&gt;&lt;a name=&#34;frontend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo:58029b8459d31227431cf79c0465e6bb&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
+&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
 
 &lt;p&gt;Purtroppo, data la scarsa presenza di partecipanti con competenze avanzate di JavaScript, la presentazione ha trattato argomenti abbastanza basilari rispetto a quelli pianificati.
 Si è visto come applicare il &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;paradigma object oriented&lt;/a&gt; in JavaScript con numerosi confronti di funzionalità e sintassi tra JS e PHP che hanno consentito a tutti di comprendere l&amp;rsquo;argomento.
@@ -751,7 +751,7 @@ In generale il workshop è stato interessante ma, rispetto agli altri, conteneva
 
 &lt;p&gt;&lt;a name=&#34;debate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;celebrity-debate:58029b8459d31227431cf79c0465e6bb&#34;&gt;Celebrity debate&lt;/h3&gt;
+&lt;h3 id=&#34;celebrity-debate&#34;&gt;Celebrity debate&lt;/h3&gt;
 
 &lt;p&gt;È stata una gara scherzosa tra i due partecipanti Ryan Weaver e Bernhard Schussek nel sostenere le loro opinioni su molteplici domande, alcune delle quali anche stabilite dal pubblico.
 Alcuni esempi di domande: Mac vs Linux, &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;Functional programming&lt;/a&gt; vs &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;OOP&lt;/a&gt;, Tea vs Coffee, USA vs Europe
@@ -762,11 +762,11 @@ Il vincitore Ryan Weaver è stato selezionato dal pubblico in base ad un contegg
 
 &lt;p&gt;&lt;a name=&#34;giovedi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;giovedì-27-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;giovedì-27-agosto&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;coupling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
+&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
 
 &lt;p&gt;L&amp;rsquo;obiettivo della sessione era disaccoppiare l&amp;rsquo;applicazione &lt;a href=&#34;http://symfony.com/blog/introducing-the-symfony-demo-application&#34;&gt;Symfony Demo&lt;/a&gt; da &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine ORM/DBAL&lt;/a&gt; e di consentire lo switch ad altre strategie di storage.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Quite a crowd at &lt;a href=&#34;https://twitter.com/jakub_zalas&#34;&gt;@jakub_zalas&lt;/a&gt; workshop on loose coupling with &lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@Symfony&lt;/a&gt;! &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/KnvqaafRfG&#34;&gt;pic.twitter.com/KnvqaafRfG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Marek ✈ (@super_marek) &lt;a href=&#34;https://twitter.com/super_marek/status/636805256987455488&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -784,7 +784,7 @@ Anche in questo workshop le soluzioni ai problemi erano già presenti nel reposi
 
 &lt;p&gt;&lt;a name=&#34;puli&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek:58029b8459d31227431cf79c0465e6bb&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
+&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
 
 &lt;p&gt;Questa sessione è stata divisa in due parti. La prima è una presentazione del &lt;strong&gt;progetto &lt;a href=&#34;http://docs.puli.io/en/latest/&#34;&gt;Puli&lt;/a&gt;&lt;/strong&gt;. Sono state illustrate le funzionalità dell&amp;rsquo;applicazione e i problemi che essa risolve.
 Puli è un gestore della configurazione di pacchetti che mira a rendere &lt;strong&gt;le librerie PHP più omogenee e più semplici da configurare&lt;/strong&gt;. Esso, per funzionare, usa &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt; che continua a gestire il package retrieval e l&amp;rsquo;autoloading.
@@ -805,7 +805,7 @@ Ciò a consentito ai partecipanti di proseguire in autonomia senza ritardi colle
 
 &lt;p&gt;&lt;a name=&#34;unconference&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;unconference:58029b8459d31227431cf79c0465e6bb&#34;&gt;Unconference&lt;/h3&gt;
+&lt;h3 id=&#34;unconference&#34;&gt;Unconference&lt;/h3&gt;
 
 &lt;p&gt;A fine giornata si è svolta la sessione &amp;ldquo;unconference&amp;rdquo;.
 Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
@@ -818,13 +818,13 @@ Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;venerdi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;venerdì-28-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;venerdì-28-agosto&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;profiling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
 
-&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;).
+&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming)&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;.
 Sono state esaminate le tecniche principali di collezione delle informazioni: &lt;a href=&#34;https://en.wikipedia.org/wiki/Hooking&#34;&gt;&lt;strong&gt;function hooks&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;sampling&lt;/strong&gt;, così come diversi tool per la profilazione: &lt;a href=&#34;http://xdebug.org/&#34;&gt;XDebug&lt;/a&gt;, &lt;a href=&#34;http://xhprof.io/&#34;&gt;Xhprof&lt;/a&gt; e &lt;a href=&#34;http://newrelic.com/&#34;&gt;New Relic&lt;/a&gt;.
 Prove pratiche con questi tool hanno consentito di evidenziare le loro peculiarità e differenze. È stato interessante notare, ad esempio, l&amp;rsquo;accuratezza e la semplicità delle informazioni fornite dalla libreria Xhprof rispetto ai concorrenti.
 Le prove pratiche hanno inoltre evidenziato che l&amp;rsquo;attività di profilazione non è semplice, soprattutto a causa del setup richiesto.
@@ -838,7 +838,7 @@ Le attività di Input/Output superflue causano rallentamenti, esempi sono le scr
 
 &lt;p&gt;&lt;a name=&#34;symfony3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
 
 &lt;p&gt;Questo workshop ha consentito di apprendere la &lt;strong&gt;roadmap a lungo termine del framework Symfony&lt;/strong&gt;.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;on the way to symfony 3 at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; with &lt;a href=&#34;https://twitter.com/nicolasgrekas&#34;&gt;@nicolasgrekas&lt;/a&gt; &lt;a href=&#34;http://t.co/vijn5ttzPG&#34;&gt;pic.twitter.com/vijn5ttzPG&lt;/a&gt;&lt;/p&gt;&amp;mdash; dbu (@dbu) &lt;a href=&#34;https://twitter.com/dbu/status/637233201635835904&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -853,7 +853,7 @@ Ciò consente all&amp;rsquo;utente di rilevare subito eventuali utilizzi non cor
 
 &lt;p&gt;&lt;a name=&#34;experts&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;meet-the-experts:58029b8459d31227431cf79c0465e6bb&#34;&gt;Meet the experts&lt;/h3&gt;
+&lt;h3 id=&#34;meet-the-experts&#34;&gt;Meet the experts&lt;/h3&gt;
 
 &lt;p&gt;Diversi gruppi di persone si sono riunite per parlare di molteplici argomenti.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Ecommerce on Symfony roundtable at &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/RD8ueJX7Nj&#34;&gt;pic.twitter.com/RD8ueJX7Nj&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ivo Lukač (@ilukac) &lt;a href=&#34;https://twitter.com/ilukac/status/637288188231450625&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -867,7 +867,7 @@ Un confronto tra esperti, il miglior modo per chiudere la giornata.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Conclusione&lt;/h1&gt;
+&lt;h1 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h1&gt;
 
 &lt;p&gt;Il PhpSummerCamp è un evento particolare: presentazioni, discussioni, workshop e attività extra lo hanno reso interessante e divertente allo stesso tempo.
 Tesi rafforzata dalla continua affluenza di sviluppatori che ogni anno non vogliono perdersi tale evento.
@@ -889,27 +889,27 @@ Il SummerCamp è il luogo ideale per chi vuole sentirsi parte delle comunità Ph
 
 &lt;p&gt;Parlare di recensione della giornata mi sembra inappropriato. Preferisco soffermarmi su cosa mi ha colpito e cosa mi sono portato a casa da questa esperienza.&lt;/p&gt;
 
-&lt;h2 id=&#34;welcome-coffee:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Welcome coffee&lt;/h2&gt;
+&lt;h2 id=&#34;welcome-coffee&#34;&gt;Welcome coffee&lt;/h2&gt;
 
 &lt;p&gt;Partiamo dal primo impatto: la location. Beh, complimenti ad Alcatel perché ha una sede molto bella! raggiungerla in auto non è stato tanto difficile e tutto quel verde dentro e fuori dagli uffici trasmette una bella sensazione. Come al solito sono in ritardo, giusto il tempo di un caffè, offerto dal nostro host, e qualche stretta di mano e subito si comincia.&lt;/p&gt;
 
-&lt;h2 id=&#34;keynote:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Keynote&lt;/h2&gt;
+&lt;h2 id=&#34;keynote&#34;&gt;Keynote&lt;/h2&gt;
 
 &lt;p&gt;Il keynote è di &lt;a href=&#34;https://twitter.com/ixhd&#34;&gt;Cliff Hazell&lt;/a&gt;, un ragazzo che fa l&amp;rsquo;agile coach in Spotify. Ha illustrato una &lt;strong&gt;tecnica di visualizzazione&lt;/strong&gt; della conoscenza e dei processi su una grande parete con dei post-it. Un qualcosa che mi ha ricordato l&amp;rsquo;&lt;a href=&#34;http://ziobrando.blogspot.it/2013/11/introducing-event-storming.html&#34;&gt;event storming&lt;/a&gt; che ho visto raccontare da &lt;a href=&#34;http://www.avanscoperta.it/it/author/a-brandolini/&#34;&gt;Alberto Brandolini&lt;/a&gt; a BetterSoftware, tuttavia mi è parso ci siano alcune differenze. In entrambi i metodi il risultato finale è &lt;strong&gt;una parete piena di post-it che spiegano il modello&lt;/strong&gt; da sviluppare. Nell&amp;rsquo;event storming, la creazione partecipata della parete è l&amp;rsquo;evoluzione degli stati del modello sono il punto focale. Non ho mai avuto il piacere di usare event storming, ma tutte le presentazioni che ho visto delineano il modo in cui la parete &amp;ldquo;si riempie&amp;rdquo;, mentre ho poche informazioni su come questa poi si traduca in software. Piuttosto, mi pare di aver colto che Cliff ponga molta enfasi su come man mano la conoscenza che stiamo visualizzando si evolva e man mano si traduca in componenti software. Mi intriga l&amp;rsquo;ipotesi di combinare le due cose!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/miniiad-vimercate-2015-reportage/visualization.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;agile-e-il-business-delle-aziende:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
+&lt;h2 id=&#34;agile-e-il-business-delle-aziende&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
 
 &lt;p&gt;La mia giornata prosegue parlando di &lt;strong&gt;&lt;a href=&#34;http://www.ideastartup.it/startupzionario/&#34;&gt;Startup&lt;/a&gt;&lt;/strong&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Produzione_snella&#34;&gt;Lean&lt;/a&gt;&lt;/strong&gt; con &lt;a href=&#34;https://twitter.com/felicepescatore&#34;&gt;Felice Pescatore&lt;/a&gt;. Una sessione sul percorso &amp;ldquo;&lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#leanstartup&#34;&gt;dal garage al grattacielo&lt;/a&gt;&amp;rdquo;. Bello stile, coinvolgente! Ho già letto tanto su Lean, purtroppo non ho portato via nulla di nuovo.
 Anche il talk successivo &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Kanban_experiment&#34;&gt;Kanban experiment&lt;/a&gt;, su &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;&lt;/strong&gt;, non mi ha detto nulla di nuovo. Mi piace però constatare che molti gruppi di lavoro che si stanno avvicinando alle metodologie Agili, scelgono Kanban.&lt;/p&gt;
 
-&lt;h2 id=&#34;large-scaling-scrum:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
+&lt;h2 id=&#34;large-scaling-scrum&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
 
 &lt;p&gt;Dopo un buon pranzo, ho assistito ad una &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#LeSS_Adoption&#34;&gt;sessione&lt;/a&gt; su &lt;strong&gt;&lt;a href=&#34;http://less.works/&#34;&gt;Less&lt;/a&gt;&lt;/strong&gt;. E quì rimango veramente sorpreso in positivo. Non conoscevo Less e penso se ne dovrebbe parlare di più, soprattutto in aziende con tanti gruppi di lavoro diversi. &lt;a href=&#34;https://www.youtube.com/watch?v=PTjnw9EXsD4&#34;&gt;Francesco Sferlazza&lt;/a&gt; ha raccontato come in Alcatel hanno introdotto Less (Large Scaling SCRUM). In sostanza, si tratta di un framework per &lt;strong&gt;attuare SCRUM in aziende composte da svariati sottogruppi che fanno SCRUM che però hanno delle dipendenze vicendevoli&lt;/strong&gt;. Con SCRUM si dovrebbero costituire dei gruppi completamente indipendenti, composti da tutte le risorse necessarie per realizzare l&amp;rsquo;obiettivo. In realtà estremamente complesse, come appunto una grandissima azienda di telefonia, non è possibile considerare nello stesso aggregato i manutentori delle centraline telefoniche con gli esperti di design dei dispositivi da installare. In sostanza, si deve armonizzare il lavoro di gruppi diversi in cui in ciascuno si applica SCRUM.
 Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non certo così grande e complessa) alcuni elementi della filiera non riusciamo a portarli dentro tutti i team. Ad esempio i web designer o il team di marketing. Tutti i team condividono il tempo e le competenze di questi gruppi, che a loro volta fanno iterazioni settimanali (non SCRUM). Il talk mi ha illustrato alcuni dei vantaggi di Less ed ha stuzzicato la mia curiosità. Ora dovrò capire come applicarlo concretamente!&lt;/p&gt;
 
-&lt;h2 id=&#34;retrospettive-creative:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Retrospettive creative&lt;/h2&gt;
+&lt;h2 id=&#34;retrospettive-creative&#34;&gt;Retrospettive creative&lt;/h2&gt;
 
 &lt;p&gt;Si è andato avanti parlando di &lt;strong&gt;&lt;a href=&#34;http://retrospectivewiki.org/index.php?title=Main_Page&#34;&gt;retrospettive&lt;/a&gt;&lt;/strong&gt; con Marco Di Biase, uno SCRUM Master di Bravofly. Su questo tema, devo dare il merito a Marco di aver &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Miglioramento_continuo&#34;&gt;condiviso&lt;/a&gt; un sacco di idee e scoperte fatte nel corso della sua esperienza. Io, ad esempio, ho iniziato a fare retrospettive con un certo format e da allora son riuscito a coinvolgere gli interlocutori più disparati del team (facciamo retrospettive tra team di addetti alla vendita e vengono fuori continue azioni di miglioramento come dalle retrospettive tra programmatori). Ma non ho mai provato a fare e farmi delle &lt;strong&gt;domande diverse durante gli incontri&lt;/strong&gt;. Marco accennava che &lt;a href=&#34;https://twitter.com/p_pugliese&#34;&gt;Pierluigi Pugliese&lt;/a&gt; gli abbia mostrato decine di approcci diversi.&lt;/p&gt;
 
@@ -917,7 +917,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/miniiad-vimercate-2015-reportage/retrospettiva-cerchi.jpg&#34; alt=&#34;Retrospettiva con cerchi&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusioni:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;La serata si è poi conclusa con una carrellata di &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Agile_Coaches&#34;&gt;esperienze&lt;/a&gt; vissute da tre coach. Dalla tastiera al coaching (senza lasciare la tastiera!). Le storie delle persone sono una delle cose di maggiore ispirazione. Per me penso sia bello ripartire da qui, con qualche pillola in più, inseguendo quel miglioramento continuo che ogni giorno sa riempirci di soddisfazioni.&lt;/p&gt;
 
@@ -941,7 +941,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;I talk sono in ordine cronologico. Buona lettura!&lt;/p&gt;
 
-&lt;h4 id=&#34;indice:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Indice&lt;/h4&gt;
+&lt;h4 id=&#34;indice&#34;&gt;Indice&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#prophecy&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/a&gt;&lt;/li&gt;
@@ -952,7 +952,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 &lt;li&gt;&lt;a href=&#34;#doctrine&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h6 id=&#34;keynotes:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h6&gt;
+&lt;h6 id=&#34;keynotes&#34;&gt;Keynotes&lt;/h6&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#coderabbi&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/a&gt;&lt;/li&gt;
@@ -960,11 +960,11 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 &lt;li&gt;&lt;a href=&#34;#seldaek&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;talk-tecnici:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talk tecnici&lt;/h1&gt;
+&lt;h1 id=&#34;talk-tecnici&#34;&gt;Talk tecnici&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;prophecy&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
+&lt;h4 id=&#34;php-object-mocking-framework-world-let-s-compare-prophecy-and-phpunit&#34;&gt;PHP object mocking framework world: let&amp;rsquo;s compare Prophecy and PHPUnit&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Khalil (&lt;a href=&#34;http://twitter.com/saro0h&#34;&gt;@saro0h&lt;/a&gt;)&lt;/li&gt;
@@ -979,7 +979,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;containerize&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;containerize-your-php:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Containerize your PHP&lt;/h4&gt;
+&lt;h4 id=&#34;containerize-your-php&#34;&gt;Containerize your PHP&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marek Jelen (&lt;a href=&#34;http://twitter.com/marek_jelen&#34;&gt;@marek_jelen&lt;/a&gt;)&lt;/li&gt;
@@ -992,7 +992,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;varnish&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
+&lt;h4 id=&#34;going-crazy-with-symfony2-and-varnish&#34;&gt;Going crazy with Symfony2 and Varnish&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;David De Boer&lt;/li&gt;
@@ -1007,7 +1007,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;psr-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;hello-psr-7:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Hello, PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;hello-psr-7&#34;&gt;Hello, PSR-7&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Beau Simensen (&lt;a href=&#34;http://www.twitter.com/beausimensen&#34;&gt;@beausimensen&lt;/a&gt;)&lt;/li&gt;
@@ -1022,7 +1022,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;php7-data-structures&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
+&lt;h4 id=&#34;php-data-structures-and-the-impact-of-php-7-on-them&#34;&gt;PHP Data Structures (and the impact of PHP 7 on them)&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Patrick Allaert (&lt;a href=&#34;http://www.twitter.com/patrick_allaert&#34;&gt;@patrick_allaert&lt;/a&gt;)&lt;/li&gt;
@@ -1035,7 +1035,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;doctrine&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
+&lt;h4 id=&#34;doctrine-orm-good-practices-and-tricks&#34;&gt;Doctrine ORM Good Practices and Tricks&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Pivetta (&lt;a href=&#34;http://www.twitter.com/Ocramius&#34;&gt;@Ocramius&lt;/a&gt;)&lt;/li&gt;
@@ -1046,13 +1046,13 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;Usiamo &lt;strong&gt;Doctrine&lt;/strong&gt; tutti i giorni, ma questo talk, sebbene marcato come di livello &lt;strong&gt;beginner&lt;/strong&gt;, si è rivelato molto interessante e fonte di numerose discussioni e &lt;strong&gt;riflessioni&lt;/strong&gt; tra colleghi. Lo speaker è uno dei principali contributors al progetto &lt;a href=&#34;https://github.com/doctrine/doctrine2&#34;&gt;doctrine-orm&lt;/a&gt;, e ci ha elencato una serie di &lt;strong&gt;best practices&lt;/strong&gt;, partendo dal chiedersi se e quando è il caso di usare un ORM, passando poi a problemi quali l&amp;rsquo;uso e l&amp;rsquo;implementazione di entità, la loro consistenza, l&amp;rsquo;evitare di usare setter brutali o di esporre le ArrayCollection che rappresentano le nostre relazioni.&lt;/p&gt;
 
-&lt;h1 id=&#34;keynotes-1:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Keynotes&lt;/h1&gt;
+&lt;h1 id=&#34;keynotes-1&#34;&gt;Keynotes&lt;/h1&gt;
 
 &lt;p&gt;Abbiamo voluto citare in questo articolo anche i &lt;strong&gt;3 keynote&lt;/strong&gt; della conferenza: sono stati tutti piuttosto interessanti, profondamente motivazionali e coinvolgenti.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;coderabbi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
+&lt;h4 id=&#34;talmudic-maxims-to-maximize-your-growth-as-a-developer&#34;&gt;Talmudic Maxims to Maximize Your Growth as a Developer&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Yitzchok Willroth (&lt;a href=&#34;http://www.twitter.com/coderabbi&#34;&gt;@coderabbi&lt;/a&gt;)&lt;/li&gt;
@@ -1070,7 +1070,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;calevans&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
+&lt;h4 id=&#34;down-the-rabbit-hole-lessons-learned-combining-career-and-community&#34;&gt;Down the Rabbit Hole: Lessons Learned combining Career and Community&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Cal Evans (&lt;a href=&#34;http://www.twitter.com/calevans&#34;&gt;@CalEvans&lt;/a&gt;)&lt;/li&gt;
@@ -1083,7 +1083,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;seldaek&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project:2ae40b845e02f26c759cfa0e911c81d0&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
+&lt;h4 id=&#34;behind-the-scenes-of-maintaining-an-open-source-project&#34;&gt;Behind the Scenes of Maintaining an Open Source Project&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Jordi Boggiano (&lt;a href=&#34;http://twitter.com/seldaek&#34;&gt;@seldaek&lt;/a&gt;)&lt;/li&gt;

@@ -21,7 +21,7 @@
 
 &lt;p&gt;Ragionare sui tipi di dato è un classico approccio usato nel paradigma di programmazione noto come &lt;a href=&#34;http://en.wikipedia.org/wiki/Functional_programming&#34;&gt;&lt;em&gt;programmazione funzionale&lt;/em&gt;&lt;/a&gt;, e il presente articolo adotta tale paradigma in maniera piuttosto pura.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:9546cc279181b22e90a8ccdde798a866&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#il-type-system-di-swift&#34;&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift&lt;/a&gt;&lt;/li&gt;
@@ -35,7 +35,7 @@
 
 &lt;p&gt;&lt;a name=&#34;il-type-system-di-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;il-type-system-di-swift:9546cc279181b22e90a8ccdde798a866&#34;&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift&lt;/h2&gt;
+&lt;h2 id=&#34;il-type-system-di-swift&#34;&gt;Il &lt;em&gt;type system&lt;/em&gt; di Swift&lt;/h2&gt;
 
 &lt;p&gt;Il linguaggio &lt;strong&gt;Swift&lt;/strong&gt;, usato nello sviluppo di software per Mac OSX e iOS, si presta molto bene all&amp;rsquo;approccio basato sui tipi illustrato in questo articolo, a causa di due particolari caratteristiche del linguaggio:&lt;/p&gt;
 
@@ -58,7 +58,7 @@
 
 &lt;p&gt;&lt;a name=&#34;costruiamo-un-form-il-tipo-field&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;costruiamo-un-form-il-tipo-field:9546cc279181b22e90a8ccdde798a866&#34;&gt;Costruiamo un form: il tipo &lt;em&gt;Field&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;costruiamo-un-form-il-tipo-field&#34;&gt;Costruiamo un form: il tipo &lt;em&gt;Field&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;Un possibile tipo di dato da cui partire è &lt;strong&gt;Field&lt;/strong&gt;, il campo, cioè il mattone costruttivo di base di un form.&lt;/p&gt;
 
@@ -146,14 +146,14 @@ func == (lhs: FieldVisibility, rhs: FieldVisibility) -&amp;gt; Bool {
 
 &lt;p&gt;&lt;a name=&#34;modificare-un-campo-tipi-di-funzione-come-tipi-di-dato&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;modificare-un-campo-tipi-di-funzione-come-tipi-di-dato:9546cc279181b22e90a8ccdde798a866&#34;&gt;Modificare un campo: tipi di funzione come tipi di dato&lt;/h2&gt;
+&lt;h2 id=&#34;modificare-un-campo-tipi-di-funzione-come-tipi-di-dato&#34;&gt;Modificare un campo: tipi di funzione come tipi di dato&lt;/h2&gt;
 
 &lt;p&gt;La prima e più semplice operazione che vogliamo poter effettuare su &lt;code&gt;Field&lt;/code&gt; è quella di modificarlo in qualche modo: ogni operazione di questo tipo, in Swift, può essere indicata con &lt;code&gt;Field -&amp;gt; Field&lt;/code&gt;, cioè una trasformazione che prende un &lt;code&gt;Field&lt;/code&gt; in ingresso e produce un &lt;code&gt;Field&lt;/code&gt; in uscita:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;typealias FieldChange = Field -&amp;gt; Field
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;L&amp;rsquo;operatore &lt;code&gt;-&amp;gt;&lt;/code&gt; ha lo stesso significato che ha già in &lt;a href=&#34;http://en.wikipedia.org/wiki/Haskell_(programming_language&#34;&gt;Haskell&lt;/a&gt;): definisce il tipo di una funzione che prende in ingresso un dato del tipo indicato a sinistra dell&amp;rsquo;operatore, e ritorna un dato del tipo indicato a destra dell&amp;rsquo;operatore (in questo caso entrambi i dati sono di tipo &lt;code&gt;Field&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;L&amp;rsquo;operatore &lt;code&gt;-&amp;gt;&lt;/code&gt; ha lo stesso significato che ha già in &lt;a href=&#34;http://en.wikipedia.org/wiki/Haskell_(programming_language)&#34;&gt;Haskell&lt;/a&gt;: definisce il tipo di una funzione che prende in ingresso un dato del tipo indicato a sinistra dell&amp;rsquo;operatore, e ritorna un dato del tipo indicato a destra dell&amp;rsquo;operatore (in questo caso entrambi i dati sono di tipo &lt;code&gt;Field&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;È da evidenziare che &lt;code&gt;FieldChange&lt;/code&gt; non rappresenta un tipo di &amp;ldquo;dato&amp;rdquo; in senso stretto, ma &lt;strong&gt;un tipo di &amp;ldquo;funzione&lt;/strong&gt;&amp;ldquo;: in effetti, definendo &lt;code&gt;FieldChange&lt;/code&gt;, possiamo trattare le funzioni di quel tipo come se fossero dati.&lt;/p&gt;
 
@@ -219,7 +219,7 @@ let isTrue3 = anotherVisibleField.visibility == .Visible
 
 &lt;p&gt;&lt;a name=&#34;funzioni-generiche-e-composizione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;funzioni-generiche-e-composizione-funzionale:9546cc279181b22e90a8ccdde798a866&#34;&gt;Funzioni generiche e composizione funzionale&lt;/h2&gt;
+&lt;h2 id=&#34;funzioni-generiche-e-composizione-funzionale&#34;&gt;Funzioni generiche e composizione funzionale&lt;/h2&gt;
 
 &lt;p&gt;In realtà la nostra &lt;code&gt;FieldCondition&lt;/code&gt; sembra essere un po&amp;rsquo; limitata: ritorna un valore di &lt;code&gt;FieldVisibility&lt;/code&gt;, mentre una vera &lt;em&gt;condition&lt;/em&gt; &lt;strong&gt;dovrebbe ritornare un valore generico&lt;/strong&gt;, a seconda dei casi: ad esempio, potrebbe cambiare il &lt;strong&gt;valore&lt;/strong&gt; di un campo bersaglio in base allo stato di un campo origine. L&amp;rsquo;ideale sarebbe scrivere qualcosa del genere:&lt;/p&gt;
 
@@ -352,7 +352,7 @@ let isTrue8 = newFields[1].visibility == .Hidden
 
 &lt;p&gt;&lt;a name=&#34;il-tipo-form&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;il-tipo-form:9546cc279181b22e90a8ccdde798a866&#34;&gt;Il tipo &lt;em&gt;Form&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;il-tipo-form&#34;&gt;Il tipo &lt;em&gt;Form&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;Abbiamo implementato quindi alcuni strumenti per manipolare i singoli campi: a questo punto proviamo a unire il tutto definendo un &lt;code&gt;Form&lt;/code&gt; come contenitore strutturato di campi, insieme ad alcune funzioni di manipolazione. Intanto &lt;strong&gt;pensiamo al tipo da assegnare al nostro form&lt;/strong&gt;: una possibilità è quella di definire alcuni blocchi costruttivi che ne descrivono la struttura:&lt;/p&gt;
 
@@ -407,7 +407,7 @@ func root (nodes: [Form]) -&amp;gt; Form {
 
 &lt;p&gt;&lt;a name=&#34;modifica-di-un-form-e-ricerca-di-un-campo&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;modifica-di-un-form-e-ricerca-di-un-campo:9546cc279181b22e90a8ccdde798a866&#34;&gt;Modifica di un form e ricerca di un campo&lt;/h2&gt;
+&lt;h2 id=&#34;modifica-di-un-form-e-ricerca-di-un-campo&#34;&gt;Modifica di un form e ricerca di un campo&lt;/h2&gt;
 
 &lt;p&gt;Come accadeva per &lt;code&gt;Field&lt;/code&gt;, la prima operazione che vogliamo poter effettuare su &lt;code&gt;Form&lt;/code&gt; è quella modificarlo; definiamo quindi il tipo &lt;code&gt;FormChange&lt;/code&gt; in maniera a simile a come avevamo definito &lt;code&gt;FieldChange&lt;/code&gt;:&lt;/p&gt;
 
@@ -489,7 +489,7 @@ let isTrue10 = fieldsWithId(&amp;quot;field1&amp;quot;)(form)[0].visibility == .
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusione:9546cc279181b22e90a8ccdde798a866&#34;&gt;Conclusione&lt;/h2&gt;
+&lt;h2 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h2&gt;
 
 &lt;p&gt;Per concludere, abbiamo visto come partendo da &lt;strong&gt;tipi&lt;/strong&gt;, che siano essi relativi a singoli valori o a funzioni, è stato possibile iniziare a scrivere una libreria composta da semplici tipi di base e funzioni elementari che vengono composte via via a livelli di astrazione più alti. Definendo tipi specifici per molte astrazioni siamo riusciti a &lt;strong&gt;gestire meglio la complessità&lt;/strong&gt; inerente nel manipolare e comporre funzioni, al punto da poter &lt;strong&gt;trattare funzioni complesse come semplici dati&lt;/strong&gt; da passare ad altre funzioni. In un articolo successivo vedremo come estendere la libreria qui iniziata, abbracciando completamente la composizione funzionale e usando operatori specificamente definiti per migliorare la chiarezza del codice e rendere più semplice la manipolazione e combinazione delle funzioni.&lt;/p&gt;
 
@@ -499,7 +499,7 @@ let isTrue10 = fieldsWithId(&amp;quot;field1&amp;quot;)(form)[0].visibility == .
 &lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; &lt;em&gt;La chiamata &lt;code&gt;subforms.map(fieldsWithCondition(condition)).reduce([], combine: +)&lt;/code&gt;, nella funzione &lt;code&gt;fieldsWithCondition&lt;/code&gt;, è piuttosto inefficiente dal punto di vista della performance: l&amp;rsquo;inefficienza è dovuta al fatto che a ogni chiamata vengono generati array intermedi dovuti alle varie mappature dei dati; non è in realtà necessario creare questi array intermedi: basta utilizzare procedure &amp;ldquo;lazy&amp;rdquo;, che vedremo in un articolo futuro.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;riferimenti:9546cc279181b22e90a8ccdde798a866&#34;&gt;Riferimenti&lt;/h2&gt;
+&lt;h2 id=&#34;riferimenti&#34;&gt;Riferimenti&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Tomas Petricek - &lt;a href=&#34;http://tomasp.net/blog/type-first-development.aspx&#34;&gt;Why type-first development matters&lt;/a&gt;&lt;/li&gt;

@@ -23,7 +23,7 @@
 
 &lt;p&gt;A prima vista niente di nuovo sotto il Sole dunque, ma cerchiamo insieme di comprendere l&amp;rsquo;insieme di problematiche che sono al centro di questo nuovo dibattito che riguarda gli standard di codifica del linguaggio PHP.&lt;/p&gt;
 
-&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
+&lt;h4 id=&#34;una-questione-di-interoperabilità-tra-framework&#34;&gt;Una questione di interoperabilità tra framework&lt;/h4&gt;
 
 &lt;p&gt;I principali framework PHP, pur fornendo dei layer di astrazione del protocollo HTTP maturi e funzionali, impongono la scrittura di codice da essi dipendente.&lt;/p&gt;
 
@@ -75,7 +75,7 @@ class GreetingSentence
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;symfony-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Symfony 2&lt;/h6&gt;
+&lt;h6 id=&#34;symfony-2&#34;&gt;Symfony 2&lt;/h6&gt;
 
 &lt;p&gt;Ecco come implementeremmo la funzionalità richiesta in Symfony2:&lt;/p&gt;
 
@@ -118,7 +118,7 @@ class MainController
 } 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h6 id=&#34;zend-framework-2:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Zend Framework 2&lt;/h6&gt;
+&lt;h6 id=&#34;zend-framework-2&#34;&gt;Zend Framework 2&lt;/h6&gt;
 
 &lt;p&gt;Questa è invece l&amp;rsquo;implementazione in Zend Framework 2:&lt;/p&gt;
 
@@ -159,7 +159,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;Risulta evidente come siamo stati a costretti ad implementare due pezzi di codice quasi identici. Vediamo ora &lt;strong&gt;come uno standard come quello proposto dal PSR-7 possa aiutarci&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
+&lt;h4 id=&#34;middleware-ovvero-componenti-web-riutilizzabili&#34;&gt;Middleware: ovvero componenti web riutilizzabili&lt;/h4&gt;
 
 &lt;p&gt;Potremmo voler implemenare la nostra soluzione come un &lt;strong&gt;middleware&lt;/strong&gt;, ovvero un componente che &lt;strong&gt;esiste durante il ciclo di vita di una comunicazione HTTP&lt;/strong&gt;, cioè dall&amp;rsquo;accettazione della richiesta fino all&amp;rsquo;evasione della risposta.&lt;/p&gt;
 
@@ -177,7 +177,7 @@ class MainController extends AbstractActionController
 
 &lt;p&gt;A questo punto possiamo cominciare a capire realmente il significato di questo nuovo processo di standardizzazione proposto dal &lt;a href=&#34;http://www.php-fig.org/&#34;&gt;&lt;strong&gt;FIG&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
+&lt;h4 id=&#34;scrivere-middleware-usando-le-interfacce-proposte-nello-standard-psr-7&#34;&gt;Scrivere middleware usando le interfacce proposte nello standard PSR-7&lt;/h4&gt;
 
 &lt;p&gt;La proposta dello standard PSR-7 si riassume nella descrizione di una serie di &lt;a href=&#34;https://github.com/php-fig/http-message/tree/master/src&#34;&gt;interfacce&lt;/a&gt;.&lt;/p&gt;
 
@@ -239,7 +239,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Ovviamente questo middleware adesso come adesso è tutt&amp;rsquo;altro che utilizzabile all&amp;rsquo;interno di un framework, poichè ciascun vendor usa un modello diverso per richieste e risposte, ma è molto probabile che &lt;strong&gt;in un futuro&lt;/strong&gt; non troppo lontano le varie implementazioni &lt;strong&gt;convergeranno&lt;/strong&gt; su qualcosa di simile a quella appena vista e proposta da O&amp;rsquo;Phinney.&lt;/p&gt;
 
-&lt;h4 id=&#34;conclusioni:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Conclusioni&lt;/h4&gt;
+&lt;h4 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h4&gt;
 
 &lt;p&gt;Se pensiamo agli strumenti forniti di base dal linguaggio PHP (e non ai framework) nel contesto di una comunicazione HTTP, ci rendiamo conto che di fatto dovremmo ridurci a lavorare con le sole variabili globali d&amp;rsquo;ambiente contenenti tutti i valori necessari (&lt;code&gt;$_SERVER&lt;/code&gt;, &lt;code&gt;$_GET&lt;/code&gt;, &lt;code&gt;$_POST&lt;/code&gt;, &lt;code&gt;$_FILES&lt;/code&gt;, &amp;hellip;).&lt;/p&gt;
 
@@ -247,7 +247,7 @@ class AcmeLifeCycle
 
 &lt;p&gt;Sicuramente tenere &lt;a href=&#34;https://github.com/php-fig/fig-standards&#34;&gt;a portata di github&lt;/a&gt; gli sviluppi di questa proposta vorrà dire tenersi aggiornati sui &lt;strong&gt;futuri sviluppi&lt;/strong&gt; dei più blasonati framework e componenti PHP, tenendo conto, &lt;strong&gt;come già accaduto per le precedenti proposte&lt;/strong&gt; &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&#34;&gt;PSR-0&lt;/a&gt; e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&#34;&gt;PSR-4&lt;/a&gt; (autoloading) e &lt;a href=&#34;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&#34;&gt;PSR-3&lt;/a&gt; (logging), che, quasi sicuramente, i principali vendor le implementeranno nelle loro prossime versioni.&lt;/p&gt;
 
-&lt;h4 id=&#34;altre-risorse-consultabili:b7534f9229b77879ebc400f1bfdf8842&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
+&lt;h4 id=&#34;altre-risorse-consultabili&#34;&gt;Altre risorse consultabili&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Blog di Matthew Weier O&amp;rsquo;Phinney: &lt;a href=&#34;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&#34;&gt;https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html&lt;/a&gt;&lt;/li&gt;

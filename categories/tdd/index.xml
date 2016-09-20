@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/</guid>
       <description>
 
-&lt;h1 id=&#34;the-enemies-of-programming:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;The enemies of programming&lt;/h1&gt;
+&lt;h1 id=&#34;the-enemies-of-programming&#34;&gt;The enemies of programming&lt;/h1&gt;
 
 &lt;p&gt;As many of you will agree with me, &lt;strong&gt;sleep deprivation&lt;/strong&gt; is the enemy of programming.&lt;br /&gt;
 Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;/strong&gt;.
@@ -27,7 +27,7 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;While writing code we have to think really hard, we use complex abstractions, we go through long business workflows and so on&amp;hellip; fatigue and interruptions are the main enemies of those in this line of work.&lt;/p&gt;
 
-&lt;h1 id=&#34;my-experience:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;My experience&lt;/h1&gt;
+&lt;h1 id=&#34;my-experience&#34;&gt;My experience&lt;/h1&gt;
 
 &lt;p&gt;On my day job, I do all this mental juggling on a pretty big project, which is based on PHP 5.5, Symfony 2.8, Doctrine etc.; luckily, in this project we use a good deal of &lt;strong&gt;good practices&lt;/strong&gt;, and &lt;strong&gt;automated software testing&lt;/strong&gt; is one of those. I actually switched to this job to learn about doing automatic testing, continuous integration and other best practices.&lt;/p&gt;
 
@@ -46,13 +46,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Obviously, as anyone that&amp;rsquo;s passionate in technology would do, I took the opportunity to use a lot of new shiny tools: I picked &lt;strong&gt;PHP 7&lt;/strong&gt;, which had just been released, and started the project with something familiar to me but still pretty new and cool, &lt;strong&gt;Symfony 3.0&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;what-i-found-to-be-useful:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;What I found to be useful&lt;/h1&gt;
+&lt;h1 id=&#34;what-i-found-to-be-useful&#34;&gt;What I found to be useful&lt;/h1&gt;
 
 &lt;p&gt;I rambled and thought about this project a lot in the past months with my colleagues, because the old system was costing us a lot of overhead in usage and maintenance, and we had a pretty clear idea of what its problems were, so I didn&amp;rsquo;t need to study a lot before starting to write the first classes.&lt;/p&gt;
 
 &lt;p&gt;Thus, I had to spend &lt;em&gt;some&lt;/em&gt; time thinking about an object oriented design for my project, but I was rapidly able to start writing code with confidence. In the end, most of this confidence came from a few choices that I pursued during the development of this project.&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-and-high-coverage:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;TDD and high coverage&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-and-high-coverage&#34;&gt;TDD and high coverage&lt;/h2&gt;
 
 &lt;p&gt;The first choice that I am pretty satisfied about is &lt;strong&gt;automatic testing&lt;/strong&gt;: I already knew the advantages of doing tests and Test Driven Development, but in the previous project that practice was not introduced from the start, so not all the codebase was covered, and we couldn&amp;rsquo;t (or wouldn&amp;rsquo;t?) do TDD 100% of the time.&lt;/p&gt;
 
@@ -60,13 +60,13 @@ Maybe we fear only one thing more than that: &lt;strong&gt;being interrupted&lt;
 
 &lt;p&gt;Of course, I still left some parts without coverage or specific tests, since it was pointless to test them (e.g. Doctrine entities), while I covered some parts multiple times, since they were &lt;strong&gt;critical paths&lt;/strong&gt; inside my application.&lt;/p&gt;
 
-&lt;h2 id=&#34;unit-tests-to-the-rescue:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
+&lt;h2 id=&#34;unit-tests-to-the-rescue&#34;&gt;Unit tests to the rescue!&lt;/h2&gt;
 
 &lt;p&gt;Last but not least, the main critical advantage that TDD gave me was &lt;strong&gt;focus even on strained days&lt;/strong&gt;: I wrote the classes starting from unit tests, giving all my effort to one piece of code at a time, without having to keep in mind the entire project with its complexities.&lt;/p&gt;
 
 &lt;p&gt;I then wrote some functional tests to assure that the &lt;strong&gt;collaboration between my unit-tested objects&lt;/strong&gt; was fine, and this later step was also useful in delaying the definition of the classes as services inside the Symfony DI container. I was also &lt;strong&gt;able to change my mind&lt;/strong&gt; a few times on some details of the design without having to suffer mental confusion or rewrite too much code.&lt;/p&gt;
 
-&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
+&lt;h2 id=&#34;php-7-scalar-and-return-types-declarations&#34;&gt;PHP 7: scalar and return types declarations&lt;/h2&gt;
 
 &lt;p&gt;The second good choice was &lt;strong&gt;PHP 7&lt;/strong&gt;: among the reasons behind it as the language version of choice for this project were the &lt;a href=&#34;http://php.net/manual/en/migration70.new-features.php&#34;&gt;two main new features&lt;/a&gt; introduced: &lt;strong&gt;scalar types&lt;/strong&gt; and &lt;strong&gt;return type declarations&lt;/strong&gt;.
 &lt;p style=&#34;text-align: center;&#34;&gt;
@@ -89,7 +89,7 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;On the other hand, having return types declared on your business-logic classes it&amp;rsquo;s pretty useful, even more when used in conjunction with TDD: every time you define a mock you are forced to declare expectations and predictions with the right types, so it &lt;strong&gt;indirectly helps maintaining the collaboration contract between objects&lt;/strong&gt;, without too much hassle. If I changed a method&amp;rsquo;s signature that was mocked somewhere, the mock would break the test, &lt;strong&gt;highlighting the issue and making the tests&lt;/strong&gt; (and an high coverage) &lt;strong&gt;even more valuable&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusions:05c83ed4120d4c1b11be66532e6ac474&#34;&gt;Conclusions&lt;/h1&gt;
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
 
 &lt;p&gt;At the end of the day, these and other &lt;strong&gt;good practices are helpful&lt;/strong&gt; for both your job and your personal life: you can go a long way in being fit and in the best shape while working, but stressful and (good) distracting events are unavoidable: you&amp;rsquo;ll often have to fight stress, fatigue or distractions, and there will be days where you can&amp;rsquo;t be at the top of your game, for any number of reasons.&lt;/p&gt;
 
@@ -118,13 +118,13 @@ $this-&amp;gt;assertInstanceOf(SomeClass::class, $result);
 
 &lt;p&gt;Ma al di là di questi vantaggi, &lt;strong&gt;&lt;em&gt;possiamo affermare che una test suite con un&amp;rsquo;alta percentuale di coverage sia realmente efficace?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;quando-un-test-è-efficace:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quando un test è efficace?&lt;/h3&gt;
+&lt;h3 id=&#34;quando-un-test-è-efficace&#34;&gt;Quando un test è efficace?&lt;/h3&gt;
 
 &lt;p&gt;Una test suite è considerata efficace se consente di rilevare una grande quantità di failure; d&amp;rsquo;altronde, ciò è proprio la finalità ultima del software testing.
 La massima efficacia è realizzabile solo applicando testing esaustivo ma, siccome ciò è spesso impraticabile, ci si accontenta di test più semplici con un&amp;rsquo;efficacia inferiore.
 È importante notare che, a differenza del coverage, il livello d&amp;rsquo;efficacia viene stabilito soggettivamente dallo sviluppatore.&lt;/p&gt;
 
-&lt;h3 id=&#34;quanti-tipi-di-coverage:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Quanti tipi di coverage?&lt;/h3&gt;
+&lt;h3 id=&#34;quanti-tipi-di-coverage&#34;&gt;Quanti tipi di coverage?&lt;/h3&gt;
 
 &lt;p&gt;La copertura può essere misurata in molti modi differenti. Essa è sempre un rapporto tipicamente espresso in forma percentuale.&lt;/p&gt;
 
@@ -146,9 +146,9 @@ Qui di seguito è presente un elenco esemplificativo e non esaustivo delle diver
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;un-esempio-pratico:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Un esempio pratico&lt;/h3&gt;
+&lt;h3 id=&#34;un-esempio-pratico&#34;&gt;Un esempio pratico&lt;/h3&gt;
 
-&lt;h4 id=&#34;funzione-under-test:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Funzione under-test&lt;/h4&gt;
+&lt;h4 id=&#34;funzione-under-test&#34;&gt;Funzione under-test&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def weightedAverage(array):
 	sum = weightSum = 0     # Bug, dovrebbe essere: sum = weightSum = 0.0
@@ -175,7 +175,7 @@ Ad esempio: &lt;code&gt;[(10, 2), (11, 4), (5, 1)]&lt;/code&gt;&lt;/li&gt;
 L&amp;rsquo;errore è risolvibile modificando &lt;code&gt;sum = weightSum = 0&lt;/code&gt; in &lt;code&gt;sum = weightSum = 0.0&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;test-suite-1:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #1&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-1&#34;&gt;Test suite #1&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverage():
 	expected = 25.0
@@ -189,7 +189,7 @@ L&amp;rsquo;errore è risolvibile modificando &lt;code&gt;sum = weightSum = 0&lt
 
 &lt;p&gt;La test suite #1 ha statement coverage 100%, tuttavia non consente di rilevare i due errori menzionati in precedenza. Sebbene la coverage sia alta, l&amp;rsquo;efficacia è molto bassa.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-suite-2:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #2&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-2&#34;&gt;Test suite #2&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageDifferentWeight():
 	expected = 26.0
@@ -206,7 +206,7 @@ Il primo errore viene rilevato, il secondo no.
 È importante notare che questo problema viene risolto aggiungendo l&amp;rsquo;asserzione &lt;code&gt;type(actual) is float&lt;/code&gt;.&lt;br /&gt;
 Le asserzioni sono parte fondamentale del testing; date loro la giusta importanza! Ogni buona asserzione in più consente di migliorare sensibilmente l&amp;rsquo;efficacia dei vostri test case.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-suite-3:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Test suite #3&lt;/h4&gt;
+&lt;h4 id=&#34;test-suite-3&#34;&gt;Test suite #3&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def testWeightedAverageFloatResult():
 	expected = 27.2
@@ -220,7 +220,7 @@ Le asserzioni sono parte fondamentale del testing; date loro la giusta importanz
 
 &lt;p&gt;La test suite #3 ha statement coverage 100% ed è efficace perché ci consente di rilevare tutti gli errori.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:6b94364a6a89c89e4ce75bd725ef68eb&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto che percentuali di coverage alte non sempre implicano test efficaci.
 Tuttavia test suite efficaci hanno necessariamente bisogno di coverage rate alti.

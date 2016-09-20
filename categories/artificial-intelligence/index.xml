@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/ita/intelligenza-artificiale-algoritmo-a-star/</guid>
       <description>
 
-&lt;h1 id=&#34;introduzione:2400028604853ea154d2cde8c70195ac&#34;&gt;Introduzione&lt;/h1&gt;
+&lt;h1 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h1&gt;
 
 &lt;p&gt;A* è un &lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_di_ricerca&#34;&gt;algoritmo di ricerca&lt;/a&gt; e ottimizzazione basato su grafi. Viene frequentemente impiegato nell&amp;rsquo;&lt;a href=&#34;https://it.wikipedia.org/wiki/Intelligenza_artificiale&#34;&gt;intelligenza artificiale&lt;/a&gt; perché in grado di gestire grafi ampi e
 indeterminati.&lt;/p&gt;
@@ -33,7 +33,7 @@ indeterminati.&lt;/p&gt;
 &lt;li&gt;Deve essere sempre noto il costo che separa due nodi adiacenti. (Nella maggioranza dei problemi tale valore è sempre unitario).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;l-euristica:2400028604853ea154d2cde8c70195ac&#34;&gt;L&amp;rsquo;euristica&lt;/h1&gt;
+&lt;h1 id=&#34;l-euristica&#34;&gt;L&amp;rsquo;euristica&lt;/h1&gt;
 
 &lt;p&gt;L&amp;rsquo;&lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_euristico&#34;&gt;algoritmo euristico&lt;/a&gt; ha il compito di stimare la distanza tra qualsiasi nodo e la soluzione.
 L&amp;rsquo;euristica influenza fortemente i risultati conseguiti da A*. Esso, in particolare, ne determina il tempo complessivo di esecuzione.
@@ -60,7 +60,7 @@ Dove E è l&amp;rsquo;insieme degli archi, s è il nodo soluzione e la funzione 
 &lt;p&gt;Una funzione euristica monotona semplifica ulteriormente la struttura di A* in quanto la lista dei nodi già visitati diviene superflua. In questi casi, la sola coda a priorità è sufficiente.
 Una funzione euristica monotona è sempre ammissibile.&lt;/p&gt;
 
-&lt;h1 id=&#34;struttura-dell-algoritmo:2400028604853ea154d2cde8c70195ac&#34;&gt;Struttura dell&amp;rsquo;algoritmo&lt;/h1&gt;
+&lt;h1 id=&#34;struttura-dell-algoritmo&#34;&gt;Struttura dell&amp;rsquo;algoritmo&lt;/h1&gt;
 
 &lt;p&gt;A* rientra nella categoria degli algoritmi di &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Best-first_search&#34;&gt;ricerca best-first&lt;/a&gt;&lt;/strong&gt;. Esso infatti esamina, passo dopo passo, i nodi che hanno il punteggio migliore.
 Esso tuttavia non è &lt;em&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Algoritmo_greedy&#34;&gt;greedy&lt;/a&gt;&lt;/em&gt; in quanto il punteggio non è determinato esclusivamente dall&amp;rsquo;euristica.&lt;/p&gt;
@@ -125,7 +125,7 @@ La funzione h corrisponde alla definizione dell&amp;rsquo;algoritmo euristico en
 end function
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;esempio-d-implementazione:2400028604853ea154d2cde8c70195ac&#34;&gt;Esempio d&amp;rsquo;implementazione&lt;/h1&gt;
+&lt;h1 id=&#34;esempio-d-implementazione&#34;&gt;Esempio d&amp;rsquo;implementazione&lt;/h1&gt;
 
 &lt;p&gt;Si analizza un&amp;rsquo;implementazione dell&amp;rsquo;algoritmo A* che consente di risolvere il problema del &lt;a href=&#34;https://it.wikipedia.org/wiki/Gioco_del_quindici&#34;&gt;gioco del 15&lt;/a&gt;.&lt;/p&gt;
 
@@ -152,7 +152,7 @@ Essa calcola, per ogni casella, la quantità minima di spostamenti necessari per
 
 &lt;p&gt;L&amp;rsquo;algoritmo mostra in output la lista dei movimenti che la casella vuota deve compiere per risolvere il problema.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusioni:2400028604853ea154d2cde8c70195ac&#34;&gt;Conclusioni&lt;/h1&gt;
+&lt;h1 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h1&gt;
 
 &lt;p&gt;A* è un algoritmo semplice ma dalle grandi potenzialità. Esso getta le basi per ulteriori metodologie di ricerca più complesse come &lt;a href=&#34;https://en.wikipedia.org/wiki/Iterative_deepening_A*&#34;&gt;IDA*&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/D*&#34;&gt;D*&lt;/a&gt;.
 La sua principale limitazione è nell&amp;rsquo;assenza di &lt;em&gt;vincoli sulla profondità di ricerca&lt;/em&gt;.

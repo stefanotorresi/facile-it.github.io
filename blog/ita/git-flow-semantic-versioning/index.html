@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -371,13 +371,13 @@ ga('send', 'pageview');
 
 <p>Inoltre è bene tenere a mente che diversi software di gestione delle dipendenze basano il proprio flusso operativo sul presupposto una strategia di versionamento semantico simile a quella che andremo a descrivere, come ad esempio <a href="https://getcomposer.org">composer</a>.</p>
 
-<h3 id="branch-storici:1dd853596dfead5a0fffb4551b5f2efb">Branch storici</h3>
+<h3 id="branch-storici">Branch storici</h3>
 
 <p>Anzitutto questo modello di workflow prevede la presenza di ben due master branch, <strong>&ldquo;dev&rdquo;</strong> (o &ldquo;develop&rdquo;) utilizzato per lo sviluppo, ed il buon vecchio <strong>&ldquo;master&rdquo;</strong> per i rilasci ufficiali.</p>
 
 <p>Questi due branch assolvono il compito di &ldquo;historical branch&rdquo;, cioè essi devono detenere la storia pulita del progetto, a prescindere dagli sviluppi di nuove feature e hotfix, che altrimenti confluirebbero senza filtri sul ramo principale, rendendo meno comprensibile la storia del progetto e quindi più difficoltose operazioni di reversione (<a href="https://en.wikipedia.org/wiki/Reversion_%28software_development%29">revert</a>) a stati precedenti.</p>
 
-<h3 id="branch-di-funzionalità:1dd853596dfead5a0fffb4551b5f2efb">Branch di funzionalità</h3>
+<h3 id="branch-di-funzionalità">Branch di funzionalità</h3>
 
 <p>Un branch di funzionalità, ovvero un <strong>&ldquo;feature branch&rdquo;</strong>, aggiunge una nuova funzionalità (<a href="https://en.wikipedia.org/wiki/Software_feature">feature</a>) al software.
 Nel modello proposto dal GIT flow, questi branch <strong>devono sempre essere derivati dal branch &ldquo;develop&rdquo;</strong> e rappresentano una <strong>feature</strong>, ovvero una nuova funzionalità che si intende aggiungere al software.</p>
@@ -397,7 +397,7 @@ Nel modello proposto dal GIT flow, questi branch <strong>devono sempre essere de
 <p>In base alle dimensioni del team è possibile mantenere <strong>più feature branch contemporaneamente</strong>, a patto di riportarli correttamente e in tempi auspicabilmente brevi sul branch di sviluppo.
 Di norma un singolo sviluppatore si concentra sul rilascio di una feature per volta.</p>
 
-<h3 id="branch-di-rilascio:1dd853596dfead5a0fffb4551b5f2efb">Branch di rilascio</h3>
+<h3 id="branch-di-rilascio">Branch di rilascio</h3>
 
 <p>Quando il ramo di sviluppo (develop) contiene abbastanza feature per un <strong>rilascio</strong> (o in base a qualsiasi altro tipo di scadenza prefissata), da questi viene derivato un nuovo branch detto di rilascio, o <strong><a href="http://producingoss.com/en/release-branches.html">release branch</a></strong>.</p>
 
@@ -420,7 +420,7 @@ quindi non verranno creati altri branch di funzionalità in quanto in questa fas
 
 <p>Una volta mergiato con i branch storici, il branch di release non ha più motivo di esistere e sarebbe opportuno cancellarlo.</p>
 
-<h3 id="branch-di-manutenzione:1dd853596dfead5a0fffb4551b5f2efb">Branch di manutenzione</h3>
+<h3 id="branch-di-manutenzione">Branch di manutenzione</h3>
 
 <p>Una migliore organizzazione dei rilasci non scongiura sicuramente l’occorrenza di problemi da risolvere con estrema urgenza.
 In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) direttamente da master un branch di manutenzione, contenente la fix necessaria a risolvere il problema insorto.</p>
@@ -433,7 +433,7 @@ In questo caso, e solo in questo caso, è possibile derivare (avviare un fork) d
 
 <p>Come nel caso dei branch di rilascio, qundo un branch di manutenzione viene riportato su master, il tag di master verrà contrassegnato appropriatamente.</p>
 
-<h3 id="versionamento-semantico:1dd853596dfead5a0fffb4551b5f2efb">Versionamento semantico</h3>
+<h3 id="versionamento-semantico">Versionamento semantico</h3>
 
 <p>Il versionamento semantico (semantic versioning) è un semplice schema di denominazione dei rilasci che ruota attorno a tre numeri: major, minor e patch.</p>
 
@@ -470,28 +470,28 @@ Tali modifiche modifiche e correzioni dovrebbero susseguirsi andando a increment
 
 <p>Questo tipo di tag indicano le versioni del software che generalmente verranno installate sugli ambienti di <a href="https://en.wikipedia.org/wiki/Deployment_environment#Staging">staging</a>, per poterle testare prima di essere riportate su master e andare quindi in <a href="https://en.wikipedia.org/wiki/Deployment_environment#Production">produzione</a>.</p>
 
-<h3 id="conclusioni:1dd853596dfead5a0fffb4551b5f2efb">Conclusioni</h3>
+<h3 id="conclusioni">Conclusioni</h3>
 
 <p>Alla fine di questa analisi non possiamo affermare che git flow e il versionamento semantico possano essere gli strumenti definitivi per ogni team o progetto, e sicuramente la loro adozione porta vantaggi e svantaggi.
 Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso personale, ci limiteremo perciò ad elencare una serie di pro e contro che potrebbero aiutare nella decisione.</p>
 
-<h4 id="a-cosa-non-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb">A cosa non serve git flow?</h4>
+<h4 id="a-cosa-non-serve-git-flow">A cosa non serve git flow?</h4>
 
 <ul>
 <li>Git flow non pone rimedio ad errori tecnici nella gestione del repository e nemmeno prescinde da una conoscenza approfondita di git.</li>
 <li>Git flow de facto <strong>non semplifica il flusso di lavoro</strong> con git, imponendo una strategia di diramazione complessa.</li>
 </ul>
 
-<h4 id="a-cosa-serve-git-flow:1dd853596dfead5a0fffb4551b5f2efb">A cosa serve git flow?</h4>
+<h4 id="a-cosa-serve-git-flow">A cosa serve git flow?</h4>
 
 <ul>
 <li>Git flow aiuta i vari elementi del team ad avere a colpo d&rsquo;occhio <strong>una visione precisa dello stato degli sviluppi applicativi</strong> a fronte di una convenzione essenziale e immediata di tagging.</li>
 <li>Il versionamento semantico aiuta gli utilizzatori del software a capire esattamente lo stato di sviluppo del software e cosa aspettarsi, riportandosi a diverse versioni di rilascio.</li>
-<li>Git flow coaudiva la <a href="https://en.wikipedia.org/wiki/Velocity_(software_development">velocity</a>) del team di sviluppo permettendo l&rsquo;attuazione di un piano di <a href="http://guide.agilealliance.org/guide/cd.html">continuous deploy</a> e quindi di poter rilasciare nuove feature e fix in sicurezza.</li>
+<li>Git flow coaudiva la <a href="https://en.wikipedia.org/wiki/Velocity_(software_development)">velocity</a> del team di sviluppo permettendo l&rsquo;attuazione di un piano di <a href="http://guide.agilealliance.org/guide/cd.html">continuous deploy</a> e quindi di poter rilasciare nuove feature e fix in sicurezza.</li>
 <li>Git flow è ottimo per la <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>, permettendo de facto di poter differenziare i rami dedicati ai vari ambienti: sviluppo, staging e produzione</li>
 </ul>
 
-<h3 id="risorse-consultabili-online:1dd853596dfead5a0fffb4551b5f2efb">Risorse consultabili online</h3>
+<h3 id="risorse-consultabili-online">Risorse consultabili online</h3>
 
 <ul>
 <li><a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a> Vincent Driessen espone GIT Flow</li>
@@ -733,6 +733,27 @@ Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso pe
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -769,27 +790,6 @@ Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso pe
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -838,7 +838,7 @@ Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso pe
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -849,8 +849,8 @@ Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso pe
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -898,6 +898,10 @@ Valutare un trade-off relativo all&rsquo;impiego di git flow sta al buonsenso pe
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

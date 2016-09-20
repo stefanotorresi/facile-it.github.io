@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -68,7 +68,7 @@
 
 
 
-<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JWT,Kanban,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
 
         
 
@@ -114,28 +114,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-folder-open-o">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/authors/">
+                    <a href="/authors">
                         
                             <i class="fa fa-pencil">&nbsp;</i>Authors
                     </a>
                 </li>
             
                 <li>
-                    <a href="/ita/careers/">
+                    <a href="/ita/careers">
                         
                             <i class="fa fa-briefcase">&nbsp;</i>Careers
                     </a>
                 </li>
             
                 <li>
-                    <a href="/eng/who-we-are/">
+                    <a href="/eng/who-we-are">
                         
                             <i class="fa fa-users">&nbsp;</i>Who we are
                     </a>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-folder-open-o">&nbsp;</i>
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/authors/">
+                        <a href="/authors">
                             <h3>
                                 
                                     <i class="fa fa-pencil">&nbsp;</i>
@@ -202,7 +202,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/ita/careers/">
+                        <a href="/ita/careers">
                             <h3>
                                 
                                     <i class="fa fa-briefcase">&nbsp;</i>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/eng/who-we-are/">
+                        <a href="/eng/who-we-are">
                             <h3>
                                 
                                     <i class="fa fa-users">&nbsp;</i>
@@ -238,15 +238,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/php-day-2016/"><p>Facile.it devs @ PhpDay 2016</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/"><p>Faster Web with HTTP/2</p></a>
                     </li>
                 
             </ul>
@@ -363,9 +363,9 @@ ga('send', 'pageview');
 
 <p>In this post I&rsquo;m going to recap the event and make some considerations about the most interesting (and funny) talks.</p>
 
-<h1 id="day-1:d76462adf2f880be726dc4f2826c7d21">Day 1</h1>
+<h1 id="day-1">Day 1</h1>
 
-<h2 id="keynote-wojtek-kalicinski-https-twitter-com-wkalic:d76462adf2f880be726dc4f2826c7d21">Keynote - <em><a href="https://twitter.com/wkalic">Wojtek Kalicinski</a></em></h2>
+<h2 id="keynote-wojtek-kalicinski-https-twitter-com-wkalic">Keynote - <em><a href="https://twitter.com/wkalic">Wojtek Kalicinski</a></em></h2>
 
 <p>The day 1 keynote was all about the N Developer Preview and was given by Wojtek Kalicinski, a developer advocate directly from Google.
 Wojtek went through all the new improvements of the platform, both from user&rsquo;s and developer&rsquo;s point of view. Here’s a short summary of the most relevant ones:</p>
@@ -374,7 +374,7 @@ Wojtek went through all the new improvements of the platform, both from user&rsq
 <li><strong>Multi-window support</strong>: probably the most requested user feature. I’ve always thought that its implementation would have been relatively straightforward, given the already responsive UI of Android, and in fact the code changes that are needed to support this feature are minimal. Just make sure you don’t lock screen orientation using <code>android:screenOrientation</code> in your manifest.</li>
 <li><strong>Better notifications</strong>: in addition to a visual change of the notification panel, apps will now be able to let the user interact with bundled notifications individually or to reply from the notification itself directly. Moreover, if the app already supports Android Wear notifications, most of this will come for free, since the APIs are the same.</li>
 <li><strong>Doze improvements</strong>: the battery saving mode called Doze, now works — in a less aggressive mode — when the phone is in the user pocket or hands, and not only when the phone is stationary. Wojtek said that most of the apps should continue to work without any change — or eventually <a href="http://developer.android.com/intl/ko/training/monitoring-device-state/doze-standby.html#assessing_your_app">minimal</a> —, but he strongly encouraged to test apps against this new feature.</li>
-<li><strong>JAVA 8 features!</strong>: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including <em>lambdas</em> (🎉) and <em>default and static interface methods</em> (TODO: add DP2 apis). All of this is possibile thanks to the Jack<sup class="footnote-ref" id="fnref:d76462adf2f880be726dc4f2826c7d21:1"><a rel="footnote" href="#fn:d76462adf2f880be726dc4f2826c7d21:1">1</a></sup> toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.</li>
+<li><strong>JAVA 8 features!</strong>: finally Google will allow developers to use a limited set of features from the latest version of the language (already two years old) including <em>lambdas</em> (🎉) and <em>default and static interface methods</em> (TODO: add DP2 apis). All of this is possibile thanks to the Jack<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup> toolchain which is able to compile Java 8 syntax to Java 6 compatible bytecode: in this way, old phones’ support is guaranteed.</li>
 </ul>
 
 <p>Other changes include improvements to <a href="http://developer.android.com/intl/ko/preview/api-overview.html#background_optimizations">Project Svelte</a>, a new <a href="http://developer.android.com/intl/ko/preview/api-overview.html#data_saver">Data Saver</a> feature, the addition of the <a href="http://developer.android.com/intl/ko/preview/api-overview.html#tile_api">Quick Settings Tile API</a> and <a href="http://developer.android.com/intl/ko/preview/api-overview.html">many more</a>.</p>
@@ -385,7 +385,7 @@ Wojtek went through all the new improvements of the platform, both from user&rsq
 
 <p>Not only the release of the new OS preview six months before its public release — instead of three — is really useful for third party developers to update apps to support new APIs, but hopefully it will also help phone manufactures to keep their custom Android implementations more aligned with the stock version release cycle. This will result in a better user experience and, more importantly to us, a better developer experience, making it closer to the iOS world where developers are not required to support five years old OS versions.</p>
 
-<h2 id="perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev:d76462adf2f880be726dc4f2826c7d21">#PERFMATTERS for Android - <em><a href="https://twitter.com/alosdev">Hasan Hosgel</a></em></h2>
+<h2 id="perfmatters-for-android-hasan-hosgel-https-twitter-com-alosdev">#PERFMATTERS for Android - <em><a href="https://twitter.com/alosdev">Hasan Hosgel</a></em></h2>
 
 <p><a href="https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016">Slides</a></p>
 
@@ -393,7 +393,7 @@ Wojtek went through all the new improvements of the platform, both from user&rsq
 
 <p>Performance is crucial to <strong>engage the user</strong> and I think the speaker did a great job in summarizing useful tips to improve it. Moreover most of them doesn’t alter the readability or the maintainability of the code, as is often the case for performance driven code changes.</p>
 
-<h2 id="let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn:d76462adf2f880be726dc4f2826c7d21">Let it flow! Unidirectional data flow architecture in Android - <a href="https://twitter.com/dorvaryn"><em>Benjamin Augustin</em></a></h2>
+<h2 id="let-it-flow-unidirectional-data-flow-architecture-in-android-benjamin-augustin-https-twitter-com-dorvaryn">Let it flow! Unidirectional data flow architecture in Android - <a href="https://twitter.com/dorvaryn"><em>Benjamin Augustin</em></a></h2>
 
 <p><a href="https://speakerdeck.com/dorvaryn/let-it-flow">Slides</a></p>
 
@@ -403,7 +403,7 @@ Benjamin chose to focus more on the practical aspects and so he made the concept
 
 <p>I personally likey approach that Benjamin showed us, since it has a lot of advantages. It makes the UI state completely <strong>predictable</strong> and <strong>reproducible</strong>: it allows us to represent an app state without the need to go through all the steps needed to reach it, thus it can be very useful in reproducing a bug or testing a particular situation. The problem is that, as you can see from the demo app, it adds a lot of boilerplate code and it&rsquo;s also much more verbose and difficult to implement without tools like RxJava or Kotlin, that might be problematic to some.</p>
 
-<h2 id="play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin:d76462adf2f880be726dc4f2826c7d21">Play everywhere: providing a consistent experience across very different devices - <a href="http://it.droidcon.com/2016/speakers/alessandro-bizzarri/"><em>Alessandro Bizzarri</em></a> &amp; <a href="http://it.droidcon.com/2016/speakers/dima-kunin/"><em>Dima Kunin</em></a></h2>
+<h2 id="play-everywhere-providing-a-consistent-experience-across-very-different-devices-alessandro-bizzarri-http-it-droidcon-com-2016-speakers-alessandro-bizzarri-dima-kunin-http-it-droidcon-com-2016-speakers-dima-kunin">Play everywhere: providing a consistent experience across very different devices - <a href="http://it.droidcon.com/2016/speakers/alessandro-bizzarri/"><em>Alessandro Bizzarri</em></a> &amp; <a href="http://it.droidcon.com/2016/speakers/dima-kunin/"><em>Dima Kunin</em></a></h2>
 
 <p>The two speakers showed a high-level tour of how at <strong>Spotify</strong> they  are able to provide a consistent experience across different devices — defined as the combination of its physical form and its OS.
 They created their own <strong>design language</strong> to support the majority of platforms used to define almost everything, from color palette and buttons style to animations and sounds.
@@ -411,7 +411,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 
 <p>It was a light talk but still it was interesting to see how a big company like Spotify finds solutions to scale and maintain a <strong>consistent and engaging UX</strong> across all of its user-base.</p>
 
-<h2 id="loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a:d76462adf2f880be726dc4f2826c7d21">Loving lean layouts - <a href="https://twitter.com/queencodemonkey"><em>Huyen Tue Dao</em></a> <a name="lean-layouts"></a></h2>
+<h2 id="loving-lean-layouts-huyen-tue-dao-https-twitter-com-queencodemonkey-a-name-lean-layouts-a">Loving lean layouts - <a href="https://twitter.com/queencodemonkey"><em>Huyen Tue Dao</em></a> <a name="lean-layouts"></a></h2>
 
 <p><a href="https://speakerdeck.com/queencodemonkey/droidcon-italy-2016-loving-lean-layouts">Slides</a></p>
 
@@ -419,9 +419,9 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 
 <p>The talk was very easy to follow and really useful: most of the advices covered are often ignored because singularly they have less impact, but, if taken all together and especially as good habits, they could really make the difference in maintain the <strong>UI smooth and lag-free</strong>.</p>
 
-<h1 id="day-2:d76462adf2f880be726dc4f2826c7d21">Day 2</h1>
+<h1 id="day-2">Day 2</h1>
 
-<h2 id="android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen:d76462adf2f880be726dc4f2826c7d21">Android reactive programming with RxJava - <a href="https://twitter.com/hamen"><em>Ivan Morgillo</em></a></h2>
+<h2 id="android-reactive-programming-with-rxjava-ivan-morgillo-https-twitter-com-hamen">Android reactive programming with RxJava - <a href="https://twitter.com/hamen"><em>Ivan Morgillo</em></a></h2>
 
 <p>During last couple of years RxJava has been echoing all over the Android developers community and given its huge popularity I was surprised to see that Droidcon IT offered only one talk about it.</p>
 
@@ -429,7 +429,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 
 <p>To be honest I was hoping for a more theoretical talk with an analysis of the advantages and disadvantages of embracing the reactive pattern in our Android projects. It was instead a lot practical and it covered a great number of common use cases where reactive programming could really help to make code mode readable and maintainable.</p>
 
-<h2 id="you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk:d76462adf2f880be726dc4f2826c7d21">You can do better with Kotlin - <a href="https://github.com/svtk"><em>Svetlana Isakova</em></a></h2>
+<h2 id="you-can-do-better-with-kotlin-svetlana-isakova-https-github-com-svtk">You can do better with Kotlin - <a href="https://github.com/svtk"><em>Svetlana Isakova</em></a></h2>
 
 <p><a href="https://speakerdeck.com/svtk/you-can-do-better-with-kotlin">Slides</a></p>
 
@@ -449,7 +449,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 
 <p>This talk was one of the most interesting to me, as it persuaded me to try and deepen my knowledge of Kotlin. Svetlana was very good at showing the main features of the JetBrains language and at explaining how they convert in Java code, an aspect that I found very useful to mutate my mindset with new concepts and  syntaxes.</p>
 
-<h2 id="fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej:d76462adf2f880be726dc4f2826c7d21">fun things (you: CanDo <in Kotlin> ) = … - <a href="https://github.com/mg6maciej"><em>Maciej Górski</em></a></h2>
+<h2 id="fun-things-you-cando-in-kotlin-maciej-górski-https-github-com-mg6maciej">fun things (you: CanDo <in Kotlin> ) = … - <a href="https://github.com/mg6maciej"><em>Maciej Górski</em></a></h2>
 
 <p><a href="https://github.com/mg6maciej/fun-things-you-CanDo-in-Kotlin">Code</a></p>
 
@@ -461,7 +461,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 
 <p>It was funny and informative to watch a <strong>live coding talk</strong> and for sure it made me more curious and confident about Kotlin.</p>
 
-<h1 id="conclusions:d76462adf2f880be726dc4f2826c7d21">Conclusions</h1>
+<h1 id="conclusions">Conclusions</h1>
 
 <p>The Droidcon IT is already, after three editions, the <strong>point of reference</strong> for the Android community in Italy and this year too it lived up to the expectations. We saw a lot of well-known speakers and developers such as the Googlers Nick Butcher and  Wojtek Kaliciński. It was a conference rich of interesting talks in addition to those summarized in this post, ranging between al lot of various topics such as TDD, UX, tools and many more. The only thing that surprised me was the lack of talks about Android Wear: perhaps Google is slowing down to push this platform among developers?</p>
 <div class="footnotes">
@@ -469,8 +469,8 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
 <hr />
 
 <ol>
-<li id="fn:d76462adf2f880be726dc4f2826c7d21:1"><a href="https://source.android.com/source/jack.html">Jack</a> is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
- <a class="footnote-return" href="#fnref:d76462adf2f880be726dc4f2826c7d21:1"><sup>[return]</sup></a></li>
+<li id="fn:1"><a href="https://source.android.com/source/jack.html">Jack</a> is the new Google compiler which has the goal to speed up the compilation process, compiling Java .class files directly to .dex files (Android bytecode)
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
 </ol>
 </div>
 
@@ -705,6 +705,27 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                             <header>
                                     
                                         
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -741,27 +762,6 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                                     
                                     <time class="published" datetime='2016-05-31'>
                                         31 May 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/b2700e7cbb3c4180f2053ed342bcc9c9?s=250&amp;d=mm&amp;r=x" alt="Sergio Santoro avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/faster-web-with-http-2/">Faster Web with HTTP/2</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-05-11'>
-                                        11 May 2016
                                     </time>
                             </header>
                         </article>
@@ -810,7 +810,7 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/php/">PHP</a>
+                                <a href="/categories/english/">English</a>
                                 <span style="float:right;">15</span>
                             </header>
                         </article>
@@ -821,8 +821,8 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/english/">English</a>
-                                <span style="float:right;">14</span>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
                             </header>
                         </article>
                     </li>
@@ -870,6 +870,10 @@ They explained also how they use a <strong>C++ library</strong> common to all pl
                             </header>
                         </article>
                     </li>
+                    
+                
+                    
+                
                     
                 
                     

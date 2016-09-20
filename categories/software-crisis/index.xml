@@ -25,7 +25,7 @@
 
 &lt;p&gt;Il suggerimento è quindi il seguente: un programmatore dovrebbe limitarsi a lavorare su programmi &lt;strong&gt;intellettualmente gestibili&lt;/strong&gt;, cioè programmi dei quali è possibile stabilire la correttezza semplicemente &lt;strong&gt;attraverso il ragionamento&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#la-software-crisis-nei-decenni&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/a&gt;&lt;/li&gt;
@@ -36,7 +36,7 @@
 
 &lt;p&gt;&lt;a name=&#34;la-software-crisis-nei-decenni&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;la-software-crisis-nei-decenni:ba51084cbefae16f67c65bf54f6283db&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/h2&gt;
+&lt;h2 id=&#34;la-software-crisis-nei-decenni&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/h2&gt;
 
 &lt;p&gt;Molti anni sono passati da allora, e la pratica dello sviluppo software ha attraversato varie evoluzioni e trasformazioni. Rispetto ai tempi di &lt;a href=&#34;https://it.wikipedia.org/wiki/Fortran&#34;&gt;FORTRAN&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/ALGOL_60&#34;&gt;Algol 60&lt;/a&gt;, nuovi linguaggi di programmazione sono emersi e si sono affermati come standard; nuove tecniche e paradigmi, come la programmazione orientata agli oggetti, si sono diffuse nell&amp;rsquo;industria del software dopo un lungo periodo di gestazione in &lt;a href=&#34;https://en.wikipedia.org/wiki/Object-oriented_programming#History&#34;&gt;università e centri di ricerca privati&lt;/a&gt;; diversi modi di gestire il processo di realizzazione del software e il suo ciclo di vita sono stati elaborati nei decenni, dal classico modello &lt;a href=&#34;https://en.wikipedia.org/wiki/Waterfall_model&#34;&gt;Waterfall&lt;/a&gt; alle moderne metodologie &lt;a href=&#34;http://engineering.facile.it/un-flusso-di-lavoro-agile/&#34;&gt;Agile&lt;/a&gt;.&lt;/p&gt;
 
@@ -52,7 +52,7 @@
 
 &lt;p&gt;&lt;a name=&#34;cause-di-complessita&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;cause-di-complessità:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Cause di complessità&lt;/h2&gt;
+&lt;h2 id=&#34;cause-di-complessità&#34;&gt;Cause di complessità&lt;/h2&gt;
 
 &lt;p&gt;Ma quali sono le cause di tutta questa complessità? La fonte che, a mio parere, affronta in maniera più completa il problema della complessità nel software, proponendo soluzioni concrete, è il bellissimo (e lungo) articolo di Ben Moseley e Peter Marks &amp;ldquo;Out of the Tar Pit&amp;rdquo;(2006), reperibile &lt;a href=&#34;https://www.dropbox.com/s/nov94b39ikijwqd/tarpit.pdf?dl=0&#34;&gt;QUI&lt;/a&gt;. Per poter identificare i punti principali dell&amp;rsquo;articolo dobbiamo intanto dare &lt;strong&gt;una possibile definizione di &amp;ldquo;complessità&lt;/strong&gt;&amp;rdquo;, almeno per quanto riguarda lo sviluppo software; un primo tentativo potrebbe essere il seguente:&lt;/p&gt;
 
@@ -71,7 +71,7 @@
 
 &lt;p&gt;&lt;a name=&#34;pensare-ad-oggetti&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;pensare-ad-oggetti:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Pensare ad oggetti&lt;/h2&gt;
+&lt;h2 id=&#34;pensare-ad-oggetti&#34;&gt;Pensare ad oggetti&lt;/h2&gt;
 
 &lt;p&gt;Vediamo in sintesi come il problema della complessità sia affrontato, a grandi linee, dal più diffuso e importante paradigma di sviluppo software adottato a sostituzione di quello procedurale: la programmazione orientata agli oggetti (&lt;em&gt;Object-Oriented Programming&lt;/em&gt;: &lt;strong&gt;OOP&lt;/strong&gt;). OOP adotta il principio &lt;strong&gt;dell&amp;rsquo;incapsulamento della complessità&lt;/strong&gt;: le varie strutture computazionali del nostro software, individualmente più o meno complesse, sono suddivise in porzioni sufficientemente indipendenti, rinchiuse in contenitori stagni collegati tra loro da interfacce chiare e dichiarative. Si noti intanto che questo &lt;strong&gt;non è&lt;/strong&gt; il modo in cui gli esseri umani agiscono; nel suo classico articolo &lt;a href=&#34;http://c2.com/doc/oopsla89/paper.html&#34;&gt;A Laboratory For Teaching Object-Oriented Thinking (1989)&lt;/a&gt;, il celebre &lt;a href=&#34;https://it.wikipedia.org/wiki/Kent_Beck&#34;&gt;Kent Beck&lt;/a&gt;, noto soprattutto per i fondamentali contributi alle metodologie &lt;a href=&#34;https://it.wikipedia.org/wiki/Extreme_programming&#34;&gt;Extreme Programming&lt;/a&gt; e &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt;, affronta il problema che si incontra quando si cerca di &lt;strong&gt;insegnare agli studenti a &amp;ldquo;pensare a oggetti&amp;rdquo;&lt;/strong&gt;: come essere umani siamo abituati a pensare allo stato globale di una situazione; a spostarci per comunicare direttamente con chiunque; ad affidarci al modo particolare in cui le persone che conosciamo svolgeranno un certo compito. OOP è invece basato su concetti opposti: ogni oggetto dovrebbe &amp;ldquo;vedere&amp;rdquo; solo i suoi vicini diretti, e di questi non dovrebbe comunque conoscere alcun dettaglio interno. Osserviamo quindi che &lt;strong&gt;il sistema di astrazioni&lt;/strong&gt; su cui OOP è basato non ha nulla a che fare con la vita &amp;ldquo;reale&amp;rdquo; o con il nostro abituale modo di pensare agli oggetti &amp;ldquo;fisici&amp;rdquo;, e a ragione: un software è svariati ordini di grandezza più complesso rispetto a una qualsiasi struttura fisica, e richiede strumenti diversi per poter essere compreso e gestito.&lt;/p&gt;
 
@@ -81,9 +81,9 @@
 
 &lt;p&gt;&lt;a name=&#34;un-vecchio-paradigma-programmazione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;un-vecchio-paradigma-programmazione-funzionale:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/h2&gt;
+&lt;h2 id=&#34;un-vecchio-paradigma-programmazione-funzionale&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/h2&gt;
 
-&lt;p&gt;La &amp;ldquo;programmazione funzionale&amp;rdquo; (&lt;em&gt;Functional Programming&lt;/em&gt;: &lt;strong&gt;FP&lt;/strong&gt;) è un paradigma di sviluppo software in parte codificato già alla fine degli anni cinquanta, attraverso il noto linguaggio &lt;a href=&#34;https://en.wikipedia.org/wiki/Lisp_(programming_language&#34;&gt;LISP&lt;/a&gt;), e gode di solide basi matematiche nella &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatory_logic&#34;&gt;logica combinatoria&lt;/a&gt; e nel &lt;a href=&#34;https://en.wikipedia.org/wiki/Lambda_calculus&#34;&gt;lambda calcolo&lt;/a&gt;: malgrado ciò, ha trovato difficoltà nel diffondersi sia nei corsi universitari di base che nelle aziende, forse per &lt;strong&gt;un&amp;rsquo;alta barriera d&amp;rsquo;ingresso&lt;/strong&gt;, dovuta appunto alle forti basi matematiche e alla manipolazione di concetti molto astratti e poco intuitivi.&lt;/p&gt;
+&lt;p&gt;La &amp;ldquo;programmazione funzionale&amp;rdquo; (&lt;em&gt;Functional Programming&lt;/em&gt;: &lt;strong&gt;FP&lt;/strong&gt;) è un paradigma di sviluppo software in parte codificato già alla fine degli anni cinquanta, attraverso il noto linguaggio &lt;a href=&#34;https://en.wikipedia.org/wiki/Lisp_(programming_language)&#34;&gt;LISP&lt;/a&gt;, e gode di solide basi matematiche nella &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatory_logic&#34;&gt;logica combinatoria&lt;/a&gt; e nel &lt;a href=&#34;https://en.wikipedia.org/wiki/Lambda_calculus&#34;&gt;lambda calcolo&lt;/a&gt;: malgrado ciò, ha trovato difficoltà nel diffondersi sia nei corsi universitari di base che nelle aziende, forse per &lt;strong&gt;un&amp;rsquo;alta barriera d&amp;rsquo;ingresso&lt;/strong&gt;, dovuta appunto alle forti basi matematiche e alla manipolazione di concetti molto astratti e poco intuitivi.&lt;/p&gt;
 
 &lt;p&gt;FP si basa sull&amp;rsquo;idea che un software possa essere descritto attraverso l&amp;rsquo;applicazione di tre tecniche principali:&lt;/p&gt;
 

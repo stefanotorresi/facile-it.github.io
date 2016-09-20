@@ -17,7 +17,7 @@
       <guid>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
       <description>
 
-&lt;h2 id=&#34;composer-e-l-ecosistema-php:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
+&lt;h2 id=&#34;composer-e-l-ecosistema-php&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
 
 &lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
 Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
@@ -27,7 +27,7 @@ In questi ultimi anni si è assistito ad un proliferare di numerose componenti s
 I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
 Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
 
-&lt;h2 id=&#34;la-soluzione-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;La soluzione: Puli&lt;/h2&gt;
+&lt;h2 id=&#34;la-soluzione-puli&#34;&gt;La soluzione: Puli&lt;/h2&gt;
 
 &lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
 Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
@@ -44,7 +44,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;le-componenti-di-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Le componenti di Puli&lt;/h2&gt;
+&lt;h2 id=&#34;le-componenti-di-puli&#34;&gt;Le componenti di Puli&lt;/h2&gt;
 
 &lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
 
@@ -54,7 +54,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 &lt;li&gt;Public resources manager&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;configurazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Configurazione&lt;/h3&gt;
+&lt;h3 id=&#34;configurazione&#34;&gt;Configurazione&lt;/h3&gt;
 
 &lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
 
@@ -62,7 +62,7 @@ Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata 
 Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
 Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
 
-&lt;h3 id=&#34;installazione:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione&lt;/h3&gt;
+&lt;h3 id=&#34;installazione&#34;&gt;Installazione&lt;/h3&gt;
 
 &lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
 Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
@@ -87,12 +87,12 @@ $puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
 $puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;resource-repository:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource repository&lt;/h3&gt;
+&lt;h3 id=&#34;resource-repository&#34;&gt;Resource repository&lt;/h3&gt;
 
 &lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
 Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-composer:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-composer&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
 
 &lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
 
@@ -104,7 +104,7 @@ $translationContent = file_get_contents($translationFileName);
 
 &lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;accesso-alle-risorse-con-puli:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
+&lt;h4 id=&#34;accesso-alle-risorse-con-puli&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
 
 &lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
 Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
@@ -125,7 +125,7 @@ $translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
 
 &lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;resource-overriding:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Resource overriding&lt;/h4&gt;
+&lt;h4 id=&#34;resource-overriding&#34;&gt;Resource overriding&lt;/h4&gt;
 
 &lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
 Immaginiamo di dover lavorare con due pacchetti: A e B.
@@ -135,7 +135,7 @@ Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali 
 
 &lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;discovery-service:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Discovery service&lt;/h3&gt;
+&lt;h3 id=&#34;discovery-service&#34;&gt;Discovery service&lt;/h3&gt;
 
 &lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
 
@@ -152,7 +152,7 @@ I resource providers possono quindi associare una o più risorse a tali Binding 
 
 &lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
 
-&lt;h4 id=&#34;esempio:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Esempio&lt;/h4&gt;
+&lt;h4 id=&#34;esempio&#34;&gt;Esempio&lt;/h4&gt;
 
 &lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
 
@@ -201,7 +201,7 @@ $ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-templa
 
 &lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;public-resources-manager:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Public resources manager&lt;/h3&gt;
+&lt;h3 id=&#34;public-resources-manager&#34;&gt;Public resources manager&lt;/h3&gt;
 
 &lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
 
@@ -234,7 +234,7 @@ echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
 
 &lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;installazione-delle-risorse:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Installazione delle risorse&lt;/h4&gt;
+&lt;h4 id=&#34;installazione-delle-risorse&#34;&gt;Installazione delle risorse&lt;/h4&gt;
 
 &lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
 
@@ -246,7 +246,7 @@ Installing /acme/blog/public into public_html via symlink...
 
 &lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusioni:4e9f2019ea2ccadae6802f9a945a5d57&#34;&gt;Conclusioni&lt;/h3&gt;
+&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
 
 &lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
 Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
@@ -454,7 +454,7 @@ sender.signal.send(20)
 
 &lt;p&gt;I talk sono in ordine cronologico.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:fd439f196c3125ae563b4be0e3399006&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#a-programmer-is&#34;&gt;A programmer is&amp;hellip;&lt;/a&gt;&lt;/li&gt;
@@ -475,7 +475,7 @@ sender.signal.send(20)
 
 &lt;p&gt;&lt;a name=&#34;a-programmer-is&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;a-programmer-is:fd439f196c3125ae563b4be0e3399006&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;a-programmer-is&#34;&gt;A Programmer is&amp;hellip;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Birgitta Boeckeler (&lt;a href=&#34;https://twitter.com/birgitta410&#34;&gt;@birgitta410&lt;/a&gt;)&lt;/li&gt;
@@ -496,7 +496,7 @@ sender.signal.send(20)
 
 &lt;p&gt;&lt;a name=&#34;tdd-per-android&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;tdd-per-android:fd439f196c3125ae563b4be0e3399006&#34;&gt;TDD per Android&lt;/h2&gt;
+&lt;h2 id=&#34;tdd-per-android&#34;&gt;TDD per Android&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Matteo Vaccari (&lt;a href=&#34;https://twitter.com/xpmatteo&#34;&gt;@xpmatteo&lt;/a&gt;)&lt;/li&gt;
@@ -513,7 +513,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;platformer-2d&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity:fd439f196c3125ae563b4be0e3399006&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
+&lt;h2 id=&#34;platformer-2d-jumping-from-xna-to-unity&#34;&gt;Platformer 2D: jumping from XNA to Unity&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Paolo Cattaneo (&lt;a href=&#34;https://twitter.com/RavenTravelStd&#34;&gt;Raven Travel Studios&lt;/a&gt;)&lt;/li&gt;
@@ -524,7 +524,7 @@ Piuttosto durante il talk vengono mostrati alcuni trucchi da lui scovati durante
 
 &lt;p&gt;&lt;a name=&#34;grocery-site-in-react&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react:fd439f196c3125ae563b4be0e3399006&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
+&lt;h2 id=&#34;building-the-world-s-largest-grocery-site-in-react&#34;&gt;Building the world&amp;rsquo;s largest grocery site in React&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Robbie McCorkell (&lt;a href=&#34;https://twitter.com/robbiemccorkell&#34;&gt;@robbiemccorkell&lt;/a&gt;)&lt;/li&gt;
@@ -540,7 +540,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;alert-overload&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise:fd439f196c3125ae563b4be0e3399006&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
+&lt;h2 id=&#34;alert-overload-how-to-adopt-a-microservices-architecture-without-being-overwhelmed-with-noise&#34;&gt;Alert overload: How to adopt a microservices architecture without being overwhelmed with noise&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Sarah Wells (&lt;a href=&#34;https://twitter.com/sarahjwells&#34;&gt;@sarahjwells&lt;/a&gt;)&lt;/li&gt;
@@ -571,14 +571,14 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;f-sharp-not-a-game&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;f-not-a-game:fd439f196c3125ae563b4be0e3399006&#34;&gt;F#, not a game!!!&lt;/h2&gt;
+&lt;h2 id=&#34;f-not-a-game&#34;&gt;F#, not a game!!!&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Andrea Magnorsky (&lt;a href=&#34;https://twitter.com/silverspoon&#34;&gt;@silverspoon&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;day 1 - 14:10 - 14:50 - Game Dev track (&lt;a href=&#34;http://www.roundcrisis.com/presentations/2015-codemotion-milan/#/&#34;&gt;slides&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language&#34;&gt;F#&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Andrea Magnorsky di &lt;a href=&#34;http://www.digitalfurnacegames.com&#34;&gt;Digital Furnace Games&lt;/a&gt; ha parlato dell&amp;rsquo;uso dei pattern di &lt;strong&gt;programmazione funzionale&lt;/strong&gt; nello sviluppo del loro prossimo gioco &lt;em&gt;Onikira: Demon Killer&lt;/em&gt;, per il quale hanno adottato il linguaggio funzionale &lt;a href=&#34;https://en.wikipedia.org/wiki/F_Sharp_(programming_language)&#34;&gt;F#&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nel giustificare un approccio più funzionale allo sviluppo software in generale, Andrea parla del bellissimo articolo &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;Out of the Tar Pit&lt;/a&gt;, di Ben Moseley e Peter Marks, già citato più volte su questo blog. L&amp;rsquo;eccessiva &lt;strong&gt;complessità&lt;/strong&gt; può rendere ingestibili i progetti software, compresi i giochi, e un linguaggio come F#, basato - come ogni linguaggio funzionale - sull&amp;rsquo;uso di strutture dati immbutabili, funzioni pure e &lt;em&gt;pattern matching&lt;/em&gt;, permette di gestire lo stato del sistema in maniera più semplice: F# risulta essere particolarmente potente per questo scopo, grazie agli &lt;a href=&#34;http://fsharpforfunandprofit.com/posts/convenience-active-patterns/&#34;&gt;&lt;em&gt;active patterns&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
@@ -586,7 +586,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;polymer-firebase&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase:fd439f196c3125ae563b4be0e3399006&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
+&lt;h2 id=&#34;applicazioni-real-time-con-polymer-e-firebase&#34;&gt;Applicazioni Real-Time con Polymer e Firebase&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Michel Murabito (&lt;a href=&#34;https://twitter.com/michelmurabito&#34;&gt;@michelmurabito&lt;/a&gt;)&lt;/li&gt;
@@ -598,7 +598,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;offline-web-applications&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications:fd439f196c3125ae563b4be0e3399006&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
+&lt;h2 id=&#34;the-new-mobile-challenge-offline-enablement-for-web-applications&#34;&gt;The new Mobile Challenge: Offline-Enablement for Web Applications&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Christiane Kurz (&lt;a href=&#34;https://twitter.com/learnui5&#34;&gt;@learnui5&lt;/a&gt;)&lt;/li&gt;
@@ -611,7 +611,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;feature-gluttony&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;how-to-defeat-feature-gluttony:fd439f196c3125ae563b4be0e3399006&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
+&lt;h2 id=&#34;how-to-defeat-feature-gluttony&#34;&gt;How to defeat feature gluttony&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Kasia Mrowca (&lt;a href=&#34;https://twitter.com/MrowcaKasia&#34;&gt;@MrowcaKasia&lt;/a&gt;)&lt;/li&gt;
@@ -624,7 +624,7 @@ Particolare attenzione durante il talk è stata posta sulla necessità di essere
 
 &lt;p&gt;&lt;a name=&#34;webassembly&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript:fd439f196c3125ae563b4be0e3399006&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
+&lt;h2 id=&#34;is-webassembly-the-killer-of-javascript&#34;&gt;Is WebAssembly the killer of JavaScript?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Boyan Mihaylov (&lt;a href=&#34;https://twitter.com/bmihaylov&#34;&gt;@bmihaylov&lt;/a&gt;)&lt;/li&gt;
@@ -662,7 +662,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;fatal-error&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error:fd439f196c3125ae563b4be0e3399006&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
+&lt;h2 id=&#34;the-evolution-in-the-design-of-fatal-error&#34;&gt;The evolution in the design of FATAL ERROR&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Ciro Continisio (&lt;a href=&#34;https://twitter.com/ccontinisio&#34;&gt;@ccontinisio&lt;/a&gt;), Ennio Pirolo (&lt;a href=&#34;https://twitter.com/santennio&#34;&gt;@SantEnnio&lt;/a&gt;)&lt;/li&gt;
@@ -673,7 +673,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;ancora-cpp&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c:fd439f196c3125ae563b4be0e3399006&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
+&lt;h2 id=&#34;perché-nel-2015-parliamo-ancora-di-c&#34;&gt;Perché nel 2015 parliamo ancora di C++?&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Marco Arena (&lt;a href=&#34;https://twitter.com/italiancpp&#34;&gt;@italiancpp&lt;/a&gt;)&lt;/li&gt;
@@ -684,7 +684,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;mobile-senza-unity&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk:fd439f196c3125ae563b4be0e3399006&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
+&lt;h2 id=&#34;mobile-senza-unity-il-caso-sbk&#34;&gt;Mobile senza Unity: il caso SBK&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Giuseppe Navarria (&lt;a href=&#34;https://twitter.com/waveringradiant&#34;&gt;@WaveringRadiant&lt;/a&gt;)&lt;/li&gt;
@@ -695,7 +695,7 @@ WASM non sostituirà JavaScript in quanto quest&amp;rsquo;ultimo, tramite compil
 
 &lt;p&gt;&lt;a name=&#34;php-7&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;speeding-up-the-web-with-php-7:fd439f196c3125ae563b4be0e3399006&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
+&lt;h2 id=&#34;speeding-up-the-web-with-php-7&#34;&gt;Speeding up the Web with PHP 7&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rasmus Lerdorf (&lt;a href=&#34;https://twitter.com/rasmus&#34;&gt;@rasmus&lt;/a&gt;)&lt;/li&gt;
@@ -747,7 +747,7 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 
 &lt;p&gt;Personalmente ho la tendenza a preferire linguaggi più statici, e un approccio &lt;a href=&#34;http://engineering.facile.it/type-first-development-in-swift/&#34;&gt;type-first&lt;/a&gt; alla programmazione, ma di tanto in tanto mi piace lavorare in un ambiente più &lt;em&gt;dinamico&lt;/em&gt;, quindi, sia per preferenza personale che per esigenze di business, non ho ancora messo Objective-C da parte. Ma dopo poche settimane di Swift, mi è mancata subito una delle sue funzionalità più potenti: gli &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optionals&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#il-tipo-optional&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
@@ -759,7 +759,7 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 
 &lt;p&gt;&lt;a name=&#34;il-tipo-optional&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;il-tipo-optional:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;il-tipo-optional&#34;&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;Il tipo &lt;code&gt;Optional&lt;/code&gt; è un tipo &lt;em&gt;generico&lt;/em&gt; (o, più propriamente, &lt;em&gt;parametrico&lt;/em&gt;), dipendente da un &lt;strong&gt;tipo secondario&lt;/strong&gt;: è possibile ad esempio definire un &lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt; oppure un &lt;code&gt;Optional&amp;lt;Int&amp;gt;&lt;/code&gt;: la sintassi di Swift permette di scrivere i tipi appena indicati con &lt;code&gt;String?&lt;/code&gt; e &lt;code&gt;Int?&lt;/code&gt;. Ma cos&amp;rsquo;è esattamente un &lt;code&gt;Optional&lt;/code&gt;?. È un tipo particolare che serve a rappresentare un dato che &lt;em&gt;potrebbe&lt;/em&gt; esistere, ed essere quindi di un certo tipo secondario, o potrebbe non esistere, ed essere quindi &lt;strong&gt;nil&lt;/strong&gt;: &lt;em&gt;inscatolando&lt;/em&gt; il valore opzionale in un &lt;code&gt;Optional&lt;/code&gt;, il compilatore di Swift saprà che quel valore potrà essere nil, e emettere un errore nei casi in cui stiamo usando un &lt;code&gt;Optional&lt;/code&gt; dove ci si aspetta un valore &lt;strong&gt;sempre&lt;/strong&gt; presente. Questa semplice funzionalità ci garantisce notevole rigore nella definizione dei nostri tipi di dato e funzione: ad esempio, in Swift non possiamo inizializzare un valore non opzionale con nil, e considerando che, per il compilatore, un valore non può essere usato prima di essere istanziato, se assegniamo il tipo &lt;code&gt;String&lt;/code&gt; a un valore, siamo sicuri al 100% che quel valore sarà &lt;strong&gt;sempre a comunque&lt;/strong&gt; una stringa.&lt;/p&gt;
 
@@ -769,7 +769,7 @@ Abbiamo visto impegno nella competizione, talenti diversi e complementari tra lo
 
 &lt;p&gt;&lt;a name=&#34;optionals-in-swift&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;optionals-in-swift:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Optionals in Swift&lt;/h2&gt;
+&lt;h2 id=&#34;optionals-in-swift&#34;&gt;Optionals in Swift&lt;/h2&gt;
 
 &lt;p&gt;Consideriamo il seguente codice Swift:&lt;/p&gt;
 
@@ -834,7 +834,7 @@ let anotherOptionalInt = anotherOptionalString.map(toInt).map(doubled)
 
 &lt;p&gt;&lt;a name=&#34;torniamo-a-objective-c&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;torniamo-a-objective-c:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Torniamo a Objective-C&lt;/h2&gt;
+&lt;h2 id=&#34;torniamo-a-objective-c&#34;&gt;Torniamo a Objective-C&lt;/h2&gt;
 
 &lt;p&gt;Implementiamo la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C:&lt;/p&gt;
 
@@ -990,7 +990,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;esempio-un-parser-json&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;esempio-un-parser-json:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Esempio: un parser JSON&lt;/h2&gt;
+&lt;h2 id=&#34;esempio-un-parser-json&#34;&gt;Esempio: un parser JSON&lt;/h2&gt;
 
 &lt;p&gt;Supponiamo di voler realizzare un&amp;rsquo;app che mostra informazioni sui film: possiamo ottenerle in formato JSON da un sito come &lt;a href=&#34;http://api.myapifilms.com/index.do&#34;&gt;myapifilms&lt;/a&gt;. La rappresentazione JSON di ogni film è del tipo seguente:&lt;/p&gt;
 
@@ -1240,7 +1240,7 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusione:356e4f51f7182f15c3c3e75bc317d5ff&#34;&gt;Conclusione&lt;/h2&gt;
+&lt;h2 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h2&gt;
 
 &lt;p&gt;Implementare la classe &lt;code&gt;Optional&lt;/code&gt; in Objective-C ci ha permesso di parsare un JSON, cosa spesso difficile da mantenere e soggetta a errori, in un modo semplice e lineare. In realtà ci sono &lt;strong&gt;molti casi&lt;/strong&gt; in cui lavorare con gli &lt;em&gt;optionals&lt;/em&gt; ci può dare gli stessi vantaggi: componendo operazioni di tipo &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; e &lt;code&gt;filter&lt;/code&gt; possiamo esprimere il nostro intento in maniera chiara e leggibile. Ma tutto questo non riguarda solo il tipo &lt;code&gt;Optional&lt;/code&gt;: alcuni lettori avranno probabilmente notato che molti linguaggi (incluso Swift) permettono operazioni dell stesso tipo su liste e array, e il loro significato è identico: &lt;code&gt;map&lt;/code&gt; e &lt;code&gt;flatMap&lt;/code&gt;, in particolare, sono &lt;strong&gt;concetti generici&lt;/strong&gt; legati ai &lt;em&gt;monad&lt;/em&gt; (in effetti, anche il tipo &lt;code&gt;Array&lt;/code&gt; è un &lt;em&gt;monad&lt;/em&gt;), e riguarda la composizione dichiarativa di trasformazioni. Questo concetto è alla base della &lt;strong&gt;programmazione funzionale&lt;/strong&gt;, e penso ci siano molti motivi per applicare concetti simili ad ambienti più &lt;em&gt;object-oriented&lt;/em&gt;, perché aiuterebbero il programmatore a ragionare sul codice ed esprimere l&amp;rsquo;intento in maniera più dichiarativa.&lt;/p&gt;
 
@@ -1256,7 +1256,7 @@ NS_ASSUME_NONNULL_END
       <guid>http://engineering.facile.it/blog/ita/da-sviluppo-a-produzione-con-docker-e-aws-elastic-beanstalk/</guid>
       <description>
 
-&lt;h2 id=&#34;in-locale-funzionava:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;In locale funzionava&lt;/h2&gt;
+&lt;h2 id=&#34;in-locale-funzionava&#34;&gt;In locale funzionava&lt;/h2&gt;
 
 &lt;p&gt;Questo articolo si rivolge a chi ha già una &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;conoscenza base di docker&lt;/a&gt; e del suo funzionamento e sta cercando come avanzare al passo successivo, usandolo quotidianamente in sviluppo e in produzione.&lt;/p&gt;
 
@@ -1280,11 +1280,11 @@ NS_ASSUME_NONNULL_END
 
 &lt;p&gt;Potreste pensare che avrei potuto ottenere gli stessi risultati usando Vagrant o una classica macchina virtuale, ma questa soluzione non mi avrebbe dato i benefici di avere un layer di astrazione aggiuntivo senza dovermi preoccupare dell&amp;rsquo;overhead. Infatti posso avere molti più container che girano su una singola macchina di quelli che avrei avuto con la semplice virtualizzazione.&lt;/p&gt;
 
-&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
+&lt;h2 id=&#34;bookshelf-uno-scaffale-virtuale&#34;&gt;Bookshelf: uno scaffale virtuale&lt;/h2&gt;
 
 &lt;p&gt;Per snellire questo articolo ho preparato un&amp;rsquo;&lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;applicazione demo&lt;/a&gt; basata su &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: è una semplice applicazione per l&amp;rsquo;archiviazione di libri, che consente all&amp;rsquo;utente di creare e visualizzare una lista di libri.&lt;/p&gt;
 
-&lt;h4 id=&#34;download-e-dipendenze:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Download e dipendenze&lt;/h4&gt;
+&lt;h4 id=&#34;download-e-dipendenze&#34;&gt;Download e dipendenze&lt;/h4&gt;
 
 &lt;p&gt;Per prima cosa, scarichiamo l&amp;rsquo;applicazione dal suo repository:&lt;/p&gt;
 
@@ -1302,7 +1302,7 @@ NS_ASSUME_NONNULL_END
 grunt dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
+&lt;h4 id=&#34;avviare-l-ambiente-di-sviluppo&#34;&gt;Avviare l&amp;rsquo;ambiente di sviluppo&lt;/h4&gt;
 
 &lt;p&gt;Come potete vedere l&amp;rsquo;applicazione demo è distribuita con un ambiente di sviluppo docker che potete trovare nella cartella &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt;.&lt;/p&gt;
 
@@ -1315,7 +1315,7 @@ grunt dev
 
 &lt;p&gt;Dal momento che non abbiamo Elastic Beanstalk sulla nostra macchina locale (ne parleremo in seguito) e abbiamo bisogno di un modo per orchestrare i nostri container, lo faremo utilizzando &lt;strong&gt;docker-compose&lt;/strong&gt;. Ho deciso di usare Docker Compose al posto del comando &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; (che consente di far girare l&amp;rsquo;ambiente di elastic beanstalk in locale) perché allo stato dell&amp;rsquo;arte compose è più facile da usare e mantenere in locale.&lt;/p&gt;
 
-&lt;h6 id=&#34;il-file-docker-compose-yml:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
+&lt;h6 id=&#34;il-file-docker-compose-yml&#34;&gt;Il file &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h6&gt;
 
 &lt;p&gt;Per farlo dobbiamo creare un file &lt;code&gt;docker-compose.yml&lt;/code&gt; nella nostra root di progetto.&lt;/p&gt;
 
@@ -1356,7 +1356,7 @@ grunt dev
 
 &lt;p&gt;Yay! Il nostro ambiente di sviluppo è in esecuzione!&lt;/p&gt;
 
-&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
+&lt;h4 id=&#34;configurare-e-attivare-l-ambiente-di-produzione&#34;&gt;Configurare e attivare l&amp;rsquo;ambiente di produzione&lt;/h4&gt;
 
 &lt;p&gt;A questo punto ci serve un modo per rilasciare la nostra applicazione in produzione che possa: eseguire container Docker, scalare senza intoppi e possibilmente aver già installato altri interessanti componenti come, ad esempio, per il monitoring.&lt;/p&gt;
 
@@ -1427,7 +1427,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: Se qualcosa dovesse andare storto potete accedere via ssh nella macchina Elastic Beanstalk EC2 con &lt;code&gt;eb ssh&lt;/code&gt; e analizzare lo stato dei container usando strumenti che già conoscete come &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;è-fatta:242a8db2bfd7fdd1c283c509db3a4bdb&#34;&gt;È fatta!&lt;/h4&gt;
+&lt;h4 id=&#34;è-fatta&#34;&gt;È fatta!&lt;/h4&gt;
 
 &lt;p&gt;Ora potete risparmiare un sacco di tempo automatizzando il vostro workflow con docker ed ottenere un ambiente di sviluppo funzionante, auto-contenuto e condivisibile, pur mantenendolo molto simile alla vostra stabile ed efficiente infrastruttura in esecuzione nell&amp;rsquo;ambiente di produzione, sulle cui risorse avete pieno controllo.&lt;/p&gt;
 
@@ -1445,7 +1445,7 @@ REDIS_PORT
 
 &lt;p&gt;&lt;em&gt;Questo articolo è la sintesi di un talk presentato al &lt;a href=&#34;http://2015.symfonyday.it/&#34;&gt;SymfonyDay 2015&lt;/a&gt;; potete trovare le slide &lt;a href=&#34;http://jean85.github.io/slides/2015-10-paraunit-symfonyday/index.html&#34;&gt;qui&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;i-test-e-la-loro-durata:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I test e la loro durata&lt;/h4&gt;
+&lt;h4 id=&#34;i-test-e-la-loro-durata&#34;&gt;I test e la loro durata&lt;/h4&gt;
 
 &lt;p&gt;Sviluppare applicazioni scrivendo &lt;strong&gt;test&lt;/strong&gt; e facendo &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt; è un&amp;rsquo;ottima pratica, e dà parecchie soddisfazioni. Con l&amp;rsquo;andare del tempo, si fa &lt;strong&gt;crescere la suite di test&lt;/strong&gt; del proprio progetto, cercando di aumentarne la copertura e l&amp;rsquo;efficacia e si scrivono nuovi test corrispondenti alle nuove funzionalità che vengono man mano sviluppate.&lt;/p&gt;
 
@@ -1467,7 +1467,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;In realtà &lt;strong&gt;questo approccio fa perdere valore ai test&lt;/strong&gt; stessi, perché i test sono codice che non andrà mai in produzione, e che quindi può dare valore ai nostri progetti solo se viene eseguito ogni volta. Inoltre questo approccio nasconde &lt;strong&gt;una trappola&lt;/strong&gt;, dato che i test, per essere davvero efficaci, vanno eseguiti tutti ogni volta: la loro forza sta proprio nell&amp;rsquo;&lt;strong&gt;individuare gli effetti collaterali&lt;/strong&gt; imprevisti delle nostre modifiche, i bug che possono presentarsi in punti inaspettati e apparentemente lontani del nostro progetto.&lt;/p&gt;
 
-&lt;h4 id=&#34;esecuzione-parallela-dei-test:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
+&lt;h4 id=&#34;esecuzione-parallela-dei-test&#34;&gt;Esecuzione parallela dei test&lt;/h4&gt;
 
 &lt;p&gt;In Facile.it lavoro in un progetto basato su Symfony2 e Doctrine e mi sono trovato proprio davanti a questa problematica: avevamo una &lt;strong&gt;suite di test che stava crescendo&lt;/strong&gt; a ritmo sostenuto e che a volte impiegava ad eseguirsi, tra build di preparazione ed esecuzione vera e propria, anche 25 minuti.&lt;/p&gt;
 
@@ -1482,7 +1482,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Entrambi i tool sono ben sviluppati e semplici da utilizzare e le prime prove sui &lt;strong&gt;test unitari&lt;/strong&gt; sono state molto promettenti: grazie alla ridotta dimensione, la loro parallelizzazione è estremamente semplice.&lt;/p&gt;
 
-&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
+&lt;h4 id=&#34;i-problemi-di-concorrenza-nei-test-funzionali&#34;&gt;I problemi di concorrenza nei test funzionali&lt;/h4&gt;
 
 &lt;p&gt;Quando siamo passati a provare Paratest sui &lt;strong&gt;test funzionali&lt;/strong&gt; abbiamo invece incontrato grossi problemi, che si concretizzavano in &lt;strong&gt;fallimenti casuali durante l&amp;rsquo;esecuzione parallela&lt;/strong&gt;. Questi fallimenti erano dati da un problema molto semplice: stavamo accedendo più volte e in parallelo al nostro database di test.&lt;/p&gt;
 
@@ -1503,7 +1503,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Sfortunatamente anche questo approccio non ci ha soddisfatto, in quanto la costruzione del nostro database di test era piuttosto lenta (avevamo molte migration da eseguire e altrettante fixture da caricare ogni volta) e rischiavamo di guadagnare tempo da una parte per perderlo dall&amp;rsquo;altra, inoltre, avevamo avuto &lt;strong&gt;un&amp;rsquo;idea nuova&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit&#34;&gt;facile-it/paraunit&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;
 &lt;a href=&#34;https://travis-ci.org/facile-it/paraunit&#34;&gt;&lt;img src=&#34;https://travis-ci.org/facile-it/paraunit.svg&#34; alt=&#34;Travis build&#34; /&gt;&lt;/a&gt;
@@ -1525,7 +1525,7 @@ Nel caso dei &lt;strong&gt;test unitari&lt;/strong&gt; questo aumento è spesso 
 
 &lt;p&gt;Questo però era solo un primo passo e ovviamente ci siamo concentrati sull&amp;rsquo;implementare una &lt;strong&gt;soluzione radicale ai problemi di concorrenza&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;facile-it-paraunit-testcase:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
+&lt;h3 id=&#34;facile-it-paraunit-testcase&#34;&gt;facile-it/paraunit-testcase&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://packagist.org/packages/facile-it/paraunit-testcase&#34;&gt;&lt;img src=&#34;https://poser.pugx.org/facile-it/paraunit-testcase/version.svg&#34; alt=&#34;Packagist&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1546,7 +1546,7 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;L&amp;rsquo;unico limite di questo approccio è che le transazioni sono disponibili solo con alcuni database e all&amp;rsquo;interno di Doctrine quindi solo con l&amp;rsquo;&lt;code&gt;EntityManager&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;la-rapidità-di-esecuzione:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
+&lt;h4 id=&#34;la-rapidità-di-esecuzione&#34;&gt;La rapidità di esecuzione&lt;/h4&gt;
 
 &lt;p&gt;Per darvi un&amp;rsquo;idea di quanto possa essere veloce Paraunit rispetto alla normale esecuzione con PHPUnit, ho misurato il tempo di esecuzione della nostra test suite funzionale, che è sufficientemente ampia (261 classi, 1568 metodi):&lt;/p&gt;
 
@@ -1556,13 +1556,13 @@ Per realizzarla nella sua totalità, abbiamo sviluppato un test-case per PHPUnit
 
 &lt;p&gt;Ho usato il condizionale per un motivo specifico: il tempo di esecuzione di PHPUnit è in realtà una stima (in proiezione lineare) perché, circa al 12% dell&amp;rsquo;esecuzione, il processo si è chiuso per &lt;strong&gt;esaurimento della memoria&lt;/strong&gt; a disposizione, a riprova di un altro dei vantaggi nell&amp;rsquo;uso di Paraunit.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-coverage-in-parallelo:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
+&lt;h4 id=&#34;test-coverage-in-parallelo&#34;&gt;Test coverage in parallelo&lt;/h4&gt;
 
 &lt;p&gt;Un&amp;rsquo;altra caratteristica di Paraunit, attualmente in sviluppo, è la possibilità di &lt;strong&gt;parallelizzare l&amp;rsquo;elaborazione della &lt;a href=&#34;https://phpunit.de/manual/current/en/code-coverage-analysis.html&#34;&gt;coverage&lt;/a&gt;&lt;/strong&gt; dei test.&lt;/p&gt;
 
 &lt;p&gt;Questo è possibile grazie all&amp;rsquo;opzione &lt;code&gt;--coverage-php&lt;/code&gt; di PHPUnit che salva in un file .php il risultato parziale ottenuto; dopo aver lanciato i singoli test come processi separati, Paraunit esegue l&amp;rsquo;unione di tutti questi risultati.&lt;/p&gt;
 
-&lt;h4 id=&#34;sviluppi-futuri:f5798a251e9e47af9f9c30a07b87b80c&#34;&gt;Sviluppi futuri&lt;/h4&gt;
+&lt;h4 id=&#34;sviluppi-futuri&#34;&gt;Sviluppi futuri&lt;/h4&gt;
 
 &lt;p&gt;Ovviamente questo è solo l&amp;rsquo;inizio, il primo &lt;strong&gt;rilascio in open source&lt;/strong&gt; della nostra soluzione.
 Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
@@ -1596,7 +1596,7 @@ Tra gli sviluppi futuri spero di poter realizzare:&lt;/p&gt;
 
 &lt;p&gt;In questo articolo esploreremo il secondo caso, e verrà proposta una possibile soluzione: come proteggere quei dati che parsimoniosamente abbiamo accumulato &amp;ldquo;in casa&amp;rdquo;?.&lt;/p&gt;
 
-&lt;h2 id=&#34;mettere-i-dati-in-cassaforte:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Mettere i dati in cassaforte&lt;/h2&gt;
+&lt;h2 id=&#34;mettere-i-dati-in-cassaforte&#34;&gt;Mettere i dati in cassaforte&lt;/h2&gt;
 
 &lt;p&gt;In caso di dati immagazzinati, ad esempio, all&amp;rsquo;interno di un database; è certamente più difficile raggiungere il nostro tesoro, in quanto già al &amp;ldquo;sicuro&amp;rdquo; all&amp;rsquo;interno di un ambiente protetto, del quale ci fidiamo maggiormente rispetto alla volatilità della rete.
 Tuttavia è meglio non sentirsi troppo sicuri: più i nostri dati saranno preziosi, più eventuali interessati saranno stimolati a ricercare ogni via per ottenerli.
@@ -1608,27 +1608,27 @@ Una qualsiasi falla, sia hardware che software, per quanto limitata nel tempo po
 
 &lt;p&gt;La soluzione stessa prevede che la prima parte della problematica esposta (protezione dei dati durante il transito) sia risolta, e si baserà sull&amp;rsquo;uso combinato di due tipologie differenti di algoritmi di cifratura.&lt;/p&gt;
 
-&lt;h2 id=&#34;algoritmi-crittografici-simmetrici-e-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Crittografici Simmetrici e Asimmetrici&lt;/h2&gt;
+&lt;h2 id=&#34;algoritmi-crittografici-simmetrici-e-asimmetrici&#34;&gt;Algoritmi Crittografici Simmetrici e Asimmetrici&lt;/h2&gt;
 
 &lt;p&gt;Con &lt;em&gt;algoritmi crittografici&lt;/em&gt; si intendono tutti quei &lt;strong&gt;processi e procedure finalizzati ad ottenere un dato &amp;ldquo;offuscato&amp;rdquo; in modo da non essere comprensibile/intelligibile&lt;/strong&gt; da persone non autorizzate a leggerlo.&lt;/p&gt;
 
-&lt;h3 id=&#34;algoritmi-simmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Simmetrici&lt;/h3&gt;
+&lt;h3 id=&#34;algoritmi-simmetrici&#34;&gt;Algoritmi Simmetrici&lt;/h3&gt;
 
 &lt;p&gt;Questa tipologia di algoritmi si basa sull&amp;rsquo;uso di chiavi di cifratura dette &lt;strong&gt;simmetriche&lt;/strong&gt; che permettono di cifrare e decifrare dati &lt;strong&gt;utilizzando la medesima chiave crittografica&lt;/strong&gt;.
 Un esempio è &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt; (Advanced Encryption Standard), evoluzione dell&amp;rsquo;algoritmo &lt;a href=&#34;https://en.wikipedia.org/wiki/Rijndael_key_schedule&#34;&gt;Rijndael&lt;/a&gt; le cui caratteristiche si possono riassumere in un buon livello di sicurezza ed un&amp;rsquo;ottima velocità, sia che venga implementato via hardware che software.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/aes.png&#34; alt=&#34;AES&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;algoritmi-asimmetrici:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Algoritmi Asimmetrici&lt;/h3&gt;
+&lt;h3 id=&#34;algoritmi-asimmetrici&#34;&gt;Algoritmi Asimmetrici&lt;/h3&gt;
 
 &lt;p&gt;Gli algoritmi asimmetrici si distinguono dai precedenti per l&amp;rsquo;utilizzo di &lt;strong&gt;due chiavi crittografiche distinte&lt;/strong&gt;, dette pubblica e privata, per effettuare le operazioni di cifratura e decifratura.
 Il nome deriva dal metodo con il quale le due chiavi devono essere utilizzate. La chiave pubblica viene &lt;strong&gt;liberamente scambiata&lt;/strong&gt;, mentre la chiave privata &lt;strong&gt;rimane a conoscenza solo di coloro che devono poter leggere i dati&lt;/strong&gt; o i messaggi scambiati.
 La particolarità che caratterizza queste chiavi è l&amp;rsquo;impossibilità di ricavare, ad esempio, la chiave privata essendo in possesso della chiave pubblica. A meno di particolari exploit dell&amp;rsquo;algoritmo, l&amp;rsquo;unico metodo per ottenere tale chiave è il &lt;strong&gt;brute force&lt;/strong&gt; sui dati stessi.
-In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem&#34;&gt;RSA&lt;/a&gt;), uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.&lt;/p&gt;
+In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.wikipedia.org/wiki/RSA_(cryptosystem)&#34;&gt;RSA&lt;/a&gt;, uno standard di fatto nella sicurezza riguardante la trasmissione di dati: è infatti largamente utilizzato per cifrare le comunicazioni che avvengono tra client e server.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/rsa.png&#34; alt=&#34;RSA&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;la-soluzione-combinando-rsa-e-aes:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;La soluzione combinando RSA e AES&lt;/h2&gt;
+&lt;h2 id=&#34;la-soluzione-combinando-rsa-e-aes&#34;&gt;La soluzione combinando RSA e AES&lt;/h2&gt;
 
 &lt;p&gt;Ora che abbiamo ripassato le basi tecnologiche, possiamo pensare a come implementare una soluzione.&lt;/p&gt;
 
@@ -1643,18 +1643,18 @@ In questo caso l&amp;rsquo;esempio per eccellenza è &lt;a href=&#34;https://en.
 &lt;li&gt;sarà necessario offuscare anche la chiave privata di ogni utente, in modo da permetterne l&amp;rsquo;accesso solo al proprietario;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;gestire-gli-utenti:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Gestire gli utenti&lt;/h3&gt;
+&lt;h3 id=&#34;gestire-gli-utenti&#34;&gt;Gestire gli utenti&lt;/h3&gt;
 
 &lt;p&gt;Alla creazione di un nuovo utente sarà nostra premura &lt;strong&gt;generare una nuova coppia di chiavi&lt;/strong&gt; RSA, che andrà legata all&amp;rsquo;utente.
 Prima di memorizzare queste chiavi nel database (assieme alle credenziali dell&amp;rsquo;utente o in un&amp;rsquo;altra tabella), sarà necessario offuscare la chiave privata. È buona prassi, in questi casi, far scegliere una &lt;strong&gt;masterkey&lt;/strong&gt; all&amp;rsquo;utente, da utilizzare per cifrare a sua volta la chiave privata con algoritmo simmetrico.
 La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual volta dovremo decifrare i nostri dati (purtroppo la user experience è sacrificata a favore di un livello di sicurezza nettamente maggiore).
 &lt;strong&gt;N.B.&lt;/strong&gt; È assolutamente sconsigliato memorizzare la masterkey (in qualsiasi forma) sul server: l&amp;rsquo;attaccante potrebbe facilmente accedervi e tentare di forzarla sbloccando di conseguenza tutte le altre chiavi.&lt;/p&gt;
 
-&lt;h3 id=&#34;cifrare-il-documento:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Cifrare il documento&lt;/h3&gt;
+&lt;h3 id=&#34;cifrare-il-documento&#34;&gt;Cifrare il documento&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Ogni volta&lt;/strong&gt; in cui un utente caricherà un file o inserirà un testo da proteggere, sarà necessario generare una nuova chiave simmetrica &lt;strong&gt;univoca&lt;/strong&gt;. Useremo la chiave per cifrare il documento utilizzando AES e lo memorizzeremo all&amp;rsquo;interno della nostra base dati.&lt;/p&gt;
 
-&lt;h3 id=&#34;associare-il-file-all-utente:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Associare il file all&amp;rsquo;utente&lt;/h3&gt;
+&lt;h3 id=&#34;associare-il-file-all-utente&#34;&gt;Associare il file all&amp;rsquo;utente&lt;/h3&gt;
 
 &lt;p&gt;Come ultimo passo dovremo associare i dati cifrati all&amp;rsquo;utente che li sta memorizzando. È il momento di utilizzare la &amp;ldquo;tabella di scambio&amp;rdquo;. Inseriremo un record contenente i riferimenti all&amp;rsquo;utente e al file, insieme alla chiave univoca legata a quest&amp;rsquo;ultimo. La chiave verrà però prima cifrata utilizzando la chiave pubblica dell&amp;rsquo;utente.&lt;/p&gt;
 
@@ -1662,7 +1662,7 @@ La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual v
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/protezione-di-dati-sensibili-usando-la-crittografia/system.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;condividere:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;Condividere!&lt;/h3&gt;
+&lt;h3 id=&#34;condividere&#34;&gt;Condividere!&lt;/h3&gt;
 
 &lt;p&gt;Ogni volta in cui un utente proprietario di un documento (o che ha ottenuto il diritto di leggerlo) vorrà condividerlo con un secondo utente sarà sufficiente operare come segue:&lt;/p&gt;
 
@@ -1673,7 +1673,7 @@ La masterkey scelta sarà importantissima in quanto andrà richiesta ogni qual v
 &lt;li&gt;effettuare una copia del record di scambio, sostituendo l&amp;rsquo;utente con quello di destinazione e cifrando nuovamente la chiave di scambio con quella pubblica del destinatario;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;e-ora:f7580f2fe0a81e31d01e286edcaea792&#34;&gt;E ora?&lt;/h3&gt;
+&lt;h3 id=&#34;e-ora&#34;&gt;E ora?&lt;/h3&gt;
 
 &lt;p&gt;Ora che abbiamo ultimato (almeno teoricamente) il nostro sistema di protezione dei dati &lt;strong&gt;siamo definitivamente al sicuro?&lt;/strong&gt; &lt;strong&gt;Assolutamente no!&lt;/strong&gt; Tralasciando il buon esercizio tecnico svolto fin ora, dobbiamo ricordarci che &lt;strong&gt;abbiamo affidato buona parte della sicurezza del nostro sistema all&amp;rsquo;utente&lt;/strong&gt;.
 Il punto debole infatti risiede nella masterkey che resta nelle mani dei nostri utenti: se questi ultimi dovessero condividerla, o perderla, sarebbe impossibile garantire la sicurezza o il recupero dei dati immagazzinati.
@@ -1695,7 +1695,7 @@ Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sareb
 
 &lt;p&gt;Internet delle cose e web 2.0 trovano oramai sempre &lt;strong&gt;meno spazio&lt;/strong&gt; all’interno del protocollo &lt;strong&gt;HTTP/1&lt;/strong&gt;. Le tecniche di &lt;strong&gt;polling e long polling&lt;/strong&gt;, in voga fino a pochi anni fa, non permettevano di trasmettere in &lt;a href=&#34;https://it.wikipedia.org/wiki/Duplex&#34; target=&#34;_blank&#34;&gt;full duplex&lt;/a&gt; (tra server e client) contemporaneamente, erano costrette ad un alto overhead HTTP e richiedevano &lt;strong&gt;diversi sforzi&lt;/strong&gt; per simulare notifiche push server side.&lt;/p&gt;
 
-&lt;h2 id=&#34;il-protocollo-wamp:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
+&lt;h2 id=&#34;il-protocollo-wamp&#34;&gt;Il protocollo WAMP&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wamp.ws/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;WAMP&lt;/strong&gt;&lt;/a&gt; (Web Application Messaging Protocol e non Windows, Apache, etc.!) offre un moderno &lt;strong&gt;pattern di messaggistica&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34; target=&#34;_blank&#34;&gt;RPC&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern&#34; target=&#34;_blank&#34;&gt;Pub/Sub&lt;/a&gt; in maniera unificata. Registrato presso lo &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; target=&#34;_blank&#34;&gt;IANA&lt;/a&gt; come sottoprotocollo WebSocket, definisce uno &lt;strong&gt;standard aperto&lt;/strong&gt; per lo scambio di &lt;strong&gt;messaggi in tempo reale&lt;/strong&gt; tra applicazioni e componenti, e permette la creazione di architetture &lt;strong&gt;debolmente accoppiate&lt;/strong&gt; basate su &lt;strong&gt;microservizi&lt;/strong&gt;. Utilizza canali full-duplex ordinati ed è quindi adatto ad implementazioni basate su WebSocket, ma supporta allo stesso modo socket Unix, socket raw o long polling HTTP.&lt;/p&gt;
 
@@ -1804,7 +1804,7 @@ Inoltre una chiave - che è scelta dell&amp;rsquo;utente - troppo semplice sareb
 &lt;p&gt;Per funzionare WAMP necessità di uno o più server di &lt;strong&gt;routing centralizzati&lt;/strong&gt;, allo stesso modo di &lt;strong&gt;RabbitMQ per AMQP&lt;/strong&gt;.
 Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo standard &lt;em&gt;de facto&lt;/em&gt; è rappresentato da &lt;a href=&#34;http://crossbar.io/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Crossbar&lt;/strong&gt;&lt;/a&gt;, sviluppato da &lt;a href=&#34;http://tavendo.com/&#34; target=&#34;_blank&#34;&gt;Tavendo&lt;/a&gt;, alla quale si deve anche la &lt;strong&gt;definizione del protocollo&lt;/strong&gt; stesso.&lt;/p&gt;
 
-&lt;h2 id=&#34;crossbar:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Crossbar&lt;/h2&gt;
+&lt;h2 id=&#34;crossbar&#34;&gt;Crossbar&lt;/h2&gt;
 
 &lt;p&gt;Crossbar, scritto in python (&lt;a href=&#34;https://github.com/crossbario/crossbar&#34; target=&#34;_blank&#34;&gt;open source&lt;/a&gt;, licenza AGPL v3), supporta completamente le funzionalità descritte dal protocollo oltre a vantare &lt;strong&gt;configurazioni avanzate&lt;/strong&gt; come ad esempio le subscriptions &lt;a href=&#34;http://crossbar.io/docs/Pattern-Based-Subscriptions/&#34; target=&#34;_blank&#34;&gt;basate su pattern&lt;/a&gt;, le &lt;a href=&#34;http://crossbar.io/docs/Progressive-Call-Results/&#34; target=&#34;_blank&#34;&gt;progressive result&lt;/a&gt; su RPC e profili di autenticazione ed &lt;a href=&#34;http://crossbar.io/docs/Authorization/&#34; target=&#34;_blank&#34;&gt;autorizzazione&lt;/a&gt; dinamici.&lt;/p&gt;
 
@@ -1864,7 +1864,7 @@ Per quanto esistano diverse implementazioni di router, in diversi linguaggi, lo 
 &lt;/table&gt;
 &lt;em&gt;fonte: WAMP.ws&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;e-php:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..e PHP?&lt;/h2&gt;
+&lt;h2 id=&#34;e-php&#34;&gt;..e PHP?&lt;/h2&gt;
 
 &lt;p&gt;Diverse applicazioni web di backend usate presso Facile.it permettono ad un gran numero di operatori di lavorare sulle stesse pratiche in maniera collaborativa in &lt;strong&gt;tempo reale&lt;/strong&gt;.
 Il protocollo WAMP è una tecnologia sulla quale è possibile sviluppare in maniera efficiente &lt;strong&gt;dashboard collaborative&lt;/strong&gt; e realtime.. ma sarà anche in grado di funzionare adeguatamente assieme alle soluzioni PHP (spesso in Symfony 2) sviluppate in casa e &lt;strong&gt;non precedentemente disegnate per l&amp;rsquo;uso con WebSocket&lt;/strong&gt;?&lt;/p&gt;
@@ -1917,7 +1917,7 @@ $firstPublisher-&amp;gt;publish($topic, [&#39;foo&#39;,1]);
 
 &lt;p&gt;Anche in questo caso, la &lt;a href=&#34;http://crossbar.io/docs/Processes/&#34; target=&#34;_blank&#34;&gt;configurazione&lt;/a&gt; può supportare diversi host, porte, uso TLS, signed request, e attraverso GitHub è possibile trovare &lt;a href=&#34;https://github.com/crossbario/crossbarexamples&#34; target=&#34;_blank&#34;&gt;diversi esempi&lt;/a&gt; di &lt;strong&gt;possibili configurazioni&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
+&lt;h2 id=&#34;ma-i-miei-utenti-lo-supporteranno&#34;&gt;..ma i miei utenti lo supporteranno?&lt;/h2&gt;
 
 &lt;p&gt;Lato browser, passare a WAMP è davvero &lt;strong&gt;semplice&lt;/strong&gt;:
 la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Autobahn|JS&lt;/strong&gt;&lt;/a&gt; garantisce piena &lt;strong&gt;compatibilità&lt;/strong&gt; anche per &lt;a href=&#34;https://nodejs.org/en/&#34; target=&#34;_blank&#34;&gt;node.js&lt;/a&gt;, supporta l&amp;rsquo;autenticazione, ed è in grado di gestire in maniera &lt;strong&gt;asincronia&lt;/strong&gt; sia RPC che Pub/Sub.&lt;/p&gt;
@@ -1936,7 +1936,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/MEmo82CFgt1xND&#34; width=&#34;700&#34; height=&#34;550&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;h2 id=&#34;riferimenti:403f2d6c5e9e2691ac7a267aa4a7309e&#34;&gt;Riferimenti&lt;/h2&gt;
+&lt;h2 id=&#34;riferimenti&#34;&gt;Riferimenti&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://wamp.ws/&#34;&gt;WAMP Protocol&lt;/a&gt;&lt;/li&gt;
@@ -1973,7 +1973,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;Non potrei essere più d&amp;rsquo;accordo: il tempo speso da un programmatore a scrivere nuovo codice rappresenta solo &lt;strong&gt;una minima parte&lt;/strong&gt; del suo tempo totale di lavoro; molto tempo è passato a leggere il codice esistente, per correggerlo, estenderlo, modificarlo o semplicemente comprenderlo. Generando codice più comprensibile, sul quale sia più semplice ragionare, possiamo valutare più facilmente la &lt;strong&gt;correttezza&lt;/strong&gt; di quanto abbiamo scritto o, in caso di comportamento non atteso, trovare agevolmente l&amp;rsquo;errore. Ovviamente tutto questo non deve prescindere dalle tecniche che abitualmente utilizziamo per testare la correttezza del software &lt;em&gt;a posteriori&lt;/em&gt;: d&amp;rsquo;altronde, nessuna disciplina tecnico/scientifica è esente da verifiche empiriche, e in effetti l&amp;rsquo;approccio empirico all&amp;rsquo;ingegneria del software è preso in considerazione anche in ambito accademico, come dimostra l&amp;rsquo;&lt;a href=&#34;http://static.springer.com/sgw/documents/1525357/application/pdf/10664_JournalMetrics_Flyer.pdf&#34;&gt;esistenza&lt;/a&gt; della rivista &lt;a href=&#34;http://link.springer.com/journal/10664&#34;&gt;Empirical Software Engineering&lt;/a&gt;. La mia personale posizione è nel mezzo: il testing è importante, ma è anche importante ragionare &lt;em&gt;a priori&lt;/em&gt; sul proprio design, sulla sua correttezza, e sulla presenza di eventuale &lt;strong&gt;complessità accidentale&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:c252b88516f644ca0545d16795aa645d&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#l-importanza-dell-astrazione&#34;&gt;L&amp;rsquo;importanza dell&amp;rsquo;astrazione&lt;/a&gt;&lt;/li&gt;
@@ -1987,7 +1987,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;&lt;a name=&#34;l-importanza-dell-astrazione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;l-importanza-dell-astrazione:c252b88516f644ca0545d16795aa645d&#34;&gt;L&amp;rsquo;importanza dell&amp;rsquo;astrazione&lt;/h2&gt;
+&lt;h2 id=&#34;l-importanza-dell-astrazione&#34;&gt;L&amp;rsquo;importanza dell&amp;rsquo;astrazione&lt;/h2&gt;
 
 &lt;p&gt;Come abbiamo visto in un &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;precedente articolo&lt;/a&gt;, più che della complessità intrinseca legata alla logica del nostro software, dobbiamo preoccuparci della &lt;a href=&#34;http://shaffner.us/cs/papers/tarpit.pdf&#34;&gt;complessità accidentale&lt;/a&gt; che introduciamo adottando &lt;strong&gt;soluzioni non ottimali e inutilmente complicate&lt;/strong&gt;: l&amp;rsquo;utilizzo eccessivo di strutture di controllo &lt;em&gt;if-else-for-switch&lt;/em&gt; tende a rendere il codice difficile da comprendere, da mantenere e da testare; si veda ad esempio il noto &lt;a href=&#34;http://c2.com/cgi/wiki?ArrowAntiPattern&#34;&gt;Arrow Anti-Pattern&lt;/a&gt;. È da notare che l&amp;rsquo;introduzione della &lt;a href=&#34;https://en.wikipedia.org/wiki/Structured_programming&#34;&gt;programmazione &lt;em&gt;strutturata&lt;/em&gt;&lt;/a&gt;, cioè quella basata proprio sulle strutture di controllo appena citate, ha rappresentato &lt;strong&gt;un grande passo avanti&lt;/strong&gt; nello sviluppo del software a cavallo tra gli anni &amp;lsquo;60 e &amp;lsquo;70: essa ha permesso di programmare a un più alto livello di astrazione rispetto allo stile precedente, rimuovendo la necessità di gestire manualmente l&amp;rsquo;ordine di esecuzione del codice con il &lt;a href=&#34;https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD215.PDF&#34;&gt;famigerato&lt;/a&gt; comando &lt;code&gt;goto&lt;/code&gt;.&lt;/p&gt;
 
@@ -2057,7 +2057,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;&lt;a name=&#34;misurare-la-complessita&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;misurare-la-complessità:c252b88516f644ca0545d16795aa645d&#34;&gt;Misurare la complessità&lt;/h2&gt;
+&lt;h2 id=&#34;misurare-la-complessità&#34;&gt;Misurare la complessità&lt;/h2&gt;
 
 &lt;p&gt;Un&amp;rsquo;unità di misura presa spesso in considerazione nel valutare la complessità di un metodo o una funzione è la &lt;a href=&#34;https://en.wikipedia.org/wiki/Cyclomatic_complexity&#34;&gt;complessità ciclomatica&lt;/a&gt; (CC): essa rappresenta il livello di complessità generato dall&amp;rsquo;uso di molteplici strutture di controllo in un metodo o una funzione. È possibile calcolare il numero di CC per una procedura strutturata rappresentando quest&amp;rsquo;ultima con un &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_graph&#34;&gt;grafo diretto&lt;/a&gt; e contando il numero di archi e nodi. Ad esempio, possiamo rappresentare la funzione &lt;code&gt;optionalValue1&lt;/code&gt; con il seguente grafo:&lt;/p&gt;
 
@@ -2104,7 +2104,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;&lt;a name=&#34;esempio-soluzione-strutturata&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;esempio-soluzione-strutturata:c252b88516f644ca0545d16795aa645d&#34;&gt;Esempio: soluzione strutturata&lt;/h2&gt;
+&lt;h2 id=&#34;esempio-soluzione-strutturata&#34;&gt;Esempio: soluzione strutturata&lt;/h2&gt;
 
 &lt;p&gt;Una persona si reca all&amp;rsquo;ufficio di collocamento per cercare lavoro: in base ad alcuni attributi (preferenze, giovane/anziano, numero di figli di età inferiore ai 18 anni) essa può essere inviata a un certo sportello per selezionare un impiego tra i vari disponibili, oppure mandata fuori dall&amp;rsquo;ufficio nel caso in cui il set di attributi non generi una lista di lavori accettabili. Ecco la procedura completa (non è importante il realismo, è solo un esempio):&lt;/p&gt;
 
@@ -2169,7 +2169,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;&lt;a name=&#34;esempio-soluzione-oo&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;esempio-soluzione-oo:c252b88516f644ca0545d16795aa645d&#34;&gt;Esempio: soluzione OO&lt;/h2&gt;
+&lt;h2 id=&#34;esempio-soluzione-oo&#34;&gt;Esempio: soluzione OO&lt;/h2&gt;
 
 &lt;p&gt;Progettare una soluzione a oggetti è spesso un&amp;rsquo;operazione &lt;strong&gt;tanto razionale quanto creativa&lt;/strong&gt;: in genere è possibile immaginare moltissimi design OO per risolvere uno stesso problema. Come detto, il nostro intento è di &lt;em&gt;astrarre&lt;/em&gt; il concetto di &lt;em&gt;condizione&lt;/em&gt;; basandoci su questo approccio, proviamo fissare qualche punto, in modo da identificare le responsabilità e i comportamenti da assegnare alla classi:&lt;/p&gt;
 
@@ -2228,7 +2228,7 @@ la libreria &lt;a href=&#34;http://autobahn.ws/js/&#34; target=&#34;_blank&#34;&
 
 &lt;p&gt;&lt;a name=&#34;esempio-soluzione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;esempio-soluzione-funzionale:c252b88516f644ca0545d16795aa645d&#34;&gt;Esempio: soluzione funzionale&lt;/h2&gt;
+&lt;h2 id=&#34;esempio-soluzione-funzionale&#34;&gt;Esempio: soluzione funzionale&lt;/h2&gt;
 
 &lt;p&gt;Nello strutturare la soluzione OO abbiamo adottato un &lt;strong&gt;principio di composizione&lt;/strong&gt;: oggetti dal comportamento semplice, adeguatamente preparati, composti tra loro per poter ottenere strutture più complesse. In particolare ciascuno dei nostri oggetti rappresenta uno specifico &lt;em&gt;comportamento unitario&lt;/em&gt;, e i vari &lt;em&gt;comportamenti&lt;/em&gt; sono combinati per ottenere un &lt;em&gt;comportamento composto&lt;/em&gt;. &lt;strong&gt;L&amp;rsquo;astrazione regge&lt;/strong&gt;, e riusciamo ad accettare il fatto che gli oggetti &lt;em&gt;check&lt;/em&gt; siano scatole chiuse che incapsulano una singola decisione su una persona: creando una scatola più grande, con dentro scatole più piccole, possiamo rappresentare una condizione più complessa. Tuttavia ci sono due problemi tipici dell&amp;rsquo;approccio OO:&lt;/p&gt;
 
@@ -2274,7 +2274,7 @@ func &amp;lt;*&amp;gt; &amp;lt;A,B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp
 
 &lt;p&gt;&lt;a name=&#34;una-verifica-empirica&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;una-verifica-empirica:c252b88516f644ca0545d16795aa645d&#34;&gt;Una verifica empirica&lt;/h2&gt;
+&lt;h2 id=&#34;una-verifica-empirica&#34;&gt;Una verifica empirica&lt;/h2&gt;
 
 &lt;p&gt;Nel progettare le soluzioni &amp;ldquo;OO&amp;rdquo; e &amp;ldquo;funzionale&amp;rdquo; si è specificamente scelto di costruire strutture di verifica nelle quali l&amp;rsquo;ordine con il quale i check sono eseguiti fosse irrilevante: in questo modo rimuoviamo una nota causa di complessità accidentale, quella del &amp;ldquo;controllo&amp;rdquo;, e cioè dell&amp;rsquo;&lt;strong&gt;ordine&lt;/strong&gt; con il quale le operazioni sono eseguite (ne abbiamo parlato &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/#cause-di-complessita&#34;&gt;qui&lt;/a&gt;). Per fare ciò è tuttavia necessario che i check presenti nella lista &lt;strong&gt;non siano ambigui&lt;/strong&gt;: al massimo un solo check deve poter passare per una certa persona. Probabilmente sarebbe possibile impostare un &lt;strong&gt;metodo formale&lt;/strong&gt; per poter provare che un determinato set di condizioni sia non-ambiguo, e scrivere quindi un test unitario basato su tale prova, ma in questo caso un approccio &lt;em&gt;empirico&lt;/em&gt; sembra più adatto, e &lt;strong&gt;più semplice&lt;/strong&gt;.&lt;/p&gt;
 
@@ -2291,7 +2291,7 @@ func &amp;lt;*&amp;gt; &amp;lt;A,B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp
 
 &lt;p&gt;&lt;a name=&#34;conclusioni&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusioni:c252b88516f644ca0545d16795aa645d&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;Abbiamo visto tre metodi per risolvere uno stesso problema relativamente complesso, e in due di essi siamo riusciti a ottenere un sistema &lt;strong&gt;più facilmente gestibile&lt;/strong&gt;, estendibile e modificabile in sicurezza, lavorando a un &lt;strong&gt;più alto livello di astrazione&lt;/strong&gt;. In particolare il metodo &amp;ldquo;funzionale&amp;rdquo; ci ha permesso di scrivere codice più compatto, caratterizzato da un intento più evidente, al costo (basso) di un passo iniziale di astrazione in più, rappresentato dagli operatori personalizzati. Ma la chiave di lettura dell&amp;rsquo;intero processo è ancora una volta da ricercarsi nella già citata frase presente in &lt;em&gt;Structure and Interpretation of Computer Programs&lt;/em&gt;, che riporto nuovamente:&lt;/p&gt;
 
@@ -2313,7 +2313,7 @@ func &amp;lt;*&amp;gt; &amp;lt;A,B&amp;gt; (left: A -&amp;gt; B, right: A) -&amp
       <guid>http://engineering.facile.it/blog/ita/php-summer-camp-2015/</guid>
       <description>
 
-&lt;h1 id=&#34;introduzione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Introduzione&lt;/h1&gt;
+&lt;h1 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h1&gt;
 
 &lt;p&gt;Dal 26 al 29 agosto 2015 ho avuto l&amp;rsquo;occasione di partecipare al &lt;a href=&#34;http://2015.phpsummercamp.com/&#34;&gt;&lt;strong&gt;PhpSummerCamp&lt;/strong&gt;&lt;/a&gt; in Rovigno (Croazia).
 Negli stessi giorni e nello stesso luogo si è svolto anche il &lt;a href=&#34;http://2015.ezsummercamp.com/&#34;&gt;&lt;strong&gt;SummerCamp EzPublish&lt;/strong&gt;&lt;/a&gt;.
@@ -2325,7 +2325,7 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;In questo articolo descriverò gli eventi a cui ho partecipato e gli argomenti trattati, con particolare riguardo a ciò che mi ha personalmente colpito di più.&lt;/p&gt;
 
-&lt;h1 id=&#34;indice:58029b8459d31227431cf79c0465e6bb&#34;&gt;Indice&lt;/h1&gt;
+&lt;h1 id=&#34;indice&#34;&gt;Indice&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#mercoledi&#34;&gt;Mercoledì 26 agosto&lt;/a&gt;
@@ -2355,13 +2355,13 @@ Nel tempo rimanente venivano condotte varie attività dedicate alla community e 
 
 &lt;p&gt;&lt;a name=&#34;mercoledi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;mercoledì-26-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;mercoledì-26-agosto&#34;&gt;Mercoledì 26 agosto&lt;/h1&gt;
 
 &lt;p&gt;Un brevissimo keynote di apertura ha illustrato la storia del SummerCamp. Esso inizialmente ospitava soltanto la sezione EzPublish; solo negli ultimi anni è stata aggiunta la parte più generica relativa a Symfony e PHP.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;ci&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli:58029b8459d31227431cf79c0465e6bb&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
+&lt;h3 id=&#34;continuous-integration-with-php-michele-orselli&#34;&gt;Continuous integration with PHP (Michele Orselli)&lt;/h3&gt;
 
 &lt;p&gt;Il primo workshop ha illustrato come configurare e utilizzare &lt;a href=&#34;https://jenkins-ci.org/&#34;&gt;&lt;strong&gt;Jenkins&lt;/strong&gt;&lt;/a&gt;.
 L&amp;rsquo;obiettivo della sessione è stato abilitare un &lt;strong&gt;sistema di continuous integration&lt;/strong&gt; su un piccolo progetto Symfony che già aveva alcune test suite.
@@ -2373,7 +2373,7 @@ Sono state approfondite alcune configurazioni particolari di PhpUnit che consent
 
 &lt;p&gt;&lt;a name=&#34;modernising&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;modernising-the-legacy-marek-matulka:58029b8459d31227431cf79c0465e6bb&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
+&lt;h3 id=&#34;modernising-the-legacy-marek-matulka&#34;&gt;Modernising the legacy (Marek Matulka)&lt;/h3&gt;
 
 &lt;p&gt;Il presentatore ha illustrato le feature implementate da un&amp;rsquo;applicazione PHP legacy. Il codice era molto disordinato e praticamente impossibile da testare.
 Logica di business, data retrieval e viste erano mescolate in un&amp;rsquo;applicazione che non era dotata nemmeno di un singolo &lt;a href=&#34;https://it.wikipedia.org/wiki/Front_Controller_pattern&#34;&gt;front-controller&lt;/a&gt;.
@@ -2388,7 +2388,7 @@ La struttura del workshop era particolare: ciascun macro-task era diviso in molt
 
 &lt;p&gt;&lt;a name=&#34;frontend&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo:58029b8459d31227431cf79c0465e6bb&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
+&lt;h3 id=&#34;frontend-as-design-to-backend-middleware-or-some-js-concepts-that-any-good-php-dev-should-know-damir-brekalo&#34;&gt;Frontend as design to backend middleware or some JS concepts that any good PHP dev should know (Damir Brekalo)&lt;/h3&gt;
 
 &lt;p&gt;Purtroppo, data la scarsa presenza di partecipanti con competenze avanzate di JavaScript, la presentazione ha trattato argomenti abbastanza basilari rispetto a quelli pianificati.
 Si è visto come applicare il &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;paradigma object oriented&lt;/a&gt; in JavaScript con numerosi confronti di funzionalità e sintassi tra JS e PHP che hanno consentito a tutti di comprendere l&amp;rsquo;argomento.
@@ -2399,7 +2399,7 @@ In generale il workshop è stato interessante ma, rispetto agli altri, conteneva
 
 &lt;p&gt;&lt;a name=&#34;debate&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;celebrity-debate:58029b8459d31227431cf79c0465e6bb&#34;&gt;Celebrity debate&lt;/h3&gt;
+&lt;h3 id=&#34;celebrity-debate&#34;&gt;Celebrity debate&lt;/h3&gt;
 
 &lt;p&gt;È stata una gara scherzosa tra i due partecipanti Ryan Weaver e Bernhard Schussek nel sostenere le loro opinioni su molteplici domande, alcune delle quali anche stabilite dal pubblico.
 Alcuni esempi di domande: Mac vs Linux, &lt;a href=&#34;http://engineering.facile.it/programmazione-funzionale-perche-preoccuparsi/&#34;&gt;Functional programming&lt;/a&gt; vs &lt;a href=&#34;https://it.wikipedia.org/wiki/Programmazione_orientata_agli_oggetti&#34;&gt;OOP&lt;/a&gt;, Tea vs Coffee, USA vs Europe
@@ -2410,11 +2410,11 @@ Il vincitore Ryan Weaver è stato selezionato dal pubblico in base ad un contegg
 
 &lt;p&gt;&lt;a name=&#34;giovedi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;giovedì-27-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;giovedì-27-agosto&#34;&gt;Giovedì 27 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;coupling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
+&lt;h3 id=&#34;loose-coupling-in-practice-jakub-zalas&#34;&gt;Loose coupling in practice (Jakub Zalas)&lt;/h3&gt;
 
 &lt;p&gt;L&amp;rsquo;obiettivo della sessione era disaccoppiare l&amp;rsquo;applicazione &lt;a href=&#34;http://symfony.com/blog/introducing-the-symfony-demo-application&#34;&gt;Symfony Demo&lt;/a&gt; da &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine ORM/DBAL&lt;/a&gt; e di consentire lo switch ad altre strategie di storage.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Quite a crowd at &lt;a href=&#34;https://twitter.com/jakub_zalas&#34;&gt;@jakub_zalas&lt;/a&gt; workshop on loose coupling with &lt;a href=&#34;https://twitter.com/symfony&#34;&gt;@Symfony&lt;/a&gt;! &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/KnvqaafRfG&#34;&gt;pic.twitter.com/KnvqaafRfG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Marek ✈ (@super_marek) &lt;a href=&#34;https://twitter.com/super_marek/status/636805256987455488&#34;&gt;August 27, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -2432,7 +2432,7 @@ Anche in questo workshop le soluzioni ai problemi erano già presenti nel reposi
 
 &lt;p&gt;&lt;a name=&#34;puli&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek:58029b8459d31227431cf79c0465e6bb&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
+&lt;h3 id=&#34;next-gen-package-development-with-puli-bernhard-schussek&#34;&gt;Next-gen package development with Puli (Bernhard Schussek)&lt;/h3&gt;
 
 &lt;p&gt;Questa sessione è stata divisa in due parti. La prima è una presentazione del &lt;strong&gt;progetto &lt;a href=&#34;http://docs.puli.io/en/latest/&#34;&gt;Puli&lt;/a&gt;&lt;/strong&gt;. Sono state illustrate le funzionalità dell&amp;rsquo;applicazione e i problemi che essa risolve.
 Puli è un gestore della configurazione di pacchetti che mira a rendere &lt;strong&gt;le librerie PHP più omogenee e più semplici da configurare&lt;/strong&gt;. Esso, per funzionare, usa &lt;a href=&#34;https://getcomposer.org/&#34;&gt;Composer&lt;/a&gt; che continua a gestire il package retrieval e l&amp;rsquo;autoloading.
@@ -2453,7 +2453,7 @@ Ciò a consentito ai partecipanti di proseguire in autonomia senza ritardi colle
 
 &lt;p&gt;&lt;a name=&#34;unconference&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;unconference:58029b8459d31227431cf79c0465e6bb&#34;&gt;Unconference&lt;/h3&gt;
+&lt;h3 id=&#34;unconference&#34;&gt;Unconference&lt;/h3&gt;
 
 &lt;p&gt;A fine giornata si è svolta la sessione &amp;ldquo;unconference&amp;rdquo;.
 Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
@@ -2466,13 +2466,13 @@ Sono stati trattati diversi argomenti interessanti, tra cui:&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;venerdi&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;venerdì-28-agosto:58029b8459d31227431cf79c0465e6bb&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
+&lt;h1 id=&#34;venerdì-28-agosto&#34;&gt;Venerdì 28 agosto&lt;/h1&gt;
 
 &lt;p&gt;&lt;a name=&#34;profiling&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;profiling-php-apps-nicolas-grekas&#34;&gt;Profiling PHP Apps (Nicolas Grekas)&lt;/h3&gt;
 
-&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;).
+&lt;p&gt;Una prima presentazione ha illustrato i concetti fondamentali della &lt;a href=&#34;https://en.wikipedia.org/wiki/Profiling_(computer_programming)&#34;&gt;&lt;strong&gt;profilazione&lt;/strong&gt;&lt;/a&gt;.
 Sono state esaminate le tecniche principali di collezione delle informazioni: &lt;a href=&#34;https://en.wikipedia.org/wiki/Hooking&#34;&gt;&lt;strong&gt;function hooks&lt;/strong&gt;&lt;/a&gt; e &lt;strong&gt;sampling&lt;/strong&gt;, così come diversi tool per la profilazione: &lt;a href=&#34;http://xdebug.org/&#34;&gt;XDebug&lt;/a&gt;, &lt;a href=&#34;http://xhprof.io/&#34;&gt;Xhprof&lt;/a&gt; e &lt;a href=&#34;http://newrelic.com/&#34;&gt;New Relic&lt;/a&gt;.
 Prove pratiche con questi tool hanno consentito di evidenziare le loro peculiarità e differenze. È stato interessante notare, ad esempio, l&amp;rsquo;accuratezza e la semplicità delle informazioni fornite dalla libreria Xhprof rispetto ai concorrenti.
 Le prove pratiche hanno inoltre evidenziato che l&amp;rsquo;attività di profilazione non è semplice, soprattutto a causa del setup richiesto.
@@ -2486,7 +2486,7 @@ Le attività di Input/Output superflue causano rallentamenti, esempi sono le scr
 
 &lt;p&gt;&lt;a name=&#34;symfony3&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas:58029b8459d31227431cf79c0465e6bb&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
+&lt;h3 id=&#34;migrating-to-symfony-3-nicolas-grekas&#34;&gt;Migrating to Symfony 3 (Nicolas Grekas)&lt;/h3&gt;
 
 &lt;p&gt;Questo workshop ha consentito di apprendere la &lt;strong&gt;roadmap a lungo termine del framework Symfony&lt;/strong&gt;.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;on the way to symfony 3 at &lt;a href=&#34;https://twitter.com/hashtag/phpsummer?src=hash&#34;&gt;#phpsummer&lt;/a&gt; with &lt;a href=&#34;https://twitter.com/nicolasgrekas&#34;&gt;@nicolasgrekas&lt;/a&gt; &lt;a href=&#34;http://t.co/vijn5ttzPG&#34;&gt;pic.twitter.com/vijn5ttzPG&lt;/a&gt;&lt;/p&gt;&amp;mdash; dbu (@dbu) &lt;a href=&#34;https://twitter.com/dbu/status/637233201635835904&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -2501,7 +2501,7 @@ Ciò consente all&amp;rsquo;utente di rilevare subito eventuali utilizzi non cor
 
 &lt;p&gt;&lt;a name=&#34;experts&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;meet-the-experts:58029b8459d31227431cf79c0465e6bb&#34;&gt;Meet the experts&lt;/h3&gt;
+&lt;h3 id=&#34;meet-the-experts&#34;&gt;Meet the experts&lt;/h3&gt;
 
 &lt;p&gt;Diversi gruppi di persone si sono riunite per parlare di molteplici argomenti.
 &lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Ecommerce on Symfony roundtable at &lt;a href=&#34;https://twitter.com/PHPSummerCamp&#34;&gt;@PHPSummerCamp&lt;/a&gt; &lt;a href=&#34;http://t.co/RD8ueJX7Nj&#34;&gt;pic.twitter.com/RD8ueJX7Nj&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ivo Lukač (@ilukac) &lt;a href=&#34;https://twitter.com/ilukac/status/637288188231450625&#34;&gt;August 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
@@ -2515,7 +2515,7 @@ Un confronto tra esperti, il miglior modo per chiudere la giornata.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;conclusione&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusione:58029b8459d31227431cf79c0465e6bb&#34;&gt;Conclusione&lt;/h1&gt;
+&lt;h1 id=&#34;conclusione&#34;&gt;Conclusione&lt;/h1&gt;
 
 &lt;p&gt;Il PhpSummerCamp è un evento particolare: presentazioni, discussioni, workshop e attività extra lo hanno reso interessante e divertente allo stesso tempo.
 Tesi rafforzata dalla continua affluenza di sviluppatori che ogni anno non vogliono perdersi tale evento.
@@ -2536,30 +2536,30 @@ In questo articolo vi mostrerò quello che è stato il mio personale percorso, n
 
 &lt;p&gt;Da sviluppatore web, la mia esigenza è di conservare i sorgenti sulla macchina host e condividerli con la VM; per la natura di PHP, la condivisione deve anche essere molto veloce, poiché ad ogni richiesta i files verranno letti nuovamente dal disco. Nulla di complicato, quindi sono partito dalla cosa più semplice.&lt;/p&gt;
 
-&lt;h2 id=&#34;boot2docker:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;boot2docker&lt;/h2&gt;
+&lt;h2 id=&#34;boot2docker&#34;&gt;boot2docker&lt;/h2&gt;
 
 &lt;p&gt;Probabilmente la soluzione più nota e diffusa, &lt;a href=&#34;https://docs.docker.com/installation/mac/&#34;&gt;boot2docker&lt;/a&gt; è stata la mia prima scelta. Si installa con &lt;code&gt;homebrew&lt;/code&gt; o &lt;code&gt;curl&lt;/code&gt; e viene distribuita con una propria ISO, molto leggera e progettata appositamente per Docker, che gira su VirtualBox.
 L&amp;rsquo;unica vera pecca è proprio il protocollo di condivisione nativo di VirtualBox, &lt;code&gt;vboxsf&lt;/code&gt;, che risulta &lt;strong&gt;molto lento&lt;/strong&gt; per progetti di medie dimensioni e rende il caricamento delle pagine lunghissimo.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-osx:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;docker-osx&lt;/h2&gt;
+&lt;h2 id=&#34;docker-osx&#34;&gt;docker-osx&lt;/h2&gt;
 
 &lt;p&gt;Decido di &lt;a href=&#34;https://github.com/noplay/docker-osx&#34;&gt;provarlo&lt;/a&gt; incuriosito da un collega che ne aveva creato una versione modificata per supportare la &lt;strong&gt;condivisione NFS&lt;/strong&gt;, ma nonostante questo non lo trovo migliore di boot2docker. Inoltre il suo sviluppo è precedente, e il progetto è stato abbandonato quando Docker ha iniziato a supportare ufficialmente boot2docker: è in effetti lo stesso sviluppatore a sconsigliarne l&amp;rsquo;utilizzo da parte di nuovi utenti.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-parallels-boot2docker-https-github-com-parallels-boot2docker-vagrant-box&#34;&gt;Vagrant e &lt;a href=&#34;https://github.com/Parallels/boot2docker-vagrant-box&#34;&gt;parallels/boot2docker&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;Leggo su un blog che è possibile avere prestazioni migliori utilizzando un sistema di virtualizzazione alternativo a VirtualBox, come ad esempio Parallels o VMWare Fusion. Per entrambi esistono delle ISO modificate di boot2docker e la macchina dev&amp;rsquo;essere configurata usando Vagrant. La mia scelta cade su &lt;strong&gt;Parallels&lt;/strong&gt;, e finalmente riesco a creare &lt;strong&gt;una macchina performante&lt;/strong&gt; con condivisione NFS.
 Purtroppo il mantenimento della ISO sembra non stare al passo con la frequenza di rilascio di Docker (ero fermo alla versione 1.4.1 quando la 1.5 era disponibile da diverse settimane), quindi decido di cambiare nuovamente soluzione.&lt;/p&gt;
 
-&lt;h2 id=&#34;vagrant-e-ubuntu:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
+&lt;h2 id=&#34;vagrant-e-ubuntu&#34;&gt;Vagrant e Ubuntu&lt;/h2&gt;
 
 &lt;p&gt;Dati i precedenti limiti e relativi fallimenti, tento una strada alternativa e &lt;a href=&#34;https://github.com/ildanno/parallels-docker-vagrantfile&#34;&gt;preparo un Vagrantfile&lt;/a&gt; contenente tutto quello che mi serve: una macchina Ubuntu che gira su Parallels, repository di Docker aggiornato, condivisione NFS e possibilità di eseguire comandi al boot.
 Ma ancora una volta ho un problema fastidioso, che si verificava già con la soluzione precedente ma che (sbagliando) attribuivo a boot2docker. Ad ogni avvio della macchina, infatti, si crea &lt;strong&gt;un conflitto&lt;/strong&gt; con OS X per l&amp;rsquo;utilizzo di &lt;strong&gt;alcune risorse di rete&lt;/strong&gt; e devo risolverle manualmente riavviando il demone NAT di Parallels. Inoltre scopro che con vagrant+parallels lo spazio utilizzato dal disco virtuale non è più recuperabile una volta allocato e il mio SSD è ormai alle strette.&lt;/p&gt;
 
-&lt;h2 id=&#34;vm-custom:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;VM custom&lt;/h2&gt;
+&lt;h2 id=&#34;vm-custom&#34;&gt;VM custom&lt;/h2&gt;
 
 &lt;p&gt;Preso dallo sconforto scelgo di avere il &lt;strong&gt;controllo completo&lt;/strong&gt;: installo &lt;strong&gt;VMWare Fusion&lt;/strong&gt; per avere un sistema di virtualizzazione più performante di VirtualBox, ma senza gli inconvenienti di Parallels, e configuro una macchina con Ubuntu server. Posso montare share NFS e ridimensionare il disco virtuale. Mi sembra una soluzione molto artigianale, ma funziona esattamente come voglio io e credo finalmente di avere trovato la mia pace. Ma non è così.&lt;/p&gt;
 
-&lt;h2 id=&#34;docker-machine:aeddcc759c6f7b3a77b59769b654e3a1&#34;&gt;Docker Machine&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine&#34;&gt;Docker Machine&lt;/h2&gt;
 
 &lt;p&gt;Da alcune settimane è uscita una novità sul mercato, direttamente da casa Docker, che ho inizialmente ignorato. Si chiama &lt;a href=&#34;https://docs.docker.com/machine/&#34;&gt;Docker Machine&lt;/a&gt; e ad una prima occhiata non sembra fare cose molto diverse da boot2docker, tant&amp;rsquo;è che ne utilizza la stessa ISO. Però il fatto che venga rilasciato direttamente dalla casa madre mi fa ben sperare, vista anche l&amp;rsquo;evoluzione avuta da altri tools come &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker Compose&lt;/a&gt;, e dopo qualche tempo decido di dargli una possibilità.&lt;/p&gt;
 
@@ -2616,27 +2616,27 @@ $ docker-machine ssh dev2 -- sudo mount 172.16.153.1:/Users/dcontini/Sites /var/
 
 &lt;p&gt;Parlare di recensione della giornata mi sembra inappropriato. Preferisco soffermarmi su cosa mi ha colpito e cosa mi sono portato a casa da questa esperienza.&lt;/p&gt;
 
-&lt;h2 id=&#34;welcome-coffee:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Welcome coffee&lt;/h2&gt;
+&lt;h2 id=&#34;welcome-coffee&#34;&gt;Welcome coffee&lt;/h2&gt;
 
 &lt;p&gt;Partiamo dal primo impatto: la location. Beh, complimenti ad Alcatel perché ha una sede molto bella! raggiungerla in auto non è stato tanto difficile e tutto quel verde dentro e fuori dagli uffici trasmette una bella sensazione. Come al solito sono in ritardo, giusto il tempo di un caffè, offerto dal nostro host, e qualche stretta di mano e subito si comincia.&lt;/p&gt;
 
-&lt;h2 id=&#34;keynote:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Keynote&lt;/h2&gt;
+&lt;h2 id=&#34;keynote&#34;&gt;Keynote&lt;/h2&gt;
 
 &lt;p&gt;Il keynote è di &lt;a href=&#34;https://twitter.com/ixhd&#34;&gt;Cliff Hazell&lt;/a&gt;, un ragazzo che fa l&amp;rsquo;agile coach in Spotify. Ha illustrato una &lt;strong&gt;tecnica di visualizzazione&lt;/strong&gt; della conoscenza e dei processi su una grande parete con dei post-it. Un qualcosa che mi ha ricordato l&amp;rsquo;&lt;a href=&#34;http://ziobrando.blogspot.it/2013/11/introducing-event-storming.html&#34;&gt;event storming&lt;/a&gt; che ho visto raccontare da &lt;a href=&#34;http://www.avanscoperta.it/it/author/a-brandolini/&#34;&gt;Alberto Brandolini&lt;/a&gt; a BetterSoftware, tuttavia mi è parso ci siano alcune differenze. In entrambi i metodi il risultato finale è &lt;strong&gt;una parete piena di post-it che spiegano il modello&lt;/strong&gt; da sviluppare. Nell&amp;rsquo;event storming, la creazione partecipata della parete è l&amp;rsquo;evoluzione degli stati del modello sono il punto focale. Non ho mai avuto il piacere di usare event storming, ma tutte le presentazioni che ho visto delineano il modo in cui la parete &amp;ldquo;si riempie&amp;rdquo;, mentre ho poche informazioni su come questa poi si traduca in software. Piuttosto, mi pare di aver colto che Cliff ponga molta enfasi su come man mano la conoscenza che stiamo visualizzando si evolva e man mano si traduca in componenti software. Mi intriga l&amp;rsquo;ipotesi di combinare le due cose!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/miniiad-vimercate-2015-reportage/visualization.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;agile-e-il-business-delle-aziende:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
+&lt;h2 id=&#34;agile-e-il-business-delle-aziende&#34;&gt;Agile e il business delle aziende&lt;/h2&gt;
 
 &lt;p&gt;La mia giornata prosegue parlando di &lt;strong&gt;&lt;a href=&#34;http://www.ideastartup.it/startupzionario/&#34;&gt;Startup&lt;/a&gt;&lt;/strong&gt; e &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Produzione_snella&#34;&gt;Lean&lt;/a&gt;&lt;/strong&gt; con &lt;a href=&#34;https://twitter.com/felicepescatore&#34;&gt;Felice Pescatore&lt;/a&gt;. Una sessione sul percorso &amp;ldquo;&lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#leanstartup&#34;&gt;dal garage al grattacielo&lt;/a&gt;&amp;rdquo;. Bello stile, coinvolgente! Ho già letto tanto su Lean, purtroppo non ho portato via nulla di nuovo.
 Anche il talk successivo &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Kanban_experiment&#34;&gt;Kanban experiment&lt;/a&gt;, su &lt;strong&gt;&lt;a href=&#34;https://it.wikipedia.org/wiki/Kanban&#34;&gt;Kanban&lt;/a&gt;&lt;/strong&gt;, non mi ha detto nulla di nuovo. Mi piace però constatare che molti gruppi di lavoro che si stanno avvicinando alle metodologie Agili, scelgono Kanban.&lt;/p&gt;
 
-&lt;h2 id=&#34;large-scaling-scrum:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
+&lt;h2 id=&#34;large-scaling-scrum&#34;&gt;Large Scaling SCRUM&lt;/h2&gt;
 
 &lt;p&gt;Dopo un buon pranzo, ho assistito ad una &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#LeSS_Adoption&#34;&gt;sessione&lt;/a&gt; su &lt;strong&gt;&lt;a href=&#34;http://less.works/&#34;&gt;Less&lt;/a&gt;&lt;/strong&gt;. E quì rimango veramente sorpreso in positivo. Non conoscevo Less e penso se ne dovrebbe parlare di più, soprattutto in aziende con tanti gruppi di lavoro diversi. &lt;a href=&#34;https://www.youtube.com/watch?v=PTjnw9EXsD4&#34;&gt;Francesco Sferlazza&lt;/a&gt; ha raccontato come in Alcatel hanno introdotto Less (Large Scaling SCRUM). In sostanza, si tratta di un framework per &lt;strong&gt;attuare SCRUM in aziende composte da svariati sottogruppi che fanno SCRUM che però hanno delle dipendenze vicendevoli&lt;/strong&gt;. Con SCRUM si dovrebbero costituire dei gruppi completamente indipendenti, composti da tutte le risorse necessarie per realizzare l&amp;rsquo;obiettivo. In realtà estremamente complesse, come appunto una grandissima azienda di telefonia, non è possibile considerare nello stesso aggregato i manutentori delle centraline telefoniche con gli esperti di design dei dispositivi da installare. In sostanza, si deve armonizzare il lavoro di gruppi diversi in cui in ciascuno si applica SCRUM.
 Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non certo così grande e complessa) alcuni elementi della filiera non riusciamo a portarli dentro tutti i team. Ad esempio i web designer o il team di marketing. Tutti i team condividono il tempo e le competenze di questi gruppi, che a loro volta fanno iterazioni settimanali (non SCRUM). Il talk mi ha illustrato alcuni dei vantaggi di Less ed ha stuzzicato la mia curiosità. Ora dovrò capire come applicarlo concretamente!&lt;/p&gt;
 
-&lt;h2 id=&#34;retrospettive-creative:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Retrospettive creative&lt;/h2&gt;
+&lt;h2 id=&#34;retrospettive-creative&#34;&gt;Retrospettive creative&lt;/h2&gt;
 
 &lt;p&gt;Si è andato avanti parlando di &lt;strong&gt;&lt;a href=&#34;http://retrospectivewiki.org/index.php?title=Main_Page&#34;&gt;retrospettive&lt;/a&gt;&lt;/strong&gt; con Marco Di Biase, uno SCRUM Master di Bravofly. Su questo tema, devo dare il merito a Marco di aver &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Miglioramento_continuo&#34;&gt;condiviso&lt;/a&gt; un sacco di idee e scoperte fatte nel corso della sua esperienza. Io, ad esempio, ho iniziato a fare retrospettive con un certo format e da allora son riuscito a coinvolgere gli interlocutori più disparati del team (facciamo retrospettive tra team di addetti alla vendita e vengono fuori continue azioni di miglioramento come dalle retrospettive tra programmatori). Ma non ho mai provato a fare e farmi delle &lt;strong&gt;domande diverse durante gli incontri&lt;/strong&gt;. Marco accennava che &lt;a href=&#34;https://twitter.com/p_pugliese&#34;&gt;Pierluigi Pugliese&lt;/a&gt; gli abbia mostrato decine di approcci diversi.&lt;/p&gt;
 
@@ -2644,7 +2644,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/miniiad-vimercate-2015-reportage/retrospettiva-cerchi.jpg&#34; alt=&#34;Retrospettiva con cerchi&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusioni:1f5d804dca1b5af8fd406d2b72199bbf&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;La serata si è poi conclusa con una carrellata di &lt;a href=&#34;http://www.agileday.it/mini/2015/vimercate/#Agile_Coaches&#34;&gt;esperienze&lt;/a&gt; vissute da tre coach. Dalla tastiera al coaching (senza lasciare la tastiera!). Le storie delle persone sono una delle cose di maggiore ispirazione. Per me penso sia bello ripartire da qui, con qualche pillola in più, inseguendo quel miglioramento continuo che ogni giorno sa riempirci di soddisfazioni.&lt;/p&gt;
 
@@ -2668,7 +2668,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;Il suggerimento è quindi il seguente: un programmatore dovrebbe limitarsi a lavorare su programmi &lt;strong&gt;intellettualmente gestibili&lt;/strong&gt;, cioè programmi dei quali è possibile stabilire la correttezza semplicemente &lt;strong&gt;attraverso il ragionamento&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;indice:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Indice&lt;/h2&gt;
+&lt;h2 id=&#34;indice&#34;&gt;Indice&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#la-software-crisis-nei-decenni&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/a&gt;&lt;/li&gt;
@@ -2679,7 +2679,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;la-software-crisis-nei-decenni&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;la-software-crisis-nei-decenni:ba51084cbefae16f67c65bf54f6283db&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/h2&gt;
+&lt;h2 id=&#34;la-software-crisis-nei-decenni&#34;&gt;La &lt;em&gt;Software Crisis&lt;/em&gt; nei decenni&lt;/h2&gt;
 
 &lt;p&gt;Molti anni sono passati da allora, e la pratica dello sviluppo software ha attraversato varie evoluzioni e trasformazioni. Rispetto ai tempi di &lt;a href=&#34;https://it.wikipedia.org/wiki/Fortran&#34;&gt;FORTRAN&lt;/a&gt; e &lt;a href=&#34;https://en.wikipedia.org/wiki/ALGOL_60&#34;&gt;Algol 60&lt;/a&gt;, nuovi linguaggi di programmazione sono emersi e si sono affermati come standard; nuove tecniche e paradigmi, come la programmazione orientata agli oggetti, si sono diffuse nell&amp;rsquo;industria del software dopo un lungo periodo di gestazione in &lt;a href=&#34;https://en.wikipedia.org/wiki/Object-oriented_programming#History&#34;&gt;università e centri di ricerca privati&lt;/a&gt;; diversi modi di gestire il processo di realizzazione del software e il suo ciclo di vita sono stati elaborati nei decenni, dal classico modello &lt;a href=&#34;https://en.wikipedia.org/wiki/Waterfall_model&#34;&gt;Waterfall&lt;/a&gt; alle moderne metodologie &lt;a href=&#34;http://engineering.facile.it/un-flusso-di-lavoro-agile/&#34;&gt;Agile&lt;/a&gt;.&lt;/p&gt;
 
@@ -2695,7 +2695,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;cause-di-complessita&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;cause-di-complessità:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Cause di complessità&lt;/h2&gt;
+&lt;h2 id=&#34;cause-di-complessità&#34;&gt;Cause di complessità&lt;/h2&gt;
 
 &lt;p&gt;Ma quali sono le cause di tutta questa complessità? La fonte che, a mio parere, affronta in maniera più completa il problema della complessità nel software, proponendo soluzioni concrete, è il bellissimo (e lungo) articolo di Ben Moseley e Peter Marks &amp;ldquo;Out of the Tar Pit&amp;rdquo;(2006), reperibile &lt;a href=&#34;https://www.dropbox.com/s/nov94b39ikijwqd/tarpit.pdf?dl=0&#34;&gt;QUI&lt;/a&gt;. Per poter identificare i punti principali dell&amp;rsquo;articolo dobbiamo intanto dare &lt;strong&gt;una possibile definizione di &amp;ldquo;complessità&lt;/strong&gt;&amp;rdquo;, almeno per quanto riguarda lo sviluppo software; un primo tentativo potrebbe essere il seguente:&lt;/p&gt;
 
@@ -2714,7 +2714,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;pensare-ad-oggetti&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;pensare-ad-oggetti:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Pensare ad oggetti&lt;/h2&gt;
+&lt;h2 id=&#34;pensare-ad-oggetti&#34;&gt;Pensare ad oggetti&lt;/h2&gt;
 
 &lt;p&gt;Vediamo in sintesi come il problema della complessità sia affrontato, a grandi linee, dal più diffuso e importante paradigma di sviluppo software adottato a sostituzione di quello procedurale: la programmazione orientata agli oggetti (&lt;em&gt;Object-Oriented Programming&lt;/em&gt;: &lt;strong&gt;OOP&lt;/strong&gt;). OOP adotta il principio &lt;strong&gt;dell&amp;rsquo;incapsulamento della complessità&lt;/strong&gt;: le varie strutture computazionali del nostro software, individualmente più o meno complesse, sono suddivise in porzioni sufficientemente indipendenti, rinchiuse in contenitori stagni collegati tra loro da interfacce chiare e dichiarative. Si noti intanto che questo &lt;strong&gt;non è&lt;/strong&gt; il modo in cui gli esseri umani agiscono; nel suo classico articolo &lt;a href=&#34;http://c2.com/doc/oopsla89/paper.html&#34;&gt;A Laboratory For Teaching Object-Oriented Thinking (1989)&lt;/a&gt;, il celebre &lt;a href=&#34;https://it.wikipedia.org/wiki/Kent_Beck&#34;&gt;Kent Beck&lt;/a&gt;, noto soprattutto per i fondamentali contributi alle metodologie &lt;a href=&#34;https://it.wikipedia.org/wiki/Extreme_programming&#34;&gt;Extreme Programming&lt;/a&gt; e &lt;a href=&#34;https://it.wikipedia.org/wiki/Test_driven_development&#34;&gt;Test Driven Development&lt;/a&gt;, affronta il problema che si incontra quando si cerca di &lt;strong&gt;insegnare agli studenti a &amp;ldquo;pensare a oggetti&amp;rdquo;&lt;/strong&gt;: come essere umani siamo abituati a pensare allo stato globale di una situazione; a spostarci per comunicare direttamente con chiunque; ad affidarci al modo particolare in cui le persone che conosciamo svolgeranno un certo compito. OOP è invece basato su concetti opposti: ogni oggetto dovrebbe &amp;ldquo;vedere&amp;rdquo; solo i suoi vicini diretti, e di questi non dovrebbe comunque conoscere alcun dettaglio interno. Osserviamo quindi che &lt;strong&gt;il sistema di astrazioni&lt;/strong&gt; su cui OOP è basato non ha nulla a che fare con la vita &amp;ldquo;reale&amp;rdquo; o con il nostro abituale modo di pensare agli oggetti &amp;ldquo;fisici&amp;rdquo;, e a ragione: un software è svariati ordini di grandezza più complesso rispetto a una qualsiasi struttura fisica, e richiede strumenti diversi per poter essere compreso e gestito.&lt;/p&gt;
 
@@ -2724,9 +2724,9 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 
 &lt;p&gt;&lt;a name=&#34;un-vecchio-paradigma-programmazione-funzionale&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;un-vecchio-paradigma-programmazione-funzionale:ba51084cbefae16f67c65bf54f6283db&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/h2&gt;
+&lt;h2 id=&#34;un-vecchio-paradigma-programmazione-funzionale&#34;&gt;Un vecchio paradigma: Programmazione Funzionale&lt;/h2&gt;
 
-&lt;p&gt;La &amp;ldquo;programmazione funzionale&amp;rdquo; (&lt;em&gt;Functional Programming&lt;/em&gt;: &lt;strong&gt;FP&lt;/strong&gt;) è un paradigma di sviluppo software in parte codificato già alla fine degli anni cinquanta, attraverso il noto linguaggio &lt;a href=&#34;https://en.wikipedia.org/wiki/Lisp_(programming_language&#34;&gt;LISP&lt;/a&gt;), e gode di solide basi matematiche nella &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatory_logic&#34;&gt;logica combinatoria&lt;/a&gt; e nel &lt;a href=&#34;https://en.wikipedia.org/wiki/Lambda_calculus&#34;&gt;lambda calcolo&lt;/a&gt;: malgrado ciò, ha trovato difficoltà nel diffondersi sia nei corsi universitari di base che nelle aziende, forse per &lt;strong&gt;un&amp;rsquo;alta barriera d&amp;rsquo;ingresso&lt;/strong&gt;, dovuta appunto alle forti basi matematiche e alla manipolazione di concetti molto astratti e poco intuitivi.&lt;/p&gt;
+&lt;p&gt;La &amp;ldquo;programmazione funzionale&amp;rdquo; (&lt;em&gt;Functional Programming&lt;/em&gt;: &lt;strong&gt;FP&lt;/strong&gt;) è un paradigma di sviluppo software in parte codificato già alla fine degli anni cinquanta, attraverso il noto linguaggio &lt;a href=&#34;https://en.wikipedia.org/wiki/Lisp_(programming_language)&#34;&gt;LISP&lt;/a&gt;, e gode di solide basi matematiche nella &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatory_logic&#34;&gt;logica combinatoria&lt;/a&gt; e nel &lt;a href=&#34;https://en.wikipedia.org/wiki/Lambda_calculus&#34;&gt;lambda calcolo&lt;/a&gt;: malgrado ciò, ha trovato difficoltà nel diffondersi sia nei corsi universitari di base che nelle aziende, forse per &lt;strong&gt;un&amp;rsquo;alta barriera d&amp;rsquo;ingresso&lt;/strong&gt;, dovuta appunto alle forti basi matematiche e alla manipolazione di concetti molto astratti e poco intuitivi.&lt;/p&gt;
 
 &lt;p&gt;FP si basa sull&amp;rsquo;idea che un software possa essere descritto attraverso l&amp;rsquo;applicazione di tre tecniche principali:&lt;/p&gt;
 
@@ -2778,7 +2778,7 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 &lt;li&gt;Implementazione di un corposo set di nuove feature, come vedremo a breve.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;performance:815871a857d9019d8dba5e4073c801e4&#34;&gt;Performance&lt;/h2&gt;
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
 
 &lt;p&gt;Sull&amp;rsquo;onda degli ottimi risultati ottenuti dal team di HHVM, anche il team degli internals ha iniziato a lavorare estensivamente al miglioramento delle performance dell&amp;rsquo;implementazione originale di PHP. Gli impressionanti risultati (si parla di un miglioramento di circa il 100%) sono stati dimostrati da vari benchmark fatti sui vari CMS/Framework esistenti. Eccone di seguito due tra i più significativi:&lt;/p&gt;
 
@@ -2787,11 +2787,11 @@ Tutto questo mi ha colpito moltissimo perché anche nella nostra realtà (non ce
 &lt;li&gt;&lt;a href=&#34;https://pages.zend.com/rs/zendtechnologies/images/PHP7-Performance%20Infographic.pdf&#34;&gt;Infografica Zend&lt;/a&gt; - Benchmark di vari CMS/Framework (Magento 1.9, Wordpress, Drupal, Zend Framework 2, Laravel) su PHP 5.6 PHP 7 e HHVM 3.7. Contiene inoltre una comparazione tra PHP e altri linguaggi di scripting.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;features:815871a857d9019d8dba5e4073c801e4&#34;&gt;Features&lt;/h2&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
 
 &lt;p&gt;Qui di seguito riportiamo alcune delle feature che ci hanno colpito maggiormente; l&amp;rsquo;elenco seguente non è da considerarsi esaustivo rispetto a tutte le feature di PHP 7: una lista completa di tutte le RFC può essere trovata &lt;a href=&#34;https://wiki.php.net/rfc#php_70&#34;&gt;qui&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;null-coalesce-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Null Coalesce operator&lt;/h3&gt;
+&lt;h3 id=&#34;null-coalesce-operator&#34;&gt;Null Coalesce operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/isset_ternary&#34;&gt;Null Coalesce Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -2805,7 +2805,7 @@ $name = isset($_GET[’name’]) ? $_GET[’name’] : &amp;quot;Name&amp;quot;;
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/SnCQY&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;uniform-variable-syntax:815871a857d9019d8dba5e4073c801e4&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
+&lt;h3 id=&#34;uniform-variable-syntax&#34;&gt;Uniform Variable Syntax&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/uniform_variable_syntax&#34;&gt;Uniform Variable Syntax&lt;/a&gt;&lt;/p&gt;
 
@@ -2843,7 +2843,7 @@ echo [$p, &#39;getName&#39;]();
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/bEU7t&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;group-use-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Group use declarations&lt;/h3&gt;
+&lt;h3 id=&#34;group-use-declarations&#34;&gt;Group use declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/group_use_declarations&#34;&gt;Group Use Declarations&lt;/a&gt;&lt;/p&gt;
 
@@ -2861,7 +2861,7 @@ use Zend\ModuleManager\{
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;combined-comparison-operator:815871a857d9019d8dba5e4073c801e4&#34;&gt;Combined Comparison operator&lt;/h3&gt;
+&lt;h3 id=&#34;combined-comparison-operator&#34;&gt;Combined Comparison operator&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/combined-comparison-operator&#34;&gt;Combined Comparison (Spaceship) Operator&lt;/a&gt;&lt;/p&gt;
 
@@ -2881,7 +2881,7 @@ echo 200 &amp;lt;=&amp;gt; 200; // 0
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/PV5kq&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;context-sensitive-lexer:815871a857d9019d8dba5e4073c801e4&#34;&gt;Context sensitive lexer&lt;/h3&gt;
+&lt;h3 id=&#34;context-sensitive-lexer&#34;&gt;Context sensitive lexer&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/context_sensitive_lexer&#34;&gt;Context Sensitive Lexer&lt;/a&gt;&lt;/p&gt;
 
@@ -2897,7 +2897,7 @@ class Collection {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;anonymous-classes:815871a857d9019d8dba5e4073c801e4&#34;&gt;Anonymous classes&lt;/h3&gt;
+&lt;h3 id=&#34;anonymous-classes&#34;&gt;Anonymous classes&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/anonymous_classes&#34;&gt;Anonymous Classes&lt;/a&gt;&lt;/p&gt;
 
@@ -2931,7 +2931,7 @@ echo new PersonPrinter(new class implements PersonInterface {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;scalar-type-hints:815871a857d9019d8dba5e4073c801e4&#34;&gt;Scalar type hints&lt;/h3&gt;
+&lt;h3 id=&#34;scalar-type-hints&#34;&gt;Scalar type hints&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/scalar_type_hints&#34;&gt;Scalar Type Hints&lt;/a&gt;&lt;/p&gt;
 
@@ -2960,7 +2960,7 @@ printIntValue(5.9); // int(5)
 &lt;p&gt;Nell&amp;rsquo;esempio precedente stiamo dichiarando una funzione &lt;code&gt;printIntValue&lt;/code&gt; la quale richiede che &lt;code&gt;$value&lt;/code&gt; sia di tipo &lt;code&gt;int&lt;/code&gt;; quindi andiamo a chiamare la funzione stessa passando invece &lt;code&gt;$value&lt;/code&gt; come &lt;code&gt;float(5.9)&lt;/code&gt;.
 Siccome al primo statement non abbiamo dichiarato i tipi come rigorosi, PHP costringerà il casting del valore passato a &lt;code&gt;int&lt;/code&gt;, troncando la parte dopo la virgola e convertendolo in &lt;code&gt;int(5)&lt;/code&gt;. Se invece avessimo dichiarato i tipi come rigorosi avremmo ottenuto un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;return-type-declarations:815871a857d9019d8dba5e4073c801e4&#34;&gt;Return Type Declarations&lt;/h3&gt;
+&lt;h3 id=&#34;return-type-declarations&#34;&gt;Return Type Declarations&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/return_types&#34;&gt;Return Type Declarations&lt;/a&gt;
 In PHP 7 è stata introdotta la possiblità di dichiarare il tipo di ritorno di una funzione.
@@ -2987,7 +2987,7 @@ class DateTimeGenerator
 
 &lt;p&gt;Nell&amp;rsquo;esempio precedente abbiamo dichiarato una classe &lt;code&gt;DateTimeGenerator&lt;/code&gt; che contiene un metodo &lt;code&gt;getDateTime()&lt;/code&gt; che deve ritornare necessariamente un&amp;rsquo;instanza di &lt;code&gt;\DateTime&lt;/code&gt;. Nel caso questo non avvenisse otterremmo ancora una volta un &lt;code&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;bind-closure-on-call:815871a857d9019d8dba5e4073c801e4&#34;&gt;Bind Closure on Call&lt;/h3&gt;
+&lt;h3 id=&#34;bind-closure-on-call&#34;&gt;Bind Closure on Call&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/closure_apply&#34;&gt;Closure::call&lt;/a&gt;&lt;/p&gt;
 
@@ -3010,7 +3010,7 @@ echo $getValue-&amp;gt;call(new DummyClass);
 
 &lt;p&gt;&lt;a href=&#34;http://3v4l.org/YKtPC&#34;&gt;▶ Demo&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;filtered-unserialize:815871a857d9019d8dba5e4073c801e4&#34;&gt;Filtered Unserialize&lt;/h3&gt;
+&lt;h3 id=&#34;filtered-unserialize&#34;&gt;Filtered Unserialize&lt;/h3&gt;
 
 &lt;p&gt;PHP RFC: &lt;a href=&#34;https://wiki.php.net/rfc/secure_unserialize&#34;&gt;Filtered Unserialize&lt;/a&gt;&lt;/p&gt;
 
@@ -3022,7 +3022,7 @@ Tutte le classi non presenti nella lista saranno convertite nell&amp;rsquo;ogget
 &lt;pre&gt;&lt;code&gt;$data = unserialize($foo, [&amp;quot;allowed_classes&amp;quot; =&amp;gt; [&amp;quot;OnePossibleClass&amp;quot;, &amp;quot;AnotherPossibileClass&amp;quot;]);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;conclusioni:815871a857d9019d8dba5e4073c801e4&#34;&gt;Conclusioni&lt;/h2&gt;
+&lt;h2 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h2&gt;
 
 &lt;p&gt;Ora andate! Testate le vostre applicazioni su PHP 7 e, se potete, aiutate a migrare le estensioni. Non sapete come fare? No problem, chiunque può iniziare a fare qualcosa con i giusti punti di partenza.&lt;/p&gt;
 
