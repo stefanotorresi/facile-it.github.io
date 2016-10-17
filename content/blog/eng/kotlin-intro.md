@@ -41,18 +41,18 @@ I am going to rapidly cover two features of Kotlin that address the previously m
 
 ### [Null-safety](http://kotlinlang.org/docs/reference/null-safety.html)
 In Kotlin **a variable cannot be null**. If you want or need a variable to be *nullable* you have to add `?` to the variable type:
-```
-val x: Int = null \\ compile error
-val y: Int? = null \\ ok
+```kotlin
+val x: Int = null // compile error
+val y: Int? = null // ok
 ```
 Thanks to this information the compiler sees `Int` and `Int?` as two completely different types and can therefore enforce the “null-safety” of your variables.
 The `?.` allows you to safe call methods on nullable variables without throwing NPE but simply returning null at the end of the  call chain:
-```
+```kotlin
 val x: Int? = null
-x?.toString()?.substring(2) \\ no NPE, returns null
+x?.toString()?.substring(2) // no NPE, returns null
 ```
 The `?:` operator (Elvis operator) allows you to provide a “default” value when the variable is `null`:
-```
+```kotlin
 // The two expressions are semantically equivalent:
 text?.length ?: -1
 (text.length != null) ? text.length  : -1
@@ -60,7 +60,7 @@ text?.length ?: -1
 
 ### [Higher-Order Functions and Lambdas](https://kotlinlang.org/docs/reference/lambdas.html)
 In Kotlin is possible to declare a method (or more generally a function) that returns or takes another **function as parameter**. The syntax to define the function type is similar to other languages such as Scala or Swift and is very **intuitive**:
-```
+```kotlin
 val function: (T1, T2) -> R = {t1, t2 -> r}
 ```
 
