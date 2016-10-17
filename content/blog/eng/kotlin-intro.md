@@ -15,7 +15,7 @@ type: "post"
 
 aliases: 
   - "/kotlin-intro"
-twitterImage: 'images/kotlin-intro/logo_Kotlin.svg'
+twitterImage: 'images/kotlin-intro/logo_Kotlin.png'
 ---
 
 ![Kotlin](/images/kotlin-intro/logo_Kotlin.svg)
@@ -36,7 +36,7 @@ Google is addressing the problem with its new compiler [Jack](https://source.and
 Back in 2011 the JetBrains team (the guys behind IntelliJ and so Android Studio) unveiled [Kotlin](https://kotlinlang.org/), a new programming language that targets the JVM (and can also be compiled to JavaScript). 
 Kotlin is a statically-typed language that combines Object Oriented and functional features enforcing no particular philosophy of programming, and it introduces a whole new set of concepts and tools that helps making the code **safer, cleaner and much more readable**. 
 Thanks to its nature it works everywhere Java do and it is also **interoperable** with it, meaning it will not force you to rewrite the entire codebase to taste it: you can add it to your project a little at a time ([maybe starting with tests](https://medium.com/@sergii/using-kotlin-for-tests-in-android-6d4a0c818776#.lyvd3h43x) 😉). It also features a REPL `kotlinc-jvm` that allows you to test language features with no effort (see the [doc](https://kotlinlang.org/docs/tutorials/command-line.html#running-the-repl) form more info).
-I am going to rapidly cover some features of Kotlin that address the previously mentioned Java limitations:
+I am going to rapidly cover some features of Kotlin that address the previously mentioned Java limitations.
 
 
 ### Null-safety
