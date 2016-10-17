@@ -1,13 +1,13 @@
 ---
 authors: ["giacomo"]
 comments: true
-date: "2016-04-08"
+date: "2016-10-17"
 draft: true
-image: "/images/cover.jpg"
+image: "images/kotlin-intro/logo_Kotlin.svg"
 menu: ""
 share: true
 categories: [English, Java, Kotlin, JVM, Android]
-title: "A new hope for JVM: Kotlin"
+title: "A new hope for the JVM: Kotlin"
 
 languageCode: "en-En"
 type: "post"
