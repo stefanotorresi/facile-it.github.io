@@ -2,7 +2,7 @@
 authors: ["giacomo"]
 comments: true
 date: "2016-10-17"
-draft: true
+draft: false
 image: "images/kotlin-intro/logo_Kotlin.svg"
 menu: ""
 share: true
