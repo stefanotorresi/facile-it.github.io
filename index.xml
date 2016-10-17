@@ -6,8 +6,81 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Sep 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A new hope for the JVM: Kotlin</title>
+      <link>http://engineering.facile.it/blog/eng/kotlin-intro/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/kotlin-intro/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/kotlin-intro/logo_Kotlin.svg&#34; alt=&#34;Kotlin&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;premise&#34;&gt;Premise&lt;/h2&gt;
+
+&lt;p&gt;Java is an &lt;strong&gt;old&lt;/strong&gt; programming language. Version 1.0 was released in 1996 by Sun Microsystems and  even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as &lt;em&gt;null&lt;/em&gt; (ask &lt;a href=&#34;https://en.wikipedia.org/wiki/Tony_Hoare?section=3#Apologies_and_retractions&#34;&gt;Tony Hoare&lt;/a&gt;), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html&#34;&gt;&lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt; or &lt;a href=&#34;http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html&#34;&gt;lambda expression&lt;/a&gt;. Although these additions clearly represent a step forward for the language I still have the feeling that they are just &lt;em&gt;patches&lt;/em&gt; applied to &lt;strong&gt;mitigate problems&lt;/strong&gt; and not to solve them at their very source. For example &lt;code&gt;Optional&lt;/code&gt; could be used to reduce NPE (Null Pointer Exception) but it is clearly not designed for &lt;a href=&#34;https://twitter.com/mariofusco/status/780770300178956289&#34;&gt;this purpose&lt;/a&gt; and lambda expressions, implemented in Java 8 with SAM types, still force you to write an interface only to define a &lt;em&gt;function&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-android-world&#34;&gt;The Android world&lt;/h2&gt;
+
+&lt;p&gt;All the above concerns about Java are even more problematic within the Android world where, due to the notorious &lt;a href=&#34;https://developer.android.com/about/dashboards/index.html&#34;&gt;fragmentation&lt;/a&gt; (a huge amount of devices are stuck with an &lt;strong&gt;outdated VM&lt;/strong&gt;), you are forced to target lower Java versions (6 and 7).
+Google is addressing the problem with its new compiler &lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; that enables &lt;em&gt;some&lt;/em&gt; of the features of Java 8 maintaining backward compatibility with older OS versions. But still it lets us deal with the verbosity of the language and it doesn’t truly solve the problem.&lt;/p&gt;
+
+&lt;h2 id=&#34;a-new-hope&#34;&gt;A new hope&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/kotlin-intro/kotlin_helloworld.png&#34; alt=&#34;Kotlin Hello World!&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Back in 2011 the JetBrains team (the guys behind IntelliJ and so Android Studio) unveiled &lt;a href=&#34;https://kotlinlang.org/&#34;&gt;Kotlin&lt;/a&gt;, a new programming language that targets the JVM (and can also be compiled to JavaScript).
+Kotlin is a statically-typed language that combines Object Oriented and functional features enforcing no particular philosophy of programming, and it introduces a whole new set of concepts and tools that helps making the code &lt;strong&gt;safer, cleaner and much more readable&lt;/strong&gt;.
+Thanks to its nature it works everywhere Java do and it is also &lt;strong&gt;interoperable&lt;/strong&gt; with it, meaning it will not force you to rewrite the entire codebase to taste it: you can add it to your project a little at a time (&lt;a href=&#34;https://medium.com/@sergii/using-kotlin-for-tests-in-android-6d4a0c818776#.lyvd3h43x&#34;&gt;maybe starting with tests&lt;/a&gt; 😉). It also features a REPL &lt;code&gt;kotlinc-jvm&lt;/code&gt; that allows you to test language features with no effort (see the &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/command-line.html#running-the-repl&#34;&gt;doc&lt;/a&gt; form more info).
+I am going to rapidly cover some features of Kotlin that address the previously mentioned Java limitations.&lt;/p&gt;
+
+&lt;h3 id=&#34;null-safety&#34;&gt;Null-safety&lt;/h3&gt;
+
+&lt;p&gt;In Kotlin &lt;strong&gt;a variable cannot be null&lt;/strong&gt;. If you want or need a variable to be &lt;em&gt;nullable&lt;/em&gt; you have to add &lt;code&gt;?&lt;/code&gt; to the variable type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val x: Int = null // compile error
+val y: Int? = null // ok
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks to this information the compiler sees &lt;code&gt;Int&lt;/code&gt; and &lt;code&gt;Int?&lt;/code&gt; as two completely different types and can therefore enforce the &lt;a href=&#34;http://kotlinlang.org/docs/reference/null-safety.html&#34;&gt;null-safety&lt;/a&gt; of your variables.
+The &lt;code&gt;?.&lt;/code&gt; allows you to safe call methods on nullable variables without throwing NPE but simply returning null at the end of the  call chain:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val x: Int? = null
+x?.toString()?.substring(2) // no NPE, returns null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;?:&lt;/code&gt; operator (Elvis operator) allows you to provide a “default” value when the variable is &lt;code&gt;null&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;// The two expressions are semantically equivalent:
+text?.length ?: -1
+(text.length != null) ? text.length  : -1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;higher-order-functions-and-lambdas&#34;&gt;Higher-Order Functions and Lambdas&lt;/h3&gt;
+
+&lt;p&gt;In Kotlin is possible to declare a method (or more generally a function) that returns or takes another &lt;strong&gt;function as parameter&lt;/strong&gt;. The syntax to define the &lt;a href=&#34;https://kotlinlang.org/docs/reference/lambdas.html&#34;&gt;function type&lt;/a&gt; is similar to other languages such as Scala or Swift and is very &lt;strong&gt;intuitive&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val function: (T1, T2) -&amp;gt; R = {t1, t2 -&amp;gt; r}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;data-classes&#34;&gt;Data classes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;data class City(val name: String, val state: String)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/reference/data-classes.html&#34;&gt;Data classes&lt;/a&gt; address the verbosity of Java when dealing with classes that have the only purpose to hold data. With a single line you get &lt;code&gt;equals()/hashCode()&lt;/code&gt;, &lt;code&gt;toString()&lt;/code&gt; and getters/setters for free (and if you are a Java developer you already knows the benefits!)&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;Java has to maintain backward compatibility with previous versions and still has to support the huge amount of developers and codebases present all around the world; therefore it is natural that every new feature and design change is to be considered, weighted and reasoned really carefully, inevitably &lt;strong&gt;slowing down its evolution&lt;/strong&gt;. But this does not have to mean that us, as Android developers, “tied” to the JVM, should not try more modern and advanced languages such as Kotlin. At bottom, a part of our job (one of the best!) is to try and &lt;strong&gt;experiment&lt;/strong&gt; new technologies and to &lt;strong&gt;learn&lt;/strong&gt; new concepts and techniques that improve our ability to address problems in the best possible way (and of course, to have some fun 😄).&lt;/p&gt;
+
+&lt;p&gt;I think that it is fundamental for a software engineer to be &lt;strong&gt;exposed to more than a single programming language&lt;/strong&gt;: learning new patterns, exploring other programming paradigms or simply using and understanding a never-seen syntax has an immeasurable value for our growth and most of the times it turns out to be unexpectedly useful even when coding with ”our” language.
+So why not do it with a language that allows us to continue working on projects targeting our beloved JVM?&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Event-driven serverless applications</title>
@@ -1942,194 +2015,6 @@ Installing /acme/blog/public into public_html via symlink...
 &lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
 Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
 Per approfondire, la documentazione ufficiale è molto chiara e completa ed è disponibile all&amp;rsquo;indirizzo: &lt;a href=&#34;http://docs.puli.io/&#34;&gt;http://docs.puli.io/&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Code reuse: a primer</title>
-      <link>http://engineering.facile.it/blog/eng/code-reuse-a-primer/</link>
-      <pubDate>Wed, 09 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/code-reuse-a-primer/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/optionals-in-objective-c/&#34;&gt;Last time&lt;/a&gt; we looked at a possible implementation for the &lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optional&lt;/a&gt; type in Objective-C; while the main point was to port to Objective-C a tool that&amp;rsquo;s frequently used in Swift, making use of the &lt;code&gt;Optional&lt;/code&gt; class can be considered an application of a much more general concept: &lt;strong&gt;code reuse&lt;/strong&gt;. In fact, &lt;code&gt;Optional&lt;/code&gt; is not tied to a particular domain, and can be reused over and over again in multiple projects: that&amp;rsquo;s what actually happens in Swift. But, to think about it, that&amp;rsquo;s what happens for a wide range of &lt;em&gt;classes&lt;/em&gt; in Objective-C, or &lt;em&gt;types&lt;/em&gt; in Swift: for example, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are both constructs that expose a certain interface, have a certain implementation, and are reused multiple times within methods and functions. And again, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are not tied to a particular domain, and have two important properties:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;they are &lt;strong&gt;generic&lt;/strong&gt;, that is, they are not dependent on a particular subtype: an array of numbers and an array of strings will work in the exact same way when it comes to behavior that&amp;rsquo;s strictly associated to arrays, like counting elements, removing or adding an element, mapping, filtering, reducing et cetera;&lt;/li&gt;
-&lt;li&gt;they are &lt;strong&gt;composable&lt;/strong&gt;, that is, they can be stacked on top of each other, and assembled with other more specific things, while keeping the same &lt;strong&gt;predictable behavior&lt;/strong&gt;: an array of &lt;em&gt;customers&lt;/em&gt;, each with their own array of &lt;em&gt;purchased products&lt;/em&gt;, can be mapped to an array of arrays of &lt;em&gt;products&lt;/em&gt;, that can be flattened into an array of &lt;em&gt;products&lt;/em&gt;, that can be reduced into a number representing the total cost;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Array&lt;/code&gt;, like &lt;code&gt;Optional&lt;/code&gt;, is a nice example of perfectly reusable code, but there are many more constructs that satisfy the aforementioned rules: &lt;em&gt;genericity&lt;/em&gt; and &lt;em&gt;composability&lt;/em&gt;. What doesn&amp;rsquo;t satisfy the rules is domain-specific objects, even when it seems like an object is sufficiently generic to be reused. A &lt;code&gt;Customer&lt;/code&gt; class, for example, could seem a good candidate, but trying to reuse the same class in two different projects will result in &lt;strong&gt;bad news&lt;/strong&gt; and headaches: either we&amp;rsquo;ll need to &lt;strong&gt;specialize&lt;/strong&gt; the class for each project, making the two diverge, or we&amp;rsquo;ll need to add levels of &lt;strong&gt;indirection&lt;/strong&gt;, because we&amp;rsquo;re forcing an object into a project it doesn&amp;rsquo;t belong to.&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s another thing to consider: if we really want to reuse code, we&amp;rsquo;ll also need to make &lt;strong&gt;design choices&lt;/strong&gt; that allow that code to be reused. I could actually forget about the &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt; types, and create classes that never expose their underlying components; for example, I could create a class that represents a collection of optional objects, without ever exposing in the interface the fact that I&amp;rsquo;m using &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt; for its implementation: it would result in some serious &lt;strong&gt;contortion&lt;/strong&gt; of methods&amp;rsquo; signature, but it&amp;rsquo;s possible. Also, is it a good idea? &lt;strong&gt;I don&amp;rsquo;t think so&lt;/strong&gt;. Creating a specific, incomposable class for every possible need will result in thousands of lines of what&amp;rsquo;s essentially &lt;strong&gt;boilerplate&lt;/strong&gt; code, complicated interfaces, and ridiculously long class names. If we aspire to code reuse, other than the two rules we just defined, we also need to pay attention to the way we architect our apps, and the main design principle to follow here is one of &lt;strong&gt;composition&lt;/strong&gt;, that can be summed up with the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Domain-specific constructs and behaviors should be realized by composing atomic and generic building blocks.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This basically means that, instead of creating every time a specific implementation for our needs, we should try and satisfy that need by composing reusable, atomic objects. This looks complex, and at this point we should ask ourselves if code reuse is really something we want to pursue. My answer is a definitive &lt;strong&gt;yes&lt;/strong&gt;, for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;with reusable components we can &lt;strong&gt;encapsulate&lt;/strong&gt; a particular behavior, and avoid rewriting essentially the same thing over and over again;&lt;/li&gt;
-&lt;li&gt;we&amp;rsquo;ll have a &lt;strong&gt;guideline&lt;/strong&gt; for designing the architecture of our app, because we wont&amp;rsquo;t need to constantly define new interfaces for the same behaviors;&lt;/li&gt;
-&lt;li&gt;a reusable component is very easy to &lt;strong&gt;test&lt;/strong&gt;, because it&amp;rsquo;s small and atomic, so by using it we will be more confident about the correctness of our code;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That, again, is what happens when we use types like &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt;. As I said, there are many more of these building blocks, and actually the definition of their interfaces is a problem in itself, and has no obvious solution, but I think it&amp;rsquo;s a very interesting problem to tackle. By following the &lt;em&gt;generic&lt;/em&gt; and &lt;em&gt;composable&lt;/em&gt; rules we already have a guideline for designing them, but if we want to create our owns we should probably add one more rule:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a reusable object has to be &lt;strong&gt;simple&lt;/strong&gt;, that is, it should have a unique, linear, easily describable responsibility;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Optional&lt;/code&gt; follows this rule: it&amp;rsquo;s a generic container that represents an object that could be there, or not. &lt;code&gt;Array&lt;/code&gt; follows this rule: it represents and &lt;em&gt;ordered&lt;/em&gt; collection of objects, each one them accessible in constant time. Let&amp;rsquo;s try to apply the rule and create a new reusable object.&lt;/p&gt;
-
-&lt;p&gt;Consider this real, kind of frequent use case: different objects must be notified when a certain object changes state or does something. A way to solve the problem is represented by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;, that is, make our objects implement an interface that exposes a &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish–subscribe_pattern&#34;&gt;publish-subscribe&lt;/a&gt; behavior. The point is, implementing an interface &lt;strong&gt;is not reusable&lt;/strong&gt;: each time we want to use this pattern we are going to &lt;strong&gt;rewrite&lt;/strong&gt; very similar code; instead, we want to encapsulate the behavior in a generic object, and reuse that object instead. What follows is a possible implementation, the one that I use in production, but there are many more: actually, &lt;a href=&#34;https://en.wikipedia.org/wiki/Functional_reactive_programming&#34;&gt;functional reactive programming&lt;/a&gt; has spawned from this very problem, that is, finding a generic, composable way of representing and manipulating observable streams, but in this case we&amp;rsquo;re going to create a much simpler &lt;strong&gt;Signal&lt;/strong&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;Signal&lt;/code&gt; class we want to implement is going to represent an &lt;em&gt;update&lt;/em&gt; for a certain object: that update can be everything, like a new value for a property, or an action that was taken. We&amp;rsquo;ll use the Swift language, which is also going to give us a lot of &lt;strong&gt;type-safety&lt;/strong&gt; for free. Here&amp;rsquo;s a summary of what we want for the &lt;code&gt;Signal&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;it has to a have a &lt;strong&gt;parametric&lt;/strong&gt; subtype, that is, the type of the value that will be signaled in each update;&lt;/li&gt;
-&lt;li&gt;it has to have an &lt;code&gt;observe&lt;/code&gt; method, that takes a closure representing an action that has to be taken every time an update is given;&lt;/li&gt;
-&lt;li&gt;it has to have a &lt;code&gt;send&lt;/code&gt; method, which takes a new value of the underlying subtype;&lt;/li&gt;
-&lt;li&gt;it has to have some simple methods for composition, that follow the usual naming conventions, like &lt;code&gt;map&lt;/code&gt;, for generating a new &lt;code&gt;Signal&lt;/code&gt; from an existing one by transforming the observed value, and &lt;code&gt;forwardTo&lt;/code&gt; to make another &lt;code&gt;Signal&lt;/code&gt; &lt;em&gt;trigger&lt;/em&gt; when a certain &lt;code&gt;Signal&lt;/code&gt; is producing a new value;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Semantically, we can describe a &lt;code&gt;Signal&lt;/code&gt; as a container for a value that&amp;rsquo;s going to be there at a certain point in time, and it&amp;rsquo;s going to update itself indefinitely.&lt;/p&gt;
-
-&lt;p&gt;What follows is the entire implementation of the &lt;code&gt;Signal&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public enum SignalContinuation
-{
-  case Continue
-  case Stop
-}
-
-public class Signal&amp;lt;Subtype&amp;gt;
-{
-  private var observers: [(Subtype -&amp;gt; SignalContinuation)] = []
-
-  public init() {}
-
-  public func observe (observeFunction: Subtype -&amp;gt; SignalContinuation)
-  {
-    observers.append(observeFunction)
-  }
-
-  public func send (value: Subtype)
-  {
-    var continuations: [(Subtype -&amp;gt; SignalContinuation)] = []
-    while observers.count &amp;gt; 0
-    {
-      let observer = observers.removeFirst()
-      let continuation = observer(value)
-      switch continuation
-      {
-      case .Continue:
-        continuations.append(observer)
-      case .Stop: break
-      }
-    }
-    observers = continuations
-  }
-
-  public func forwardTo (otherSignal: Signal&amp;lt;Subtype&amp;gt;) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(action)
-      return .Continue
-    }
-    return self
-  }
-
-  public func forwardTo &amp;lt;OtherSubtype&amp;gt; (
-    otherSignal: Signal&amp;lt;OtherSubtype&amp;gt;,
-    mappingFunction: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(mappingFunction(action))
-      return .Continue
-    }
-    return self
-  }
-
-  public func map &amp;lt;OtherSubtype&amp;gt; (transform: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal&amp;lt;OtherSubtype&amp;gt;
-  {
-    let mappedSignal = Signal&amp;lt;OtherSubtype&amp;gt;()
-    forwardTo(mappedSignal, mappingFunction: transform)
-    return mappedSignal
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is really simple, but still, really powerful. A problem that&amp;rsquo;s frequently found when implementing the observer pattern is how to manage unsubscriptions; it&amp;rsquo;s a responsibility of the observer object to stop observing something, and in this &lt;code&gt;Signal&lt;/code&gt; implementation this is easily managed within the closure passed to the &lt;code&gt;observe&lt;/code&gt; method: the closure must return a &lt;code&gt;SignalContinuation&lt;/code&gt; value, that can be simply &lt;code&gt;.Continue&lt;/code&gt; (that is, keep observing updates) or &lt;code&gt;.Stop&lt;/code&gt;. Another problem is memory management: we need to make sure that when an observer&amp;rsquo;s memory is released, it will also stop observing, or a message will be sent to a dangling pointer, resulting in the app crashing. Swift&amp;rsquo;s &lt;code&gt;weak&lt;/code&gt; memory semantics actually makes this really easy to do: we&amp;rsquo;ll put a &lt;code&gt;guard&lt;/code&gt; clause at the beginning of the closure passed to the &lt;code&gt;observe&lt;/code&gt; method; if the object has become &lt;code&gt;nil&lt;/code&gt;, we&amp;rsquo;ll simply return &lt;code&gt;.Stop&lt;/code&gt;. The following example shows a simple use of the &lt;code&gt;Signal&lt;/code&gt; class, including the &lt;em&gt;stop-observing-on-nil&lt;/em&gt; mechanism:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class Sender
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func sendNew(value: Int)
-  {
-    signal.send(value)
-  }
-}
-
-class Receiver&amp;lt;Type: CustomStringConvertible&amp;gt;
-{
-  func startObserving(signal: Signal&amp;lt;Type&amp;gt;)
-  {
-    signal.observe { [weak self] value in
-      guard let this = self else { return .Stop }
-      this.printNewValue(value)
-      return .Continue
-    }
-  }
-
-  func printNewValue(value: Type)
-  {
-    print(value)
-  }
-}
-
-let sender = Sender()
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(sender.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 3, 5, 10, 20 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the example we can see an application of the concepts we talked about at the beginning of this article: instead of creating yet another interface for the same behavior, we are directly using and reusing the &lt;code&gt;Signal&lt;/code&gt; object. A more complex example would be the addition of something like a &lt;em&gt;resonator&lt;/em&gt;, that is, an object with a &lt;code&gt;Signal&lt;/code&gt; that resonates with another, like in the following example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class DoublingResonator
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func resonateWith(otherSignal: Signal&amp;lt;Int&amp;gt;)
-  {
-    otherSignal.forwardTo(signal) { $0*2 }
-  }
-}
-
-let resonator = DoublingResonator()
-resonator.resonateWith(sender.signal)
-
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(resonator.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 6, 10, 20, 40 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There are many other options for composition of signals, but as long as we don&amp;rsquo;t need them, it&amp;rsquo;s better to keep the class &lt;strong&gt;simple&lt;/strong&gt;: then, gradually over time, we can start adding features to the class, and as long as they&amp;rsquo;re properly generic and tested, we will be able to use them in all of our projects.&lt;/p&gt;
-
-&lt;p&gt;To conclude, finding the right abstractions for reusability is of course a problem, and the solution is not an easy one: plenty of academic papers address the problem in several ways (classic Charles W. Krueger&amp;rsquo;s paper &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; contains a good overview of the used techniques), and the reason why &lt;a href=&#34;https://en.wikipedia.org/wiki/Category_theory&#34;&gt;category theory&lt;/a&gt; has many applications in functional programming is because it offers an excellent set of abstractions for tackling several classes of problems. But still, I think the advantages of code reuse are many, and that achieving a compositional design through atomic, reusable components is &lt;strong&gt;a worthy goal&lt;/strong&gt; to pursue.&lt;/p&gt;
 </description>
     </item>
     

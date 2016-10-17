@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Facile.it Engineering</title>
+    <link>http://engineering.facile.it/categories/java/</link>
+    <description>Recent content in Java on Facile.it Engineering</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://engineering.facile.it/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A new hope for the JVM: Kotlin</title>
+      <link>http://engineering.facile.it/blog/eng/kotlin-intro/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/kotlin-intro/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/kotlin-intro/logo_Kotlin.svg&#34; alt=&#34;Kotlin&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;premise&#34;&gt;Premise&lt;/h2&gt;
+
+&lt;p&gt;Java is an &lt;strong&gt;old&lt;/strong&gt; programming language. Version 1.0 was released in 1996 by Sun Microsystems and  even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as &lt;em&gt;null&lt;/em&gt; (ask &lt;a href=&#34;https://en.wikipedia.org/wiki/Tony_Hoare?section=3#Apologies_and_retractions&#34;&gt;Tony Hoare&lt;/a&gt;), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html&#34;&gt;&lt;code&gt;Optional&lt;/code&gt;&lt;/a&gt; or &lt;a href=&#34;http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html&#34;&gt;lambda expression&lt;/a&gt;. Although these additions clearly represent a step forward for the language I still have the feeling that they are just &lt;em&gt;patches&lt;/em&gt; applied to &lt;strong&gt;mitigate problems&lt;/strong&gt; and not to solve them at their very source. For example &lt;code&gt;Optional&lt;/code&gt; could be used to reduce NPE (Null Pointer Exception) but it is clearly not designed for &lt;a href=&#34;https://twitter.com/mariofusco/status/780770300178956289&#34;&gt;this purpose&lt;/a&gt; and lambda expressions, implemented in Java 8 with SAM types, still force you to write an interface only to define a &lt;em&gt;function&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-android-world&#34;&gt;The Android world&lt;/h2&gt;
+
+&lt;p&gt;All the above concerns about Java are even more problematic within the Android world where, due to the notorious &lt;a href=&#34;https://developer.android.com/about/dashboards/index.html&#34;&gt;fragmentation&lt;/a&gt; (a huge amount of devices are stuck with an &lt;strong&gt;outdated VM&lt;/strong&gt;), you are forced to target lower Java versions (6 and 7).
+Google is addressing the problem with its new compiler &lt;a href=&#34;https://source.android.com/source/jack.html&#34;&gt;Jack&lt;/a&gt; that enables &lt;em&gt;some&lt;/em&gt; of the features of Java 8 maintaining backward compatibility with older OS versions. But still it lets us deal with the verbosity of the language and it doesn’t truly solve the problem.&lt;/p&gt;
+
+&lt;h2 id=&#34;a-new-hope&#34;&gt;A new hope&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/kotlin-intro/kotlin_helloworld.png&#34; alt=&#34;Kotlin Hello World!&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Back in 2011 the JetBrains team (the guys behind IntelliJ and so Android Studio) unveiled &lt;a href=&#34;https://kotlinlang.org/&#34;&gt;Kotlin&lt;/a&gt;, a new programming language that targets the JVM (and can also be compiled to JavaScript).
+Kotlin is a statically-typed language that combines Object Oriented and functional features enforcing no particular philosophy of programming, and it introduces a whole new set of concepts and tools that helps making the code &lt;strong&gt;safer, cleaner and much more readable&lt;/strong&gt;.
+Thanks to its nature it works everywhere Java do and it is also &lt;strong&gt;interoperable&lt;/strong&gt; with it, meaning it will not force you to rewrite the entire codebase to taste it: you can add it to your project a little at a time (&lt;a href=&#34;https://medium.com/@sergii/using-kotlin-for-tests-in-android-6d4a0c818776#.lyvd3h43x&#34;&gt;maybe starting with tests&lt;/a&gt; 😉). It also features a REPL &lt;code&gt;kotlinc-jvm&lt;/code&gt; that allows you to test language features with no effort (see the &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/command-line.html#running-the-repl&#34;&gt;doc&lt;/a&gt; form more info).
+I am going to rapidly cover some features of Kotlin that address the previously mentioned Java limitations.&lt;/p&gt;
+
+&lt;h3 id=&#34;null-safety&#34;&gt;Null-safety&lt;/h3&gt;
+
+&lt;p&gt;In Kotlin &lt;strong&gt;a variable cannot be null&lt;/strong&gt;. If you want or need a variable to be &lt;em&gt;nullable&lt;/em&gt; you have to add &lt;code&gt;?&lt;/code&gt; to the variable type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val x: Int = null // compile error
+val y: Int? = null // ok
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks to this information the compiler sees &lt;code&gt;Int&lt;/code&gt; and &lt;code&gt;Int?&lt;/code&gt; as two completely different types and can therefore enforce the &lt;a href=&#34;http://kotlinlang.org/docs/reference/null-safety.html&#34;&gt;null-safety&lt;/a&gt; of your variables.
+The &lt;code&gt;?.&lt;/code&gt; allows you to safe call methods on nullable variables without throwing NPE but simply returning null at the end of the  call chain:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val x: Int? = null
+x?.toString()?.substring(2) // no NPE, returns null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;?:&lt;/code&gt; operator (Elvis operator) allows you to provide a “default” value when the variable is &lt;code&gt;null&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;// The two expressions are semantically equivalent:
+text?.length ?: -1
+(text.length != null) ? text.length  : -1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;higher-order-functions-and-lambdas&#34;&gt;Higher-Order Functions and Lambdas&lt;/h3&gt;
+
+&lt;p&gt;In Kotlin is possible to declare a method (or more generally a function) that returns or takes another &lt;strong&gt;function as parameter&lt;/strong&gt;. The syntax to define the &lt;a href=&#34;https://kotlinlang.org/docs/reference/lambdas.html&#34;&gt;function type&lt;/a&gt; is similar to other languages such as Scala or Swift and is very &lt;strong&gt;intuitive&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;val function: (T1, T2) -&amp;gt; R = {t1, t2 -&amp;gt; r}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;data-classes&#34;&gt;Data classes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;data class City(val name: String, val state: String)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/reference/data-classes.html&#34;&gt;Data classes&lt;/a&gt; address the verbosity of Java when dealing with classes that have the only purpose to hold data. With a single line you get &lt;code&gt;equals()/hashCode()&lt;/code&gt;, &lt;code&gt;toString()&lt;/code&gt; and getters/setters for free (and if you are a Java developer you already knows the benefits!)&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;Java has to maintain backward compatibility with previous versions and still has to support the huge amount of developers and codebases present all around the world; therefore it is natural that every new feature and design change is to be considered, weighted and reasoned really carefully, inevitably &lt;strong&gt;slowing down its evolution&lt;/strong&gt;. But this does not have to mean that us, as Android developers, “tied” to the JVM, should not try more modern and advanced languages such as Kotlin. At bottom, a part of our job (one of the best!) is to try and &lt;strong&gt;experiment&lt;/strong&gt; new technologies and to &lt;strong&gt;learn&lt;/strong&gt; new concepts and techniques that improve our ability to address problems in the best possible way (and of course, to have some fun 😄).&lt;/p&gt;
+
+&lt;p&gt;I think that it is fundamental for a software engineer to be &lt;strong&gt;exposed to more than a single programming language&lt;/strong&gt;: learning new patterns, exploring other programming paradigms or simply using and understanding a never-seen syntax has an immeasurable value for our growth and most of the times it turns out to be unexpectedly useful even when coding with ”our” language.
+So why not do it with a language that allows us to continue working on projects targeting our beloved JVM?&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

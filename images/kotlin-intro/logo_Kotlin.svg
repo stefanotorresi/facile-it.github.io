@@ -1,0 +1,35 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 675 150">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-23.82027" y1="136.07313" x2="107.83743" y2="4.41543" gradientUnits="userSpaceOnUse">
+      <stop offset="0.10753" stop-color="#c757bc"/>
+      <stop offset="0.17288" stop-color="#cd5ca9"/>
+      <stop offset="0.49191" stop-color="#e8744f"/>
+      <stop offset="0.71582" stop-color="#f88316"/>
+      <stop offset="0.82323" stop-color="#ff8900"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="45.15353" y1="173.00306" x2="109.32611" y2="108.83049" gradientUnits="userSpaceOnUse">
+      <stop offset="0.2957" stop-color="#00afff"/>
+      <stop offset="0.69363" stop-color="#5282ff"/>
+      <stop offset="1" stop-color="#945dff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="-1.699" y1="45.0439" x2="43.31882" y2="0.02608" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <title>logo_Kotlin</title>
+  <g>
+    <g id="_Group_" data-name="&lt;Group&gt;">
+      <g>
+        <path id="_Compound_Path_" data-name="&lt;Compound Path&gt;" d="M187.058,6.06523h31.13217l0,61.85971,57.412-61.85971h37.60119l-57.61428,60.04,60.24229,81.469h-37.3989L234.56456,87.33277,218.19015,104.3132l0,43.261H187.058Z" fill="#000400"/>
+        <path id="_Compound_Path_2" data-name="&lt;Compound Path&gt;" d="M299.28636,94.00244V93.5995c0-31.13214,25.06775-56.40212,58.828-56.40212,33.558,0,58.42338,24.86542,58.42337,55.99756v0.40457c0,31.13214-25.06775,56.4005-58.828,56.40049C324.15178,150,299.28635,125.13458,299.28636,94.00244Zm86.92751,0V93.5995c0-15.97145-11.52284-29.92006-28.5041-29.92007-17.5873,0-28.09955,13.544-28.09956,29.51549V93.5995c0,15.96982,11.52284,29.91844,28.5041,29.91844C375.70161,123.51794,386.21386,109.97389,386.21387,94.00245Z" fill="#000400"/>
+        <path id="_Compound_Path_3" data-name="&lt;Compound Path&gt;" d="M425.01981,116.84666l0-51.34748h-12.938V39.21859h12.938V11.52283h30.72842V39.2186h25.47148V65.49919H455.74825l0,46.29445c0,7.07423,3.03181,10.51224,9.90539,10.51224a31.23229,31.23229,0,0,0,15.16152-3.84257v24.66395c-6.469,3.84095-13.94863,6.26672-24.2586,6.26672C437.75635,149.394,425.0198,141.91355,425.01981,116.84666Z" fill="#000400"/>
+        <path id="_Compound_Path_4" data-name="&lt;Compound Path&gt;" d="M490.04047,0h30.72761L520.768,147.57424H490.04041Z" fill="#000400"/>
+        <path id="_Compound_Path_5" data-name="&lt;Compound Path&gt;" d="M531.87515,0H564.2194V27.2912H531.87514V0Zm0.80912,39.2186h30.72761l0,108.35564H532.68423Z" fill="#000400"/>
+        <path id="_Compound_Path_6" data-name="&lt;Compound Path&gt;" d="M575.10111,39.21861h30.72761V54.58239c7.07587-9.09706,16.17294-17.385,31.73822-17.385,23.2488,0,36.79286,15.36379,36.79285,40.22921l0,70.14764H643.63214l0-60.44454c0-14.55465-6.87438-22.03508-18.59871-22.03508-11.72595,0-19.20476,7.48042-19.20476,22.03507l0,60.44454H575.10106Z" fill="#000400"/>
+      </g>
+    </g>
+    <g>
+      <polygon points="71.035 5.994 0 80.696 0 147.477 70.932 76.42 141.483 5.994 71.035 5.994" fill="url(#linear-gradient)"/>
+      <polygon id="_Path_" data-name="&lt;Path&gt;" points="0 147.477 70.932 76.42 141.483 147.477 0 147.477" fill="url(#linear-gradient-2)"/>
+      <polygon points="0 5.994 71.035 5.994 0 80.696 0 5.994" fill="url(#linear-gradient-3)"/>
+    </g>
+  </g>
+</svg>

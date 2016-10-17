@@ -1,0 +1,1060 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>A new hope for the JVM: Kotlin</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.16" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+    
+        <meta name="twitter:card" content="summary"/>
+        
+            <meta name="twitter:image:src" content="http://engineering.facile.it/images/kotlin-intro/logo_Kotlin.png"/>
+        
+    
+    
+    <meta name="twitter:title" content="A new hope for the JVM: Kotlin"/>
+    <meta name="twitter:description" content="Premise Java is an old programming language. Version 1.0 was released in 1996 by Sun Microsystems and even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as null (ask Tony Hoare), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as Optional or lambda expression."/>
+    
+        
+            
+        
+    
+
+
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="A new hope for the JVM: Kotlin" />
+<meta property="og:description" content="Premise Java is an old programming language. Version 1.0 was released in 1996 by Sun Microsystems and even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as null (ask Tony Hoare), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as Optional or lambda expression." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://engineering.facile.it/blog/eng/kotlin-intro/" />
+
+
+<meta property="og:updated_time" content="2016-10-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="A new hope for the JVM: Kotlin">
+<meta itemprop="description" content="Premise Java is an old programming language. Version 1.0 was released in 1996 by Sun Microsystems and even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as null (ask Tony Hoare), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as Optional or lambda expression.">
+
+
+<meta itemprop="dateModified" content="2016-10-17T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GraphQL,HTTP,Hackathon,Hugo,Italiano,JVM,JWT,Java,Kanban,Kotlin,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors">
+                        
+                            <i class="fa fa-pencil">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/ita/careers">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/eng/who-we-are">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Who we are
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="http://engineering.facile.it">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://engineering.facile.it">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors">
+                            <h3>
+                                
+                                    <i class="fa fa-pencil">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/ita/careers">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/eng/who-we-are">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Who we are
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/kotlin-intro/"><p>A new hope for the JVM: Kotlin</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"><p>Event-driven serverless applications</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/"><p>How PHP 7 &amp; TDD helped me sleep better</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&text=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://engineering.facile.it/blog/eng/kotlin-intro/">A new hope for the JVM: Kotlin</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2016-10-17'>
+            17 October 2016
+        </time>
+
+        
+            <a href="/authors/giacomo" class="author">
+            
+                <span class="name">Giacomo Bresciani</span>
+                <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" />
+            
+            </a>
+        
+
+        
+            <p>5 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+
+    
+
+    
+
+<p><img src="/images/kotlin-intro/logo_Kotlin.svg" alt="Kotlin" /></p>
+
+<h2 id="premise">Premise</h2>
+
+<p>Java is an <strong>old</strong> programming language. Version 1.0 was released in 1996 by Sun Microsystems and  even though it has evolved and grown a lot over the past twenty years it is still carrying on some bad design choices such as <em>null</em> (ask <a href="https://en.wikipedia.org/wiki/Tony_Hoare?section=3#Apologies_and_retractions">Tony Hoare</a>), primitive types or lack of a proper function type. With the last version of the language (Java 8) Java tried to address some of these problems introducing concepts such as <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><code>Optional</code></a> or <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">lambda expression</a>. Although these additions clearly represent a step forward for the language I still have the feeling that they are just <em>patches</em> applied to <strong>mitigate problems</strong> and not to solve them at their very source. For example <code>Optional</code> could be used to reduce NPE (Null Pointer Exception) but it is clearly not designed for <a href="https://twitter.com/mariofusco/status/780770300178956289">this purpose</a> and lambda expressions, implemented in Java 8 with SAM types, still force you to write an interface only to define a <em>function</em>.</p>
+
+<h2 id="the-android-world">The Android world</h2>
+
+<p>All the above concerns about Java are even more problematic within the Android world where, due to the notorious <a href="https://developer.android.com/about/dashboards/index.html">fragmentation</a> (a huge amount of devices are stuck with an <strong>outdated VM</strong>), you are forced to target lower Java versions (6 and 7).
+Google is addressing the problem with its new compiler <a href="https://source.android.com/source/jack.html">Jack</a> that enables <em>some</em> of the features of Java 8 maintaining backward compatibility with older OS versions. But still it lets us deal with the verbosity of the language and it doesn’t truly solve the problem.</p>
+
+<h2 id="a-new-hope">A new hope</h2>
+
+<p><img src="/images/kotlin-intro/kotlin_helloworld.png" alt="Kotlin Hello World!" /></p>
+
+<p>Back in 2011 the JetBrains team (the guys behind IntelliJ and so Android Studio) unveiled <a href="https://kotlinlang.org/">Kotlin</a>, a new programming language that targets the JVM (and can also be compiled to JavaScript).
+Kotlin is a statically-typed language that combines Object Oriented and functional features enforcing no particular philosophy of programming, and it introduces a whole new set of concepts and tools that helps making the code <strong>safer, cleaner and much more readable</strong>.
+Thanks to its nature it works everywhere Java do and it is also <strong>interoperable</strong> with it, meaning it will not force you to rewrite the entire codebase to taste it: you can add it to your project a little at a time (<a href="https://medium.com/@sergii/using-kotlin-for-tests-in-android-6d4a0c818776#.lyvd3h43x">maybe starting with tests</a> 😉). It also features a REPL <code>kotlinc-jvm</code> that allows you to test language features with no effort (see the <a href="https://kotlinlang.org/docs/tutorials/command-line.html#running-the-repl">doc</a> form more info).
+I am going to rapidly cover some features of Kotlin that address the previously mentioned Java limitations.</p>
+
+<h3 id="null-safety">Null-safety</h3>
+
+<p>In Kotlin <strong>a variable cannot be null</strong>. If you want or need a variable to be <em>nullable</em> you have to add <code>?</code> to the variable type:</p>
+
+<pre><code class="language-kotlin">val x: Int = null // compile error
+val y: Int? = null // ok
+</code></pre>
+
+<p>Thanks to this information the compiler sees <code>Int</code> and <code>Int?</code> as two completely different types and can therefore enforce the <a href="http://kotlinlang.org/docs/reference/null-safety.html">null-safety</a> of your variables.
+The <code>?.</code> allows you to safe call methods on nullable variables without throwing NPE but simply returning null at the end of the  call chain:</p>
+
+<pre><code class="language-kotlin">val x: Int? = null
+x?.toString()?.substring(2) // no NPE, returns null
+</code></pre>
+
+<p>The <code>?:</code> operator (Elvis operator) allows you to provide a “default” value when the variable is <code>null</code>:</p>
+
+<pre><code class="language-kotlin">// The two expressions are semantically equivalent:
+text?.length ?: -1
+(text.length != null) ? text.length  : -1
+</code></pre>
+
+<h3 id="higher-order-functions-and-lambdas">Higher-Order Functions and Lambdas</h3>
+
+<p>In Kotlin is possible to declare a method (or more generally a function) that returns or takes another <strong>function as parameter</strong>. The syntax to define the <a href="https://kotlinlang.org/docs/reference/lambdas.html">function type</a> is similar to other languages such as Scala or Swift and is very <strong>intuitive</strong>:</p>
+
+<pre><code class="language-kotlin">val function: (T1, T2) -&gt; R = {t1, t2 -&gt; r}
+</code></pre>
+
+<h3 id="data-classes">Data classes</h3>
+
+<pre><code class="language-kotlin">data class City(val name: String, val state: String)
+</code></pre>
+
+<p><a href="https://kotlinlang.org/docs/reference/data-classes.html">Data classes</a> address the verbosity of Java when dealing with classes that have the only purpose to hold data. With a single line you get <code>equals()/hashCode()</code>, <code>toString()</code> and getters/setters for free (and if you are a Java developer you already knows the benefits!)</p>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>Java has to maintain backward compatibility with previous versions and still has to support the huge amount of developers and codebases present all around the world; therefore it is natural that every new feature and design change is to be considered, weighted and reasoned really carefully, inevitably <strong>slowing down its evolution</strong>. But this does not have to mean that us, as Android developers, “tied” to the JVM, should not try more modern and advanced languages such as Kotlin. At bottom, a part of our job (one of the best!) is to try and <strong>experiment</strong> new technologies and to <strong>learn</strong> new concepts and techniques that improve our ability to address problems in the best possible way (and of course, to have some fun 😄).</p>
+
+<p>I think that it is fundamental for a software engineer to be <strong>exposed to more than a single programming language</strong>: learning new patterns, exploring other programming paradigms or simply using and understanding a never-seen syntax has an immeasurable value for our growth and most of the times it turns out to be unexpectedly useful even when coding with ”our” language.
+So why not do it with a language that allows us to continue working on projects targeting our beloved JVM?</p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&text=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f&title=A%20new%20hope%20for%20the%20JVM%3a%20Kotlin" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2fkotlin-intro%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/java">Java</a></li>
+    
+        <li><a href="/categories/kotlin">Kotlin</a></li>
+    
+        <li><a href="/categories/jvm">JVM</a></li>
+    
+        <li><a href="/categories/android">Android</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/"
+                class="button big previous">Event-driven serverless applications</a></li>
+    
+
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "http://engineering.facile.it/blog/eng/kotlin-intro/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/kotlin-intro/";
+        this.page.title = "A new hope for the JVM: Kotlin";
+    };
+
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//facile-it.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/user/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/kotlin-intro/">A new hope for the JVM: Kotlin</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-10-17'>
+                                        17 October 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/event-driven-serverless-applications/">Event-driven serverless applications</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-09-20'>
+                                        20 September 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/5e9c1c380aa22f2df2f70be07ba35e90?d=404&amp;s=250" alt="Alessandro Lai avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/how-php-7-tdd-helped-me-sleep-better/">How PHP 7 &amp; TDD helped me sleep better</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-06-07'>
+                                        7 June 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">32</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">16</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/user/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; <a href="http://www.facile.it/" target="_blank">Facile.it</a> Engineering, leggi <a href="/ita/chi-siamo" target="_blank">chi siamo</a>.<br>
+                Design: <a href="http://html5up.net" rel="nofollow" target="_blank">HTML5 UP</a>.<br>
+                Ported by <a href="//github.com/jpescador" rel="nofollow" target="_blank">Julio Pescador</a><br>
+                Modified by <a href="//github.com/Jean85" rel="nofollow" target="_blank">Alessandro Lai</a>.<br>
+                Powered by <a href="//gohugo.io" rel="nofollow" target="_blank">Hugo</a>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+
