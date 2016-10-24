@@ -1,6 +1,6 @@
 ---
 authors: ["salvatore-cordiano"]
-date: "2016-10-24"
+date: "2016-10-25"
 draft: false
 share: true
 categories: [English, MessagePack, JSON]
@@ -9,9 +9,10 @@ type: "post"
 languageCode: "en-EN"
 twitterImage: '/images/message-pack-an-alternative-to-json/share.png'
 ---
-When we talk about data interchange in web applications, **[JSON](http://www.json.org/)** is the de-facto standard, especially in developing a RESTful web services. JSON won against its antagonist [XML](https://www.w3.org/XML/) (SOAP) without a battle, but it didn't prevent the development of alternatives like [Google’s **Protocol Buffers**](https://developers.google.com/protocol-buffers/), [Apache **Avro**](https://avro.apache.org/) or **[MessagePack](http://msgpack.org/)**. In being thorough, we should also mention [gzip](http://www.gzip.org/) JSON compression (sometimes also called "*JSONC*"), and [BSON](http://bsonspec.org/), a bin­ary-en­coded seri­al­iz­a­tion of JSON-like doc­u­ments, both derived directly from JSON. In this article we'll discuss MessagePack in depth.
+When we talk about data interchange in web applications, **[JSON](http://www.json.org/)** is the de-facto standard, especially in developing a RESTful web services. JSON won against its antagonist [XML](https://www.w3.org/XML/) (SOAP) without a battle, but it didn't prevent the development of alternatives like [Google’s **Protocol Buffers**](https://developers.google.com/protocol-buffers/), [Apache **Avro**](https://avro.apache.org/) or **[MessagePack](http://msgpack.org/)**. In being thorough, we should also mention [gzip](http://www.gzip.org/) JSON compression (sometimes called "*JSONC*"), and [BSON](http://bsonspec.org/), a bin­ary-en­coded seri­al­iz­a­tion of JSON-like doc­u­ments, both derived directly from JSON. In this article we'll discuss MessagePack in depth.
 
 ![MessagePack](/images/message-pack-an-alternative-to-json/msgpack.png)
+*JSON Vs MessagePack (source: [msgpack.org](http://msgpack.org/))*
 
 # What is MessagePack?{#what-is-messagepack}
 
