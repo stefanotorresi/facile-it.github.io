@@ -6,8 +6,22 @@
     <description>Recent content in Ita on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Mar 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Sep 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/ita/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Disclaimer</title>
+      <link>http://engineering.facile.it/ita/disclaimer/</link>
+      <pubDate>Wed, 21 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/ita/disclaimer/</guid>
+      <description>&lt;p&gt;Questo blog non rappresenta una testata giornalistica e viene aggiornato senza alcuna periodicità. Non può pertanto considerarsi un prodotto editoriale ai sensi della Legge n. 62 del 07/03/2001.&lt;/p&gt;
+
+&lt;p&gt;Facile.it S.p.A. non ha e non si assume alcuna responsabilità per l&amp;rsquo;attualità, la correttezza, la completezza o la qualità delle informazioni messe a disposizione, ivi compresi i contenuti dei siti collegati e/o citati.&lt;/p&gt;
+
+&lt;p&gt;Facile.it, inoltre, si riserva il diritto e la facoltà di rimuovere le informazioni proprie e/o fornite da terzi senza alcun preavviso.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Careers</title>
