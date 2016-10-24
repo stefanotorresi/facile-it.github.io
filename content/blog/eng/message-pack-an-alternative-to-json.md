@@ -71,7 +71,7 @@ Data structures listed by the specification are very similar to JSON data types 
 
 Until the moment our reasoning is focused on **space efficiency**, but a good theoretical computer scientists would have criticized us, because of we omitted to mention the **time complexity**. In fact the process of data *compression* and *decompression* it is not negligible. So we can analyse and compare, for example, the time necessary to parse a JSON document and to unpack a MessagePack document. This is not a scientific method, but it could help us not to overlook the timespent.
 
-We wrote two **[Node.js](https://nodejs.org/en/)** scripts to execute 1 Milion of JSON parsing and 1 Milion of MessagePack unpacking of a document containing the same data in the two rispectively different formats. We use as sample document the first JSON of this post. 
+We wrote two **[Node.js](https://nodejs.org/en/)** scripts to execute 1 Milion of JSON parsing and 1 Milion of MessagePack unpacking of a document containing the same data in the two rispectively different formats. We use as [sample document](https://github.com/salvatorecordiano/facile-it-message-pack-benchmark/blob/master/document.json) bigger than the first JSON of this post. 
 
 Simplifying our code, we can write something like this:
 
