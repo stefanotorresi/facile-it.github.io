@@ -6,8 +6,147 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>MessagePack: an alternative to JSON?</title>
+      <link>http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/</guid>
+      <description>
+
+&lt;p&gt;When we talk about data interchange in web applications, &lt;strong&gt;&lt;a href=&#34;http://www.json.org/&#34;&gt;JSON&lt;/a&gt;&lt;/strong&gt; is the de-facto standard, especially in developing a RESTful web services. JSON won against its antagonist &lt;a href=&#34;https://www.w3.org/XML/&#34;&gt;XML&lt;/a&gt; (SOAP) without a battle, but it didn&amp;rsquo;t prevent the development of alternatives like &lt;a href=&#34;https://developers.google.com/protocol-buffers/&#34;&gt;Google’s &lt;strong&gt;Protocol Buffers&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://avro.apache.org/&#34;&gt;Apache &lt;strong&gt;Avro&lt;/strong&gt;&lt;/a&gt; or &lt;strong&gt;&lt;a href=&#34;http://msgpack.org/&#34;&gt;MessagePack&lt;/a&gt;&lt;/strong&gt;. In being thorough, we should also mention &lt;a href=&#34;http://www.gzip.org/&#34;&gt;gzip&lt;/a&gt; JSON compression (sometimes called &amp;ldquo;&lt;em&gt;JSONC&lt;/em&gt;&amp;rdquo;), and &lt;a href=&#34;http://bsonspec.org/&#34;&gt;BSON&lt;/a&gt;, a bin­ary-en­coded seri­al­iz­a­tion of JSON-like doc­u­ments, both derived directly from JSON. In this article we&amp;rsquo;ll discuss MessagePack in depth.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/message-pack-an-alternative-to-json/msgpack.png&#34; alt=&#34;MessagePack&#34; /&gt;
+&lt;em&gt;JSON Vs MessagePack (source: &lt;a href=&#34;http://msgpack.org/&#34;&gt;msgpack.org&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-is-messagepack&#34;&gt;What is MessagePack?&lt;/h1&gt;
+
+&lt;p&gt;« &lt;em&gt;MessagePack is an efficient binary serialization format. It lets you exchange data among multiple languages like JSON. But it&amp;rsquo;s faster and smaller&lt;/em&gt; ». To start using MessagePack we need to convert our application objects into MessagePack format: this process is called &lt;em&gt;serialization&lt;/em&gt;, while the reverse process is called &lt;em&gt;deserialization&lt;/em&gt;. The following example can help us better understand what we&amp;rsquo;re talking about. Consider this simple JSON:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+	&amp;quot;id&amp;quot;: 4,                    // integer
+	&amp;quot;isActive&amp;quot;: true,           // boolean
+	&amp;quot;fullname&amp;quot;: &amp;quot;Homer Simpson&amp;quot; // string
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;JSON requires 56 bytes to represent a very simple user object, while MessagePack only needs 38 bytes (compression ratio 1.47, yielding a 32% saving in size). See below the output of the serialization process for the above JSON:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;83 a2 69 64 04 a8 69 73 41 63 74 69 76 65 c3 a8 66 75 6c 6c 6e 61 6d 65 ad 48 6f 6d 65 72 20 53 69 6d 70 73 6f 6e
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can see how MessagePack serialization works by reading the &lt;a href=&#34;https://github.com/msgpack/msgpack/blob/master/spec.md&#34;&gt;official specification&lt;/a&gt;. Also, we can split the previous hexadecimal representation to emphasize and explain data types as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;83                                          // 3-element map
+a2 69 64                                    // 2-byte string &amp;quot;id&amp;quot;
+04                                          // integer 4
+a8 69 73 41 63 74 69 76 65                  // 8-byte string &amp;quot;isActive&amp;quot; 
+c3                                          // boolean true
+a8 66 75 6c 6c 6e 61 6d 65                  // 8-byte string &amp;quot;fullname&amp;quot;
+ad 48 6f 6d 65 72 20 53 69 6d 70 73 6f 6e   // 13-byte string &amp;quot;Homer Simpson&amp;quot;
+                                            // total 38 bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now it&amp;rsquo;s very simple to figure out the meaning of the sentence « &lt;em&gt;Small integers are encoded into a single byte, and typical short strings require only one extra byte in addition to the strings themselves&lt;/em&gt; » reported in the headline of MessagePack website.&lt;/p&gt;
+
+&lt;p&gt;The main features of MessagePack are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;it&amp;rsquo;s designed for network communication and to be transparently converted from and to JSON;&lt;/li&gt;
+&lt;li&gt;it supports in-place updating, so it&amp;rsquo;s possible to modify part of a stored object without reserializing it as a whole;&lt;/li&gt;
+&lt;li&gt;it has a flexible &lt;a href=&#34;https://en.wikipedia.org/wiki/Remote_procedure_call&#34;&gt;Remote Procedure Call (RPC)&lt;/a&gt; and streaming API implementation;&lt;/li&gt;
+&lt;li&gt;it supports &lt;a href=&#34;https://en.wikipedia.org/wiki/Type_system#Static_type_checking&#34;&gt;static-type-checking&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;supported-data-types&#34;&gt;Supported data types&lt;/h1&gt;
+
+&lt;p&gt;Data types listed by the specification are very similar to those in JSON, that is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Integer&lt;/strong&gt; represents an &lt;code&gt;integer&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boolean&lt;/strong&gt; represents &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nil&lt;/strong&gt; represents &lt;code&gt;nil&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Float&lt;/strong&gt; represents a &lt;a href=&#34;https://en.wikipedia.org/wiki/IEEE_floating_point&#34;&gt;IEEE 754&lt;/a&gt; double precision floating point numbers including &lt;code&gt;NaN&lt;/code&gt; and &lt;code&gt;Infinity&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;String&lt;/strong&gt; is a &lt;code&gt;raw type&lt;/code&gt; and it represents a UTF-8 string;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Binary&lt;/strong&gt; is a &lt;code&gt;raw type&lt;/code&gt; and it represents a binary data using byte array;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Array&lt;/strong&gt; represents a sequence of objects;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Map&lt;/strong&gt; represents a dictionary (key-value pairs of objects);&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extension&lt;/strong&gt; represents a tuple of data whose meaning is defined by applications.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;a-naive-benchmark&#34;&gt;A naive benchmark&lt;/h1&gt;
+
+&lt;p&gt;Up to this point our reasoning was focused on &lt;strong&gt;space efficiency&lt;/strong&gt;, but a good theoretical computing scientist would have criticized us since we didn&amp;rsquo;t mention &lt;strong&gt;time complexity&lt;/strong&gt;. In fact, the process of data &lt;em&gt;compression&lt;/em&gt; and &lt;em&gt;decompression&lt;/em&gt; is not negligible. We can analyze and compare, for example, the time required to parse a JSON document and to unpack a MessagePack document: that&amp;rsquo;s not completely scientific, but it&amp;rsquo;s a start.&lt;/p&gt;
+
+&lt;p&gt;We wrote two &lt;strong&gt;&lt;a href=&#34;https://nodejs.org/en/&#34;&gt;Node.js&lt;/a&gt;&lt;/strong&gt; scripts to execute 1 million JSON parsing and 1 million MessagePack unpacking operations of a &lt;a href=&#34;https://github.com/salvatorecordiano/facile-it-message-pack-benchmark/blob/master/document.json&#34;&gt;sample document&lt;/a&gt; containing the same data in the two formats.&lt;/p&gt;
+
+&lt;p&gt;A simplified version of the code could be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// inside script &amp;quot;test_parse_json.js&amp;quot;
+for (var i = 0;i&amp;lt;1000000;i++) {
+    JSON.parse(jsonDocument); // JSON document parsing
+}
+
+// inside script &amp;quot;test_unpack_msgpack.js&amp;quot;
+for (var i = 0;i&amp;lt;1000000;i++) {
+    msgpack.unpack(msgPackDocument); // MessagePack document unpacking
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To easily profile our scripts we can run them as below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;aiace:msgpack parallel$ time node test_parse_json.js
+
+real	0m47.296s
+user	0m47.202s
+sys	0m0.059s
+
+aiace:msgpack parallel$ time node test_unpack_msgpack.js
+
+real	1m47.244s
+user	1m47.050s
+sys	0m0.120s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Numbers are self-explanatory: the MessagePack binary is &lt;em&gt;smaller&lt;/em&gt; than the minified JSON, but MessagePack deserialization is clearly &lt;em&gt;slower&lt;/em&gt; than JSON parsing process.&lt;/p&gt;
+
+&lt;p&gt;Before going on, we also need to say that all tests are executed in the following described environment and the full code of this benchmark is free available &lt;a href=&#34;https://github.com/salvatorecordiano/facile-it-message-pack-benchmark/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;// Machine
+OS : Darwin 15.6 (x64)
+RAM: 16.384 MB
+CPU: 2.200 MHz Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz
+
+// Runtime versions
+aiace:msgpack parallel$ node -v
+v6.8.1
+aiace:msgpack parallel$ npm -v
+3.10.9
+
+// Module versions
+aiace:msgpack parallel$ npm list msgpack
+benchmark-msgpack@1.0.0 /Users/parallel/Facile/msgpack
+└── msgpack@1.0.2
+
+aiace:msgpack parallel$ npm list fs
+benchmark-msgpack@1.0.0 /Users/parallel/Facile/msgpack
+└── fs@0.0.1-security
+
+aiace:msgpack parallel$ npm list assert
+benchmark-msgpack@1.0.0 /Users/parallel/Facile/msgpack
+└── assert@1.4.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
+
+&lt;p&gt;MessagePack allows to save more than 40% of network bandwidth consumption with little more than one line of code. A smaller payload means that less data are transmitted, and that&amp;rsquo;s very useful in &lt;strong&gt;mobile&lt;/strong&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Internet_of_things&#34;&gt;&lt;strong&gt;Internet of Things (IoT)&lt;/strong&gt;&lt;/a&gt; applications, where there&amp;rsquo;s special care in power efficiency; but we should also pay attention to the overall size of each request, to avoid the absurd situation in which the &lt;em&gt;header&lt;/em&gt; is larger than the &lt;em&gt;payload&lt;/em&gt; (&lt;a href=&#34;https://en.wikipedia.org/wiki/Overhead_(computing)&#34;&gt;overhead&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s important to underline that, while MessagePack is supported by over &lt;a href=&#34;http://msgpack.org/#languages&#34;&gt;50 programming languages&lt;/a&gt;, it doesn&amp;rsquo;t seem to be particularly efficient from a computational perspective, and can be hard to debug due to being non human-readable.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A new hope for the JVM: Kotlin</title>
@@ -1462,328 +1601,6 @@ In fact, in my opinion, another good point of interest regarding GraphQL is the 
 &lt;p&gt;The entire Facebook ecosystem of open source projects is worth of attention (don&amp;rsquo;t forget about React, Flux and the other Flux-like architectures) and, even if it&amp;rsquo;s very young, it has become very popular and used by many little and big companies around the world.&lt;/p&gt;
 
 &lt;p&gt;My personal hope is that every lesson that can be learned while working with these projects, especially GraphQL, might lead to a better World Wide Web and a better developing experience, maybe with more standard and free implementations than the Facebook (or Google, or Microsoft, or Apple) ones.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Write a filesystem with FUSE</title>
-      <link>http://engineering.facile.it/blog/eng/write-filesystem-fuse/</link>
-      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/write-filesystem-fuse/</guid>
-      <description>
-
-&lt;p&gt;During the past year I experimented a lot with file systems in Userspace using FUSE, I wrote this post to share my thoughts about what I did and to give you a starting point to do something by yourself.&lt;/p&gt;
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;A filesystem is that piece of software that is in charge of storing, organizing and generally taking care of data represented as files and directories.
-If you are using a device to read this post you are probably using at least one filesystem at the moment.&lt;/p&gt;
-
-&lt;p&gt;Implementing a filesystem is not an easy task to accomplish and requires that a few parts of it have to be written at kernel level, fortunately that&amp;rsquo;s not our case since we are not writing a real on-disk filesystem, but rather we want to write something on top of it to solve a specific problem.&lt;/p&gt;
-
-&lt;p&gt;The most common tool to do that in user space is precisely &lt;strong&gt;FUSE, Filesystem in USErspace&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;There are a lot of filesystem examples built on top of FUSE out there that cover the most different use cases like:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.gluster.org/&#34;&gt;GlusterFS&lt;/a&gt;: scalable network filesystem&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/libfuse/sshfs&#34;&gt;SSHFS&lt;/a&gt;: allows mounting a remote filesystem over SSH&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://sr71.net/projects/gmailfs/&#34;&gt;GMailFS&lt;/a&gt;: allows to use GMail storage as a filesystem&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://loggedfs.sourceforge.net/&#34;&gt;LoggedFS&lt;/a&gt;: filesystem that logs operations that happens in it&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The main &lt;strong&gt;advantages&lt;/strong&gt; of FUSE over writing a low level kernel filesystem are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Is usable by non-privileged users;&lt;/li&gt;
-&lt;li&gt;Clean and easy interface to do FS operations;&lt;/li&gt;
-&lt;li&gt;Has bindings in most available programming language;&lt;/li&gt;
-&lt;li&gt;No need of advanced kernel development skills;&lt;/li&gt;
-&lt;li&gt;Comes with user isolation, more secure;&lt;/li&gt;
-&lt;li&gt;Since you are not hacking in kernel space there are a few chances that a crash in your program takes down the entire system;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;However there are also a few &lt;strong&gt;disadvantages&lt;/strong&gt; of this approach:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The target system need libfuse installed;&lt;/li&gt;
-&lt;li&gt;Slower than low level implementations;&lt;/li&gt;
-&lt;li&gt;Not the best option if you need multiple users to access your filesystem;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a flow-chart diagram showing how FUSE works, source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:FUSE_structure.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;
-&lt;img src=&#34;http://engineering.facile.it/images/write-filesystem-fuse/FUSE_structure.svg&#34; alt=&#34;A flow-chart diagram showing how FUSE works&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;getting-started-with-fuse&#34;&gt;Getting started with FUSE&lt;/h1&gt;
-
-&lt;p&gt;This section of the post is designed to introduce you on how to practically get your hands dirt with FUSE. Anyway you can understand what&amp;rsquo;s going on whether you execute the code or not.&lt;/p&gt;
-
-&lt;h2 id=&#34;build-dependencies&#34;&gt;Build dependencies&lt;/h2&gt;
-
-&lt;p&gt;From now you&amp;rsquo;ll need a few build dependencies and a text editor or an IDE to build and edit the code and do your experiments.&lt;/p&gt;
-
-&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;GCC or Clang&lt;/li&gt;
-&lt;li&gt;CMake &amp;gt;= 3&lt;/li&gt;
-&lt;li&gt;make&lt;/li&gt;
-&lt;li&gt;FUSE 2.6 or later&lt;/li&gt;
-&lt;li&gt;FUSE development files&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To obtain those dependencies you can issue the following commands (depending on your Linux distribution).&lt;/p&gt;
-
-&lt;p&gt;Fedora/CentOS&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;yum install gcc fuse fuse-devel make cmake
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Debian/Ubuntu&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install gcc fuse libfuse-dev make cmake
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;mac-osx&#34;&gt;Mac OSX&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Command line tools for Xcode (contains Clang and make)&lt;/li&gt;
-&lt;li&gt;CMake &amp;gt;= 3&lt;/li&gt;
-&lt;li&gt;FUSE &amp;gt;= 2.6 or later&lt;/li&gt;
-&lt;li&gt;FUSE development files&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can obtain all the needed dependencies at the following sources:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/xcode/features/&#34;&gt;Xcode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cmake.org/download/&#34;&gt;CMake&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://osxfuse.github.io/&#34;&gt;OSXFuse&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;fuse-api&#34;&gt;FUSE API&lt;/h2&gt;
-
-&lt;p&gt;The most important thing to be aware of when working with FUSE is its API.
-The libfuse library exposes a set of callbacks that you have to implement in order to tell your filesystem how to behave.&lt;/p&gt;
-
-&lt;p&gt;The most complete source of documentation on what are the callbacks and their behavior is the &lt;code&gt;fuse.h&lt;/code&gt; declaration file. You can find an online version &lt;a href=&#34;https://github.com/libfuse/libfuse/blob/579c3b03f57856e369fd6db2226b77aba63b59ff/include/fuse.h#L102-L577&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;example-project&#34;&gt;Example project&lt;/h2&gt;
-
-&lt;p&gt;For the purpose of showing you how simple is the creation of a FUSE filesystem, I wrote this little implementation that, when mounted, only exposes a file named &lt;code&gt;file&lt;/code&gt; and its content.&lt;/p&gt;
-
-&lt;p&gt;You can find the example project on &lt;a href=&#34;https://github.com/fntlnz/fuse-example&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I think that the best way to start your own implementation is to take an example and start adding your features.&lt;/p&gt;
-
-&lt;p&gt;So, as first thing clone the example project:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/fntlnz/fuse-example.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you can see the project structure is quite simple:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;.
-├── CMake
-│   └── FindFUSE.cmake
-├── CMakeLists.txt
-└── fuse-example.c
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;cmakelists-txt-https-github-com-fntlnz-fuse-example-blob-master-cmakelists-txt&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/CMakeLists.txt&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;As you may know CMake is a tool used to manage project builds in a cross platform way. The scope of this file is to define what CMake is supposed to do for our project. The &lt;code&gt;CMake/FindFuse.cmake&lt;/code&gt; is needed in order to tell CMake where to find the FUSE related things while compiling/linking.&lt;/p&gt;
-
-&lt;h3 id=&#34;fuse-example-c-https-github-com-fntlnz-fuse-example-blob-master-fuse-example-c&#34;&gt;&lt;a href=&#34;https://github.com/fntlnz/fuse-example/blob/master/fuse-example.c&#34;&gt;fuse-example.c&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;Here&amp;rsquo;s where the magic actually happen!&lt;/p&gt;
-
-&lt;p&gt;In this example I implemented four of the FUSE API callbacks namely: getattr, open, read, readdir.&lt;/p&gt;
-
-&lt;h4 id=&#34;getattr&#34;&gt;getattr&lt;/h4&gt;
-
-&lt;p&gt;The getattr callback is in charge of reading the metadata of a given path, this  callback is always called before any operation made on the filesystem.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int getattr_callback(const char *path, struct stat *stbuf) {
-  memset(stbuf, 0, sizeof(struct stat));
-
-  if (strcmp(path, &amp;quot;/&amp;quot;) == 0) {
-    stbuf-&amp;gt;st_mode = S_IFDIR | 0755;
-    stbuf-&amp;gt;st_nlink = 2;
-    return 0;
-  }
-
-  if (strcmp(path, filepath) == 0) {
-    stbuf-&amp;gt;st_mode = S_IFREG | 0777;
-    stbuf-&amp;gt;st_nlink = 1;
-    stbuf-&amp;gt;st_size = strlen(filecontent);
-    return 0;
-  }
-
-  return -ENOENT;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;What we are doing here is simple:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;if the value of path equals to root &lt;code&gt;/&lt;/code&gt;, we declare it as a directory and return.&lt;/li&gt;
-&lt;li&gt;if the value of path equals to filepath &lt;code&gt;/file&lt;/code&gt;, we declare it as a file and explicit its size and then return.&lt;/li&gt;
-&lt;li&gt;Otherwise nothing exists at the given path, and we return &lt;code&gt;-ENOENT&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As you can see, we are telling FUSE that the current entry is a file or a directory using the &lt;code&gt;stat&lt;/code&gt; struct.&lt;/p&gt;
-
-&lt;p&gt;In general, if the entry is a directory, &lt;code&gt;st_mode&lt;/code&gt; have to be set to &lt;code&gt;S_IFDIR&lt;/code&gt; and &lt;code&gt;st_nlink&lt;/code&gt; to 2, while if it&amp;rsquo;s a file, &lt;code&gt;st_mode&lt;/code&gt; have to be set to &lt;code&gt;S_IFREG&lt;/code&gt; (that stands for regular file) and &lt;code&gt;st_nlink&lt;/code&gt; to 1. Files also require that the &lt;code&gt;st_size&lt;/code&gt; (the full file size) is specified.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://pubs.opengroup.org/onlinepubs/007908799/xsh/sysstat.h.html&#34;&gt;Here&lt;/a&gt; you can find more information about &lt;code&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;open&#34;&gt;open&lt;/h4&gt;
-
-&lt;p&gt;The open callback is called when the system requests for a file to be opened. Since we don&amp;rsquo;t have real file but only in-memory representations, we are going to implement this callback just because is needed for FUSE to work and therefore return 0.&lt;/p&gt;
-
-&lt;h4 id=&#34;read&#34;&gt;read&lt;/h4&gt;
-
-&lt;p&gt;This callback is called when FUSE is reading data from an opened file.
-It should return exactly the number of bytes requested and fill the second argument &lt;code&gt;buf&lt;/code&gt; with the content of those bytes.
-As done in the getattr callback, here I&amp;rsquo;m checking if the given path equals to a known one, I copy the &lt;code&gt;filecontent&lt;/code&gt; into the &lt;code&gt;buf&lt;/code&gt; and then return the requested number of bytes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int read_callback(const char *path, char *buf, size_t size, off_t offset,
-    struct fuse_file_info *fi) {
-
-  if (strcmp(path, filepath) == 0) {
-    size_t len = strlen(filecontent);
-    if (offset &amp;gt;= len) {
-      return 0;
-    }
-
-    if (offset + size &amp;gt; len) {
-      memcpy(buf, filecontent + offset, len - offset);
-      return len - offset;
-    }
-
-    memcpy(buf, filecontent + offset, size);
-    return size;
-  }
-
-  return -ENOENT;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;readdir&#34;&gt;readdir&lt;/h4&gt;
-
-&lt;p&gt;The readdir callback has the task of telling FUSE the exact structure of the accessed directory.
-Since at the moment the only available directory is &lt;code&gt;/&lt;/code&gt;, this function always return its representation, we are doing it by filling &lt;code&gt;buf&lt;/code&gt; with the two links for the upper directory &lt;code&gt;..&lt;/code&gt; and current directory &lt;code&gt;.&lt;/code&gt; and with the only file we have: &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static int readdir_callback(const char *path, void *buf, fuse_fill_dir_t filler,
-    off_t offset, struct fuse_file_info *fi) {
-  (void) offset;
-  (void) fi;
-
-  filler(buf, &amp;quot;.&amp;quot;, NULL, 0);
-  filler(buf, &amp;quot;..&amp;quot;, NULL, 0);
-
-  filler(buf, filename, NULL, 0);
-
-  return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;main&#34;&gt;main&lt;/h4&gt;
-
-&lt;p&gt;Last but not least, the &lt;code&gt;main&lt;/code&gt; function here is acting as a proxy to the &lt;code&gt;fuse_main&lt;/code&gt; passing arguments through it and configuring it with the implemented FUSE operation callbacks via the &lt;code&gt;fuse_example_operations&lt;/code&gt; variable.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;static struct fuse_operations fuse_example_operations = {
-  .getattr = getattr_callback,
-  .open = open_callback,
-  .read = read_callback,
-  .readdir = readdir_callback,
-};
-
-int main(int argc, char *argv[])
-{
-  return fuse_main(argc, argv, &amp;amp;fuse_example_operations, NULL);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;build-and-run&#34;&gt;Build and run&lt;/h3&gt;
-
-&lt;p&gt;Do you remember that you installed CMake, make, gcc and libfuse? It&amp;rsquo;s time to use them!&lt;/p&gt;
-
-&lt;p&gt;The first tool we are using is CMake to &lt;strong&gt;check dependencies, setup environment and generate Makefiles&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cmake -DCMAKE_BUILD_TYPE=Debug .
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you don&amp;rsquo;t want Debug flags and other development related enabled features, just change &lt;code&gt;Debug&lt;/code&gt; to &lt;code&gt;Release&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The second tool we are using is &lt;code&gt;make&lt;/code&gt;, that using the CMake generated &lt;strong&gt;Makefiles&lt;/strong&gt; is now able to build our project.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;make -j
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;-j&lt;/code&gt; parts tells make to parallelize the build to all your cores, remove it if you run out of CPU.&lt;/p&gt;
-
-&lt;p&gt;Now that everything is ready, if no build error has occurred, we can enjoy our new filesystem!&lt;/p&gt;
-
-&lt;h3 id=&#34;run&#34;&gt;Run!&lt;/h3&gt;
-
-&lt;p&gt;Before doing anything we need a mountpoint, so let&amp;rsquo;s create the directory where the filesystem will be mounted:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkdir /tmp/example
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and then, mount the filesystem:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./bin/fuse-example -d -s -f /tmp/example
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now check that it has been mounted:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ls -la
-total 0
-drwxr-xr-x.  2 root root   0 Jan  1  1970 .
-drwxrwxrwt. 14 root root 320 Jan 10 16:03 ..
--rwxrwxrwx.  1 root root  49 Jan  1  1970 file
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;$ mount | grep fuse-example
-fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you may notice, we mounted the filesystem with three arguments which are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;d&lt;/strong&gt;: enable debugging&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;s&lt;/strong&gt;: run single threaded&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;f&lt;/strong&gt;: stay in foreground&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can see the list of all mount options using &lt;code&gt;-h&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;thoughts-and-notes&#34;&gt;Thoughts and notes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;An important thing to notice is that write and read operations by default have a size of 4kb so if your file is, let&amp;rsquo;s say, 399kb you have to deal with the fact that to read it the read callback will be called 100 times with 100 different offset and 99 equals size but one that will have 3kb as size because the file is 399kb and not 400kb so the latest chunk has size 3kb and not 4kb.&lt;/li&gt;
-&lt;li&gt;FUSE is more secure than low level kernel development, but security is not free so if you are going to write a network filesystem, for example you may want not to mount it as root.&lt;/li&gt;
-&lt;li&gt;By default, accessing the mounted filesystem for other users is not allowed.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;other-resources&#34;&gt;Other resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/hanwen/go-fuse&#34;&gt;Fuse bindings in Go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/bcle/fuse4js&#34;&gt;Fuse bindings in NodeJS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/terencehonles/fusepy&#34;&gt;Fuse bindings in Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/EtiennePerot/fuse-jna&#34;&gt;Fuse bindings in Java&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/libfuse/libfuse/tree/master/example&#34;&gt;Other examples in C&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These were my 2 cents, if you are interested in seeing something from me I started a little project on GitHub to create a filesystem that can use online services via FUSE to store data. You can find the project here: &lt;a href=&#34;https://github.com/fntlnz/webfs&#34;&gt;WebFS on GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading!&lt;/p&gt;
 </description>
     </item>
     
