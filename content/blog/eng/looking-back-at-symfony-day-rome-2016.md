@@ -7,9 +7,11 @@ categories: [English, Symfony, GrUSP, PUG Rome]
 title: "Looking back at Symfony Day Rome 2016"
 type: "post"
 languageCode: "en-EN"
-twitterImage: '/images/-/-'
+twitterImage: '/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg'
 ---
 Every year [PHP User Group Roma](http://roma.grusp.org/) in cooperation with [GrUSP](http://www.grusp.org/) organizes the Italian **[Symfony](http://symfony.com/)** conference. This year the [event](http://2016.symfonyday.it/) was organized in the Capital on 28th October and a part of Facile Dev Team was there for the occasion. In Facile we belive attending to events like this is a good way to learn new things, share practical experiences and improve our network.
+
+![A part of Facile Dev Team](/images/looking-back-at-symfony-day-rome-2016/faciledev_symfonyday_2016.jpg)
 
 This post would be a short recap of all the talks. 
 
@@ -51,6 +53,8 @@ Talk by **[Samuele Lilli](https://twitter.com/SamueleLilli)**
 
 *View slides [here](http://www.slideshare.net/SamueleLilli/symfony-day-2016)*
 
+![Symfony Day 2016](/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg)
+
 ## PHP7 e Rich Domain Model
 
 Talk by **[Massimiliano Arione](https://twitter.com/garakkio)**
@@ -85,4 +89,4 @@ Talk by **[Simone Di Maulo](https://twitter.com/toretto460)**
 
 This talk was a journey in the *magical world* of [Doctrine](http://www.doctrine-project.org/), the most known ORM for Symfony and not only. Simone explained how Doctrine works under the hood to better understand when and why to use its features.
 
-View slides [here](http://www.slideshare.net/SimoneDiMaulo/orm-hero)
+*View slides [here](http://www.slideshare.net/SimoneDiMaulo/orm-hero)*
