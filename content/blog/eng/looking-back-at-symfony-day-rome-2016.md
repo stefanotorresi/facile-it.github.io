@@ -66,7 +66,7 @@ In this talk Massimiliano Arione told about his experience in the migration to P
 
 ## Relevance sorting with Elasticsearch & a bit of maths{#relevance-sorting-with-elasticsearch-and-a-bit-of-maths}
 
-Talk by: **[Matteo Dora](https://twitter.com/mattbit_)**
+Talk by **[Matteo Dora](https://twitter.com/mattbit_)**
 <br/>Duration 45 minutes in length
 
 The main topic of the talk was [Elasticsearch](https://www.elastic.co/products/elasticsearch). Elasticsearch is a distributed, RESTful search and analytics engine with a great Symfony integration. Matteo Dora, the speaker of this talk, explained how to deal when the sorting by relevance becomes hard using the right amount of math and [FOSElasticaBundle](https://github.com/FriendsOfSymfony/FOSElasticaBundle).
