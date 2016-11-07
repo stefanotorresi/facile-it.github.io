@@ -6,8 +6,100 @@
     <description>Recent content in Blogs on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Nov 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Looking back at Symfony Day Rome 2016</title>
+      <link>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</link>
+      <pubDate>Mon, 07 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</guid>
+      <description>
+
+&lt;p&gt;Every year the &lt;a href=&#34;http://www.grusp.org/&#34;&gt;GrUSP&lt;/a&gt;, in cooperation with one of the italian PHP user groups, organizes the italian &lt;strong&gt;&lt;a href=&#34;http://symfony.com/&#34;&gt;Symfony&lt;/a&gt;&lt;/strong&gt; conference. This year the &lt;a href=&#34;http://2016.symfonyday.it/&#34;&gt;event&lt;/a&gt; was organized in the Capital on 28th October with the help of &lt;a href=&#34;http://roma.grusp.org/&#34;&gt;PHP User Group Roma&lt;/a&gt;, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.&lt;/p&gt;
+
+&lt;p&gt;This post would be a short recap of all the talks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/faciledev_symfonyday_2016.jpg&#34; alt=&#34;A part of Facile Dev Team&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;schedule&#34;&gt;Schedule&lt;/h1&gt;
+
+&lt;h2 id=&#34;symfony-and-micro-not-so-much-service&#34;&gt;Symfony and micro (not so much) service&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/_orso_&#34;&gt;Michele Orselli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Michele Orselli presented a case study of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Monolithic_application&#34;&gt;monolithic application&lt;/a&gt; broken down into many smaller microservices. How many ways can we split a webapp? Why smaller is better? How services can interact each other? In his talk Michele answered all those questions focusing on all the advantages of the proposed architecture and a few common pitfalls.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/MicheleOrselli/symfony-e-micro-non-cosi-tanto-services&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;scaling-symfony-apps&#34;&gt;Scaling Symfony apps&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mat_teo8&#34;&gt;Matteo Moretti&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;A scalable application must support an increasing amount of data or a growing number of users. In his talk, Matteo Moretti described the architecture needed to scale. He divided the overall architecture into 4 main components: web server, sessions, database and the filesystem. He explained the right configuration to his main purpose: improving performance of a webapp.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/matteomoro8/scaling-symfony-apps&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;e-commerce-with-symfony-from-case-study-to-reality&#34;&gt;E-commerce with Symfony: from case study to reality&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/dymissy&#34;&gt;Simone D&amp;rsquo;Amico&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Sylius, Elcodi, Thelia, Sonata Project, Well Commerce, Shop Plus, Aimeos: these are the most popular results you can find if you google  &amp;ldquo;e-commerce solution with Symfony&amp;rdquo;. But which one is the final winner? Why choosing one or another? Simone D&amp;rsquo;Amico reviewed all of these frameworks and libraries comparing strengths and drawbacks. Moreover he clarified the stack he used to build an e-commerce platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/dymissy/ecommerce-con-sf-dal-case-study-alla-realt&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-journey-into-symfony-form-component&#34;&gt;A journey into Symfony form component&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/SamueleLilli&#34;&gt;Samuele Lilli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://symfony.com/doc/current/forms.html&#34;&gt;Symfony form component&lt;/a&gt; is the main obstacle for beginners and newbies in the Symfony world. Samuele Lilli gave a talk with the purpose to clarify this hot topic with a lot of examples and code snippets. He started from the simplest form examples to more advanced ones. He revealed a lot of tips and explanations for several scenarios in order to make this powerful component understandable and manageable by everyone.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SamueleLilli/symfony-day-2016&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg&#34; alt=&#34;Symfony Day 2016&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;php7-and-rich-domain-model&#34;&gt;PHP7 and Rich Domain Model&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/garakkio&#34;&gt;Massimiliano Arione&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;In this talk Massimiliano Arione told about his experience in the migration to PHP7 of a Symfony based project. Particularly he focused on the usage of type hinting and return types and the issues encountered with an &lt;a href=&#34;https://en.wikipedia.org/wiki/Anemic_domain_model&#34;&gt;Anemic Domain Model&lt;/a&gt; approach suggested by the framework official documentation. He showed how to combine a Rich Domain Model without giving up new language features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/garak/php7-e-rich-domain-model&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;relevance-sorting-with-elasticsearch-and-a-bit-of-maths&#34;&gt;Relevance sorting with Elasticsearch &amp;amp; a bit of maths&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mattbit_&#34;&gt;Matteo Dora&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;The main topic of the talk was &lt;a href=&#34;https://www.elastic.co/products/elasticsearch&#34;&gt;Elasticsearch&lt;/a&gt;. Elasticsearch is a distributed, RESTful search and analytics engine with a great Symfony integration. Matteo Dora, the speaker of this talk, explained how to deal when the sorting by relevance becomes hard using the right amount of math and &lt;a href=&#34;https://github.com/FriendsOfSymfony/FOSElasticaBundle&#34;&gt;FOSElasticaBundle&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;https://speakerdeck.com/mattbit/elasticsearch-and-a-bit-of-maths&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;command-the-easy-way&#34;&gt;Command: the easy way&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/aczepod&#34;&gt;Antonio Carella&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Antonio Carella illustrated a real case how to create command-line commands using the &lt;a href=&#34;https://symfony.com/doc/current/console.html&#34;&gt;Symfony console component&lt;/a&gt;. He showed how console commands can be used for any recurring task, such as cronjobs, imports, or other batch jobs.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/antoninocarella1/command-the-easy-way&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;orm-hero&#34;&gt;ORM hero&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/toretto460&#34;&gt;Simone Di Maulo&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;This talk was a journey in the &lt;em&gt;magical world&lt;/em&gt; of &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine&lt;/a&gt;, the most known ORM for Symfony and not only. Simone Di Maulo described how Doctrine works under the hood to better understand when and why to use its features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SimoneDiMaulo/orm-hero&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>MessagePack: an alternative to JSON?</title>
@@ -2228,194 +2320,6 @@ sender.signal.send(20)
 &lt;p&gt;There are many other options for composition of signals, but as long as we don&amp;rsquo;t need them, it&amp;rsquo;s better to keep the class &lt;strong&gt;simple&lt;/strong&gt;: then, gradually over time, we can start adding features to the class, and as long as they&amp;rsquo;re properly generic and tested, we will be able to use them in all of our projects.&lt;/p&gt;
 
 &lt;p&gt;To conclude, finding the right abstractions for reusability is of course a problem, and the solution is not an easy one: plenty of academic papers address the problem in several ways (classic Charles W. Krueger&amp;rsquo;s paper &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; contains a good overview of the used techniques), and the reason why &lt;a href=&#34;https://en.wikipedia.org/wiki/Category_theory&#34;&gt;category theory&lt;/a&gt; has many applications in functional programming is because it offers an excellent set of abstractions for tackling several classes of problems. But still, I think the advantages of code reuse are many, and that achieving a compositional design through atomic, reusable components is &lt;strong&gt;a worthy goal&lt;/strong&gt; to pursue.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Codice riusabile: un primer</title>
-      <link>http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/</link>
-      <pubDate>Wed, 09 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/ita/codice-riusabile-un-primer/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/optionals-in-objective-c-ita/&#34;&gt;L&amp;rsquo;ultima volta&lt;/a&gt; abbiamo visto una possibile implementazione del tipo &lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optional&lt;/a&gt; in Objective-C; l&amp;rsquo;obiettivo primario dell&amp;rsquo;articolo era quello di importare in Objective-C uno strumento frequentemente utilizzato in Swift, ma usare una classe come &lt;code&gt;Optional&lt;/code&gt; può essere considerato un&amp;rsquo;applicazione di un concetto molto più generale: il &lt;strong&gt;riutilizzo del codice&lt;/strong&gt;. In effetti, &lt;code&gt;Optional&lt;/code&gt; non è legato a un particolare dominio, e può essere riutilizzato più e più volte in molti progetti: questo è esattamente ciò che accade in Swift. Ma a pensarci bene, questo è ciò che accade per una grande varietà di &lt;em&gt;classi&lt;/em&gt; in Objective-C (e di &lt;em&gt;tipi&lt;/em&gt; in Swift): ad esempio, &lt;code&gt;NSArray&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt; sono entrambi costrutti che espongono una specifica interfaccia, possiedono una certa implementazione, e vengono riutilizzati continuamente in metodi e funzioni. &lt;code&gt;NSArray&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt; non sono legati a un particolare dominio, e possiedono due importanti caratteristiche:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sono &lt;strong&gt;generici&lt;/strong&gt;, quindi non sono legati a un particolare sottotipo: un array di numeri e un array di stringhe funzioneranno esattamente allo stesso modo per quanto riguarda le funzioni strettamente associate agli array, come il conteggio degli elementi, rimuovere o aggiungere un elemento, mappare, filtrare, ridurre e così via;&lt;/li&gt;
-&lt;li&gt;sono &lt;strong&gt;componibili&lt;/strong&gt;, quindi possono essere combinati tra loro e con altri oggetti più specifici, mantenendo comunque lo stesso &lt;strong&gt;comportamento predicibile&lt;/strong&gt;: un array di &lt;em&gt;clienti&lt;/em&gt;, ciascuno con il suo array &lt;em&gt;prodotti acquistati&lt;/em&gt;, può essere mappato in un array di array di &lt;em&gt;prodotti&lt;/em&gt;, che può essere appiattito in un array di &lt;em&gt;prodotti&lt;/em&gt;, che può essere ridotto a un numero che rappresenta il costo totale;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Array&lt;/code&gt;, come &lt;code&gt;Optional&lt;/code&gt;, è un ottimo esempio di codice perfettamente riutilizzabile, ma ci sono molti altri costrutti che soddisfano le regole di cui sopra, cioè &lt;em&gt;genericità&lt;/em&gt; e &lt;em&gt;componibilità&lt;/em&gt;. Gli oggetti specifici di dominio, invece, tipicamente non soddisfano queste regole, anche quando un oggetto sembra essere sufficientemente generico da poter essere riutilizzato. Una classe &lt;code&gt;Cliente&lt;/code&gt;, ad esempio, potrebbe sembrare un buon candidato, ma cercare di usare la stessa classe in due diversi progetti si rivelerebbe &lt;strong&gt;una pessima idea&lt;/strong&gt;: probabilmente saremo costretti a &lt;strong&gt;specializzare&lt;/strong&gt; la classe per ciascun progetto, portando a divergenza tra le implementazioni, o usare diversi livelli di &lt;strong&gt;indirezione&lt;/strong&gt;, perché stiamo inserendo a forza un oggetto in un dominio che non gli appartiene.&lt;/p&gt;
-
-&lt;p&gt;C&amp;rsquo;è un&amp;rsquo;altra cosa da considerare: se davvero vogliamo riutilizzare del codice, dovremo anche stare attenti alle nostre &lt;strong&gt;scelte di design&lt;/strong&gt;, perché non tutti i design permettono l&amp;rsquo;utilizzo di codice generico. Potrei dimenticarmi dell&amp;rsquo;esistenza dei tipi &lt;code&gt;Optional&lt;/code&gt; e &lt;code&gt;Array&lt;/code&gt;, e creare classi che non espongono mai i loro componenti di base; ad esempio, potrei creare una classe che rappresenta una collezione di oggetti opzionali, senza mai esporre nell&amp;rsquo;interfaccia il fatto che sto utilizzando &lt;code&gt;Array&lt;/code&gt; e &lt;code&gt;Optional&lt;/code&gt; nell&amp;rsquo;implementazione: ne risulterebbe una certa &lt;strong&gt;complicazione&lt;/strong&gt; della firma dei metodi, ma è possibile. Ma, a pensarci bene, è una buona idea? &lt;strong&gt;Ne dubito&lt;/strong&gt;. Creare una nuova e specifica classe, non componibile, per ogni possibile necessità produrrà migliaia di linee di codice &lt;strong&gt;boilerplate&lt;/strong&gt;, interfacce complicate, e nomi di classi assurdamente lunghi. Se vogliamo scrivere codice riutilizzabile, oltre a seguire le due regole già viste, dobbiamo anche prestare attenzione al modo in cui architettiamo le nostre app, e il principio di design da seguire in questo caso è il principio di &lt;strong&gt;composizione&lt;/strong&gt;, che può essere sintetizzato con la seguente frase:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Costrutti e comportamenti specifici del dominio dovrebbero essere realizzati componendo blocchi costruttivi atomici e generici.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Ciò significa sostanzialmente che, invece di creare di volta in volta una specifica implementazione per ovviare alle nostre necessità, dovremmo costruire le nuove funzionalità aggregando oggetti atomici già definiti. Sembra un&amp;rsquo;idea complessa, e forse dovremmo fermarci un attimo e chiederci se scrivere codice riutilizzabile sia davvero una buona idea. La mia risposta è un definitivo &lt;strong&gt;si&lt;/strong&gt;, per i seguenti motivi:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;scrivendo componenti riutilizzabili possiamo &lt;strong&gt;incapsulare&lt;/strong&gt; uno specifico comportamento, evitando di dover riscrivere di continuo sostanzialmente lo stesso codice;&lt;/li&gt;
-&lt;li&gt;potremmo disporre di &lt;strong&gt;linee guida&lt;/strong&gt; per progettare l&amp;rsquo;architettura delle nostre app, perché non avremmo bisogno di definire sempre nuove interfacce per rappresentare gli stessi comportamenti;&lt;/li&gt;
-&lt;li&gt;un componente riutilizzabile è molto facile da &lt;strong&gt;testare&lt;/strong&gt;, perché piccolo e atomico, quindi usandolo potremmo confidare maggiormente sulla correttezza del nostro codice;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Questi stessi vantaggi si ottengono, infatti, proprio usando oggetti come &lt;code&gt;Array&lt;/code&gt; e &lt;code&gt;Optional&lt;/code&gt;. Ma, come ho detto, esistono molti altri componenti di questo tipo, e in effetti definire le loro interfacce è un problema a sé, di non facile soluzione: lo trovo tuttavia un problema molto interessante. Seguendo le regole &lt;em&gt;generico&lt;/em&gt; e &lt;em&gt;componibile&lt;/em&gt; abbiamo già una linea guida per definire nuovi componenti riusabili, ma per chiudere il cerchio abbiamo bisogno di una terza regola, non meno importante:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;un oggetto riusabile deve essere &lt;strong&gt;semplice&lt;/strong&gt;, cioè deve avere una unica responsabilità, lineare e facile da descrivere;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Optional&lt;/code&gt; segue questa regola: è un contenitore generico per un oggetto che potrebbe esserci, oppure no. &lt;code&gt;Array&lt;/code&gt; segue questa regola: rappresenta una collezione ordinata di oggetti, ai quali posso accedere in un tempo costante. Proviamo a creare un nuovo componente riutilizzabile applicando le regole.&lt;/p&gt;
-
-&lt;p&gt;Consideriamo questo caso d&amp;rsquo;uso reale (piuttosto frequente): diversi oggetti devono essere notificati quando un certo oggetto cambia il suo stato, o compie qualche azione. Un modo per risolvere il problema è rappresentato dall&amp;rsquo;&lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;, che consiste nel far implementare ai nostri oggetti un&amp;rsquo;interfaccia che indica un comportamento di tipo &lt;a href=&#34;https://it.wikipedia.org/wiki/Publish/subscribe&#34;&gt;publish-subscribe&lt;/a&gt;. Tuttavia, far implementare agli oggetti un&amp;rsquo;interfaccia &lt;strong&gt;non è riusabile&lt;/strong&gt;: ogni volta in cui useremo questo pattern finiremo per &lt;strong&gt;riscrivere&lt;/strong&gt; codice molto simile. Vogliamo invece incapsulare il comportamento alla base di questo pattern in un oggetto generico, e riutilizzare quell&amp;rsquo;oggetto. Quanto segue è una possibile implementazione di tale oggetto, quella che personalmente uso in produzione, ma ce ne sono molte altre: in effetti, l&amp;rsquo;idea di trovare un modo generico e componibile di rappresentare e manipolare &lt;em&gt;flussi&lt;/em&gt; di segnali osservabili ha fatto nascere un intero paradigma di programmazione, chiamato &lt;a href=&#34;https://en.wikipedia.org/wiki/Functional_reactive_programming&#34;&gt;functional reactive programming&lt;/a&gt;. Ma nel nostro caso siamo interessati a creare un ben più semplice oggetto &lt;strong&gt;Signal&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;La classe &lt;code&gt;Signal&lt;/code&gt; che vogliamo implementare deve rappresentare un &lt;em&gt;aggiornamento&lt;/em&gt; per un certo oggetto: l&amp;rsquo;aggiornamento può riguardare qualsiasi cosa, per esempio un nuovo valore per un attributo, o il fatto che una certa azione è stata compiuta. Useremo il linguaggio Swift, grazie al quale potremo godere anche di ottima sicurezza sulla manipolazione dei &lt;strong&gt;tipi&lt;/strong&gt; coinvolti. Ecco in sintesi cosa chiediamo alla classe &lt;code&gt;Signal&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;deve avere un sottotipo &lt;strong&gt;parametrico&lt;/strong&gt;, che sarà appunto il tipo del valore segnalato ad ogni aggiornamento;&lt;/li&gt;
-&lt;li&gt;deve dichiarare un metodo &lt;code&gt;observe&lt;/code&gt;, che prende in ingresso una &lt;em&gt;closure&lt;/em&gt; che rappresenta l&amp;rsquo;azione da compiere a ogni aggiornamento;&lt;/li&gt;
-&lt;li&gt;deve dichiarare un metodo &lt;code&gt;send&lt;/code&gt;, che prende in ingresso un nuovo valore del tipo sottostante;&lt;/li&gt;
-&lt;li&gt;deve dichiarare semplici metodi di composizione, che seguano le convenzioni classiche per i nomi, come &lt;code&gt;map&lt;/code&gt; per generare un nuovo &lt;code&gt;Signal&lt;/code&gt; da uno esistente trasformando il valore osservato, e &lt;code&gt;forwardTo&lt;/code&gt; per fare in modo che un altro &lt;code&gt;Signal&lt;/code&gt;, quando produce un nuovo valore, &lt;em&gt;attivi&lt;/em&gt; il segnale di partenza;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Dal punto di vista semantico, possiamo descrivere un &lt;code&gt;Signal&lt;/code&gt; come un contenitore di un valore che esisterà a un certo punto nel futuro, e continuerà ad aggiornarsi indefinitamente.&lt;/p&gt;
-
-&lt;p&gt;Segue l&amp;rsquo;intera implementazione della classe &lt;code&gt;Signal&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public enum SignalContinuation
-{
-  case Continue
-  case Stop
-}
-
-public class Signal&amp;lt;Subtype&amp;gt;
-{
-  private var observers: [(Subtype -&amp;gt; SignalContinuation)] = []
-
-  public init() {}
-
-  public func observe (observeFunction: Subtype -&amp;gt; SignalContinuation)
-  {
-    observers.append(observeFunction)
-  }
-
-  public func send (value: Subtype)
-  {
-    var continuations: [(Subtype -&amp;gt; SignalContinuation)] = []
-    while observers.count &amp;gt; 0
-    {
-      let observer = observers.removeFirst()
-      let continuation = observer(value)
-      switch continuation
-      {
-      case .Continue:
-        continuations.append(observer)
-      case .Stop: break
-      }
-    }
-    observers = continuations
-  }
-
-  public func forwardTo (otherSignal: Signal&amp;lt;Subtype&amp;gt;) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(action)
-      return .Continue
-    }
-    return self
-  }
-
-  public func forwardTo &amp;lt;OtherSubtype&amp;gt; (
-    otherSignal: Signal&amp;lt;OtherSubtype&amp;gt;,
-    mappingFunction: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(mappingFunction(action))
-      return .Continue
-    }
-    return self
-  }
-
-  public func map &amp;lt;OtherSubtype&amp;gt; (transform: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal&amp;lt;OtherSubtype&amp;gt;
-  {
-    let mappedSignal = Signal&amp;lt;OtherSubtype&amp;gt;()
-    forwardTo(mappedSignal, mappingFunction: transform)
-    return mappedSignal
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;L&amp;rsquo;implementazione è semplice, ma potente. Un problema affrontato di frequente quando si implementa l&amp;rsquo;&lt;em&gt;observer pattern&lt;/em&gt; è la gestione delle disiscrizioni; è responsabilità di chi osserva smettere di farlo, e in questa implementazione di &lt;code&gt;Signal&lt;/code&gt; la cosa è gestita direttamente nella &lt;em&gt;closure&lt;/em&gt; passata al metodo &lt;code&gt;observe&lt;/code&gt;: la &lt;em&gt;closure&lt;/em&gt; deve ritornare un valore di tipo &lt;code&gt;SignalContinuation&lt;/code&gt; che può essere appunto &lt;code&gt;.Continue&lt;/code&gt; o &lt;code&gt;.Stop&lt;/code&gt;. Un altro problema è la gestione della memoria: dobbiamo assicurarci che quando la memoria di un osservatore è rilasciata, questo debba anche smettere di osservare i segnali, o il messaggio verrà inviato a un puntatore non valido, con conseguente crash dell&amp;rsquo;app. Swift definisce alcuni descrittori di &lt;em&gt;memory ownership&lt;/em&gt;, e &lt;code&gt;weak&lt;/code&gt; fa al caso nostro: sarà sufficiente inserire una &lt;em&gt;guard clause&lt;/em&gt; all&amp;rsquo;inizio della &lt;em&gt;closure&lt;/em&gt; passata al metodo &lt;code&gt;observe&lt;/code&gt;; se l&amp;rsquo;oggetto è diventato &lt;code&gt;nil&lt;/code&gt;, la &lt;em&gt;closure&lt;/em&gt; ritornerà &lt;code&gt;.Stop&lt;/code&gt;. L&amp;rsquo;esempio seguente mostra un possibile utilizzo della classe &lt;code&gt;Signal&lt;/code&gt;, incluso il meccanismo appena descritto:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class Sender
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func sendNew(value: Int)
-  {
-    signal.send(value)
-  }
-}
-
-class Receiver&amp;lt;Type: CustomStringConvertible&amp;gt;
-{
-  func startObserving(signal: Signal&amp;lt;Type&amp;gt;)
-  {
-    signal.observe { [weak self] value in
-      guard let this = self else { return .Stop }
-      this.printNewValue(value)
-      return .Continue
-    }
-  }
-
-  func printNewValue(value: Type)
-  {
-    print(value)
-  }
-}
-
-let sender = Sender()
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(sender.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 3, 5, 10, 20 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Nell&amp;rsquo;esempio possiamo osservare l&amp;rsquo;applicazione dei concetti introdotti all&amp;rsquo;inizio dell&amp;rsquo;articolo: invece di creare una nuova interfaccia per lo stesso comportamento, stiamo direttamente usando e riusando l&amp;rsquo;oggetto &lt;code&gt;Signal&lt;/code&gt;. Un esempio più complesso potrebbe essere rappresentato dall&amp;rsquo;aggiunta di un &lt;em&gt;resonator&lt;/em&gt;, cioè di un oggetto che possiede un segnale che risuona con un altro, quindi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class DoublingResonator
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func resonateWith(otherSignal: Signal&amp;lt;Int&amp;gt;)
-  {
-    otherSignal.forwardTo(signal) { $0*2 }
-  }
-}
-
-let resonator = DoublingResonator()
-resonator.resonateWith(sender.signal)
-
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(resonator.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 6, 10, 20, 40 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ci sono molte altre opzioni per comporre segnali, ma finché non ne avremo bisogno sarà meglio mantenere la classe &lt;strong&gt;semplice&lt;/strong&gt;: gradualmente nel tempo potremo aggiungere nuove funzionalità, e fintanto che queste saranno sufficientemente generiche e propriamente testate, saremo in grado di usarle in tutti i nostri progetti.&lt;/p&gt;
-
-&lt;p&gt;Per concludere, definire le giuste astrazioni per conseguire riusabilità del codice non è un problema di semplice soluzione: molte pubblicazioni accademiche affrontano il problema (il classico articolo &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; di Charles W. Krueger fornisce una buona panoramica delle tecniche considerate), e il motivo per il quale la &lt;a href=&#34;https://it.wikipedia.org/wiki/Teoria_delle_categorie&#34;&gt;teoria delle categorie&lt;/a&gt; ha trovato molte applicazioni in programmazione funzionale è perché essa offre un eccellente insieme di astrazioni per affrontare diverse classi di problemi. Tuttavia sono convinto che i vantaggi legati allo scrivere codice riutilizzabile siano molti, e che poter basare un design sulla composizione di oggetti atomici sia &lt;strong&gt;un degno obiettivo&lt;/strong&gt; da perseguire.&lt;/p&gt;
 </description>
     </item>
     

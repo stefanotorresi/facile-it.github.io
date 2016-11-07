@@ -1,0 +1,1102 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Looking back at Symfony Day Rome 2016</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.16" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
+            
+        
+
+        
+    
+        <meta name="twitter:card" content="summary"/>
+        
+            <meta name="twitter:image:src" content="http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg"/>
+        
+    
+    
+    <meta name="twitter:title" content="Looking back at Symfony Day Rome 2016"/>
+    <meta name="twitter:description" content="Every year the GrUSP, in cooperation with one of the italian PHP user groups, organizes the italian Symfony conference. This year the event was organized in the Capital on 28th October with the help of PHP User Group Roma, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network."/>
+    
+        
+            <meta name="twitter:creator" content="@MMaraone"/>
+        
+    
+        
+            <meta name="twitter:creator" content="@parallelit"/>
+        
+    
+
+
+<meta name="twitter:site" content="@FacileIt_Engr"/>
+
+
+        <meta property="og:title" content="Looking back at Symfony Day Rome 2016" />
+<meta property="og:description" content="Every year the GrUSP, in cooperation with one of the italian PHP user groups, organizes the italian Symfony conference. This year the event was organized in the Capital on 28th October with the help of PHP User Group Roma, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/" />
+
+
+<meta property="og:updated_time" content="2016-11-07T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Looking back at Symfony Day Rome 2016">
+<meta itemprop="description" content="Every year the GrUSP, in cooperation with one of the italian PHP user groups, organizes the italian Symfony conference. This year the event was organized in the Capital on 28th October with the help of PHP User Group Roma, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.">
+
+
+<meta itemprop="dateModified" content="2016-11-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="644">
+
+
+
+<meta itemprop="keywords" content="algatux,daniele,elviro,francesco,giacomo,jean,lorenzo,luca,mario-maraone,matteo,michele,nicola,salvatore-cordiano,sergio,vito,AES,AWS,Agile,Algorithms,Android,Artificial intelligence,Blog,C,CMake,Code reuse,Codemotion,Conferences,Continuous integration,Database,Design patterns,Docker,Doctrine,Encryption,English,Event driven,Filesystem,Functional programming,Fuse,Git,GitHub,GrUSP,GraphQL,HTTP,Hackathon,Hugo,Italiano,JSON,JVM,JWT,Java,Kanban,Kotlin,MessagePack,Monad,MySQL,Networking,NewRelic,Node.js,OOP,OSX,Objective-C,Open Source,PHP,PHP Coding standards,PHP internals,PSR,PUG Rome,Python,REST,RSA,Rjindael,SOLID,Scrum,Security,Semantic versioning,Serverless,Signal,Software Crisis,Software Testing,Software complexity,Software testing,Static site,Structured programming,Swift,Symfony,TDD,Test coverage,Type First Development,Websocket,Xcode," />
+
+        
+
+        
+        
+
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-22342495-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Facile.it Engineering</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/categories">
+                        
+                            <i class="fa fa-folder-open-o">&nbsp;</i>Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/authors">
+                        
+                            <i class="fa fa-pencil">&nbsp;</i>Authors
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/ita/careers">
+                        
+                            <i class="fa fa-briefcase">&nbsp;</i>Careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/eng/who-we-are">
+                        
+                            <i class="fa fa-users">&nbsp;</i>Who we are
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="http://engineering.facile.it">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://engineering.facile.it">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/authors">
+                            <h3>
+                                
+                                    <i class="fa fa-pencil">&nbsp;</i>
+                                
+                                Authors
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/ita/careers">
+                            <h3>
+                                
+                                    <i class="fa fa-briefcase">&nbsp;</i>
+                                
+                                Careers
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/eng/who-we-are">
+                            <h3>
+                                
+                                    <i class="fa fa-users">&nbsp;</i>
+                                
+                                Who we are
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/"><p>Looking back at Symfony Day Rome 2016</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/"><p>MessagePack: an alternative to JSON?</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://engineering.facile.it/blog/eng/kotlin-intro/"><p>A new hope for the JVM: Kotlin</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&text=Looking%20back%20at%20Symfony%20Day%20Rome%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/">Looking back at Symfony Day Rome 2016</a></h1>
+            
+        
+        
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published" datetime='2016-11-07'>
+            7 November 2016
+        </time>
+
+        
+            <a href="/authors/mario-maraone" class="author">
+            
+                <span class="name">Mario Maraone</span>
+                <img src="https://www.gravatar.com/avatar/3eb9185873ffe2e0ef3b0850ce9b5d9a" alt="Mario Maraone avatar" />
+            
+            </a>
+        
+            <a href="/authors/salvatore-cordiano" class="author">
+            
+                <span class="name">Salvatore Cordiano</span>
+                <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" />
+            
+            </a>
+        
+
+        
+            <p>4 minute read</p>
+        
+    </div>
+</header>
+
+
+    
+
+
+    
+
+    
+
+<p>Every year the <a href="http://www.grusp.org/">GrUSP</a>, in cooperation with one of the italian PHP user groups, organizes the italian <strong><a href="http://symfony.com/">Symfony</a></strong> conference. This year the <a href="http://2016.symfonyday.it/">event</a> was organized in the Capital on 28th October with the help of <a href="http://roma.grusp.org/">PHP User Group Roma</a>, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.</p>
+
+<p>This post would be a short recap of all the talks.</p>
+
+<p><img src="/images/looking-back-at-symfony-day-rome-2016/faciledev_symfonyday_2016.jpg" alt="A part of Facile Dev Team" /></p>
+
+<h1 id="schedule">Schedule</h1>
+
+<h2 id="symfony-and-micro-not-so-much-service">Symfony and micro (not so much) service</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/_orso_">Michele Orselli</a></strong>
+<br/>Duration: 30 minutes</p>
+
+<p>Michele Orselli presented a case study of a <a href="https://en.wikipedia.org/wiki/Monolithic_application">monolithic application</a> broken down into many smaller microservices. How many ways can we split a webapp? Why smaller is better? How services can interact each other? In his talk Michele answered all those questions focusing on all the advantages of the proposed architecture and a few common pitfalls.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/MicheleOrselli/symfony-e-micro-non-cosi-tanto-services">here</a></em></p>
+
+<h2 id="scaling-symfony-apps">Scaling Symfony apps</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/mat_teo8">Matteo Moretti</a></strong>
+<br/>Duration: 45 minutes</p>
+
+<p>A scalable application must support an increasing amount of data or a growing number of users. In his talk, Matteo Moretti described the architecture needed to scale. He divided the overall architecture into 4 main components: web server, sessions, database and the filesystem. He explained the right configuration to his main purpose: improving performance of a webapp.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/matteomoro8/scaling-symfony-apps">here</a></em></p>
+
+<h2 id="e-commerce-with-symfony-from-case-study-to-reality">E-commerce with Symfony: from case study to reality</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/dymissy">Simone D&rsquo;Amico</a></strong>
+<br/>Duration: 30 minutes</p>
+
+<p>Sylius, Elcodi, Thelia, Sonata Project, Well Commerce, Shop Plus, Aimeos: these are the most popular results you can find if you google  &ldquo;e-commerce solution with Symfony&rdquo;. But which one is the final winner? Why choosing one or another? Simone D&rsquo;Amico reviewed all of these frameworks and libraries comparing strengths and drawbacks. Moreover he clarified the stack he used to build an e-commerce platform.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/dymissy/ecommerce-con-sf-dal-case-study-alla-realt">here</a></em></p>
+
+<h2 id="a-journey-into-symfony-form-component">A journey into Symfony form component</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/SamueleLilli">Samuele Lilli</a></strong>
+<br/>Duration: 45 minutes</p>
+
+<p><a href="http://symfony.com/doc/current/forms.html">Symfony form component</a> is the main obstacle for beginners and newbies in the Symfony world. Samuele Lilli gave a talk with the purpose to clarify this hot topic with a lot of examples and code snippets. He started from the simplest form examples to more advanced ones. He revealed a lot of tips and explanations for several scenarios in order to make this powerful component understandable and manageable by everyone.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/SamueleLilli/symfony-day-2016">here</a></em></p>
+
+<p><img src="/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg" alt="Symfony Day 2016" /></p>
+
+<h2 id="php7-and-rich-domain-model">PHP7 and Rich Domain Model</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/garakkio">Massimiliano Arione</a></strong>
+<br/>Duration: 30 minutes</p>
+
+<p>In this talk Massimiliano Arione told about his experience in the migration to PHP7 of a Symfony based project. Particularly he focused on the usage of type hinting and return types and the issues encountered with an <a href="https://en.wikipedia.org/wiki/Anemic_domain_model">Anemic Domain Model</a> approach suggested by the framework official documentation. He showed how to combine a Rich Domain Model without giving up new language features.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/garak/php7-e-rich-domain-model">here</a></em></p>
+
+<h2 id="relevance-sorting-with-elasticsearch-and-a-bit-of-maths">Relevance sorting with Elasticsearch &amp; a bit of maths</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/mattbit_">Matteo Dora</a></strong>
+<br/>Duration: 45 minutes</p>
+
+<p>The main topic of the talk was <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>. Elasticsearch is a distributed, RESTful search and analytics engine with a great Symfony integration. Matteo Dora, the speaker of this talk, explained how to deal when the sorting by relevance becomes hard using the right amount of math and <a href="https://github.com/FriendsOfSymfony/FOSElasticaBundle">FOSElasticaBundle</a>.</p>
+
+<p><em>View slides <a href="https://speakerdeck.com/mattbit/elasticsearch-and-a-bit-of-maths">here</a></em></p>
+
+<h2 id="command-the-easy-way">Command: the easy way</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/aczepod">Antonio Carella</a></strong>
+<br/>Duration: 30 minutes</p>
+
+<p>Antonio Carella illustrated a real case how to create command-line commands using the <a href="https://symfony.com/doc/current/console.html">Symfony console component</a>. He showed how console commands can be used for any recurring task, such as cronjobs, imports, or other batch jobs.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/antoninocarella1/command-the-easy-way">here</a></em></p>
+
+<h2 id="orm-hero">ORM hero</h2>
+
+<p>Talk by: <strong><a href="https://twitter.com/toretto460">Simone Di Maulo</a></strong>
+<br/>Duration: 45 minutes</p>
+
+<p>This talk was a journey in the <em>magical world</em> of <a href="http://www.doctrine-project.org/">Doctrine</a>, the most known ORM for Symfony and not only. Simone Di Maulo described how Doctrine works under the hood to better understand when and why to use its features.</p>
+
+<p><em>View slides <a href="http://www.slideshare.net/SimoneDiMaulo/orm-hero">here</a></em></p>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&text=Looking%20back%20at%20Symfony%20Day%20Rome%202016&via=FacileIt_Engr" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f&title=Looking%20back%20at%20Symfony%20Day%20Rome%202016" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fengineering.facile.it%2fblog%2feng%2flooking-back-at-symfony-day-rome-2016%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    <footer>
+        <ul class="stats">
+    
+
+    
+        
+            <li>
+                
+                    <i class="fa fa-folder-open-o">&nbsp;</i>
+                
+        
+
+                
+                    Categories
+                
+            </li>
+    
+
+    
+        <li><a href="/categories/english">English</a></li>
+    
+        <li><a href="/categories/symfony">Symfony</a></li>
+    
+        <li><a href="/categories/grusp">GrUSP</a></li>
+    
+        <li><a href="/categories/pug-rome">PUG Rome</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/"
+                class="button big previous">MessagePack: an alternative to JSON?</a></li>
+    
+
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/";
+        this.page.identifier = "http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/";
+        this.page.title = "Looking back at Symfony Day Rome 2016";
+    };
+
+    (function () {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//facile-it.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" style="border-bottom: none"><img src="/images/logo_engineering.png" width="100%" alt="Facile.it Engineering" /></a>
+                
+            
+            
+                <header>
+                    <h2></h2>
+                    <p>News, repos, tips & trends from the Facile.it Engineering team!</p>
+                </header>
+            
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/user/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="https://www.gravatar.com/avatar/3eb9185873ffe2e0ef3b0850ce9b5d9a" alt="Mario Maraone avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+                                        
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/">Looking back at Symfony Day Rome 2016</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-11-07'>
+                                        7 November 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/">MessagePack: an alternative to JSON?</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-10-25'>
+                                        25 October 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
+                                            <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/kotlin-intro/">A new hope for the JVM: Kotlin</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-10-17'>
+                                        17 October 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Top categories</a></h3>
+                </header>
+
+                
+
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/italiano/">Italiano</a>
+                                <span style="float:right;">32</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/english/">English</a>
+                                <span style="float:right;">18</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/php/">PHP</a>
+                                <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/functional-programming/">Functional programming</a>
+                                <span style="float:right;">9</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/swift/">Swift</a>
+                                <span style="float:right;">8</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">7</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/open-source/">Open Source</a>
+                                <span style="float:right;">5</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <li>
+                    <ul class="actions">
+                        <li><a href="/categories"
+                            class="button">View more categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            
+                <ul class="icons">
+                    
+<li><a href="//github.com/facile-it" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+<li><a href="//twitter.com/FacileIt_Engr" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+<li><a href="//linkedin.com/company/facile-it" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+
+
+<li><a href="//facebook.com/facile.it" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+<li><a href="//youtube.com/user/Facileit" target="_blank" title="YouTube" class="fa fa-youtube"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            
+
+            <p class="copyright">
+                &copy; <a href="http://www.facile.it/" target="_blank">Facile.it</a> Engineering, leggi <a href="/ita/chi-siamo" target="_blank">chi siamo</a><br>
+                <a href="/ita/disclaimer" rel="nofollow">Disclaimer</a><br>
+                Design <a href="http://html5up.net" rel="nofollow" target="_blank">HTML5 UP</a><br>
+                Ported by <a href="//github.com/jpescador" rel="nofollow" target="_blank">Julio Pescador</a><br>
+                Modified by <a href="//github.com/Jean85" rel="nofollow" target="_blank">Alessandro Lai</a><br>
+                Powered by <a href="//gohugo.io" rel="nofollow" target="_blank">Hugo</a>
+            </p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+        
+
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

@@ -6,8 +6,100 @@
     <description>Recent content on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Nov 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Looking back at Symfony Day Rome 2016</title>
+      <link>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</link>
+      <pubDate>Mon, 07 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</guid>
+      <description>
+
+&lt;p&gt;Every year the &lt;a href=&#34;http://www.grusp.org/&#34;&gt;GrUSP&lt;/a&gt;, in cooperation with one of the italian PHP user groups, organizes the italian &lt;strong&gt;&lt;a href=&#34;http://symfony.com/&#34;&gt;Symfony&lt;/a&gt;&lt;/strong&gt; conference. This year the &lt;a href=&#34;http://2016.symfonyday.it/&#34;&gt;event&lt;/a&gt; was organized in the Capital on 28th October with the help of &lt;a href=&#34;http://roma.grusp.org/&#34;&gt;PHP User Group Roma&lt;/a&gt;, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.&lt;/p&gt;
+
+&lt;p&gt;This post would be a short recap of all the talks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/faciledev_symfonyday_2016.jpg&#34; alt=&#34;A part of Facile Dev Team&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;schedule&#34;&gt;Schedule&lt;/h1&gt;
+
+&lt;h2 id=&#34;symfony-and-micro-not-so-much-service&#34;&gt;Symfony and micro (not so much) service&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/_orso_&#34;&gt;Michele Orselli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Michele Orselli presented a case study of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Monolithic_application&#34;&gt;monolithic application&lt;/a&gt; broken down into many smaller microservices. How many ways can we split a webapp? Why smaller is better? How services can interact each other? In his talk Michele answered all those questions focusing on all the advantages of the proposed architecture and a few common pitfalls.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/MicheleOrselli/symfony-e-micro-non-cosi-tanto-services&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;scaling-symfony-apps&#34;&gt;Scaling Symfony apps&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mat_teo8&#34;&gt;Matteo Moretti&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;A scalable application must support an increasing amount of data or a growing number of users. In his talk, Matteo Moretti described the architecture needed to scale. He divided the overall architecture into 4 main components: web server, sessions, database and the filesystem. He explained the right configuration to his main purpose: improving performance of a webapp.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/matteomoro8/scaling-symfony-apps&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;e-commerce-with-symfony-from-case-study-to-reality&#34;&gt;E-commerce with Symfony: from case study to reality&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/dymissy&#34;&gt;Simone D&amp;rsquo;Amico&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Sylius, Elcodi, Thelia, Sonata Project, Well Commerce, Shop Plus, Aimeos: these are the most popular results you can find if you google  &amp;ldquo;e-commerce solution with Symfony&amp;rdquo;. But which one is the final winner? Why choosing one or another? Simone D&amp;rsquo;Amico reviewed all of these frameworks and libraries comparing strengths and drawbacks. Moreover he clarified the stack he used to build an e-commerce platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/dymissy/ecommerce-con-sf-dal-case-study-alla-realt&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-journey-into-symfony-form-component&#34;&gt;A journey into Symfony form component&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/SamueleLilli&#34;&gt;Samuele Lilli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://symfony.com/doc/current/forms.html&#34;&gt;Symfony form component&lt;/a&gt; is the main obstacle for beginners and newbies in the Symfony world. Samuele Lilli gave a talk with the purpose to clarify this hot topic with a lot of examples and code snippets. He started from the simplest form examples to more advanced ones. He revealed a lot of tips and explanations for several scenarios in order to make this powerful component understandable and manageable by everyone.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SamueleLilli/symfony-day-2016&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg&#34; alt=&#34;Symfony Day 2016&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;php7-and-rich-domain-model&#34;&gt;PHP7 and Rich Domain Model&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/garakkio&#34;&gt;Massimiliano Arione&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;In this talk Massimiliano Arione told about his experience in the migration to PHP7 of a Symfony based project. Particularly he focused on the usage of type hinting and return types and the issues encountered with an &lt;a href=&#34;https://en.wikipedia.org/wiki/Anemic_domain_model&#34;&gt;Anemic Domain Model&lt;/a&gt; approach suggested by the framework official documentation. He showed how to combine a Rich Domain Model without giving up new language features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/garak/php7-e-rich-domain-model&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;relevance-sorting-with-elasticsearch-and-a-bit-of-maths&#34;&gt;Relevance sorting with Elasticsearch &amp;amp; a bit of maths&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mattbit_&#34;&gt;Matteo Dora&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;The main topic of the talk was &lt;a href=&#34;https://www.elastic.co/products/elasticsearch&#34;&gt;Elasticsearch&lt;/a&gt;. Elasticsearch is a distributed, RESTful search and analytics engine with a great Symfony integration. Matteo Dora, the speaker of this talk, explained how to deal when the sorting by relevance becomes hard using the right amount of math and &lt;a href=&#34;https://github.com/FriendsOfSymfony/FOSElasticaBundle&#34;&gt;FOSElasticaBundle&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;https://speakerdeck.com/mattbit/elasticsearch-and-a-bit-of-maths&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;command-the-easy-way&#34;&gt;Command: the easy way&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/aczepod&#34;&gt;Antonio Carella&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Antonio Carella illustrated a real case how to create command-line commands using the &lt;a href=&#34;https://symfony.com/doc/current/console.html&#34;&gt;Symfony console component&lt;/a&gt;. He showed how console commands can be used for any recurring task, such as cronjobs, imports, or other batch jobs.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/antoninocarella1/command-the-easy-way&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;orm-hero&#34;&gt;ORM hero&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/toretto460&#34;&gt;Simone Di Maulo&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;This talk was a journey in the &lt;em&gt;magical world&lt;/em&gt; of &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine&lt;/a&gt;, the most known ORM for Symfony and not only. Simone Di Maulo described how Doctrine works under the hood to better understand when and why to use its features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SimoneDiMaulo/orm-hero&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>MessagePack: an alternative to JSON?</title>
@@ -1211,396 +1303,6 @@ pageFactory.signalMakeSelectionPage
 &lt;/ul&gt;
 
 &lt;p&gt;Signals are not application-wide events: we don&amp;rsquo;t need a router or a dispatcher (like   &lt;code&gt;NSNotificationCenter&lt;/code&gt;) to properly handle them, because each object will declare its observation of specific signals. Also, because signals are easily transformed and composed, we can declaratively express our bindings without worrying about &lt;em&gt;when&lt;/em&gt; and &lt;em&gt;how&lt;/em&gt; things are going to happen, but just &lt;em&gt;what&lt;/em&gt; we need. Of course our architecture has to take into account the fact that getting a &lt;em&gt;precise sequence of events&lt;/em&gt; is basically impossible when working with signals: actually, &lt;em&gt;sequencing&lt;/em&gt; is not even considered in declarative programming, because, along with &lt;em&gt;state&lt;/em&gt;, is a great cause of complexity. In the end, a declarative architecture, like everything, has its tradeoffs, but I still think it&amp;rsquo;s worth trying.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>GraphQL: an introduction</title>
-      <link>http://engineering.facile.it/blog/eng/graphql-an-introduction/</link>
-      <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/graphql-an-introduction/</guid>
-      <description>
-
-&lt;h2 id=&#34;the-lesson-we-learned-with-rest&#34;&gt;The lesson we learned with REST&lt;/h2&gt;
-
-&lt;p&gt;For many developers, nowadays, building an &lt;strong&gt;API&lt;/strong&gt; for their applications essentially means mapping the &lt;em&gt;resources&lt;/em&gt; of the domain to &lt;em&gt;URIs&lt;/em&gt;, with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Representational_state_transfer&#34;&gt;REST&lt;/a&gt; principles in mind.
-Usually creating a &lt;strong&gt;&lt;em&gt;RESTful&lt;/em&gt;&lt;/strong&gt; system is not difficult, and the simplicity of the idea makes the task easier.
-Let&amp;rsquo;s see some of the consequences and benefits of choosing REST:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Every HTTP verb has its own meaning, allowing the developer to understand immediately what kind of operation (typically among the CRUD ones) is going to be performed on the resource identified by the URI.&lt;/li&gt;
-&lt;li&gt;Often the same URI can be used with multiple verbs to accomplish different tasks (e.g. &amp;ldquo;example.com/tag/123&amp;rdquo; refers to a particular tag that you can retrieve, update or delete).&lt;/li&gt;
-&lt;li&gt;Controllers in many server-side frameworks can be created with a RESTful approach, each one of them representing one or more resources.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;However, unfortunately, it&amp;rsquo;s often easy to come across some problems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Complex URIs can be difficult to write or understand and sometimes they are subject to arbitrary interpretations.&lt;/li&gt;
-&lt;li&gt;In order to filter collections you may need to use one or more ids embedded in the URL, but also &lt;em&gt;query parameters&lt;/em&gt;, e.g. when you want to sort the results of a GET by one particular field or retrieve resources by some field other than the id.&lt;/li&gt;
-&lt;li&gt;There is no standard or easy way for the client to specify the list of fields that it needs, and the server will usually return all the data related to the requested resource.&lt;/li&gt;
-&lt;li&gt;More importantly, there is no standard way for the client to decide which resources related to the one requested should be returned, resulting in a lot of noise in the response content (unless the server application offers multiple endpoints to access the same resource but with different subsets of data&amp;hellip; but this could lead to API design problems).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can&amp;rsquo;t really blame REST for these and other cons. Its power comes from simplicity and developers are thankful for this breath of fresh air. You have just one transport layer, i.e. HTTP, with its features and rules.&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s see how we can take a step forward and add some salt to our APIs, to make them even more powerful and expressive.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-new-way-to-design-api-graphql&#34;&gt;A new way to design API: GraphQL&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;GraphQL&lt;/strong&gt; maintains all the advantages of REST (relies on HTTP, very small overhead on requests, stateless and cacheable) and adds some very useful enhancements.
-One of the main reasons why &lt;strong&gt;Facebook&lt;/strong&gt; created it back in 2012 was the need to find a way to access data on their server that allowed any type of client and device (especially mobile site and app) to decide exactly what fields they need, reducing the payload and then minimizing the traffic.&lt;/p&gt;
-
-&lt;p&gt;Instead of explaining all the features, which can be read in the &lt;a href=&#34;http://graphql.org/docs/getting-started/&#34;&gt;official guide&lt;/a&gt;, in this post we&amp;rsquo;ll focus on what makes GraphQL interesting.
-In the next section we&amp;rsquo;ll use types and queries presented in our example project, that you can clone from &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;this repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;types-and-fields-driven-queries&#34;&gt;Types and fields driven queries&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #1&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-	games {
-        id
-	    title
-	}
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The previous snippet describes a query issued by the client when it just needs to retrieve &lt;em&gt;id&lt;/em&gt; and &lt;em&gt;title&lt;/em&gt; of a &lt;strong&gt;&lt;em&gt;game&lt;/em&gt;&lt;/strong&gt;.
-Since no argument has been passed to filter the data of the specified type (&lt;em&gt;game&lt;/em&gt;), all the games will be retrieved.
-The output for this query is:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;data&amp;quot;: {
-    &amp;quot;games&amp;quot;: [{
-        &amp;quot;id&amp;quot;: 1,
-        &amp;quot;title&amp;quot;: &amp;quot;Frogger&amp;quot;
-      }, {
-        &amp;quot;id&amp;quot;: 2,
-        &amp;quot;title&amp;quot;: &amp;quot;Galaxian&amp;quot;
-      }, {
-        &amp;quot;id&amp;quot;: 3,
-        &amp;quot;title&amp;quot;: &amp;quot;Tiger Road&amp;quot;
-      }, {
-        &amp;quot;id&amp;quot;: 4,
-        &amp;quot;title&amp;quot;: &amp;quot;Mendel Palace&amp;quot;
-      }
-    ]
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With REST, the same task could be accomplished with the following url:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;GET /game?fields=id,title
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Unless the server applications is taking care of field filtering based on query params, all the information about every game will be returned.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #2&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-	games(id:2) {
-        id
-        title
-        year
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #3&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-	games(title:&amp;quot;Frogger&amp;quot;) {
-		id
-        title
-        year
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Examples #2 and #3 show a way to filter games by their &lt;em&gt;id&lt;/em&gt; and &lt;em&gt;title&lt;/em&gt; respectively.
-As you can see, the id has no semantic meaning like in REST, so you can describe the filter criterion in the same manner (&lt;em&gt;fieldname: &amp;ldquo;value&amp;rdquo;&lt;/em&gt;).&lt;/p&gt;
-
-&lt;p&gt;The REST equivalent (selected fields are omitted) for Example #2:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;GET /game/2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and #3:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;GET /game?title=Frogger
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;relations-between-entities-graph-representation&#34;&gt;Relations between entities: graph representation&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #4&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-    games(id:2) {
-        title
-        developer {
-            name
-            nation
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;strong&gt;types&lt;/strong&gt; called &lt;em&gt;Game&lt;/em&gt; and &lt;em&gt;Company&lt;/em&gt; are related to each other; in our example, for the sake of simplicity, a game can only have one company as developer and one as publisher, while any company can have multiple developed or published games.
-In Example #4, you can notice the complex field &lt;em&gt;developer&lt;/em&gt;; we want to know the name and the nation of the company that developed the game with id = 2.&lt;/p&gt;
-
-&lt;p&gt;The same two types can be reused to express the opposite of the relation described in the previous example:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #5:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-    companies(name:&amp;quot;Game Freak&amp;quot;) {
-        name
-        gamesAsDeveloper {
-            title
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s see briefly how you can describe these relations in the &lt;strong&gt;Javascript&lt;/strong&gt; implementation.&lt;/p&gt;
-
-&lt;p&gt;In the &amp;lsquo;&lt;em&gt;Game&lt;/em&gt;&amp;rsquo; type definition:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;developer: {
-	type: Company,
-    description: &#39;The developer of the game&#39;,
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And in the &amp;lsquo;&lt;em&gt;Company&lt;/em&gt;&amp;rsquo; type:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gamesAsDeveloper: {
-    type: new GraphQLList(Game),
-    description: &#39;The games created as a developer&#39;,
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The field &lt;em&gt;developer&lt;/em&gt; is defined as type &lt;em&gt;Company&lt;/em&gt;, while the field &lt;em&gt;gamesAsDeveloper&lt;/em&gt; is a list of &lt;em&gt;Game&lt;/em&gt;.
-Please refer to the &lt;a href=&#34;https://github.com/poetcyborg/graphql-node-starter-kit&#34;&gt;demo project&lt;/a&gt; for the full implementation of this example.&lt;/p&gt;
-
-&lt;h3 id=&#34;minimizing-the-number-of-requests-to-the-server&#34;&gt;Minimizing the number of requests to the server&lt;/h3&gt;
-
-&lt;p&gt;This time we need the list of the &lt;em&gt;Japanese companies&lt;/em&gt; and some information about the games they worked on, but only for the &lt;em&gt;NES&lt;/em&gt; (Nintendo Entertainment System) platform.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #6:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-    companies(nation:&amp;quot;Japan&amp;quot;) {
-	    name
-        gamesAsDeveloper(platform:&amp;quot;NES&amp;quot;) {
-		    title
-	        year
-        }
-        gamesAsPublisher(platform:&amp;quot;NES&amp;quot;) {
-            title
-            year
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This query&amp;rsquo;s output:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;data&amp;quot;: {
-    &amp;quot;companies&amp;quot;: [{
-        &amp;quot;name&amp;quot;: &amp;quot;Konami&amp;quot;,
-        &amp;quot;gamesAsDeveloper&amp;quot;: [],
-        &amp;quot;gamesAsPublisher&amp;quot;: []
-      }, {
-        &amp;quot;name&amp;quot;: &amp;quot;Namco&amp;quot;,
-        &amp;quot;gamesAsDeveloper&amp;quot;: [],
-        &amp;quot;gamesAsPublisher&amp;quot;: [{
-            &amp;quot;title&amp;quot;: &amp;quot;Mendel Palace&amp;quot;,
-            &amp;quot;year&amp;quot;: &amp;quot;1989&amp;quot;
-          }]
-      }, {
-        &amp;quot;name&amp;quot;: &amp;quot;Game Freak&amp;quot;,
-        &amp;quot;gamesAsDeveloper&amp;quot;: [{
-            &amp;quot;title&amp;quot;: &amp;quot;Mendel Palace&amp;quot;,
-            &amp;quot;year&amp;quot;: &amp;quot;1989&amp;quot;
-          }],
-        &amp;quot;gamesAsPublisher&amp;quot;: []
-      }, {
-        &amp;quot;name&amp;quot;: &amp;quot;Capcom&amp;quot;,
-        &amp;quot;gamesAsDeveloper&amp;quot;: [{
-            &amp;quot;title&amp;quot;: &amp;quot;Tiger Road&amp;quot;,
-            &amp;quot;year&amp;quot;: &amp;quot;1987&amp;quot;
-          }],
-        &amp;quot;gamesAsPublisher&amp;quot;: []
-      }
-    ]
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the REST world, the same response could be obtained in several ways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;by sending a request to an endpoint that was built exactly for the purpose of filtering companies and games by some fields, e.g.:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;GET /companyWithGames?companyNation=Japan&amp;amp;gamePlatform=NES&amp;amp;fields=...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;by sending several requests to more generic endpoints, e.g.:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;GET /company?nation=Japan&amp;amp;fields=...
-GET /game?developerName=[developer 1 name]&amp;amp;gamePlatform=NES&amp;amp;fields=...
-GET /game?developerName=[developer 2 name]&amp;amp;gamePlatform=NES&amp;amp;fields=...
-GET ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There&amp;rsquo;s a couple of notable things here:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;the expressivity of the query language becomes more evident when things start becoming more interesting; filtering subsets of data feels natural and easy as you can just specify the criteria for the filters directly on the subtree root (companies -&amp;gt; nation, gamesAsDeveloper -&amp;gt; platform, gamesAsPublisher -&amp;gt; platform);&lt;/li&gt;
-&lt;li&gt;on server side, the developer can write the code to retrieve the data for every subset of data independently, considering that, when a request is sent, every subtree receives the data returned by the upper levels (in this case, filtering &lt;em&gt;games&lt;/em&gt; with the given &lt;em&gt;platform&lt;/em&gt; is performed only on companies with the selected &lt;em&gt;nation&lt;/em&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;api-documentation&#34;&gt;API Documentation&lt;/h3&gt;
-
-&lt;p&gt;When you design a REST WebService, for every endpoint you&amp;rsquo;re mostly going to take care of its URI and the structure of the request and the response body.
-Unfortunately, there is no standard way to document this information and make it available to the client developers.&lt;/p&gt;
-
-&lt;p&gt;With GraphQL, using &lt;strong&gt;&lt;em&gt;introspection&lt;/em&gt;&lt;/strong&gt; you can ask the server information about the available types and their fields.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #7&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-    __schema {
-        types {
-            kind
-            name
-            description
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A query with the query root &lt;strong&gt;&lt;em&gt;__schema&lt;/em&gt;&lt;/strong&gt; returns the list of types with their descriptions and fields:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;data&amp;quot;: {
-    &amp;quot;__schema&amp;quot;: {
-      &amp;quot;types&amp;quot;: [
-		...
-        {
-          &amp;quot;kind&amp;quot;: &amp;quot;OBJECT&amp;quot;,
-          &amp;quot;name&amp;quot;: &amp;quot;Company&amp;quot;,
-          &amp;quot;description&amp;quot;: &amp;quot;A company object&amp;quot;,
-          &amp;quot;fields&amp;quot;: [...]
-        }, {
-          &amp;quot;kind&amp;quot;: &amp;quot;OBJECT&amp;quot;,
-          &amp;quot;name&amp;quot;: &amp;quot;Game&amp;quot;,
-          &amp;quot;description&amp;quot;: &amp;quot;A game object&amp;quot;
-          &amp;quot;fields&amp;quot;: [...]
-        },
-        ...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Another way to get the information about the types is using the query root &lt;strong&gt;&lt;em&gt;__type&lt;/em&gt;&lt;/strong&gt;, passing a specific type name:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #8&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;query {
-    __type(name:&amp;quot;Game&amp;quot;) {
-        fields {
-            name
-            description
-            type {
-                name
-            }
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Output:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-    &amp;quot;data&amp;quot;: {
-        &amp;quot;__type&amp;quot;: {
-            &amp;quot;fields&amp;quot;: [{
-                &amp;quot;name&amp;quot;: &amp;quot;id&amp;quot;,
-                &amp;quot;description&amp;quot;: &amp;quot;The id of a game&amp;quot;,
-                &amp;quot;type&amp;quot;: {
-                    &amp;quot;name&amp;quot;: &amp;quot;Int&amp;quot;
-                }
-            }, {
-	            &amp;quot;name&amp;quot;: &amp;quot;title&amp;quot;,
-                &amp;quot;description&amp;quot;: &amp;quot;The title of a game&amp;quot;,
-                &amp;quot;type&amp;quot;: {
-                    &amp;quot;name&amp;quot;: &amp;quot;String&amp;quot;
-                }
-            },
-            ...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;mutations&#34;&gt;Mutations&lt;/h2&gt;
-
-&lt;p&gt;We&amp;rsquo;ve already talked about queries, but a few words need to be spent about the other important operation that you can perform on a GraphQL server: &lt;strong&gt;mutations&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example #9&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mutation {
-	updateGameRating(id:2, rating:7) {
-		id
-		title
-		rating
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The syntax is no different from the previous ones, except for the &lt;strong&gt;&lt;em&gt;mutation&lt;/em&gt;&lt;/strong&gt; root.
-It is the equivalent of a POST or a PATCH in REST, and lets us change the value of some fields in a resource.
-In this example we are assigning a value (7) to the &lt;em&gt;rating&lt;/em&gt; field of the &lt;em&gt;Game&lt;/em&gt; types; this mutation could be defined in the following way:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-	name: &#39;UpdateGameRating&#39;,
-	type: Game,
-	args: {
-	    rating: { type: new GraphQLNonNull(GraphQLInt) },
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you can see, the specified type for the mutation is &lt;em&gt;Game&lt;/em&gt;; this means not only that the update should be performed on games, but also that the &lt;em&gt;Game&lt;/em&gt; field included in the request (id, title and rating) should be returned, just like a normal query.&lt;/p&gt;
-
-&lt;h2 id=&#34;implementations&#34;&gt;Implementations&lt;/h2&gt;
-
-&lt;p&gt;In the present article we sometimes referred to the official &lt;strong&gt;Javascript&lt;/strong&gt; library for GraphQL, but as you can see in &lt;a href=&#34;https://github.com/chentsulin/awesome-graphql&#34;&gt;this project&lt;/a&gt; there are many different implementations for the most popular languages.&lt;/p&gt;
-
-&lt;h2 id=&#34;the-future-of-graphql&#34;&gt;The future of GraphQL&lt;/h2&gt;
-
-&lt;p&gt;It&amp;rsquo;s difficult to say what will become of GraphQL in the next year.
-Sure there&amp;rsquo;s a lot of hype around it, and for some very solid reasons.
-It&amp;rsquo;s not going to replace REST in developers&amp;rsquo; hearts anytime soon, but if they&amp;rsquo;re brave enough, they can add a &lt;strong&gt;GraphQL layer&lt;/strong&gt; over an existing REST API in their application.
-In fact, in my opinion, another good point of interest regarding GraphQL is the ability to aggregate multiple endpoints that reference various resources. Its nature is very domain-centric and it&amp;rsquo;s more  focused on &lt;strong&gt;&lt;em&gt;what&lt;/em&gt;&lt;/strong&gt; data needs to be precisely retrieved, rather than on &lt;strong&gt;&lt;em&gt;how to&lt;/em&gt;&lt;/strong&gt; get it.&lt;/p&gt;
-
-&lt;p&gt;Some questions arise when you think about GraphQL in a more vast spectrum:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;how to &lt;strong&gt;cache&lt;/strong&gt; resources on server-side, even if they were originally fetched using different queries? (Facebook is trying to give some answers with &lt;a href=&#34;https://facebook.github.io/relay/docs/thinking-in-relay.html&#34;&gt;Relay&lt;/a&gt;);&lt;/li&gt;
-&lt;li&gt;how to &lt;strong&gt;limit the access&lt;/strong&gt; to the resources (or the introspection on them) only to some users? GraphQL is authorization-agnostic, but as you can read in &lt;a href=&#34;https://github.com/graphql/graphql-js/issues/113&#34;&gt;this Github issue&lt;/a&gt; its a common problem that needs to be at least faced.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The entire Facebook ecosystem of open source projects is worth of attention (don&amp;rsquo;t forget about React, Flux and the other Flux-like architectures) and, even if it&amp;rsquo;s very young, it has become very popular and used by many little and big companies around the world.&lt;/p&gt;
-
-&lt;p&gt;My personal hope is that every lesson that can be learned while working with these projects, especially GraphQL, might lead to a better World Wide Web and a better developing experience, maybe with more standard and free implementations than the Facebook (or Google, or Microsoft, or Apple) ones.&lt;/p&gt;
 </description>
     </item>
     

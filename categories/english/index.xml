@@ -6,8 +6,100 @@
     <description>Recent content in English on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Nov 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/categories/english/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Looking back at Symfony Day Rome 2016</title>
+      <link>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</link>
+      <pubDate>Mon, 07 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/</guid>
+      <description>
+
+&lt;p&gt;Every year the &lt;a href=&#34;http://www.grusp.org/&#34;&gt;GrUSP&lt;/a&gt;, in cooperation with one of the italian PHP user groups, organizes the italian &lt;strong&gt;&lt;a href=&#34;http://symfony.com/&#34;&gt;Symfony&lt;/a&gt;&lt;/strong&gt; conference. This year the &lt;a href=&#34;http://2016.symfonyday.it/&#34;&gt;event&lt;/a&gt; was organized in the Capital on 28th October with the help of &lt;a href=&#34;http://roma.grusp.org/&#34;&gt;PHP User Group Roma&lt;/a&gt;, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.&lt;/p&gt;
+
+&lt;p&gt;This post would be a short recap of all the talks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/faciledev_symfonyday_2016.jpg&#34; alt=&#34;A part of Facile Dev Team&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;schedule&#34;&gt;Schedule&lt;/h1&gt;
+
+&lt;h2 id=&#34;symfony-and-micro-not-so-much-service&#34;&gt;Symfony and micro (not so much) service&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/_orso_&#34;&gt;Michele Orselli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Michele Orselli presented a case study of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Monolithic_application&#34;&gt;monolithic application&lt;/a&gt; broken down into many smaller microservices. How many ways can we split a webapp? Why smaller is better? How services can interact each other? In his talk Michele answered all those questions focusing on all the advantages of the proposed architecture and a few common pitfalls.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/MicheleOrselli/symfony-e-micro-non-cosi-tanto-services&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;scaling-symfony-apps&#34;&gt;Scaling Symfony apps&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mat_teo8&#34;&gt;Matteo Moretti&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;A scalable application must support an increasing amount of data or a growing number of users. In his talk, Matteo Moretti described the architecture needed to scale. He divided the overall architecture into 4 main components: web server, sessions, database and the filesystem. He explained the right configuration to his main purpose: improving performance of a webapp.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/matteomoro8/scaling-symfony-apps&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;e-commerce-with-symfony-from-case-study-to-reality&#34;&gt;E-commerce with Symfony: from case study to reality&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/dymissy&#34;&gt;Simone D&amp;rsquo;Amico&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Sylius, Elcodi, Thelia, Sonata Project, Well Commerce, Shop Plus, Aimeos: these are the most popular results you can find if you google  &amp;ldquo;e-commerce solution with Symfony&amp;rdquo;. But which one is the final winner? Why choosing one or another? Simone D&amp;rsquo;Amico reviewed all of these frameworks and libraries comparing strengths and drawbacks. Moreover he clarified the stack he used to build an e-commerce platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/dymissy/ecommerce-con-sf-dal-case-study-alla-realt&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;a-journey-into-symfony-form-component&#34;&gt;A journey into Symfony form component&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/SamueleLilli&#34;&gt;Samuele Lilli&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://symfony.com/doc/current/forms.html&#34;&gt;Symfony form component&lt;/a&gt; is the main obstacle for beginners and newbies in the Symfony world. Samuele Lilli gave a talk with the purpose to clarify this hot topic with a lot of examples and code snippets. He started from the simplest form examples to more advanced ones. He revealed a lot of tips and explanations for several scenarios in order to make this powerful component understandable and manageable by everyone.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SamueleLilli/symfony-day-2016&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/looking-back-at-symfony-day-rome-2016/symfonyday_collage.jpg&#34; alt=&#34;Symfony Day 2016&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;php7-and-rich-domain-model&#34;&gt;PHP7 and Rich Domain Model&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/garakkio&#34;&gt;Massimiliano Arione&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;In this talk Massimiliano Arione told about his experience in the migration to PHP7 of a Symfony based project. Particularly he focused on the usage of type hinting and return types and the issues encountered with an &lt;a href=&#34;https://en.wikipedia.org/wiki/Anemic_domain_model&#34;&gt;Anemic Domain Model&lt;/a&gt; approach suggested by the framework official documentation. He showed how to combine a Rich Domain Model without giving up new language features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/garak/php7-e-rich-domain-model&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;relevance-sorting-with-elasticsearch-and-a-bit-of-maths&#34;&gt;Relevance sorting with Elasticsearch &amp;amp; a bit of maths&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/mattbit_&#34;&gt;Matteo Dora&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;The main topic of the talk was &lt;a href=&#34;https://www.elastic.co/products/elasticsearch&#34;&gt;Elasticsearch&lt;/a&gt;. Elasticsearch is a distributed, RESTful search and analytics engine with a great Symfony integration. Matteo Dora, the speaker of this talk, explained how to deal when the sorting by relevance becomes hard using the right amount of math and &lt;a href=&#34;https://github.com/FriendsOfSymfony/FOSElasticaBundle&#34;&gt;FOSElasticaBundle&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;https://speakerdeck.com/mattbit/elasticsearch-and-a-bit-of-maths&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;command-the-easy-way&#34;&gt;Command: the easy way&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/aczepod&#34;&gt;Antonio Carella&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 30 minutes&lt;/p&gt;
+
+&lt;p&gt;Antonio Carella illustrated a real case how to create command-line commands using the &lt;a href=&#34;https://symfony.com/doc/current/console.html&#34;&gt;Symfony console component&lt;/a&gt;. He showed how console commands can be used for any recurring task, such as cronjobs, imports, or other batch jobs.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/antoninocarella1/command-the-easy-way&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;orm-hero&#34;&gt;ORM hero&lt;/h2&gt;
+
+&lt;p&gt;Talk by: &lt;strong&gt;&lt;a href=&#34;https://twitter.com/toretto460&#34;&gt;Simone Di Maulo&lt;/a&gt;&lt;/strong&gt;
+&lt;br/&gt;Duration: 45 minutes&lt;/p&gt;
+
+&lt;p&gt;This talk was a journey in the &lt;em&gt;magical world&lt;/em&gt; of &lt;a href=&#34;http://www.doctrine-project.org/&#34;&gt;Doctrine&lt;/a&gt;, the most known ORM for Symfony and not only. Simone Di Maulo described how Doctrine works under the hood to better understand when and why to use its features.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;View slides &lt;a href=&#34;http://www.slideshare.net/SimoneDiMaulo/orm-hero&#34;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>MessagePack: an alternative to JSON?</title>
@@ -2502,193 +2594,6 @@ NS_ASSUME_NONNULL_END
 &lt;p&gt;Bringing back the &lt;code&gt;Optional&lt;/code&gt; type from Swift to Objective-C allowed us to build a JSON parsing routine, often something hard to maintain and error-prone, in a simple, linear and readable way. Of course there&amp;rsquo;s &lt;strong&gt;plenty of cases&lt;/strong&gt; where working with optionals can give us the same advantages: by composing &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;flatMap&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt; operations we can express our intent in a clean and readable way. But this is not just about the &lt;code&gt;Optional&lt;/code&gt; type: some readers may have probably noticed that many languages (including Swift) allow operations with the same names on lists and arrays, and the meanings are also the same: &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;flatMap&lt;/code&gt;, in particular, are &lt;strong&gt;generic concepts&lt;/strong&gt; related to monads (in fact, the array type is also a monad) and allow declarative compositions of transformations. This concept is at the core of &lt;strong&gt;functional programming&lt;/strong&gt;, and I think there&amp;rsquo;s plenty of reasons to apply similar concepts to a more object-oriented environment: they will help the programmer in reasoning about the code and express the intent in a more declarative way.&lt;/p&gt;
 
 &lt;p&gt;The code for the &lt;code&gt;Optional&lt;/code&gt; class used throughout the article can be found on &lt;a href=&#34;https://gist.github.com/broomburgo/e318228a5f7d6a605e82&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>From development to production with Docker and AWS Elastic Beanstalk</title>
-      <link>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</link>
-      <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/from-development-to-production-with-docker-and-amazon-ecs/</guid>
-      <description>
-
-&lt;h1 id=&#34;it-works-on-my-machine&#34;&gt;It works on my machine&lt;/h1&gt;
-
-&lt;p&gt;This post is addressed to people who already have &lt;a href=&#34;https://docs.docker.com/articles/basics&#34;&gt;basic knowledge about docker&lt;/a&gt;, about how it works and are looking for a way to move to the next step with the goal of using it in development and production day by day.&lt;/p&gt;
-
-&lt;p&gt;Having a development/testing environment &lt;strong&gt;as close as possible&lt;/strong&gt; to the production one helps a lot in assuring that &lt;strong&gt;things will behave correctly when delivered&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In a typical scenario, the developer has all the services on which the application depends installed on his local machine, which means the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;there&amp;rsquo;s no isolation between projects using the same services (versions, configurations, data);&lt;/li&gt;
-&lt;li&gt;it&amp;rsquo;s hard to have and maintain production-like services&amp;rsquo; versions and configurations in development;&lt;/li&gt;
-&lt;li&gt;sharing the development environment with co-workers is difficult if not impossible;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;All of that leads to one of the worst sentences I&amp;rsquo;ve ever heard saying in my experience:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It works on my machine.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/wmm.jpg&#34; alt=&#34;It works on my machine meme&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You might think that I could obtain the same results using Vagrant or plain virtual machines but that solution wouldn&amp;rsquo;t give me the benefit of having an extra layer of abstraction without having to worry about the overhead. In fact I can have more and more containers running on a single machine than I can have with virtualization.&lt;/p&gt;
-
-&lt;h1 id=&#34;bookshelf-application&#34;&gt;Bookshelf application&lt;/h1&gt;
-
-&lt;p&gt;To streamline this article I prepared a &lt;a href=&#34;https://github.com/pennyphp/bookshelf&#34;&gt;demo application&lt;/a&gt; using the &lt;a href=&#34;http://github.com/pennyphp/penny&#34;&gt;Penny PHP Framework&lt;/a&gt;: it&amp;rsquo;s a simple book archiving application, that allows the user to create and view a list of books.&lt;/p&gt;
-
-&lt;h2 id=&#34;download-and-dependencies&#34;&gt;Download and dependencies&lt;/h2&gt;
-
-&lt;p&gt;First, download the demo application from its repository:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/pennyphp/bookshelf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;PHP Dependencies are managed through &lt;a href=&#34;https://getcomposer.org/&#34;&gt;composer&lt;/a&gt;, and to get them just issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;composer install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Frontend assets are managed through &lt;a href=&#34;http://bower.io&#34;&gt;Bower&lt;/a&gt; + &lt;a href=&#34;http://gruntjs.com/&#34;&gt;Grunt&lt;/a&gt;; the following two commands will respectively download build dependencies and then build the assets, by copying them in the public directory:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm install
-grunt dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;up-and-running-development-environment&#34;&gt;Up and running development environment&lt;/h2&gt;
-
-&lt;p&gt;As you can see the demo app comes with a docker development environment that can be found under the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/tree/master/docker/development&#34;&gt;docker/development&lt;/a&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;By inspecting the content of the &lt;code&gt;docker/development&lt;/code&gt; folder we can find two directories:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;nginx/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/nginx&#34;&gt;fntlnz/nginx&lt;/a&gt; image to create a new one with the needed nginx configurations;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;fpm/&lt;/code&gt;: this directory contains a Dockerfile that inherits from the &lt;a href=&#34;https://github.com/fntlnz/dockerfiles/tree/master/php&#34;&gt;fntlnz/php&lt;/a&gt; image to create a new one with the needed php-fpm configurations and extensions;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Because we don&amp;rsquo;t have Elastic Beanstalk on our local machine (we&amp;rsquo;ll talk about it later) and we need a way to orchestrate our containers, we&amp;rsquo;ll do it by using &lt;strong&gt;docker-compose&lt;/strong&gt;. I decided to use Docker Compose instead of using the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-local.html&#34;&gt;&lt;strong&gt;eb local&lt;/strong&gt;&lt;/a&gt; command (which allows to run elastic beanstalk environment in local) because at the state of art compose is easier to use and to manage in local.&lt;/p&gt;
-
-&lt;h4 id=&#34;the-docker-compose-yml&#34;&gt;The &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;In order to do so we have to create a &lt;code&gt;docker-compose.yml&lt;/code&gt; in our project root.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp docker/docker-compose.yml.development docker-compose.yml
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;At this point, in our &lt;code&gt;docker-compose.yml&lt;/code&gt; we should have four containers to start:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;the &lt;strong&gt;Nginx&lt;/strong&gt; container, which contains a server block  for the bookshelf application listening on port 80.&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;fpm&lt;/strong&gt; container, which does have a shared volume with the host machine so you can change the code without the need to rebuild the container image; also, the container is linked with the mysql container to allow mysql access from php scripts;&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;mysql&lt;/strong&gt; container, which will contain our development data;&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;redis&lt;/strong&gt; container, used for caching purposes, mainly by Doctrine;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please note that since &lt;a href=&#34;https://docs.docker.com/userguide/dockerlinks/&#34;&gt;containers are linked&lt;/a&gt; you can access to an exposed service by using the name given to the linked container; for example, in our case the fpm container is &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/docker-compose.yml.development#L19-L20&#34;&gt;linked to the mysql container&lt;/a&gt;: that&amp;rsquo;s why the configured host is &lt;code&gt;mysql&lt;/code&gt; in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.local.php.dist#L13&#34;&gt;doctrine local connection configuration&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you haven&amp;rsquo;t done it yet, you need to build the &lt;code&gt;fpm&lt;/code&gt; docker image and download the &lt;code&gt;nginx&lt;/code&gt;, &lt;code&gt;mysql&lt;/code&gt; and &lt;code&gt;redis&lt;/code&gt; images; to do so, issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that you have all what you need you can start the containers with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;At this point the four containers should be up and running: you can check if everything&amp;rsquo;s okay by issuing the &lt;code&gt;docker ps&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;p&gt;To proceed, we need to know the ip address of our nginx container. Since the nginx container&amp;rsquo;s port forwarding configuration is &lt;code&gt;80:80&lt;/code&gt;, on &lt;strong&gt;linux&lt;/strong&gt; it should be available at &lt;code&gt;127.0.0.1:80&lt;/code&gt; or &lt;code&gt;localhost:80&lt;/code&gt;, while on &lt;strong&gt;OS X&lt;/strong&gt; it should be available at the ip address associated to the docker-machine host; to retrieve it, issue the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-machine env &amp;lt;yourmachinename&amp;gt; | grep DOCKER_HOST
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It&amp;rsquo;s time to point your browser to the nginx container ip address!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/books.png&#34; alt=&#34;Bookshelf screenshot&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Yay! Our development environment is up and running!&lt;/p&gt;
-
-&lt;h2 id=&#34;up-and-running-production-environment&#34;&gt;Up and running production environment&lt;/h2&gt;
-
-&lt;p&gt;At this point we need a solution to deploy our application in production that can: run Docker containers, scale without hassle and possibly have other nice things already setup like, let&amp;rsquo;s say, monitoring.&lt;/p&gt;
-
-&lt;p&gt;The choice fell on &lt;a href=&#34;https://aws.amazon.com/elasticbeanstalk&#34;&gt;AWS Elastic Beanstalk&lt;/a&gt; because it has all those things and in addition it has a more competitive pricing model with an initial &lt;a href=&#34;https://aws.amazon.com/free/&#34;&gt;Free Tier&lt;/a&gt; which it is enough to run this demo.&lt;/p&gt;
-
-&lt;p&gt;Before we start we need an &lt;strong&gt;Amazon Web Services&lt;/strong&gt; account, if you don&amp;rsquo;t have one yet, you can create it &lt;a href=&#34;https://aws.amazon.com/account&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To configure, deploy and manage our infrastructure we are going to need the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html&#34;&gt;eb command&lt;/a&gt;, to get it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install awsebcli
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In order to obtain access to the platform from your command line using the &lt;strong&gt;eb&lt;/strong&gt; command you have to setup an &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.roles.aeb.html&#34;&gt;&lt;strong&gt;IAM ROLE&lt;/strong&gt;&lt;/a&gt; and associate it to an &lt;a href=&#34;http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html&#34;&gt;&lt;strong&gt;IAM User&lt;/strong&gt;&lt;/a&gt;. The IAM User creation wizard will &lt;strong&gt;give you two keys&lt;/strong&gt;, namely the &lt;em&gt;AWS Access Key ID&lt;/em&gt; and the &lt;em&gt;AWS Secret Access Key&lt;/em&gt;. We are going to need them during the next step.&lt;/p&gt;
-
-&lt;p&gt;At this point we can &lt;strong&gt;initialize&lt;/strong&gt; our bookshelf project. This command will prompt us for the two Access keys plus a few question about our setup.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that the project is initialized we have to &lt;strong&gt;create a new environment&lt;/strong&gt;. This will actually start a &lt;strong&gt;t2.micro EC2&lt;/strong&gt; instance, create the security groups, the load balancer, cloudwatch alarms etc..&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb create bookshelf-production
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Before deploying the application to production we have to generate a &lt;a href=&#34;https://github.com/settings/tokens/new&#34;&gt;Github Token for composer&lt;/a&gt;.
-This is needed to allow composer to download dependencies without hassle.
-To add the token to your environment:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb setenv COMPOSER_TOKEN=&amp;lt;your-token-here&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can check if the system is ready issuing a:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the status becomes &lt;strong&gt;Ready&lt;/strong&gt; you can actually deploy the application with a:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;eb deploy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The deployment will create the containers described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; and create the files described in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/dependencies.config&#34;&gt;dependencies.config&lt;/a&gt; file.&lt;/p&gt;
-
-&lt;p&gt;If you are asking yourslef what the &lt;strong&gt;Dockerrun.aws.json&lt;/strong&gt; actually is, suffice it to say that is to Elastic beanstalk as the &lt;code&gt;docker-compose.yml&lt;/code&gt; is to the local environment.&lt;/p&gt;
-
-&lt;p&gt;The files contained in the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/.ebextensions/&#34;&gt;.ebextensions&lt;/a&gt; allows you to customize and configure the software that your application depends on. The &lt;strong&gt;dependencies.config&lt;/strong&gt; is one of them. It actually resolves composer dependencies, build frontend assets using grunt and bower and create the PHP FPM image using the production &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/docker/production/fpm/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt;. It&amp;rsquo;s important to note that the image is rebuilt only if changes are made to the Dockerfile.&lt;/p&gt;
-
-&lt;p&gt;As you may have noticed, the &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/Dockerrun.aws.json&#34;&gt;Dockerrun.aws.json&lt;/a&gt; contains definitions just for the Nginx and fpm containers. This is because for &lt;strong&gt;Redis&lt;/strong&gt; and &lt;strong&gt;Mysql&lt;/strong&gt; we are going to use respectively &lt;a href=&#34;https://aws.amazon.com/elasticache/&#34;&gt;&lt;strong&gt;Elasticache&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://aws.amazon.com/rds/&#34;&gt;&lt;strong&gt;RDS&lt;/strong&gt;&lt;/a&gt;. RDS and Elasticache are two production ready, scalable and reliable solutions that makes easier to setup a cost-efficient relational database and key value store taking charge of common database administration tasks.&lt;/p&gt;
-
-&lt;p&gt;The Bookshelf application by default is configured to take Mysql and Redis connection parameters &lt;a href=&#34;https://github.com/pennyphp/bookshelf/blob/2e55738da9ff9e45fa44add9d97280635e95399d/config/doctrine.global.php&#34;&gt;from environment variables&lt;/a&gt; which are:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MYSQL_HOST
-MYSQL_PORT
-MYSQL_USERNAME
-MYSQL_PASSWORD
-MYSQL_DATABASE
-REDIS_HOST
-REDIS_PORT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Each one of these environment variables can be set using the command we previously used for the &lt;code&gt;COMPOSER_TOKEN&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can obtain Mysql and Redis connection parameters after creating an &lt;a href=&#34;http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateInstance.html&#34;&gt;RDS Mysql DB instance&lt;/a&gt; and an &lt;a href=&#34;http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cluster.html&#34;&gt;ElastiCache Redis Cluster&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;At this point with the running Nginx and fpm containers and configured databases you can issue an &lt;code&gt;eb open&lt;/code&gt; to open the live production application and see if all&amp;rsquo;s okay!&lt;/p&gt;
-
-&lt;p&gt;As well as ready your infrastructure is also ready to scale and auto scale, to move a first step trough this direction you can take a look at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-scale.html&#34;&gt;&lt;code&gt;eb scale&lt;/code&gt;&lt;/a&gt; command and at the &lt;a href=&#34;http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html&#34;&gt;AWS documentation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;: If something went wrong you can ssh into the elastic beanstalk EC2 machine with a &lt;code&gt;eb ssh&lt;/code&gt; and inspect containers status using tools you already know like &lt;code&gt;docker logs&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;you-are-done&#34;&gt;You are done!&lt;/h1&gt;
-
-&lt;p&gt;You can now save a lot of time automating your workflow using docker while having a fully working, self-contained and shareable development environment very close to your running, stable and efficient production infrastructure over which you have full control of the resources.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://engineering.facile.it/images/from-development-to-production-with-docker-and-amazon-ecs/good-job.jpg&#34; alt=&#34;congratulations&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
