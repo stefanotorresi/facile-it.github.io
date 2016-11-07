@@ -1,7 +1,7 @@
 ---
 authors: ["mario-maraone", "salvatore-cordiano"]
 date: "2016-11-07"
-draft: true
+draft: false
 share: true
 categories: [English, Symfony, GrUSP, PUG Rome]
 title: "Looking back at Symfony Day Rome 2016"
