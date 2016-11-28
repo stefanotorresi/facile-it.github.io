@@ -21,6 +21,10 @@ toc: true
 Lorem ipsum sit dolor.
 
 # Day 2
+## MicroMonolith - Top anti-patterns of adopting distributed system
+ * Michal Franc ([@francmichal](https://twitter.com/francmichal))
+ * 12:30 – 13:10 #architectures ([slide](link))
+
 ## Gang of Four Patterns in a Functional Light
  * Mario Fusco ([@mariofusco](https://twitter.com/mariofusco))
  * 14:10 – 14:50 #programming ([slide](link))
