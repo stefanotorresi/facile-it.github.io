@@ -24,7 +24,7 @@ This post would be a short recap of some talks in chronological order. The choic
 
 ## The new features of PHP 7
  * Enrico Zimuel ([@ezimuel](https://twitter.com/ezimuel))
- * 11:30 – 12:10 #programming ([slide](link))
+ * 11:30 – 12:10 #programming ([slide](http://zimuel.it/slides/codemotion2016/))
 
 Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company that is behind PHP, talks about some of the new features of PHP 7: the scalar type and return type declaretions, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Futhermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
 
