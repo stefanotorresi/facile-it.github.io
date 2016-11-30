@@ -28,6 +28,11 @@ This post would be a short recap of some talks in chronological order. The choic
 
 Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company that is behind PHP, talks about some of the new features of PHP 7: the scalar type and return type declaretions, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Futhermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
 
+## Kubernetes and lastminute.com: our course towards better scalability and processes
+ * Michele Orsi ([@micheleorsi](https://twitter.com/micheleorsi))
+ * 11:30 – 12:10 #devops ([slide](http://www.slideshare.net/micheleorsi/kubernetes-and-lastminutecom-our-course-towards-better-scalability-and-processes))
+Lastminute.com recently started a migration from a monolithic app to a microservice approach, leveraging the power of kubernetes, the OSS lead by Google for container orchestration. This was quite the effort, and unveiled a great deal of advantages and challenges.
+
 ## Continuous budgeting
  * Francesco Fullone ([@fullo](https://twitter.com/fullo))
  * 14:10 - 15:50 #inspirational
