@@ -28,19 +28,27 @@ This post would be a short recap of some talks in chronological order. The choic
 
 Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company that is behind PHP, talks about some of the new features of PHP 7: the scalar type and return type declaretions, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Futhermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
 
+## Continuous budgeting
+ * Francesco Fullone ([@fullo](https://twitter.com/fullo))
+ * 14:10 - 15:50 #inspirational
+ 
+This talk is about being agile in the entrepeneur side of our profession: how to plan and adapt to change when deciding how and how much to spend in our coding ventures; re-evaluating is key, and the only way to success is a delicate balance between maintenance and improvement.
+
 # Day 2
 
 ## MicroMonolith - Top anti-patterns of adopting distributed system
  * Michal Franc ([@francmichal](https://twitter.com/francmichal))
  * 12:30 – 13:10 #architectures
  
-In this talk, Michal reports his (and his team) experience in the infamous transistion from a monolithic app to a microservice
-oriented architecture. Michal works at [@JustGiving](https://twitter.com/JustGiving), which mainly uses .NET, but he didn't
-focus on the specific technology, but rather on the generic problems and pitfalls that this kind of transition brings to
-the table. During his tale, he laid to us a lot of useful suggestions and common issues to look for.
+In this talk, Michal reports his (and his team) experience in the infamous transistion from a monolithic app to a microservice oriented architecture. Michal works at [@JustGiving](https://twitter.com/JustGiving), which mainly uses .NET, but he didn't focus on the specific technology, but rather on the generic problems and pitfalls that this kind of transition brings to the table. During his tale, he laid to us a lot of useful suggestions and common issues to look for.
 
 ## Gang of Four Patterns in a Functional Light
  * Mario Fusco ([@mariofusco](https://twitter.com/mariofusco))
  * 14:10 – 14:50 #programming ([slide](link))
 
-Lorem ipsum sit dolor.
+In this live-coding talk, Mario Fusco uses Java (and new Java 1.8 features) to translate the wide-known GoF design patterns into functional programming, making the code a lot less verbose, reducing the noise of boilerplate over the really important code.
+
+Also, kittens:
+
+<blockquote class="twitter-tweet" data-cards="hidden" data-lang="it"><p lang="it" dir="ltr">&quot;In programmazione funzionale, quando lanci un&#39;eccezione muore un gattino, se ritorni null muore la mamma&quot; by <a href="https://twitter.com/mariofusco">@mariofusco</a> <a href="https://twitter.com/CodemotionIT">@CodemotionIT</a> <a href="https://t.co/40XErlWFbX">pic.twitter.com/40XErlWFbX</a></p>&mdash; Giulio Santoli (@gjuljo) <a href="https://twitter.com/gjuljo/status/802507849494654976">26 novembre 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
