@@ -1,11 +1,11 @@
 ---
 authors: ["engineering"]
 comments: true
-date: "2016-11-28"
+date: "2016-11-30"
 draft: true
 share: true
 categories: [English, Conferences]
-title: "Facile.it devs @ Codemotion 2016"
+title: "Codemotion Milan 2016 in review"
 
 languageCode: "en-EN"
 type: "post"
@@ -31,6 +31,7 @@ Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), t
 ## Kubernetes and lastminute.com: our course towards better scalability and processes
  * Michele Orsi ([@micheleorsi](https://twitter.com/micheleorsi))
  * 11:30 – 12:10 #devops ([slide](http://www.slideshare.net/micheleorsi/kubernetes-and-lastminutecom-our-course-towards-better-scalability-and-processes))
+
 Lastminute.com recently started a migration from a monolithic app to a microservice approach, leveraging the power of kubernetes, the OSS lead by Google for container orchestration. This was quite the effort, and unveiled a great deal of advantages and challenges.
 
 ## Continuous budgeting
@@ -41,6 +42,12 @@ This talk is about being agile in the entrepeneur side of our profession: how to
 
 # Day 2
 
+## Coding Culture
+ * Sven Peters ([@svenpet](https://twitter.com/svenpet))
+ * 10:30 - 11:10 #inspirational ([slide](http://www.slideshare.net/svenpeters/coding-culture))
+
+In his keynote Sven Peters, Evangelist for [Atlassian](https://www.atlassian.com/), explains - in a very geek style - what is *company culture* particularly referring to his company. He says that when people work in a great coding culture they are motivated and they are mostly very productive, but also more responsibility for the features they are developing. Developer will have more freedom to change their roles and try out new stuff, this is the right way to make better products with happier developers. He concluded his speech with these words: *«Products may change, but never forget values, cultivate your culture!»*.
+
 ## MicroMonolith - Top anti-patterns of adopting distributed system
  * Michal Franc ([@francmichal](https://twitter.com/francmichal))
  * 12:30 – 13:10 #architectures
@@ -49,7 +56,7 @@ In this talk, Michal reports his (and his team) experience in the infamous trans
 
 ## Gang of Four Patterns in a Functional Light
  * Mario Fusco ([@mariofusco](https://twitter.com/mariofusco))
- * 14:10 – 14:50 #programming ([slide](link))
+ * 14:10 – 14:50 #programming ([code](https://github.com/mariofusco/from-gof-to-lambda))
 
 In this live-coding talk, Mario Fusco uses Java (and new Java 1.8 features) to translate the wide-known GoF design patterns into functional programming, making the code a lot less verbose, reducing the noise of boilerplate over the really important code.
 
