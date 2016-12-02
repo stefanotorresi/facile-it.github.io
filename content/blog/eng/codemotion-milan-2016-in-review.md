@@ -1,12 +1,12 @@
 ---
 authors: ["engineering"]
 comments: true
-date: "2016-11-30"
-draft: true
+date: "2016-12-12"
+draft: false
 share: true
 categories: [English, Conferences]
 title: "Codemotion Milan 2016 in review"
-
+twitterImage: "/images/codemotion-2016-in-review/social_cover.jpg"
 languageCode: "en-EN"
 type: "post"
 toc: true
@@ -18,7 +18,7 @@ During the event we also officially **announced the second [#FacileHack](http://
 
 This post would be a short recap of some talks in chronological order. The choice of the talks is based on the personal taste of the various members of the editorial staff of Facile.it Engineering blog. Enjoy!
 
-![A part of Facile Dev Team](/images/codemotion-2016/codemotion_2016.jpg)
+![A part of Facile Dev Team](/images/codemotion-2016-in-review/codemotion_2016.jpg)
 
 # Day 1
 
