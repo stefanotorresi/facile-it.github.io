@@ -2,8 +2,6 @@
 
 
     
-        
-    
 
 
 
@@ -13,7 +11,7 @@
 <html>
     <head>
         
-            <title>GrUSP Posts - Facile.it Engineering</title>
+            <title>Engs - Facile.it Engineering</title>
         
 
         <meta charset="utf-8" />
@@ -34,13 +32,13 @@
 <meta name="twitter:site" content="@FacileIt_Engr"/>
 
 
-        <meta property="og:title" content="GrUSP" />
+        <meta property="og:title" content="Engs" />
 <meta property="og:description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://engineering.facile.it/categories/grusp/" />
+<meta property="og:url" content="http://engineering.facile.it/eng/" />
 
 
-<meta property="og:updated_time" content="2016-11-07T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2015-03-02T00:00:00&#43;00:00"/>
 
 
 
@@ -51,7 +49,7 @@
 
 
         
-<meta itemprop="name" content="GrUSP">
+<meta itemprop="name" content="Engs">
 <meta itemprop="description" content="News, repos, tips &amp; trends from the Facile.it Engineering team!">
 
 
@@ -218,15 +216,15 @@ ga('send', 'pageview');
 
                 
                     <li>
+                        <a href="http://engineering.facile.it/blog/eng/codemotion-milan-2016-in-review/"><p>Codemotion Milan 2016 in review</p></a>
+                    </li>
+                
+                    <li>
                         <a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/"><p>Looking back at Symfony Day Rome 2016</p></a>
                     </li>
                 
                     <li>
                         <a href="http://engineering.facile.it/blog/eng/message-pack-an-alternative-to-json/"><p>MessagePack: an alternative to JSON?</p></a>
-                    </li>
-                
-                    <li>
-                        <a href="http://engineering.facile.it/blog/eng/kotlin-intro/"><p>A new hope for the JVM: Kotlin</p></a>
                     </li>
                 
             </ul>
@@ -238,14 +236,16 @@ ga('send', 'pageview');
 
     
     <div id="main">
-        <h1>Articles in category: GrUSP</h1>
         
+            
+        
+
         
             <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/">Looking back at Symfony Day Rome 2016</a></h2>
+            <h2><a href="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/">var_dump() aggiunge proprietà pubbliche a DateTime</a></h2>
         
         
         
@@ -256,39 +256,32 @@ ga('send', 'pageview');
             
         
 
-        <time class="published" datetime='2016-11-07'>
-            7 November 2016
+        <time class="published" datetime='2015-03-02'>
+            2 March 2015
         </time>
 
         
-            <a href="/authors/mario-maraone" class="author">
+            <a href="/authors/lorenzo" class="author">
             
-                <span class="name">Mario Maraone</span>
-                <img src="https://www.gravatar.com/avatar/3eb9185873ffe2e0ef3b0850ce9b5d9a" alt="Mario Maraone avatar" />
-            
-            </a>
-        
-            <a href="/authors/salvatore-cordiano" class="author">
-            
-                <span class="name">Salvatore Cordiano</span>
-                <img src="https://www.gravatar.com/avatar/84febdc35f5438ae1d2500482e2228fa" alt="Salvatore Cordiano avatar" />
+                <span class="name">Lorenzo Fontana</span>
+                <img src="http://www.gravatar.com/avatar/575f040cd9e5e28e807ecf0d73c8a938?d=404&amp;s=250" alt="Lorenzo Fontana avatar" />
             
             </a>
         
 
         
-            <p>4 minute read</p>
+            <p>2 minute read</p>
         
     </div>
 </header>
 
     
 
-    <p>Every year the GrUSP, in cooperation with one of the italian PHP user groups, organizes the italian Symfony conference. This year the event was organized in the Capital on 28th October with the help of PHP User Group Roma, and a part of Facile Dev Team was there for the occasion. In Facile we believe attending to events like this is a good way to learn new things, share practical experiences and improve our network.</p>
+    <p>PHP, fin dalla versione 5.2.0, introduce gli oggetti \DateTime per operare con date ed intervalli, fornendo finalmente un alternativa alle vecchie funzioni procedurali. Recentemente mi sono reso conto di uno strano comportamento che si verifica quando vengono chiamate var_dump, print_r, var_export o debug_zval_dump su un istanza di \DateTime. Considerando il seguente codice e il suo output: $date = new \DateTime(); var_dump(isset($date-&gt;date)); // OUTPUT: bool(false) ci rendiamo conto del fatto che non esiste alcuna proprietà $date all&rsquo;interno dell&rsquo;istanza di \DateTime.</p>
 
     <footer>
         <ul class="actions">
-            <li><a href="http://engineering.facile.it/blog/eng/looking-back-at-symfony-day-rome-2016/" class="button big">Continue Reading</a></li>
+            <li><a href="http://engineering.facile.it/blog/ita/var_dump-aggiunge-proprieta-pubbliche-a-datetime/" class="button big">Continue Reading</a></li>
         </ul>
         <ul class="stats">
     
@@ -308,13 +301,11 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="/categories/english">English</a></li>
+        <li><a href="/categories/italiano">Italiano</a></li>
     
-        <li><a href="/categories/symfony">Symfony</a></li>
+        <li><a href="/categories/php">PHP</a></li>
     
-        <li><a href="/categories/grusp">GrUSP</a></li>
-    
-        <li><a href="/categories/pug-rome">PUG Rome</a></li>
+        <li><a href="/categories/php-internals">PHP internals</a></li>
     
 </ul>
 
@@ -326,7 +317,8 @@ ga('send', 'pageview');
         
 <ul class="actions pagination">
     
-        <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+        <li><a href="/eng/page/10/"
+                class="button big previous">Previous Page</a></li>
     
 
     
@@ -444,6 +436,27 @@ ga('send', 'pageview');
                             <header>
                                     
                                         
+                                            <img src="https://avatars1.githubusercontent.com/u/8501934?v=3&amp;s=200" alt="Facile.it engineers avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
+                                        
+                                    
+
+                                    <h3><a href="http://engineering.facile.it/blog/eng/codemotion-milan-2016-in-review/">Codemotion Milan 2016 in review</a></h3>
+
+                                    
+                                        
+                                    
+                                    <time class="published" datetime='2016-12-12'>
+                                        12 December 2016
+                                    </time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                    
+                                        
                                             <img src="https://www.gravatar.com/avatar/3eb9185873ffe2e0ef3b0850ce9b5d9a" alt="Mario Maraone avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
                                         
                                     
@@ -480,27 +493,6 @@ ga('send', 'pageview');
                                     
                                     <time class="published" datetime='2016-10-25'>
                                         25 October 2016
-                                    </time>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                    
-                                        
-                                            <img src="http://www.gravatar.com/avatar/6f023540d4107d16eca48cd7fcdbed9b?d=404&amp;s=250" alt="Giacomo Bresciani avatar" style="float:right; border-radius: 100%; display: block; width: 2.5em; margin-left:1em;"/>
-                                        
-                                    
-
-                                    <h3><a href="http://engineering.facile.it/blog/eng/kotlin-intro/">A new hope for the JVM: Kotlin</a></h3>
-
-                                    
-                                        
-                                    
-                                    <time class="published" datetime='2016-10-17'>
-                                        17 October 2016
                                     </time>
                             </header>
                         </article>
@@ -550,7 +542,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/english/">English</a>
-                                <span style="float:right;">18</span>
+                                <span style="float:right;">19</span>
                             </header>
                         </article>
                     </li>
@@ -562,6 +554,17 @@ ga('send', 'pageview');
                             <header>
                                 <a href="/categories/php/">PHP</a>
                                 <span style="float:right;">15</span>
+                            </header>
+                        </article>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/conferences/">Conferences</a>
+                                <span style="float:right;">9</span>
                             </header>
                         </article>
                     </li>
@@ -593,26 +596,11 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/conferences/">Conferences</a>
-                                <span style="float:right;">7</span>
-                            </header>
-                        </article>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        <article>
-                            <header>
                                 <a href="/categories/open-source/">Open Source</a>
                                 <span style="float:right;">5</span>
                             </header>
                         </article>
                     </li>
-                    
-                
-                    
-                
                     
                 
                     
