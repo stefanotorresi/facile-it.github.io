@@ -16,7 +16,7 @@ toc: true
 
 During the event we also officially announced the second [**#FacileHack**](http://hackathon.facile.it/) planned for the next year.
 
-This post would be a short recap of some talks in chronological order. The choice of the talk is based on the personal taste of the various members of the editorial staff of Facile.it Engineering blog.
+This post would be a short recap of some talks in chronological order. The choice of the talks is based on the personal taste of the various members of the editorial staff of Facile.it Engineering blog.
 
 ![A part of Facile Dev Team](/images/codemotion-2016/codemotion_2016.jpg)
 
