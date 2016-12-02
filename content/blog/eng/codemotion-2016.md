@@ -24,13 +24,13 @@ This post would be a short recap of some talks in chronological order. The choic
 
 ## The new features of PHP 7
  * Enrico Zimuel ([@ezimuel](https://twitter.com/ezimuel))
- * 11:30 – 12:10 #programming ([slide](http://zimuel.it/slides/codemotion2016/))
+ * 11:30 – 12:10 #programming ([slides](http://zimuel.it/slides/codemotion2016/))
 
 Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company that is behind PHP, talks about some of the new features of PHP 7: the scalar type and return type declaretions, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Futhermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
 
 ## Kubernetes and lastminute.com: our course towards better scalability and processes
  * Michele Orsi ([@micheleorsi](https://twitter.com/micheleorsi))
- * 11:30 – 12:10 #devops ([slide](http://www.slideshare.net/micheleorsi/kubernetes-and-lastminutecom-our-course-towards-better-scalability-and-processes))
+ * 11:30 – 12:10 #devops ([slides](http://www.slideshare.net/micheleorsi/kubernetes-and-lastminutecom-our-course-towards-better-scalability-and-processes))
 
 Lastminute.com recently started a migration from a monolithic app to a microservice approach, leveraging the power of kubernetes, the OSS lead by Google for container orchestration. This was quite the effort, and unveiled a great deal of advantages and challenges.
 
@@ -40,11 +40,23 @@ Lastminute.com recently started a migration from a monolithic app to a microserv
  
 This talk is about being agile in the entrepeneur side of our profession: how to plan and adapt to change when deciding how and how much to spend in our coding ventures; re-evaluating is key, and the only way to success is a delicate balance between maintenance and improvement.
 
+## To ∞ (~65K) and beyond!
+ * Sebastiano Gottardo ([@rotxed](https://twitter.com/rotxed))
+ * 16:10 - 16:50 #mobile ([slides](https://speakerdeck.com/dextor/to-65k-and-beyond))
+
+A lot of old -but still widely used- Android devices are natively limited to run apps with less than 65K method references (due to the Dalvik JVM). For many apps this could be a serious problem. During the talk Sebastiano, an Android engineer at Musixmatch, gave a very comprehensive and clear explanation of the problem and went through all the possible solutions showing some really useful tips to deal or better *avoid* it.
+
+## Functional Reactive Programming with Kotlin on Android
+ * Giorgio Natili ([@giorgionatili](https://twitter.com/giorgionatili))
+ * 17:10 - 17:50 #mobile ([slides](https://drive.google.com/file/d/0BxCm4NRlzb3PWjNNaG1KS0Utckk/view))
+
+The title of this talk was very interesting considering the fact that both the functional paradigm and the Kotlin language are used within the Facile.it Android app. But actually I have to say that I found a 40 minutes talk not suitable as a format to address these two large topics together (72 slides!). I would have preferred two separate talks, but it was nevertheless an interesting presentation full of useful tips and advices about Kotlin and FRP.
+
 # Day 2
 
 ## Coding Culture
  * Sven Peters ([@svenpet](https://twitter.com/svenpet))
- * 10:30 - 11:10 #inspirational ([slide](http://www.slideshare.net/svenpeters/coding-culture))
+ * 10:30 - 11:10 #inspirational ([slides](http://www.slideshare.net/svenpeters/coding-culture))
 
 In his keynote Sven Peters, Evangelist for [Atlassian](https://www.atlassian.com/), explains - in a very geek style - what is *company culture* particularly referring to his company. He says that when people work in a great coding culture they are motivated and they are mostly very productive, but also more responsibility for the features they are developing. Developer will have more freedom to change their roles and try out new stuff, this is the right way to make better products with happier developers. He concluded his speech with these words: *«Products may change, but never forget values, cultivate your culture!»*.
 
