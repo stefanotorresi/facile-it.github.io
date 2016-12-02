@@ -12,11 +12,11 @@ type: "post"
 toc: true
 ---
 
-*«Learn or die»*. These are the words with which [**Codemotion Milan 2016**](http://milan2016.codemotionworld.com/) started on 25th November. Most of our development team attended this tech conference like the [previous year](http://engineering.facile.it/blog/ita/facile-it-devs-codemotion-milan-2015/). Moreover [Facile.it](http://www.facile.it) was present at the event as a sponsor with his stand looking for new talent.
+*«Learn or die»*. These are the words with which [**Codemotion Milan 2016**](http://milan2016.codemotionworld.com/) started on the 25th of November. Most of our development team attended this tech conference like the [previous year](http://engineering.facile.it/blog/ita/facile-it-devs-codemotion-milan-2015/). Moreover [Facile.it](http://www.facile.it) was present at the event as a sponsor with his stand looking for new talent.
 
-During the event we also officially announced the second [**#FacileHack**](http://hackathon.facile.it/) planned for the next year.
+During the event we also officially **announced the second [#FacileHack](http://hackathon.facile.it/) hackathon**, which is planned for **march 2017**.
 
-This post would be a short recap of some talks in chronological order. The choice of the talks is based on the personal taste of the various members of the editorial staff of Facile.it Engineering blog.
+This post would be a short recap of some talks in chronological order. The choice of the talks is based on the personal taste of the various members of the editorial staff of Facile.it Engineering blog. Enjoy!
 
 ![A part of Facile Dev Team](/images/codemotion-2016/codemotion_2016.jpg)
 
@@ -26,13 +26,13 @@ This post would be a short recap of some talks in chronological order. The choic
  * Enrico Zimuel ([@ezimuel](https://twitter.com/ezimuel))
  * 11:30 – 12:10 #programming ([slides](http://zimuel.it/slides/codemotion2016/))
 
-Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company that is behind PHP, talks about some of the new features of PHP 7: the scalar type and return type declaretions, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Futhermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
+Enrico Zimuel, Software Engineer at [Zend Technologies](http://www.zend.com/), the company behind the PHP engine, talks about some of the new features of PHP 7: the scalar type and return type declarations, the spaceship and null coalescing operators, the anonymous classes, the consistent 64-bit support, etc. Furthermore he explains why PHP 7 is twice as fast compared to the previous version and it has 30% lower memory consumption.
 
 ## Kubernetes and lastminute.com: our course towards better scalability and processes
  * Michele Orsi ([@micheleorsi](https://twitter.com/micheleorsi))
  * 11:30 – 12:10 #devops ([slides](http://www.slideshare.net/micheleorsi/kubernetes-and-lastminutecom-our-course-towards-better-scalability-and-processes))
 
-Lastminute.com recently started a migration from a monolithic app to a microservice approach, leveraging the power of kubernetes, the OSS lead by Google for container orchestration. This was quite the effort, and unveiled a great deal of advantages and challenges.
+Lastminute.com recently started a migration from a monolithic app to a microservice approach, leveraging the power of Kubernetes, the open source project lead by Google for container orchestration. This was quite the effort, and it unveiled a great deal of advantages and challenges.
 
 ## Continuous budgeting
  * Francesco Fullone ([@fullo](https://twitter.com/fullo))
@@ -58,7 +58,7 @@ The title of this talk was very interesting considering the fact that both the f
  * Sven Peters ([@svenpet](https://twitter.com/svenpet))
  * 10:30 - 11:10 #inspirational ([slides](http://www.slideshare.net/svenpeters/coding-culture))
 
-In his keynote Sven Peters, Evangelist for [Atlassian](https://www.atlassian.com/), explains - in a very geek style - what is *company culture* particularly referring to his company. He says that when people work in a great coding culture they are motivated and they are mostly very productive, but also more responsibility for the features they are developing. Developer will have more freedom to change their roles and try out new stuff, this is the right way to make better products with happier developers. He concluded his speech with these words: *«Products may change, but never forget values, cultivate your culture!»*.
+In his keynote Sven Peters, Evangelist for [Atlassian](https://www.atlassian.com/), explains - in a very geek style - what is *company culture*, referring in particular to his company. He says that when people work in a great coding culture they are motivated and they are mostly very productive, but also they will have more responsibility and investment in the features they are developing. Developers will have more freedom to change their roles and try out new stuff, this is the right way to make better products with happier developers. He concluded his speech with these words: *«Products may change, but never forget values, cultivate your culture!»*.
 
 ## MicroMonolith - Top anti-patterns of adopting distributed system
  * Michal Franc ([@francmichal](https://twitter.com/francmichal))
