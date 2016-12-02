@@ -66,6 +66,12 @@ In his keynote Sven Peters, Evangelist for [Atlassian](https://www.atlassian.com
  
 In this talk, Michal reports his (and his team) experience in the infamous transistion from a monolithic app to a microservice oriented architecture. Michal works at [@JustGiving](https://twitter.com/JustGiving), which mainly uses .NET, but he didn't focus on the specific technology, but rather on the generic problems and pitfalls that this kind of transition brings to the table. During his tale, he laid to us a lot of useful suggestions and common issues to look for.
 
+## Develop applications in Big Data Era with Scala and Spark
+ * Mario Cartia ([@mariocartia](https://twitter.com/mariocartia))
+ * 12:30 – 13:10 #cloud #bigdata
+
+Large amount of data are produced everyday and Big Data is a concept increasingly trendy. In his talk Mario Cartia presented Scala and Spark,two powerful tools suitable to Big Data Processing.  Scala is a General purpose programming language that combines the benefits of OOP and functional programming. Apache Spark is an open source framework and it's a fast engine for big data processing, based on Scala language.
+
 ## Gang of Four Patterns in a Functional Light
  * Mario Fusco ([@mariofusco](https://twitter.com/mariofusco))
  * 14:10 – 14:50 #programming ([code](https://github.com/mariofusco/from-gof-to-lambda))
