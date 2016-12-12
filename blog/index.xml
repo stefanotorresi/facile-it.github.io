@@ -6,8 +6,67 @@
     <description>Recent content in Blogs on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Dec 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Please mutate responsibly: 3 ways to improve your mutable objects</title>
+      <link>http://engineering.facile.it/blog/eng/please-mutate-responsibly-3-ways-to-improve-your-mutable-objects/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/please-mutate-responsibly-3-ways-to-improve-your-mutable-objects/</guid>
+      <description>
+
+&lt;p&gt;Maintaining &lt;strong&gt;state&lt;/strong&gt; is the main cause of complexity and headaches in software development: without a careful consideration of state, our projects will inevitably become impossible to understand. In fact, various development techniques and programming styles are mainly there to handle state in a responsible way: for example, &lt;a href=&#34;https://en.wikipedia.org/wiki/Monad_(functional_programming)&#34;&gt;&lt;strong&gt;monads&lt;/strong&gt;&lt;/a&gt;, as used in functional programming, are often employed for this very task. A good general way of managing state is trying to make it &lt;strong&gt;immutable&lt;/strong&gt;, either through the use &lt;a href=&#34;https://en.wikipedia.org/wiki/Value_type&#34;&gt;value types&lt;/a&gt;, that is, types which instances are passed around with &lt;a href=&#34;https://en.wikipedia.org/wiki/Object_copying#Deep_copy&#34;&gt;deep copy&lt;/a&gt; semantics, or simple &lt;em&gt;immutable objects&lt;/em&gt;, which have reference semantics but because they&amp;rsquo;re immutable their state is fixed.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately the &lt;em&gt;processes&lt;/em&gt; we usually represent in code are all but immutable: the state of any running software is probably going to change as time passes, as a result of &lt;em&gt;foreign interactions&lt;/em&gt;, a.k.a., &lt;em&gt;side effects&lt;/em&gt;. This means that something, somewhere has to mutate, and to be more precise we can say that the information stored in a certain object is going to change: actually, an &lt;strong&gt;information&lt;/strong&gt; by itself is a &lt;strong&gt;constant&lt;/strong&gt; value, but from time to time that object is going to store different pieces of information, some are going to be new, others are going to be outdated. So there&amp;rsquo;s no escape from mutation: the point is to mutate &lt;strong&gt;responsibly&lt;/strong&gt;, that is, to not be reckless with our mutable objects, and treat them in a special way so that we can still reason about our code and easily understand the state of our system at any given moment.&lt;/p&gt;
+
+&lt;p&gt;The already cited techniques based on monads represent a good way to solve the problem, but monads only really work in a functional programming context, something that&amp;rsquo;s not everyone&amp;rsquo;s cup of tea, and to be really productive while using them you need to &lt;em&gt;think in terms of monads&lt;/em&gt;, and treat them as primitive objects. I don&amp;rsquo;t want to talk about monads or functional programming in general, my focus for this article is analyzing mutability in software, while identifying common techniques that can be leveraged in any programming language/paradigm to improve our code. In particular I want to talk about 3 specific problems that arise while working with mutable objects, and 3 solutions to address them. To quickly summarize, my suggestions will be the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;be idempotent;&lt;/li&gt;
+&lt;li&gt;react to change;&lt;/li&gt;
+&lt;li&gt;proceed one-way only.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see each one of them in detail by developing a concrete example: an object that represents a &lt;em&gt;payment process&lt;/em&gt;, which at any moment can be in various states, like &lt;em&gt;possible&lt;/em&gt;, &lt;em&gt;started&lt;/em&gt;, &lt;em&gt;working&lt;/em&gt;, &lt;em&gt;succeeded&lt;/em&gt; and &lt;em&gt;failed&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;be-idempotent&#34;&gt;Be idempotent&lt;/h2&gt;
+
+&lt;p&gt;To mutate an object from the outside we usually &lt;em&gt;tell&lt;/em&gt; the object to &lt;em&gt;do&lt;/em&gt; something. If we truly want to respect the object-oriented paradigm, and in particular if we don&amp;rsquo;t want to violate &lt;strong&gt;encapsulation&lt;/strong&gt;, we shouldn&amp;rsquo;t make assumptions about the internal state of a certain object after a certain method call; still, we cannot help but making assumptions about the way our entire &lt;em&gt;system&lt;/em&gt; is going to work after a method call, otherwise it would be impossible to reason about code. But if our changes are &lt;em&gt;incremental&lt;/em&gt;, it&amp;rsquo;s going to be really hard to understand the system even after a simple method call. Not all changes are created equal: if the resulting system&amp;rsquo;s state is affected by the previous one, before the change takes place, then it&amp;rsquo;s going to be basically impossible to reason about the system after the change, because in our reasoning we should take into account all the possible conditions the system was in. An incremental change, for example a method call to &lt;em&gt;increase a counter&lt;/em&gt;, will overload our mind of conditional paths and will cause bugs.&lt;/p&gt;
+
+&lt;p&gt;For example, for our &lt;code&gt;PaymentProcess&lt;/code&gt; we don&amp;rsquo;t want to be able to generically &lt;em&gt;advance&lt;/em&gt; the payment state: we want to advance it to a particular stage, with a clean method call that should be &lt;a href=&#34;https://en.wikipedia.org/wiki/Idempotence&#34;&gt;&lt;em&gt;idempotent&lt;/em&gt;&lt;/a&gt;, that is, calling it 1 time, 2 times or 100 times &lt;strong&gt;has to be the same&lt;/strong&gt;. This also means that if more objects call the same method, it will be like if only one object called it, and this will completely remove a running cause of bugs: multiple, uncoordinated interactions of the same type with an object. Idempotence is a simple concept, but it&amp;rsquo;s extremely powerful: with it, we don&amp;rsquo;t need to keep track if a particular operation has already occurred (thus saving some state), but to properly implement it we need the correct semantics: while &lt;em&gt;delta&lt;/em&gt; operations are very frequent in real life (think about increasing the volume of a TV set) and are usually harmless, they can be dangerous in software development, an in general it&amp;rsquo;s important to understand the what &lt;em&gt;feels&lt;/em&gt; natural in real life is not necessarily a good thing in software engineering, or engineering in general.&lt;/p&gt;
+
+&lt;p&gt;Also, notice that while an idempotent method call will always have the same result on a particular instance, it doesn&amp;rsquo;t mean that will have the same result on &lt;em&gt;different&lt;/em&gt; instances - more on this later.&lt;/p&gt;
+
+&lt;h2 id=&#34;react-to-change&#34;&gt;React to change&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.reactivemanifesto.org&#34;&gt;Reactive programming&lt;/a&gt; has been big the last few years, and that&amp;rsquo;s mostly thanks both to the popularity achieved by functional programming in OOP circles, and to the diffusion of architectures based on microservices. But the idea of &lt;em&gt;being reactive&lt;/em&gt; in software development has been around for much more than that: for example, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;&lt;strong&gt;observer pattern&lt;/strong&gt;&lt;/a&gt; has been there for decades, and the basic underlying idea is that of &lt;em&gt;connecting&lt;/em&gt; objects by establishing relations between them in which a state change is automatically propagated to a collection of &lt;em&gt;observers&lt;/em&gt;. It is responsibility of an observer to react to what just happened, while the &lt;em&gt;observable&lt;/em&gt; object doesn&amp;rsquo;t really care about what the others will do. This will allow us to achieve the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a nice &lt;em&gt;decoupling&lt;/em&gt; between a mutable object and other objects that for any reason are interested in its mutation; no custom interface will be needed, just a simple fixed method (like &lt;code&gt;next&lt;/code&gt;) to pass around the new information;&lt;/li&gt;
+&lt;li&gt;a more &lt;em&gt;declarative&lt;/em&gt; code style, in which our method calls will only describe the intent of connecting one or more objects to a chain of reactions (and &lt;a href=&#34;https://gist.github.com/staltz/868e7e9bc2a7b8c1f754&#34;&gt;functional reactive programming&lt;/a&gt; is particularly good a that).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;About our payment example, whatever object is interested in a change of state, like for example UI objects the will show different views to the user based on the current payment stage, should really subscribe to our payment object to receive &lt;em&gt;signals&lt;/em&gt; about its mutation: the payment object itself should then send these changes to the observers. Notice that I used the  word &lt;em&gt;send&lt;/em&gt; and not &lt;em&gt;broadcast&lt;/em&gt;: the change of state of a particular object should usually not be treated as an all-encompassing &lt;em&gt;event&lt;/em&gt;. Events are really about application wide changes (like a phone call during the execution of a mobile application): there are many ways to implement our observables and observers, the point is simply to have a clean, fixed API to &lt;em&gt;emit&lt;/em&gt; an information, and &lt;a href=&#34;http://reactivex.io&#34;&gt;ReactiveX&lt;/a&gt; could be a nice starting point to get an idea about the possible APIs.&lt;/p&gt;
+
+&lt;h2 id=&#34;proceed-one-way-only&#34;&gt;Proceed one-way only&lt;/h2&gt;
+
+&lt;p&gt;This might be controversial but it&amp;rsquo;s extremely important. Consider the following case: our payment process object has idempotent methods and a reactive API, so a view controller object can keep a UI updated and send back user interactions to advance the process. But while the process is in &amp;ldquo;working&amp;rdquo; stage something goes wrong and the process fails: not a problem, we actually considered the &amp;ldquo;failed&amp;rdquo; stage, so the &lt;code&gt;PaymentProcess&lt;/code&gt; is updated accordingly. But we would actually like to retry the payment, and of course update everything accordingly in our reactive chain. What should we do? Set our &lt;code&gt;PaymentProcess&lt;/code&gt; back to &amp;ldquo;working&amp;rdquo;? That would be possible, but it&amp;rsquo;s going to make everything more complex, because all the observers should in theory take into account the fact the this is not the first attempt to pay (the UI for example could show a &amp;ldquo;retry&amp;rdquo; message instead of the usual one).&lt;/p&gt;
+
+&lt;p&gt;In general, we want to &lt;em&gt;solve&lt;/em&gt; a state problem, we don&amp;rsquo;t want to distribute it to multiple objects.&lt;/p&gt;
+
+&lt;p&gt;Another case could be a complete stop of the payment process (the user could cancel it, for example, or the session could expire): we don&amp;rsquo;t want to bring back the &lt;code&gt;PaymentProcess&lt;/code&gt; instance, forcing all observer to do some kind of cleanup. In any case, a process that goes back and forth makes reasoning about code really hard, because &lt;strong&gt;it makes the future more complex&lt;/strong&gt;: all the objects that depend on a mutable object are going to be easier to implement if we can assume that the mutability will only proceed in one direction. Of course this is not easy to implement, but in this case it&amp;rsquo;s really natural to think about it: if the milk is running out in the evening, I cannot expect the bottle to magically refill for the morning, so I should start thinking about a different breakfast. Processes that are invertible usually require some form of external, high-level coordination, and from an architectural standpoint the idea of an object that mutates in any possible way might seem harmless: but at the implementation level this will cause problems, and bugs are in the implementation, not in the architecture. While implementing new features, refactoring, debugging or simply studying a codebase we reason about the code, not the architecture, and &lt;em&gt;coordinator&lt;/em&gt; objects are classic jack-of-all-trades at the architecture level: but unfortunately, an implementation that requires external coordination is going to be more complex and error-prone, so it&amp;rsquo;s better to be clear about the mutation path for an object.&lt;/p&gt;
+
+&lt;p&gt;In our particular case, we could consider one or more &amp;ldquo;retry&amp;rdquo; stages, or a single &amp;ldquo;retry&amp;rdquo; stage with an associated object that represents the number of retries. And about the possibility of going back to the beginning, in that case we should really &lt;strong&gt;discard the whole process&lt;/strong&gt;: the process owner, that would have likely activated the various accessory objects (like the ones for the UI) should &lt;em&gt;listen&lt;/em&gt; for an &amp;ldquo;abort&amp;rdquo; stage, that would make it kill everything and start the process anew. There might be performance concerns: to mutate objects is usually faster than recreating them, but again, it can be managed and it&amp;rsquo;s better to have cleaner, more understandable code from the beginning, so that it&amp;rsquo;s going to be easier to make fine calibrations in later stages, than to create a mess in the name of early optimizations.&lt;/p&gt;
+
+&lt;p&gt;One final question: if the process is one-way only, what happens if some object tries to set it to a previous stage with a method call? &lt;strong&gt;Absolutely nothing&lt;/strong&gt;. The &lt;em&gt;ignore-if-impossible&lt;/em&gt; semantics is actually clean and reasonable, and we don&amp;rsquo;t need errors or exceptions to handle: even if this has to be taken into account at every method call, the important thing is to be &lt;strong&gt;clear&lt;/strong&gt; about it, and the alternative is much worse. This whole article could be summarized in the phrase &lt;strong&gt;&amp;ldquo;clear semantics are what makes mutability bearable&amp;rdquo;&lt;/strong&gt;. In this particular case, the fact that a method call is ignored or not doesn&amp;rsquo;t change our reasoning: I&amp;rsquo;m not going to make assumptions about the state of &lt;code&gt;PaymentProcess&lt;/code&gt; after the call, because I&amp;rsquo;m actually reacting to its changes in a separate context.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;We considered a bunch of possible problems to think about when implementing mutable objects, and some options to confront them. Of course these ideas are purposely very general: every problem is different, every codebase is unique. But applying even just one of these techniques will most likely result in more clear and understandable code. I also didn&amp;rsquo;t talk about application-wide mutation, because that&amp;rsquo;s really an architectural thing; my goal is to raise awareness about the concept of mutation and variable instance properties in every single class. We should always &lt;strong&gt;avoid&lt;/strong&gt; mutation when possible, and concentrate our variable state in a few, carefully controlled places; but if we&amp;rsquo;re not careful, even a single mutating class in a multiple class project could wreak havoc, and force use to debug and fix a system that we thought was clean and well structured.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Codemotion Milan 2016 in review</title>
@@ -1995,251 +2054,6 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;p&gt;These were my 2 cents, if you are interested in seeing something from me I started a little project on GitHub to create a filesystem that can use online services via FUSE to store data. You can find the project here: &lt;a href=&#34;https://github.com/fntlnz/webfs&#34;&gt;WebFS on GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Thanks for reading!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Puli: Universal Packages for PHP</title>
-      <link>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</link>
-      <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/ita/puli-universal-packages-for-php/</guid>
-      <description>
-
-&lt;h2 id=&#34;composer-e-l-ecosistema-php&#34;&gt;Composer e l&amp;rsquo;ecosistema PHP&lt;/h2&gt;
-
-&lt;p&gt;L&amp;rsquo;ecosistema PHP è notevolmente cambiato negli ultimi anni grazie all&amp;rsquo;introduzione di &lt;em&gt;Composer&lt;/em&gt;.
-Esso ha definito degli standard per risolvere problemi comuni come l&amp;rsquo;autoloading e la gestione di pacchetti e dipendenze.
-In questi ultimi anni si è assistito ad un proliferare di numerose componenti software riusabili che hanno significativamente modificato le strategie di sviluppo.&lt;/p&gt;
-
-&lt;p&gt;Nonostante Composer si sia evoluto molto, in alcuni contesti le sue funzionalità risultano essere limitanti e incomplete.
-I framework e i pacchetti più complessi hanno bisogno di una gestione personalizzata delle dipendenze. Generalmente sono necessarie operazioni di configurazione e registrazione. Ciò è specialmente vero per pacchetti core dei framework come i &lt;em&gt;template engines&lt;/em&gt;.
-Composer, inoltre, possiede una cattiva gestione delle risorse non PHP. I file di configurazione devono essere gestiti manualmente oppure è necessario adottare standard strettamente legati a ciascun framework.&lt;/p&gt;
-
-&lt;h2 id=&#34;la-soluzione-puli&#34;&gt;La soluzione: Puli&lt;/h2&gt;
-
-&lt;p&gt;A partire dal gennaio 2014 è stato sviluppato &lt;strong&gt;Puli, Universal Packages for PHP&lt;/strong&gt;, da Bernhard Schussek.
-Puli mira a risolvere i problemi d&amp;rsquo;integrazione menzionati in precedenza creando un &lt;strong&gt;layer d&amp;rsquo;astrazione aggiuntivo tra Composer e l&amp;rsquo;applicazione&lt;/strong&gt;. Tale layer consente di gestire le risorse secondo convenzioni indipendenti dai framework. Ciò significa che Puli può essere usato anche dalle applicazioni che non ne fanno uso.
-Attualmente Puli è in Beta, la versione stabile non è stata ancora annunciata ma è prevista per l&amp;rsquo;inizio del 2016.
-&lt;strong&gt;Puli è stato ideato per affiancare Composer&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Puli lavora ad un livello più alto per fornire le seguenti funzionalità:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#puli-path&#34;&gt;Gestione dei path virtuali per risorse non PHP&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#override-puli-path&#34;&gt;Overriding dei path virtuali&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#binding-type&#34;&gt;Interazione semplificata dei pacchetti con l&amp;rsquo;uso di Binding Type&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#url-generation&#34;&gt;Generazione automatica di URL per risorse pubbliche&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#assets-install&#34;&gt;Installazione automatica delle risorse pubbliche nelle document root&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;le-componenti-di-puli&#34;&gt;Le componenti di Puli&lt;/h2&gt;
-
-&lt;p&gt;Puli offre svariate funzionalità organizzate nei seguenti componenti:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Resource repository&lt;/li&gt;
-&lt;li&gt;Discovery service&lt;/li&gt;
-&lt;li&gt;Public resources manager&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;configurazione&#34;&gt;Configurazione&lt;/h3&gt;
-
-&lt;p&gt;Nell&amp;rsquo;offire questi servizi, Puli legge e scrive un proprio file di configurazione &lt;code&gt;puli.json&lt;/code&gt; presente nella root directory del pacchetto, allo stesso modo del &lt;code&gt;composer.json&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Tale configurazione può essere modificata manualmente oppure utilizzando l&amp;rsquo;&lt;strong&gt;interfaccia CLI di Puli&lt;/strong&gt;;
-Tale strumento può essere installato da Packagist tramite il pacchetto &lt;code&gt;puli/cli&lt;/code&gt;.
-Al pari di Composer, sono disponibili archivi Phar per un uso immediato.&lt;/p&gt;
-
-&lt;h3 id=&#34;installazione&#34;&gt;Installazione&lt;/h3&gt;
-
-&lt;p&gt;Affiché le applicazioni possano usare i servizi offerti da Puli è necessario procedere all&amp;rsquo;installazione.
-Per applicazioni che non fanno uso di framework è sufficiente abilitare il &lt;em&gt;Composer Plugin&lt;/em&gt; &lt;code&gt;puli/composer-plugin&lt;/code&gt;.
-Quest&amp;rsquo;azione viene svolta da Composer con il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ composer require puli/composer-plugin:^1.0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tale plugin consente di generare atomaticamente la cosiddetta &lt;strong&gt;Puli Factory Class&lt;/strong&gt;: componente chiave da cui è possibile accedere a tutti i servizi offerti da Puli.&lt;/p&gt;
-
-&lt;p&gt;A questo punto è possibile usare Puli nel modo seguente:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;require &#39;./vendor/autoload.php&#39;;
-
-// La costante PULI_FACTORY_CLASS viene 
-// definita al &amp;quot;composer install&amp;quot;
-$factoryClass = PULI_FACTORY_CLASS;
-$factory = new $factoryClass();
-
-$puliRepository = $factory-&amp;gt;createRepository();
-$puliDiscovery  = $factory-&amp;gt;createDiscovery($puliRepository);
-$puliGenerator  = $factory-&amp;gt;createUrlGenerator($puliDiscovery);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;resource-repository&#34;&gt;Resource repository&lt;/h3&gt;
-
-&lt;p&gt;Il resource repository fornisce un &lt;strong&gt;file system virtuale&lt;/strong&gt; per accedere alle risorse non PHP.
-Ciò consente di localizzare facilmente i file senza conoscere la loro effettiva posizione.&lt;/p&gt;
-
-&lt;h4 id=&#34;accesso-alle-risorse-con-composer&#34;&gt;Accesso alle risorse con Composer&lt;/h4&gt;
-
-&lt;p&gt;Con Composer era frequente scrivere codice di questo tipo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$translationFileName = realpath(__DIR__ . &#39;/../vendor/acme/blog/resources/translation-it.xml&#39;);
-$translationContent = file_get_contents($translationFileName);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tale operazione fa uso di dettagli implementativi: il layout delle directory fornito da Composer. La soluzione non è riusabile nè configurabile.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;accesso-alle-risorse-con-puli&#34;&gt;Accesso alle risorse con Puli&lt;/h4&gt;
-
-&lt;p&gt;Ciascun pacchetto compatibile con Puli può registrare diversi &lt;strong&gt;Path Mapping&lt;/strong&gt; utilizzati per tradurre i &lt;strong&gt;percorsi virtuali (Puli path)&lt;/strong&gt; in &lt;strong&gt;percorsi reali&lt;/strong&gt;.
-Tali Path Mapping sono elencati nel &lt;code&gt;puli.json&lt;/code&gt; e normalmente sono modificati con il comando Puli CLI &lt;code&gt;map&lt;/code&gt;.
-Ad esempio, il maintainer di acme/blog può eseguire questo comando per definire un nuovo mapping:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tale operazione crea un&amp;rsquo;associazione tra il prefisso del path virtuale &lt;code&gt;/acme/blog&lt;/code&gt; e la directory &lt;code&gt;resources&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Un ipotetico utilizzatore del pacchetto acme/blog potrà quindi accedere alle risorse nel seguente modo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/translation-it.xml&#39;;
-$translationContent = $puliRepository-&amp;gt;get($puliPath)-&amp;gt;getBody();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;È importante notare come i Path mapping siano definiti dal maintainer del pacchetto. Le altre componenti si limitano ad usarli per accedere alle risorse.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;override-puli-path&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;resource-overriding&#34;&gt;Resource overriding&lt;/h4&gt;
-
-&lt;p&gt;È tuttavia presente un&amp;rsquo;eccezione a questa regola, tale concetto è alla base del &lt;strong&gt;Resource overriding&lt;/strong&gt;.
-Immaginiamo di dover lavorare con due pacchetti: A e B.
-Il pacchetto B è dipendente dal pacchetto A.
-B, tuttavia, vuole personalizzare alcune risorse fornite da A.
-Il maintainer di B può quindi rimpiazzare (&lt;em&gt;override&lt;/em&gt;) tali risorse aggiungengo nuovi Path Mapping.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&#34;binding-type&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;discovery-service&#34;&gt;Discovery service&lt;/h3&gt;
-
-&lt;p&gt;Il componente discovery semplifica l&amp;rsquo;interazione tra pacchetti: consente di condividere le risorse senza codice boilerplate attraverso l&amp;rsquo;uso di &lt;strong&gt;Binding Type&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Per il componente Discovery i pacchetti sono siddivisi in due categorie:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Resource providers&lt;/strong&gt;: pacchetti che offrono risorse;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Resource consumers&lt;/strong&gt;: pacchetti che richiedono risorse.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I Binding Types sono definiti dai resource consumers. Ciascun Binding Type è idendificato da un nome (es. &lt;code&gt;acme/translator/messages&lt;/code&gt;).
-I resource providers possono quindi associare una o più risorse a tali Binding Type.
-&lt;strong&gt;L&amp;rsquo;associazione avviene legando un Puli Path ad un Binding Type&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;I &lt;em&gt;Binding Type&lt;/em&gt; sono quindi un&amp;rsquo;interfaccia per la condivisione di risorse.&lt;/p&gt;
-
-&lt;h4 id=&#34;esempio&#34;&gt;Esempio&lt;/h4&gt;
-
-&lt;p&gt;Esaminiamo, con un esempio, l&amp;rsquo;interazione tra due pacchetti: &lt;code&gt;acme/md2html&lt;/code&gt; e &lt;code&gt;acme/blog&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;acme/md2html&lt;/code&gt; è un componente per tradurre contenuto Markdown verso pagine Html. Md2html è un sistema configurabile: la resa dell&amp;rsquo;output avviene attraverso template Twig modificabili.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;acme/blog&lt;/code&gt; fornisce tools per la gestione di articoli da blog. Siccome questi ultimi possono essere scritti in Markdown, &lt;code&gt;acme/blog&lt;/code&gt; fa uso di &lt;code&gt;acme/md2html&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Il componente &lt;code&gt;acme/blog&lt;/code&gt; può personalizzare i template di Md2html in questo modo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$md2html = new Md2Html();
-$md2html-&amp;gt;useHeaderTemplate(__DIR__ . &#39;/resources/templates/markdown-header.twig&#39;);
-
-$htmlContent = $md2html-&amp;gt;translate(&#39;## markdown content&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Questo approccio ha due svantaggi:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;acme/blog&lt;/code&gt; ha la diretta responsabilità di configurare correttamente Md2html utilizzando l&amp;rsquo;API fornita;&lt;/li&gt;
-&lt;li&gt;Gli utenti di &lt;code&gt;acme/blog&lt;/code&gt; non possono modificare facilmente le personalizzazioni apportate a Md2html.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Tali problemi possono essere risolti con Puli.&lt;/p&gt;
-
-&lt;p&gt;Il mantainer di Md2html decide di rendere il suo pacchetto compatibile con Puli.&lt;/p&gt;
-
-&lt;p&gt;Definisce quindi il Binding Type: &lt;code&gt;acme/md2html/header-template&lt;/code&gt; con il seguente comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli type --define acme/md2html/header-template
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Il maintainer di &lt;code&gt;acme/blog&lt;/code&gt; può quindi usare tale Binding Type nel seguente modo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli map /acme/blog resources
-$ puli bind /acme/blog/templates/markdown-header.twig acme/md2html/header-template
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Così &lt;code&gt;acme/md2html&lt;/code&gt; può leggere il nuovo template &lt;code&gt;markdown-header.twig&lt;/code&gt; in modo trasparente.&lt;/p&gt;
-
-&lt;p&gt;Gli utilizzatori di acme/blog che desiderassero modificare tale template hanno due strategie:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Modificare l&amp;rsquo;associazione al Binding Type &lt;code&gt;acme/md2html/header-template&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Sovrascrivere il Puli Path &lt;code&gt;/acme/blog/templates/markdown-header.twig&lt;/code&gt; con il meccanismo dell&amp;rsquo;overriding esaminato in precedenza.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&#34;url-generation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;public-resources-manager&#34;&gt;Public resources manager&lt;/h3&gt;
-
-&lt;p&gt;Puli gestisce anche le risorse pubbliche, gli assets. In particolare, è in grado di generare path e URL da usare nei template o nei fogli di stile.&lt;/p&gt;
-
-&lt;p&gt;Come primo passo, è necessario &lt;strong&gt;registrare i server web che servono tali risorse&lt;/strong&gt;.
-È possibile aggiungere un nuovo server con il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli server --add localhost public_html
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In questo esempio, &lt;code&gt;localhost&lt;/code&gt; è il nome del server, mentre &lt;code&gt;public_html&lt;/code&gt; è la sua &lt;em&gt;document root&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ora è possibile pubblicare delle risorse sul server &lt;code&gt;localhost&lt;/code&gt; con il comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli publish /acme/blog/public localhost /blog
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ciò mappa il Puli Path &lt;code&gt;/acme/blog/public&lt;/code&gt; alla directory &lt;code&gt;blog&lt;/code&gt; della document root del server &lt;code&gt;localhost&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Puli ora ha tutte le informazioni per generare i persorsi delle risorse pubbliche:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;$puliPath = &#39;/acme/blog/public/images/logo.png&#39;;
-$url = $puliGenerator-&amp;gt;generateUrl($puliPath);
-echo $url; // -&amp;gt; &amp;quot;/blog/images/logo.png&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;L&amp;rsquo;ultima operazione può essere eseguita in un template Twig con l&amp;rsquo;utilizzo dell&amp;rsquo;estensione &lt;code&gt;puli/twig-extension&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-twig&#34;&gt;&amp;lt;img src=&amp;quot;{{ resource_url(&#39;/acme/blog/public/images/logo.png&#39;) }}&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name=&#34;assets-install&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;installazione-delle-risorse&#34;&gt;Installazione delle risorse&lt;/h4&gt;
-
-&lt;p&gt;Puli può installare automaticamente le risorse pubbliche nella document root dei web server.&lt;/p&gt;
-
-&lt;p&gt;Il comando è il seguente:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ puli publish --install
-Installing /acme/blog/public into public_html via symlink...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Gli autori di Puli hanno annunciato che &lt;strong&gt;tale funzionalità sarà rimossa da Puli CLI in favore di estensioni Gulp o altri tool simili&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;conclusioni&#34;&gt;Conclusioni&lt;/h3&gt;
-
-&lt;p&gt;Abbiamo visto come Puli offra numerose funzionalità aggiuntive rispetto al solo utilizzo di Composer.
-Puli è un progetto giovane, nel corso del tempo saranno aggiunte ulteriori funzionalità che lo renderanno ancora più potente.
-Per approfondire, la documentazione ufficiale è molto chiara e completa ed è disponibile all&amp;rsquo;indirizzo: &lt;a href=&#34;http://docs.puli.io/&#34;&gt;http://docs.puli.io/&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

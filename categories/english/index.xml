@@ -6,8 +6,67 @@
     <description>Recent content in English on Facile.it Engineering</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Dec 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://engineering.facile.it/categories/english/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Please mutate responsibly: 3 ways to improve your mutable objects</title>
+      <link>http://engineering.facile.it/blog/eng/please-mutate-responsibly-3-ways-to-improve-your-mutable-objects/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://engineering.facile.it/blog/eng/please-mutate-responsibly-3-ways-to-improve-your-mutable-objects/</guid>
+      <description>
+
+&lt;p&gt;Maintaining &lt;strong&gt;state&lt;/strong&gt; is the main cause of complexity and headaches in software development: without a careful consideration of state, our projects will inevitably become impossible to understand. In fact, various development techniques and programming styles are mainly there to handle state in a responsible way: for example, &lt;a href=&#34;https://en.wikipedia.org/wiki/Monad_(functional_programming)&#34;&gt;&lt;strong&gt;monads&lt;/strong&gt;&lt;/a&gt;, as used in functional programming, are often employed for this very task. A good general way of managing state is trying to make it &lt;strong&gt;immutable&lt;/strong&gt;, either through the use &lt;a href=&#34;https://en.wikipedia.org/wiki/Value_type&#34;&gt;value types&lt;/a&gt;, that is, types which instances are passed around with &lt;a href=&#34;https://en.wikipedia.org/wiki/Object_copying#Deep_copy&#34;&gt;deep copy&lt;/a&gt; semantics, or simple &lt;em&gt;immutable objects&lt;/em&gt;, which have reference semantics but because they&amp;rsquo;re immutable their state is fixed.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately the &lt;em&gt;processes&lt;/em&gt; we usually represent in code are all but immutable: the state of any running software is probably going to change as time passes, as a result of &lt;em&gt;foreign interactions&lt;/em&gt;, a.k.a., &lt;em&gt;side effects&lt;/em&gt;. This means that something, somewhere has to mutate, and to be more precise we can say that the information stored in a certain object is going to change: actually, an &lt;strong&gt;information&lt;/strong&gt; by itself is a &lt;strong&gt;constant&lt;/strong&gt; value, but from time to time that object is going to store different pieces of information, some are going to be new, others are going to be outdated. So there&amp;rsquo;s no escape from mutation: the point is to mutate &lt;strong&gt;responsibly&lt;/strong&gt;, that is, to not be reckless with our mutable objects, and treat them in a special way so that we can still reason about our code and easily understand the state of our system at any given moment.&lt;/p&gt;
+
+&lt;p&gt;The already cited techniques based on monads represent a good way to solve the problem, but monads only really work in a functional programming context, something that&amp;rsquo;s not everyone&amp;rsquo;s cup of tea, and to be really productive while using them you need to &lt;em&gt;think in terms of monads&lt;/em&gt;, and treat them as primitive objects. I don&amp;rsquo;t want to talk about monads or functional programming in general, my focus for this article is analyzing mutability in software, while identifying common techniques that can be leveraged in any programming language/paradigm to improve our code. In particular I want to talk about 3 specific problems that arise while working with mutable objects, and 3 solutions to address them. To quickly summarize, my suggestions will be the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;be idempotent;&lt;/li&gt;
+&lt;li&gt;react to change;&lt;/li&gt;
+&lt;li&gt;proceed one-way only.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see each one of them in detail by developing a concrete example: an object that represents a &lt;em&gt;payment process&lt;/em&gt;, which at any moment can be in various states, like &lt;em&gt;possible&lt;/em&gt;, &lt;em&gt;started&lt;/em&gt;, &lt;em&gt;working&lt;/em&gt;, &lt;em&gt;succeeded&lt;/em&gt; and &lt;em&gt;failed&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;be-idempotent&#34;&gt;Be idempotent&lt;/h2&gt;
+
+&lt;p&gt;To mutate an object from the outside we usually &lt;em&gt;tell&lt;/em&gt; the object to &lt;em&gt;do&lt;/em&gt; something. If we truly want to respect the object-oriented paradigm, and in particular if we don&amp;rsquo;t want to violate &lt;strong&gt;encapsulation&lt;/strong&gt;, we shouldn&amp;rsquo;t make assumptions about the internal state of a certain object after a certain method call; still, we cannot help but making assumptions about the way our entire &lt;em&gt;system&lt;/em&gt; is going to work after a method call, otherwise it would be impossible to reason about code. But if our changes are &lt;em&gt;incremental&lt;/em&gt;, it&amp;rsquo;s going to be really hard to understand the system even after a simple method call. Not all changes are created equal: if the resulting system&amp;rsquo;s state is affected by the previous one, before the change takes place, then it&amp;rsquo;s going to be basically impossible to reason about the system after the change, because in our reasoning we should take into account all the possible conditions the system was in. An incremental change, for example a method call to &lt;em&gt;increase a counter&lt;/em&gt;, will overload our mind of conditional paths and will cause bugs.&lt;/p&gt;
+
+&lt;p&gt;For example, for our &lt;code&gt;PaymentProcess&lt;/code&gt; we don&amp;rsquo;t want to be able to generically &lt;em&gt;advance&lt;/em&gt; the payment state: we want to advance it to a particular stage, with a clean method call that should be &lt;a href=&#34;https://en.wikipedia.org/wiki/Idempotence&#34;&gt;&lt;em&gt;idempotent&lt;/em&gt;&lt;/a&gt;, that is, calling it 1 time, 2 times or 100 times &lt;strong&gt;has to be the same&lt;/strong&gt;. This also means that if more objects call the same method, it will be like if only one object called it, and this will completely remove a running cause of bugs: multiple, uncoordinated interactions of the same type with an object. Idempotence is a simple concept, but it&amp;rsquo;s extremely powerful: with it, we don&amp;rsquo;t need to keep track if a particular operation has already occurred (thus saving some state), but to properly implement it we need the correct semantics: while &lt;em&gt;delta&lt;/em&gt; operations are very frequent in real life (think about increasing the volume of a TV set) and are usually harmless, they can be dangerous in software development, an in general it&amp;rsquo;s important to understand the what &lt;em&gt;feels&lt;/em&gt; natural in real life is not necessarily a good thing in software engineering, or engineering in general.&lt;/p&gt;
+
+&lt;p&gt;Also, notice that while an idempotent method call will always have the same result on a particular instance, it doesn&amp;rsquo;t mean that will have the same result on &lt;em&gt;different&lt;/em&gt; instances - more on this later.&lt;/p&gt;
+
+&lt;h2 id=&#34;react-to-change&#34;&gt;React to change&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.reactivemanifesto.org&#34;&gt;Reactive programming&lt;/a&gt; has been big the last few years, and that&amp;rsquo;s mostly thanks both to the popularity achieved by functional programming in OOP circles, and to the diffusion of architectures based on microservices. But the idea of &lt;em&gt;being reactive&lt;/em&gt; in software development has been around for much more than that: for example, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;&lt;strong&gt;observer pattern&lt;/strong&gt;&lt;/a&gt; has been there for decades, and the basic underlying idea is that of &lt;em&gt;connecting&lt;/em&gt; objects by establishing relations between them in which a state change is automatically propagated to a collection of &lt;em&gt;observers&lt;/em&gt;. It is responsibility of an observer to react to what just happened, while the &lt;em&gt;observable&lt;/em&gt; object doesn&amp;rsquo;t really care about what the others will do. This will allow us to achieve the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a nice &lt;em&gt;decoupling&lt;/em&gt; between a mutable object and other objects that for any reason are interested in its mutation; no custom interface will be needed, just a simple fixed method (like &lt;code&gt;next&lt;/code&gt;) to pass around the new information;&lt;/li&gt;
+&lt;li&gt;a more &lt;em&gt;declarative&lt;/em&gt; code style, in which our method calls will only describe the intent of connecting one or more objects to a chain of reactions (and &lt;a href=&#34;https://gist.github.com/staltz/868e7e9bc2a7b8c1f754&#34;&gt;functional reactive programming&lt;/a&gt; is particularly good a that).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;About our payment example, whatever object is interested in a change of state, like for example UI objects the will show different views to the user based on the current payment stage, should really subscribe to our payment object to receive &lt;em&gt;signals&lt;/em&gt; about its mutation: the payment object itself should then send these changes to the observers. Notice that I used the  word &lt;em&gt;send&lt;/em&gt; and not &lt;em&gt;broadcast&lt;/em&gt;: the change of state of a particular object should usually not be treated as an all-encompassing &lt;em&gt;event&lt;/em&gt;. Events are really about application wide changes (like a phone call during the execution of a mobile application): there are many ways to implement our observables and observers, the point is simply to have a clean, fixed API to &lt;em&gt;emit&lt;/em&gt; an information, and &lt;a href=&#34;http://reactivex.io&#34;&gt;ReactiveX&lt;/a&gt; could be a nice starting point to get an idea about the possible APIs.&lt;/p&gt;
+
+&lt;h2 id=&#34;proceed-one-way-only&#34;&gt;Proceed one-way only&lt;/h2&gt;
+
+&lt;p&gt;This might be controversial but it&amp;rsquo;s extremely important. Consider the following case: our payment process object has idempotent methods and a reactive API, so a view controller object can keep a UI updated and send back user interactions to advance the process. But while the process is in &amp;ldquo;working&amp;rdquo; stage something goes wrong and the process fails: not a problem, we actually considered the &amp;ldquo;failed&amp;rdquo; stage, so the &lt;code&gt;PaymentProcess&lt;/code&gt; is updated accordingly. But we would actually like to retry the payment, and of course update everything accordingly in our reactive chain. What should we do? Set our &lt;code&gt;PaymentProcess&lt;/code&gt; back to &amp;ldquo;working&amp;rdquo;? That would be possible, but it&amp;rsquo;s going to make everything more complex, because all the observers should in theory take into account the fact the this is not the first attempt to pay (the UI for example could show a &amp;ldquo;retry&amp;rdquo; message instead of the usual one).&lt;/p&gt;
+
+&lt;p&gt;In general, we want to &lt;em&gt;solve&lt;/em&gt; a state problem, we don&amp;rsquo;t want to distribute it to multiple objects.&lt;/p&gt;
+
+&lt;p&gt;Another case could be a complete stop of the payment process (the user could cancel it, for example, or the session could expire): we don&amp;rsquo;t want to bring back the &lt;code&gt;PaymentProcess&lt;/code&gt; instance, forcing all observer to do some kind of cleanup. In any case, a process that goes back and forth makes reasoning about code really hard, because &lt;strong&gt;it makes the future more complex&lt;/strong&gt;: all the objects that depend on a mutable object are going to be easier to implement if we can assume that the mutability will only proceed in one direction. Of course this is not easy to implement, but in this case it&amp;rsquo;s really natural to think about it: if the milk is running out in the evening, I cannot expect the bottle to magically refill for the morning, so I should start thinking about a different breakfast. Processes that are invertible usually require some form of external, high-level coordination, and from an architectural standpoint the idea of an object that mutates in any possible way might seem harmless: but at the implementation level this will cause problems, and bugs are in the implementation, not in the architecture. While implementing new features, refactoring, debugging or simply studying a codebase we reason about the code, not the architecture, and &lt;em&gt;coordinator&lt;/em&gt; objects are classic jack-of-all-trades at the architecture level: but unfortunately, an implementation that requires external coordination is going to be more complex and error-prone, so it&amp;rsquo;s better to be clear about the mutation path for an object.&lt;/p&gt;
+
+&lt;p&gt;In our particular case, we could consider one or more &amp;ldquo;retry&amp;rdquo; stages, or a single &amp;ldquo;retry&amp;rdquo; stage with an associated object that represents the number of retries. And about the possibility of going back to the beginning, in that case we should really &lt;strong&gt;discard the whole process&lt;/strong&gt;: the process owner, that would have likely activated the various accessory objects (like the ones for the UI) should &lt;em&gt;listen&lt;/em&gt; for an &amp;ldquo;abort&amp;rdquo; stage, that would make it kill everything and start the process anew. There might be performance concerns: to mutate objects is usually faster than recreating them, but again, it can be managed and it&amp;rsquo;s better to have cleaner, more understandable code from the beginning, so that it&amp;rsquo;s going to be easier to make fine calibrations in later stages, than to create a mess in the name of early optimizations.&lt;/p&gt;
+
+&lt;p&gt;One final question: if the process is one-way only, what happens if some object tries to set it to a previous stage with a method call? &lt;strong&gt;Absolutely nothing&lt;/strong&gt;. The &lt;em&gt;ignore-if-impossible&lt;/em&gt; semantics is actually clean and reasonable, and we don&amp;rsquo;t need errors or exceptions to handle: even if this has to be taken into account at every method call, the important thing is to be &lt;strong&gt;clear&lt;/strong&gt; about it, and the alternative is much worse. This whole article could be summarized in the phrase &lt;strong&gt;&amp;ldquo;clear semantics are what makes mutability bearable&amp;rdquo;&lt;/strong&gt;. In this particular case, the fact that a method call is ignored or not doesn&amp;rsquo;t change our reasoning: I&amp;rsquo;m not going to make assumptions about the state of &lt;code&gt;PaymentProcess&lt;/code&gt; after the call, because I&amp;rsquo;m actually reacting to its changes in a separate context.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;We considered a bunch of possible problems to think about when implementing mutable objects, and some options to confront them. Of course these ideas are purposely very general: every problem is different, every codebase is unique. But applying even just one of these techniques will most likely result in more clear and understandable code. I also didn&amp;rsquo;t talk about application-wide mutation, because that&amp;rsquo;s really an architectural thing; my goal is to raise awareness about the concept of mutation and variable instance properties in every single class. We should always &lt;strong&gt;avoid&lt;/strong&gt; mutation when possible, and concentrate our variable state in a few, carefully controlled places; but if we&amp;rsquo;re not careful, even a single mutating class in a multiple class project could wreak havoc, and force use to debug and fix a system that we thought was clean and well structured.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Codemotion Milan 2016 in review</title>
@@ -1995,194 +2054,6 @@ fuse-example on /tmp/example type fuse.fuse-example (rw,nosuid,nodev,relatime,us
 &lt;p&gt;These were my 2 cents, if you are interested in seeing something from me I started a little project on GitHub to create a filesystem that can use online services via FUSE to store data. You can find the project here: &lt;a href=&#34;https://github.com/fntlnz/webfs&#34;&gt;WebFS on GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Thanks for reading!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Code reuse: a primer</title>
-      <link>http://engineering.facile.it/blog/eng/code-reuse-a-primer/</link>
-      <pubDate>Wed, 09 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://engineering.facile.it/blog/eng/code-reuse-a-primer/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://engineering.facile.it/optionals-in-objective-c/&#34;&gt;Last time&lt;/a&gt; we looked at a possible implementation for the &lt;a href=&#34;https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330&#34;&gt;Optional&lt;/a&gt; type in Objective-C; while the main point was to port to Objective-C a tool that&amp;rsquo;s frequently used in Swift, making use of the &lt;code&gt;Optional&lt;/code&gt; class can be considered an application of a much more general concept: &lt;strong&gt;code reuse&lt;/strong&gt;. In fact, &lt;code&gt;Optional&lt;/code&gt; is not tied to a particular domain, and can be reused over and over again in multiple projects: that&amp;rsquo;s what actually happens in Swift. But, to think about it, that&amp;rsquo;s what happens for a wide range of &lt;em&gt;classes&lt;/em&gt; in Objective-C, or &lt;em&gt;types&lt;/em&gt; in Swift: for example, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are both constructs that expose a certain interface, have a certain implementation, and are reused multiple times within methods and functions. And again, &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;Array&lt;/code&gt; are not tied to a particular domain, and have two important properties:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;they are &lt;strong&gt;generic&lt;/strong&gt;, that is, they are not dependent on a particular subtype: an array of numbers and an array of strings will work in the exact same way when it comes to behavior that&amp;rsquo;s strictly associated to arrays, like counting elements, removing or adding an element, mapping, filtering, reducing et cetera;&lt;/li&gt;
-&lt;li&gt;they are &lt;strong&gt;composable&lt;/strong&gt;, that is, they can be stacked on top of each other, and assembled with other more specific things, while keeping the same &lt;strong&gt;predictable behavior&lt;/strong&gt;: an array of &lt;em&gt;customers&lt;/em&gt;, each with their own array of &lt;em&gt;purchased products&lt;/em&gt;, can be mapped to an array of arrays of &lt;em&gt;products&lt;/em&gt;, that can be flattened into an array of &lt;em&gt;products&lt;/em&gt;, that can be reduced into a number representing the total cost;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Array&lt;/code&gt;, like &lt;code&gt;Optional&lt;/code&gt;, is a nice example of perfectly reusable code, but there are many more constructs that satisfy the aforementioned rules: &lt;em&gt;genericity&lt;/em&gt; and &lt;em&gt;composability&lt;/em&gt;. What doesn&amp;rsquo;t satisfy the rules is domain-specific objects, even when it seems like an object is sufficiently generic to be reused. A &lt;code&gt;Customer&lt;/code&gt; class, for example, could seem a good candidate, but trying to reuse the same class in two different projects will result in &lt;strong&gt;bad news&lt;/strong&gt; and headaches: either we&amp;rsquo;ll need to &lt;strong&gt;specialize&lt;/strong&gt; the class for each project, making the two diverge, or we&amp;rsquo;ll need to add levels of &lt;strong&gt;indirection&lt;/strong&gt;, because we&amp;rsquo;re forcing an object into a project it doesn&amp;rsquo;t belong to.&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s another thing to consider: if we really want to reuse code, we&amp;rsquo;ll also need to make &lt;strong&gt;design choices&lt;/strong&gt; that allow that code to be reused. I could actually forget about the &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt; types, and create classes that never expose their underlying components; for example, I could create a class that represents a collection of optional objects, without ever exposing in the interface the fact that I&amp;rsquo;m using &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt; for its implementation: it would result in some serious &lt;strong&gt;contortion&lt;/strong&gt; of methods&amp;rsquo; signature, but it&amp;rsquo;s possible. Also, is it a good idea? &lt;strong&gt;I don&amp;rsquo;t think so&lt;/strong&gt;. Creating a specific, incomposable class for every possible need will result in thousands of lines of what&amp;rsquo;s essentially &lt;strong&gt;boilerplate&lt;/strong&gt; code, complicated interfaces, and ridiculously long class names. If we aspire to code reuse, other than the two rules we just defined, we also need to pay attention to the way we architect our apps, and the main design principle to follow here is one of &lt;strong&gt;composition&lt;/strong&gt;, that can be summed up with the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Domain-specific constructs and behaviors should be realized by composing atomic and generic building blocks.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This basically means that, instead of creating every time a specific implementation for our needs, we should try and satisfy that need by composing reusable, atomic objects. This looks complex, and at this point we should ask ourselves if code reuse is really something we want to pursue. My answer is a definitive &lt;strong&gt;yes&lt;/strong&gt;, for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;with reusable components we can &lt;strong&gt;encapsulate&lt;/strong&gt; a particular behavior, and avoid rewriting essentially the same thing over and over again;&lt;/li&gt;
-&lt;li&gt;we&amp;rsquo;ll have a &lt;strong&gt;guideline&lt;/strong&gt; for designing the architecture of our app, because we wont&amp;rsquo;t need to constantly define new interfaces for the same behaviors;&lt;/li&gt;
-&lt;li&gt;a reusable component is very easy to &lt;strong&gt;test&lt;/strong&gt;, because it&amp;rsquo;s small and atomic, so by using it we will be more confident about the correctness of our code;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That, again, is what happens when we use types like &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Optional&lt;/code&gt;. As I said, there are many more of these building blocks, and actually the definition of their interfaces is a problem in itself, and has no obvious solution, but I think it&amp;rsquo;s a very interesting problem to tackle. By following the &lt;em&gt;generic&lt;/em&gt; and &lt;em&gt;composable&lt;/em&gt; rules we already have a guideline for designing them, but if we want to create our owns we should probably add one more rule:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a reusable object has to be &lt;strong&gt;simple&lt;/strong&gt;, that is, it should have a unique, linear, easily describable responsibility;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Optional&lt;/code&gt; follows this rule: it&amp;rsquo;s a generic container that represents an object that could be there, or not. &lt;code&gt;Array&lt;/code&gt; follows this rule: it represents and &lt;em&gt;ordered&lt;/em&gt; collection of objects, each one them accessible in constant time. Let&amp;rsquo;s try to apply the rule and create a new reusable object.&lt;/p&gt;
-
-&lt;p&gt;Consider this real, kind of frequent use case: different objects must be notified when a certain object changes state or does something. A way to solve the problem is represented by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;, that is, make our objects implement an interface that exposes a &lt;a href=&#34;https://en.wikipedia.org/wiki/Publish–subscribe_pattern&#34;&gt;publish-subscribe&lt;/a&gt; behavior. The point is, implementing an interface &lt;strong&gt;is not reusable&lt;/strong&gt;: each time we want to use this pattern we are going to &lt;strong&gt;rewrite&lt;/strong&gt; very similar code; instead, we want to encapsulate the behavior in a generic object, and reuse that object instead. What follows is a possible implementation, the one that I use in production, but there are many more: actually, &lt;a href=&#34;https://en.wikipedia.org/wiki/Functional_reactive_programming&#34;&gt;functional reactive programming&lt;/a&gt; has spawned from this very problem, that is, finding a generic, composable way of representing and manipulating observable streams, but in this case we&amp;rsquo;re going to create a much simpler &lt;strong&gt;Signal&lt;/strong&gt; object.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;Signal&lt;/code&gt; class we want to implement is going to represent an &lt;em&gt;update&lt;/em&gt; for a certain object: that update can be everything, like a new value for a property, or an action that was taken. We&amp;rsquo;ll use the Swift language, which is also going to give us a lot of &lt;strong&gt;type-safety&lt;/strong&gt; for free. Here&amp;rsquo;s a summary of what we want for the &lt;code&gt;Signal&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;it has to a have a &lt;strong&gt;parametric&lt;/strong&gt; subtype, that is, the type of the value that will be signaled in each update;&lt;/li&gt;
-&lt;li&gt;it has to have an &lt;code&gt;observe&lt;/code&gt; method, that takes a closure representing an action that has to be taken every time an update is given;&lt;/li&gt;
-&lt;li&gt;it has to have a &lt;code&gt;send&lt;/code&gt; method, which takes a new value of the underlying subtype;&lt;/li&gt;
-&lt;li&gt;it has to have some simple methods for composition, that follow the usual naming conventions, like &lt;code&gt;map&lt;/code&gt;, for generating a new &lt;code&gt;Signal&lt;/code&gt; from an existing one by transforming the observed value, and &lt;code&gt;forwardTo&lt;/code&gt; to make another &lt;code&gt;Signal&lt;/code&gt; &lt;em&gt;trigger&lt;/em&gt; when a certain &lt;code&gt;Signal&lt;/code&gt; is producing a new value;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Semantically, we can describe a &lt;code&gt;Signal&lt;/code&gt; as a container for a value that&amp;rsquo;s going to be there at a certain point in time, and it&amp;rsquo;s going to update itself indefinitely.&lt;/p&gt;
-
-&lt;p&gt;What follows is the entire implementation of the &lt;code&gt;Signal&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;public enum SignalContinuation
-{
-  case Continue
-  case Stop
-}
-
-public class Signal&amp;lt;Subtype&amp;gt;
-{
-  private var observers: [(Subtype -&amp;gt; SignalContinuation)] = []
-
-  public init() {}
-
-  public func observe (observeFunction: Subtype -&amp;gt; SignalContinuation)
-  {
-    observers.append(observeFunction)
-  }
-
-  public func send (value: Subtype)
-  {
-    var continuations: [(Subtype -&amp;gt; SignalContinuation)] = []
-    while observers.count &amp;gt; 0
-    {
-      let observer = observers.removeFirst()
-      let continuation = observer(value)
-      switch continuation
-      {
-      case .Continue:
-        continuations.append(observer)
-      case .Stop: break
-      }
-    }
-    observers = continuations
-  }
-
-  public func forwardTo (otherSignal: Signal&amp;lt;Subtype&amp;gt;) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(action)
-      return .Continue
-    }
-    return self
-  }
-
-  public func forwardTo &amp;lt;OtherSubtype&amp;gt; (
-    otherSignal: Signal&amp;lt;OtherSubtype&amp;gt;,
-    mappingFunction: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal
-  {
-    observe { action in
-      otherSignal.send(mappingFunction(action))
-      return .Continue
-    }
-    return self
-  }
-
-  public func map &amp;lt;OtherSubtype&amp;gt; (transform: Subtype -&amp;gt; OtherSubtype) -&amp;gt; Signal&amp;lt;OtherSubtype&amp;gt;
-  {
-    let mappedSignal = Signal&amp;lt;OtherSubtype&amp;gt;()
-    forwardTo(mappedSignal, mappingFunction: transform)
-    return mappedSignal
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is really simple, but still, really powerful. A problem that&amp;rsquo;s frequently found when implementing the observer pattern is how to manage unsubscriptions; it&amp;rsquo;s a responsibility of the observer object to stop observing something, and in this &lt;code&gt;Signal&lt;/code&gt; implementation this is easily managed within the closure passed to the &lt;code&gt;observe&lt;/code&gt; method: the closure must return a &lt;code&gt;SignalContinuation&lt;/code&gt; value, that can be simply &lt;code&gt;.Continue&lt;/code&gt; (that is, keep observing updates) or &lt;code&gt;.Stop&lt;/code&gt;. Another problem is memory management: we need to make sure that when an observer&amp;rsquo;s memory is released, it will also stop observing, or a message will be sent to a dangling pointer, resulting in the app crashing. Swift&amp;rsquo;s &lt;code&gt;weak&lt;/code&gt; memory semantics actually makes this really easy to do: we&amp;rsquo;ll put a &lt;code&gt;guard&lt;/code&gt; clause at the beginning of the closure passed to the &lt;code&gt;observe&lt;/code&gt; method; if the object has become &lt;code&gt;nil&lt;/code&gt;, we&amp;rsquo;ll simply return &lt;code&gt;.Stop&lt;/code&gt;. The following example shows a simple use of the &lt;code&gt;Signal&lt;/code&gt; class, including the &lt;em&gt;stop-observing-on-nil&lt;/em&gt; mechanism:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class Sender
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func sendNew(value: Int)
-  {
-    signal.send(value)
-  }
-}
-
-class Receiver&amp;lt;Type: CustomStringConvertible&amp;gt;
-{
-  func startObserving(signal: Signal&amp;lt;Type&amp;gt;)
-  {
-    signal.observe { [weak self] value in
-      guard let this = self else { return .Stop }
-      this.printNewValue(value)
-      return .Continue
-    }
-  }
-
-  func printNewValue(value: Type)
-  {
-    print(value)
-  }
-}
-
-let sender = Sender()
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(sender.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 3, 5, 10, 20 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the example we can see an application of the concepts we talked about at the beginning of this article: instead of creating yet another interface for the same behavior, we are directly using and reusing the &lt;code&gt;Signal&lt;/code&gt; object. A more complex example would be the addition of something like a &lt;em&gt;resonator&lt;/em&gt;, that is, an object with a &lt;code&gt;Signal&lt;/code&gt; that resonates with another, like in the following example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class DoublingResonator
-{
-  let signal = Signal&amp;lt;Int&amp;gt;()
-
-  func resonateWith(otherSignal: Signal&amp;lt;Int&amp;gt;)
-  {
-    otherSignal.forwardTo(signal) { $0*2 }
-  }
-}
-
-let resonator = DoublingResonator()
-resonator.resonateWith(sender.signal)
-
-let receiver = Receiver&amp;lt;Int&amp;gt;()
-
-receiver.startObserving(resonator.signal)
-
-sender.signal.send(3)
-sender.signal.send(5)
-sender.signal.send(10)
-sender.signal.send(20)
-/// this will print 6, 10, 20, 40 on console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There are many other options for composition of signals, but as long as we don&amp;rsquo;t need them, it&amp;rsquo;s better to keep the class &lt;strong&gt;simple&lt;/strong&gt;: then, gradually over time, we can start adding features to the class, and as long as they&amp;rsquo;re properly generic and tested, we will be able to use them in all of our projects.&lt;/p&gt;
-
-&lt;p&gt;To conclude, finding the right abstractions for reusability is of course a problem, and the solution is not an easy one: plenty of academic papers address the problem in several ways (classic Charles W. Krueger&amp;rsquo;s paper &lt;a href=&#34;http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf&#34;&gt;Software Reuse&lt;/a&gt; contains a good overview of the used techniques), and the reason why &lt;a href=&#34;https://en.wikipedia.org/wiki/Category_theory&#34;&gt;category theory&lt;/a&gt; has many applications in functional programming is because it offers an excellent set of abstractions for tackling several classes of problems. But still, I think the advantages of code reuse are many, and that achieving a compositional design through atomic, reusable components is &lt;strong&gt;a worthy goal&lt;/strong&gt; to pursue.&lt;/p&gt;
 </description>
     </item>
     
