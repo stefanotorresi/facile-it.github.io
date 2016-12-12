@@ -2,7 +2,7 @@
 authors: ["elviro"]
 comments: true
 date: "2016-12-12"
-draft: true
+draft: false
 share: true
 categories: [English, OOP, Functional programming]
 title: "Please mutate responsibly: 3 ways to improve your mutable objects"
