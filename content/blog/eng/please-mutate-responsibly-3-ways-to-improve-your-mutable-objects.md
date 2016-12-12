@@ -19,7 +19,7 @@ The already cited techniques based on monads represent a good way to solve the p
 
 - be idempotent;
 - react to change;
-- proceed one-way only;
+- proceed one-way only.
 
 Let's see each one of them in detail by developing a concrete example: an object that represents a *payment process*, which at any moment can be in various states, like *possible*, *started*, *working*, *succeeded* and *failed*.
 
@@ -36,7 +36,7 @@ Also, notice that while an idempotent method call will always have the same resu
 [Reactive programming](http://www.reactivemanifesto.org) has been big the last few years, and that's mostly thanks both to the popularity achieved by functional programming in OOP circles, and to the diffusion of architectures based on microservices. But the idea of *being reactive* in software development has been around for much more than that: for example, the [**observer pattern**](https://en.wikipedia.org/wiki/Observer_pattern) has been there for decades, and the basic underlying idea is that of *connecting* objects by establishing relations between them in which a state change is automatically propagated to a collection of *observers*. It is responsibility of an observer to react to what just happened, while the *observable* object doesn't really care about what the others will do. This will allow us to achieve the following:
 
 - a nice *decoupling* between a mutable object and other objects that for any reason are interested in its mutation; no custom interface will be needed, just a simple fixed method (like `next`) to pass around the new information;
-- a more *declarative* code style, in which our method calls will only describe the intent of connecting one or more objects to a chain of reactions (and [functional reactive programming](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) is particularly good a that);
+- a more *declarative* code style, in which our method calls will only describe the intent of connecting one or more objects to a chain of reactions (and [functional reactive programming](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) is particularly good a that).
 
 About our payment example, whatever object is interested in a change of state, like for example UI objects the will show different views to the user based on the current payment stage, should really subscribe to our payment object to receive *signals* about its mutation: the payment object itself should then send these changes to the observers. Notice that I used the  word *send* and not *broadcast*: the change of state of a particular object should usually not be treated as an all-encompassing *event*. Events are really about application wide changes (like a phone call during the execution of a mobile application): there are many ways to implement our observables and observers, the point is simply to have a clean, fixed API to *emit* an information, and [ReactiveX](http://reactivex.io) could be a nice starting point to get an idea about the possible APIs.
 
