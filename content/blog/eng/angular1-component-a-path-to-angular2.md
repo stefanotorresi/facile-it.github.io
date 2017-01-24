@@ -5,7 +5,7 @@ date: "2017-01-24"
 draft: true
 menu: ""
 share: true
-categories: [Angular, Javascript, WebComponent, UI]
+categories: [English, Angular, Javascript, WebComponent, UI]
 title: "Angular 1.5> .component() a path to Angular 2"
 languageCode: "en-En"
 type: "post"
@@ -79,37 +79,37 @@ app.component('list', {
 ```
 As you can see not much has changed, but things are a little simpler:
 
- **bindToController** is the default and by **bindings** property the scope is always isolated; **controllerAs** is on and defaults set to **$ctrl**.
+`bindToController` is the default and with the `bindings` property the scope is always isolated; `controllerAs` is on and defaults set to `$ctrl`.
 
 Components so don’t manipulate the DOM or data which are outside its scope, but receive inputs and produce outputs through the interaction of view.
-Another nice point is that we don’t need to write a **stupid** function that always returns the same object.
+Another nice point is that we don’t need to write a **dumb** function that always returns the same object.
 We just define that object right here.
 
 ## Comparison between Directive definition and Component definition
 
-  property   | Directive    | Component
------------- | ------------ | -------------
-bindings | No | Yes (binds to controller)
-bindToController | Yes (default: false) | No (use bindings instead)
-compile () | Yes | No
-controller | Yes | Yes (default function() {})
-controllerAs | Yes (default: false) | Yes (default $ctrl)
-link () | Yes | No
-multiElement | Yes | No
-priority | Yes | No
-require | Yes | No
-scope | Yes (default: false) | No (scope is always isolate)
-template | Yes | Yes, injectable
-templateNamespace | Yes | No
-templateUrl | Yes | Yes, injectable
-terminal | Yes | No
-transclude | Yes (default: false) | Yes (default: false)
+  property     | Directive    | Component
+-------------- | ------------ | -------------
+`bindings`     | No           | Yes (binds to controller)
+`bindToController` | Yes (default: `false`) | No (use bindings instead)
+`compile()`   | Yes           | No
+`controller`   | Yes          | Yes (defaults to `function() {}`)
+`controllerAs` | Yes (default: `false`) | Yes (default `$ctrl`)
+`link()`      | Yes           | No
+`multiElement` | Yes          | No
+`priority`     | Yes          | No
+`require`      | Yes          | No
+`scope`        | Yes (default: `false`) | No (scope is always isolate)
+`template`     | Yes          | Yes, injectable
+`templateNamespace` | Yes     | No
+`templateUrl`  | Yes          | Yes, injectable
+`terminal`     | Yes          | No
+`transclude`   | Yes (default: `false`) | Yes (default: `false`)
 
 ## New other goodies:
 
-**One way data bindings**
+#### One way data bindings
 
-Previously, we could pass objects to child directives/components with the = binding:
+Previously, we could pass objects to child directives/components with the `=` binding:
 
 ``` javascript
 
@@ -123,14 +123,14 @@ app.component('bar', {
 
 ```
 
-This would have created a two-way binding with the component’s parent. Whenever the parent would assign a new value, it would be propagated to the child. 
-And vice-versa, if the component assigns a new value it will be copied to the parent, this is two-way data bindings.
+This would have created a **two-way binding** with the component’s parent. Whenever the parent would assign a new value, it would be propagated to the child. 
+And vice-versa, if the component assigns a new value it will be copied to the parent; this is how a two-way data binding operates.
 
 This, while helpful, isn’t a very common scenario in my experience. That’s why Angular has finally introduced the new prospect of one-way bindings.
 These create just a single watch, that watches for changes in the parent and syncs them to the child. We gain performance (by cutting in half the amount of watches created) 
 and things become less error "friendly". 
 
-The syntax is similar watch the code below:
+The syntax is similar to the code below:
 
 ``` javascript
 
@@ -144,20 +144,19 @@ app.component('bar', {
 
 ```
 
-Yeah, we just change **=** to **<**.
+Yeah, we just changed `=` to `<`.
 
-other  bindings parameter:
+Other bindings parameter are:
 
-**'@'**: Interpolation bindings (input parameter) also used in the directives for values ​​coming from the DOM as strings.
+ * `@`: interpolation bindings (input parameter), also used in the directives for values ​​coming from the DOM as strings;
+ * `&`: this symbol is used to pass a function in component to be used as a callback event (to generate an output) to the calling component.
 
-**'&'**: this symbol is used to pass a function in component to be used as a callback event (to generate an output) to the calling component
-
-## Lifecycle hook: $onInit, $onChanges, $onDestroy and $postLink:
+#### Lifecycle hook: `$onInit`, `$onChanges`, `$onDestroy` and `$postLink`
 
 Lifecycle hooks provides us with an easy way of invoking operation based on the lifecycle of our components. Using this hooks lets us provide our users with relevant information or 
 action at the appropriate time.
 
-**$onInit()** is executed when all controllers on the element have been constructed and after their bindings are initialized.
+ * `$onInit()` is executed when all controllers on the element have been constructed and after their bindings are initialized.
 This hook is meant to be used for any kind of initialization work for the controller.
 
 ``` javascript
@@ -174,16 +173,14 @@ app.component('MyCtrlComp', {
 
 ```
 
-This is a stupis simple example , but imagine we’d need to do some HTTP requests during initialization of this component or controller.  
+This is a very simple example, but imagine we’d need to do some HTTP requests during initialization of this component or controller.  
 Now we have a better place for these kind of things.
 
-**$onDestroy()** is called when its containing scope is destroyed. We can use this hook to release external resources, watches and event handlers.
+ * `$onDestroy()` is called when its containing scope is destroyed. We can use this hook to release external resources, watches and event handlers.
 In a scenario where you have attached non-native angular event listeners or logic, we can use this hook to clean it up when the component is destroyed.
-
-
-**$onChanges()** is a particular type of “watch” called  when changes occur in one way bindings on the input component interface. 
+ * `$onChanges()` is a particular type of “watch” called  when changes occur in one way bindings on the input component interface. 
 It gets called with an object that holds the changes of all one-way bindings with the current Value and the previous Value.
-With `$onChanges we can react to this changes and update the child component data effectively.
+With `$onChanges` we can react to this changes and update the child component data effectively.
 
 Suppose that we make the name property of our myUserCmp configurable from the outside using a one-way binding:
 
@@ -208,7 +205,7 @@ in the markup we can now bind an expression to the component’s user property l
 
 ```
 
-Now we want to prepend the user with “Hi” when the user is JohnDoe and otherwise put “Hello”. We can do that using the $onChanges() lifecycle hook. 
+Now we want to prepend the user with “Hi” when the user is JohnDoe and otherwise put “Hello”. We can do that using the `$onChanges()` lifecycle hook. 
 It gets called with an object that holds the changes of all one-way bindings with the currentValue and the previousValue.
 
 ``` javascript
@@ -226,24 +223,22 @@ function MyCtrlComp() {
 
 ```
 
-
-**$postLink()** is called after the controller's element and its children have been linked. When the component elements have been compiled and ready to go, this hook will be fired;  
-can help us to implement some functionalities that depend on the component elements to be fully compiled.
+ * `$postLink()` is called after the controller's element and its children have been linked. When the component elements have been compiled and ready to go, this hook will be fired;  
+can help us to implement some functionality that depend on the component elements to be fully compiled.
 It’s important to note that this is not a complete replacement for DOM manipulation, this functionality should be handled by decorator directives.
 
+## Conclusion
 
-## Conclusion:
-
-Adopt components allows you to write more easily portable code to Angular 2, introducing a modular architecture of the DOM more maintainable than the usual guidelines. 
+Adopting components allows you to write more easily portable code to Angular 2, introducing a modular architecture of the DOM more maintainable than the usual guidelines. 
 
 In a components architecture, an application becomes a tree tag structure with well-defined inputs and outputs (limiting the two-way databinding) so as to make more predictable the 
 change of state of application and its components. 
 In this structure, usually the root tags are called "smart components" because they are the ones who manage the data, those closest to the leaves instead are called "dumb components" because 
 they are pure interaction and are highly reusable.
 
-Therefore .component() is a great addition to Angular. It’s a real upgrade for code quality and helps you preper for ng2.
+Therefore `.component()` is a great addition to Angular. It’s a real upgrade for code quality and helps you proper for ng2.
 
-So, upgrade to 1.5 and start using .component(): you have unlocked a new skill!
+So, upgrade to 1.5 and start using `.component()`: you have unlocked a new skill!
 
 For more details refer to understanding components [docs](https://docs.angularjs.org/guide/component)
 
