@@ -12,35 +12,37 @@ type: "post"
 
 ---
 
-AngularJS with version 1.5, has introduced natively  the concept of WebComponent, "inheriting" much of the experience made with Angular 2. 
+With version 1.5 and newer, Angular (formerly now as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2.0. 
 
-Using Components with AngularJS today not only means writing code much more easily upgradeable to Angular 2, (especially if written in ES6), 
-but also allows you to modularize and reuse more easily code, in line with the modern frontend programming style that will be more and more 
-oriented to the components.
+Using *Components* with Angular today not only means writing code much more easily upgradeable to future Angular versions (especially using ES6), 
+but it also allows you to modularize and reuse code more easily, in line with the modern frontend programming style that will be more and more 
+modular.
 
 But, as with anything new, there are open questions:
 
 - When should you use it?
 - Why should you use it?
-- What’s the difference between it and .directive()?
+- What’s the difference between `.component()` and `.directive()` APIs?
 
-According to the official documentation, a component is like a directive ... but more easier to use! 
+According to the official documentation, a *Component* is like a *Directive*... but easier to use! 
 
 ## Directive vs Component
 
 **Directive:**
 
-- isolate parts of the DOM to create components
-- be an attributes of a tag
-- you can compose and manipulate the DOM or model and so on (using link & compile function). 
+- was the main API to access the DOM in Angular 1.x; 
+- isolates parts of the DOM to create reusable building blocks; 
+- can be both a [DOM element][MDN DOM Element docs] **and/or** a [DOM attribute][MDN DOM Attribute docs];
+- uses link and compile functions to operate on the DOM and the  model.
 
 **Component:** 
 
-- can be only a tag (which aggregate other)
-- have isolated scopes by default
-- automatically use controllerAs syntax
-- use controllers instead of link functions
-- bindToController option is on by default
+- is an higher level abstraction of *directives*
+- can only be a DOM element (and aggregate others)
+- has an isolated scope by default
+- automatically uses `controllerAs` syntax
+- uses controllers instead of link functions
+- has `bindToController` option on by default
 
 ## Coding comparison
 
@@ -62,7 +64,7 @@ app.directive('list', function() {
 ```
 It’s a simple component directive, with an isolated scope, binding, and a controller.
 
-Here’s how you’ll write it with .component:
+Here’s how you’ll write it with `.component()`:
 
 ``` javascript
 
@@ -75,7 +77,7 @@ app.component('list', {
 });
 
 ```
-As you can see, not much has changed, but, things are simpler:
+As you can see not much has changed, but things are a little simpler:
 
  **bindToController** is the default and by **bindings** property the scope is always isolated; **controllerAs** is on and defaults set to **$ctrl**.
 
@@ -245,3 +247,6 @@ So, upgrade to 1.5 and start using .component(): you have unlocked a new skill!
 
 For more details refer to understanding components [docs](https://docs.angularjs.org/guide/component)
 
+[web-components]: https://www.webcomponents.org/
+[MDN DOM Element Docs]: https://developer.mozilla.org/en-US/docs/Web/API/Element
+[MDN DOM Attribute Docs]: https://developer.mozilla.org/en-US/docs/Web/API/Attr
