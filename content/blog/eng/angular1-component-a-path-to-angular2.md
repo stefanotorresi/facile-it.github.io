@@ -1,16 +1,19 @@
 ---
 authors: ["simone-lazzaroni"]
 comments: true
-date: "2017-01-24"
+date: "2017-01-25"
 draft: true
 menu: ""
 share: true
 categories: [English, Angular, Javascript, WebComponent, UI]
-title: "Angular 1.5> .component() a path to Angular 2"
+title: "Web Components a path to Angular 2"
 languageCode: "en-En"
 type: "post"
+twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
 
 ---
+<p align="center"> <img src="/images/web-components-a-path-to-angular-2/angular.png"> </p>
+
 
 With version 1.5 and newer, Angular (formerly now as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2.0. 
 
