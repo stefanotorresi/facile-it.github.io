@@ -128,7 +128,7 @@ app.component('bar', {
 This would have created a **two-way binding** with the component’s parent. Whenever the parent would assign a new value, it would be propagated to the child. 
 And vice-versa, if the component assigns a new value it will be copied to the parent; this is how a two-way data binding operates.
 
-This, while helpful, isn’t a very common scenario in my experience. That’s why Angular has finally introduced the new prospect of one-way bindings.
+This, while helpful, isn’t a very common scenario in my experience. That’s why Angular has finally introduced the new process of one-way bindings.
 These create just a single watch, that watches for changes within the parent and syncs them to the child. As a result we gain performance (by cutting in half the amount of watches created) and things become less error "friendly". 
 
 The syntax is similar to the code below:
