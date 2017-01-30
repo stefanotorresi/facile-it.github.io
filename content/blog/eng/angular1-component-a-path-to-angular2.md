@@ -15,7 +15,7 @@ twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
 <p align="center"> <img src="/images/web-components-a-path-to-angular-2/angular.png"> </p>
 
 
-With version 1.5 and newer, Angular (formerly now as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2. 
+With version 1.5 and newer, Angular (formerly known as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2. 
 
 Using *Components* with Angular today not only means writing code much more easily upgradeable to future Angular versions (especially using ES6), 
 but it also allows you to modularize and reuse code more easily, in line with the modern frontend programming style that will be more and more 
@@ -84,9 +84,8 @@ As you can see not much has changed, but things are a little simpler:
 
 `bindToController` is the default and with the `bindings` property the scope is always isolated; `controllerAs` is on and defaults set to `$ctrl`.
 
-Components so don’t manipulate the DOM or data which are outside its scope, but receive inputs and produce outputs through the interaction of view.
-Another nice point is that we don’t need to write a **dumb** function that always returns the same object.
-We just define that object right here.
+Components so don’t manipulate the DOM or data that are outside their scope, but they receive inputs and produce outputs through the interaction with the view.
+Another nice point is that we don’t need to write a **dumb** function that always returns the same object, we just define that object right here.
 
 ## Comparison between Directive definition and Component definition
 
@@ -130,8 +129,7 @@ This would have created a **two-way binding** with the component’s parent. Whe
 And vice-versa, if the component assigns a new value it will be copied to the parent; this is how a two-way data binding operates.
 
 This, while helpful, isn’t a very common scenario in my experience. That’s why Angular has finally introduced the new prospect of one-way bindings.
-These create just a single watch, that watches for changes in the parent and syncs them to the child. We gain performance (by cutting in half the amount of watches created) 
-and things become less error "friendly". 
+These create just a single watch, that watches for changes within the parent and syncs them to the child. As a result we gain performance (by cutting in half the amount of watches created) and things become less error "friendly". 
 
 The syntax is similar to the code below:
 
@@ -152,12 +150,11 @@ Yeah, we just changed `=` to `<`.
 Other bindings parameter are:
 
  * `@`: interpolation bindings (input parameter), also used in the directives for values ​​coming from the DOM as strings;
- * `&`: this symbol is used to pass a function in component to be used as a callback event (to generate an output) to the calling component.
+ * `&`: this symbol is used to pass a function to a component and it is used as a callback event (to generate an output) to the calling component.
 
 #### Lifecycle hook: `$onInit`, `$onChanges`, `$onDestroy` and `$postLink`
 
-Lifecycle hooks provides us with an easy way of invoking operation based on the lifecycle of our components. Using this hooks lets us provide our users with relevant information or 
-action at the appropriate time.
+Lifecycle hooks provides us with an easy way of invoking operation based on the lifecycle of our components. The usage of these hooks lets us provide our users with relevant information or action at the appropriate time.
 
  * `$onInit()` is executed when all controllers on the element have been constructed and after their bindings are initialized.
 This hook is meant to be used for any kind of initialization work for the controller.
@@ -176,8 +173,7 @@ app.component('MyCtrlComp', {
 
 ```
 
-This is a very simple example, but imagine we’d need to do some HTTP requests during initialization of this component or controller.  
-Now we have a better place for these kind of things.
+This is a very simple example, but imagine we’d need to do some HTTP requests during initialization of this component or controller: now we have a better place for these kind of things.
 
  * `$onDestroy()` is called when its containing scope is destroyed. We can use this hook to release external resources, watches and event handlers.
 In a scenario where you have attached non-native Angular event listeners or logic, we can use this hook to clean it up when the component is destroyed.
@@ -209,7 +205,7 @@ in the markup we can now bind an expression to the component’s user property l
 ```
 
 Now we want to prepend the user with “Hi” when the user is JohnDoe and otherwise put “Hello”. We can do that using the `$onChanges()` lifecycle hook. 
-It gets called with an object that holds the changes of all one-way bindings with the currentValue and the previousValue.
+It gets called with an object that holds the changes of all one-way bindings along with the currentValue and the previousValue.
 
 ``` javascript
 
@@ -226,16 +222,16 @@ function MyCtrlComp() {
 
 ```
 
- * `$postLink()` is called after the controller's element and its children have been linked. When the component elements have been compiled and ready to go, this hook will be fired;  
-can help us to implement some functionality that depend on the component elements to be fully compiled.
+ * `$postLink()` is called after the controller's element and its children have been linked. When the component elements have been compiled and are ready to go, this hook will be fired;  
+It can help us to implement some functionality that depends on the component elements to be fully compiled.
 It’s important to note that this is not a complete replacement for DOM manipulation, this functionality should be handled by decorator directives.
 
 ## Conclusion
 
-Adopting components allows you to write more easily portable code to Angular 2, introducing a modular architecture of the DOM more maintainable than the usual guidelines. 
+Adopting components allows you to write code that is more easily portable to Angular 2 and introduces a modular architecture of the DOM that is more maintainable compared to the usual guidelines. 
 
 In a components architecture, an application becomes a tree tag structure with well-defined inputs and outputs (limiting the two-way databinding) so as to make more predictable the 
-change of state of application and its components. 
+change of state of the application and its components. 
 In this structure, usually the root tags are called "smart components" because they are the ones who manage the data, those closest to the leaves instead are called "dumb components" because 
 they are pure interaction and are highly reusable.
 
