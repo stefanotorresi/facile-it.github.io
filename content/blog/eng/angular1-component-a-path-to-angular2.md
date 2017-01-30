@@ -6,7 +6,7 @@ draft: true
 menu: ""
 share: true
 categories: [English, Angular, Javascript, WebComponent, UI]
-title: "Web Components a path to Angular 2"
+title: "Web Components: a path to Angular 2"
 languageCode: "en-En"
 type: "post"
 twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
@@ -15,7 +15,7 @@ twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
 <p align="center"> <img src="/images/web-components-a-path-to-angular-2/angular.png"> </p>
 
 
-With version 1.5 and newer, Angular (formerly now as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2.0. 
+With version 1.5 and newer, Angular (formerly now as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2. 
 
 Using *Components* with Angular today not only means writing code much more easily upgradeable to future Angular versions (especially using ES6), 
 but it also allows you to modularize and reuse code more easily, in line with the modern frontend programming style that will be more and more 
@@ -180,7 +180,7 @@ This is a very simple example, but imagine we’d need to do some HTTP requests 
 Now we have a better place for these kind of things.
 
  * `$onDestroy()` is called when its containing scope is destroyed. We can use this hook to release external resources, watches and event handlers.
-In a scenario where you have attached non-native angular event listeners or logic, we can use this hook to clean it up when the component is destroyed.
+In a scenario where you have attached non-native Angular event listeners or logic, we can use this hook to clean it up when the component is destroyed.
  * `$onChanges()` is a particular type of “watch” called  when changes occur in one way bindings on the input component interface. 
 It gets called with an object that holds the changes of all one-way bindings with the current Value and the previous Value.
 With `$onChanges` we can react to this changes and update the child component data effectively.
