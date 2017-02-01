@@ -15,11 +15,9 @@ twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
 <p align="center"> <img src="/images/web-components-a-path-to-angular-2/angular.png"> </p>
 
 
-With version 1.5 and newer, Angular (formerly known as AngularJS, but apparently now *it's just Angular*) has introduced their own interpretation of [Web Components][web-components], back-porting the *Components* from Angular 2. 
+With version 1.5 and newer, Angular (formerly known as AngularJS, but apparently now [*it's just Angular*][its-just-angular]) introduced their own interpretation of [Web Components][web-components], back-porting *Components* from Angular 2.
 
-Using *Components* with Angular today not only means writing code much more easily upgradeable to future Angular versions (especially using ES6), 
-but it also allows you to modularize and reuse code more easily, in line with the modern frontend programming style that will be more and more 
-modular.
+Using *Components* with Angular today not only means writing code much more easily upgradeable to future framework versions (especially using ES6), but it also allows you to modularize and reuse code more easily, in line with the modern frontend programming style that will be more and more modular.
 
 But, as with anything new, there are open questions:
 
@@ -125,11 +123,11 @@ app.component('bar', {
 
 ```
 
-This would have created a **two-way binding** with the component’s parent. Whenever the parent would assign a new value, it would be propagated to the child. 
-And vice-versa, if the component assigns a new value it will be copied to the parent; this is how a two-way data binding operates.
+This would have created a **two-way data binding** with the component’s parent. Whenever the parent would assign a new value to `foo`, or change the existing one, this would be propagated to the child too, and vice-versa; this is how two-way data binding operates by design.
 
-This, while helpful, isn’t a very common scenario in my experience. That’s why Angular has finally introduced the new process of one-way bindings.
-These create just a single watch, that watches for changes within the parent and syncs them to the child. As a result we gain performance (by cutting in half the amount of watches created) and things become less error "friendly". 
+While helpful, this isn’t a very common scenario in my experience, because it has its drawbacks: mostly, in complex applications it may become more difficult to reason about, and it can have heavy performance implications.
+
+That’s why Angular has introduced one-way data bindings: these create just a single *watcher*, watching for changes on the parent and propagating them to the child. As a result we gain performance (by cutting in half the amount of watchers created) and things become less "error friendly".
 
 The syntax is similar to the code below:
 
@@ -147,10 +145,10 @@ app.component('bar', {
 
 Yeah, we just changed `=` to `<`.
 
-Other bindings parameter are:
+Other data binding parameters are:
 
  * `@`: interpolation bindings (input parameter), also used in the directives for values ​​coming from the DOM as strings;
- * `&`: this symbol is used to pass a function to a component and it is used as a callback event (to generate an output) to the calling component.
+ * `&`: expression bindings, often used to pass a function to a component to provide a callback event (to generate an output) to the caller.
 
 #### Lifecycle hook: `$onInit`, `$onChanges`, `$onDestroy` and `$postLink`
 
@@ -228,14 +226,13 @@ It’s important to note that this is not a complete replacement for DOM manipul
 
 ## Conclusion
 
-Adopting components allows you to write code that is more easily portable to Angular 2 and introduces a modular architecture of the DOM that is more maintainable compared to the usual guidelines. 
+Adopting *Components* allows you to write code that is more easily portable to future Angular versions and introduces a modular architecture of the DOM that is more maintainable compared to the usual guidelines.
 
-In a components architecture, an application becomes a tree tag structure with well-defined inputs and outputs (limiting the two-way databinding) so as to make more predictable the 
-change of state of the application and its components. 
-In this structure, usually the root tags are called "smart components" because they are the ones who manage the data, those closest to the leaves instead are called "dumb components" because 
-they are pure interaction and are highly reusable.
+In a *Component* based architecture, an application becomes a tree structure of elements, with well-defined inputs and outputs, a clear data-flow, and predictable behaviours.
 
-Therefore `.component()` is a great addition to Angular. It’s a real upgrade for code quality and helps you proper for ng2.
+In this structure, the root elements are usually called "smart components" because these are the ones who manage the data, while those closest to the leaves are called "dumb components" instead, because they are more UI focused and are highly reusable.
+
+In conclusion, `.component()` is a great addition to Angular. It’s a real upgrade for code quality and helps you prepare for the future.
 
 So, upgrade to 1.5 and start using `.component()`: you have unlocked a new skill!
 
@@ -244,3 +241,4 @@ For more details refer to understanding components [docs](https://docs.angularjs
 [web-components]: https://www.webcomponents.org/
 [MDN DOM Element Docs]: https://developer.mozilla.org/en-US/docs/Web/API/Element
 [MDN DOM Attribute Docs]: https://developer.mozilla.org/en-US/docs/Web/API/Attr
+[its-just-angular]: http://angularjs.blogspot.it/2016/12/ok-let-me-explain-its-going-to-be.html#Its_just_Angular_39
