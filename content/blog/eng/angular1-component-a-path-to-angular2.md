@@ -6,7 +6,7 @@ draft: true
 menu: ""
 share: true
 categories: [English, Angular, Javascript, WebComponent, UI]
-title: "Web Components: a path to Angular 2"
+title: "Angular Components: from AngularJS to \"just Angular\""
 languageCode: "en-En"
 type: "post"
 twitterImage: '/images/web-components-a-path-to-angular-2/angular.png'
